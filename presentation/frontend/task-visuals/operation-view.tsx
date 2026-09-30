@@ -1,4 +1,8 @@
 import {
+  AutomedPathology500Scene,
+  AutomedPathology500Output,
+} from './automedbench-full-pathology-caption-500-task-panels';
+import {
   AutomedPathology100Scene,
   AutomedPathology100Output,
 } from './automedbench-full-pathology-caption-100-task-panels';
@@ -325,6 +329,8 @@ export function OperationScene({
         onSeekFrame={onSeekFrame}
       />
     );
+  if (state.recipe === 'automed-pathology-caption-500-v1')
+    return <AutomedPathology500Scene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -653,6 +659,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'automed-mimic-report-v1') return <AutomedMimicReportOutput state={state} />;
   if (state.recipe === 'automed-pathology-caption-100-v1')
     return <AutomedPathology100Output state={state} />;
+  if (state.recipe === 'automed-pathology-caption-500-v1')
+    return <AutomedPathology500Output state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

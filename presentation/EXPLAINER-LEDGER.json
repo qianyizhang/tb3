@@ -20963,15 +20963,15 @@
       ],
       "illustration_kind": "caption",
       "subject": "tissue",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-pathology-caption-500-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-pathology-caption-500-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted source-pinned symbolic PathCap500 one-image caption, syntax and evaluator explanation after main visual/export/mobile/noGPU/reference review. Historical anonymous401 and official metadata gates retained with unrecorded request timestamp qualified. Exact Full images/captions/selected500 IDs/private references/pathology metric assets/model outputs and scores remain absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/pathcap500/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names BLIP public pretrained image-captioning baseline. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -21004,7 +21004,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. Source flags metric compatibility as unresolved for histopathology. Required metric assets or baseline bands remain unresolved in the source package."
       },
-      "source_brief_sha256": "c9c4f3b6a65ab9d7aadaa2a1c7210708c085f5dab52f6e1b74941f711d90897f",
+      "source_brief_sha256": "8b37198eb60d9c6f804a53c9236d4e9c4cffe08996f5e2b4d1f0b3141540e8da",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -21013,14 +21013,112 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "source_class": "symbolic-protocol",
+      "actual_data_gap": "Matching histology image/caption and selected 500 case IDs absent. Retained historical anonymous PathCap annotation read returned 401; 500/100 membership and pathology-compatible metric assets unresolved. No output or score.",
+      "acquisition_route": "https://huggingface.co/datasets/jamessyx/PathCap",
+      "warning_text": "Native image/caption and selected 500 IDs absent; symbolic protocol. Official PathCap acquisition required.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-pathology-caption-500-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-pathology-caption-500-task-resolution.json",
+        "receipt_sha256": "98d57f3e91d52d0a947508a57d8a7762a23dffe336ef52109f538a08de91c839",
+        "reviewer": "Codex main agent",
+        "reviewed_at": "2026-09-30T23:02:41.430506+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Source-pinned symbolic PathCap500 one-image caption, syntax and evaluator contract; exact Full images/captions/case IDs/private references/model outputs absent.",
+      "completion_review": {
+        "date": "2026-09-30T23:18:35.414385+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "b9bf591ec9726e65e83abdcfab904cf221ad5af663e61d370804b5c5fc06c0f8"
+      },
+      "reviewed_contract_projection": {
+        "title": "Caption one histopathology image per case in the 500-case condition",
+        "goal": "Implement the selected inference-only captioning method and emit concise plain text per staged case. The symbolic image socket and nonclinical text fixture teach input/output boundaries; they are not histology evidence, captions or model results.",
+        "value": "Image-grounded captioning connects one histopathology image to a readable text artifact. Format acceptance and text-proxy agreement do not establish pathology accuracy.",
+        "raw": "Config defines **image** as grouping unit, **exactly one JPEG per case**, and **expected_case_count=500**. The release_owned_500_unstaged split is not included. **0 native source images, 0 source captions, 0 actual Full cases** retained. Magnification, tissue, staining, specimen, crop/slide correspondence and patient overlap cannot be inferred. Full manifests/IDs are absent. Public images/manifest belong under /data/public; private caption/labels/manifest under /data/private.\n\nThe 100 condition has expected_case_count=100 and release_owned_100_unstaged. These are different declared selections, not a proven subset relation; both have the same source and caption contract. No common IDs, ordering, selection seed, exclusion rule or patient independence is recovered. A symbolic index/count is never an actual case ID.",
+        "helpers": "Lite prescribes Salesforce/blip-image-captioning-base inference-only baseline, explicitly release-owned rather than website checkpoint authority. Standard compares at least three public inference-only candidates (BLIP/BLIP2, Qwen2.5-VL or documented pathology-aware VLM) using public evidence and a public-input pilot. Training/fine-tuning on benchmark cases forbidden. Source model_info and prompts are guidance, not acquired weights or execution evidence. Training/helper annotations must stay distinct from selected test captions; split leakage/overlap unverified. No training image/caption bundled.",
+        "tools": "Terminal/model guidance only. No installation, preprocessing, model selection trial, image inference or medical/metric evaluator execution occurred.",
+        "reference": "Private report.txt and optional labels.json are evaluator-owned, absent here. Public source captions, if later acquired, are reader-only source annotations behind explicit later reveal, never initial solver text or a recovered private Full reference. None bundled. Actual container mount isolation remains unverified.",
+        "spec": "One JPEG case \u2192 deterministic chosen preprocessing \u2192 concise caption \u2192 one plain report.txt. Lite S3 pilots one public case before all 500; Standard S3 validates preprocessing/file shape/runtime before 500. No S4/S5 Markdown files included; effective prompt assembly unverified. task_loader sorts public case directories; evaluator uses explicit --cases list and does **not enforce expected_case_count=500**. Declared500 is task intent; denominator is supplied IDs. Use all frozen selected cases once staging is established.",
+        "output": "**agent_outputs/<case_id>/report.txt** (singular agent). UTF-8, **1\u20138000 raw characters inclusive**, **at least 1 alphabetic character**, nonempty stripped text, Python string.printable. A single ASCII letter passes syntax but establishes no caption meaning. Unicode letters may fail printable check. Plain caption without a JSON wrapper, class label or debug text is a task instruction; the checker does not parse or reject wrapper structure. Actual participant caption null; authored nonclinical fixture unrelated to any patient/image.",
+        "score": "**Equal seven metrics are declared; backend/weights/schema bindings absent. Executable defaults to .7 CXR-regex observation F1 + .3 token-LCS similarity, not a validated pathology score.** Config lists bleu, meteor, rouge_l, f1_radgraph, micro_precision, micro_recall, micro_f1 equally weighted; clinical_score_backend/clinical_metric_weights/observation_schema_file omitted. Scorer defaults chest-Xray cxr_12class patterns. Config flags metric_compatibility=unresolved_for_histopathology and blocked_metric_assets. A CXR observation match is not pathology correctness; empty regex-positive sets yield F1=1 by implementation convention, not evidence of a meaningful caption.\n\nOptional MLRG requires repo/checkpoint paths and unavailable resources. Adapter BLEU averages 1\u20134, maps partialRadGraph and CheXbert all-label micro metrics. Pathology relevance, exact external tokenization and reference validity unresolved. Lightweight tokenizer lowercases/removes FINAL REPORT, splits alphanumeric/hyphen tokens, and computes token-LCS F1; uppercase FINDINGS extraction takes precedence despite caption mode not consumed here, otherwise whole text. labels.json precedes regex-derived labels. These implementation defaults are not a qualified pathology evaluation.\n\nCompletion **valid_count/N supplied IDs**, not pixels/slides nor an enforced500. Empty list invalid; missing prediction becomes empty and remains in means/micro counts. Mean per-case metrics divide by max(N,1); micro sums TP/FP/FN. Any invalid/missing requested file forces F and zero aggregate clinical components, while raw micro fields may remain. Workflow weights .25/.15/.35/.15/.10, defaults .80/.55 rating thresholds, 50/50 clinical/workflow overall aggregation are source settings, not observed performance. S1\u2013S3 absent without judges treated 0. No report or score was generated.",
+        "challenge": "One image per case provides limited visual context. Missing selected-case staging and pathology-compatible metric assets prevent image-grounded demonstration and qualified scoring. A permissive format check is not evidence of caption meaning.",
+        "families": "Pinned Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings remain separately identified; identical data, selected cases and evaluation are not established.",
+        "gap": "Retained historical anonymous PathCap annotation read returned HTTP401; matching histology image/caption and frozen500case IDs absent.500/100 membership relation unknown; pathology-compatible metric assets absent. No participant outputs or scores. Official metadata revision17205b19b89ab4ad812a81e9b166d0bcbdaa928e declares auto-gated CC-BY-NC2.0; retained metadata exposes noncommercial-use and citation click-through fields. Bounded unauthenticated data.json request returned401; no terms accepted/auth supplied. Bulk images.zip13GB not downloaded. No matching caption-to-image pairing, heldout selection, clinical finding or model quality established.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "One symbolic image socket; selected 500 case manifest empty.",
+          "Canonical controls inspect one-image unit, permissive text syntax and pathology/CXR metric mismatch.",
+          "Explicit reader reveal exposes count/validity mechanics; private/public captions remain absent and reset covers reveal."
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Release-owned BLIP inference-only baseline guidance, not website checkpoint authority.",
+            "remaining": "Choose deterministic preprocessing, validate a public pilot and caption every staged case without benchmark training."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Public inference-only candidate guidance.",
+            "remaining": "Compare at least three candidates, validate setup and preprocessing, then caption every staged case without benchmark training."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "Gallery, branch or Lite-package listing describes a related caption target; release equivalence is unverified.",
+            "remaining": "Follow that entry's exact dataset, method and evaluation conditions; do not infer shared selected IDs."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full500 harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/pathology-caption-500-task.tar.gz"
+          ],
+          [
+            "Official gated PathCap",
+            "https://huggingface.co/datasets/jamessyx/PathCap"
+          ],
+          [
+            "Pinned official metadata",
+            "https://huggingface.co/api/datasets/jamessyx/PathCap"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-pathology-caption-500-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Implement the selected inference-only captioning method and emit concise plain text per staged case. The symbolic image socket and nonclinical text fixture teach input/output boundaries; they are not histology evidence, captions or model results.</p>",
+          "value": "<p>Image-grounded captioning connects one histopathology image to a readable text artifact. Format acceptance and text-proxy agreement do not establish pathology accuracy.</p>",
+          "raw": "<p>Config defines <strong>image</strong> as grouping unit, <strong>exactly one JPEG per case</strong>, and <strong>expected_case_count=500</strong>. The release_owned_500_unstaged split is not included. <strong>0 native source images, 0 source captions, 0 actual Full cases</strong> retained. Magnification, tissue, staining, specimen, crop/slide correspondence and patient overlap cannot be inferred. Full manifests/IDs are absent. Public images/manifest belong under /data/public; private caption/labels/manifest under /data/private.</p>\n<p>The 100 condition has expected_case_count=100 and release_owned_100_unstaged. These are different declared selections, not a proven subset relation; both have the same source and caption contract. No common IDs, ordering, selection seed, exclusion rule or patient independence is recovered. A symbolic index/count is never an actual case ID.</p>",
+          "helpers": "<p>Lite prescribes Salesforce/blip-image-captioning-base inference-only baseline, explicitly release-owned rather than website checkpoint authority. Standard compares at least three public inference-only candidates (BLIP/BLIP2, Qwen2.5-VL or documented pathology-aware VLM) using public evidence and a public-input pilot. Training/fine-tuning on benchmark cases forbidden. Source model_info and prompts are guidance, not acquired weights or execution evidence. Training/helper annotations must stay distinct from selected test captions; split leakage/overlap unverified. No training image/caption bundled.</p>",
+          "tools": "<p>Terminal/model guidance only. No installation, preprocessing, model selection trial, image inference or medical/metric evaluator execution occurred.</p>",
+          "reference": "<p>Private report.txt and optional labels.json are evaluator-owned, absent here. Public source captions, if later acquired, are reader-only source annotations behind explicit later reveal, never initial solver text or a recovered private Full reference. None bundled. Actual container mount isolation remains unverified.</p>",
+          "spec": "<p>One JPEG case \u2192 deterministic chosen preprocessing \u2192 concise caption \u2192 one plain report.txt. Lite S3 pilots one public case before all 500; Standard S3 validates preprocessing/file shape/runtime before 500. No S4/S5 Markdown files included; effective prompt assembly unverified. task_loader sorts public case directories; evaluator uses explicit --cases list and does <strong>not enforce expected_case_count=500</strong>. Declared500 is task intent; denominator is supplied IDs. Use all frozen selected cases once staging is established.</p>",
+          "output": "<p><strong>agent_outputs/&lt;case_id&gt;/report.txt</strong> (singular agent). UTF-8, <strong>1\u20138000 raw characters inclusive</strong>, <strong>at least 1 alphabetic character</strong>, nonempty stripped text, Python string.printable. A single ASCII letter passes syntax but establishes no caption meaning. Unicode letters may fail printable check. Plain caption without a JSON wrapper, class label or debug text is a task instruction; the checker does not parse or reject wrapper structure. Actual participant caption null; authored nonclinical fixture unrelated to any patient/image.</p>",
+          "score": "<p><strong>Equal seven metrics are declared; backend/weights/schema bindings absent. Executable defaults to .7 CXR-regex observation F1 + .3 token-LCS similarity, not a validated pathology score.</strong> Config lists bleu, meteor, rouge_l, f1_radgraph, micro_precision, micro_recall, micro_f1 equally weighted; clinical_score_backend/clinical_metric_weights/observation_schema_file omitted. Scorer defaults chest-Xray cxr_12class patterns. Config flags metric_compatibility=unresolved_for_histopathology and blocked_metric_assets. A CXR observation match is not pathology correctness; empty regex-positive sets yield F1=1 by implementation convention, not evidence of a meaningful caption.</p>\n<p>Optional MLRG requires repo/checkpoint paths and unavailable resources. Adapter BLEU averages 1\u20134, maps partialRadGraph and CheXbert all-label micro metrics. Pathology relevance, exact external tokenization and reference validity unresolved. Lightweight tokenizer lowercases/removes FINAL REPORT, splits alphanumeric/hyphen tokens, and computes token-LCS F1; uppercase FINDINGS extraction takes precedence despite caption mode not consumed here, otherwise whole text. labels.json precedes regex-derived labels. These implementation defaults are not a qualified pathology evaluation.</p>\n<p>Completion <strong>valid_count/N supplied IDs</strong>, not pixels/slides nor an enforced500. Empty list invalid; missing prediction becomes empty and remains in means/micro counts. Mean per-case metrics divide by max(N,1); micro sums TP/FP/FN. Any invalid/missing requested file forces F and zero aggregate clinical components, while raw micro fields may remain. Workflow weights .25/.15/.35/.15/.10, defaults .80/.55 rating thresholds, 50/50 clinical/workflow overall aggregation are source settings, not observed performance. S1\u2013S3 absent without judges treated 0. No report or score was generated.</p>",
+          "challenge": "<p>One image per case provides limited visual context. Missing selected-case staging and pathology-compatible metric assets prevent image-grounded demonstration and qualified scoring. A permissive format check is not evidence of caption meaning.</p>",
+          "families": "<p>Pinned Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings remain separately identified; identical data, selected cases and evaluation are not established.</p>",
+          "gap": "<p>Retained historical anonymous PathCap annotation read returned HTTP401; matching histology image/caption and frozen500case IDs absent.500/100 membership relation unknown; pathology-compatible metric assets absent. No participant outputs or scores. Official metadata revision17205b19b89ab4ad812a81e9b166d0bcbdaa928e declares auto-gated CC-BY-NC2.0; retained metadata exposes noncommercial-use and citation click-through fields. Bounded unauthenticated data.json request returned401; no terms accepted/auth supplied. Bulk images.zip13GB not downloaded. No matching caption-to-image pairing, heldout selection, clinical finding or model quality established.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24361,10 +24459,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 109,
+    "reviewed-scripted-planar": 110,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 22,
+    "blocked-source-input": 21,
     "pending-operation-review": 1
   },
   "completion_program": {

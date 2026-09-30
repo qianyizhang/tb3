@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-pathology-caption-500-v1',
   'automed-pathology-caption-100-v1',
   'automed-mimic-report-v1',
   'automed-iu-xray-report-v1',
@@ -101,6 +102,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-pathology-caption-500-v1')
+    return {
+      scene: 'data-pathology500-scene',
+      reference: '[data-pathology500-reference-revealed]',
+      referenceChannel: null,
+      output: '[data-pathology500-output-schema]',
+      aside: '[data-pathology500-output]',
+    };
   if (plan.recipe === 'automed-pathology-caption-100-v1')
     return {
       scene: 'data-pathology100-scene',
@@ -612,6 +621,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-pathology-caption-500-v1': [
+      /Native image\/caption and selected\s*500 IDs absent.*symbolic protocol/s,
+      'https://huggingface.co/datasets/jamessyx/PathCap',
+      'data-pathology500-scene',
+      true,
+    ],
     'automed-pathology-caption-100-v1': [
       /Native image\/caption and selected100 IDs absent.*symbolic protocol/s,
       'https://huggingface.co/datasets/jamessyx/PathCap',
@@ -1137,6 +1152,112 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-pathology-caption-500-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name);
+    const scene = page.locator('[data-pathology500-scene]');
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await scene.locator('img').count(), 0);
+    assert.match(
+      await scene.innerText(),
+      /0 actual images\/captions.*Tissue, stain, magnification.*unknown.*500 selected case IDs are unstaged.*subset relation is unknown/s,
+    );
+    assert.match(
+      await page.locator('[data-pathology500-output]').innerText(),
+      /500 expected image cases.*1 image\/1 caption.*Actual caption empty/s,
+    );
+    await page.locator(`[data-story-step="${beat('group')}"]`).click();
+    const assistance = page.getByRole('navigation', { name: 'PathCap inference guidance' });
+    await assistance.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-pathology500-tier]').innerText(),
+      /at least three.*inference-only.*training forbidden/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-tier-standard.png`) });
+    const operations = ['One-image unit', 'Caption syntax', 'Pathology metric gap'];
+    const contracts = [
+      /Exactly one JPEG per case.*one caption file/s,
+      /1–8000 raw chars.*≥1 letter.*ASCII printable.*One ASCII letter passes syntax only.*checker does not enforce wrapper structure/s,
+      /Default CXR schema does not validate pathology.*Seven|Default CXR schema.*Equal seven.*0–1.*no score/s,
+    ];
+    for (let i = 0; i < 3; i++) {
+      const button = page.locator(`[data-pathology500-step="${i}"]`);
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(
+        await page
+          .locator('[data-pathology500-currentstage]')
+          .getAttribute('data-pathology500-currentstage'),
+        String(i),
+      );
+      assert.match(await scene.innerText(), contracts[i]);
+      assert.equal(await page.locator('[data-pathology500-reference-revealed]').count(), 0);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-contract-${i}.png`) });
+    }
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-pathology500-format]').count(), 0);
+    await page
+      .getByRole('button', { name: 'Inspect authored syntax fixture', exact: true })
+      .click();
+    assert.match(
+      await page.locator('[data-pathology500-format]').innerText(),
+      /illustrative text.*no patient or medical finding/s,
+    );
+    assert.match(
+      await page.locator('[data-pathology500-output-schema]').innerText(),
+      /agent_outputs\/<case_id>\/report.txt/,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-format-revealed.png`) });
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    assert.equal(await page.locator('[data-pathology500-reference-revealed]').count(), 0);
+    await page.getByRole('button', { name: 'Reveal grading mechanics', exact: true }).click();
+    assert.match(
+      await page.locator('[data-pathology500-reference-revealed]').innerText(),
+      /all supplied IDs.*500 not enforced.*forces F.*zero aggregate.*Raw micro.*F1=1.*not evidence.*No private\/public caption/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-mechanics-revealed.png`) });
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-pathology500-format]').count(), 0);
+    assert.equal(await page.locator('[data-pathology500-reference-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    assert.equal(await page.locator('[data-pathology500-reference-revealed]').count(), 0);
+    await page.getByRole('button', { name: 'Reveal grading mechanics', exact: true }).click();
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    assert.equal(await page.locator('[data-pathology500-reference-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    assert.equal(await page.locator('[data-pathology500-reference-revealed]').count(), 0);
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('group')}"]`).click();
+    assert.equal(
+      await assistance
+        .getByRole('button', { name: 'lite', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.match(
+      await page.locator('[data-pathology500-tier]').innerText(),
+      /Release-owned BLIP inference-only.*no website checkpoint/s,
+    );
+    await assistance.getByRole('button', { name: 'standard', exact: true }).click();
+    await page.locator('[data-pathology500-step="2"]').click();
+    await page.locator('[data-pathology500-step="0"]').click();
+    assert.equal(
+      await assistance
+        .getByRole('button', { name: 'lite', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('[data-story-step="0"]').click();
   }
   if (plan.recipe === 'automed-pathology-caption-100-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -6048,6 +6169,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-pathology-caption-500-v1',
       'automed-pathology-caption-100-v1',
       'automed-mimic-report-v1',
       'automed-iu-xray-report-v1',
