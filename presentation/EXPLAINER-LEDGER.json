@@ -10121,15 +10121,15 @@
       ],
       "illustration_kind": "vqa",
       "subject": "chest-ct",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "radagent-vqa",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for radagent-vqa. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Pinned source/protocol and faithful symbolic absent-case/tool/format mechanism integrated; visual/export acceptance pending.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/radagent-vqa/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "A CT-RATE volume paired with a VQA question and answer options.",
         "helpers": "The question constrains the target finding. The toolbox can supply anatomy masks, selected slices and model-derived findings on demand.",
@@ -10162,14 +10162,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Fresh anonymous exact CT-RATE candidate HEAD returns HTTP401 GatedRepo; authorized matching VQA CSV/question/options, CT volume, tool output, participant trajectory and result remain absent. No credentials or access terms were submitted.",
+      "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE ; request dataset access and follow pinned RadAgent CT-RATE preparation path.",
+      "warning_text": "Symbolic illustration — matching CT-RATE VQA case and CT are absent; request access through the official CT-RATE dataset page.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/radagent-vqa-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/radagent-vqa-resolution.json",
+        "receipt_sha256": "b29e40c7dafd6fc705fcc4e8c21e7b2994d0cf684ac5dfec2d46d5be26534f47",
+        "brief_sha256": "cafc5b59a625acd33f5eab8aa6b0909bd419597ea70c65024cc3f09dc8e36902",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Pinned CT-RATE/RadAgent VQA protocol with symbolic absent case/tool/result sockets and explicitly nonclinical option-format fixture.",
+      "completion_review": {
+        "date": "2026-09-30T15:07:36.005901+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "5901f45e5c7ae85f694b130d699d464a4bfee8be9c6da5d0f7390d8fb114622a"
+      },
+      "reviewed_contract_projection": {
+        "title": "Answer a RadAgent chest CT multiple-choice question",
+        "goal": "Use the supplied question and available CT tools to return exactly one complete option string. This is question answering, not report generation or diagnosis demonstrated by this explainer.",
+        "value": "Not yet specified.",
+        "raw": "The loader reads `labels/multiple_choice/multiple_choice_{train,valid}.csv`: question→task, qid→task_id, image_id→configured CT path and answer→gt. The initial model message contains task text/path, not gt. Matching CSV/CT are absent; a fresh anonymous exact volume request returns HTTP401 GatedRepo.",
+        "helpers": "The question contains answer options. Agent variants may call whole-volume `ct_vqa_tool` or `slice_vqa_tool` on selected 2D slices; those outputs are model-derived evidence, not gold answers. V8minus removes whole-volume VQA and disease-classifier tools. No tool output is simulated as observed.",
+        "tools": "Tools depend on agent variant/configuration; stop through JSON `action=\"final_answer\"`. The source rollout limit is 60 turns. Optional model servers/assets were neither installed nor run.",
+        "reference": "CSV answer becomes scenario gt. Initial messages omit it, but host trajectory state retains the scenario. Runtime filesystem/host isolation is unaudited; no actual gt or reference asset is bundled.",
+        "spec": "Choose relevant tools, distinguish volume from selected-slice evidence, reconcile tool disagreements and match the exact option text. Prompt instructions explicitly preserve the option prefix: a format example like `(b) Amber token` is different from `b`, `Amber token` or `b Amber token`. This example is authored and nonclinical; it is not an original case or answer.",
+        "output": "`{\"action\":\"final_answer\",\"answer\":\"<full option text including prefix>\"}` plus the retained tool trajectory. Actual answer/trajectory remain empty in this pack; illustrative selections are not submitted.",
+        "score": "The pinned BaseOrchestrator VQA reward branch was located: for a completed task it strips/lowercases gt and the final parsed answer, records exact-match `vqa_correct`, and forms a base reward of exact indicator + BLEU-1 + ROUGE-L. Configured trajectory/manual-tool/tool-success terms can augment total reward. These measure string agreement or tool-use terms, not clinical validity. The main validation rollout uses `compute_reward=False`; training uses True. No correctness or reward value is shown here.",
+        "challenge": "Not yet specified.",
+        "families": "One symbolic workflow definition. No matching patient case, tool result, runtime-isolation claim or performance measurement.",
+        "gap": "Case question/options, authorized CT, tool outputs and participant result remain absent. Pure-source tests confirm direct loader default end_idx=None raises TypeError and explicit df.loc endpoints are inclusive. The CLI default end_id=5000 supplies an integer, so it avoids that direct default error. No runtime task or full NLP-metric implementation was executed. Source README links MIT, but pinned tree has no root LICENSE; data has separate gated terms.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "V8c/V8b",
+            "helper": "Question, option strings, configured model-derived tool evidence",
+            "remaining": "Select tools, reconcile evidence, preserve exact option text"
+          },
+          {
+            "name": "V8minus",
+            "helper": "Removes ct_vqa_tool and disease classifier",
+            "remaining": "Work with remaining evidence; not equivalent assistance"
+          }
+        ],
+        "sources": [
+          [
+            "Pinned loader",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/art_dataset.py"
+          ],
+          [
+            "Pinned prompt",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/custom_orchestrators.py"
+          ],
+          [
+            "Pinned VQA reward branch",
+            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/base_orchestrator.py"
+          ],
+          [
+            "Official CT-RATE",
+            "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/radagent-vqa-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Use the supplied question and available CT tools to return exactly one complete option string. This is question answering, not report generation or diagnosis demonstrated by this explainer.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The loader reads <code>labels/multiple_choice/multiple_choice_{train,valid}.csv</code>: question→task, qid→task_id, image_id→configured CT path and answer→gt. The initial model message contains task text/path, not gt. Matching CSV/CT are absent; a fresh anonymous exact volume request returns HTTP401 GatedRepo.</p>",
+          "helpers": "<p>The question contains answer options. Agent variants may call whole-volume <code>ct_vqa_tool</code> or <code>slice_vqa_tool</code> on selected 2D slices; those outputs are model-derived evidence, not gold answers. V8minus removes whole-volume VQA and disease-classifier tools. No tool output is simulated as observed.</p>",
+          "tools": "<p>Tools depend on agent variant/configuration; stop through JSON <code>action=&quot;final_answer&quot;</code>. The source rollout limit is 60 turns. Optional model servers/assets were neither installed nor run.</p>",
+          "reference": "<p>CSV answer becomes scenario gt. Initial messages omit it, but host trajectory state retains the scenario. Runtime filesystem/host isolation is unaudited; no actual gt or reference asset is bundled.</p>",
+          "spec": "<p>Choose relevant tools, distinguish volume from selected-slice evidence, reconcile tool disagreements and match the exact option text. Prompt instructions explicitly preserve the option prefix: a format example like <code>(b) Amber token</code> is different from <code>b</code>, <code>Amber token</code> or <code>b Amber token</code>. This example is authored and nonclinical; it is not an original case or answer.</p>",
+          "output": "<p><code>{&quot;action&quot;:&quot;final_answer&quot;,&quot;answer&quot;:&quot;&lt;full option text including prefix&gt;&quot;}</code> plus the retained tool trajectory. Actual answer/trajectory remain empty in this pack; illustrative selections are not submitted.</p>",
+          "score": "<p>The pinned BaseOrchestrator VQA reward branch was located: for a completed task it strips/lowercases gt and the final parsed answer, records exact-match <code>vqa_correct</code>, and forms a base reward of exact indicator + BLEU-1 + ROUGE-L. Configured trajectory/manual-tool/tool-success terms can augment total reward. These measure string agreement or tool-use terms, not clinical validity. The main validation rollout uses <code>compute_reward=False</code>; training uses True. No correctness or reward value is shown here.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>One symbolic workflow definition. No matching patient case, tool result, runtime-isolation claim or performance measurement.</p>",
+          "gap": "<p>Case question/options, authorized CT, tool outputs and participant result remain absent. Pure-source tests confirm direct loader default end_idx=None raises TypeError and explicit df.loc endpoints are inclusive. The CLI default end_id=5000 supplies an integer, so it avoids that direct default error. No runtime task or full NLP-metric implementation was executed. Source README links MIT, but pinned tree has no root LICENSE; data has separate gated terms.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23334,9 +23431,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 98,
+    "reviewed-scripted-planar": 99,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 62,
+    "blocked-source-contract": 61,
     "blocked-source-input": 31,
     "pending-operation-review": 1
   },

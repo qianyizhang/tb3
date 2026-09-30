@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "radagent-vqa-v1": "retained-radagent-vqa-contract-v2",
     "abra-birads-v1": "retained-abra-birads-contract-v1",
     "abra-vision-probe-v1": "retained-abra-vision-probe-source-example-v3",
     "abra-metadata-qa-v1": "retained-abra-metadata-qa-contract-v2",
@@ -154,6 +155,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-radagent-vqa-contract-v2": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "formatting-fixture.json",
+        },
+    ),
     "retained-abra-birads-contract-v1": (
         "source-records",
         None,
@@ -519,6 +532,7 @@ SOURCE_INPUT_PACKS = {
 # Explicitly registered input packs with authored symbolic protocol assets.
 SYMBOLIC_SOURCE_PACKS = frozenset(
     {
+        "retained-radagent-vqa-contract-v2",
         "retained-automed-full-feta-seg-v1",
         "retained-automed-full-panther-t1-seg-v1",
         "retained-automed-full-panther-t2-seg-v1",
@@ -1961,6 +1975,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class RadagentVqaChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -3792,6 +3812,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class RadagentVqaBeat(ExpansionBeat[RadagentVqaChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class RadagentVqaStory(Story[RadagentVqaChannels]):
+    recipe: Literal["radagent-vqa-v1"]
+    beats: tuple[RadagentVqaBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("VQA evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AbraBiradsBeat(ExpansionBeat[AbraBiradsChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4100,6 +4141,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RadagentVqaStory
     | AbraBiradsStory
     | AbraVisionProbeStory
     | AbraMetadataQaStory
@@ -4210,6 +4252,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RadagentVqaStory
     | AbraBiradsStory
     | AbraVisionProbeStory
     | AbraMetadataQaStory
@@ -4480,6 +4523,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RadagentVqaStory
     | AbraBiradsStory
     | AbraVisionProbeStory
     | AbraMetadataQaStory
@@ -4769,6 +4813,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-radagent-vqa-contract-v2": (
+                "symbolic-unit-grid",
+                "LicenseRef-RadAgent-source-terms-unresolved",
+                None,
+            ),
             "retained-abra-birads-contract-v1": (
                 "ABRA-series-manifest-plus-symbolic-report",
                 "LicenseRef-ABRA-MIT-plus-Duke-CC-BY-NC-4.0",
@@ -4934,6 +4983,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "none"
+                if pack_id == "retained-radagent-vqa-contract-v2"
                 else "unitless"
                 if pack_id == "retained-abra-birads-contract-v1"
                 else "unitless"
@@ -5022,6 +5073,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-radagent-vqa-contract-v2"
             or pack_id == "retained-abra-birads-contract-v1"
             or pack_id == "retained-abra-vision-probe-source-example-v3"
             or pack_id == "retained-abra-metadata-qa-contract-v2"
@@ -5061,6 +5113,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     else "symbolic-protocol"
                     if pack_id == "retained-abra-vision-probe-source-example-v3"
                     and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-radagent-vqa-contract-v2"
+                    and name == "formatting-fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"

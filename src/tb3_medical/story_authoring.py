@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "radagent-vqa-v1",
             "abra-vision-probe-v1",
             "abra-metadata-qa-v1",
             "abra-birads-v1",

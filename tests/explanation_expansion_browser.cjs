@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'radagent-vqa-v1',
   'abra-birads-v1',
   'abra-vision-probe-v1',
   'abra-metadata-qa-v1',
@@ -90,6 +91,13 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'radagent-vqa-v1')
+    return {
+      scene: 'data-radagent-vqa-scene',
+      reference: '[data-radagent-vqa-reference-revealed]',
+      output: '[data-radagent-vqa-illustrative-format]',
+      aside: '[data-radagent-vqa-output]',
+    };
   if (plan.recipe === 'abra-birads-v1')
     return {
       scene: 'data-birads-scene',
@@ -517,6 +525,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'radagent-vqa-v1': [
+      /matching CT-RATE VQA case and CT are absent/s,
+      'https://huggingface.co/datasets/ibrahimhamamci/CT-RATE',
+      'data-radagent-vqa-scene',
+      true,
+    ],
     'abra-birads-v1': [
       /matching MRI pixels.*generated report/s,
       'https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/',
@@ -976,6 +990,65 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'radagent-vqa-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-radagent-vqa-scene]');
+    const op = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${op}"]`).click();
+    for (const [index, name] of [
+      'Whole volume',
+      'Selected slices',
+      'Reconcile evidence',
+    ].entries()) {
+      const beat = plan.beats.find(
+        (b) => b.scene === 'operation' && Math.round(b.channels.progress[0] * 2) === index,
+      );
+      const button = scene.getByRole('button', { name, exact: true });
+      await button.click();
+      await page.waitForFunction(
+        (frame) =>
+          Number(document.querySelector('.scene-player')?.getAttribute('data-committed-frame')) ===
+          frame,
+        beat.startFrame,
+      );
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      const text = await page.locator('[data-radagent-vqa-tool-scope]').innerText();
+      assert.match(
+        text,
+        [/Whole-volume ct_vqa_tool/, /Selected-slice slice_vqa_tool/, /Reconcile scope/][index],
+      );
+      assert.match(text, /Observed response: —|Tool 1 evidence: —/);
+      assert.equal(await page.locator('[data-radagent-vqa-reference-revealed]').count(), 0);
+      assert.equal(await page.locator('[data-radagent-vqa-illustrative-format]').count(), 0);
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-scope-${index}.png`) });
+    }
+    const ref = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ref}"]`).click();
+    const reference = page.locator('[data-radagent-vqa-reference-revealed]');
+    assert.equal(await reference.count(), 1);
+    assert.match(await reference.innerText(), /Validation compute_reward=False/);
+    assert.equal(await reference.locator('tbody tr').count(), 4);
+    assert.equal(await reference.getByText('Same full string', { exact: true }).count(), 1);
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await reference.count(), 0);
+    await page.locator(`[data-story-step="${ref}"]`).click();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    assert.equal(await reference.count(), 0);
+    await page.locator(`[data-story-step="${op}"]`).click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Whole volume', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
   }
   if (plan.recipe === 'abra-birads-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -4621,6 +4694,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'radagent-vqa-v1',
       'abra-birads-v1',
       'abra-vision-probe-v1',
       'abra-metadata-qa-v1',

@@ -1,3 +1,4 @@
+import { radagentVqaPack } from './radagent-vqa';
 import { abraBiradsPack } from './abra-birads';
 import { abraVisionProbePack } from './abra-vision-probe';
 import { abraMetadataPack } from './abra-metadata-qa';
@@ -105,6 +106,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'radagent-vqa-v1',
     'abra-birads-v1',
     'abra-vision-probe-v1',
     'abra-metadata-qa-v1',
@@ -938,6 +940,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Source series metadata'],
           ['#18c6d4', 'Unsubmitted report schema'],
           ['#7ba4b8', 'No patient result'],
+        ],
+      };
+    case 'radagent-vqa-v1':
+      return {
+        heading: 'Choose CT evidence and full option text',
+        corner: 'Symbolic CT VQA workflow',
+        warning: radagentVqaPack.source.notice,
+        legend: [
+          ['#91a6ae', 'CT and exact question absent'],
+          ['#18c6d4', 'Model-derived evidence, if called'],
+          ['#7ba4b8', 'Full option string; participant absent'],
         ],
       };
     case 'bcer-brain-full-v1':

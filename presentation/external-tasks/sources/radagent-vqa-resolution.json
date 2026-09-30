@@ -1,0 +1,146 @@
+{
+  "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE ; request dataset access and follow pinned RadAgent CT-RATE preparation path.",
+  "actual_data_gap": "Fresh anonymous exact CT-RATE candidate HEAD returns HTTP401 GatedRepo; authorized matching VQA CSV/question/options, CT volume, tool output, participant trajectory and result remain absent. No credentials or access terms were submitted.",
+  "attempts": [
+    {
+      "action": "fetch pinned RadAgent loader and metric source",
+      "attempted_at": "2026-09-29T06:13:22Z",
+      "outcome": "HTTP 200 for art_dataset.py and compute_metrics.py; loader contract pinned; VQA scorer not found in inspected report metrics",
+      "source": "https://github.com/eth-medical-ai-lab/rad-agent/tree/9e9d32936ce24676cba32c81605720fe74a5da5a"
+    },
+    {
+      "action": "reuse prior official anonymous exact CT-RATE candidate HEAD receipt",
+      "attempted_at": "2026-09-29T05:53:46Z",
+      "outcome": "Earlier HTTP 401 GatedRepo; no credentials or terms accepted; not a new network attempt in this pass",
+      "receipt_path": ".local/explainers/core-20260929/interpretation-a-source/ctrate.headers",
+      "receipt_sha256": "74ed58086d3d73ee4dd74d7d06a198d8b785e839ce24172ef554178614305eeb",
+      "source": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE/resolve/deeca4d89e9f978d4d1bccd88a55071ddbb146bb/dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz"
+    },
+    {
+      "action": "Fresh bounded official source and exact CT-RATE access checks; pure-source nonclinical loader/parser fixtures",
+      "source": ".local/explainers/goal-20260930/workers/radagent-vqa/verification/source-contract-check.json",
+      "outcome": "5 pinned sources fetched HTTP200/Git-blob verified; exact CT candidate HEAD HTTP401 GatedRepo. VQA reward branch located and distinction from validation resolved. Inclusive explicit loader range, default None error and full-option syntax checked with authored fixtures. No matching patient case or model/tool run.",
+      "attempted_at": "2026-09-30T11:48:15.193408+00:00"
+    }
+  ],
+  "browser_review": false,
+  "entry_id": "radagent-vqa",
+  "grader_run": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "license_context": "Pinned repository README links MIT license, but no root LICENSE is present in pinned tree; CT-RATE has separate gated dataset terms. No source CT or code redistributed in the teaching pack.",
+  "model_run": false,
+  "participant_output_retained": false,
+  "preparer_run": false,
+  "reviewed_at": "2026-09-30T11:48:15.193408+00:00",
+  "schema": 1,
+  "source_commit": "9e9d32936ce24676cba32c81605720fe74a5da5a",
+  "source_files": [
+    {
+      "bytes": 5185,
+      "git_blob_sha1": "0648f1ce8abf1886b2a10f60efc843635248d8bf",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/radagent/art_dataset.py",
+      "sha256": "bc00b17de4a98b6ecb0672726352a7f0e05dc2447330cb1d2c8f04b49ee53c00",
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/art_dataset.py"
+    },
+    {
+      "bytes": 7279,
+      "git_blob_sha1": "371c2dbe2c10b73640fe9388713d7e4235698c08",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/radagent/compute_metrics.py",
+      "sha256": "752c6e0b2e4c59946306e494368ca2b22f8d2d09a8ba639969f5e62b29a7d82f",
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_metrics.py"
+    },
+    {
+      "bytes": 25951,
+      "git_blob_sha1": "57f4b901b593d089b05f45f680cda8405f2e4303",
+      "git_blob_verified": true,
+      "path": ".local/explainers/completion-20260927/041-source/README.md",
+      "sha256": "8c09afba35a060534c08416371fc367e1b2c03bafc5180d4b5bf0613f712d7cc",
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/README.md"
+    },
+    {
+      "bytes": 14243,
+      "git_blob_sha1": "c30ef8219032ff248aae45b9ce125716c178f2a8",
+      "git_blob_verified": true,
+      "path": ".local/explainers/completion-20260927/041-source/radagent/agents/custom_orchestrators.py",
+      "sha256": "88bede07e99e1ba076f54de3e14b1dbc20aceb7f52c89ea87482b89d04dfd713",
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/custom_orchestrators.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/radagent-vqa/official/main_ct_rate.py",
+      "bytes": 13444,
+      "sha256": "a76d894e685f6008a3b29b8bf75c6820304b1acd010a40cd054844741577d337",
+      "git_blob_sha1": "a7915ce83ed5931fdcb25334cea7ffaa9cc5572a",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/main_ct_rate.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/radagent-vqa/official/base_orchestrator.py",
+      "bytes": 34971,
+      "sha256": "f9ccbbfa158cadf433bf613303c1ba7cf77eba3a2bc14b79bb2d2bc277c3014e",
+      "git_blob_sha1": "c3f82fded719250fca3be926e06bec4628e70e2b",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/agents/base_orchestrator.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/radagent-vqa/official/slice_vqa_tool.py",
+      "bytes": 7555,
+      "sha256": "6470fdb4b98de70875bd29ac0f8ad56255cd2c9054bcc19e3447407a5f15a331",
+      "git_blob_sha1": "5261f11d4b30cb8a0125ebcabf343efba4303337",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/tools/slice_vqa_tool.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/radagent-vqa/official/tool_configs.py",
+      "bytes": 12148,
+      "sha256": "c826be88ee2064a3f9c52598f11065c653fe232652ebd9e26fbf3507b96c61c9",
+      "git_blob_sha1": "33d01c81d27fcb4fb3dda04b1d2783fdaf3df8fe",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/tools/tool_configs.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/radagent-vqa/official/utils.py",
+      "bytes": 3177,
+      "sha256": "cc2b511e80668aa397ddac7c7a1ff12349f3d6ffb07618e69ff9448385c0385a",
+      "git_blob_sha1": "3093c60d1f0d04167b0a2c187ab3e4d8e8208179",
+      "git_blob_verified": true,
+      "url": "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/utils.py"
+    }
+  ],
+  "source_roles": {
+    "helper": "optional model-derived ct_vqa_tool or slice_vqa_tool outputs and other CT tools; none executed or fabricated",
+    "input": "CT-RATE chest CT and multiple-choice question/options; no matching local case",
+    "output": "final_answer full option text and trace; no participant answer/trace retained",
+    "reference": "Scenario gt is the VQA CSV answer; it is not included in initial model messages (system plus scenario.task), but scenario is retained in host trajectory state. Filesystem isolation and exact realized tool access remain unaudited; no claim of private runtime mount isolation.",
+    "scorer": "Pinned BaseOrchestrator VQA reward branch: if task_completed, strip/lower gt and final parsed answer, vqa_correct=int(equal), base reward exact-match indicator + BLEU_1 + ROUGE_L. Other configured tool/trajectory terms may augment total. main validation uses compute_reward=False; training True. No actual reward/metric run."
+  },
+  "source_tree": {
+    "path": ".local/explainers/completion-20260927/041-source/tree.json",
+    "root_license_file_at_pin": false,
+    "sha256": "be4c261d24dd555bbea35a4e21442bcb75a1bbbc4cdd1f0c549993895f4e82ec"
+  },
+  "task_contract": {
+    "final_action": "final_answer with full option text, not bare letter",
+    "loader": "generate_vqa_scenarios(mode=train|val) reads labels/multiple_choice/multiple_choice_{train,valid}.csv",
+    "loader_static_caveat": "Pure-source fixture confirms default end_idx=None raises TypeError; explicit df.loc endpoints are inclusive. CLI default --end_id=5000 supplies an integer, so that route avoids the direct default error.",
+    "scenario_fields": [
+      "task",
+      "task_id=qid",
+      "gt=answer",
+      "image_path from image_id"
+    ],
+    "tools": "v8c/v8b available server tools minus judging tools; v8minus additionally excludes ct_vqa_tool/disease_classifier_tool; vanilla is distinct debugging report-tool condition.",
+    "vqa_scorer": "Resolved in pinned base_orchestrator.py VQA reward branch; correctness vs composite reward vs validation without reward remain distinct.",
+    "max_turns": 60
+  },
+  "task_run": false,
+  "top_warning": "Symbolic illustration \u2014 matching CT-RATE VQA case and CT are absent; request access through the official CT-RATE dataset page.",
+  "warning_text": "Symbolic illustration \u2014 matching CT-RATE VQA case and CT are absent; request access through the official CT-RATE dataset page.",
+  "verification_receipt": {
+    "path": ".local/explainers/goal-20260930/workers/radagent-vqa/verification/source-contract-check.json",
+    "sha256": "3c68bdc8054d8f550e667eda6d8051fbef5a2e3775fd92fb8a1c7127985407d0"
+  },
+  "brief_sha256": "cafc5b59a625acd33f5eab8aa6b0909bd419597ea70c65024cc3f09dc8e36902"
+}
