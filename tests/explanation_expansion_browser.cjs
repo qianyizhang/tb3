@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'rex-ldct-iqa-v1',
   'radagent-vqa-v1',
   'abra-birads-v1',
   'abra-vision-probe-v1',
@@ -91,6 +92,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'rex-ldct-iqa-v1')
+    return {
+      scene: 'data-ldct-scene',
+      reference: '[data-ldct-private-reference]',
+      referenceChannel: null,
+      output: '[data-ldct-output-schema]',
+      aside: '[data-ldct-output]',
+    };
   if (plan.recipe === 'radagent-vqa-v1')
     return {
       scene: 'data-radagent-vqa-scene',
@@ -525,6 +534,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'rex-ldct-iqa-v1': [
+      /Test images, private reader scores, submitted predictions and measured correlations are absent/s,
+      'https://zenodo.org/records/7833096',
+      'data-ldct-scene',
+      false,
+    ],
     'radagent-vqa-v1': [
       /matching CT-RATE VQA case and CT are absent/s,
       'https://huggingface.co/datasets/ibrahimhamamci/CT-RATE',
@@ -990,6 +1005,85 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'rex-ldct-iqa-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const helper = plan.beats.findIndex((b) => b.scene === 'helper');
+    const scoreLabel = page.locator('[data-ldct-training-score]');
+    await page.locator(`[data-story-step="${helper}"]`).click();
+    assert.equal(await scoreLabel.count(), 0);
+    assert.doesNotMatch(
+      await page.locator('.scene-player').innerText(),
+      /\b3\.8\b/,
+      'Covered training label must not leak through narration',
+    );
+    await page.getByRole('button', { name: 'Reveal public training label', exact: true }).click();
+    assert.equal(await scoreLabel.innerText(), '3.8');
+    await page.locator('.scene-play').click();
+    await page.waitForFunction(
+      (frame) =>
+        Number(document.querySelector('.scene-player')?.getAttribute('data-committed-frame')) >
+        frame,
+      plan.beats[helper].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await page.locator(`[data-story-step="${helper}"]`).click();
+    assert.equal(await scoreLabel.count(), 0, 'Backward replay must cover public training label');
+    const partitions = page.getByRole('group', { name: 'LDCT data visibility' });
+    for (const name of ['inference', 'evaluator', 'training']) {
+      await partitions.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        await page.locator('[data-ldct-partition]').getAttribute('data-ldct-partition'),
+        name,
+      );
+      assert.equal(await scoreLabel.count(), 0);
+      if (name !== 'training')
+        assert.match(await page.locator('[data-ldct-helper]').innerText(), /absent/);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-partition-${name}.png`) });
+    }
+    await page.getByRole('button', { name: 'Reveal public training label', exact: true }).click();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-public-training-revealed.png`) });
+    await page.getByRole('button', { name: 'Hide public training label', exact: true }).click();
+    assert.equal(await scoreLabel.count(), 0);
+    await page.getByRole('button', { name: 'Reveal public training label', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await scoreLabel.count(), 0);
+    const img = page.locator('[data-ldct-input] img');
+    assert.deepEqual(await img.evaluate((e) => [e.naturalWidth, e.naturalHeight]), [512, 512]);
+    assert.match(
+      await page.locator('[data-ldct-input]').innerText(),
+      /not.*HU window|not applied/s,
+    );
+    const limits = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${limits}"]`).click();
+    const fields = page.getByRole('group', { name: 'LDCT grader field' });
+    for (const name of ['overall', 'score']) {
+      await fields.getByRole('button', { name, exact: true }).click();
+      assert.equal(await page.locator('[data-ldct-grader-field]').innerText(), name);
+      assert.match(
+        await page.locator('[data-ldct-limits]').innerText(),
+        name === 'overall' ? /PLCC/ : /0\.\.3/,
+      );
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-grader-${name}.png`) });
+    }
+    await page.locator(`[data-story-step="${helper}"]`).click();
+    await page.getByRole('button', { name: 'Reveal public training label', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    assert.equal(await scoreLabel.count(), 0);
+    await page.locator(`[data-story-step="${helper}"]`).click();
+    assert.equal(await scoreLabel.count(), 0);
+    await page.locator(`[data-story-step="${limits}"]`).click();
+    assert.equal(await page.locator('[data-ldct-grader-field]').innerText(), 'score');
   }
   if (plan.recipe === 'radagent-vqa-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -4694,6 +4788,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'rex-ldct-iqa-v1',
       'radagent-vqa-v1',
       'abra-birads-v1',
       'abra-vision-probe-v1',

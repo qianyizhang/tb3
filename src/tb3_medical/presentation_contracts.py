@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class RexLdctIqaChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexLdctIqaBeat(ExpansionBeat):
+    channels: RexLdctIqaChannels
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class RexLdctIqaPlan(ExpansionPlan):
+    recipe: Literal["rex-ldct-iqa-v1"]
+    beats: list[RexLdctIqaBeat]
+
+
 class RadagentVqaChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2243,6 +2259,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | RexLdctIqaPlan
     | RadagentVqaPlan
     | AbraBiradsPlan
     | AbraVisionProbePlan

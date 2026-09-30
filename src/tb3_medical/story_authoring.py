@@ -294,6 +294,7 @@ def new(
             "abra-vision-probe-v1",
             "abra-metadata-qa-v1",
             "abra-birads-v1",
+            "rex-ldct-iqa-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

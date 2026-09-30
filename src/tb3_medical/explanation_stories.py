@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rex-ldct-iqa-v1": "retained-rexmle-ldct-iqa-interpretation-v1",
     "radagent-vqa-v1": "retained-radagent-vqa-contract-v2",
     "abra-birads-v1": "retained-abra-birads-contract-v1",
     "abra-vision-probe-v1": "retained-abra-vision-probe-source-example-v3",
@@ -155,6 +156,19 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-rexmle-ldct-iqa-interpretation-v1": (
+        "source-slices",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+            "image.png",
+        },
+    ),
     "retained-radagent-vqa-contract-v2": (
         "source-records",
         None,
@@ -1975,6 +1989,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class RexLdctIqaChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -3812,6 +3832,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class RexLdctIqaBeat(ExpansionBeat[RexLdctIqaChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class RexLdctIqaStory(Story[RexLdctIqaChannels]):
+    recipe: Literal["rex-ldct-iqa-v1"]
+    beats: tuple[RexLdctIqaBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("LDCT-IQA has no private reference assets or reveal")
+        return self
+
+
 class RadagentVqaBeat(ExpansionBeat[RadagentVqaChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4141,6 +4179,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RexLdctIqaStory
     | RadagentVqaStory
     | AbraBiradsStory
     | AbraVisionProbeStory
@@ -4252,6 +4291,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RexLdctIqaStory
     | RadagentVqaStory
     | AbraBiradsStory
     | AbraVisionProbeStory
@@ -4523,6 +4563,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RexLdctIqaStory
     | RadagentVqaStory
     | AbraBiradsStory
     | AbraVisionProbeStory
@@ -4813,6 +4854,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-rexmle-ldct-iqa-interpretation-v1": (
+                "normalized-training-CT-pixel-grid",
+                "LicenseRef-LDCT-IQA-terms-conflict-local-teaching",
+                None,
+            ),
             "retained-radagent-vqa-contract-v2": (
                 "symbolic-unit-grid",
                 "LicenseRef-RadAgent-source-terms-unresolved",
@@ -4983,6 +5029,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "normalized intensity (display), px"
+                if pack_id == "retained-rexmle-ldct-iqa-interpretation-v1"
                 else "none"
                 if pack_id == "retained-radagent-vqa-contract-v2"
                 else "unitless"
@@ -5073,6 +5121,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-rexmle-ldct-iqa-interpretation-v1"
             or pack_id == "retained-radagent-vqa-contract-v2"
             or pack_id == "retained-abra-birads-contract-v1"
             or pack_id == "retained-abra-vision-probe-source-example-v3"

@@ -1,3 +1,4 @@
+import { rexLdctIqaPack } from './rex-ldct-iqa';
 import { radagentVqaPack } from './radagent-vqa';
 import { abraBiradsPack } from './abra-birads';
 import { abraVisionProbePack } from './abra-vision-probe';
@@ -106,6 +107,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'rex-ldct-iqa-v1',
     'radagent-vqa-v1',
     'abra-birads-v1',
     'abra-vision-probe-v1',
@@ -951,6 +953,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'CT and exact question absent'],
           ['#18c6d4', 'Model-derived evidence, if called'],
           ['#7ba4b8', 'Full option string; participant absent'],
+        ],
+      };
+    case 'rex-ldct-iqa-v1':
+      return {
+        heading: 'Predict perceived low-dose CT quality',
+        corner: 'Official training CT and symbolic workflow',
+        warning: rexLdctIqaPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Official public training CT'],
+          ['#18c6d4', 'Unsubmitted CSV schema'],
+          ['#7ba4b8', 'Public label; no held-out result'],
         ],
       };
     case 'bcer-brain-full-v1':

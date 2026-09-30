@@ -1,0 +1,140 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://zenodo.org/records/7833096",
+  "actual_data_gap": "Only one official labeled training CT is recovered. Test images, private reader scores, submitted predictions and measured correlations are absent.",
+  "attempts": [
+    {
+      "action": "fetch pinned ReX adapter, preparer and scorer",
+      "attempted_at": "2026-09-29T06:40:36.069877+00:00",
+      "outcome": "Five files HTTP 200; all Git blob SHA values match pinned repository tree.",
+      "source": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa/"
+    },
+    {
+      "action": "official Zenodo archive byte-range extraction",
+      "attempted_at": "2026-09-29T06:40:36.069877+00:00",
+      "outcome": "HTTP 206 ranges; extracted train.json and image/0559.tif. ZIP CRC B3487460 and FC2B3D85 verified; TIFF 512x512 float values 0..1, public training label 3.8. No full archive or test set acquired.",
+      "source": "https://zenodo.org/api/records/7833096/files/LDCTIQAG2023_train.zip/content"
+    },
+    {
+      "action": "official source metadata inspection",
+      "attempted_at": "2026-09-29T06:40:36.069877+00:00",
+      "outcome": "HTTP 200; Zenodo metadata reports CC-BY-4.0 while pinned ReX description reports CC-BY-NC-SA-4.0. Pack stays local with conservative terms warning.",
+      "source": "https://zenodo.org/api/records/7833096"
+    },
+    {
+      "action": "bounded current official dataset page read",
+      "source": "https://zenodo.org/records/7833096",
+      "attempted_at": "2026-09-30T11:57:34.015867+00:00",
+      "outcome": "Official page fetched successfully; training archive listed at 728.6 MB with md5 dd385eaee0dbf35b503afeef54c2957e. Retained CRC-verified small training extraction reused; no full archive downloaded."
+    },
+    {
+      "action": "bounded current official challenge page read",
+      "source": "https://ldctiqac2023.grand-challenge.org/ldctiqac2023/",
+      "attempted_at": "2026-09-30T11:57:34.015867+00:00",
+      "outcome": "HTTP 403 from web fetch; not evidence of dataset unavailability. No authentication or retry loop attempted."
+    }
+  ],
+  "entry_id": "rexmle-ldct-iqa",
+  "evaluator_run": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Acquire upstream test archive using pinned config Google Drive ID, verify exact IDs and held-out label visibility, resolve license conflict; only separately authorized model/grader execution may populate output or metrics.",
+  "resolved_at": "2026-09-30T11:57:34.015867+00:00",
+  "schema": 1,
+  "source_license": "LicenseRef-LDCT-IQA-terms-conflict-local-teaching",
+  "source_pins": [
+    {
+      "bytes": 1341,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/rexmle-ldct-iqa/pinned-source/config.yaml",
+      "role": "pinned-ReX-config.yaml",
+      "sha256": "813afb6370bd74e63267ea562970b7ad31643452c65524e88dee10b5d881ae3f",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa/config.yaml"
+    },
+    {
+      "bytes": 5805,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/rexmle-ldct-iqa/pinned-source/description.md",
+      "role": "pinned-ReX-description.md",
+      "sha256": "ed87366f629869f2fa7adbe2c4d3f6b290afe8fe07d44ce227360390c626ddf0",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa/description.md"
+    },
+    {
+      "bytes": 4819,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/rexmle-ldct-iqa/pinned-source/prepare.py",
+      "role": "pinned-ReX-prepare.py",
+      "sha256": "62465e5dd94c0a66fb5fd38572c24e796010adf09c76d5e94783611ab0ac86e7",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa/prepare.py"
+    },
+    {
+      "bytes": 5642,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/rexmle-ldct-iqa/pinned-source/grade.py",
+      "role": "pinned-ReX-grade.py",
+      "sha256": "527885c59fbfe02fa5e32dce068772d4d41acc3abfb18c2f51b2c73bbae21300",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa/grade.py"
+    },
+    {
+      "bytes": 61,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/rexmle-ldct-iqa/pinned-source/metric_config.json",
+      "role": "pinned-ReX-metric_config.json",
+      "sha256": "5dc9aec30a7e131f4672984cfe84d5aa845a30479113764a2b95fa6cd6c0924d",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa/metric_config.json"
+    },
+    {
+      "bytes": 1048880,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/rexmle-ldct-iqa/0559.tif",
+      "role": "official-training-member",
+      "sha256": "17fca0aa985803ce71d31b8d372628486d2a50d15693fd1438761bf3318af4c0",
+      "url": "https://zenodo.org/records/7833096"
+    },
+    {
+      "bytes": 21002,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/rexmle-ldct-iqa/train.json",
+      "role": "official-training-member",
+      "sha256": "9c303d24a7f7887b5b7a49df0f57449c5b457b21a53e488f86e76054f3390893",
+      "url": "https://zenodo.org/records/7833096"
+    },
+    {
+      "bytes": 13292,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/ldct-metadata.json",
+      "role": "official-Zenodo-metadata",
+      "sha256": "2174097cc09e868243682c27b64787e24fe8a350c9efb018c10b4cea76158a61",
+      "url": "https://zenodo.org/api/records/7833096"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "empty quality_score prediction CSV schema",
+    "evaluator": "ReX pinned correlation scorer; not executed",
+    "helper": "public train.json score 3.8 and train labels; no pristine CT",
+    "input": "official training TIFF 0559 shown as source example; held-out test images absent",
+    "private_reference": "test_labels.csv radiologist means, absent"
+  },
+  "status": "production-draft-source-resolution",
+  "task_contract": {
+    "geometry": "source TIFF 512x512 float normalized 0..1; no HU or physical spacing in TIFF",
+    "grader": "abs Pearson + abs Spearman + abs Kendall in score; overall returned as leaderboard mean_position when leaderboard present, else negative first metric (PLCC).",
+    "input": "public/train/images/*.tif and public/test/images/*.tiff; 0559 is a training member",
+    "output": "submission.csv with image_id,quality_score for every test ID",
+    "private_reference": "private/test_labels.csv, no pristine image required",
+    "source_label_role": "public training helper; not a held-out answer",
+    "training_label": "public/train_labels.csv from train.json, 0559.tif=3.8"
+  },
+  "top_warning": {
+    "label": "Training CT only; test absent",
+    "text": "Only one official labeled training CT is recovered. Test images, private reader scores, submitted predictions and measured correlations are absent.",
+    "url": "https://zenodo.org/records/7833096",
+    "link_label": "Official dataset acquisition"
+  },
+  "contract_audit": {
+    "pixel_scale": "512x512 TIFF mode F, normalized 0..1; no retained HU calibration or physical spacing",
+    "display": "round(255*normalized value), grayscale; not window 350/40 applied to HU",
+    "MOS": "Public training 0559.tif score 3.8 only; scale endpoints not verified from pinned adapter",
+    "partition": "prepare.py stages separate upstream training and test archives; does not implement description random_state=42 split",
+    "private": "private/test_labels.csv grader-only by declared path; runtime filesystem isolation untested",
+    "score": "abs(PLCC)+abs(SROCC)+abs(KROCC); 0..3 only for finite nondegenerate correlations; signs discarded",
+    "overall": "mean leaderboard metric rank when available, otherwise negative PLCC; differs from score",
+    "guard": "inner ID join and merged-row-count check are not a uniqueness audit; preserve unique exact IDs",
+    "terms": "Zenodo metadata CC-BY-4.0 versus pinned ReX CC-BY-NC-SA-4.0; conservative local use; clarify before external redistribution"
+  }
+}

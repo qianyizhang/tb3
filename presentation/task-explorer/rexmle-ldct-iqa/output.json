@@ -1,0 +1,30 @@
+{
+  "role": "required-schema-not-observed-output",
+  "path": "submission.csv",
+  "columns": [
+    "image_id",
+    "quality_score"
+  ],
+  "image_id_rule": "extensionless test-image stem; preserve exact string identity and one row per required ID",
+  "values": {
+    "image_id": null,
+    "quality_score": null
+  },
+  "private_reference": null,
+  "prediction": null,
+  "score": null,
+  "overall": null,
+  "metrics": [
+    "PLCC",
+    "SROCC",
+    "KROCC"
+  ],
+  "score_rule": "abs(PLCC) + abs(SROCC) + abs(KROCC)",
+  "overall_rule": "mean leaderboard metric position when available; otherwise -PLCC",
+  "limits": [
+    "Absolute correlations discard direction; reversed ordering can share the same magnitudes",
+    "Correlations are cohort statistics, not a per-image score",
+    "Constant or non-finite inputs can yield NaN; no measured result is retained",
+    "Leaderboard positions depend on supplied leaderboard rows and selected metrics"
+  ]
+}

@@ -15843,15 +15843,15 @@
       ],
       "illustration_kind": "quality",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "rexmle-ldct-iqa",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-ldct-iqa. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Pinned native training CT/public helper and source contract verified; mixed source/symbolic visual and full export review accepted.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/rexmle-ldct-iqa/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Low-dose CT images containing noise and reconstruction artifacts.",
         "helpers": "Training examples with radiologists’ mean opinion scores; no pristine image is required at inference. These are training aids; held-out targets remain evaluation references.",
@@ -15884,14 +15884,94 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Only one official labeled training CT is recovered. Test images, private reader scores, submitted predictions and measured correlations are absent.",
+      "acquisition_route": "https://zenodo.org/records/7833096",
+      "warning_text": "Only one official labeled training CT is recovered. Test images, private reader scores, submitted predictions and measured correlations are absent.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-ldct-iqa-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/rexmle-ldct-iqa-resolution.json",
+        "receipt_sha256": "d7d68738e3bd000ff418071def4258be22b6f437c32431bd8bdd26bb65c98bd6",
+        "brief_sha256": "0d5ac761ccc02a6c319bc0164a7a13ab0966536675f38487442ac007612fa95c",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "One official normalized training CT/public training helper with symbolic unexecuted prediction/output and source-pinned cohort grader explanation.",
+      "completion_review": {
+        "date": "2026-09-30T16:02:21.401888+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "4e50d8fd78d8e65701e2c10fc5031da2d44f344b2ed64cb476825f0ca10c97fc"
+      },
+      "reviewed_contract_projection": {
+        "title": "Predict perceived low-dose CT image quality",
+        "goal": "Train or adapt a no-reference method and submit a scalar quality prediction for each test CT. **Training CT only; test absent.** [Official acquisition](https://zenodo.org/records/7833096).",
+        "value": "Agreement with reader perception can inform quality assessment; it does not establish diagnostic accuracy, denoising benefit or dose safety.",
+        "raw": "Official training example 0559.tif is a 512 × 512 normalized float TIFF. The retained preview linearly maps values 0..1 to grayscale 0..255. HU calibration, anatomical orientation and physical spacing are absent; this is not an applied HU window despite the source description's 350/40 acquisition display convention.",
+        "helpers": "The exact public train.json label is 3.8. It is a reader-score training helper, not a model output or hidden test target. Reader scale endpoints are not established by the inspected adapter. No pristine reference is required at inference.",
+        "tools": "The ReX workflow prepares data, develops a method and infers predictions. No tool, preparation, training or inference was run here.",
+        "reference": "The pinned adapter declares private/test_labels.csv for evaluation. Held-out images and private scores are absent locally; actual runtime filesystem visibility remains unaudited.",
+        "spec": "Preserve unique exact image IDs; infer one quality_score per test image. The preparer stages separate upstream train/test archives, not the random_state=42 split described in generic prose. Its zero-valued sample submission is a template, not a prediction.",
+        "output": "submission.csv with image_id (extensionless test stem) and numeric quality_score. All illustrated output values remain unset; the artifact is neither a mask nor a restored CT.",
+        "score": "The pinned grader joins IDs against private labels and checks merged row count. Its score is abs(PLCC)+abs(SROCC)+abs(KROCC), nominally 0..3 for finite nondegenerate coefficients. Signs are discarded. Its overall is mean leaderboard metric position when available, otherwise negative absolute Pearson correlation. Those fields are different; no measured correlation or rank is reported. Constant/non-finite arrays and duplicate IDs need explicit validation before any future execution.",
+        "challenge": "Predict perceived quality under combined noise/streak artifacts rather than equating smoothness with usability.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "Only one official training example was extracted through verified bounded ranges. Test data, private labels, predictions and measured metrics are missing. Zenodo CC-BY-4.0 metadata conflicts with ReX CC-BY-NC-SA-4.0; resolve terms before redistribution. Recover exact held-out assets and validate visibility before reopening execution.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Competition workflow",
+            "helper": "Training examples with radiologists’ mean opinion scores; no pristine image is required at inference.",
+            "remaining": "Prepare data, train or adapt a model, validate and produce the final submission."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned ReX adapter",
+            "https://github.com/rajpurkarlab/ReX-MLE/tree/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa"
+          ],
+          [
+            "Official dataset",
+            "https://zenodo.org/records/7833096"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Train or adapt a no-reference method and submit a scalar quality prediction for each test CT. <strong>Training CT only; test absent.</strong> <a href=\"https://zenodo.org/records/7833096\">Official acquisition</a>.</p>",
+          "value": "<p>Agreement with reader perception can inform quality assessment; it does not establish diagnostic accuracy, denoising benefit or dose safety.</p>",
+          "raw": "<p>Official training example 0559.tif is a 512 × 512 normalized float TIFF. The retained preview linearly maps values 0..1 to grayscale 0..255. HU calibration, anatomical orientation and physical spacing are absent; this is not an applied HU window despite the source description&#x27;s 350/40 acquisition display convention.</p>",
+          "helpers": "<p>The exact public train.json label is 3.8. It is a reader-score training helper, not a model output or hidden test target. Reader scale endpoints are not established by the inspected adapter. No pristine reference is required at inference.</p>",
+          "tools": "<p>The ReX workflow prepares data, develops a method and infers predictions. No tool, preparation, training or inference was run here.</p>",
+          "reference": "<p>The pinned adapter declares private/test_labels.csv for evaluation. Held-out images and private scores are absent locally; actual runtime filesystem visibility remains unaudited.</p>",
+          "spec": "<p>Preserve unique exact image IDs; infer one quality_score per test image. The preparer stages separate upstream train/test archives, not the random_state=42 split described in generic prose. Its zero-valued sample submission is a template, not a prediction.</p>",
+          "output": "<p>submission.csv with image_id (extensionless test stem) and numeric quality_score. All illustrated output values remain unset; the artifact is neither a mask nor a restored CT.</p>",
+          "score": "<p>The pinned grader joins IDs against private labels and checks merged row count. Its score is abs(PLCC)+abs(SROCC)+abs(KROCC), nominally 0..3 for finite nondegenerate coefficients. Signs are discarded. Its overall is mean leaderboard metric position when available, otherwise negative absolute Pearson correlation. Those fields are different; no measured correlation or rank is reported. Constant/non-finite arrays and duplicate IDs need explicit validation before any future execution.</p>",
+          "challenge": "<p>Predict perceived quality under combined noise/streak artifacts rather than equating smoothness with usability.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>Only one official training example was extracted through verified bounded ranges. Test data, private labels, predictions and measured metrics are missing. Zenodo CC-BY-4.0 metadata conflicts with ReX CC-BY-NC-SA-4.0; resolve terms before redistribution. Recover exact held-out assets and validate visibility before reopening execution.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>One official training CT with a persistent gap and acquisition route.</p>",
+          "helpers": "<p>The public 3.8 training label is available as helper material; partition selection demonstrates solver/evaluator roles without exposing any hidden target.</p>",
+          "answer": "<p>An unfilled CSV schema and correlation formulas, followed by explicit limits. No invented reader scores, predictions or leaderboard results.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23431,9 +23511,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 99,
+    "reviewed-scripted-planar": 100,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 61,
+    "blocked-source-contract": 60,
     "blocked-source-input": 31,
     "pending-operation-review": 1
   },

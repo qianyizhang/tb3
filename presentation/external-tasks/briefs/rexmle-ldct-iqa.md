@@ -1,60 +1,54 @@
 # Predict perceived low-dose CT image quality
 
-Develop and apply a prediction method to predict perceived low-dose CT image quality.
+Train or adapt a no-reference method and submit a scalar quality prediction for each test CT. **Training CT only; test absent.** [Official acquisition](https://zenodo.org/records/7833096).
 
 ## Value
 
-Quality assessment/repair can support image review, but agreement with a benchmark reference does not demonstrate a clinical benefit.
+Agreement with reader perception can inform quality assessment; it does not establish diagnostic accuracy, denoising benefit or dose safety.
 
 ## Given
 
 ### Original data
 
-Low-dose CT images containing noise and reconstruction artifacts.
+Official training example 0559.tif is a 512 × 512 normalized float TIFF. The retained preview linearly maps values 0..1 to grayscale 0..255. HU calibration, anatomical orientation and physical spacing are absent; this is not an applied HU window despite the source description's 350/40 acquisition display convention.
 
 ### Supplied helpers
 
-Training examples with radiologists’ mean opinion scores; no pristine image is required at inference. These are training aids; held-out targets remain evaluation references.
+The exact public train.json label is 3.8. It is a reader-score training helper, not a model output or hidden test target. Reader scale endpoints are not established by the inspected adapter. No pristine reference is required at inference.
 
 ### Callable tools
 
-A medical ML development environment; dependency installation, training and inference resources are task-specific and were not exercised in this survey.
+The ReX workflow prepares data, develops a method and infers predictions. No tool, preparation, training or inference was run here.
 
 ### Reference-only material
 
-Evaluation targets are references, not extra solver inputs. Local filesystem visibility has not been audited by running this external task.
+The pinned adapter declares private/test_labels.csv for evaluation. Held-out images and private scores are absent locally; actual runtime filesystem visibility remains unaudited.
 
 ## Task specification
 
-Develop the learning/inference pipeline using the allowed training partition, then submit predictions for every required evaluation case. Preserve case IDs, label taxonomy and image geometry.
+Preserve unique exact image IDs; infer one quality_score per test image. The preparer stages separate upstream train/test archives, not the random_state=42 split described in generic prose. Its zero-valued sample submission is a template, not a prediction.
 
 ## Expected output
 
-A CSV with image_id and quality_score.
+submission.csv with image_id (extensionless test stem) and numeric quality_score. All illustrated output values remain unset; the artifact is neither a mask nor a restored CT.
 
 ## Evaluation
 
-The description combines absolute correlation coefficients between predicted quality and reader scores. This statement describes the published task; no new score or equivalence with the original challenge grader is claimed.
+The pinned grader joins IDs against private labels and checks merged row count. Its score is abs(PLCC)+abs(SROCC)+abs(KROCC), nominally 0..3 for finite nondegenerate coefficients. Signs are discarded. Its overall is mean leaderboard metric position when available, otherwise negative absolute Pearson correlation. Those fields are different; no measured correlation or rank is reported. Constant/non-finite arrays and duplicate IDs need explicit validation before any future execution.
 
 ## Visual explanation
 
-### Workflow
-
-- Low-dose CT images containing noise and reconstruction artifacts
-- Develop and apply a prediction pipeline
-- A CSV with image_id and quality_score
-
 ### Input
 
-**Contract view; native sample not yet illustrated.** Low-dose CT images containing noise and reconstruction artifacts.
+One official training CT with a persistent gap and acquisition route.
 
 ### Supplied helpers
 
-**Given material, not an answer reveal.** Training examples with radiologists’ mean opinion scores; no pristine image is required at inference. These are training aids; held-out targets remain evaluation references.
+The public 3.8 training label is available as helper material; partition selection demonstrates solver/evaluator roles without exposing any hidden target.
 
 ### Reference or output
 
-**Expected artifact, not an actual prediction.** A CSV with image_id and quality_score.
+An unfilled CSV schema and correlation formulas, followed by explicit limits. No invented reader scores, predictions or leaderboard results.
 
 ## Conditions
 
@@ -64,11 +58,12 @@ The description combines absolute correlation coefficients between predicted qua
 
 ## Difficulty
 
-Learn perceived usability rather than simply measuring smoothness; clinically relevant texture may look like noise.
+Predict perceived quality under combined noise/streak artifacts rather than equating smoothness with usability.
 
 ## Sources
 
-- [Pinned challenge description](https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa/description.md)
+- [Pinned ReX adapter](https://github.com/rajpurkarlab/ReX-MLE/tree/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/ldct-iqa)
+- [Official dataset](https://zenodo.org/records/7833096), DOI 10.5281/zenodo.7833096
 
 ## Coverage
 
@@ -76,4 +71,4 @@ A shared definition brief for the linked catalogue entries. Case identities and 
 
 ## Gaps
 
-The challenge description was inspected; its local ReX-MLE data-preparation and grading adapters were not replayed. Native example views are not yet attached to this definition.
+Only one official training example was extracted through verified bounded ranges. Test data, private labels, predictions and measured metrics are missing. Zenodo CC-BY-4.0 metadata conflicts with ReX CC-BY-NC-SA-4.0; resolve terms before redistribution. Recover exact held-out assets and validate visibility before reopening execution.

@@ -1,3 +1,4 @@
+import { RexLdctIqaScene, RexLdctIqaOutput } from './rex-ldct-iqa-panels';
 import { RadagentVqaScene, RadagentVqaOutput } from './radagent-vqa-panels';
 import { AbraBiradsScene, AbraBiradsOutput } from './abra-birads-panels';
 import { AbraVisionProbeScene, AbraVisionProbeOutput } from './abra-vision-probe-panels';
@@ -277,6 +278,7 @@ export function OperationScene({
   if (state.recipe === 'abra-birads-v1') return <AbraBiradsScene state={state} />;
   if (state.recipe === 'radagent-vqa-v1')
     return <RadagentVqaScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'rex-ldct-iqa-v1') return <RexLdctIqaScene state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -592,6 +594,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'abra-vision-probe-v1') return <AbraVisionProbeOutput state={state} />;
   if (state.recipe === 'abra-birads-v1') return <AbraBiradsOutput state={state} />;
   if (state.recipe === 'radagent-vqa-v1') return <RadagentVqaOutput state={state} />;
+  if (state.recipe === 'rex-ldct-iqa-v1') return <RexLdctIqaOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
