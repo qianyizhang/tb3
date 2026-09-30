@@ -1,0 +1,370 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-chest-xray-pneumonia-cls-task",
+  "source_commit": "f894057807cc334421784e702ead2c1883583e1b",
+  "declared_release_source_ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+  "illustration_basis": "source-derived-teaching; actual public training example plus symbolic contract sockets",
+  "warning_text": "Training-source example only \u2014 frozen Full evaluation IDs, test labels and results absent; acquire the official Mendeley dataset.",
+  "actual_data_gap": "Exact frozen100 evaluation IDs and Full staged test images/private labels/checkpoints/predictions/scores absent. Native image is public training helper only; generic S4/S5 segmentation prompts conflict with classification envelope.",
+  "acquisition_route": "https://data.mendeley.com/datasets/rscbjbr9sj/2",
+  "brief_sha256": "0533bcb851fcf79a65dbff4eff305bbb6dd375d000079e7058f94c639a8ac4d9",
+  "source_files": [
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/acc_scorer.py",
+      "sha256": "b96c40478cfdfbd57a0d21f66d78272a9e12e5ea7e5ad8acd44dafa2936d414c",
+      "bytes": 6125,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/aggregate.py",
+      "sha256": "06e51ec2c9f27587100b0a306c4d07fe260bd792c3d330e16b32c438d35c0f3f",
+      "bytes": 7046,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/config.yaml",
+      "sha256": "2f04e59c2ef271fb6fe52ef47b0a4f3bdcc3de32174f2be4f45b88e3921575df",
+      "bytes": 1392,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/lite_s1.md",
+      "sha256": "e233e4c57eb989a0ad89784e75f7cd23bad9ddf14db9786410147352b44cd50d",
+      "bytes": 641,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/lite_s2.md",
+      "sha256": "b9cf1a3b13d3b52a30f23363b66a006420bbb0766769e1b3a0a421ad10c09d90",
+      "bytes": 475,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/lite_s3.md",
+      "sha256": "a56ca337f6d14f4fbe61b7d7812508ba0cd54e574aa1562d40129dc509bd82f8",
+      "bytes": 421,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/model_info.yaml",
+      "sha256": "271bf602c5478860e85564863ae6431ae32dd04cb547c80591f472eba433fd8e",
+      "bytes": 1124,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/requirements.txt",
+      "sha256": "9c9c9d4f9a7193f5d78254934bb36b4ee39a31ccad408c281ebee7334b5f6562",
+      "bytes": 152,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/standard_s1.md",
+      "sha256": "34cbc22cc0f03a0a4734bfcd70ce57612c9e6878d1b145b9fb8ef079748b772a",
+      "bytes": 421,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/standard_s3.md",
+      "sha256": "d100cf151052c706239558825a9603fa6fe100aceeb89b66022ccfe3f254d58e",
+      "bytes": 260,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/failure_classifier.py",
+      "sha256": "1cd558585dc7447760d21b0d0869fde6b35e9315ae6bd77fba39875a808f8a16",
+      "bytes": 3444,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/format_checker.py",
+      "sha256": "2ff6daeb06016e969d66a4082941c5bf8caeac8b01422d04093fe8f424f52b3c",
+      "bytes": 2602,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/medal_tier.py",
+      "sha256": "027da48a6ebb7cb608b2a694ee44fa4e1b27aa5e29b41a339c3f5a788bc660de",
+      "bytes": 1546,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "dc534fd7b5da6773c06dc119e7c76288b7460a4e8fafbd18476b84107c1e13b8",
+      "bytes": 511,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "7736c34b214a317515d3908c71e54df257c58a4b1938748142513bb4e88901d7",
+      "bytes": 438,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "644c615371688760e2997ecc6724cf9b493babf3d5011cccf2311476123e0d57",
+      "bytes": 511,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "d1a00ff6eaa6b0d80fde6b374fc52a8c6cfb8d6ca4d01c06b510c9cfafce0e37",
+      "bytes": 702,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "fc7a51e81d1877620d48e23958df99f9e47a8e7836504ffecf9f788892be2779",
+      "bytes": 193,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "e126095f5a69615fdc7d4459b3bf41fa835b3b04207ed3d0cdd0b967593445f5",
+      "bytes": 3375,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "9045408499023fbf71796d6909ad902cf66b990e4a28a9f1cd3d371f2ee1926f",
+      "bytes": 583,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "e80aea50bc786938c7621372c49675bb5a2fab8f7254464a69998ab91e43d0d4",
+      "bytes": 2412,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "02f0ea5e74544efbd1565130c602c88d005334f934784fb1e026b843ddc85968",
+      "bytes": 1356,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "sha256": "8b7a737228cb2b2670bd6ead70f5b9e2df081ac8c96fbfd2420df18cb1c6f35f",
+      "bytes": 569,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "eb9a2db4ea56fec8f2bdd1ab3dbf652f59748f35e9d332dc25545936a5f0f78d",
+      "bytes": 1348,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "sha256": "9365e6e5e512e19c2bd023e6be547611f13fcce50867b2970fcc22c04f725609",
+      "bytes": 666,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "23856e06a487e044a479f40d4e60be5dbbc42ce3350ad39309965429ebd0c39c",
+      "bytes": 586,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/run_eval.py",
+      "sha256": "663ecbac107c296dc3b5d201654ed8d782f7e490b90b6cb2522e7d6919c2d218",
+      "bytes": 10595,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/task_loader.py",
+      "sha256": "c647fca7260afb6cfd17076329c8af767c396746c6c6c4fad84d8295b2e1abcc",
+      "bytes": 5066,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/tier_config.py",
+      "sha256": "60fc716c8dcd90a5005b8057016fd87fc1686b2ba21dab096f5080bb27305986",
+      "bytes": 8972,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/task.json",
+      "sha256": "8927641e464ea05f08b856e21f54f420af9a247a5df0df73c73ae9e676eaebe1",
+      "bytes": 1648,
+      "pin_basis": "HF commit-pinned package archive + internal MANIFEST.sha256; not independently verified Git blob"
+    }
+  ],
+  "retained_source_pins": [
+    {
+      "bytes": 22893,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task.tar.gz",
+      "role": "pinned-Full-harness-archive",
+      "sha256": "5ffb62e3633d467057603a0aee85b8ab14d2baa2a690c8e7a5339cce2037e631",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 1648,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/task.json",
+      "role": "task-envelope",
+      "sha256": "8927641e464ea05f08b856e21f54f420af9a247a5df0df73c73ae9e676eaebe1",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 1392,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/config.yaml",
+      "role": "task-config",
+      "sha256": "2f04e59c2ef271fb6fe52ef47b0a4f3bdcc3de32174f2be4f45b88e3921575df",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 1124,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/chest-xray-pneumonia-cls-task/model_info.yaml",
+      "role": "tier-model-guidance",
+      "sha256": "271bf602c5478860e85564863ae6431ae32dd04cb547c80591f472eba433fd8e",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 6125,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/acc_scorer.py",
+      "role": "executable-accuracy-scorer",
+      "sha256": "b96c40478cfdfbd57a0d21f66d78272a9e12e5ea7e5ad8acd44dafa2936d414c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 7046,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/aggregate.py",
+      "role": "executable-aggregate",
+      "sha256": "06e51ec2c9f27587100b0a306c4d07fe260bd792c3d330e16b32c438d35c0f3f",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 2602,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/source/format_checker.py",
+      "role": "submission-format-checker",
+      "sha256": "2ff6daeb06016e969d66a4082941c5bf8caeac8b01422d04093fe8f424f52b3c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 3055,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/chest-xray-pneumonia-cls-task/automedbench-task/MANIFEST.sha256",
+      "role": "package-manifest",
+      "sha256": "bcb941b235c764883f4b3b27b175a9196e795bc77ea8cdc63b63d79c68ab5210",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+    },
+    {
+      "bytes": 119585,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/cxr-page.html",
+      "role": "official-dataset-page",
+      "sha256": "92669888bd67a3482373c30c0c8aaa3dc4970a94e48ac797a2848e6acc2ba161",
+      "url": "https://data.mendeley.com/datasets/rscbjbr9sj/2"
+    }
+  ],
+  "native_example": {
+    "source_url": "https://data.mendeley.com/datasets/rscbjbr9sj/2",
+    "zip_member": "chest_xray/train/NORMAL/IM-0115-0001.jpeg",
+    "partition": "train",
+    "source_folder_label": "NORMAL",
+    "canonical_helper_label": "normal",
+    "role": "public-training-example; not Full evaluation case/reference/model output",
+    "bytes": 870784,
+    "sha256": "de2079fb45d4bb0e4c6a48481e7b6ee31ab7601e83b43cd07820168b93de1d13",
+    "CRC32_verified": true,
+    "full_archive_SHA256_verified": false,
+    "width": 2090,
+    "height": 1858,
+    "mode": "L",
+    "license": "CC-BY-4.0",
+    "attribution": "Daniel Kermany, Kang Zhang, Michael Goldbaum; DOI 10.17632/rscbjbr9sj.2"
+  },
+  "acquisition_attempt": {
+    "anonymous_file_list": "HTTP200 exact route discovered in official frontend bundle",
+    "ZIP_tail_directory_member_ranges": "HTTP206; native JPEG CRC32 and bytes verified; only bounded ranges acquired",
+    "whole_archive_sha256_verified": false,
+    "official_api_declared_zip_sha256": "13efc055629733dbab07877f8b3c9f81097840dbcdaa326a8542322c2281ce36",
+    "not_gate": "Public official acquisition succeeded; prior guessed API401/404 does not establish gating"
+  },
+  "source_roles": {
+    "input": "Full public image.jpg per case; absent",
+    "helper": "Retained upstream public train/NORMAL JPEG and training label; task config/model guidance",
+    "reference": "Private evaluator label.json/ground_truth.csv; absent and not solver inputs",
+    "output": "one canonical class per case; no prediction",
+    "scorer": "pinned acc_scorer and format_checker; only authored nonpatient contract controls executed"
+  },
+  "task_contract": {
+    "classes": [
+      "normal",
+      "pneumonia"
+    ],
+    "dataset_included": false,
+    "full_evaluation_ids": "unresolved",
+    "ground_truth": "/data/private/<case_id>/label.json or ground_truth.csv, not solver-visible",
+    "input_filename": "image.jpg",
+    "metric": "accuracy",
+    "metric_caveat": "",
+    "output_csv": "agents_outputs/predictions.csv header patient_id,label",
+    "output_json": "agents_outputs/{case_id}/prediction.json containing label",
+    "package_type": "automedbench_task_harness",
+    "public_training_label_role": "upstream class folder/helper only for genuine training examples",
+    "scorer": "accuracy=correct/all cases (missing prediction wrong); balanced_accuracy=mean recall over true classes; aggregate headline uses config score_metric",
+    "source_ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "task_id": "chest-xray-pneumonia-cls-task",
+    "tiers": [
+      "lite",
+      "standard"
+    ],
+    "unit": "case"
+  },
+  "prompt_conflict": "Generic S4/S5 require segmentation masks; declared task.json/classification evaluator require label files. Effective prompt assembly unavailable.",
+  "model_run": false,
+  "task_run": false,
+  "browser_review": false,
+  "transport_receipts": [
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chest-xray-pneumonia-cls-task/mendeley-bundle.js",
+      "bytes": 654884,
+      "sha256": "e9c250331f19e2248a9671bb673abd96225715c4cc1c1da4efe8ff28bc3ddf31",
+      "role": "official frontend/API/archive range acquisition evidence; not full ZIP"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chest-xray-pneumonia-cls-task/files.json",
+      "bytes": 2137,
+      "sha256": "ddf8e4d7d80122252c2144c84a33f4d0623063f55e25c33f19f476e3d2f685a9",
+      "role": "official frontend/API/archive range acquisition evidence; not full ZIP"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chest-xray-pneumonia-cls-task/zip-tail.bin",
+      "bytes": 65536,
+      "sha256": "cb9c6b6e2ae8af0349917a55bf634211faf74dd3e99c4c7ba5179700d6024d43",
+      "role": "official frontend/API/archive range acquisition evidence; not full ZIP"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chest-xray-pneumonia-cls-task/central-directory.bin",
+      "bytes": 820096,
+      "sha256": "95d54c1d39360ea442fd3e8830fc855889e624dcbab35515c53540d930f6803b",
+      "role": "official frontend/API/archive range acquisition evidence; not full ZIP"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chest-xray-pneumonia-cls-task/sample-range.bin",
+      "bytes": 869134,
+      "sha256": "41290a0d79798fd8f32c199a1597fc37a0dbe2109375f429af21146b0761afd5",
+      "role": "official frontend/API/archive range acquisition evidence; not full ZIP"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chest-xray-pneumonia-cls-task/native-sample.json",
+      "bytes": 648,
+      "sha256": "373ac8f5a8bb997880b27990103c7697ceadff16a1c83217dabe8ede567a8ad4",
+      "role": "official frontend/API/archive range acquisition evidence; not full ZIP"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chest-xray-pneumonia-cls-task/source-contract-check.json",
+      "bytes": 13859,
+      "sha256": "106eb084423a2b1f339851a66fa67ba206b7901beeae0c5966bc97081468a14b",
+      "role": "official frontend/API/archive range acquisition evidence; not full ZIP"
+    }
+  ],
+  "attempts": [
+    {
+      "action": "Reuse and independently verify retained official Mendeley archive ranges and native public training example",
+      "source": "https://data.mendeley.com/datasets/rscbjbr9sj/2",
+      "outcome": "Retained official file-list HTTP200 and selected ZIP ranges HTTP206 evidence reused; main revalidated all seven transport SHA/size pins, thirty source members and native bit3 ZIP deflate/central-directory CRC32 90c425de plus exact870784-byte JPEG. Native2090x1858 training image inspected. Full archive SHA and frozen Full evaluation membership remain unverified; no new full archive acquisition or task execution.",
+      "attempted_at": "2026-09-30T17:42:01.229000+00:00"
+    }
+  ]
+}

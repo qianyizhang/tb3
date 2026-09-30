@@ -1,3 +1,7 @@
+import {
+  AutomedPneumoniaScene,
+  AutomedPneumoniaOutput,
+} from './automedbench-full-chest-xray-pneumonia-cls-task-panels';
 import { AutomedBrainClsScene, AutomedBrainClsOutput } from './automed-brain-cls-panels';
 import { RexLdctIqaScene, RexLdctIqaOutput } from './rex-ldct-iqa-panels';
 import { RadagentVqaScene, RadagentVqaOutput } from './radagent-vqa-panels';
@@ -281,6 +285,8 @@ export function OperationScene({
     return <RadagentVqaScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'rex-ldct-iqa-v1') return <RexLdctIqaScene state={state} />;
   if (state.recipe === 'automed-brain-cls-v1') return <AutomedBrainClsScene state={state} />;
+  if (state.recipe === 'automed-pneumonia-cls-v1')
+    return <AutomedPneumoniaScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -598,6 +604,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'radagent-vqa-v1') return <RadagentVqaOutput state={state} />;
   if (state.recipe === 'rex-ldct-iqa-v1') return <RexLdctIqaOutput state={state} />;
   if (state.recipe === 'automed-brain-cls-v1') return <AutomedBrainClsOutput state={state} />;
+  if (state.recipe === 'automed-pneumonia-cls-v1') return <AutomedPneumoniaOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

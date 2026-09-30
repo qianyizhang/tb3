@@ -1,3 +1,4 @@
+import { automedPneumoniaPack } from './automedbench-full-chest-xray-pneumonia-cls-task';
 import { automedBrainClsPack } from './automed-brain-cls';
 import { rexLdctIqaPack } from './rex-ldct-iqa';
 import { radagentVqaPack } from './radagent-vqa';
@@ -108,6 +109,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-pneumonia-cls-v1',
     'automed-brain-cls-v1',
     'rex-ldct-iqa-v1',
     'radagent-vqa-v1',
@@ -977,6 +979,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Required MRI input socket'],
           ['#18c6d4', 'Unsubmitted CSV or JSON schema'],
           ['#7ba4b8', 'Private targets absent'],
+        ],
+      };
+    case 'automed-pneumonia-cls-v1':
+      return {
+        heading: 'Separate training help from test predictions',
+        corner: 'Native training X-ray; Full test absent',
+        warning: automedPneumoniaPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Public training image and label'],
+          ['#18c6d4', 'Two-class mapping, private labels absent'],
+          ['#7ba4b8', 'Canonical class files; output absent'],
         ],
       };
     case 'bcer-brain-full-v1':

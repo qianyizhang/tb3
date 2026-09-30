@@ -18390,15 +18390,15 @@
       ],
       "illustration_kind": "classify",
       "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-chest-xray-pneumonia-cls-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-chest-xray-pneumonia-cls-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Verified native public training helper and pinned classification/format/scoring rules accepted after main visual, export, mobile/noGPU and helper-boundary review; Full cases and results absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/chest-pneumonia/acceptance-02.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "radiography input, stored as `image.jpg` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names torchvision DenseNet-121. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -18440,14 +18440,98 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Exact frozen100 evaluation IDs, Full staged test images/private labels/checkpoints/predictions/scores absent. Native public training helper is not a Full test case; generic S4/S5 segmentation prompts conflict with classification envelope.",
+      "acquisition_route": "https://data.mendeley.com/datasets/rscbjbr9sj/2",
+      "warning_text": "Training-source example only \u2014 frozen Full evaluation IDs, test labels and results absent; acquire the official Mendeley dataset.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-chest-xray-pneumonia-cls-task-resolution.json",
+      "source_review": {
+        "date": "2026-10-01",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-chest-xray-pneumonia-cls-task-resolution.json",
+        "receipt_sha256": "cf76117fd22d964611b53c5209ae0934f652fd71148adfb579f147859ba3444c",
+        "brief_sha256": "0533bcb851fcf79a65dbff4eff305bbb6dd375d000079e7058f94c639a8ac4d9",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Verified official native public training example plus task-specific unexecuted classification and evaluator-rule explanation; Full evaluation cases/results absent.",
+      "completion_review": {
+        "date": "2026-09-30T17:51:36.170812+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "ae44c4a046bb802244059f862462fdab7b96abf09b36c1a9d4f58ea6561ff9cc"
+      },
+      "reviewed_contract_projection": {
+        "title": "Classify pediatric chest radiographs as normal or pneumonia",
+        "goal": "Implement a two-class image pipeline, map every case to a canonical label, and submit files for evaluator-owned scoring. The source training-folder label is helper information, not a diagnosis or model prediction.",
+        "value": "Not yet specified.",
+        "raw": "Full expects one `image.jpg` per staged case in public data. Its harness declares dataset.included=false and requests a **100-case** evaluation split, with exact IDs unresolved. **1 native public training example** is now retained: `chest_xray/train/NORMAL/IM-0115-0001.jpeg`, grayscale **2090\u00d71858**, original bytes. It is not a frozen Full test case. No resize or preprocessing has been applied to the stored JPEG; display scaling is visual only.",
+        "helpers": "Configuration maps `NORMAL \u2192 normal`, `PNEUMONIA \u2192 pneumonia`. Public training-folder labels may supervise authorized fitting; their visible role is distinct from private test labels. Lite fixes torchvision DenseNet-121 with ImageNet initialization, a two-output head and recorded class order `[normal,pneumonia]`. Standard compares DenseNet-121, ResNet-50 and EfficientNet-B0 using balanced accuracy on the same training-derived validation split. Models/weights are absent. Grayscale-to-model-channel conversion must be recorded; no universal resize or intensity scheme is asserted.",
+        "tools": "Terminal and authorized ML runtime; this source-only interpretation invokes no model, GPU or task runtime. Task stages are plan/setup/validation/inference/submission.",
+        "reference": "Evaluation expects `/data/private/<case_id>/label.json` or `ground_truth.csv`; never use those labels for fitting, selection or calibration. Frozen evaluation IDs must be excluded from training. The exact Full split and actual mount isolation are not established here. The native training-folder label is public helper evidence, never private test ground truth.",
+        "spec": "Assign exactly one of `normal` or `pneumonia` per staged case. These are benchmark classes, not localization, subtype, uncertainty or clinical diagnostic findings. Before inference, validate real forward-pass output shape 1\u00d72, finite values, grayscale handling and class-index mapping on authorized training-derived validation data. No forward pass occurred in this preparation.\n\n**Source prompt conflict:** retained generic S4/S5 prompts ask for organ.nii.gz/lesion.nii.gz, while task.json, task-specific guidance and executable classification checker require labels. Effective runner prompt assembly is unavailable; do not present this package as an executed or fully qualified end-to-end runtime. Follow the declared classification envelope when explaining output, and resolve the generic guidance before execution.",
+        "output": "Either `agents_outputs/predictions.csv` with header `patient_id,label`, or `agents_outputs/<case_id>/prediction.json` containing `{\"label\":\"normal\"}` or pneumonia. Header case/outer whitespace tolerated; canonical classes case-insensitive. CSV takes precedence for a present case label, otherwise per-case JSON fallback. Duplicate CSV IDs overwrite earlier rows in source; emit exactly one row per case. Any authored toy row is formatting only. Actual participant output absent.",
+        "score": "The executable source computes **accuracy = n_correct / len(patient_ids)**; missing prediction or missing reference never earns correctness, but every supplied case ID remains in the denominator. Present labels outside class set fail format. Partial submission can be format-valid; empty submission fails. Balanced accuracy averages recalls only across true classes represented in supplied GT; config headline is accuracy, with no extra completion scaling. Completeness is separately n_predicted/N. The declared **100** is a target, not a frozen measured denominator. Source thresholds .85/.50 are explicitly provisional generic defaults, not observed performance. No patient score is retained; bounded synthetic contract tests establish harness behavior only.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Frozen100 IDs, staged Full test images, private labels, checkpoints, predictions and scores absent. One source training example cannot establish test equivalence, clinical diagnosis or classifier performance. Generic stage-prompt conflict remains unexecuted.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Distinguish public training image/label from empty Full test input socket.",
+          "Record preprocessing/class order and preserve private-label isolation.",
+          "Emit one canonical class per case, then reveal evaluator denominator rules separately."
+        ],
+        "variants": [
+          {
+            "name": "Specified condition",
+            "helper": "Configuration maps `NORMAL \u2192 normal`, `PNEUMONIA \u2192 pneumonia`. Public training-folder labels may supervise authorized fitting; their visible role is distinct from private test labels. Lite fixes torchvision DenseNet-121 with ImageNet initialization, a two-output head and recorded class order `[normal,pneumonia]`. Standard compares DenseNet-121, ResNet-50 and EfficientNet-B0 using balanced accuracy on the same training-derived validation split. Models/weights are absent. Grayscale-to-model-channel conversion must be recorded; no universal resize or intensity scheme is asserted.",
+            "remaining": "Assign exactly one of `normal` or `pneumonia` per staged case. These are benchmark classes, not localization, subtype, uncertainty or clinical diagnostic findings. Before inference, validate real forward-pass output shape 1\u00d72, finite values, grayscale handling and class-index mapping on authorized training-derived validation data. No forward pass occurred in this preparation.\n\n**Source prompt conflict:** retained generic S4/S5 prompts ask for organ.nii.gz/lesion.nii.gz, while task.json, task-specific guidance and executable classification checker require labels. Effective runner prompt assembly is unavailable; do not present this package as an executed or fully qualified end-to-end runtime. Follow the declared classification envelope when explaining output, and resolve the generic guidance before execution."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/chest-xray-pneumonia-cls-task.tar.gz"
+          ],
+          [
+            "Official native training dataset",
+            "https://data.mendeley.com/datasets/rscbjbr9sj/2"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-chest-xray-pneumonia-cls-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Implement a two-class image pipeline, map every case to a canonical label, and submit files for evaluator-owned scoring. The source training-folder label is helper information, not a diagnosis or model prediction.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full expects one <code>image.jpg</code> per staged case in public data. Its harness declares dataset.included=false and requests a <strong>100-case</strong> evaluation split, with exact IDs unresolved. <strong>1 native public training example</strong> is now retained: <code>chest_xray/train/NORMAL/IM-0115-0001.jpeg</code>, grayscale <strong>2090\u00d71858</strong>, original bytes. It is not a frozen Full test case. No resize or preprocessing has been applied to the stored JPEG; display scaling is visual only.</p>",
+          "helpers": "<p>Configuration maps <code>NORMAL \u2192 normal</code>, <code>PNEUMONIA \u2192 pneumonia</code>. Public training-folder labels may supervise authorized fitting; their visible role is distinct from private test labels. Lite fixes torchvision DenseNet-121 with ImageNet initialization, a two-output head and recorded class order <code>[normal,pneumonia]</code>. Standard compares DenseNet-121, ResNet-50 and EfficientNet-B0 using balanced accuracy on the same training-derived validation split. Models/weights are absent. Grayscale-to-model-channel conversion must be recorded; no universal resize or intensity scheme is asserted.</p>",
+          "tools": "<p>Terminal and authorized ML runtime; this source-only interpretation invokes no model, GPU or task runtime. Task stages are plan/setup/validation/inference/submission.</p>",
+          "reference": "<p>Evaluation expects <code>/data/private/&lt;case_id&gt;/label.json</code> or <code>ground_truth.csv</code>; never use those labels for fitting, selection or calibration. Frozen evaluation IDs must be excluded from training. The exact Full split and actual mount isolation are not established here. The native training-folder label is public helper evidence, never private test ground truth.</p>",
+          "spec": "<p>Assign exactly one of <code>normal</code> or <code>pneumonia</code> per staged case. These are benchmark classes, not localization, subtype, uncertainty or clinical diagnostic findings. Before inference, validate real forward-pass output shape 1\u00d72, finite values, grayscale handling and class-index mapping on authorized training-derived validation data. No forward pass occurred in this preparation.</p>\n<p><strong>Source prompt conflict:</strong> retained generic S4/S5 prompts ask for organ.nii.gz/lesion.nii.gz, while task.json, task-specific guidance and executable classification checker require labels. Effective runner prompt assembly is unavailable; do not present this package as an executed or fully qualified end-to-end runtime. Follow the declared classification envelope when explaining output, and resolve the generic guidance before execution.</p>",
+          "output": "<p>Either <code>agents_outputs/predictions.csv</code> with header <code>patient_id,label</code>, or <code>agents_outputs/&lt;case_id&gt;/prediction.json</code> containing <code>{&quot;label&quot;:&quot;normal&quot;}</code> or pneumonia. Header case/outer whitespace tolerated; canonical classes case-insensitive. CSV takes precedence for a present case label, otherwise per-case JSON fallback. Duplicate CSV IDs overwrite earlier rows in source; emit exactly one row per case. Any authored toy row is formatting only. Actual participant output absent.</p>",
+          "score": "<p>The executable source computes <strong>accuracy = n_correct / len(patient_ids)</strong>; missing prediction or missing reference never earns correctness, but every supplied case ID remains in the denominator. Present labels outside class set fail format. Partial submission can be format-valid; empty submission fails. Balanced accuracy averages recalls only across true classes represented in supplied GT; config headline is accuracy, with no extra completion scaling. Completeness is separately n_predicted/N. The declared <strong>100</strong> is a target, not a frozen measured denominator. Source thresholds .85/.50 are explicitly provisional generic defaults, not observed performance. No patient score is retained; bounded synthetic contract tests establish harness behavior only.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Frozen100 IDs, staged Full test images, private labels, checkpoints, predictions and scores absent. One source training example cannot establish test equivalence, clinical diagnosis or classifier performance. Generic stage-prompt conflict remains unexecuted.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23601,10 +23685,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 101,
+    "reviewed-scripted-planar": 102,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 30,
+    "blocked-source-input": 29,
     "pending-operation-review": 1
   },
   "completion_program": {

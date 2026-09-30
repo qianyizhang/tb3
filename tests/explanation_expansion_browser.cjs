@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-pneumonia-cls-v1',
   'automed-brain-cls-v1',
   'rex-ldct-iqa-v1',
   'radagent-vqa-v1',
@@ -93,6 +94,13 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-pneumonia-cls-v1')
+    return {
+      scene: 'data-pneumonia-scene',
+      reference: '[data-pneumonia-reference-revealed]',
+      output: '[data-pneumonia-output-schema]',
+      aside: '[data-pneumonia-output]',
+    };
   if (plan.recipe === 'automed-brain-cls-v1')
     return {
       scene: 'data-brain-cls-scene',
@@ -543,6 +551,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-pneumonia-cls-v1': [
+      /Training-source example only.*frozen Full evaluation IDs, test labels and results absent/s,
+      'https://data.mendeley.com/datasets/rscbjbr9sj/2',
+      'data-pneumonia-scene',
+      false,
+    ],
     'automed-brain-cls-v1': [
       /MRI, Full IDs, private labels, checkpoint and results are absent; official acquisition requests timed out/s,
       'https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset',
@@ -1020,6 +1034,89 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-pneumonia-cls-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const inputIndex = plan.beats.findIndex((b) => b.scene === 'input');
+    await page.locator(`[data-story-step="${inputIndex}"]`).click();
+    const native = page.locator('[data-pneumonia-native]');
+    assert.equal(await native.count(), 1);
+    assert.deepEqual(await native.evaluate((e) => [e.naturalWidth, e.naturalHeight]), [2090, 1858]);
+    assert.match(await page.locator('[data-pneumonia-output]').innerText(), /output absent/);
+    assert.equal(await page.locator('[data-pneumonia-training-label]').count(), 0);
+    assert.doesNotMatch(
+      await page.locator('.scene-player').innerText(),
+      /Public training helper: NORMAL/,
+    );
+    const operationIndex = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    const steps = page.getByRole('navigation', { name: 'Classification implementation steps' });
+    const names = ['Training-only preprocessing', 'Class index mapping', 'All-case file output'];
+    const expected = [
+      /preprocessing|normalization/i,
+      /0.*normal.*1.*pneumonia/s,
+      /exactly one canonical class/,
+    ];
+    for (const [i, name] of names.entries()) {
+      const button = steps.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(
+        await page
+          .locator('[data-pneumonia-operation-step]')
+          .getAttribute('data-pneumonia-operation-step'),
+        String(i),
+      );
+      assert.match(await page.locator('[data-pneumonia-scene]').innerText(), expected[i]);
+      assert.equal(await page.locator('[data-pneumonia-reference-revealed]').count(), 0);
+      assert.match(await page.locator('[data-pneumonia-output]').innerText(), /output absent/);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-operation-${i}.png`) });
+    }
+    const outputIndex = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${outputIndex}"]`).click();
+    assert.match(
+      await page.locator('[data-pneumonia-scene]').innerText(),
+      /participant_prediction:.*—/s,
+    );
+    assert.match(
+      await page.locator('[data-pneumonia-scene]').innerText(),
+      /Authored toy syntax.*not the displayed native image/s,
+    );
+    const referenceIndex = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${referenceIndex}"]`).click();
+    assert.match(
+      await page.locator('[data-pneumonia-reference-revealed]').innerText(),
+      /n_correct.*len\(patient_ids\).*Missing prediction or reference/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-denominator.png`) });
+    assert.match(
+      await page.locator('[data-pneumonia-training-label]').innerText(),
+      /NORMAL.*normal/s,
+    );
+    const limitsIndex = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${limitsIndex}"]`).click();
+    assert.equal(await page.locator('[data-pneumonia-reference-revealed]').count(), 0);
+    assert.match(
+      await page.locator('[data-pneumonia-scene]').innerText(),
+      /Generic S4\/S5.*segmentation masks.*classification/s,
+    );
+    await page.locator(`[data-story-step="${referenceIndex}"]`).click();
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(
+      await page.locator('[data-pneumonia-reference-revealed]').count(),
+      0,
+      'Backward chapter seek must cover scorer rules',
+    );
+    assert.equal(await page.locator('[data-pneumonia-training-label]').count(), 0);
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
   }
   if (plan.recipe === 'automed-brain-cls-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -4937,6 +5034,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-pneumonia-cls-v1',
       'automed-brain-cls-v1',
       'rex-ldct-iqa-v1',
       'radagent-vqa-v1',
