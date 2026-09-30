@@ -1,3 +1,4 @@
+import { automedSkinLesionPack } from './automedbench-full-skin-lesion-cls-task';
 import { automedPcamClsPack } from './automed-pcam-cls';
 import { automedCrcClsPack } from './automed-crc-cls';
 import { automedPneumoniaPack } from './automedbench-full-chest-xray-pneumonia-cls-task';
@@ -111,6 +112,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-skin-lesion-cls-v1',
     'automed-pcam-cls-v1',
     'automed-crc-cls-v1',
     'automed-pneumonia-cls-v1',
@@ -1016,6 +1018,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Symbolic required tile geometry'],
           ['#18c6d4', 'Symbolic central 32 x 32 label window', true],
           ['#7ba4b8', 'Upstream figure; Full labels absent'],
+        ],
+      };
+    case 'automed-skin-lesion-cls-v1':
+      return {
+        heading: 'Remap seven checkpoint classes',
+        corner: 'HAM10000 source example; Full test absent',
+        warning: automedSkinLesionPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Public source image; private label absent'],
+          ['#18c6d4', 'Seven-index abbreviation remapping'],
+          ['#7ba4b8', 'Canonical class files; output absent'],
         ],
       };
     case 'bcer-brain-full-v1':

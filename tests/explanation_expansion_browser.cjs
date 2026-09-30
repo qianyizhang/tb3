@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-skin-lesion-cls-v1',
   'automed-pcam-cls-v1',
   'automed-crc-cls-v1',
   'automed-pneumonia-cls-v1',
@@ -96,6 +97,13 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-skin-lesion-cls-v1')
+    return {
+      scene: 'data-skin-lesion-scene',
+      reference: '[data-skin-lesion-reference-revealed]',
+      output: '[data-skin-lesion-fields]',
+      aside: '[data-skin-lesion-output]',
+    };
   if (plan.recipe === 'automed-pcam-cls-v1')
     return {
       scene: 'data-pcam-cls-scene',
@@ -569,6 +577,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-skin-lesion-cls-v1': [
+      /Source HAM10000 example only.*Full case split, private labels and results absent/s,
+      'https://api.isic-archive.com/collections/212/',
+      'data-skin-lesion-scene',
+      false,
+    ],
     'automed-pcam-cls-v1': [
       /No matched 96x96 training row or frozen Full 100-case tile is recovered.*official annotated README collage.*private labels, checkpoint, predictions and scores absent/s,
       'https://github.com/basveeling/pcam',
@@ -1064,6 +1078,130 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-skin-lesion-cls-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    await page.locator('[data-story-step="0"]').click();
+    const native = page.locator('[data-skin-lesion-scene="input"] img');
+    assert.deepEqual(await native.evaluate((e) => [e.naturalWidth, e.naturalHeight]), [600, 450]);
+    assert.doesNotMatch(
+      await page.locator('.scene-player').innerText(),
+      /diagnosis_3|Nevus;|serial imaging/,
+    );
+    assert.match(
+      await page.locator('[data-skin-lesion-output]').innerText(),
+      /Actual Full prediction.reference absent/,
+    );
+    const processor = plan.beats.findIndex((b) => b.id === 'processor');
+    const mapping = plan.beats.findIndex((b) => b.id === 'mapping');
+    const files = plan.beats.findIndex((b) => b.id === 'files');
+    const out = plan.beats.findIndex((b) => b.scene === 'output');
+    const reference = plan.beats.findIndex((b) => b.scene === 'reference');
+    const limits = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${processor}"]`).click();
+    const steps = page.getByRole('navigation', { name: 'Classification steps' });
+    for (const [name, pattern] of [
+      ['RGB processor settings', /224.224.*1\/255.*settings only/],
+      ['Seven-class remap', /index 0.*akiec.*actinic_keratoses/s],
+      ['Canonical files', /All staged IDs.*one canonical string/s],
+    ]) {
+      await steps.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        await steps.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(await page.locator('[data-skin-lesion-scene]').innerText(), pattern);
+    }
+    await page.locator(`[data-story-step="${mapping}"]`).click();
+    const map = page.getByRole('navigation', { name: 'Inspect seven checkpoint label mappings' });
+    const abbreviations = ['akiec', 'bcc', 'bkl', 'df', 'mel', 'nv', 'vasc'];
+    const canonical = [
+      'actinic_keratoses',
+      'basal_cell_carcinoma',
+      'benign_keratosis_like_lesions',
+      'dermatofibroma',
+      'melanoma',
+      'melanocytic_nevi',
+      'vascular_lesions',
+    ];
+    for (let i = 0; i < 7; i++) {
+      const button = map.getByRole('button', { name: `${i}:${abbreviations[i]}`, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-skin-lesion-scene]').innerText(),
+        new RegExp(`index ${i}.*${abbreviations[i]}.*${canonical[i]}`, 's'),
+      );
+      assert.match(
+        await page.locator('[data-skin-lesion-scene]').innerText(),
+        /No argmax, logits or image prediction/,
+      );
+    }
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-mapping-seven.png`) });
+    await page.locator(`[data-story-step="${processor}"]`).click();
+    const views = page.getByRole('navigation', {
+      name: 'Native display versus processor contract',
+    });
+    for (const [name, pattern] of [
+      ['Native display', /600.450.*no model tensor/],
+      ['Processor settings', /224.224.*1\/255/],
+    ]) {
+      await views.getByRole('button', { name, exact: true }).click();
+      assert.match(await page.locator('[data-skin-lesion-preprocessing]').innerText(), pattern);
+    }
+    await views.getByRole('button', { name: 'Native display', exact: true }).click();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-native-contract.png`) });
+    await page.locator(`[data-story-step="${files}"]`).click();
+    await page.locator(`[data-story-step="${processor}"]`).click();
+    assert.equal(
+      await views
+        .getByRole('button', { name: 'Processor settings', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${out}"]`).click();
+    const formats = page.getByRole('navigation', { name: 'Skin classification submission format' });
+    for (const name of ['json', 'csv']) {
+      await formats.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        await page.locator('[data-skin-lesion-fields]').innerText(),
+        name === 'csv' ? 'patient_id,label' : 'label',
+      );
+      assert.match(
+        await page.locator('[data-skin-lesion-scene]').innerText(),
+        /Authored toy formatting, unrelated to the source image/,
+      );
+    }
+    await formats.getByRole('button', { name: 'json', exact: true }).click();
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-format-json.png`) });
+    await page.locator(`[data-story-step="${reference}"]`).click();
+    assert.equal(await page.locator('[data-skin-lesion-reference-revealed]').count(), 1);
+    assert.match(
+      await page.locator('[data-skin-lesion-reference-revealed]').innerText(),
+      /Absent GT classes omitted.*missing predictions wrong/s,
+    );
+    await page.locator(`[data-story-step="${limits}"]`).click();
+    assert.equal(await page.locator('[data-skin-lesion-reference-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${out}"]`).click();
+    assert.equal(
+      await formats.getByRole('button', { name: 'csv', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    assert.equal(await page.locator('[data-skin-lesion-reference-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${mapping}"]`).click();
+    assert.equal(
+      await map.getByRole('button', { name: '0:akiec', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('[data-story-step="0"]').click();
   }
   if (plan.recipe === 'automed-pcam-cls-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -5381,6 +5519,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-skin-lesion-cls-v1',
       'automed-pcam-cls-v1',
       'automed-crc-cls-v1',
       'automed-pneumonia-cls-v1',

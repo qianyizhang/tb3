@@ -18881,15 +18881,15 @@
       ],
       "illustration_kind": "classify",
       "subject": "skin",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-skin-lesion-cls-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-skin-lesion-cls-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Verified unchanged native600x450 public HAM10000 example plus pinned checkpoint taxonomy/processor and symbolic output/evaluator contract; accepted after main visual/export/mobile/noGPU/reference review. Full split/private labels/weights/results and received-size discrepancy remain unresolved.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/skin-lesion/acceptance-02.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "dermoscopy input, stored as `image.jpg` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Fixed ViT HAM10000 7-class dermoscopy classifier. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -18931,14 +18931,116 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "source_class": "source-derived-teaching",
+      "actual_data_gap": "Full frozen case split/private labels/weights/logits/predictions/scores absent; example not a Full case. API declared imagebytes22038 vs received25247; source-original hash equality unverified.",
+      "acquisition_route": "https://api.isic-archive.com/collections/212/",
+      "warning_text": "Source HAM10000 example only \u2014 Full case split, private labels and results absent; acquire through the official ISIC archive.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-skin-lesion-cls-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-skin-lesion-cls-task-resolution.json",
+        "receipt_sha256": "aa3ab1065ca11b1baa9e4df1dfbb37d7c4aca51d2a09bf2fec539c3bf57e4705",
+        "reviewer": "Codex main agent",
+        "reviewed_at": "2026-09-30T19:50:15.888711+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Exact public HAM10000 source example with pinned checkpoint taxonomy and task-specific symbolic output/evaluator contract; Full cases and results absent.",
+      "completion_review": {
+        "date": "2026-09-30T20:05:39.839658+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "b98f16c01adb59971a7e8c6333fe1c0efd7754086accaeea6ac8448603806ce5"
+      },
+      "reviewed_contract_projection": {
+        "title": "Classify dermoscopy images into seven source-defined classes",
+        "goal": "Implement the selected tier's classifier and emit one canonical class per staged case. A public source label or checkpoint taxonomy is not a clinical diagnosis or model prediction.",
+        "value": "Not yet specified.",
+        "raw": "Full expects RGB `image.jpg` per public case and declares dataset.included=false. **1 public HAM10000 example**, ISIC_0024306, is retained from the official original-file URL at **600\u00d7450 RGB**. Its membership in collection212 is source-backed; equivalence to a frozen Full case is absent. Stored source-delivered JPEG bytes are unchanged. API declared size **22,038 bytes** differs from received **25,247 bytes**; source filename/dimensions match, but original-file hash equality is not established. No resampling/cropping/annotation performed in this pack.",
+        "helpers": "Lite fixes `spycoder/vit-base-patch16-224-in21k-enhanced-ham10000`: no substitution, ensembling, training or fine-tuning. Its seven id2label abbreviations and image processor configs were independently pinned/verified at revision `13b148c76ec7a29663604b7278db1fe1ab6eb48c`; weights and inference remain absent. Source metadata has a public descriptive Nevus label with serial-imaging confirmation, not histopathologic adjudication or Full private GT. Native example may overlap checkpoint training; no independent validation or performance claim follows.",
+        "tools": "Source prescribes terminal/Transformers/CUDA implementation and validation. No checkpoint weights, GPU/model/runtime/tool execution or installation occurred here.",
+        "reference": "Private case `label.json` or `ground_truth.csv` belongs to evaluator and is absent. Exact Full case IDs, patients/lesion split, overlap and actual mount isolation are unresolved. Exclude evaluation records from tuning/model selection. A public HAM10000 metadata label remains source/helper information rather than private test reference.",
+        "spec": "RGB source \u2192 prescribed AutoImageProcessor \u2192 ViT logits \u2192 argmax abbreviation \u2192 canonical string. Pinned processor declares 224\u00d7224 resize, 1/255 rescale, per-channel mean/std .5/.5. This pack shows source settings, not a processed model tensor. Validate `(1,7)` output and exact mapping before batch inference. Standard may research ready seven-class ViT/EfficientNet/ConvNeXt/Swin/ResNet checkpoints; actual source classes must map unambiguously.\n\n| Index | Abbreviation | Canonical class |\n|---|---|---|\n| 0 | akiec | actinic_keratoses |\n| 1 | bcc | basal_cell_carcinoma |\n| 2 | bkl | benign_keratosis_like_lesions |\n| 3 | df | dermatofibroma |\n| 4 | mel | melanoma |\n| 5 | nv | melanocytic_nevi |\n| 6 | vasc | vascular_lesions |\n\nThe task name actinic_keratoses covers source akiec (actinic keratoses/intraepithelial carcinoma); no additional subtype or malignancy/localization output is requested. Use source canonical strings, not invented class aliases.\n\n**Prompt conflict:** generic S4/S5 retain organ/lesion NIfTI instructions while task envelope, Lite S3 and classification checker require label files. Effective prompt assembly unverified; this interpretation does not establish a qualified end-to-end runtime.",
+        "output": "`agents_outputs/predictions.csv` with `patient_id,label`, or per-case `prediction.json` with label. Canonical labels case-insensitive; raw `nv`/other checkpoint abbreviations are not canonical and fail format unless remapped. CSV present label precedes JSON fallback; emit unique IDs. Actual outputs null; toy row is unrelated to displayed source image.",
+        "score": "Headline **balanced_accuracy = mean recall over GT classes represented in supplied patient_ids**, not necessarily all seven. Missing predictions count wrong within their true class. An absent class has recall None and is omitted from mean. Plain accuracy separately divides correct by all supplied IDs, including missing predictions/reference. No extra completion scaling; completeness n_predicted/N separately. Partial outputs may be format-valid; empty or unmapped/unknown labels fail. Source thresholds .80/.45 are configured gates, not observed/calibrated performance. Pure synthetic fixture (three correct classA, missing classB) confirms plain accuracy3/4=.75 and macro recall(1.0+0)/2=.5, not model results or clinical evidence.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Full split/case IDs/private references, exact whole-collection terms, actual weights/processor run/logits/predictions/scores absent. One HAM10000 source example with CC BY-NC terms does not qualify Full evaluation or public redistribution. Metadata/received byte-size discrepancy retained.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Public source example and helper metadata; Full test socket empty.",
+          "RGB processor settings \u2192 seven-index abbreviation remap \u2192 canonical file schema.",
+          "Reader explicitly reveals represented-class denominator, never private labels or scores."
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Fixed ViT HAM10000 seven-class checkpoint and pinned processor/mapping instructions.",
+            "remaining": "Provision the prescribed checkpoint, validate exact class mapping and submit one canonical label per case."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate ready seven-class checkpoints and task-specific comparison guidance.",
+            "remaining": "Research, choose, configure and validate a suitable pipeline without tuning on private test labels."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "Older gallery/branch/Lite-package listing; exact release equivalence is unverified.",
+            "remaining": "Follow that listing's own data, weights, metrics and assistance contract."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/skin-lesion-cls-task.tar.gz"
+          ],
+          [
+            "Official HAM10000 collection",
+            "https://api.isic-archive.com/collections/212/"
+          ],
+          [
+            "Per-image metadata",
+            "https://api.isic-archive.com/api/v2/images/ISIC_0024306/"
+          ],
+          [
+            "Pinned checkpoint config",
+            "https://huggingface.co/spycoder/vit-base-patch16-224-in21k-enhanced-ham10000/blob/13b148c76ec7a29663604b7278db1fe1ab6eb48c/config.json"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-skin-lesion-cls-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Implement the selected tier&#x27;s classifier and emit one canonical class per staged case. A public source label or checkpoint taxonomy is not a clinical diagnosis or model prediction.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full expects RGB <code>image.jpg</code> per public case and declares dataset.included=false. <strong>1 public HAM10000 example</strong>, ISIC_0024306, is retained from the official original-file URL at <strong>600\u00d7450 RGB</strong>. Its membership in collection212 is source-backed; equivalence to a frozen Full case is absent. Stored source-delivered JPEG bytes are unchanged. API declared size <strong>22,038 bytes</strong> differs from received <strong>25,247 bytes</strong>; source filename/dimensions match, but original-file hash equality is not established. No resampling/cropping/annotation performed in this pack.</p>",
+          "helpers": "<p>Lite fixes <code>spycoder/vit-base-patch16-224-in21k-enhanced-ham10000</code>: no substitution, ensembling, training or fine-tuning. Its seven id2label abbreviations and image processor configs were independently pinned/verified at revision <code>13b148c76ec7a29663604b7278db1fe1ab6eb48c</code>; weights and inference remain absent. Source metadata has a public descriptive Nevus label with serial-imaging confirmation, not histopathologic adjudication or Full private GT. Native example may overlap checkpoint training; no independent validation or performance claim follows.</p>",
+          "tools": "<p>Source prescribes terminal/Transformers/CUDA implementation and validation. No checkpoint weights, GPU/model/runtime/tool execution or installation occurred here.</p>",
+          "reference": "<p>Private case <code>label.json</code> or <code>ground_truth.csv</code> belongs to evaluator and is absent. Exact Full case IDs, patients/lesion split, overlap and actual mount isolation are unresolved. Exclude evaluation records from tuning/model selection. A public HAM10000 metadata label remains source/helper information rather than private test reference.</p>",
+          "spec": "<p>RGB source \u2192 prescribed AutoImageProcessor \u2192 ViT logits \u2192 argmax abbreviation \u2192 canonical string. Pinned processor declares 224\u00d7224 resize, 1/255 rescale, per-channel mean/std .5/.5. This pack shows source settings, not a processed model tensor. Validate <code>(1,7)</code> output and exact mapping before batch inference. Standard may research ready seven-class ViT/EfficientNet/ConvNeXt/Swin/ResNet checkpoints; actual source classes must map unambiguously.</p>\n<div class=\"table\"><table>\n<tr><th>Index</th><th>Abbreviation</th><th>Canonical class</th></tr>\n<tr><td>0</td><td>akiec</td><td>actinic_keratoses</td></tr>\n<tr><td>1</td><td>bcc</td><td>basal_cell_carcinoma</td></tr>\n<tr><td>2</td><td>bkl</td><td>benign_keratosis_like_lesions</td></tr>\n<tr><td>3</td><td>df</td><td>dermatofibroma</td></tr>\n<tr><td>4</td><td>mel</td><td>melanoma</td></tr>\n<tr><td>5</td><td>nv</td><td>melanocytic_nevi</td></tr>\n<tr><td>6</td><td>vasc</td><td>vascular_lesions</td></tr>\n</table></div>\n<p>The task name actinic_keratoses covers source akiec (actinic keratoses/intraepithelial carcinoma); no additional subtype or malignancy/localization output is requested. Use source canonical strings, not invented class aliases.</p>\n<p><strong>Prompt conflict:</strong> generic S4/S5 retain organ/lesion NIfTI instructions while task envelope, Lite S3 and classification checker require label files. Effective prompt assembly unverified; this interpretation does not establish a qualified end-to-end runtime.</p>",
+          "output": "<p><code>agents_outputs/predictions.csv</code> with <code>patient_id,label</code>, or per-case <code>prediction.json</code> with label. Canonical labels case-insensitive; raw <code>nv</code>/other checkpoint abbreviations are not canonical and fail format unless remapped. CSV present label precedes JSON fallback; emit unique IDs. Actual outputs null; toy row is unrelated to displayed source image.</p>",
+          "score": "<p>Headline <strong>balanced_accuracy = mean recall over GT classes represented in supplied patient_ids</strong>, not necessarily all seven. Missing predictions count wrong within their true class. An absent class has recall None and is omitted from mean. Plain accuracy separately divides correct by all supplied IDs, including missing predictions/reference. No extra completion scaling; completeness n_predicted/N separately. Partial outputs may be format-valid; empty or unmapped/unknown labels fail. Source thresholds .80/.45 are configured gates, not observed/calibrated performance. Pure synthetic fixture (three correct classA, missing classB) confirms plain accuracy3/4=.75 and macro recall(1.0+0)/2=.5, not model results or clinical evidence.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Full split/case IDs/private references, exact whole-collection terms, actual weights/processor run/logits/predictions/scores absent. One HAM10000 source example with CC BY-NC terms does not qualify Full evaluation or public redistribution. Metadata/received byte-size discrepancy retained.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23867,10 +23969,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 104,
+    "reviewed-scripted-planar": 105,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 27,
+    "blocked-source-input": 26,
     "pending-operation-review": 1
   },
   "completion_program": {

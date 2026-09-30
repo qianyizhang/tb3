@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-skin-lesion-cls-v1": "retained-automed-full-skin-lesion-source-v1",
     "automed-pcam-cls-v1": "retained-automed-pcam-cls-v1",
     "automed-crc-cls-v1": "retained-automed-crc-cls-v1",
     "automed-pneumonia-cls-v1": "retained-automed-full-pneumonia-source-v1",
@@ -160,6 +161,19 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-full-skin-lesion-source-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "source-preview.jpeg",
+        },
+    ),
     "retained-automed-pcam-cls-v1": (
         "source-records",
         None,
@@ -2050,6 +2064,12 @@ class InterpretationBBcerLongBrainFullChannels(Closed):
     reference: Pair
 
 
+class AutomedSkinLesionChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class AutomedPcamClsChannels(Closed):
     progress: Pair
     detail: Pair
@@ -3912,6 +3932,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedSkinLesionBeat(ExpansionBeat[AutomedSkinLesionChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AutomedSkinLesionStory(Story[AutomedSkinLesionChannels]):
+    recipe: Literal["automed-skin-lesion-cls-v1"]
+    beats: tuple[AutomedSkinLesionBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AutomedPcamClsBeat(ExpansionBeat[AutomedPcamClsChannels]):
     scene: Literal["input", "helper", "operation", "output", "limits"]
 
@@ -4334,6 +4375,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedSkinLesionStory
     | AutomedPcamClsStory
     | AutomedCrcClsStory
     | AutomedPneumoniaStory
@@ -4450,6 +4492,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedSkinLesionStory
     | AutomedPcamClsStory
     | AutomedCrcClsStory
     | AutomedPneumoniaStory
@@ -4726,6 +4769,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedSkinLesionStory
     | AutomedPcamClsStory
     | AutomedCrcClsStory
     | AutomedPneumoniaStory
@@ -5021,6 +5065,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-automed-full-skin-lesion-source-v1": (
+                "symbolic-unit-grid",
+                "CC-BY-NC-4.0",
+                None,
+            ),
             "retained-automed-pcam-cls-v1": (
                 "PCam-symbolic-geometry-plus-README-figure",
                 "LicenseRef-PCam-CC0-data-MIT-figure",
@@ -5216,6 +5265,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "unitless"
+                if pack_id == "retained-automed-full-skin-lesion-source-v1"
                 else "px"
                 if pack_id == "retained-automed-pcam-cls-v1"
                 else "0.5 um/pixel and px"
@@ -5316,6 +5367,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automed-full-skin-lesion-source-v1"
             or pack_id == "retained-automed-pcam-cls-v1"
             or pack_id == "retained-automed-crc-cls-v1"
             or pack_id == "retained-automed-full-pneumonia-source-v1"
@@ -5348,6 +5400,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "input-preview"
                 if pack_id == "retained-automed-full-pneumonia-source-v1"
                 and name == "source-preview.jpeg"
+                else "input-preview"
+                if pack_id == "retained-automed-full-skin-lesion-source-v1"
+                and name == "source-preview.jpeg"
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -5369,6 +5424,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     and name == "formatting-fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-automed-full-pneumonia-source-v1"
+                    and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-automed-full-skin-lesion-source-v1"
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
