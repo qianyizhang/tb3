@@ -1,3 +1,4 @@
+import { automedIuReportPack } from './automedbench-full-iu-xray-report-task';
 import { automedChexpertReportPack } from './automed-chexpert-report';
 import { automedSkinLesionPack } from './automedbench-full-skin-lesion-cls-task';
 import { automedPcamClsPack } from './automed-pcam-cls';
@@ -113,6 +114,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-iu-xray-report-v1',
     'automed-chexpert-report-v1',
     'automed-skin-lesion-cls-v1',
     'automed-pcam-cls-v1',
@@ -1042,6 +1044,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Required frontal JPEG socket'],
           ['#18c6d4', 'Empty report schema'],
           ['#7ba4b8', 'Private targets absent'],
+        ],
+      };
+    case 'automed-iu-xray-report-v1':
+      return {
+        heading: 'One report per study',
+        corner: 'Symbolic IU study; source data absent',
+        warning: automedIuReportPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Symbolic study/images; source absent'],
+          ['#18c6d4', 'Text validity; metric binding gap'],
+          ['#7ba4b8', 'One text file per case; output absent'],
         ],
       };
     case 'bcer-brain-full-v1':

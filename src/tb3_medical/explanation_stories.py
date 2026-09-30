@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-iu-xray-report-v1": "retained-automed-full-iu-report-workflow-v1",
     "automed-chexpert-report-v1": "symbolic-automed-chexpert-report-v1",
     "automed-skin-lesion-cls-v1": "retained-automed-full-skin-lesion-source-v1",
     "automed-pcam-cls-v1": "retained-automed-pcam-cls-v1",
@@ -162,6 +163,19 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-full-iu-report-workflow-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "study.json",
+        },
+    ),
     "symbolic-automed-chexpert-report-v1": (
         "source-records",
         None,
@@ -2078,6 +2092,12 @@ class InterpretationBBcerLongBrainFullChannels(Closed):
     reference: Pair
 
 
+class AutomedIuReportChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class AutomedChexpertReportChannels(Closed):
     progress: Pair
     detail: Pair
@@ -3952,6 +3972,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedIuReportBeat(ExpansionBeat[AutomedIuReportChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AutomedIuReportStory(Story[AutomedIuReportChannels]):
+    recipe: Literal["automed-iu-xray-report-v1"]
+    beats: tuple[AutomedIuReportBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AutomedChexpertReportBeat(ExpansionBeat[AutomedChexpertReportChannels]):
     scene: Literal["input", "helper", "operation", "output", "limits"]
 
@@ -4413,6 +4454,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedIuReportStory
     | AutomedChexpertReportStory
     | AutomedSkinLesionStory
     | AutomedPcamClsStory
@@ -4531,6 +4573,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedIuReportStory
     | AutomedChexpertReportStory
     | AutomedSkinLesionStory
     | AutomedPcamClsStory
@@ -4809,6 +4852,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedIuReportStory
     | AutomedChexpertReportStory
     | AutomedSkinLesionStory
     | AutomedPcamClsStory
@@ -5106,6 +5150,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-automed-full-iu-report-workflow-v1": (
+                "symbolic-unit-grid",
+                "LicenseRef-IU-symbolic-teaching",
+                None,
+            ),
             "symbolic-automed-chexpert-report-v1": (
                 "symbolic-case-workflow",
                 "LicenseRef-TB3-symbolic-teaching",
@@ -5312,6 +5361,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
                 else "unitless"
+                if pack_id == "retained-automed-full-iu-report-workflow-v1"
+                else "unitless"
                 if pack_id == "symbolic-automed-chexpert-report-v1"
                 else "unitless"
                 if pack_id == "retained-automed-full-skin-lesion-source-v1"
@@ -5415,6 +5466,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automed-full-iu-report-workflow-v1"
             or pack_id == "symbolic-automed-chexpert-report-v1"
             or pack_id == "retained-automed-full-skin-lesion-source-v1"
             or pack_id == "retained-automed-pcam-cls-v1"
@@ -5452,6 +5504,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "input-preview"
                 if pack_id == "retained-automed-full-skin-lesion-source-v1"
                 and name == "source-preview.jpeg"
+                else "illustration"
+                if pack_id == "retained-automed-full-iu-report-workflow-v1" and name == "study.json"
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -5477,6 +5531,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     else "symbolic-protocol"
                     if pack_id == "retained-automed-full-skin-lesion-source-v1"
                     and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-automed-full-iu-report-workflow-v1"
+                    and name in {"fixture.json", "study.json"}
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"
@@ -5596,6 +5653,7 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         expected_source_class = (
             "symbolic-protocol"
             if story.asset_pack in SYMBOLIC_SOURCE_PACKS
+            or story.asset_pack == "retained-automed-full-iu-report-workflow-v1"
             else "source-derived-teaching"
             if (
                 story.asset_pack == "retained-anatomy-v1"

@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-iu-xray-report-v1',
   'automed-chexpert-report-v1',
   'automed-skin-lesion-cls-v1',
   'automed-pcam-cls-v1',
@@ -98,6 +99,13 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-iu-xray-report-v1')
+    return {
+      scene: 'data-iu-report-scene',
+      reference: '[data-iu-report-reference-revealed]',
+      output: '[data-iu-report-output-schema]',
+      aside: '[data-iu-report-output]',
+    };
   if (plan.recipe === 'automed-chexpert-report-v1')
     return {
       scene: 'data-chexpert-scene',
@@ -586,6 +594,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-iu-xray-report-v1': [
+      /Symbolic IU study.*matching images\/reports and Full staging absent/s,
+      'https://openi.nlm.nih.gov/faq',
+      'data-iu-report-scene',
+      true,
+    ],
     'automed-chexpert-report-v1': [
       /Exact Full frontal JPEG, staged case\/patient join, reference report and submitted report absent.*metadata GET200.*no access denial is inferred/s,
       'https://aimi.stanford.edu/datasets/chexpert-plus',
@@ -1093,6 +1107,111 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-iu-xray-report-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name);
+    const scene = page.locator('[data-iu-report-scene]');
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await scene.locator('img').count(), 0);
+    assert.match(
+      await scene.innerText(),
+      /Two authored image sockets.*Actual image\/report\/case count: 0/s,
+    );
+    assert.match(
+      await page.locator('[data-iu-report-output]').innerText(),
+      /1 text file per study.*actual Full output empty/s,
+    );
+    await page.locator(`[data-story-step="${beat('group')}"]`).click();
+    const assistance = page.getByRole('navigation', { name: 'IU method assistance' });
+    await assistance.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-iu-assistance]').innerText(),
+      /at least three.*unprovisioned/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-tier-standard.png`) });
+    const operations = ['Study grouping', 'Text validity', 'Metric binding'];
+    const contracts = [
+      /every image.*case list.*image count does not multiply reports/s,
+      /40–8000.*20 letters.*ASCII printable.*UTF-8.*Unicode.*does not validate medical/s,
+      /Seven equal components.*declared intent/s,
+    ];
+    const navigation = page.getByRole('navigation', { name: 'IU report contract steps' });
+    for (let i = 0; i < 3; i++) {
+      const button = navigation.getByRole('button', { name: operations[i], exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(await scene.innerText(), contracts[i]);
+      assert.equal(await page.locator('[data-iu-report-reference-revealed]').count(), 0);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-contract-${i}.png`) });
+    }
+    const bindings = page.getByRole('navigation', {
+      name: 'IU declared versus executable metrics',
+    });
+    await bindings.getByRole('button', { name: 'Executable default', exact: true }).click();
+    assert.match(
+      await page.locator('[data-iu-binding]').innerText(),
+      /Missing clinical_score_backend\/weights.*0.7 observation F1.*0.3 ROUGE-L.*0–1.*not clinical accuracy/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-executable-default.png`) });
+    await page.locator(`[data-story-step="${beat('format')}"]`).click();
+    await page.locator(`[data-story-step="${beat('metric')}"]`).click();
+    assert.equal(
+      await bindings
+        .getByRole('button', { name: 'Declared seven', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.match(
+      await page.locator('[data-iu-binding]').innerText(),
+      /BLEU.*METEOR.*ROUGE-L.*F1RadGraph.*precision.*recall.*F1.*absent/s,
+    );
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    const format = page.getByRole('button', { name: 'Inspect text format', exact: true });
+    assert.equal(await page.locator('[data-iu-format]').count(), 0);
+    await format.click();
+    assert.match(
+      await page.locator('[data-iu-format]').innerText(),
+      /UTF-8.*40–8000.*20 letters.*ASCII.*No JSON.*factual/s,
+    );
+    assert.match(
+      await scene.locator('pre').innerText(),
+      /illustrative text.*no patient or medical finding/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-format-revealed.png`) });
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    assert.match(
+      await page.locator('[data-iu-report-reference-revealed]').innerText(),
+      /all supplied studies.*missing\/invalid.*forces F.*zeroes.*Raw micro.*no actual score/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-mechanics-revealed.png`) });
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-iu-format]').count(), 0);
+    assert.equal(await page.locator('[data-iu-report-reference-revealed]').count(), 0);
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('group')}"]`).click();
+    assert.equal(
+      await assistance
+        .getByRole('button', { name: 'lite', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.match(
+      await page.locator('[data-iu-assistance]').innerText(),
+      /CheXagent-2-3b.*every JPEG/s,
+    );
+    await page.locator('[data-story-step="0"]').click();
   }
   if (plan.recipe === 'automed-chexpert-report-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -5665,6 +5784,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-iu-xray-report-v1',
       'automed-chexpert-report-v1',
       'automed-skin-lesion-cls-v1',
       'automed-pcam-cls-v1',

@@ -20444,15 +20444,15 @@
       ],
       "illustration_kind": "report",
       "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-iu-xray-report-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-iu-xray-report-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted source-pinned symbolic IU study grouping/report/evaluator explanation after main visual/export/mobile/noGPU/reference review. Matching images/reports, Full joins, private targets, model and metric assets remain absent; declared7/defaultlightweight discrepancy and exact dataset terms unverified.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/iu-xray/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Case images under the staged `images/` directory; the task configuration names the source dataset and allowed views.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names CheXagent-2-3b public chest X-ray VLM. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -20494,14 +20494,112 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "source_class": "symbolic-protocol",
+      "actual_data_gap": "No matching IU image/report acquired; Full study manifest, private references and metric assets absent. No outputs or scores.",
+      "acquisition_route": "https://openi.nlm.nih.gov/faq",
+      "warning_text": "Symbolic IU study \u2014 matching images/reports and Full staging absent; official Open-i acquisition.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-iu-xray-report-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-iu-xray-report-task-resolution.json",
+        "receipt_sha256": "4505aea57fb9937b9c9a503250ab7a3ff9d5c72f5a45850b1657c9e9e797b1f9",
+        "reviewer": "Codex main agent",
+        "reviewed_at": "2026-09-30T21:00:47.782411+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Source-pinned IU/Open-i study/report contract with task-specific symbolic sockets and nonclinical syntax; matching images/reports/Full references and metric assets absent.",
+      "completion_review": {
+        "date": "2026-09-30T21:08:07.818065+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "3c9bcc944cfe6898bd5fc004d3ed4f105cda8b81f3d0164e4d2c9ad644f13725"
+      },
+      "reviewed_contract_projection": {
+        "title": "Generate one chest X-ray report per IU/Open-i study",
+        "goal": "Consume every JPEG in the staged study manifest and write findings or impression text. The authored nonclinical fixture teaches file validity; it is not a radiology report or a model prediction.",
+        "value": "Study-level reporting connects all permitted views to one text artifact. Format validity and text similarity do not establish factual or clinical quality.",
+        "raw": "Full declares dataset.included=false and release_owned_unstaged. The grouping unit is **study**, with **one or more images per case**; image count is not the report denominator. **0 matching source images, 0 source reports, 0 actual cases** acquired. The symbolic two-image study is illustrative only; frontal selection/view metadata and actual case/image mapping are unverified. Open-i associates reports and images through XML parentImage tags. Two bounded official API attempts (primary and vip hosts) each timed out after 30 seconds with 0 bytes.",
+        "helpers": "Lite S1 prescribes the release-owned CheXagent-2-3b inference path and consumption of every JPEG in the public study manifest; output is plain text rather than JSON/debug tokens. Standard compares at least three source report candidates (CheXagent variants, CXRMate/MLRG, MAIRA-2 when authorized) for multi-view support, public availability, inference path and report quality. S2/S3 stage environment and validate bounded source baseline output. Model weights, baseline inference and metric resources absent. A public source report, if later acquired, is source/reference helper material: never initial solver input or a private Full answer; reader-only explicit reveal is required. None bundled here.",
+        "tools": "Source terminal/model guidance is descriptive. No model, metrics, medical evaluator trial, installation or runtime setup occurred.",
+        "reference": "Private case report.txt and optional labels.json are evaluator-only; no private records bundled. labels.json takes precedence over regex-extracted report labels. Missing private reports cause read failure, not a zero-score clinical finding. Filesystem mount isolation and supplied case-list completeness remain unverified.",
+        "spec": "The envelope separates /data/public and /data/private. task_loader discovers sorted public directories, while run_eval uses the explicitly supplied --cases list. Treat each listed case as one study regardless of image count. Write one cleaned findings or impression text file for each requested study. Schema/config pin is release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78, archive revision f894057807cc334421784e702ead2c1883583e1b; package MANIFEST hashes verified, upstream Git equivalence not independently established.",
+        "output": "**agent_outputs/<case_id>/report.txt** (singular agent). UTF-8 decoding, raw character length **40\u20138000 inclusive**, at least **20 alphabetic characters**, nonempty stripped text and characters in Python string.printable are checked. Unicode alphabetic characters can still fail the ASCII printable test. No JSON envelope, class label, image mask or debug output requested. Actual report remains null. A generic English fixture has no clinical content and only demonstrates checker acceptance; validity is not semantic quality.",
+        "score": "**Config declares equal seven-component metrics; executable defaults to lightweight .7 observation F1 + .3 report similarity because clinical_score_backend and clinical_metric_weights are absent. MLRG path/checkpoints unresolved.** Config names bleu, meteor, rouge_l, f1_radgraph, micro_precision, micro_recall, micro_f1 equally weighted (each 1/7 intent). The optional adapter takes mean BLEU1\u20134, partial RadGraph F1 and CheXbert all-label micro metrics. Its dependencies/checkpoints are absent; exact external metric tokenization is not established. Local lightweight tokenizer lowercases/removes FINAL REPORT and uses alphanumeric/hyphen token regex; ROUGE-L is token-LCS F1, while schema regex labels produce observation overlap F1. Uppercase FINDINGS section extraction takes precedence; otherwise whole text is used. Empty overlap sets return F1=1; this is a scorer convention, not negative-finding accuracy.\n\nCompletion denominator is **all supplied case IDs**, not images: valid_count/N, empty list returns 0 and invalid. Mean per-case metrics divide by max(N,1); micro sums TP/FP/FN across supplied cases. A missing prediction becomes empty text and remains in denominator. Any missing/invalid requested report forces F and zeroes aggregate clinical components, although retained raw micro fields may remain nonzero. Step weights .25/.15/.35/.15/.10 and clinical/workflow half-and-half overall aggregation are implementation defaults; no score or calibrated performance claim. Without judges, S1\u2013S3 are None and treated as 0 in weighted workflow. No S4/S5 Markdown prompts are included in this package; tier preset and evaluator weights alone do not establish effective end-to-end prompt assembly.",
+        "challenge": "Study/image correspondence, report cleaning, all-case validity and declared-versus-executable metric binding must agree. External metric assets and effective prompts remain unresolved.",
+        "families": "Full release task meaning under Lite/Standard conditions; related inventory listings remain separately identified. No patient image, reference report or observed model result is bundled.",
+        "gap": "No matching IU image/report acquired; Full study manifest, private references and metric assets absent. No outputs or scores. The retained official HTTP headers contain no FAQ text, and the current FAQ request timed out; exact dataset terms and any redistribution grant remain unverified. Exact source report/license/view mapping and external metric tokenization remain unresolved. No clinical diagnosis or performance evidence.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Symbolic study with two image sockets illustrates study-vs-image unit only.",
+          "Canonical controls inspect grouping, raw text-format limits, then declared-vs-executable metrics.",
+          "Reader reveal exposes evaluator mechanics; reset covers them. No source/private report exists."
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Release-owned CheXagent-2-3b path and study-manifest guidance.",
+            "remaining": "Provision the exact baseline, validate every permitted view and submit one report per study."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Comparison of at least three source candidates and report-task contract; effective prompt assembly remains unresolved.",
+            "remaining": "Resolve the exact method/resources and metric binding before authorized execution."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "Same target family; release/staging equivalence is not established.",
+            "remaining": "Follow that listing's exact source and conditions; this brief does not merge releases."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/iu-xray-report-task.tar.gz"
+          ],
+          [
+            "Official acquisition and terms route",
+            "https://openi.nlm.nih.gov/faq"
+          ],
+          [
+            "Open-i API",
+            "https://openi.nlm.nih.gov/services"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-iu-xray-report-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Consume every JPEG in the staged study manifest and write findings or impression text. The authored nonclinical fixture teaches file validity; it is not a radiology report or a model prediction.</p>",
+          "value": "<p>Study-level reporting connects all permitted views to one text artifact. Format validity and text similarity do not establish factual or clinical quality.</p>",
+          "raw": "<p>Full declares dataset.included=false and release_owned_unstaged. The grouping unit is <strong>study</strong>, with <strong>one or more images per case</strong>; image count is not the report denominator. <strong>0 matching source images, 0 source reports, 0 actual cases</strong> acquired. The symbolic two-image study is illustrative only; frontal selection/view metadata and actual case/image mapping are unverified. Open-i associates reports and images through XML parentImage tags. Two bounded official API attempts (primary and vip hosts) each timed out after 30 seconds with 0 bytes.</p>",
+          "helpers": "<p>Lite S1 prescribes the release-owned CheXagent-2-3b inference path and consumption of every JPEG in the public study manifest; output is plain text rather than JSON/debug tokens. Standard compares at least three source report candidates (CheXagent variants, CXRMate/MLRG, MAIRA-2 when authorized) for multi-view support, public availability, inference path and report quality. S2/S3 stage environment and validate bounded source baseline output. Model weights, baseline inference and metric resources absent. A public source report, if later acquired, is source/reference helper material: never initial solver input or a private Full answer; reader-only explicit reveal is required. None bundled here.</p>",
+          "tools": "<p>Source terminal/model guidance is descriptive. No model, metrics, medical evaluator trial, installation or runtime setup occurred.</p>",
+          "reference": "<p>Private case report.txt and optional labels.json are evaluator-only; no private records bundled. labels.json takes precedence over regex-extracted report labels. Missing private reports cause read failure, not a zero-score clinical finding. Filesystem mount isolation and supplied case-list completeness remain unverified.</p>",
+          "spec": "<p>The envelope separates /data/public and /data/private. task_loader discovers sorted public directories, while run_eval uses the explicitly supplied --cases list. Treat each listed case as one study regardless of image count. Write one cleaned findings or impression text file for each requested study. Schema/config pin is release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78, archive revision f894057807cc334421784e702ead2c1883583e1b; package MANIFEST hashes verified, upstream Git equivalence not independently established.</p>",
+          "output": "<p><strong>agent_outputs/&lt;case_id&gt;/report.txt</strong> (singular agent). UTF-8 decoding, raw character length <strong>40\u20138000 inclusive</strong>, at least <strong>20 alphabetic characters</strong>, nonempty stripped text and characters in Python string.printable are checked. Unicode alphabetic characters can still fail the ASCII printable test. No JSON envelope, class label, image mask or debug output requested. Actual report remains null. A generic English fixture has no clinical content and only demonstrates checker acceptance; validity is not semantic quality.</p>",
+          "score": "<p><strong>Config declares equal seven-component metrics; executable defaults to lightweight .7 observation F1 + .3 report similarity because clinical_score_backend and clinical_metric_weights are absent. MLRG path/checkpoints unresolved.</strong> Config names bleu, meteor, rouge_l, f1_radgraph, micro_precision, micro_recall, micro_f1 equally weighted (each 1/7 intent). The optional adapter takes mean BLEU1\u20134, partial RadGraph F1 and CheXbert all-label micro metrics. Its dependencies/checkpoints are absent; exact external metric tokenization is not established. Local lightweight tokenizer lowercases/removes FINAL REPORT and uses alphanumeric/hyphen token regex; ROUGE-L is token-LCS F1, while schema regex labels produce observation overlap F1. Uppercase FINDINGS section extraction takes precedence; otherwise whole text is used. Empty overlap sets return F1=1; this is a scorer convention, not negative-finding accuracy.</p>\n<p>Completion denominator is <strong>all supplied case IDs</strong>, not images: valid_count/N, empty list returns 0 and invalid. Mean per-case metrics divide by max(N,1); micro sums TP/FP/FN across supplied cases. A missing prediction becomes empty text and remains in denominator. Any missing/invalid requested report forces F and zeroes aggregate clinical components, although retained raw micro fields may remain nonzero. Step weights .25/.15/.35/.15/.10 and clinical/workflow half-and-half overall aggregation are implementation defaults; no score or calibrated performance claim. Without judges, S1\u2013S3 are None and treated as 0 in weighted workflow. No S4/S5 Markdown prompts are included in this package; tier preset and evaluator weights alone do not establish effective end-to-end prompt assembly.</p>",
+          "challenge": "<p>Study/image correspondence, report cleaning, all-case validity and declared-versus-executable metric binding must agree. External metric assets and effective prompts remain unresolved.</p>",
+          "families": "<p>Full release task meaning under Lite/Standard conditions; related inventory listings remain separately identified. No patient image, reference report or observed model result is bundled.</p>",
+          "gap": "<p>No matching IU image/report acquired; Full study manifest, private references and metric assets absent. No outputs or scores. The retained official HTTP headers contain no FAQ text, and the current FAQ request timed out; exact dataset terms and any redistribution grant remain unverified. Exact source report/license/view mapping and external metric tokenization remain unresolved. No clinical diagnosis or performance evidence.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24067,10 +24165,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 106,
+    "reviewed-scripted-planar": 107,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 25,
+    "blocked-source-input": 24,
     "pending-operation-review": 1
   },
   "completion_program": {

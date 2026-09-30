@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "automed-iu-xray-report-v1",
             "automed-skin-lesion-cls-v1",
             "automed-pneumonia-cls-v1",
             "radagent-vqa-v1",
