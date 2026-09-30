@@ -1,0 +1,1 @@
+Official upstream training pair; Full selection unverified. Upstream MSD T2/ADC training pair only; Full membership and private targets are unverified. https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar

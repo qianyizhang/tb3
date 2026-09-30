@@ -18,6 +18,14 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const {
     sampleStory,
+    originalInput,
+    originalData,
+    originalReference,
+    originalIndex,
+    originalReferenceIndex,
+    originalReveal,
+    originalPairs,
+    originalStationOrder,
     featuresInput,
     featuresData,
     featuresReference,

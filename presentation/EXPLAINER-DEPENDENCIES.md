@@ -1,48 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **86** · ready: **0** · needs resolution: **68** · deferred: **0**
+Core: **154** · reviewed: **90** · ready: **0** · needs resolution: **64** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## automedbench-full-pancreas-seg-task — Segment pancreas and pancreatic tumors
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-pancreas-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-panther-t1-seg-task — Segment pancreas and tumor on arterial T1 MRI
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-panther-t1-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-panther-t2-seg-task — Segment pancreas and tumor on MR-Linac T2 MRI
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-panther-t2-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-prostate-seg-task — Label prostate zones on two-channel MRI
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-prostate-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
 
 ## automedbench-full-spleen-seg-task — Segment the spleen in CT
 

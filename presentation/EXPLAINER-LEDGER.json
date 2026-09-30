@@ -20454,15 +20454,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-pancreas-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-pancreas-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-pancreas-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "CT input, stored as `ct.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names MedFormer (PanTS). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -20504,14 +20504,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T01:51:56.070313+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-pancreas-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Complete official PanTSMini CT PanTS_00000684 recovered as upstream input-only example. No matching label among 65 retained label case IDs. Full case membership, source-to-Full taxonomy conversion and private references remain unverified.",
+      "acquisition_route": "https://github.com/MrGiovanni/PanTS",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-pancreas-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-pancreas-seg-task-resolution.json",
+        "receipt_sha256": "788d363820e9b7474ca8be32dcfd86b08099e857b8517b584e686f2d1efde0eb",
+        "brief_sha256": "8336ead9390224f9c127619b3d1872179eab49eff5f1b669cae5ddf0e4dedbf9",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Official upstream CT only; Full selection and matching label unverified. Acquire a matched pair through the official PanTS route.",
+      "acceptance_scope": "Individually reviewed task explainer, exact pinned contract, input/helper/output boundaries, exported video and integrated interaction. No Full staged case, private target, inference or clinical performance claim.",
+      "completion_review": {
+        "date": "2026-09-30T02:19:52.641394+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "a2ee7fb4b56ace1ffa1610e43a6ebf077618a777f9352c69ceeb2e9d027a04f1"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment pancreas and pancreatic tumor in CT",
+        "goal": "Segment PanTS CT according to the pinned Full task. This explanation uses a complete official PanTSMini CT as an input-only upstream example. Its Full case membership is unverified; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "Full expects `public/{case_id}/ct.nii.gz` in its named data root; `dataset.included=false`. A complete official PanTSMini CT, case PanTS_00000684, was recovered from a bounded source pass. It has a stored 266×158×152 RAS grid at 1.5 mm spacing. The three displayed native k planes are 38, 76 and 114, selected without label guidance. Stored intensities are windowed from −160 to 240; HU calibration and original acquisition geometry are unverified. This upstream case is not verified as a Full staged case.",
+        "helpers": "The pinned task package contains Lite and Standard guidance, configuration and output conventions. No matching source training annotation was acquired. The recovered CT supplies input pixels only; task code supplies the output contract.",
+        "tools": "The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.",
+        "reference": "Private Full masks remain with the evaluator and are unavailable here. No matching training label or Full private reference is in the pack. The separately recovered PanTS_00001349 label belongs to a different case and is not paired or overlaid.",
+        "spec": "Produce two distinct 3D binary masks on the CT grid: whole pancreas in organ.nii.gz and pancreatic tumor in lesion.nii.gz. PanTS source label remapping cannot be illustrated without a matching source label. Preserve a 3D spatial grid; the displayed source slices are teaching views, not submitted masks.",
+        "output": "Write agents_outputs/{case_id}/organ.nii.gz and agents_outputs/{case_id}/lesion.nii.gz. Each mask separately uses 0 background and 1 foreground. The formatter requires exact 0/1 values and checks shape only when the input exists; it treats absent masks as incomplete and its internal organ-mask check is optional, although the task contract requires both files. Affine equality is not checked; physical alignment still requires the input frame. No output file or prediction is retained.",
+        "score": "For available shape-valid pairs, the scorer averages organ Dice and averages lesion Dice only across GT-positive lesion cases. It thresholds masks at >0.5. The aggregate recomputes organ mean from non-null per-case scores, including shape errors scored 0, and scales clinical metrics by inference completion for partial submissions. Clinical score weights organ and lesion equally; the medal tier uses unscaled mean lesion Dice. The scorer was not run, so these are contract definitions rather than observed quality.",
+        "challenge": "The Full harness contains no dataset; no Full case, private mask, prediction or score is retained. A complete upstream CT input is retained, but no same-case label or verified Full membership was recovered. Source-to-Full taxonomy conversion remains unresolved.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: MedFormer (PanTS).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/pancreas-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://github.com/MrGiovanni/PanTS"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-pancreas-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment PanTS CT according to the pinned Full task. This explanation uses a complete official PanTSMini CT as an input-only upstream example. Its Full case membership is unverified; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full expects <code>public/{case_id}/ct.nii.gz</code> in its named data root; <code>dataset.included=false</code>. A complete official PanTSMini CT, case PanTS_00000684, was recovered from a bounded source pass. It has a stored 266×158×152 RAS grid at 1.5 mm spacing. The three displayed native k planes are 38, 76 and 114, selected without label guidance. Stored intensities are windowed from −160 to 240; HU calibration and original acquisition geometry are unverified. This upstream case is not verified as a Full staged case.</p>",
+          "helpers": "<p>The pinned task package contains Lite and Standard guidance, configuration and output conventions. No matching source training annotation was acquired. The recovered CT supplies input pixels only; task code supplies the output contract.</p>",
+          "tools": "<p>The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.</p>",
+          "reference": "<p>Private Full masks remain with the evaluator and are unavailable here. No matching training label or Full private reference is in the pack. The separately recovered PanTS_00001349 label belongs to a different case and is not paired or overlaid.</p>",
+          "spec": "<p>Produce two distinct 3D binary masks on the CT grid: whole pancreas in organ.nii.gz and pancreatic tumor in lesion.nii.gz. PanTS source label remapping cannot be illustrated without a matching source label. Preserve a 3D spatial grid; the displayed source slices are teaching views, not submitted masks.</p>",
+          "output": "<p>Write agents_outputs/{case_id}/organ.nii.gz and agents_outputs/{case_id}/lesion.nii.gz. Each mask separately uses 0 background and 1 foreground. The formatter requires exact 0/1 values and checks shape only when the input exists; it treats absent masks as incomplete and its internal organ-mask check is optional, although the task contract requires both files. Affine equality is not checked; physical alignment still requires the input frame. No output file or prediction is retained.</p>",
+          "score": "<p>For available shape-valid pairs, the scorer averages organ Dice and averages lesion Dice only across GT-positive lesion cases. It thresholds masks at &gt;0.5. The aggregate recomputes organ mean from non-null per-case scores, including shape errors scored 0, and scales clinical metrics by inference completion for partial submissions. Clinical score weights organ and lesion equally; the medal tier uses unscaled mean lesion Dice. The scorer was not run, so these are contract definitions rather than observed quality.</p>",
+          "challenge": "<p>The Full harness contains no dataset; no Full case, private mask, prediction or score is retained. A complete upstream CT input is retained, but no same-case label or verified Full membership was recovered. Source-to-Full taxonomy conversion remains unresolved.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -20529,15 +20626,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-panther-t1-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-panther-t1-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-panther-t1-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "MRI input, stored as `mri.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names nnU-Net v2 ResEncUNetL (MIC-DKFZ PANTHER Task 1, 6-fold ensemble) + MRSegmentator for pancreas mask. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -20579,14 +20676,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T02:21:46.197393+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-panther-t1-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Official PANTHER record is access-restricted, with zero files listed anonymously. No task-1 native MRI/label pair was acquired; Full case selection unknown.",
+      "acquisition_route": "https://zenodo.org/records/15192302",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-panther-t1-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-panther-t1-seg-task-resolution.json",
+        "receipt_sha256": "fd21b8fd9b89c4b6dbb9da79671651f5808ceb498b2dd3ce452f6c0502963438",
+        "brief_sha256": "a5b765e15ad483f2652528c28890974b24274c09ac38ca390d0a238dca224363",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "No PANTHER MRI pair; official source requires an access request and Full membership is unverified.",
+      "acceptance_scope": "Individually reviewed task explainer, exact pinned contract, input/helper/output boundaries, exported video and integrated interaction. No Full staged case, private target, inference or clinical performance claim.",
+      "completion_review": {
+        "date": "2026-09-30T02:28:38.486517+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "d2cb7a419d03c9e88d76382af07bff0d6ed72efa2fb84a61ad381f4774fab4d6"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment pancreas and tumor in arterial T1 MRI",
+        "goal": "Segment PANTHER diagnostic contrast-enhanced arterial T1 MRI according to the pinned Full task. This explanation shows a symbolic contract because no task-matched native sample was acquired; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "Full expects `public/{case_id}/mri.nii.gz` in its named data root; `dataset.included=false`. No task-matched native T1 scan or label was recovered. The official PANTHER Zenodo record is restricted and lists no files to an unauthenticated reader.",
+        "helpers": "The pinned task package contains Lite and Standard guidance, configuration and output conventions. No source training annotation was acquired. Task code supplies the label contract but no image pixels.",
+        "tools": "The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.",
+        "reference": "Private Full masks remain with the evaluator and are unavailable here. No matching training label or Full private reference is in the pack.",
+        "spec": "Convert source MHA codes 1=tumor and 2=pancreatic parenchyma into two separate binary Full targets: organ=1 for source {1,2}; lesion=1 for source {1}. This is a label-contract transform only, not a segmentation. Preserve a 3D spatial grid; the displayed diagrams or slices are teaching views, not submitted masks.",
+        "output": "Write agents_outputs/{case_id}/organ.nii.gz and agents_outputs/{case_id}/lesion.nii.gz. Each output mask separately uses 0 background and 1 foreground. The task requires both files. The formatter checks exact binary values and shape only when the input exists; its internal organ check is optional and missing masks count as incomplete. Preserve the affine for physical alignment; the formatter does not compare affines. No output file or prediction is retained.",
+        "score": "Scorer thresholds masks at >0.5 and averages valid available organ pairs and valid GT-positive lesion pairs. Aggregate recomputes organ mean from non-null per-case entries including shape-error zeros, scales metrics by lesion-output completion, forms 0.5 organ + 0.5 lesion clinical score and 0.5 workflow + 0.5 clinical overall score. Medal uses unscaled mean lesion Dice; none was executed. These are contract definitions rather than observed quality.",
+        "challenge": "Research access to the PANTHER dataset is required. The Full harness contains no image; no Full case, private mask, prediction or score is retained.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: nnU-Net v2 ResEncUNetL (MIC-DKFZ PANTHER Task 1, 6-fold ensemble) + MRSegmentator for pancreas mask.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/panther-t1-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://zenodo.org/records/15192302"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-panther-t1-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment PANTHER diagnostic contrast-enhanced arterial T1 MRI according to the pinned Full task. This explanation shows a symbolic contract because no task-matched native sample was acquired; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full expects <code>public/{case_id}/mri.nii.gz</code> in its named data root; <code>dataset.included=false</code>. No task-matched native T1 scan or label was recovered. The official PANTHER Zenodo record is restricted and lists no files to an unauthenticated reader.</p>",
+          "helpers": "<p>The pinned task package contains Lite and Standard guidance, configuration and output conventions. No source training annotation was acquired. Task code supplies the label contract but no image pixels.</p>",
+          "tools": "<p>The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.</p>",
+          "reference": "<p>Private Full masks remain with the evaluator and are unavailable here. No matching training label or Full private reference is in the pack.</p>",
+          "spec": "<p>Convert source MHA codes 1=tumor and 2=pancreatic parenchyma into two separate binary Full targets: organ=1 for source {1,2}; lesion=1 for source {1}. This is a label-contract transform only, not a segmentation. Preserve a 3D spatial grid; the displayed diagrams or slices are teaching views, not submitted masks.</p>",
+          "output": "<p>Write agents_outputs/{case_id}/organ.nii.gz and agents_outputs/{case_id}/lesion.nii.gz. Each output mask separately uses 0 background and 1 foreground. The task requires both files. The formatter checks exact binary values and shape only when the input exists; its internal organ check is optional and missing masks count as incomplete. Preserve the affine for physical alignment; the formatter does not compare affines. No output file or prediction is retained.</p>",
+          "score": "<p>Scorer thresholds masks at &gt;0.5 and averages valid available organ pairs and valid GT-positive lesion pairs. Aggregate recomputes organ mean from non-null per-case entries including shape-error zeros, scales metrics by lesion-output completion, forms 0.5 organ + 0.5 lesion clinical score and 0.5 workflow + 0.5 clinical overall score. Medal uses unscaled mean lesion Dice; none was executed. These are contract definitions rather than observed quality.</p>",
+          "challenge": "<p>Research access to the PANTHER dataset is required. The Full harness contains no image; no Full case, private mask, prediction or score is retained.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -20604,15 +20798,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "abdomen",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-panther-t2-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-panther-t2-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-panther-t2-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "MRI input, stored as `mri.nii.gz` per case.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names VBoussot/Panther T2 single fold (ResidualEncoderUNet, CV_0) + MRSegmentator single-fold for pancreas mask. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -20654,14 +20848,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T02:29:32.563261+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-panther-t2-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Official PANTHER record is access-restricted, with zero files listed anonymously. No task-2 native MRI/label pair was acquired; Full case selection unknown.",
+      "acquisition_route": "https://zenodo.org/records/15192302",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-panther-t2-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-panther-t2-seg-task-resolution.json",
+        "receipt_sha256": "05b46107a156e2c1b22e92107cd50ab744d06bc7292ccd547f285431fe1a4042",
+        "brief_sha256": "3e1458e238fbfb80a2f63edec7d47189cb29b18161dc8ea9abb6f86f08a727a0",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "No PANTHER MRI pair; official source requires an access request and Full membership is unverified.",
+      "acceptance_scope": "Individually reviewed task explainer, exact pinned contract, input/helper/output boundaries, exported video and integrated interaction. No Full staged case, private target, inference or clinical performance claim.",
+      "completion_review": {
+        "date": "2026-09-30T02:36:15.268735+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "6b8694a10391e0ec107bda78a223235354898f91f910ad19cba96d397c4110f0"
+      },
+      "reviewed_contract_projection": {
+        "title": "Segment pancreas and tumor in T2 MR-Linac MRI",
+        "goal": "Segment PANTHER treatment-planning T2 MR-Linac MRI according to the pinned Full task. This explanation shows a symbolic contract because no task-matched native sample was acquired; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "Full expects `public/{case_id}/mri.nii.gz` in its named data root; `dataset.included=false`. No task-matched native T2 MR-Linac scan or label was recovered. The official PANTHER Zenodo record is restricted and lists no files to an unauthenticated reader.",
+        "helpers": "The pinned task package contains Lite and Standard guidance, configuration and output conventions. No source training annotation was acquired. Task code supplies the label contract but no image pixels.",
+        "tools": "The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.",
+        "reference": "Private Full masks remain with the evaluator and are unavailable here. No matching training label or Full private reference is in the pack.",
+        "spec": "Convert source MHA codes 1=tumor and 2=pancreatic parenchyma into two separate binary Full targets: organ=1 for source {1,2}; lesion=1 for source {1}. This is a label-contract transform only, not a segmentation. Preserve a 3D spatial grid; the displayed diagrams or slices are teaching views, not submitted masks.",
+        "output": "Write agents_outputs/{case_id}/organ.nii.gz and agents_outputs/{case_id}/lesion.nii.gz. Each output mask separately uses 0 background and 1 foreground. The task requires both files. The formatter checks exact binary values and shape only when the input exists; its internal organ check is optional and missing masks count as incomplete. Preserve the affine for physical alignment; the formatter does not compare affines. No output file or prediction is retained.",
+        "score": "Scorer thresholds masks at >0.5 and averages valid available organ pairs and valid GT-positive lesion pairs. Aggregate recomputes organ mean from non-null per-case entries including shape-error zeros, scales metrics by lesion-output completion, forms 0.5 organ + 0.5 lesion clinical score and 0.5 workflow + 0.5 clinical overall score. Medal uses unscaled mean lesion Dice; none was executed. These are contract definitions rather than observed quality.",
+        "challenge": "Research access to the PANTHER dataset is required. This radiotherapy-planning T2 domain is distinct from diagnostic arterial T1; no Full case, private mask, prediction or score is retained.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: VBoussot/Panther T2 single fold (ResidualEncoderUNet, CV_0) + MRSegmentator single-fold for pancreas mask.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/panther-t2-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://zenodo.org/records/15192302"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-panther-t2-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment PANTHER treatment-planning T2 MR-Linac MRI according to the pinned Full task. This explanation shows a symbolic contract because no task-matched native sample was acquired; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full expects <code>public/{case_id}/mri.nii.gz</code> in its named data root; <code>dataset.included=false</code>. No task-matched native T2 MR-Linac scan or label was recovered. The official PANTHER Zenodo record is restricted and lists no files to an unauthenticated reader.</p>",
+          "helpers": "<p>The pinned task package contains Lite and Standard guidance, configuration and output conventions. No source training annotation was acquired. Task code supplies the label contract but no image pixels.</p>",
+          "tools": "<p>The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.</p>",
+          "reference": "<p>Private Full masks remain with the evaluator and are unavailable here. No matching training label or Full private reference is in the pack.</p>",
+          "spec": "<p>Convert source MHA codes 1=tumor and 2=pancreatic parenchyma into two separate binary Full targets: organ=1 for source {1,2}; lesion=1 for source {1}. This is a label-contract transform only, not a segmentation. Preserve a 3D spatial grid; the displayed diagrams or slices are teaching views, not submitted masks.</p>",
+          "output": "<p>Write agents_outputs/{case_id}/organ.nii.gz and agents_outputs/{case_id}/lesion.nii.gz. Each output mask separately uses 0 background and 1 foreground. The task requires both files. The formatter checks exact binary values and shape only when the input exists; its internal organ check is optional and missing masks count as incomplete. Preserve the affine for physical alignment; the formatter does not compare affines. No output file or prediction is retained.</p>",
+          "score": "<p>Scorer thresholds masks at &gt;0.5 and averages valid available organ pairs and valid GT-positive lesion pairs. Aggregate recomputes organ mean from non-null per-case entries including shape-error zeros, scales metrics by lesion-output completion, forms 0.5 organ + 0.5 lesion clinical score and 0.5 workflow + 0.5 clinical overall score. Medal uses unscaled mean lesion Dice; none was executed. These are contract definitions rather than observed quality.</p>",
+          "challenge": "<p>Research access to the PANTHER dataset is required. This radiotherapy-planning T2 domain is distinct from diagnostic arterial T1; no Full case, private mask, prediction or score is retained.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -20679,15 +20970,15 @@
       ],
       "illustration_kind": "segment",
       "subject": "prostate",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-prostate-seg-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "segmentation-localization",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-prostate-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/full-prostate-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "A 4D MRI NIfTI: channel 0 is T2-weighted and channel 1 is ADC (a diffusion-derived contrast).",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names nnU-Net v2 (MSD Task05_Prostate pretrained). Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -20729,14 +21020,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T02:36:17.222120+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/automedbench-full-prostate-seg-task-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Official MSD Task05 training image/label pair recovered; Full 20-case selection and private test references remain unknown.",
+      "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-prostate-seg-task-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/automedbench-full-prostate-seg-task-resolution.json",
+        "receipt_sha256": "9cb8d07cc9f3139432e006bcdf1151ff0b269abf3204f21cf0b6a8291905dc62",
+        "brief_sha256": "fb5102d9e741c00fe35c2cf435708c246630dbba2559e79a51644fda2bb597ac",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Upstream MSD T2/ADC training pair only; Full membership and private targets are unverified.",
+      "acceptance_scope": "Individually reviewed task explainer, exact pinned contract, input/helper/output boundaries, exported video and integrated interaction. No Full staged case, private target, inference or clinical performance claim.",
+      "completion_review": {
+        "date": "2026-09-30T03:07:26.021452+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "01089281720654e824b5bc68ea4bd32d423c649848719d05bb05db659307d860"
+      },
+      "reviewed_contract_projection": {
+        "title": "Label prostate zones on two-channel MRI",
+        "goal": "Segment MSD Task05 prostate MRI according to the pinned Full task. This explanation uses an official upstream training example; no Full evaluation was run.",
+        "value": "Not yet specified.",
+        "raw": "Full expects `public/{case_id}/mri.nii.gz` in its named data root; `dataset.included=false`. Official upstream training image prostate_00 is 320×320×15×2: channel 0 T2-weighted, channel 1 ADC. Its matching 3D label has IDs 0,1,2 and native RAS geometry. Its 0.6×0.6×4 mm grid is oblique RAS; the image/label affine difference is 1.526e-5 mm (header precision). It is not verified as a Full staged case.",
+        "helpers": "The pinned task package contains Lite and Standard guidance, configuration and output conventions. The official MSD training annotation is an upstream helper and is shown only after a reader reveal; it was not the Full case answer.",
+        "tools": "The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.",
+        "reference": "Private Full masks remain with the evaluator and are unavailable here. The upstream training label is not a Full private target.",
+        "spec": "Read paired T2 and ADC values at each native i,j,k. Assign one mutually exclusive 3D class: background 0, peripheral zone 1, transition zone 2. This is zonal anatomy, not cancer detection. Preserve a 3D spatial grid; the displayed diagrams or slices are teaching views, not submitted masks.",
+        "output": "Write agents_outputs/{case_id}/dseg.nii.gz. One combined dseg.nii.gz uses 0 background, 1 peripheral zone and 2 transition zone. The task requires integer IDs 0/1/2. The formatter rounds unique values before checking membership and compares leading spatial dimensions for the 4D input/3D output only if the input exists. Missing files count as incomplete; affine equality is not checked. Preserve the input affine for physical alignment. No output file or prediction is retained.",
+        "score": "Formatter and scorer round values; task contract requires integer IDs0/1/2. The scorer averages both foreground classes across valid available pairs, includes both-empty class Dice1 and shape-error zeros, then averages class means. Aggregate scales Dice by completed-pair fraction and blends workflow/clinical equally; medal uses unscaled macro Dice. Separated private masks are fused with higher class ID winning overlaps; missing class files contribute no foreground if another class exists. No score was run. These describe the pinned evaluator, not measured quality.",
+        "challenge": "The official upstream training label is helper material. Full 20-case membership and evaluator-only masks are unverified; no prediction or score is retained.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Full · Lite",
+            "helper": "Task-specific Lite guidance: nnU-Net v2 (MSD Task05_Prostate pretrained).",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full · Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/prostate-seg-task.tar.gz"
+          ],
+          [
+            "Official upstream source",
+            "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-prostate-seg-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Segment MSD Task05 prostate MRI according to the pinned Full task. This explanation uses an official upstream training example; no Full evaluation was run.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full expects <code>public/{case_id}/mri.nii.gz</code> in its named data root; <code>dataset.included=false</code>. Official upstream training image prostate_00 is 320×320×15×2: channel 0 T2-weighted, channel 1 ADC. Its matching 3D label has IDs 0,1,2 and native RAS geometry. Its 0.6×0.6×4 mm grid is oblique RAS; the image/label affine difference is 1.526e-5 mm (header precision). It is not verified as a Full staged case.</p>",
+          "helpers": "<p>The pinned task package contains Lite and Standard guidance, configuration and output conventions. The official MSD training annotation is an upstream helper and is shown only after a reader reveal; it was not the Full case answer.</p>",
+          "tools": "<p>The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.</p>",
+          "reference": "<p>Private Full masks remain with the evaluator and are unavailable here. The upstream training label is not a Full private target.</p>",
+          "spec": "<p>Read paired T2 and ADC values at each native i,j,k. Assign one mutually exclusive 3D class: background 0, peripheral zone 1, transition zone 2. This is zonal anatomy, not cancer detection. Preserve a 3D spatial grid; the displayed diagrams or slices are teaching views, not submitted masks.</p>",
+          "output": "<p>Write agents_outputs/{case_id}/dseg.nii.gz. One combined dseg.nii.gz uses 0 background, 1 peripheral zone and 2 transition zone. The task requires integer IDs 0/1/2. The formatter rounds unique values before checking membership and compares leading spatial dimensions for the 4D input/3D output only if the input exists. Missing files count as incomplete; affine equality is not checked. Preserve the input affine for physical alignment. No output file or prediction is retained.</p>",
+          "score": "<p>Formatter and scorer round values; task contract requires integer IDs0/1/2. The scorer averages both foreground classes across valid available pairs, includes both-empty class Dice1 and shape-error zeros, then averages class means. Aggregate scales Dice by completed-pair fraction and blends workflow/clinical equally; medal uses unscaled macro Dice. Separated private masks are fused with higher class ID winning overlaps; missing class files contribute no foreground if another class exists. No score was run. These describe the pinned evaluator, not measured quality.</p>",
+          "challenge": "<p>The official upstream training label is helper material. Full 20-case membership and evaluator-only masks are unverified; no prediction or score is retained.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -21833,9 +22221,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 81,
+    "reviewed-scripted-planar": 85,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-input": 39,
+    "blocked-source-input": 35,
     "blocked-source-contract": 71,
     "pending-operation-review": 1
   },

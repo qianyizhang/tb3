@@ -1,60 +1,40 @@
-# Segment pancreas and tumor on MR-Linac T2 MRI
+# Segment pancreas and tumor in T2 MR-Linac MRI
 
-Build and run a pipeline to segment pancreas and tumor on MR-Linac T2 MRI.
-
-## Value
-
-Spatial labels support measurement and anatomical review; organ overlap and lesion detection are different capabilities.
+Segment PANTHER treatment-planning T2 MR-Linac MRI according to the pinned Full task. This explanation shows a symbolic contract because no task-matched native sample was acquired; no Full evaluation was run.
 
 ## Given
 
 ### Original data
 
-MRI input, stored as `mri.nii.gz` per case.
+Full expects `public/{case_id}/mri.nii.gz` in its named data root; `dataset.included=false`. No task-matched native T2 MR-Linac scan or label was recovered. The official PANTHER Zenodo record is restricted and lists no files to an unauthenticated reader.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names VBoussot/Panther T2 single fold (ResidualEncoderUNet, CV_0) + MRSegmentator single-fold for pancreas mask. Standard supplies candidates to investigate; model files may still need provisioning.
+The pinned task package contains Lite and Standard guidance, configuration and output conventions. No source training annotation was acquired. Task code supplies the label contract but no image pixels.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+The Full workflow permits planning, setup, validation and inference using task-specific libraries and models. No model, source preparer, controller or evaluator ran for this explanation.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+Private Full masks remain with the evaluator and are unavailable here. No matching training label or Full private reference is in the pack.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: panther-t2-seg-task.
+Convert source MHA codes 1=tumor and 2=pancreatic parenchyma into two separate binary Full targets: organ=1 for source {1,2}; lesion=1 for source {1}. This is a label-contract transform only, not a segmentation. Preserve a 3D spatial grid; the displayed diagrams or slices are teaching views, not submitted masks.
 
 ## Expected output
 
-Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy.
+Write agents_outputs/{case_id}/organ.nii.gz and agents_outputs/{case_id}/lesion.nii.gz. Each output mask separately uses 0 background and 1 foreground. The task requires both files. The formatter checks exact binary values and shape only when the input exists; its internal organ check is optional and missing masks count as incomplete. Preserve the affine for physical alignment; the formatter does not compare affines. No output file or prediction is retained.
 
 ## Evaluation
 
-The configuration describes foreground Dice overlap, with task-specific class aggregation. Organ/lesion tasks require both outputs; inspect the selected evaluator for their exact weighting. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
+Scorer thresholds masks at >0.5 and averages valid available organ pairs and valid GT-positive lesion pairs. Aggregate recomputes organ mean from non-null per-case entries including shape-error zeros, scales metrics by lesion-output completion, forms 0.5 organ + 0.5 lesion clinical score and 0.5 workflow + 0.5 clinical overall score. Medal uses unscaled mean lesion Dice; none was executed. These are contract definitions rather than observed quality.
 
 ## Visual explanation
 
-### Workflow
-
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit a label map
-
-### Input
-
-**Contract view; native sample not yet illustrated.** MRI input, stored as `mri.nii.gz` per case.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names VBoussot/Panther T2 single fold (ResidualEncoderUNet, CV_0) + MRSegmentator single-fold for pancreas mask. Standard supplies candidates to investigate; model files may still need provisioning.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy.
+The input is unmarked first. The next scenes show the native-grid dual-mask requirement, then the source-label mapping where known. Output files remain empty. No source or private annotation can be revealed.
 
 ## Conditions
 
@@ -66,16 +46,12 @@ The configuration describes foreground Dice overlap, with task-specific class ag
 
 ## Difficulty
 
-Choose a model that covers the requested structures, preserve physical geometry and map class IDs correctly. A general organ segmenter may miss the target lesions.
+Research access to the PANTHER dataset is required. This radiotherapy-planning T2 domain is distinct from diagnostic arterial T1; no Full case, private mask, prediction or score is retained.
 
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/panther-t2-seg-task.tar.gz)
+Official metadata states CC-BY-NC-4.0, while the pinned task config states CC-BY-NC-SA-4.0. No source pixels or labels are redistributed; obtain applicable terms with access. Symbolic assets use the TB3 teaching license.
 
-## Coverage
-
-Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.
-
-## Gaps
-
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.
+- [Pinned Full harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/panther-t2-seg-task.tar.gz).
+- [Official upstream source](https://zenodo.org/records/15192302) (restricted CC BY-NC 4.0).
+- [Source resolution receipt](../sources/automedbench-full-panther-t2-seg-task-resolution.json).

@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-pancreas-seg-task",
+  "status": "source audit updated with complete upstream CT input; no Full staged case, matching label, private reference, prediction or score",
+  "illustration_basis": "mixed",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/pancreas-seg-task.tar.gz",
+  "upstream_url": "https://github.com/MrGiovanni/PanTS",
+  "source_license": "CC-BY-NC-ND-4.0; Full release forbids staged derivatives",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-seg-c-source/packages/pancreas.tar.gz",
+    "bytes": 27492,
+    "sha256": "deaae28d23b5d07d40b2b402709b4661665f93e16904d555f5e1f2b67347dbf4",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "dataset_included": false,
+    "data_dir_name": "Abdomen_Pancreas",
+    "input_filename": "ct.nii.gz",
+    "output_paths": [
+      "{case_id}/organ.nii.gz",
+      "{case_id}/lesion.nii.gz"
+    ],
+    "config_sha256": "a872dcbf3bf6c2b0fbc7c3f5f8d4a43c85105fec015b4eef4ed39ed9abc70686",
+    "pinned_files": {
+      "task.json": {
+        "sha256": "bd7d2edde63cbb420512f41a92edc71ef4dd93aff99a0c10bc28d51cde8aefac",
+        "bytes": 1334
+      },
+      "source/pancreas-seg-task/config.yaml": {
+        "sha256": "a872dcbf3bf6c2b0fbc7c3f5f8d4a43c85105fec015b4eef4ed39ed9abc70686",
+        "bytes": 275
+      },
+      "source/format_checker.py": {
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799",
+        "bytes": 8016
+      },
+      "source/dice_scorer.py": {
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287",
+        "bytes": 11863
+      },
+      "source/aggregate.py": {
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489",
+        "bytes": 12559
+      },
+      "source/run_eval.py": {
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed",
+        "bytes": 9414
+      }
+    }
+  },
+  "actual_data_gap": "Complete official PanTSMini CT PanTS_00000684 recovered as upstream input-only example. No matching label among 65 retained label case IDs. Full case membership, source-to-Full taxonomy conversion and private references remain unverified.",
+  "acquisition_route": "https://github.com/MrGiovanni/PanTS",
+  "attempts": [
+    {
+      "action": "GET pinned Full task harness and verify manifest",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/pancreas-seg-task.tar.gz",
+      "attempted_at": "2026-09-29T05:37:30Z",
+      "outcome": "Success: 27492 bytes SHA256 deaae28d23b5d07d40b2b402709b4661665f93e16904d555f5e1f2b67347dbf4; 30 manifest entries, zero mismatches; dataset.included=false."
+    },
+    {
+      "action": "HEAD official PanTS image shard",
+      "source": "https://huggingface.co/datasets/BodyMaps/PanTSMini/resolve/main/PanTSMini_ImageTr_00000001_00001000.tar.gz",
+      "attempted_at": "2026-09-29T05:39:19Z",
+      "outcome": "HTTP 200; PanTSMini compressed archive size 34,190,903,436 bytes; not proven equivalent to Full cases."
+    },
+    {
+      "action": "HEAD official PanTS label archive",
+      "source": "https://www.cs.jhu.edu/~zongwei/dataset/PanTSMini_Label.tar.gz",
+      "attempted_at": "2026-09-29T05:39:20Z",
+      "outcome": "HTTP 200; PanTSMini compressed archive size 15,561,944,549 bytes; bounded pair extraction not feasible from tar.gz without full download."
+    },
+    {
+      "action": "Review bounded official PanTSMini CT member recovery and no-matching-label audit",
+      "source": ".local/explainers/core-20260929/pants-bounded-source-v2/resolution-v2.json",
+      "attempted_at": "2026-09-30T00:51:06.726938+00:00",
+      "outcome": "Complete PanTS_00000684 CT; SHA256 e193931065e7707356439a1133897984438d8ca100b9347da8e415637898d330; no matching label in 65 retained case IDs. See source resolution-v2 for timestamped HTTP and integrity details."
+    }
+  ],
+  "source_roles": {
+    "full_public_input": "not retained; upstream example only",
+    "full_private_reference": "not retained",
+    "prediction": "not retained",
+    "official_upstream_training_example": "PanTSMini PanTS_00000684 CT input only, no matching label"
+  },
+  "scorer_caveat": "Pinned binary scorer reports organ Dice and lesion Dice over GT-positive lesion cases; aggregate clinical score is 0.5 of each, while medal tier selects mean lesion Dice.",
+  "source_example": {
+    "role": "official PanTSMini upstream input-only CT; not verified Full case",
+    "image_path": ".local/explainers/core-20260929/pants-bounded-source-v2/PanTS_00000684-ct.nii.gz",
+    "image_sha256": "e193931065e7707356439a1133897984438d8ca100b9347da8e415637898d330",
+    "shape_ijk": [
+      266,
+      158,
+      152
+    ],
+    "spacing_mm": [
+      1.5,
+      1.5,
+      1.5
+    ],
+    "axis_codes": "RAS",
+    "stored_dtype": "int16",
+    "window_stored_intensity": [
+      -160,
+      240
+    ],
+    "selected_native_k": [
+      38,
+      76,
+      114
+    ],
+    "slice_selection": "fixed k planes without label guidance",
+    "same_case_label": null,
+    "full_case_membership": false,
+    "original_acquisition_geometry_unverified": true,
+    "HU_calibration_unverified": true
+  },
+  "source_recovery_receipt": {
+    "path": ".local/explainers/core-20260929/pants-bounded-source-v2/resolution-v2.json",
+    "sha256": "0db8646e5fdaf2bfd7d6191ad6b5540722539032d27ac173b464437f45283e28"
+  },
+  "native_header_correction": {
+    "path": ".local/explainers/core-20260929/pants-bounded-source-v2/native-header-correction.json",
+    "sha256": "b6e44d203592e54932db81cc3a1d1167de25c63ce78f3dfc0b245b92cbe5da18",
+    "on_disk_scl_slope": 1.0,
+    "on_disk_scl_inter": 0.0,
+    "nibabel_loaded_header_scaling": "consumed NaN/NaN; do not describe as raw on-disk fields"
+  },
+  "root_contract_audit": {
+    "path": ".local/explainers/core-20260929/full-pancreas-source-audit-v1.json",
+    "sha256": "7fc48be902532b76fb7daa76d673d5cb59b3e243a24ac40fd5b9d2ed5c538aba",
+    "observations": [
+      "Taskall_paths requires organ.nii.gz and lesion.nii.gz. Formatter checks exact0/1 and full shape only if input exists, internalorgan optional; missing masks are incomplete, not malformed. Affine is not checked.",
+      "Dice uses >0.5; shape mismatch returns0error. Scorer lesionmean includes valid GTpositive pairs only, organmean valid available pairs. Aggregate recomputes organmean across nonnullpercase including shapeerror0, scales metrics by lesionoutputcompletion, computes0.5organ+0.5lesion and0.5workflow+0.5clinical. Medal uses unscaledmeanlesion.",
+      "No source label mapping or overlap rule inferred from unpairedCT; no privateevaluator or model executed."
+    ]
+  },
+  "reopening_condition": "Recover a label matched to CT00000684, verify shape/affine and source-to-Full label conversion before any overlay. Full staged membership and private GT mapping need independent evidence.",
+  "warning_text": "Official upstream CT only; Full selection and matching label unverified. Acquire a matched pair through the official PanTS route."
+}

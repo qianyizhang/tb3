@@ -1,3 +1,4 @@
+import { segCPacks } from './automed-full-seg-c';
 import { segBData } from './automed-seg-b';
 import { segAPacks } from './automed-full-seg-a';
 import { detectionPacks } from './automed-full-detection';
@@ -81,6 +82,10 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'automed-full-kidney-v1',
     'automed-full-liver-v1',
     'automed-full-pancreas-oar-v1',
+    'automed-full-pancreas-seg-v1',
+    'automed-full-panther-t1-seg-v1',
+    'automed-full-panther-t2-seg-v1',
+    'automed-full-prostate-seg-v1',
     'cardiac-material-v1',
     'automed-full-heart-seg-v1',
     'automed-full-feta-seg-v1',
@@ -694,6 +699,62 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Upstream PanTSMini CT'],
           ['#18c6d4', 'Required output IDs'],
           ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'automed-full-pancreas-seg-v1':
+      return {
+        heading: 'Specify pancreas and tumor masks',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segCPacks['automed-full-pancreas-seg-v1'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream PanTSMini CT input'],
+          ['#18c6d4', 'Separate empty binary outputs'],
+          ['#7ba4b8', 'No matching label'],
+        ],
+      };
+    case 'automed-full-panther-t1-seg-v1':
+      return {
+        heading: 'Separate pancreas and tumor on arterial T1',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segCPacks['automed-full-panther-t1-seg-v1'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Symbolic volume socket'],
+          ['#18c6d4', 'Separate binary output contracts'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'automed-full-panther-t2-seg-v1':
+      return {
+        heading: 'Separate pancreas and tumor on planning T2',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segCPacks['automed-full-panther-t2-seg-v1'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Symbolic volume socket'],
+          ['#18c6d4', 'Separate binary output contracts'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'automed-full-prostate-seg-v1':
+      return {
+        heading: 'Label peripheral and transition zones',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segCPacks['automed-full-prostate-seg-v1'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream T2 and ADC'],
+          ['#2fcee6', 'Revealed source training zones'],
+          ['#18c6d4', 'Empty output schema'],
         ],
       };
     case 'cardiac-material-v1':

@@ -1698,6 +1698,70 @@ class AutomedSegBPancreasOarPlan(ExpansionPlan):
     beats: list[AutomedSegBPancreasOarBeat]
 
 
+class AutomedSegCPancreasChannels(TypedDict):
+    slice: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+
+
+class AutomedSegCPancreasBeat(ExpansionBeat):
+    channels: AutomedSegCPancreasChannels
+    scene: Literal["input", "channels", "mapping", "output", "helper", "limits"]
+
+
+class AutomedSegCPancreasPlan(ExpansionPlan):
+    recipe: Literal["automed-full-pancreas-seg-v1"]
+    beats: list[AutomedSegCPancreasBeat]
+
+
+class AutomedSegCPantherT1Channels(TypedDict):
+    slice: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+
+
+class AutomedSegCPantherT1Beat(ExpansionBeat):
+    channels: AutomedSegCPantherT1Channels
+    scene: Literal["input", "channels", "mapping", "output", "helper", "limits"]
+
+
+class AutomedSegCPantherT1Plan(ExpansionPlan):
+    recipe: Literal["automed-full-panther-t1-seg-v1"]
+    beats: list[AutomedSegCPantherT1Beat]
+
+
+class AutomedSegCPantherT2Channels(TypedDict):
+    slice: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+
+
+class AutomedSegCPantherT2Beat(ExpansionBeat):
+    channels: AutomedSegCPantherT2Channels
+    scene: Literal["input", "channels", "mapping", "output", "helper", "limits"]
+
+
+class AutomedSegCPantherT2Plan(ExpansionPlan):
+    recipe: Literal["automed-full-panther-t2-seg-v1"]
+    beats: list[AutomedSegCPantherT2Beat]
+
+
+class AutomedSegCProstateChannels(TypedDict):
+    slice: tuple[float, float]
+    helper: tuple[float, float]
+    output: tuple[float, float]
+
+
+class AutomedSegCProstateBeat(ExpansionBeat):
+    channels: AutomedSegCProstateChannels
+    scene: Literal["input", "channels", "mapping", "output", "helper", "limits"]
+
+
+class AutomedSegCProstatePlan(ExpansionPlan):
+    recipe: Literal["automed-full-prostate-seg-v1"]
+    beats: list[AutomedSegCProstateBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1924,6 +1988,10 @@ StoryPlan = (
     | AutomedSegBKidneyPlan
     | AutomedSegBLiverPlan
     | AutomedSegBPancreasOarPlan
+    | AutomedSegCPancreasPlan
+    | AutomedSegCPantherT1Plan
+    | AutomedSegCPantherT2Plan
+    | AutomedSegCProstatePlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

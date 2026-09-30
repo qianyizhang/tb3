@@ -689,6 +689,50 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'automed-full-pancreas-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+      });
+    }
+    case 'automed-full-panther-t1-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+      });
+    }
+    case 'automed-full-panther-t2-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+      });
+    }
+    case 'automed-full-prostate-seg-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        slice: channel(b.channels.slice),
+        helper: channel(b.channels.helper),
+        output: channel(b.channels.output),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

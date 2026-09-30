@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-panther-t1-seg-task",
+  "status": "source audit complete; no Full staged case, private reference, prediction or score",
+  "illustration_basis": "symbolic",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/panther-t1-seg-task.tar.gz",
+  "upstream_url": "https://zenodo.org/records/15192302",
+  "source_license": "CC-BY-NC-4.0 with access controls",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-seg-c-source/packages/panther-t1.tar.gz",
+    "bytes": 29470,
+    "sha256": "eb1a80bd3deb5a9772ff79cecf3674fd752752a33b8fd87d0d5b17d9c44f9ace",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "dataset_included": false,
+    "data_dir_name": "PANTHER_Task1",
+    "input_filename": "mri.nii.gz",
+    "output_paths": [
+      "{case_id}/organ.nii.gz",
+      "{case_id}/lesion.nii.gz"
+    ],
+    "config_sha256": "e8740b9437086c988f56d17c7ddf163ed0743753dc05f7cb37f60f2a87c77a86",
+    "pinned_files": {
+      "task.json": {
+        "sha256": "882522a0bdafdfdd71c4a28b65607dbbb9cdc0ef4975dca250ef7bd7c1d0ab66",
+        "bytes": 1366
+      },
+      "source/panther-t1-seg-task/config.yaml": {
+        "sha256": "e8740b9437086c988f56d17c7ddf163ed0743753dc05f7cb37f60f2a87c77a86",
+        "bytes": 1094
+      },
+      "source/format_checker.py": {
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799",
+        "bytes": 8016
+      },
+      "source/dice_scorer.py": {
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287",
+        "bytes": 11863
+      },
+      "source/aggregate.py": {
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489",
+        "bytes": 12559
+      },
+      "source/run_eval.py": {
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed",
+        "bytes": 9414
+      }
+    }
+  },
+  "actual_data_gap": "Official PANTHER record is access-restricted, with zero files listed anonymously. No task-1 native MRI/label pair was acquired; Full case selection unknown.",
+  "acquisition_route": "https://zenodo.org/records/15192302",
+  "attempts": [
+    {
+      "action": "GET pinned Full task harness and verify manifest",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/panther-t1-seg-task.tar.gz",
+      "attempted_at": "2026-09-29T05:37:44Z",
+      "outcome": "Success: 29470 bytes SHA256 eb1a80bd3deb5a9772ff79cecf3674fd752752a33b8fd87d0d5b17d9c44f9ace; 30 manifest entries, zero mismatches; dataset.included=false."
+    },
+    {
+      "action": "GET official Zenodo record metadata without credentials",
+      "source": "https://zenodo.org/api/records/15192302",
+      "attempted_at": "2026-09-29T05:39:20Z",
+      "outcome": "HTTP 200, 6032 bytes SHA256 37c341b64da872e38885231e569413d06180cbdd42da4068c582138652f49f6b; restricted, CC-BY-NC-4.0, files array empty."
+    }
+  ],
+  "source_roles": {
+    "full_public_input": "not retained",
+    "full_private_reference": "not retained",
+    "prediction": "not retained",
+    "official_upstream_training_example": "not retained"
+  },
+  "scorer_caveat": "Scorer thresholds masks at >0.5 and averages valid available organ pairs and valid GT-positive lesion pairs. Aggregate recomputes organ mean from non-null per-case entries including shape-error zeros, scales metrics by lesion-output completion, forms 0.5 organ + 0.5 lesion clinical score and 0.5 workflow + 0.5 clinical overall score. Medal uses unscaled mean lesion Dice; none was executed.",
+  "root_contract_audit": {
+    "path": ".local/explainers/core-20260929/full-panther-t1-source-audit-v1.json",
+    "sha256": "13eb902a6c20330e9611aedcab71321f5c810e24070934f851db7f10c9ddf025"
+  },
+  "warning_text": "No PANTHER MRI pair; official source requires an access request and Full membership is unverified.",
+  "reopening_condition": "After approved PANTHER access, acquire and hash the correct diagnostic arterial T1 or planning T2 MRI and matched labels, verify geometry, source label conversion and Full membership, and review a new source-backed export before replacing the symbolic illustration.",
+  "license_conflict": "Official metadata states CC-BY-NC-4.0, while the pinned task config states CC-BY-NC-SA-4.0. No source pixels or labels are redistributed; obtain applicable terms with access. Symbolic assets use the TB3 teaching license."
+}

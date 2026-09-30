@@ -25,6 +25,10 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-full-prostate-seg-v1',
+  'automed-full-panther-t2-seg-v1',
+  'automed-full-panther-t1-seg-v1',
+  'automed-full-pancreas-seg-v1',
   'automed-full-pancreas-oar-v1',
   'automed-full-liver-v1',
   'automed-full-kidney-v1',
@@ -73,6 +77,38 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-full-prostate-seg-v1')
+    return {
+      scene: 'data-segc-scene',
+      reference: '[data-segc-private-reference]',
+      referenceChannel: null,
+      output: '[data-segc-schema]',
+      aside: '[data-segc-output]',
+    };
+  if (plan.recipe === 'automed-full-panther-t2-seg-v1')
+    return {
+      scene: 'data-segc-scene',
+      reference: '[data-segc-private-reference]',
+      referenceChannel: null,
+      output: '[data-segc-schema]',
+      aside: '[data-segc-output]',
+    };
+  if (plan.recipe === 'automed-full-panther-t1-seg-v1')
+    return {
+      scene: 'data-segc-scene',
+      reference: '[data-segc-private-reference]',
+      referenceChannel: null,
+      output: '[data-segc-schema]',
+      aside: '[data-segc-output]',
+    };
+  if (plan.recipe === 'automed-full-pancreas-seg-v1')
+    return {
+      scene: 'data-segc-scene',
+      reference: '[data-segc-private-reference]',
+      referenceChannel: null,
+      output: '[data-segc-schema]',
+      aside: '[data-segc-output]',
+    };
   if (plan.recipe === 'automed-full-pancreas-oar-v1')
     return {
       scene: 'data-automed-b-scene',
@@ -367,6 +403,30 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-full-prostate-seg-v1': [
+      /Full|PanTS|PANTHER|MSD/i,
+      'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar',
+      'data-segc-scene',
+      false,
+    ],
+    'automed-full-panther-t2-seg-v1': [
+      /Full|PanTS|PANTHER|MSD/i,
+      'https://zenodo.org/records/15192302',
+      'data-segc-scene',
+      false,
+    ],
+    'automed-full-panther-t1-seg-v1': [
+      /Full|PanTS|PANTHER|MSD/i,
+      'https://zenodo.org/records/15192302',
+      'data-segc-scene',
+      false,
+    ],
+    'automed-full-pancreas-seg-v1': [
+      /Full|PanTS|PANTHER|MSD/i,
+      'https://github.com/MrGiovanni/PanTS',
+      'data-segc-scene',
+      false,
+    ],
     'automed-full-pancreas-oar-v1': [
       /Full|PanTS|upstream/i,
       'https://github.com/MrGiovanni/PanTS',
@@ -645,6 +705,22 @@ async function checkCardiacFrame(page, plan, frame) {
       0,
       `${plan.id}: prediction visible in input`,
     );
+  if (plan.recipe === 'automed-full-prostate-seg-v1') {
+    const revealed = beat.scene === 'helper' && frame > (beat.startFrame + beat.endFrame - 1) / 2;
+    assert.equal(
+      await page.locator('[data-segc-training-helper]').count(),
+      revealed ? 1 : 0,
+      `${plan.id}: upstream training overlay boundary at ${frame}`,
+    );
+    if (!revealed)
+      assert.doesNotMatch(
+        await page.locator('.scene-player').innerText(),
+        /source voxels/,
+        `${plan.id}: training counts leaked before helper reveal`,
+      );
+    if (beat.scene === 'channels')
+      assert.equal(await page.locator('[data-segc-source] img').count(), 2);
+  }
   const output = page.locator(selectors.aside);
   assert.ok(
     await output.evaluate((e) => e.scrollHeight <= e.clientHeight + 1),
@@ -708,6 +784,34 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-full-prostate-seg-v1') {
+    const helperIndex = plan.beats.findIndex((b) => b.scene === 'helper');
+    await page.locator(`[data-story-step="${helperIndex}"]`).click();
+    await page.locator('[data-segc-helper-state="covered"]').waitFor();
+    assert.equal(await page.locator('[data-segc-training-helper]').count(), 0);
+    assert.doesNotMatch(await page.locator('.scene-player').innerText(), /source voxels/);
+    await page.locator('.scene-play').click();
+    await page.locator('[data-segc-training-helper]').waitFor({ timeout: 15000 });
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    assert.equal(await page.locator('[data-segc-training-helper]').count(), 1);
+    assert.match(
+      await page.locator('[data-segc-helper-state="revealed"]').innerText(),
+      /cyan.*peripheral zone.*amber.*transition zone/s,
+    );
+    assert.ok(
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+      `${plan.id}: ${label} helper overflow`,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-training-helper-revealed.png`) });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    assert.equal(await page.locator('[data-segc-training-helper]').count(), 0);
   }
   if (selectors.referenceChannel === null) {
     assert.equal(plan.reference_policy, 'no-reference-assets');
@@ -881,6 +985,14 @@ withBrowser(async (browser) => {
               Math.floor((b.startFrame + b.endFrame) / 2),
             );
         }
+      }
+      if (plan.recipe === 'automed-full-prostate-seg-v1') {
+        const helper = plan.beats.find((b) => b.scene === 'helper');
+        frames.push(
+          Math.floor((helper.startFrame + helper.endFrame) / 2) - 1,
+          Math.floor((helper.startFrame + helper.endFrame) / 2),
+          helper.startFrame + Math.floor(0.85 * (helper.endFrame - helper.startFrame)),
+        );
       }
       if (plan.recipe === 'imaging101-eht-features-dynamic-v1') {
         const selections = {
@@ -3682,6 +3794,10 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-full-prostate-seg-v1',
+      'automed-full-panther-t2-seg-v1',
+      'automed-full-panther-t1-seg-v1',
+      'automed-full-pancreas-seg-v1',
       'automed-full-pancreas-oar-v1',
       'automed-full-liver-v1',
       'automed-full-kidney-v1',

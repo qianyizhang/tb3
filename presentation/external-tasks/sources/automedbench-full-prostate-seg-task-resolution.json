@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-prostate-seg-task",
+  "status": "source audit complete; no Full staged case, private reference, prediction or score",
+  "illustration_basis": "mixed",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/prostate-seg-task.tar.gz",
+  "upstream_url": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar",
+  "source_license": "CC-BY-SA-4.0",
+  "task_package": {
+    "local_path": ".local/explainers/core-20260929/automed-seg-c-source/packages/prostate.tar.gz",
+    "bytes": 27734,
+    "sha256": "5783900cff8611f47dd5e2ca7fdc0a30e0e2f0446d914f57b80cf54551ef4fde",
+    "manifest_entries": 30,
+    "manifest_mismatches": 0,
+    "dataset_included": false,
+    "data_dir_name": "MSD_Prostate",
+    "input_filename": "mri.nii.gz",
+    "output_paths": [
+      "{case_id}/dseg.nii.gz"
+    ],
+    "config_sha256": "241854bb8307e9d5aa483e78aa3d5762cc726f7c8ab37c9a719d1b91fc435bd2",
+    "pinned_files": {
+      "task.json": {
+        "sha256": "5da73755ebca308e54a6e1150631af6103302703b8b11668d492e8eafa1bfb9f",
+        "bytes": 1299
+      },
+      "source/prostate-seg-task/config.yaml": {
+        "sha256": "241854bb8307e9d5aa483e78aa3d5762cc726f7c8ab37c9a719d1b91fc435bd2",
+        "bytes": 1121
+      },
+      "source/format_checker.py": {
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799",
+        "bytes": 8016
+      },
+      "source/dice_scorer.py": {
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287",
+        "bytes": 11863
+      },
+      "source/aggregate.py": {
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489",
+        "bytes": 12559
+      },
+      "source/run_eval.py": {
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed",
+        "bytes": 9414
+      }
+    }
+  },
+  "actual_data_gap": "Official MSD Task05 training image/label pair recovered; Full 20-case selection and private test references remain unknown.",
+  "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar",
+  "attempts": [
+    {
+      "action": "GET pinned Full task harness and verify manifest",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/prostate-seg-task.tar.gz",
+      "attempted_at": "2026-09-29T05:37:43Z",
+      "outcome": "Success: 27734 bytes SHA256 5783900cff8611f47dd5e2ca7fdc0a30e0e2f0446d914f57b80cf54551ef4fde; 30 manifest entries, zero mismatches; dataset.included=false."
+    },
+    {
+      "action": "HEAD official MSD Task05 tar",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar",
+      "attempted_at": "2026-09-29T05:38:38Z",
+      "outcome": "HTTP 200, 239,839,232 bytes, Accept-Ranges: bytes; version/ETag preserved in local headers."
+    },
+    {
+      "action": "GET official dataset.json by bounded tar byte range",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar",
+      "attempted_at": "2026-09-29T05:46:26Z",
+      "outcome": "Success: 3586 bytes SHA256 63f96954eea658d39ded336193993495a5fab4bbba33ca8fe0a266c7d69eb4ea; confirms T2/ADC channels and PZ/TZ label IDs."
+    },
+    {
+      "action": "GET official tar member via bounded byte range",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar",
+      "attempted_at": "2026-09-29T05:40:09Z",
+      "outcome": "Success: 4331667 bytes SHA256 3959533b046f533b72a78e31be1dcfc462cfe32aae8ae78ef174d4d41f5ab3c4; member offsets in prostate-tar-index.json."
+    },
+    {
+      "action": "GET official tar member via bounded byte range",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task05_Prostate.tar",
+      "attempted_at": "2026-09-29T05:40:12Z",
+      "outcome": "Success: 3856 bytes SHA256 7042ca5a80c783586060c1daa91469ec7123be9ba32dbbae3c3425e5a2e4f67d; member offsets in prostate-tar-index.json."
+    }
+  ],
+  "source_roles": {
+    "full_public_input": "not retained",
+    "full_private_reference": "not retained",
+    "prediction": "not retained",
+    "official_upstream_training_example": "MSD Task05 prostate_00 image and label"
+  },
+  "scorer_caveat": "Formatter and scorer round values; task contract requires integer IDs0/1/2. The scorer averages both foreground classes across valid available pairs, includes both-empty class Dice1 and shape-error zeros, then averages class means. Aggregate scales Dice by completed-pair fraction and blends workflow/clinical equally; medal uses unscaled macro Dice. Separated private masks are fused with higher class ID winning overlaps; missing class files contribute no foreground if another class exists. No score was run.",
+  "source_example": {
+    "role": "official MSD upstream training pair, not verified Full case",
+    "image_path": ".local/explainers/core-20260929/automed-seg-c-source/prostate_00.nii.gz",
+    "image_sha256": "3959533b046f533b72a78e31be1dcfc462cfe32aae8ae78ef174d4d41f5ab3c4",
+    "label_path": ".local/explainers/core-20260929/automed-seg-c-source/prostate_00-label.nii.gz",
+    "label_sha256": "7042ca5a80c783586060c1daa91469ec7123be9ba32dbbae3c3425e5a2e4f67d",
+    "shape_ijk_channels": [
+      320,
+      320,
+      15,
+      2
+    ],
+    "label_shape_ijk": [
+      320,
+      320,
+      15
+    ],
+    "axis_codes": "RAS",
+    "voxel_spacing_mm": [
+      0.6,
+      0.6,
+      4.0
+    ],
+    "affine_max_abs_difference_mm": 1.52587890625e-05,
+    "label_values": [
+      0,
+      1,
+      2
+    ],
+    "selection_policy": "Native k=2,5,8 selected after inspecting the public training label; not a blind target search.",
+    "dataset_json": {
+      "path": ".local/explainers/core-20260929/automed-seg-c-source/Task05_Prostate-dataset.json",
+      "sha256": "63f96954eea658d39ded336193993495a5fab4bbba33ca8fe0a266c7d69eb4ea",
+      "channel_0": "T2",
+      "channel_1": "ADC",
+      "labels": {
+        "0": "background",
+        "1": "PZ",
+        "2": "TZ"
+      }
+    }
+  },
+  "root_contract_audit": {
+    "path": ".local/explainers/core-20260929/full-prostate-source-audit-v1.json",
+    "sha256": "50de7227cd4bd777c95c6f2a251e273e6cb36a89cad82b5354ef535278f0e131"
+  },
+  "warning_text": "Upstream MSD T2/ADC training pair only; Full membership and private targets are unverified.",
+  "reopening_condition": "Obtain and verify Full case membership, staging/channel transforms and private-reference separation before claiming the upstream training pair is a Full case. Keep training annotations behind the reader reveal; generated outputs need a separately evidenced run."
+}
