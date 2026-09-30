@@ -1,0 +1,195 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset",
+  "actual_data_gap": "No matching MRI image, frozen Full case IDs, private labels, model checkpoint, submission or measured score is retained. Bounded official Kaggle metadata reads timed out; this is not a verified access denial.",
+  "attempts": [
+    {
+      "action": "fetch pinned Full task package",
+      "attempted_at": "2026-09-29T06:40:36.069877+00:00",
+      "outcome": "HTTP 200; 22058 bytes; all internal MANIFEST.sha256 entries verified.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "action": "official Kaggle dataset metadata API",
+      "attempted_at": "2026-09-29T06:40:36.069877+00:00",
+      "outcome": "Public metadata request timed out after 20 s; no image bytes. This is not a confirmed access denial.",
+      "source": "https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset"
+    },
+    {
+      "action": "bounded anonymous official Kaggle view metadata read",
+      "source": "https://www.kaggle.com/api/v1/datasets/view/masoudnickparvar/brain-tumor-mri-dataset",
+      "outcome": "<urlopen error _ssl.c:993: The handshake operation timed out>; 12 second timeout; no credentials or image download",
+      "attempted_at": "2026-09-30T12:12:10.605047+00:00"
+    },
+    {
+      "action": "bounded anonymous official Kaggle list metadata read",
+      "source": "https://www.kaggle.com/api/v1/datasets/list/masoudnickparvar/brain-tumor-mri-dataset",
+      "outcome": "<urlopen error _ssl.c:993: The handshake operation timed out>; 12 second timeout; no credentials or image download",
+      "attempted_at": "2026-09-30T12:12:22.616861+00:00"
+    }
+  ],
+  "entry_id": "automedbench-full-braintumor-cls-task",
+  "evaluator_run": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Recover official matching training image plus exact provenance or frozen Full cases, verify checkpoint id2label and image preprocessing, preserve train/test and private-label isolation; separately authorize execution before populating output or metrics.",
+  "resolved_at": "2026-09-30T12:15:29.693181+00:00",
+  "schema": 1,
+  "source_license": "LicenseRef-TB3-symbolic-teaching",
+  "source_pins": [
+    {
+      "bytes": 22058,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task.tar.gz",
+      "role": "pinned-Full-harness-archive",
+      "sha256": "442bdf2304bf4fd2b138901115a480e382161714b6e201e91f2551b49115bc11",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "bytes": 1589,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/task.json",
+      "role": "task-envelope",
+      "sha256": "40df02756679affa46dfbf048d3214b4ca083271c186f33b38ff4a5d9ee98f5e",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "bytes": 726,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/braintumor-cls-task/config.yaml",
+      "role": "task-config",
+      "sha256": "cc90df64ed8e72df7687928d0efeeb32d6995495f61ef3399c128782b6d5fc0a",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "bytes": 2293,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/braintumor-cls-task/model_info.yaml",
+      "role": "tier-model-guidance",
+      "sha256": "b3dc7f622f23bb258dd3c3bb348d00229637a110f1b279089a39dbb63c659eb0",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "bytes": 6125,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/acc_scorer.py",
+      "role": "executable-accuracy-scorer",
+      "sha256": "b96c40478cfdfbd57a0d21f66d78272a9e12e5ea7e5ad8acd44dafa2936d414c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "bytes": 7046,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/aggregate.py",
+      "role": "executable-aggregate",
+      "sha256": "06e51ec2c9f27587100b0a306c4d07fe260bd792c3d330e16b32c438d35c0f3f",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "bytes": 2602,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/format_checker.py",
+      "role": "submission-format-checker",
+      "sha256": "2ff6daeb06016e969d66a4082941c5bf8caeac8b01422d04093fe8f424f52b3c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "bytes": 2447,
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/MANIFEST.sha256",
+      "role": "package-manifest",
+      "sha256": "7d334d40dc12bc02f6c67422035c8c46aa4be4421abe7d0a9311cb11fad10efa",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/run_eval.py",
+      "sha256": "663ecbac107c296dc3b5d201654ed8d782f7e490b90b6cb2522e7d6919c2d218",
+      "bytes": 10595,
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/medal_tier.py",
+      "sha256": "027da48a6ebb7cb608b2a694ee44fa4e1b27aa5e29b41a339c3f5a788bc660de",
+      "bytes": 1546,
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/task_loader.py",
+      "sha256": "c647fca7260afb6cfd17076329c8af767c396746c6c6c4fad84d8295b2e1abcc",
+      "bytes": 5066,
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "dc534fd7b5da6773c06dc119e7c76288b7460a4e8fafbd18476b84107c1e13b8",
+      "bytes": 511,
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-d-source/packages/braintumor-cls-task/automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "7736c34b214a317515d3908c71e54df257c58a4b1938748142513bb4e88901d7",
+      "bytes": 438,
+      "role": "additional-executable-contract",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "empty one-label-per-case CSV or JSON schema",
+    "evaluator": "pinned Full format checker and accuracy scorer, not executed",
+    "helper": "task config/model guidance and public training labels",
+    "input": "case image.jpg; unavailable",
+    "private_reference": "Full /data/private labels, absent"
+  },
+  "status": "production-draft-source-resolution",
+  "task_contract": {
+    "classes": [
+      "glioma",
+      "meningioma",
+      "notumor",
+      "pituitary"
+    ],
+    "dataset_included": false,
+    "full_evaluation_ids": "not frozen in downloaded package",
+    "ground_truth": "/data/private/<case_id>/label.json or ground_truth.csv, not solver-visible",
+    "input_filename": "image.jpg",
+    "metric": "accuracy",
+    "metric_caveat": "",
+    "output_csv": "agents_outputs/predictions.csv header patient_id,label",
+    "output_json": "agents_outputs/{case_id}/prediction.json containing label",
+    "package_type": "automedbench_task_harness",
+    "public_training_label_role": "upstream class folder/helper only for genuine training examples",
+    "scorer": "accuracy=correct/all cases (missing prediction wrong); balanced_accuracy=mean recall over true classes; aggregate headline uses config score_metric",
+    "source_ref": "0e12fb300b3371343cbfb7c9c234c74d551fb1c1",
+    "task_id": "braintumor-cls-task",
+    "tiers": [
+      "lite",
+      "standard"
+    ],
+    "unit": "case"
+  },
+  "top_warning": {
+    "label": "MRI and Full IDs absent; symbolic workflow",
+    "text": "MRI, Full IDs, private labels, checkpoint and results are absent; official acquisition requests timed out.",
+    "url": "https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset",
+    "link_label": "Official dataset acquisition"
+  },
+  "contract_audit": {
+    "class_order": [
+      "glioma",
+      "meningioma",
+      "notumor",
+      "pituitary"
+    ],
+    "index_mapping": "Map a checkpoint index using its own id2label; configured class order is not evidence of checkpoint logit order",
+    "scorer_units": "accuracy and balanced_accuracy fractions 0..1 rounded to 4 decimals; no percent conversion in aggregate",
+    "accuracy_denominator": "len(patient_ids), including missing predictions and missing private targets; empty IDs yields 0",
+    "balanced_denominator": "configured classes with positive true-class count only; zero-support recall null, not zero; missing/out-of-taxonomy GT remains in accuracy denominator",
+    "format": "present labels checked case-insensitively; missing cases allowed if at least one prediction is present and valid; entirely empty fails; format validity is not completeness",
+    "CSV_precedence": "CSV prediction preferred per ID; missing/empty CSV label falls back to prediction.json; duplicate CSV ID last row wins",
+    "GT_precedence": "per-case label.json preferred over ground_truth.csv",
+    "workflow": "S1-S3 None count as zero in full step denominator; S4 weight .15, S5 .10; even completed S4/S5 only gives .25 workflow under defaults",
+    "overall": "0.5 workflow + 0.5 configured accuracy; clinical_score is a source field name, not clinical validation",
+    "tier": "configured accuracy >=.85 good, >=.50 baseline; rating derives tier plus format validity, not overall alone",
+    "unit": "one image.jpg per case; patient_id is schema identifier, not proof of independent patients",
+    "partitions": "upstream training folder labels can be helpers only for genuine training images; Full private labels excluded; public/private mount isolation not executed"
+  }
+}

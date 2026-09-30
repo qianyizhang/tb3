@@ -1,3 +1,4 @@
+import { automedBrainClsPack } from './automed-brain-cls';
 import { rexLdctIqaPack } from './rex-ldct-iqa';
 import { radagentVqaPack } from './radagent-vqa';
 import { abraBiradsPack } from './abra-birads';
@@ -107,6 +108,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-brain-cls-v1',
     'rex-ldct-iqa-v1',
     'radagent-vqa-v1',
     'abra-birads-v1',
@@ -964,6 +966,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Official public training CT'],
           ['#18c6d4', 'Unsubmitted CSV schema'],
           ['#7ba4b8', 'Public label; no held-out result'],
+        ],
+      };
+    case 'automed-brain-cls-v1':
+      return {
+        heading: 'Classify brain MRI source categories',
+        corner: 'Symbolic Full classification workflow',
+        warning: automedBrainClsPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Required MRI input socket'],
+          ['#18c6d4', 'Unsubmitted CSV or JSON schema'],
+          ['#7ba4b8', 'Private targets absent'],
         ],
       };
     case 'bcer-brain-full-v1':

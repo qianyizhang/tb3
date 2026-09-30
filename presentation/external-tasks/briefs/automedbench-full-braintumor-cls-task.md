@@ -1,60 +1,62 @@
-# Classify brain MRI into four tumor categories
+# Classify brain MRI into four source categories
 
-Build and run a pipeline to classify brain MRI into four tumor categories.
+Develop a pipeline that maps each Full image.jpg case to one canonical label. **MRI and Full case IDs absent; symbolic workflow.** [Official acquisition](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset).
 
 ## Value
 
-A fixed taxonomy makes image-level decisions easy to score, while hiding localization and uncertainty unless separately requested.
+A fixed source taxonomy makes labels comparable. Dataset-label agreement does not establish histopathologic truth, localization, independent-patient generalization or clinical benefit.
 
 ## Given
 
 ### Original data
 
-MRI input, stored as `image.jpg` per case.
+One MRI raster image.jpg per case. No matching source pixels, orientation, sequence, voxel geometry or frozen Full ID is retained. patient_id is an output identifier, not evidence of patient independence.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names BrainTumor-ViT (timm ViT-B/16, fine-tuned on Brain Tumor MRI). Standard supplies candidates to investigate; model files may still need provisioning.
+Pinned configuration names glioma, meningioma, notumor and pituitary in that order. This is not a checkpoint logit-index mapping: inspect id2label and remap names before inference. Lite names ViT/ResNet guidance; neither checkpoint nor completed inference is supplied here. Only genuine upstream training folders may carry public training labels.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+The Full harness describes terminal/model development. Lite uses its own dependency environment; Standard supplies method candidates. No runtime, checkpoint or image operation was run.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+Private /data/private/{case_id}/label.json or ground_truth.csv targets belong to evaluation, not solver input. The package declares dataset.included=false and runtime_assets empty. Runtime mount visibility was not audited.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: braintumor-cls-task.
+Preserve exact case IDs and one canonical label per case. Verify checkpoint label ordering, input normalization and source partition before inference. Model guidance is not performance evidence.
 
 ## Expected output
 
-Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: glioma, meningioma, notumor, pituitary.
+agents_outputs/predictions.csv with patient_id,label; alternatively agents_outputs/{case_id}/prediction.json with label. The illustrated schema is unfilled. No case, source label, prediction or score is fabricated.
 
 ## Evaluation
 
-Configured headline metric: accuracy. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
+Accuracy = correct / all supplied case IDs, including missing predictions. Balanced accuracy averages recalls over configured classes with nonzero true-class counts; zero-support recalls are null. Coefficients are 0..1 fractions rounded to four decimals. Format accepts valid present labels even if cases are missing, but rejects wholly empty output. CSV labels take precedence per ID; missing labels fall back to JSON. GT JSON is preferred over GT CSV. Duplicate CSV IDs overwrite, so preserve uniqueness.
+
+Configured headline accuracy selects .85/.50 quality bands; these are rules, not results. Aggregate workflow keeps the full S1-S5 weight denominator while S1-S3 are None; S4/S5 alone contribute at most .25 under default weights. Overall = .5 workflow + .5 accuracy. The field named clinical_score contains label agreement; it is not clinical validation.
 
 ## Visual explanation
 
 ### Workflow
 
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit the task-specific prediction artifact
+- Absent native image socket and source taxonomy
+- Verify checkpoint mapping and infer one label per exact case
+- Unfilled CSV/JSON schema with evaluator boundary
 
 ### Input
 
-**Contract view; native sample not yet illustrated.** MRI input, stored as `image.jpg` per case.
+Explicit empty MRI socket, no schematic image presented as patient pixels.
 
 ### Supplied helpers
 
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names BrainTumor-ViT (timm ViT-B/16, fine-tuned on Brain Tumor MRI). Standard supplies candidates to investigate; model files may still need provisioning.
+Tier guidance and taxonomy only; symbolic mapping exercise uses named tokens, not invented logits or class findings.
 
 ### Reference or output
 
-**Expected artifact, not an actual prediction.** Write `agents_outputs/predictions.csv`; alternatively `agents_outputs/{case_id}/prediction.json`. Use exactly one canonical class label per case: glioma, meningioma, notumor, pituitary.
+Unsubmitted CSV/JSON alternatives, private targets absent, formulas without outcomes.
 
 ## Conditions
 
@@ -66,11 +68,12 @@ Configured headline metric: accuracy. Planning/setup/validation artifacts are di
 
 ## Difficulty
 
-Match the source class semantics and input normalization. A plausible label in the wrong taxonomy is still incorrect.
+Avoid silently equating a checkpoint index, a filename or a source folder with a verified Full label. Completeness and format checks differ from accuracy.
 
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz)
+- [Pinned Full harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/classification/braintumor-cls-task.tar.gz)
+- [Official MRI dataset](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
 
 ## Coverage
 
@@ -78,4 +81,4 @@ Full-release definition with Lite and Standard conditions. Related gallery/branc
 
 ## Gaps
 
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.
+Two anonymous official metadata reads timed out; no native asset or matching Full ID was acquired. This does not establish an access barrier. Harness declares CC BY 4.0 source policy; no dataset pixels are redistributed by this symbolic pack. Recover matching assets, label-map and partition evidence before reopening execution.

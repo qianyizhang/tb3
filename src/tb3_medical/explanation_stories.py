@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-brain-cls-v1": "symbolic-automed-brain-cls-v1",
     "rex-ldct-iqa-v1": "retained-rexmle-ldct-iqa-interpretation-v1",
     "radagent-vqa-v1": "retained-radagent-vqa-contract-v2",
     "abra-birads-v1": "retained-abra-birads-contract-v1",
@@ -156,6 +157,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "symbolic-automed-brain-cls-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+        },
+    ),
     "retained-rexmle-ldct-iqa-interpretation-v1": (
         "source-slices",
         None,
@@ -546,6 +559,7 @@ SOURCE_INPUT_PACKS = {
 # Explicitly registered input packs with authored symbolic protocol assets.
 SYMBOLIC_SOURCE_PACKS = frozenset(
     {
+        "symbolic-automed-brain-cls-v1",
         "retained-radagent-vqa-contract-v2",
         "retained-automed-full-feta-seg-v1",
         "retained-automed-full-panther-t1-seg-v1",
@@ -1989,6 +2003,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedBrainClsChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -3832,6 +3852,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedBrainClsBeat(ExpansionBeat[AutomedBrainClsChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedBrainClsStory(Story[AutomedBrainClsChannels]):
+    recipe: Literal["automed-brain-cls-v1"]
+    beats: tuple[AutomedBrainClsBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("Brain classification has no private reference assets or reveal")
+        return self
+
+
 class RexLdctIqaBeat(ExpansionBeat[RexLdctIqaChannels]):
     scene: Literal["input", "helper", "operation", "output", "limits"]
 
@@ -4179,6 +4217,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedBrainClsStory
     | RexLdctIqaStory
     | RadagentVqaStory
     | AbraBiradsStory
@@ -4291,6 +4330,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedBrainClsStory
     | RexLdctIqaStory
     | RadagentVqaStory
     | AbraBiradsStory
@@ -4563,6 +4603,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedBrainClsStory
     | RexLdctIqaStory
     | RadagentVqaStory
     | AbraBiradsStory
@@ -4854,6 +4895,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "symbolic-automed-brain-cls-v1": (
+                "symbolic-case-workflow",
+                "LicenseRef-TB3-symbolic-teaching",
+                None,
+            ),
             "retained-rexmle-ldct-iqa-interpretation-v1": (
                 "normalized-training-CT-pixel-grid",
                 "LicenseRef-LDCT-IQA-terms-conflict-local-teaching",
@@ -5029,6 +5075,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "unitless"
+                if pack_id == "symbolic-automed-brain-cls-v1"
                 else "normalized intensity (display), px"
                 if pack_id == "retained-rexmle-ldct-iqa-interpretation-v1"
                 else "none"
@@ -5121,6 +5169,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "symbolic-automed-brain-cls-v1"
             or pack_id == "retained-rexmle-ldct-iqa-interpretation-v1"
             or pack_id == "retained-radagent-vqa-contract-v2"
             or pack_id == "retained-abra-birads-contract-v1"

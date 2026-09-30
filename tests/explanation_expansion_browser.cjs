@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-brain-cls-v1',
   'rex-ldct-iqa-v1',
   'radagent-vqa-v1',
   'abra-birads-v1',
@@ -92,6 +93,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-brain-cls-v1')
+    return {
+      scene: 'data-brain-cls-scene',
+      reference: '[data-brain-cls-private-reference]',
+      referenceChannel: null,
+      output: '[data-brain-cls-output-schema]',
+      aside: '[data-brain-cls-output]',
+    };
   if (plan.recipe === 'rex-ldct-iqa-v1')
     return {
       scene: 'data-ldct-scene',
@@ -534,6 +543,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-brain-cls-v1': [
+      /MRI, Full IDs, private labels, checkpoint and results are absent; official acquisition requests timed out/s,
+      'https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset',
+      'data-brain-cls-scene',
+      true,
+    ],
     'rex-ldct-iqa-v1': [
       /Test images, private reader scores, submitted predictions and measured correlations are absent/s,
       'https://zenodo.org/records/7833096',
@@ -1005,6 +1020,140 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-brain-cls-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const step = (scene) => plan.beats.findIndex((b) => b.scene === scene);
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    const taxonomy = page.getByRole('group', { name: 'Canonical brain classification token' });
+    for (const name of ['glioma', 'meningioma', 'notumor', 'pituitary']) {
+      const button = taxonomy.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(
+        await page.locator('[data-brain-cls-class-selection]').innerText(),
+        `Selected taxonomy token: ${name}`,
+      );
+      assert.match(
+        await page.locator('[data-brain-cls-output]').innerText(),
+        /patient_id\s+unset\s+label\s+unset/s,
+      );
+    }
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-taxonomy.png`) });
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    const tiers = page.getByRole('group', { name: 'Brain classification assistance' });
+    for (const name of ['standard', 'lite']) {
+      const button = tiers.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(await page.locator('[data-brain-cls-operation]').innerText(), new RegExp(name));
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-tier-${name}.png`) });
+    }
+    const token = page.getByRole('combobox', { name: 'Hypothetical class token' });
+    for (const name of ['glioma', 'meningioma', 'notumor', 'pituitary']) {
+      await token.selectOption(name.toUpperCase());
+      assert.equal(
+        await page.locator('[data-brain-cls-map]').innerText(),
+        `Canonical spelling: ${name}`,
+      );
+      assert.match(
+        await page.locator('[data-brain-cls-output]').innerText(),
+        /patient_id\s+unset\s+label\s+unset/s,
+      );
+    }
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-mapping.png`) });
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    const formats = page.getByRole('group', { name: 'Brain classification submission format' });
+    for (const name of ['json', 'csv']) {
+      const button = formats.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-brain-cls-format]').innerText(),
+        name === 'csv' ? /predictions\.csv/ : /prediction\.json/,
+      );
+      assert.equal(await page.locator('[data-brain-cls-private-reference]').count(), 0);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-format-${name}.png`) });
+    }
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    const metrics = page.getByRole('group', { name: 'Classification metric denominator' });
+    for (const name of ['balanced accuracy', 'accuracy']) {
+      const button = metrics.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await page.locator('[data-brain-cls-metric]').innerText(),
+        name === 'accuracy' ? /all.*(IDs|cases)/i : /supported|positive|present/i,
+      );
+      assert.match(await page.locator('[data-brain-cls-limits]').innerText(), /0\.\.1|0–1|0\.\.?1/);
+      await page.locator('.scene-player').screenshot({
+        path: path.join(output, `${label}-metric-${name.replaceAll(' ', '-')}.png`),
+      });
+    }
+    for (const [scene, kind, content] of [
+      ['output', 'formatter', /Missing cases.*at least one valid prediction/s],
+      ['limits', 'grader', /S1-S3.*\.25/s],
+    ]) {
+      const index = step(scene);
+      await page.locator(`[data-story-step="${index}"]`).click();
+      const details = page.locator(`[data-brain-cls-${kind}]`);
+      assert.equal(await details.count(), 0);
+      await page.getByRole('button', { name: `Inspect ${kind} rules`, exact: true }).click();
+      assert.match(await details.innerText(), content);
+      assert.equal(await page.locator('[data-brain-cls-private-reference]').count(), 0);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-${kind}-revealed.png`) });
+      await page.locator('.scene-play').click();
+      await page.waitForFunction(
+        (frame) =>
+          Number(document.querySelector('.scene-player')?.getAttribute('data-committed-frame')) >
+          frame,
+        plan.beats[index].startFrame + 4,
+      );
+      await page.locator('.scene-play').click();
+      await page.locator(`[data-story-step="${index}"]`).click();
+      assert.equal(await details.count(), 0, `Backward replay must cover ${kind} rules`);
+      await page.getByRole('button', { name: `Inspect ${kind} rules`, exact: true }).click();
+      await page.locator('[data-story-step="0"]').click();
+      assert.equal(await details.count(), 0, `Exit must cover ${kind} rules`);
+    }
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    assert.equal(
+      await page.locator('[data-brain-cls-class-selection]').innerText(),
+      'No taxonomy token selected',
+    );
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    assert.equal(await token.inputValue(), '');
+    assert.equal(
+      await tiers.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    assert.equal(
+      await formats.getByRole('button', { name: 'csv', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    assert.equal(
+      await metrics
+        .getByRole('button', { name: 'accuracy', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
   }
   if (plan.recipe === 'rex-ldct-iqa-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -4788,6 +4937,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-brain-cls-v1',
       'rex-ldct-iqa-v1',
       'radagent-vqa-v1',
       'abra-birads-v1',
