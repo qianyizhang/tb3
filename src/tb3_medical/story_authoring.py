@@ -292,6 +292,7 @@ def new(
             "abra-viewer-control-v1",
             "abra-vision-probe-v1",
             "abra-metadata-qa-v1",
+            "abra-birads-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

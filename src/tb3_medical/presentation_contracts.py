@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class AbraBiradsChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AbraBiradsBeat(ExpansionBeat):
+    channels: AbraBiradsChannels
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AbraBiradsPlan(ExpansionPlan):
+    recipe: Literal["abra-birads-v1"]
+    beats: list[AbraBiradsBeat]
+
+
 class AbraVisionProbeChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2211,6 +2227,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | AbraBiradsPlan
     | AbraVisionProbePlan
     | AbraMetadataQaPlan
     | AbraViewerControlPlan

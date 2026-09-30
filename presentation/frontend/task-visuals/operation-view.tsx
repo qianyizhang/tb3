@@ -1,3 +1,4 @@
+import { AbraBiradsScene, AbraBiradsOutput } from './abra-birads-panels';
 import { AbraVisionProbeScene, AbraVisionProbeOutput } from './abra-vision-probe-panels';
 import { AbraMetadataScene, AbraMetadataOutput } from './abra-metadata-qa-panels';
 import { AbraViewerScene, AbraViewerOutput } from './abra-viewer-control-panels';
@@ -272,6 +273,7 @@ export function OperationScene({
     return <AbraMetadataScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'abra-vision-probe-v1')
     return <AbraVisionProbeScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'abra-birads-v1') return <AbraBiradsScene state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -585,6 +587,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'abra-viewer-control-v1') return <AbraViewerOutput state={state} />;
   if (state.recipe === 'abra-metadata-qa-v1') return <AbraMetadataOutput state={state} />;
   if (state.recipe === 'abra-vision-probe-v1') return <AbraVisionProbeOutput state={state} />;
+  if (state.recipe === 'abra-birads-v1') return <AbraBiradsOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

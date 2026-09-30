@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='abra-birads-v1'],
     [data-recipe='abra-vision-probe-v1'],
     [data-recipe='abra-metadata-qa-v1'],
     [data-recipe='abra-viewer-control-v1'],
@@ -3445,6 +3446,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='abra-birads-v1'],
     [data-recipe='abra-vision-probe-v1'],
     [data-recipe='abra-metadata-qa-v1'],
     [data-recipe='abra-viewer-control-v1'],
@@ -3505,6 +3507,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='abra-birads-v1'],
     [data-recipe='abra-vision-probe-v1'],
     [data-recipe='abra-metadata-qa-v1'],
     [data-recipe='abra-viewer-control-v1'],
@@ -3565,6 +3568,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='abra-birads-v1'],
     [data-recipe='abra-vision-probe-v1'],
     [data-recipe='abra-metadata-qa-v1'],
     [data-recipe='abra-viewer-control-v1'],
@@ -3626,6 +3630,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='abra-birads-v1'],
     [data-recipe='abra-vision-probe-v1'],
     [data-recipe='abra-metadata-qa-v1'],
     [data-recipe='abra-viewer-control-v1'],
@@ -3687,6 +3692,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='abra-birads-v1'],
     [data-recipe='abra-vision-probe-v1'],
     [data-recipe='abra-metadata-qa-v1'],
     [data-recipe='abra-viewer-control-v1'],
@@ -3747,6 +3753,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='abra-birads-v1'],
       [data-recipe='abra-vision-probe-v1'],
       [data-recipe='abra-metadata-qa-v1'],
       [data-recipe='abra-viewer-control-v1'],
@@ -3806,6 +3813,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='abra-birads-v1'],
       [data-recipe='abra-vision-probe-v1'],
       [data-recipe='abra-metadata-qa-v1'],
       [data-recipe='abra-viewer-control-v1'],
@@ -4297,4 +4305,15 @@
   .player[data-recipe='abra-vision-probe-v1']
   :global(.scene-steps) {
   grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='abra-birads-v1'] .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='abra-birads-v1'] .storyOutput {
+  height: 288px;
+}
+
+.player[data-recipe='abra-birads-v1'] :global(.scene-explanation) {
+  overflow-wrap: anywhere;
 }

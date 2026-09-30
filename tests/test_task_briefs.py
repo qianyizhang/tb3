@@ -246,9 +246,9 @@ class TaskBriefTests(unittest.TestCase):
         entries = [{"sources": []}]
         for i in range(briefs.SOURCE_TOTAL_BYTES // briefs.SOURCE_MAX_BYTES + 1):
             path = self.root / f"source-{i}.txt"
-            path.write_bytes(bytes([65 + i]) * briefs.SOURCE_MAX_BYTES)
+            path.write_bytes(bytes([65 + i % 26]) * briefs.SOURCE_MAX_BYTES)
             entries[0]["sources"].append(["Source", path.name])
-        with self.assertRaisesRegex(MedicalError, "2 MiB combined limit"):
+        with self.assertRaisesRegex(MedicalError, "8 MiB combined limit"):
             briefs.source_bundle(self.root, entries)
         entries[0]["sources"].pop()
         sources = briefs.source_bundle(self.root, entries)

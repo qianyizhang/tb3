@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'abra-birads-v1',
   'abra-vision-probe-v1',
   'abra-metadata-qa-v1',
   'abra-viewer-control-v1',
@@ -89,6 +90,13 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'abra-birads-v1')
+    return {
+      scene: 'data-birads-scene',
+      reference: '[data-birads-reference-revealed]',
+      output: '[data-birads-output-schema]',
+      aside: '[data-birads-aside]',
+    };
   if (plan.recipe === 'abra-vision-probe-v1')
     return {
       scene: 'data-abra-vision-probe-scene',
@@ -509,6 +517,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'abra-birads-v1': [
+      /matching MRI pixels.*generated report/s,
+      'https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/',
+      'data-birads-scene',
+      true,
+    ],
     'abra-vision-probe-v1': [
       /exact task\/control PNGs and results absent/s,
       'https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/README.md#2-download-datasets',
@@ -962,6 +976,64 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'abra-birads-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const op = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${op}"]`).click();
+    const operation = page.locator('[data-birads-operation]');
+    for (const [name, condition, turns] of [
+      ['Visual assessment', 'visual', 20],
+      ['Oracle findings', 'oracle', 10],
+    ]) {
+      const button = operation.getByRole('button', { name, exact: true });
+      await button.click();
+      assert.equal(await operation.getAttribute('data-birads-condition'), condition);
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(await operation.innerText(), new RegExp(`${turns} turns`));
+      assert.match(await operation.innerText(), /No tool call occurs here/);
+      assert.equal(await page.locator('[data-birads-reference-revealed]').count(), 0);
+      await page
+        .locator('.scene-player')
+        .screenshot({ path: path.join(output, `${label}-condition-${condition}.png`) });
+    }
+    await page.getByRole('button', { name: 'Follow story', exact: true }).click();
+    assert.equal(await operation.getAttribute('data-birads-condition'), 'visual');
+    const ref = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ref}"]`).click();
+    assert.equal(await page.locator('[data-birads-reference-revealed]').count(), 0);
+    await page.getByRole('button', { name: 'Reveal construction rules', exact: true }).click();
+    assert.equal(await page.locator('[data-birads-reference-revealed]').count(), 1);
+    assert.match(
+      await page.locator('[data-birads-reference-revealed]').innerText(),
+      /not.*patient|general.*code/i,
+    );
+    await page.getByRole('button', { name: 'Hide construction rules', exact: true }).click();
+    assert.equal(await page.locator('[data-birads-reference-revealed]').count(), 0);
+    await page.getByRole('button', { name: 'Reveal construction rules', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-birads-reference-revealed]').count(), 0);
+    const limits = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${limits}"]`).click();
+    const checkbox = page.getByRole('checkbox', {
+      name: 'Illustrative reference includes quadrant',
+    });
+    assert.match(await page.locator('[data-birads-denominator]').innerText(), /0\.90/);
+    await checkbox.check();
+    assert.match(await page.locator('[data-birads-denominator]').innerText(), /1\.00/);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-quadrant-denominator.png`) });
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    assert.equal(await page.locator('[data-birads-reference-revealed]').count(), 0);
+    await page.locator(`[data-story-step="${limits}"]`).click();
+    assert.equal(await checkbox.isChecked(), false);
+    await page.locator(`[data-story-step="${op}"]`).click();
+    assert.equal(await operation.getAttribute('data-birads-condition'), 'visual');
   }
   if (plan.recipe === 'abra-vision-probe-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -4549,6 +4621,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'abra-birads-v1',
       'abra-vision-probe-v1',
       'abra-metadata-qa-v1',
       'abra-viewer-control-v1',

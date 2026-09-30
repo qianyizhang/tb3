@@ -9937,15 +9937,15 @@
       ],
       "illustration_kind": "report",
       "subject": "breast",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "abra-birads",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for abra-birads. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Source series metadata, pinned assistance/report/scorer contract and symbolic missing-image sockets integrated; visual/export acceptance pending.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/abra-birads/acceptance-04.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "A breast MRI study containing multiple series, including images before and after contrast injection.",
         "helpers": "Series metadata and image navigation. In the oracle condition, query_birads_model exposes prepared findings instead of requiring their visual discovery.",
@@ -9987,14 +9987,123 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Matching Breast_MRI_008 MRI pixels and exact generated ABRA report/task are not recovered; source-manifest metadata and official clinical XLSX are retained. Fresh report raw GET returned 404 and matching-series HEAD timed out. No task output or score exists.",
+      "acquisition_route": "https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/",
+      "warning_text": "Mixed illustration — series metadata only; matching MRI pixels, generated report and submitted answer are absent. Obtain matching images and clinical data through the official TCIA collection.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/abra-birads-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/abra-birads-resolution.json",
+        "receipt_sha256": "deb5d32522d5f47cde7df07981898233a6b30c121b7f5fe1b076573666ae4035",
+        "brief_sha256": "a993815028914bcf99e3427b18baa9066d7df1704fcabf71a3ca3dd326bc3cb2",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Public source series metadata and faithful symbolic assistance/report/scorer mechanism; no matched MRI, generated patient report, submitted answer or score.",
+      "completion_review": {
+        "date": "2026-09-30T14:23:48.650461+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "106ce49d2efea0b4e6759e5519b6f9090de2644bb4c70fb1e7405743a76fe15a"
+      },
+      "reviewed_contract_projection": {
+        "title": "Produce a structured breast MRI assessment",
+        "goal": "**Mixed illustration — series metadata only; matching MRI pixels, generated report and submitted answer are absent.** [Obtain matching images and clinical data from the official TCIA collection](https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/).\n\nThe visual condition asks an agent to inspect breast MRI and submit structured fields. The separate oracle condition supplies answer-bearing constructed findings. This explanation shows pinned source metadata and code contracts; it establishes no diagnostic result.",
+        "value": "A structured report makes field submission and reference agreement inspectable. Agreement with ABRA's constructed fields does not independently validate breast MRI interpretation.",
+        "raw": "Tier-4 generation requires a StudyInstanceUID-matched report in locally generated `duke_breast_reports.json` and at least one MR series. It chooses the report's DCE series UID, or the first MR series as fallback. The retained public manifest contains Breast_MRI_008 series records, including six MR series and one SEG series. This pack includes metadata only. Manifest order is not DCE acquisition order; series descriptions alone do not establish lesion laterality, enhancement or category. The official collection cautions that replaced dummy FrameOfReferenceUID values may be unreliable for alignment.",
+        "helpers": "Visual assessment receives MR series metadata, OHIF/Orthanc navigation and the `breast_mri` image preprocessor. It uses conditional rescale and per-image 1st/99th percentile display windowing; MRI display values are not HU or quantitative enhancement measurements. The oracle condition instead exposes exact report-derived fields through `query_birads_model` for the matching series UID. This removes visual discovery and is a different assistance condition.",
+        "tools": "The visual task uses `get_study_series`, `select_series`, `set_viewport_slice`, `get_dicom_image` and terminal `submit_birads_report`. The oracle task adds `query_birads_model(series_uid=...)`. The pinned worker dispatches that query to in-task `oracle_data`, validates the UID and returns its overview; no learned CAD inference occurs in that path. None of these tools was called here.",
+        "reference": "The loaded task YAML has scorer `expected_outcome`; the oracle YAML also embeds `oracle_data`. Source code builds the agent's system prompt from task description and initial viewer context, while the oracle tool explicitly returns answer fields. Runtime filesystem isolation remains unaudited. No generated task/report or private patient-reference asset is included. The reader's explicit derivation reveal explains general source-code policy, not a patient answer.",
+        "spec": "The visual condition declares vision enabled, `breast_mri` preprocessing and 20 turns. Its reference trajectory queries series, selects up to four MR series, requests three slice/image pairs per selected series, and submits a report. This prescribed trajectory is not an observed agent trace. The oracle condition disables vision, allows 10 turns and requires correct-UID query followed by field relay.",
+        "output": "A terminal `submit_birads_report` call must supply `laterality` (`left|right|bilateral`), integer `lesion_count`, integer `birads_category` (`0..6`) and boolean `enhancement_present`. Optional quadrant is read by the scorer from `findings[0].location_quadrant`, not a top-level submission field. All patient output values, oracle responses, submitted reports and scores remain unset here.",
+        "score": "The scorer selects the latest successful report submission from the trajectory. It weights laterality **0.25**, category **0.30**, count **0.20** and enhancement **0.15**. Optional quadrant contributes **0.10** only when an expected quadrant exists, changing the denominator from **0.90 to 1.00**. It rounds normalized weighted agreement to four decimals. Morphology, size and recommendation are captured but unscored. No scorer was executed.",
+        "challenge": "The visual condition requires reviewing actual images across sequences; source-manifest descriptions cannot replace that work. The oracle condition largely removes perception and tests correct query/submission. The illustration executes neither condition.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "Fresh pinned report retrieval returned 404; matching-series HEAD timed out. Neither proves a dataset restriction. Matching MRI pixels, exact generated task/report, submitted report and score remain absent. Reopen clinical-image claims only with matched data, separated grader staging and independent reference adjudication.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Visual assessment",
+            "helper": "Series list and rendered breast MRI.",
+            "remaining": "Find enhancing lesions and assign report fields."
+          },
+          {
+            "name": "Oracle findings",
+            "helper": "Prepared findings returned by query_birads_model.",
+            "remaining": "Query the correct series and submit the returned fields correctly."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned tier-4 generator",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier4_birads.py"
+          ],
+          [
+            "tier-3 oracle generator",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier3_oracle_birads.py"
+          ],
+          [
+            "Clinical target derivation",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/annotations/duke_breast_clinical.py"
+          ],
+          [
+            "scorer",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/birads_report_scorer.py"
+          ],
+          [
+            "worker routing",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/controller/task_worker.py"
+          ],
+          [
+            "Official Duke dataset and acquisition",
+            "https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/"
+          ],
+          [
+            "CC BY-NC 4.0",
+            "https://creativecommons.org/licenses/by-nc/4.0/"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/abra-birads-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p><strong>Mixed illustration — series metadata only; matching MRI pixels, generated report and submitted answer are absent.</strong> <a href=\"https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/\">Obtain matching images and clinical data from the official TCIA collection</a>.</p>\n<p>The visual condition asks an agent to inspect breast MRI and submit structured fields. The separate oracle condition supplies answer-bearing constructed findings. This explanation shows pinned source metadata and code contracts; it establishes no diagnostic result.</p>",
+          "value": "<p>A structured report makes field submission and reference agreement inspectable. Agreement with ABRA&#x27;s constructed fields does not independently validate breast MRI interpretation.</p>",
+          "raw": "<p>Tier-4 generation requires a StudyInstanceUID-matched report in locally generated <code>duke_breast_reports.json</code> and at least one MR series. It chooses the report&#x27;s DCE series UID, or the first MR series as fallback. The retained public manifest contains Breast_MRI_008 series records, including six MR series and one SEG series. This pack includes metadata only. Manifest order is not DCE acquisition order; series descriptions alone do not establish lesion laterality, enhancement or category. The official collection cautions that replaced dummy FrameOfReferenceUID values may be unreliable for alignment.</p>",
+          "helpers": "<p>Visual assessment receives MR series metadata, OHIF/Orthanc navigation and the <code>breast_mri</code> image preprocessor. It uses conditional rescale and per-image 1st/99th percentile display windowing; MRI display values are not HU or quantitative enhancement measurements. The oracle condition instead exposes exact report-derived fields through <code>query_birads_model</code> for the matching series UID. This removes visual discovery and is a different assistance condition.</p>",
+          "tools": "<p>The visual task uses <code>get_study_series</code>, <code>select_series</code>, <code>set_viewport_slice</code>, <code>get_dicom_image</code> and terminal <code>submit_birads_report</code>. The oracle task adds <code>query_birads_model(series_uid=...)</code>. The pinned worker dispatches that query to in-task <code>oracle_data</code>, validates the UID and returns its overview; no learned CAD inference occurs in that path. None of these tools was called here.</p>",
+          "reference": "<p>The loaded task YAML has scorer <code>expected_outcome</code>; the oracle YAML also embeds <code>oracle_data</code>. Source code builds the agent&#x27;s system prompt from task description and initial viewer context, while the oracle tool explicitly returns answer fields. Runtime filesystem isolation remains unaudited. No generated task/report or private patient-reference asset is included. The reader&#x27;s explicit derivation reveal explains general source-code policy, not a patient answer.</p>",
+          "spec": "<p>The visual condition declares vision enabled, <code>breast_mri</code> preprocessing and 20 turns. Its reference trajectory queries series, selects up to four MR series, requests three slice/image pairs per selected series, and submits a report. This prescribed trajectory is not an observed agent trace. The oracle condition disables vision, allows 10 turns and requires correct-UID query followed by field relay.</p>",
+          "output": "<p>A terminal <code>submit_birads_report</code> call must supply <code>laterality</code> (<code>left|right|bilateral</code>), integer <code>lesion_count</code>, integer <code>birads_category</code> (<code>0..6</code>) and boolean <code>enhancement_present</code>. Optional quadrant is read by the scorer from <code>findings[0].location_quadrant</code>, not a top-level submission field. All patient output values, oracle responses, submitted reports and scores remain unset here.</p>",
+          "score": "<p>The scorer selects the latest successful report submission from the trajectory. It weights laterality <strong>0.25</strong>, category <strong>0.30</strong>, count <strong>0.20</strong> and enhancement <strong>0.15</strong>. Optional quadrant contributes <strong>0.10</strong> only when an expected quadrant exists, changing the denominator from <strong>0.90 to 1.00</strong>. It rounds normalized weighted agreement to four decimals. Morphology, size and recommendation are captured but unscored. No scorer was executed.</p>",
+          "challenge": "<p>The visual condition requires reviewing actual images across sequences; source-manifest descriptions cannot replace that work. The oracle condition largely removes perception and tests correct query/submission. The illustration executes neither condition.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>Fresh pinned report retrieval returned 404; matching-series HEAD timed out. Neither proves a dataset restriction. Matching MRI pixels, exact generated task/report, submitted report and score remain absent. Reopen clinical-image claims only with matched data, separated grader staging and independent reference adjudication.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -23225,9 +23334,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 97,
+    "reviewed-scripted-planar": 98,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 63,
+    "blocked-source-contract": 62,
     "blocked-source-input": 31,
     "pending-operation-review": 1
   },

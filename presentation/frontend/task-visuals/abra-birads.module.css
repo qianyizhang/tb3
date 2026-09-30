@@ -1,0 +1,184 @@
+.scene {
+  width: 100%;
+  color: #eaf1f4;
+  background: #0d202b;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+}
+.scene h3 {
+  margin: 0 0 12px;
+  font-size: 19px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 14px;
+  align-items: start;
+}
+.card {
+  background: #11212d;
+  border: 1px solid #39525f;
+  border-radius: 10px;
+  padding: 14px;
+  min-width: 0;
+}
+.card b,
+.series > b {
+  color: #91e9ee;
+}
+.card p,
+.series p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+.series {
+  border: 1px solid #39525f;
+  border-radius: 10px;
+  padding: 12px;
+  background: #11212d;
+}
+.series > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 0;
+  border-bottom: 1px solid #2b414e;
+  font-size: 13px;
+}
+.series small {
+  color: #a4bdc9;
+  font-size: 11px;
+}
+.socket {
+  min-height: 70px;
+  border: 1px dashed #829aa6;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: #14232c;
+}
+.socket span {
+  color: #b3c6cf;
+  font-size: 13px;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.buttons button,
+.reveal {
+  background: #16313c;
+  border: 1px solid #65808b;
+  padding: 9px 12px;
+  color: #eaf6f8;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.buttons button[aria-pressed='true'] {
+  border-color: #18c6d4;
+  background: #15464e;
+}
+.buttons button:focus-visible,
+.reveal:focus-visible,
+.card input:focus-visible {
+  outline: 2px solid #ffda98;
+  outline-offset: 3px;
+}
+.reveal {
+  margin-bottom: 12px;
+}
+.steps {
+  margin: 12px 0;
+  padding-left: 22px;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.fields {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+.fields > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid #35505e;
+  padding-bottom: 5px;
+  font-size: 13px;
+}
+.fields span {
+  color: #b7cbd4;
+}
+.card code {
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.card label {
+  display: block;
+  color: #eaf1f4;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 13px;
+}
+.rules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.rules .card p {
+  font-size: 12px;
+}
+.rules .caution {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.caution {
+  color: #ffda98;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.aside small {
+  color: #b7cbd4;
+}
+@container task-visual (max-width: 900px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .rules {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .series > div {
+    flex-direction: column;
+  }
+  .fields > div {
+    gap: 8px;
+  }
+}
+:global([data-explainer-export-frame]) .card {
+  padding: 12px;
+}
+:global([data-explainer-export-frame]) .card p {
+  font-size: 12px;
+}
+
+.scene h3 {
+  color: #eaf1f4;
+}
+.aside {
+  background: #11212d;
+  padding: 1rem;
+}
+.aside,
+.aside b,
+.aside p {
+  color: #eaf1f4;
+}

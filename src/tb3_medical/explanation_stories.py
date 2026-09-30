@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "abra-birads-v1": "retained-abra-birads-contract-v1",
     "abra-vision-probe-v1": "retained-abra-vision-probe-source-example-v3",
     "abra-metadata-qa-v1": "retained-abra-metadata-qa-contract-v2",
     "abra-viewer-control-v1": "retained-abra-viewer-control-workflow-v1",
@@ -153,6 +154,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-abra-birads-contract-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "derivation.json",
+        },
+    ),
     "retained-abra-vision-probe-source-example-v3": (
         "source-records",
         None,
@@ -1948,6 +1961,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AbraBiradsChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -3773,6 +3792,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AbraBiradsBeat(ExpansionBeat[AbraBiradsChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AbraBiradsStory(Story[AbraBiradsChannels]):
+    recipe: Literal["abra-birads-v1"]
+    beats: tuple[AbraBiradsBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Construction reveal must stay inside reference chapter")
+        return self
+
+
 class AbraVisionProbeBeat(ExpansionBeat[AbraVisionProbeChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4060,6 +4100,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraBiradsStory
     | AbraVisionProbeStory
     | AbraMetadataQaStory
     | AbraViewerControlStory
@@ -4169,6 +4210,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraBiradsStory
     | AbraVisionProbeStory
     | AbraMetadataQaStory
     | AbraViewerControlStory
@@ -4438,6 +4480,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraBiradsStory
     | AbraVisionProbeStory
     | AbraMetadataQaStory
     | AbraViewerControlStory
@@ -4726,6 +4769,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-abra-birads-contract-v1": (
+                "ABRA-series-manifest-plus-symbolic-report",
+                "LicenseRef-ABRA-MIT-plus-Duke-CC-BY-NC-4.0",
+                None,
+            ),
             "retained-abra-vision-probe-source-example-v3": (
                 "symbolic-unit-grid",
                 "CC-BY-3.0",
@@ -4887,6 +4935,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
                 else "unitless"
+                if pack_id == "retained-abra-birads-contract-v1"
+                else "unitless"
                 if pack_id == "retained-abra-vision-probe-source-example-v3"
                 else "none"
                 if pack_id == "retained-abra-metadata-qa-contract-v2"
@@ -4972,6 +5022,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-abra-birads-contract-v1"
             or pack_id == "retained-abra-vision-probe-source-example-v3"
             or pack_id == "retained-abra-metadata-qa-contract-v2"
         ):

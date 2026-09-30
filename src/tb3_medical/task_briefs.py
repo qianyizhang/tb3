@@ -19,7 +19,9 @@ from .types import Document, Pathish, Records
 DEFAULT_CATALOG = task_catalog.DEFAULT_CATALOG
 MARKER = "<!-- tb3-task-explorer: generated -->"
 SOURCE_MAX_BYTES = 64 * 1024
-SOURCE_TOTAL_BYTES = 2 * 1024 * 1024
+# Source-pinned receipts for the scoped catalogue exceed the old 2 MiB budget.
+# Keep the per-file restriction and runtime exclusions while bounding the catalogue.
+SOURCE_TOTAL_BYTES = 8 * 1024 * 1024
 FIELDS = {
     "value": "Value",
     "raw": "Given/Original data",
@@ -143,7 +145,7 @@ def source_bundle(root: Pathish, entries: Sequence[Document]) -> Records:
                 reason = "Source exceeds the 64 KiB per-file limit."
             elif total + path.stat().st_size > SOURCE_TOTAL_BYTES:
                 raise MedicalError(
-                    "Task Explorer sources exceed the 2 MiB combined limit at "
+                    "Task Explorer sources exceed the 8 MiB combined limit at "
                     + target
                     + "; reduce the explicitly cited source scope."
                 )

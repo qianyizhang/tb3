@@ -1,0 +1,368 @@
+{
+  "acquisition_route": "https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/",
+  "actual_data_gap": "Matching Breast_MRI_008 MRI pixels and exact generated ABRA report/task are not recovered; source-manifest metadata and official clinical XLSX are retained. Fresh report raw GET returned 404 and matching-series HEAD timed out. No task output or score exists.",
+  "attempts": [
+    {
+      "action": "request generated report JSON at pinned repository path",
+      "attempted_at": "2026-09-29T06:13:02Z",
+      "outcome": "HTTP 404; generated file absent from pinned repository, not a dataset access denial",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/data/annotations/duke_breast_reports.json"
+    },
+    {
+      "action": "HEAD and GET official clinical XLSX from TCIA",
+      "attempted_at": "2026-09-29T06:15:21Z",
+      "outcome": "HTTP 200, 595608 bytes retained, exact SHA pinned; no DICOM or generated report downloaded",
+      "source": "https://www.cancerimagingarchive.net/wp-content/uploads/Clinical_and_Other_Features.xlsx"
+    },
+    {
+      "action": "GET bounded read",
+      "source": "https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/",
+      "attempted_at": "2026-09-30T11:28:29.896195+00:00",
+      "limit_bytes": 1200000,
+      "timeout_seconds": 10,
+      "status": 200,
+      "bytes_read": 375336,
+      "headers": {
+        "Content-Type": "text/html; charset=UTF-8"
+      },
+      "outcome": "HTTP 200; complete source retained",
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/abra-birads/source-evidence/collection.html",
+      "sha256": "0a72f3e073bfe374fe9e837da6f2597f0b9ceea38de3a486d0683b67e46d168e"
+    },
+    {
+      "action": "GET bounded read",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/controller/benchmark_runner.py",
+      "attempted_at": "2026-09-30T11:28:29.896637+00:00",
+      "limit_bytes": 400000,
+      "timeout_seconds": 10,
+      "status": 200,
+      "bytes_read": 12578,
+      "headers": {
+        "Content-Length": "12578",
+        "Content-Type": "text/plain; charset=utf-8"
+      },
+      "outcome": "HTTP 200; complete source retained",
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/abra-birads/source-evidence/benchmark_runner.py",
+      "sha256": "29786a2ef03e3efe7aca817aa57036ecf337093838693f672a9766fb31a60fbf"
+    },
+    {
+      "action": "GET bounded read",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/task_loader.py",
+      "attempted_at": "2026-09-30T11:28:29.896840+00:00",
+      "limit_bytes": 100000,
+      "timeout_seconds": 10,
+      "status": 200,
+      "bytes_read": 1243,
+      "headers": {
+        "Content-Length": "1243",
+        "Content-Type": "text/plain; charset=utf-8"
+      },
+      "outcome": "HTTP 200; complete source retained",
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/abra-birads/source-evidence/task_loader.py",
+      "sha256": "b7fa584c528d3d2c6f006a1e54949f36ad3966be6499f35fedec0710373956c7"
+    },
+    {
+      "action": "GET bounded read",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/breast_mri.py",
+      "attempted_at": "2026-09-30T11:28:30.404485+00:00",
+      "limit_bytes": 100000,
+      "timeout_seconds": 10,
+      "status": 200,
+      "bytes_read": 1870,
+      "headers": {
+        "Content-Length": "1870",
+        "Content-Type": "text/plain; charset=utf-8"
+      },
+      "outcome": "HTTP 200; complete source retained",
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/abra-birads/source-evidence/breast_mri.py",
+      "sha256": "ca4d6f9bc2d1bdf9f0baa2de622e95a0974e3f6f61760de12925dd6f78c6a26d"
+    },
+    {
+      "action": "GET bounded read",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/data/annotations/duke_breast_reports.json",
+      "attempted_at": "2026-09-30T11:28:30.407689+00:00",
+      "limit_bytes": 10000,
+      "timeout_seconds": 10,
+      "status": 404,
+      "outcome": "HTTP 404; no matched DICOM or report recovered"
+    },
+    {
+      "action": "HEAD bounded read",
+      "source": "https://services.cancerimagingarchive.net/nbia-api/services/v1/getImage?SeriesInstanceUID=1.3.6.1.4.1.14519.5.2.1.134530039264889542777582825879670172045",
+      "attempted_at": "2026-09-30T11:28:30.870134+00:00",
+      "limit_bytes": 0,
+      "timeout_seconds": 10,
+      "outcome": "TimeoutError: The read operation timed out"
+    },
+    {
+      "action": "bounded pinned runtime source GET",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/controller/task_worker.py",
+      "attempted_at": "2026-09-30T11:30:20.432608+00:00",
+      "status": 200,
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/abra-birads/source-evidence/task_worker.py",
+      "bytes": 15298,
+      "sha256": "beb1dfc8bb3bcb4bbcf5f7144cc1dd323e7e3ab45201b6c4d1ebac2b98460dd9",
+      "outcome": "Source retained; read only, no runtime execution"
+    },
+    {
+      "action": "bounded pinned runtime source GET",
+      "source": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/base_task.py",
+      "attempted_at": "2026-09-30T11:30:20.908093+00:00",
+      "status": 200,
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/abra-birads/source-evidence/base_task.py",
+      "bytes": 4653,
+      "sha256": "3e94a4bcb4e08cc27645cb01c73e6dcb70f558a61a84cc7d9518429960533a76",
+      "outcome": "Source retained; read only, no runtime execution"
+    },
+    {
+      "action": "verify retained source SHA/size and Git blob identities; read clinical derivation, scorer, public tool schema, worker runtime and official data terms",
+      "source": ".local/explainers/goal-20260930/workers/abra-birads",
+      "attempted_at": "2026-09-30T11:33:09.701818+00:00",
+      "outcome": "All retained source byte identities verified; no authoring imports, generators, oracle/tool calls, MRI preprocessing or scorer executed. Fresh shell sandbox denials are retained separately from approved HTTP observations."
+    }
+  ],
+  "browser_review": false,
+  "entry_id": "abra-birads",
+  "grader_run": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "license_context": {
+    "ABRA_code": "MIT; generator, scorer and metadata source repo license retained",
+    "Duke_source_dataset": "CC BY-NC 4.0 listed for image DICOM and clinical XLSX on official TCIA collection; intended use here is local noncommercial task interpretation",
+    "collection_doi": "10.7937/TCIA.e3sv-re93",
+    "collection_url": "https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/",
+    "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "official_dataset_citation": "Saha, A., Harowicz, M. R., Grimm, L. J., Weng, J., Cain, E. H., Kim, C. E., Ghate, S. V., Walsh, R., & Mazurowski, M. A. (2021). Dynamic contrast-enhanced magnetic resonance images of breast cancer patients with tumor locations [Data set] . The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.e3sv-re93",
+    "geometry_caveat": "Official collection says FrameOfReferenceUID was replaced with a dummy per-study value and may be unreliable for alignment; no alignment is illustrated."
+  },
+  "model_run": false,
+  "participant_output_retained": false,
+  "preparer_run": false,
+  "reviewed_at": "2026-09-30T11:33:09.701818+00:00",
+  "schema": 1,
+  "source_commit": "688814615dc368a66276798cb864fe9a587d7e6c",
+  "source_example": {
+    "patient_id": "Breast_MRI_008",
+    "role": "ABRA source-manifest record, not a retained generated task instance or answer",
+    "series": [
+      {
+        "description": "ax dyn 3rd pass",
+        "modality": "MR",
+        "num_instances": 160,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.104325911704985034846895458080821212157"
+      },
+      {
+        "description": "ax dyn 1st pass",
+        "modality": "MR",
+        "num_instances": 160,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.134530039264889542777582825879670172045"
+      },
+      {
+        "description": "Segmentation",
+        "modality": "SEG",
+        "num_instances": 1,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.192023412659918413052652225978707794158"
+      },
+      {
+        "description": "ax dyn 4th pass",
+        "modality": "MR",
+        "num_instances": 160,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.274525635614655584440371763375788648106"
+      },
+      {
+        "description": "ax dyn pre",
+        "modality": "MR",
+        "num_instances": 160,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.330441786668007360375584042791829664921"
+      },
+      {
+        "description": "ax t1 tse +c",
+        "modality": "MR",
+        "num_instances": 37,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.331096520994581692749337740759970351981"
+      },
+      {
+        "description": "ax dyn 2nd pass",
+        "modality": "MR",
+        "num_instances": 160,
+        "series_uid": "1.3.6.1.4.1.14519.5.2.1.75080693164845299273971062157352861262"
+      }
+    ],
+    "study_date": "19900101",
+    "study_uid": "1.3.6.1.4.1.14519.5.2.1.106838589361757511496543956084050556538"
+  },
+  "source_roles": {
+    "helper": "visual: MR series list and viewer/preprocessor; oracle: query_birads_model returns answer-bearing constructed findings, a different condition",
+    "input": "Duke Breast MRI study and MR series; source-manifest MR series for Breast_MRI_008 are real record metadata, no task-matched DICOM pixels bundled",
+    "output": "structured submit_birads_report fields; no participant report retained",
+    "reference": "Generated report field derivation from clinical XLSX plus downloaded DICOM UIDs. No generated report or patient targets retained; the teaching derivation explains general code rules only after explicit reveal.",
+    "scorer": "weighted agreement with constructed fields, optional quadrant changes denominator; no independent clinical grading",
+    "runtime_visibility": "TaskLoader loads task YAML containing expected_outcome/oracle_data; TaskWorker builds agent system prompt from task_description plus initial viewer context. It dispatches query_birads_model to _query_oracle and validates series UID before returning overview. This is source-read visibility, not a live filesystem isolation audit."
+  },
+  "task_contract": {
+    "fields": [
+      "laterality",
+      "lesion_count",
+      "birads_category",
+      "enhancement_present",
+      "optional lesion_quadrant"
+    ],
+    "oracle": "tier3 query_birads_model returns exact report-derived fields for matching DCE UID, vision false, 10 turns",
+    "scorer_weights": {
+      "birads_category": 0.3,
+      "enhancement_present": 0.15,
+      "laterality": 0.25,
+      "lesion_count": 0.2,
+      "lesion_quadrant_optional": 0.1
+    },
+    "visual": "tier4 requires matching report and MR series, vision true, breast_mri preprocessor, 20 turns, submit_birads_report",
+    "reference_derivation": {
+      "category": "assign 5 by code, no explicit MRI BI-RADS column",
+      "enhancement": "assign true by code, no measured pre/post signal assertion",
+      "lesion_count": "2 when multifocal flag is true, else 1; not independently enumerated lesions",
+      "laterality": "L/R normalization, position fallback and bilateral override from clinical table",
+      "quadrant": "custom clock/text mapping; not an adjudicated image annotation",
+      "dce_series": "keyword priority scans series descriptions, then any-MR fallback; source manifest row order is not DCE time"
+    },
+    "oracle_runtime": "query_birads_model(series_uid=...) returns task.oracle_data.overview for exact matching series UID; no inference or slice-level BI-RADS observations are performed",
+    "preprocessing": "breast_mri uses MRI 1st/99th percentile display window, conditional non-default rescale, flat-range fallback; normalized display signal is not HU or an enhancement measurement"
+  },
+  "task_run": false,
+  "top_warning": "Mixed illustration \u2014 series metadata only; matching MRI pixels, generated report and submitted answer are absent. Obtain matching images and clinical data through the official TCIA collection.",
+  "prior_source_review": {
+    "path": ".local/explainers/core-20260929/interpretation-c-draft/presentation/external-tasks/sources/abra-birads-resolution.json",
+    "sha256": "1caa459e9b96925a260a0e96dd601a4dfb22e9c2faa5938b7bca5c7b885545a8"
+  },
+  "source_pins": [
+    {
+      "bytes": 4050,
+      "git_blob_sha1": "3ade1ee7fcd8aaf84e053530e1e9b014c740ed81",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/tier4_birads.py",
+      "sha256": "f3e71936ecb1b929a811769702bea2ba07206e3be3ac46c671d0f9e157dfcbb4",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier4_birads.py"
+    },
+    {
+      "bytes": 4267,
+      "git_blob_sha1": "542635f572972d0a3782baf029ace4bc6b28f1bc",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/tier3_oracle_birads.py",
+      "sha256": "86c047bf69bf00d9b1d998ec329564790296eb237808b87890200c377490f729",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier3_oracle_birads.py"
+    },
+    {
+      "bytes": 6281,
+      "git_blob_sha1": "ca2ea0c8d4bef0f2234495625110d9c9490744f8",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/birads_report_scorer.py",
+      "sha256": "c94de2450e7faa01315597203a73dd94bb60994840684e5214a9fd0d7f2f432d",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/birads_report_scorer.py"
+    },
+    {
+      "bytes": 12550,
+      "git_blob_sha1": "154900cf8aeaf5a5cf91583d1af73eae085a450e",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/duke_breast_clinical.py",
+      "sha256": "70da9d494af5d693497bdafd0de573782bf70e4489073e771843b1a1fa8f2f31",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/annotations/duke_breast_clinical.py"
+    },
+    {
+      "bytes": 9607,
+      "git_blob_sha1": "13831d75386d4697c1db803c5daf8053d736097f",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/download_duke_breast.py",
+      "sha256": "7b82422e911cbd068092dc640ea59f0163ab7d766e057890f72b4f00d308fe10",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/studies/download_duke_breast.py"
+    },
+    {
+      "bytes": 317217,
+      "git_blob_sha1": "8f4373a57b83c681cee3737b0fab103e0223fc37",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/study_manifest.json",
+      "sha256": "a6f367980f071320295adb9832edfcd9d165d377eb74b071b3ba6384738c3086",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/studies/study_manifest.json"
+    },
+    {
+      "bytes": 595608,
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/Clinical_and_Other_Features.xlsx",
+      "sha256": "8ef0945c9f7513acd2d9c6e8866d98f2234dd78443110d9496c24a82dbbc7e6f",
+      "url": "https://www.cancerimagingarchive.net/wp-content/uploads/Clinical_and_Other_Features.xlsx"
+    },
+    {
+      "bytes": 1069,
+      "git_blob_sha1": "61c68c7caf9631ca1dc7fb16adc58c1c8bf1c924",
+      "git_blob_verified": true,
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/LICENSE",
+      "sha256": "616457a4d54a40d0e4ffca06c1f1539abd25cb7a63004e8244653476a941cb69",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-birads/source-evidence/collection.html",
+      "bytes": 375336,
+      "sha256": "0a72f3e073bfe374fe9e837da6f2597f0b9ceea38de3a486d0683b67e46d168e",
+      "url": "https://www.cancerimagingarchive.net/collection/duke-breast-cancer-mri/",
+      "role": "bounded-new-source-read"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-birads/source-evidence/benchmark_runner.py",
+      "bytes": 12578,
+      "sha256": "29786a2ef03e3efe7aca817aa57036ecf337093838693f672a9766fb31a60fbf",
+      "url": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/controller/benchmark_runner.py",
+      "role": "bounded-new-source-read"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-birads/source-evidence/task_loader.py",
+      "bytes": 1243,
+      "sha256": "b7fa584c528d3d2c6f006a1e54949f36ad3966be6499f35fedec0710373956c7",
+      "url": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/task_loader.py",
+      "role": "bounded-new-source-read"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-birads/source-evidence/breast_mri.py",
+      "bytes": 1870,
+      "sha256": "ca4d6f9bc2d1bdf9f0baa2de622e95a0974e3f6f61760de12925dd6f78c6a26d",
+      "url": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/preprocessor/pipelines/breast_mri.py",
+      "role": "bounded-new-source-read"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-birads/source-evidence/task_worker.py",
+      "bytes": 15298,
+      "sha256": "beb1dfc8bb3bcb4bbcf5f7144cc1dd323e7e3ab45201b6c4d1ebac2b98460dd9",
+      "url": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/controller/task_worker.py",
+      "role": "bounded-new-source-read"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-birads/source-evidence/base_task.py",
+      "bytes": 4653,
+      "sha256": "3e94a4bcb4e08cc27645cb01c73e6dcb70f558a61a84cc7d9518429960533a76",
+      "url": "https://raw.githubusercontent.com/Luab/ABRA/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/base_task.py",
+      "role": "bounded-new-source-read"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/abra-birads/source-evidence/collection.plain.txt",
+      "bytes": 41831,
+      "sha256": "2c411b13e8cde8cd6d03754ae8a7cca89ceb41a2240e4dbcd6a120ea0b6006ae",
+      "role": "source-visibility-terms-or-retained-attempt-evidence"
+    },
+    {
+      "path": ".local/explainers/core-20260929/abra-longitudinal-source/pinned-source/tool_registry.py",
+      "bytes": 25343,
+      "sha256": "02ef0d672bbecb143e21b1f2f49c8cd53cb64d99e2087eb7346fef1f9db2bf30",
+      "role": "source-visibility-terms-or-retained-attempt-evidence"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-c-source/abra/duke_breast_reports.headers",
+      "bytes": 836,
+      "sha256": "514ac24a19ab48365500653057ee6ec0f181d9cc0a585be809faf498a5f2fcf4",
+      "role": "source-visibility-terms-or-retained-attempt-evidence"
+    }
+  ],
+  "warning_text": "Mixed illustration \u2014 series metadata only; matching MRI pixels, generated report and submitted answer are absent. Obtain matching images and clinical data through the official TCIA collection.",
+  "reopening_condition": "Acquire matched series through TCIA route, retain DICOM UIDs and exact generated report/task with separate grader placement; audit live input/oracle/filesystem visibility. Any diagnostic BI-RADS claim additionally requires independent clinical-image adjudication rather than constructed code fields.",
+  "status": "worker-preparation-not-accepted",
+  "runtime_run": false,
+  "brief": {
+    "path": "presentation/external-tasks/briefs/abra-birads.md",
+    "sha256": "a993815028914bcf99e3427b18baa9066d7df1704fcabf71a3ca3dd326bc3cb2"
+  }
+}
