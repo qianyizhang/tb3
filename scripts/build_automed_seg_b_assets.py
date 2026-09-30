@@ -65,7 +65,7 @@ def dump(path: Path, obj: object) -> None:
     path.write_text(json.dumps(obj, sort_keys=True, separators=(",", ":")) + "\n")
 
 
-def nifti(path: Path):
+def nifti(path: Path, *, pants_verified_identity: bool = False):
     with gzip.open(path, "rb") as stream:
         data = stream.read()
     endian = "<" if struct.unpack_from("<i", data)[0] == 348 else ">"
@@ -74,9 +74,9 @@ def nifti(path: Path):
     shape = tuple(int(v) for v in d[1 : d[0] + 1])
     spacing = list(struct.unpack_from(endian + "8f", data, 76)[1 : d[0] + 1])
     slope, intercept = struct.unpack_from(endian + "2f", data, 112)
-    # These two pinned MSD sources store HU directly; refuse silent mis-windowing.
+    # Read on-disk header bytes directly; nibabel may clear scaling after load.
     if (slope, intercept) != (1.0, 0.0):
-        raise ValueError("Expected verified identity NIfTI scaling for pinned MSD CT")
+        raise ValueError("Expected verified identity NIfTI scaling in pinned source")
     datatype = struct.unpack_from(endian + "h", data, 70)[0]
     bitpix = struct.unpack_from(endian + "h", data, 72)[0]
     offset = int(struct.unpack_from(endian + "f", data, 108)[0])
@@ -91,16 +91,28 @@ def nifti(path: Path):
         if sform
         else None
     )
-    return arr, {
+    geometry = {
         "shape_ijk": shape,
         "voxel_spacing_mm": spacing,
         "affine_first_three_rows": affine,
         "slice_axis_ijk": 2,
-        "stored_value_scaling": {"slope": slope, "intercept": intercept},
+        "stored_value_scaling": {"slope": slope, "intercept": intercept}
+        if not pants_verified_identity
+        else {
+            "raw_header_slope": slope,
+            "raw_header_intercept": intercept,
+            "effective_slope": 1.0,
+            "effective_intercept": 0.0,
+        },
         "datatype": datatype,
         "axis_display": "flipud(native_i_j_slice.T)",
-        "window_hu": [-160, 240],
+        "window_stored_values" if pants_verified_identity else "window_hu": [-160, 240],
     }
+    if pants_verified_identity:
+        geometry["uncompressed_nifti_sha256"] = hashlib.sha256(data).hexdigest()
+        geometry["qform_code"] = struct.unpack_from(endian + "h", data, 252)[0]
+        geometry["sform_code"] = sform
+    return arr, geometry
 
 
 def png_data_uri(arr: np.ndarray) -> str:
@@ -115,8 +127,8 @@ def rgba_data_uri(arr: np.ndarray) -> str:
     return "data:image/png;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
 
 
-def slices(path: Path):
-    volume, geometry = nifti(path)
+def slices(path: Path, *, pants_source: bool = False):
+    volume, geometry = nifti(path, pants_verified_identity=pants_source)
     length = volume.shape[2]
     indices = sorted({min(length - 1, max(0, round(length * f))) for f in (0.25, 0.5, 0.75)})
     selected = []
@@ -127,8 +139,8 @@ def slices(path: Path):
             {
                 "native_index": k,
                 "ct_png": png_data_uri(np.flipud(grey.T)),
-                "source_min_hu": float(np.min(plane)),
-                "source_max_hu": float(np.max(plane)),
+                ("source_min_stored" if pants_source else "source_min_hu"): float(np.min(plane)),
+                ("source_max_stored" if pants_source else "source_max_hu"): float(np.max(plane)),
             }
         )
     return selected, geometry
@@ -258,6 +270,51 @@ def make(r: Path, key: str, out: Path, receipt: Path):
                 "full_private_reference": None,
                 "prediction": None,
             }
+    elif key == "pancreas-oar":
+        p = r / example["path"]
+        integrity_path = r / example["native_integrity_path"]
+        correction_path = r / example["native_header_correction_path"]
+        acquisition_path = r / example["acquisition_receipt_path"]
+        assert sha(p) == example["sha256"]
+        assert sha(integrity_path) == example["native_integrity_sha256"]
+        assert sha(correction_path) == example["native_header_correction_sha256"]
+        assert sha(acquisition_path) == example["acquisition_receipt_sha256"]
+        integrity = json.loads(integrity_path.read_text())[example["case_id"]]
+        correction = json.loads(correction_path.read_text())
+        assert integrity["compressed_sha256"] == example["sha256"]
+        assert correction["source_sha256"] == example["sha256"]
+        assert correction["prior_integrity_sha256"] == example["native_integrity_sha256"]
+        assert correction["on_disk_header"] == {"scl_slope": 1.0, "scl_inter": 0.0}
+        assert correction["nibabel_dataobj_proxy"] == {"slope": 1.0, "intercept": 0.0}
+        assert integrity["nested_gzip_crc_valid"] is True
+        sample_slices, geometry = slices(p, pants_source=True)
+        assert (
+            [v["native_index"] for v in sample_slices]
+            == example["selected_native_k"]
+            == [38, 76, 114]
+        )
+        assert list(geometry["shape_ijk"]) == example["shape_ijk"] == integrity["shape_ijk"]
+        assert (
+            list(geometry["voxel_spacing_mm"])
+            == example["voxel_spacing_mm"]
+            == integrity["voxel_spacing_mm"]
+        )
+        assert geometry["datatype"] == 4 and integrity["stored_datatype"] == "int16"
+        assert geometry["qform_code"] == 0 and geometry["sform_code"] == 2
+        assert geometry["uncompressed_nifti_sha256"] == integrity["uncompressed_nifti_sha256"]
+        assert geometry["affine_first_three_rows"] == integrity["selected_affine"][:3]
+        assert example["axis_codes"] == "RAS" and integrity["axis_codes"] == ["R", "A", "S"]
+        assert integrity["nib_dataobj_slope"] == 1.0 and integrity["nib_dataobj_inter"] == 0.0
+        assert geometry["window_stored_values"] == example["display_window_stored_values"]
+        geometry["axis_codes"] = "RAS"
+        geometry["intensity_unit"] = "stored-value; HU calibration unverified"
+        geometry["view_selection"] = {"native_k": [38, 76, 114], "rule": example["selection_rule"]}
+        sources[example["path"]] = example["sha256"]
+        sources[example["native_integrity_path"]] = example["native_integrity_sha256"]
+        sources[example["native_header_correction_path"]] = example[
+            "native_header_correction_sha256"
+        ]
+        sources[example["acquisition_receipt_path"]] = example["acquisition_receipt_sha256"]
     elif key == "kidney":
         for p_key, sha_key in (("path", "sha256"), ("label_path", "label_sha256")):
             assert sha(r / example[p_key]) == example[sha_key]
@@ -296,6 +353,11 @@ def make(r: Path, key: str, out: Path, receipt: Path):
         "text": d["actual_data_gap"],
         "url": d["acquisition_route"],
     }
+    if key == "pancreas-oar":
+        notice["label"] = "Public PanTSMini CT; Full case unverified"
+        notice["text"] = (
+            "No matched label, private GT or result. Obtain paired data through the official PanTS route."
+        )
     public_example = (
         {k: v for k, v in example.items() if k not in ("label_path", "label_sha256")}
         if example

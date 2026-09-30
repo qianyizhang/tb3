@@ -1,6 +1,6 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **84** · ready: **2** · needs resolution: **68** · deferred: **0**
+Core: **154** · reviewed: **86** · ready: **0** · needs resolution: **68** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
 

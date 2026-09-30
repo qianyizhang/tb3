@@ -1,12 +1,12 @@
-# Label 21 pancreas-region structures
+# Label 21 pancreas-region targets
 
-The task requests a segmentation from CT. This explainer shows the input or contract boundary and **no completed model result**.
+The task requests a segmentation from CT. This explainer shows an official upstream PanTSMini CT and the output contract, with **no completed model result**.
 
 ## Given
 
 ### Original data
 
-The Full harness requires per-case ct.nii.gz, but it includes no dataset pixels and no PanTS case is retained. The input diagram is an abstract unitless grid, not a patient image. Bounded image/label archive requests failed at the configured local proxy before bytes arrived. This does not establish an upstream access restriction. Retry permitted local acquisition through the official PanTS route; the Full package supplies no case.
+The Full harness requires per-case ct.nii.gz and includes no dataset pixels. A bounded official range retrieval recovered PanTSMini PanTS_00000684 CT, an upstream image with 266 × 158 × 152 stored voxels, 1.5 mm isotropic spacing and RAS sform. Three native k planes (38, 76, 114) are fixed fractional samples with no label guidance. Display window [−160, 240] is applied to stored values; HU calibration, clipping and earlier preprocessing are unverified. The source CT is not proven to be a Full staged case.
 
 ### Supplied helpers
 
@@ -18,11 +18,11 @@ The Full task harness and environment define file submission and a 3,600-second 
 
 ### Reference-only material
 
-No source annotation, Full private mask or patient image is retained; the class key comes only from the pinned contract.
+No matching annotation for PanTS_00000684 or Full private mask is retained. The class key comes from the pinned contract, not this CT; a different-case source label is excluded.
 
 ## Task specification
 
-The 21 targets include pancreas, pancreatic lesion and surrounding structures. Their source IDs are nonconsecutive: 1–4, 6, 8–17, 22–26 and 28. No PanTS pixels or labels are retained. The Full package excludes data and carries a no-redistribution gate for converted or staged derivatives; this view is symbolic.
+The 21 targets include pancreas, pancreatic lesion and surrounding structures. Their Full output IDs are nonconsecutive: 1–4, 6, 8–17, 22–26 and 28. The recovered CT illustrates input viewing only; no matched source annotation or Full private label is shown. The Full package excludes data and carries a no-redistribution gate for converted or staged derivatives, distinct from local noncommercial source interpretation.
 
 ## Expected output
 
@@ -49,18 +49,18 @@ The config describes macro Dice over GT-nonempty classes. The pinned scorer iter
 
 ### Input
 
-Document-pinned contract and abstract grid, with no patient pixels.
+Official upstream CT displayed on three fixed native k planes; no matched label or Full-case equivalence.
 
 ### Supplied helpers
 
-Source-defined label names and output paths are contract text. This pack supplies no PanTS case or annotation to a Full solver.
+Source-defined label names and output paths are contract text. This pack uses one upstream CT for teaching; no matched annotation or Full case is supplied to a solver.
 
 ### Reference or output
 
-The requested output slots are empty. No source annotation, Full private mask or patient image is retained; the class key comes only from the pinned contract.
+The requested output slots are empty. No matching annotation for PanTS_00000684 or Full private mask is retained. The class key comes from the pinned contract, not this CT; a different-case source label is excluded.
 
 ### Workflow
 
-- Inspect the abstract grid and its source-access warning.
+- Inspect three fixed native CT planes and the source-membership warning.
 - Map label IDs and required output files without filling a prediction.
 - Read scorer boundaries and reference availability.

@@ -1,1 +1,1 @@
-Symbolic PanTS contract. Local source retrieval failed; obtain PanTS through the official route. No matched Full case, private GT or result is retained. https://github.com/MrGiovanni/PanTS
+Public PanTSMini CT; Full case unverified. No matched label, private GT or result. Obtain paired data through the official PanTS route. https://github.com/MrGiovanni/PanTS

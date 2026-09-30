@@ -18,7 +18,7 @@ const REOPENING: Record<AutomedSegBKey, string> = {
   liver:
     'Resolve declared LiTS versus MSD source identity and the flagged staging path before pairing any masks.',
   'pancreas-oar':
-    'Acquire permitted local PanTS cases and verify the nonconsecutive label map without redistributing derivatives.',
+    'Acquire an annotation matched to this PanTSMini CT, verify its label mapping, and resolve Full staged-case membership before result claims.',
 };
 
 function SourceView({
@@ -68,6 +68,8 @@ function SourceView({
   const shape = doc.native_geometry.shape_ijk;
   const axis = doc.native_geometry.slice_axis_ijk;
   const axisName = 'ijk'[axis];
+  const width = task === 'pancreas-oar' ? shape[0] : 512;
+  const height = task === 'pancreas-oar' ? shape[1] : 512;
   return (
     <figure
       className={styles.scanFigure}
@@ -77,25 +79,35 @@ function SourceView({
     >
       <div className={styles.scanFrame}>
         <svg
-          viewBox="0 0 512 512"
+          viewBox={`0 0 ${width} ${height}`}
           role="img"
-          aria-label={`${segBData[task].short} sampled native axial CT plane ${axisName}=${image.native_index}${reference ? ' with public source annotation revealed' : ''}`}
+          aria-label={`${segBData[task].short} sampled ${task === 'pancreas-oar' ? 'native k' : 'native axial'} CT plane ${axisName}=${image.native_index}${reference ? ' with public source annotation revealed' : ''}`}
         >
-          <image href={image.ct_png} width="512" height="512" />
+          <image href={image.ct_png} width={width} height={height} />
           {reference && (
             <image
               data-automed-b-reference-overlay
               href={reference.overlay_png}
-              width="512"
-              height="512"
+              width={width}
+              height={height}
             />
           )}
-          <rect x="1" y="1" width="510" height="510" fill="none" stroke="#91abb9" strokeWidth="2" />
+          <rect
+            x="1"
+            y="1"
+            width={width - 2}
+            height={height - 2}
+            fill="none"
+            stroke="#91abb9"
+            strokeWidth="2"
+          />
         </svg>
       </div>
       <figcaption>
-        {segBData[task].short} · native {axisName}={image.native_index} of {shape[axis] - 1} · WL 40
-        / WW 400 HU
+        {segBData[task].short} · native {axisName}={image.native_index} of {shape[axis] - 1} ·{' '}
+        {task === 'pancreas-oar'
+          ? 'stored-value window −160 to 240; HU calibration unverified'
+          : 'WL 40 / WW 400 HU'}
         <br />
         i×j×k = {shape.join(' × ')} voxels · spacing ={' '}
         {doc.native_geometry.voxel_spacing_mm.map((v) => Number(v.toFixed(3))).join(' × ')} mm along
@@ -203,7 +215,9 @@ export function AutomedSegBScene({
                 : task === 'liver'
                   ? 'Three fixed native planes plus one post-hoc public-label-guided plane. This teaching sample is not unbiased Full evidence.'
                   : src.views.length
-                    ? 'Three fixed native planes from an official upstream volume. This example has not been matched to a Full staged case.'
+                    ? task === 'pancreas-oar'
+                      ? 'Three fixed native k planes from official PanTSMini CT PanTS_00000684, selected by 25/50/75% depth without annotation guidance. Full staged-case membership is unverified.'
+                      : 'Three fixed native planes from an official upstream volume. This example has not been matched to a Full staged case.'
                     : 'The Full harness names per-case ct.nii.gz, but no PanTS CT pixels are retained. The grid is abstract.'}
             </p>
             <p>
@@ -238,7 +252,7 @@ export function AutomedSegBScene({
               <p>
                 These IDs belong in one integer dseg map.{' '}
                 {task === 'pancreas-oar'
-                  ? 'The 21 foreground IDs have gaps: a compact 1–21 recoding would violate the contract.'
+                  ? 'The 21 foreground IDs include pancreatic lesion (22) as well as organs. IDs have gaps: a compact 1–21 recoding would violate the contract. These names do not identify anatomy in the displayed CT.'
                   : '1 is vessel; 2 is hepatic tumor.'}
               </p>
             )}
@@ -314,7 +328,7 @@ export function AutomedSegBScene({
             <p className={styles.kicker}>NO REFERENCE ASSET IN THIS PACK</p>
             <p>
               {task === 'pancreas-oar'
-                ? 'No PanTS image or label was retained. The symbolic grid cannot demonstrate anatomy or segmentation quality.'
+                ? 'This upstream PanTSMini CT is retained, but no annotation matched to it was recovered among 65 bounded label cases. Full private ground truth and any participant mask remain absent.'
                 : 'The official upstream CT was recovered without a matched source label. Full private ground truth is absent.'}
             </p>
             <p className={styles.smallNote}>
@@ -406,7 +420,7 @@ export function AutomedSegBOutput({
     s.scene === 'inputs'
       ? src.views.length
         ? 'Input only. Selected public planes are teaching samples; Full staged-case membership is unverified.'
-        : 'Input contract only. No PanTS patient CT is retained.'
+        : 'Input contract only; no source CT pixels are retained.'
       : s.scene === 'output'
         ? 'Required output slots remain empty because no participant mask is retained.'
         : s.scene === 'reference'

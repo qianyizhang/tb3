@@ -1,6 +1,10 @@
 {
+  "acquisition_attempt_receipt": {
+    "path": ".local/explainers/core-20260929/pants-bounded-source-v1/attempt.json",
+    "sha256": "0c21cff60c7d34c341121180524f6c926f96c160e7369be989a21771b92b219c"
+  },
   "acquisition_route": "https://github.com/MrGiovanni/PanTS",
-  "actual_data_gap": "Local source retrieval failed; obtain PanTS through the official route. No matched Full case, private GT or result is retained.",
+  "actual_data_gap": "Official PanTSMini PanTS_00000684 CT is retained as an upstream teaching image; its Full staged-case membership is unverified. No matching source annotation among 65 bounded label cases, private GT, participant output or score.",
   "attempts": [
     {
       "action": "Approved download and inspect exact pinned Full harness archive",
@@ -16,23 +20,69 @@
     },
     {
       "action": "Bounded unauthenticated range GET of official image archive",
-      "source": "https://huggingface.co/datasets/BodyMaps/PanTSMini/resolve/3b1cd61108116b58ea5c1ddb3512c1847d965f96/PanTSMini_ImageTr_00000001_00001000.tar.gz",
       "attempted_at": "2026-09-30T00:32:54.685030+00:00",
-      "outcome": "curl exit 7 before receiving bytes: configured local proxy 127.0.0.1:10808 was unreachable in the restricted command environment. This is a local transport failure, not an upstream access refusal.",
-      "requested_range": "0-33554431",
       "max_seconds": 45,
-      "received_bytes": 0
+      "outcome": "curl exit 7 before receiving bytes: configured local proxy 127.0.0.1:10808 was unreachable in the restricted command environment. This is a local transport failure, not an upstream access refusal.",
+      "received_bytes": 0,
+      "requested_range": "0-33554431",
+      "source": "https://huggingface.co/datasets/BodyMaps/PanTSMini/resolve/3b1cd61108116b58ea5c1ddb3512c1847d965f96/PanTSMini_ImageTr_00000001_00001000.tar.gz"
     },
     {
       "action": "Bounded unauthenticated range GET of official label archive",
-      "source": "https://www.cs.jhu.edu/~zongwei/dataset/PanTSMini_Label.tar.gz",
       "attempted_at": "2026-09-30T00:32:54.685030+00:00",
-      "outcome": "curl exit 7 before receiving bytes: configured local proxy 127.0.0.1:10808 was unreachable in the restricted command environment. This is a local transport failure, not an upstream access refusal.",
-      "requested_range": "0-8388607",
       "max_seconds": 45,
-      "received_bytes": 0
+      "outcome": "curl exit 7 before receiving bytes: configured local proxy 127.0.0.1:10808 was unreachable in the restricted command environment. This is a local transport failure, not an upstream access refusal.",
+      "received_bytes": 0,
+      "requested_range": "0-8388607",
+      "source": "https://www.cs.jhu.edu/~zongwei/dataset/PanTSMini_Label.tar.gz"
+    },
+    {
+      "action": "Approved bounded official image archive range GET",
+      "attempted_at": "2026-09-30T00:45:55+00:00",
+      "outcome": "HTTP 206; 33554432 bytes retained in bounded source receipt. Server response Date recorded; no complete matching CT/label pair.",
+      "received_bytes": 33554432,
+      "requested_range": "0-33554431",
+      "sha256": "45aaaf02b6d903712212a6708cdbc366ffdefa395834313b68909a2ac385bd62",
+      "source": "https://huggingface.co/datasets/BodyMaps/PanTSMini/resolve/3b1cd61108116b58ea5c1ddb3512c1847d965f96/PanTSMini_ImageTr_00000001_00001000.tar.gz"
+    },
+    {
+      "action": "Approved bounded official label archive range GET",
+      "attempted_at": "2026-09-30T00:46:22+00:00",
+      "outcome": "HTTP 206; 8388608 bytes retained in bounded source receipt. Server response Date recorded; no complete matching CT/label pair.",
+      "received_bytes": 8388608,
+      "requested_range": "0-8388607",
+      "sha256": "84c4a107ba367a5a21ea66ab45a080ae3a71384e2fa630048139faabc529ae10",
+      "source": "https://www.cs.jhu.edu/~zongwei/dataset/PanTSMini_Label.tar.gz"
+    },
+    {
+      "action": "Approved bounded official label archive range GET",
+      "attempted_at": "2026-09-30T00:47:11+00:00",
+      "outcome": "HTTP 206; 58720256 bytes retained in bounded source receipt. Server response Date recorded; no complete matching CT/label pair.",
+      "received_bytes": 58720256,
+      "requested_range": "8388608-67108863",
+      "sha256": "e67e7cc04881c4189ff4e4b4f173b4877afb965aff5954d79db0bf3ab6905337",
+      "source": "https://www.cs.jhu.edu/~zongwei/dataset/PanTSMini_Label.tar.gz"
+    },
+    {
+      "action": "Approved bounded official label archive range GET",
+      "attempted_at": "2026-09-30T00:47:54+00:00",
+      "outcome": "HTTP 206; 33554432 bytes retained in bounded source receipt. Server response Date recorded; no complete matching CT/label pair.",
+      "received_bytes": 33554432,
+      "requested_range": "67108864-100663295",
+      "sha256": "85b63c4d684c73e8ac46cddc1c3465fcae8eabce5eae670506525d9e33a32394",
+      "source": "https://www.cs.jhu.edu/~zongwei/dataset/PanTSMini_Label.tar.gz"
     }
   ],
+  "bounded_source_receipt": {
+    "complete_label_case_count": 65,
+    "integrity_path": ".local/explainers/core-20260929/pants-bounded-source-v2/native-integrity.json",
+    "integrity_sha256": "26bccf1f6de094d496e3e40819c91c11644749fd0892e372cc5d27324a8e8e4f",
+    "matching_case_found": false,
+    "network_payload_bytes": 134217728,
+    "path": ".local/explainers/core-20260929/pants-bounded-source-v2/resolution-v2.json",
+    "sha256": "0db8646e5fdaf2bfd7d6191ad6b5540722539032d27ac173b464437f45283e28",
+    "unmatched_label_warning": "PanTS_00001349 label belongs to a different case and is excluded from this pack."
+  },
   "contract_caveats": {
     "aggregate": "Clinical multiclass macro Dice is scaled by inference completeness on partial submissions, then combined with workflow score; no score was executed here.",
     "denominator_status": "Unresolved intent: config prose excludes GT-empty classes while pinned scorer includes all 21 IDs.",
@@ -66,35 +116,114 @@
   },
   "entry_id": "automedbench-full-pancreas-oar-seg-task",
   "full_source_license": "CC BY-NC-ND 4.0",
-  "illustration_basis": "symbolic",
+  "illustration_basis": "mixed",
   "kind": "explainer-source-resolution",
+  "native_header_correction": {
+    "path": ".local/explainers/core-20260929/pants-bounded-source-v2/native-header-correction.json",
+    "sha256": "b6e44d203592e54932db81cc3a1d1167de25c63ce78f3dfc0b245b92cbe5da18"
+  },
+  "native_integrity_header_discrepancy": {
+    "impact": "Builder pins exact source and additive correction hashes, and requires direct on-disk 1/0. Display uses stored values without HU claim. The prior audit bytes remain retained.",
+    "observation": "Direct struct.unpack_from on SHA-pinned compressed NIfTI bytes gives scl_slope=1.0 and scl_inter=0.0 at offsets112/116; retained native-integrity.json calls raw fields NaN because nibabel loaded header reports consumed/unspecified scaling. Effective dataobj scaling remains1/0."
+  },
+  "native_integrity_summary": {
+    "axis_codes": [
+      "R",
+      "A",
+      "S"
+    ],
+    "effective_scaling": {
+      "intercept": 0.0,
+      "slope": 1.0
+    },
+    "header_scaling": {
+      "intercept": 0.0,
+      "method": "direct struct unpack from decompressed pinned NIfTI bytes at offsets 112/116",
+      "slope": 1.0
+    },
+    "loaded_nibabel_header_scaling": {
+      "intercept": "NaN",
+      "meaning": "nibabel loaded header after scaling is consumed; not direct source bytes",
+      "slope": "NaN"
+    },
+    "nested_gzip_crc_valid": true,
+    "qform_code": 0,
+    "sform_code": 2,
+    "stored_datatype": "int16",
+    "uncompressed_nifti_sha256": "3520b8f08f5948fb7cecf393e606ba25c6caf74c4cc922abad7ba78cbe734e57"
+  },
   "official_route_headers": {
     "path": ".local/explainers/core-20260929/automed-seg-b-source/pants-route.headers",
     "sha256": "c073c476259280ca32404ae3982fd2bb86dbe58b1f9a989dd4275aef88835721"
   },
   "presentation_contract": {
-    "frame": "symbolic-unit-grid",
-    "illustration_basis": "symbolic",
+    "frame": "native-NIfTI-voxel-ijk",
+    "illustration_basis": "mixed",
     "label_license": null,
     "reference_policy": "no-reference-assets",
-    "runtime_geometry": "source-records",
+    "runtime_geometry": "source-slices",
     "source_class": "source-derived-teaching",
-    "units": "unitless"
+    "units": "voxel"
   },
+  "prior_metadata": [
+    {
+      "path": ".local/explainers/core-20260929/automed-seg-c-source/PanTSMini-shard.headers",
+      "sha256": "1626f538cb41ad2b61dcb2d34de8cc13d48ca330666989e5a954ec3c35aa4ffb"
+    },
+    {
+      "path": ".local/explainers/core-20260929/automed-seg-c-source/PanTSMini-label.headers",
+      "sha256": "eb0a27bef63590321bfb5c4774a8cf94a9e933225e3e3aa80edf0a6a96f5669b"
+    }
+  ],
   "reference_policy": "no-reference-assets",
-  "reopening_condition": "Restore approved network execution and retry bounded image/label prefix streaming; verify complete member bytes, paired case, label taxonomy, native shape and affine before displaying pixels. Full selection/private-GT mapping remains separate.",
-  "reviewed_at": "2026-09-29T05:48:01Z",
+  "reopening_condition": "Recover a complete label for PanTS_00000684 or a complete CT for a retained label case; verify exact case ID, native shape/affine, source-to-Full class conversion and rights before showing any overlay. Full selection/private GT remain separate.",
+  "reviewed_at": "2026-09-30T00:51:06.726938+00:00",
   "schema": 1,
+  "source_access_caveat": "Authorized local noncommercial interpretation of official PanTSMini CT; the no-redistribution gate for converted/staged derivatives is not a local-download ban. No source image is published by this draft.",
   "source_class": "source-derived-teaching",
-  "source_example": null,
+  "source_example": {
+    "acquisition_receipt_path": ".local/explainers/core-20260929/pants-bounded-source-v2/resolution-v2.json",
+    "acquisition_receipt_sha256": "0db8646e5fdaf2bfd7d6191ad6b5540722539032d27ac173b464437f45283e28",
+    "axis_codes": "RAS",
+    "case_id": "PanTS_00000684",
+    "display_window_stored_values": [
+      -160,
+      240
+    ],
+    "intensity_calibration_status": "HU calibration/clipping/preprocessing unverified; values shown in stored units",
+    "native_header_correction_path": ".local/explainers/core-20260929/pants-bounded-source-v2/native-header-correction.json",
+    "native_header_correction_sha256": "b6e44d203592e54932db81cc3a1d1167de25c63ce78f3dfc0b245b92cbe5da18",
+    "native_integrity_path": ".local/explainers/core-20260929/pants-bounded-source-v2/native-integrity.json",
+    "native_integrity_sha256": "26bccf1f6de094d496e3e40819c91c11644749fd0892e372cc5d27324a8e8e4f",
+    "path": ".local/explainers/core-20260929/pants-bounded-source-v2/PanTS_00000684-ct.nii.gz",
+    "role": "official-upstream-CT-not-proven-Full-staged-case",
+    "selected_native_k": [
+      38,
+      76,
+      114
+    ],
+    "selection_rule": "fixed fractional positions at 25%, 50%, 75% of native k length; no label guidance",
+    "sha256": "e193931065e7707356439a1133897984438d8ca100b9347da8e415637898d330",
+    "shape_ijk": [
+      266,
+      158,
+      152
+    ],
+    "voxel_spacing_mm": [
+      1.5,
+      1.5,
+      1.5
+    ]
+  },
   "source_license": "CC-BY-NC-ND-4.0",
   "source_revision": {
     "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "pantsmini_hf_commit": "3b1cd61108116b58ea5c1ddb3512c1847d965f96",
     "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03",
     "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99"
   },
   "source_roles": {
-    "private_reference": "No source annotation or Full /data/private reference retained; the 21-class key is pinned contract text, not an observed label map.",
+    "private_reference": "No matched source annotation for PanTS_00000684 and no Full /data/private reference; the 21-class key is contract text, not an observed label map.",
     "required_output": {
       "paths": [
         "{case_id}/dseg.nii.gz"
@@ -102,8 +231,8 @@
       "root": "agents_outputs",
       "type": "all_paths"
     },
-    "solver_input": "Full staged ct.nii.gz per case; unavailable in package",
-    "supplied_helper": "Pinned Full task/config label and file contracts only; no PanTS image or source annotation is supplied in this pack."
+    "solver_input": "Full staged ct.nii.gz per case; no Full case is supplied by this pack. Official upstream PanTSMini CT illustrates the image input only.",
+    "supplied_helper": "Pinned Full task/config label and file contracts; the upstream CT is an input illustration, not verified Full membership."
   },
   "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/pancreas-oar-seg-task.tar.gz",
   "task_package": {
@@ -162,20 +291,5 @@
     "sha256": "5b5d91b220c752970e3c9a5ac3cadf28a9e98e6cf9d35d8c472eec201db50beb"
   },
   "upstream_url": "https://github.com/MrGiovanni/PanTS",
-  "acquisition_attempt_receipt": {
-    "path": ".local/explainers/core-20260929/pants-bounded-source-v1/attempt.json",
-    "sha256": "0c21cff60c7d34c341121180524f6c926f96c160e7369be989a21771b92b219c"
-  },
-  "prior_metadata": [
-    {
-      "path": ".local/explainers/core-20260929/automed-seg-c-source/PanTSMini-shard.headers",
-      "sha256": "1626f538cb41ad2b61dcb2d34de8cc13d48ca330666989e5a954ec3c35aa4ffb"
-    },
-    {
-      "path": ".local/explainers/core-20260929/automed-seg-c-source/PanTSMini-label.headers",
-      "sha256": "eb0a27bef63590321bfb5c4774a8cf94a9e933225e3e3aa80edf0a6a96f5669b"
-    }
-  ],
-  "source_access_caveat": "The redistribution gate is not evidence of a local-download prohibition. A compressed tar may permit bounded prefix extraction of early members; feasibility and matched-case recovery remain untested because these GETs failed before network transfer. No Full case equivalence is inferred.",
-  "warning_text": "Symbolic PanTS contract \u2014 Local source retrieval failed; obtain PanTS through the official route. No matched Full case, private GT or result is retained."
+  "warning_text": "Official upstream PanTS CT; Full case and matched label unverified. No private GT, prediction or score. Acquire paired labels through official PanTS route."
 }

@@ -32,7 +32,10 @@ export type SourceDoc = {
     affine_first_three_rows: number[][];
     slice_axis_ijk: number;
     axis_display: string;
-    window_hu: number[];
+    window_hu?: number[];
+    window_stored_values?: number[];
+    intensity_unit?: string;
+    axis_codes?: string;
   };
   views: { native_index: number; ct_png: string }[];
   notice: { label: string; text: string; url: string };
@@ -73,8 +76,8 @@ export const segBData: Record<
   'pancreas-oar': {
     source: JSON.parse(pancreasSourceRaw),
     output: JSON.parse(pancreasOutputRaw),
-    title: '21 pancreas-region structures',
-    short: 'PanTS contract',
+    title: '21 pancreas-region targets',
+    short: 'PanTSMini CT',
   },
 };
 export type SegBReaderReference = {

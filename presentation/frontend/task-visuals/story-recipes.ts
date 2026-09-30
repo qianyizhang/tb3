@@ -684,14 +684,14 @@ export function storyPresentation(plan: StoryPlan): {
       };
     case 'automed-full-pancreas-oar-v1':
       return {
-        heading: 'Map pancreas organs at risk',
+        heading: 'Label 21 pancreas-region targets',
         corner: 'AutoMed Full · segmentation contract',
         warning: {
           ...segBData['pancreas-oar'].source.notice,
           link_label: 'Official source / acquire data',
         },
         legend: [
-          ['#91a6ae', 'Upstream CT or symbolic grid'],
+          ['#91a6ae', 'Upstream PanTSMini CT'],
           ['#18c6d4', 'Required output IDs'],
           ['#7ba4b8', 'No prediction'],
         ],

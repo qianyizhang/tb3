@@ -137,7 +137,7 @@ RECIPE_PACKS = {
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
     "retained-automed-full-pancreas-oar-seg-v1": (
-        "source-records",
+        "source-slices",
         None,
         {"output.json", "DATA-LICENSE.txt", "source.json", "NOTICE.md"},
     ),
@@ -4011,7 +4011,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "CC-BY-SA-4.0",
             ),
             "retained-automed-full-pancreas-oar-seg-v1": (
-                "symbolic-unit-grid",
+                "native-NIfTI-voxel-ijk",
                 "CC-BY-NC-ND-4.0",
                 None,
             ),
@@ -4159,7 +4159,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-imaging101-nlos-v1"
                 else "cm^-1"
                 if pack_id == "retained-imaging101-cars-v1"
-                else "unitless"
+                else "voxel"
                 if pack_id == "retained-automed-full-pancreas-oar-seg-v1"
                 else "record"
                 if pack_id == "retained-history-sourcing-v1"
