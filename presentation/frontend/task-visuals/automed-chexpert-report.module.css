@@ -1,0 +1,137 @@
+.scene {
+  display: grid;
+  gap: 12px;
+  padding: 10px;
+  align-content: start;
+}
+.scene h3 {
+  margin: 0;
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.card,
+.socket {
+  border: 1px solid #728e98;
+  border-radius: 12px;
+  padding: 15px;
+  background: #0d252e;
+  color: #e1f1f2;
+}
+.card p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 8px 0;
+}
+.socket {
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  text-align: center;
+  gap: 18px;
+  border-style: dashed;
+}
+.socket span {
+  font-size: 13px;
+  color: #b7ccd1;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.buttons button,
+.card button {
+  background: #0b3a43;
+  color: #e9ffff;
+  border: 1px solid #8ab9c5;
+  border-radius: 7px;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+.buttons button[aria-pressed='true'] {
+  background: #176876;
+  border-color: #56e3e6;
+}
+.tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 12px;
+}
+.tags code {
+  font-size: 11px;
+  overflow-wrap: anywhere;
+  background: #163842;
+  padding: 5px;
+}
+.steps {
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.steps li[data-active='true'] {
+  color: #61e0e7;
+}
+.path {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.empty {
+  border: 1px dashed #8ab1ba;
+  padding: 15px;
+  border-radius: 7px;
+  margin: 10px 0;
+  color: #bfd7dc;
+}
+.caution {
+  color: #f1d28d !important;
+  font-size: 13px;
+  line-height: 1.45;
+}
+@media (max-width: 650px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .socket {
+    min-height: 140px;
+  }
+  .tags {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.scene {
+  background: #0c1b26;
+  min-width: 0;
+}
+.scene h3,
+.aside h3 {
+  color: #eaf1f4;
+}
+.scene p,
+.scene li,
+.scene code,
+.aside p,
+.aside code {
+  color: #d4e5ed;
+}
+.aside {
+  background: #11212d;
+  color: #eaf1f4;
+}
+.scene b,
+.scene strong,
+.aside strong {
+  color: #91e9ee;
+}
+.scene *,
+.aside * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

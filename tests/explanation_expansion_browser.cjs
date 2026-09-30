@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-chexpert-report-v1',
   'automed-skin-lesion-cls-v1',
   'automed-pcam-cls-v1',
   'automed-crc-cls-v1',
@@ -97,6 +98,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-chexpert-report-v1')
+    return {
+      scene: 'data-chexpert-scene',
+      reference: '[data-chexpert-private-reference]',
+      referenceChannel: null,
+      output: '[data-chexpert-output-schema]',
+      aside: '[data-chexpert-output]',
+    };
   if (plan.recipe === 'automed-skin-lesion-cls-v1')
     return {
       scene: 'data-skin-lesion-scene',
@@ -577,6 +586,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-chexpert-report-v1': [
+      /Exact Full frontal JPEG, staged case\/patient join, reference report and submitted report absent.*metadata GET200.*no access denial is inferred/s,
+      'https://aimi.stanford.edu/datasets/chexpert-plus',
+      'data-chexpert-scene',
+      true,
+    ],
     'automed-skin-lesion-cls-v1': [
       /Source HAM10000 example only.*Full case split, private labels and results absent/s,
       'https://api.isic-archive.com/collections/212/',
@@ -1078,6 +1093,137 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-chexpert-report-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const step = (name) => plan.beats.findIndex((b) => b.scene === name);
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-chexpert-input] img').count(), 0);
+    assert.match(
+      await page.locator('[data-chexpert-input]').innerText(),
+      /Study unit.*patient join unknown/s,
+    );
+    assert.match(await page.locator('[data-chexpert-output]').innerText(), /Report text.*unset/s);
+    await page.locator(`[data-story-step="${step('helper')}"]`).click();
+    const classes = [
+      'support_devices',
+      'no_acute_process',
+      'clear_lungs',
+      'low_lung_volumes',
+      'consolidation',
+      'pleural_effusion',
+      'pneumothorax',
+      'pulmonary_edema',
+      'cardiomegaly',
+      'adenopathy_or_mass',
+      'granuloma_or_calcified_nodule',
+      'post_surgical_changes',
+    ];
+    assert.equal(await page.locator('[data-chexpert-helper] code').count(), 12);
+    assert.deepEqual(await page.locator('[data-chexpert-helper] code').allTextContents(), classes);
+    assert.match(
+      await page.locator('[data-chexpert-helper]').innerText(),
+      /binary text regex.*original14.*no image-derived finding/s,
+    );
+    assert.match(await page.locator('[data-chexpert-helper]').innerText(), /global negative match/);
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    const tiers = page.getByRole('group', { name: 'CheXpert method guidance' });
+    await tiers.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-chexpert-operation]').innerText(),
+      /CheXagent-2-3b.*CheXagent-8b.*MedVersa.*MAIRA-2.*at least two/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-tier-standard.png`) });
+    const operations = [
+      'Verify single frontal view and staged case identity',
+      'Provision tier method and its preprocessing',
+      'Generate report under text constraints',
+      'Submit every discovered case without reading private references',
+    ];
+    const questions = [
+      /S1 plan.md.*model variant.*processor\/tokenizer/s,
+      /S2 setup.*CUDA_VISIBLE_DEVICES.*workers.*2/s,
+      /S3 example guidance.*40 alphabetic.*60 seconds.*20 alphabetic/s,
+      /S4\/S5.*every discovered study.*private reports\/labels outside generation/s,
+    ];
+    const navigation = page.getByRole('navigation', { name: 'CheXpert canonical operation steps' });
+    for (let i = 0; i < 4; i++) {
+      const button = navigation.getByRole('button', { name: operations[i], exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(await page.locator('[data-chexpert-stage-question]').innerText(), questions[i]);
+      assert.equal(await page.locator('[data-chexpert-operation] li').innerText(), operations[i]);
+      assert.equal(await page.locator('[data-chexpert-private-reference]').count(), 0);
+      if (i === 2)
+        await page
+          .locator('.scene-player')
+          .screenshot({ path: path.join(output, `${label}-s3-checker-difference.png`) });
+    }
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    const format = page.getByRole('button', { name: 'Inspect format constraints', exact: true });
+    assert.equal(await page.locator('[data-chexpert-format]').count(), 0);
+    await format.click();
+    assert.match(
+      await page.locator('[data-chexpert-format]').innerText(),
+      /UTF8.*ASCII.*40\.\.8000.*20 alphabetic/s,
+    );
+    assert.match(
+      await page.locator('[data-chexpert-output-schema]').innerText(),
+      /agent_outputs\/<case_id>\/report.txt.*No report text.*count>0.*rating F/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-format-revealed.png`) });
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    const metrics = page.getByRole('group', { name: 'Report metric aggregation' });
+    await metrics.getByRole('button', { name: 'micro', exact: true }).click();
+    assert.match(
+      await page.locator('[data-chexpert-metric]').innerText(),
+      /Pool TP\/FP\/FN.*separate diagnostic.*not configured clinical score/s,
+    );
+    const sections = page.getByRole('group', { name: 'Reference text selector mechanics' });
+    await sections.getByRole('button', { name: 'Full-report fallback', exact: true }).click();
+    assert.match(
+      await page.locator('[data-chexpert-selector]').innerText(),
+      /full stripped report.*no separate Impression selector/,
+    );
+    assert.match(
+      await page.locator('[data-chexpert-limits]').innerText(),
+      /Both positive sets empty.*F1=1.*No scores, ratings or outcomes measured/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-micro-fallback.png`) });
+    await metrics.getByRole('button', { name: 'macro', exact: true }).click();
+    assert.match(
+      await page.locator('[data-chexpert-metric]').innerText(),
+      /\.7 mean per-case observation F1.*\.3 mean per-case ROUGE-L F1.*all case_ids/s,
+    );
+    await page.locator(`[data-story-step="${step('output')}"]`).click();
+    assert.equal(await page.locator('[data-chexpert-format]').count(), 0);
+    await page.locator(`[data-story-step="${step('limits')}"]`).click();
+    assert.equal(
+      await metrics
+        .getByRole('button', { name: 'macro', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.equal(
+      await sections
+        .getByRole('button', { name: 'Nonempty Findings', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${step('operation')}"]`).click();
+    assert.equal(
+      await tiers.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('[data-story-step="0"]').click();
   }
   if (plan.recipe === 'automed-skin-lesion-cls-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -5519,6 +5665,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-chexpert-report-v1',
       'automed-skin-lesion-cls-v1',
       'automed-pcam-cls-v1',
       'automed-crc-cls-v1',

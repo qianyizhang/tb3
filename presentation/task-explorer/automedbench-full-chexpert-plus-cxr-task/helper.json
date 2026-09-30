@@ -1,0 +1,24 @@
+{
+  "classes": [
+    "support_devices",
+    "no_acute_process",
+    "clear_lungs",
+    "low_lung_volumes",
+    "consolidation",
+    "pleural_effusion",
+    "pneumothorax",
+    "pulmonary_edema",
+    "cardiomegaly",
+    "adenopathy_or_mass",
+    "granuloma_or_calcified_nodule",
+    "post_surgical_changes"
+  ],
+  "patient_labels": null,
+  "rules": "Positive match without any global negative match =>1. Uncertain wording may match positive; no ternary uncertainty interpretation.",
+  "schema_boundary": "12 binary text regex concepts differ from original14 CheXpert labels; no image-derived finding or patient answer",
+  "tiers": {
+    "lite": "Source names CheXagent-2-3b single-frontal report path; weights/availability unverified.",
+    "standard": "Source asks comparison of at least two named report candidates; gated access and weights remain provisioning work."
+  },
+  "training_labels": "No verified public training annotation retained; current mirror rows are validation, never held-out Full answers."
+}

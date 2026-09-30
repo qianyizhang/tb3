@@ -300,6 +300,7 @@ def new(
             "automed-brain-cls-v1",
             "automed-crc-cls-v1",
             "automed-pcam-cls-v1",
+            "automed-chexpert-report-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

@@ -13,7 +13,8 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
         '-c',
         'import json; from pathlib import Path; from tb3_medical.explanation_stories import compile_story; r=Path.cwd(); print(json.dumps([compile_story(r,p) for pattern in ["groups/*/presentation/stories/*.story.md","presentation/external-tasks/stories/*.story.md"] for p in r.glob(pattern)]))',
       ],
-      { cwd: root, encoding: 'utf8' },
+      // The complete catalogue exceeds Node's default 1 MiB output buffer.
+      { cwd: root, encoding: 'utf8', maxBuffer: 4 * 1024 * 1024 },
     ),
   );
   const {

@@ -1,0 +1,299 @@
+{
+  "acquisition_route": "https://aimi.stanford.edu/datasets/chexpert-plus",
+  "actual_data_gap": "Exact Full frontal JPEG, staged case/patient join, reference report and submitted report absent. Official and mirror metadata GET200 do not establish matching derivative bytes or source terms; no access denial is inferred.",
+  "attempts": [
+    {
+      "action": "retrieve exact pinned Full task harness and verify MANIFEST.sha256",
+      "attempted_at": "2026-09-29T06:31:48Z",
+      "outcome": "HTTP 200; 21193 bytes; dataset.included=false; all extracted manifest hashes verify",
+      "receipt": {
+        "bytes": 3591,
+        "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task.headers",
+        "sha256": "70ab463cfc36b82082a60c09cfe42bea3c1652a69ed012614ef641b94e8e01c3"
+      },
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/chexpert-plus-cxr-task.tar.gz"
+    },
+    {
+      "action": "HEAD official upstream acquisition route",
+      "attempted_at": "2026-09-29T06:33:54Z",
+      "outcome": "HTTP 200 landing route; no case ID, image, source license or Full split acquired by HEAD",
+      "receipt": {
+        "bytes": 669,
+        "path": ".local/explainers/core-20260929/interpretation-e-source/chexpert-official.headers",
+        "sha256": "e67fd4c59cc63706122c4d212ef8f9a441f9423650a56f44bfd7980c5b79c162"
+      },
+      "source": "https://aimi.stanford.edu/datasets/chexpert-plus"
+    },
+    {
+      "source": "https://aimi.stanford.edu/datasets/chexpert-plus",
+      "attempted_at": "2026-09-30T13:09:42.093753+00:00",
+      "action": "bounded anonymous source/contract read",
+      "cap_bytes": 262144,
+      "status": 200,
+      "bytes": 45645,
+      "sha256": "89b56851a644dd9512ac0ed15ed8accd0b1f8246fdb8f0844f5342e05e89bf3a",
+      "content_type": "text/html; charset=UTF-8",
+      "outcome": "Captured bounded metadata/page bytes; does not establish exact Full case identity, licensing or image acquisition"
+    },
+    {
+      "source": "https://stanford.redivis.com/datasets/5yyj-1a9f6ap0x?v=next",
+      "attempted_at": "2026-09-30T13:09:45.279791+00:00",
+      "action": "bounded anonymous source/contract read",
+      "cap_bytes": 262144,
+      "status": 200,
+      "bytes": 20201,
+      "sha256": "1d97209ea6fd2a23e30c9fa2fd2c36f07d9d45c230b53235b941a1a1945fc658",
+      "content_type": "text/html; charset=utf-8",
+      "outcome": "Captured bounded metadata/page bytes; does not establish exact Full case identity, licensing or image acquisition"
+    },
+    {
+      "source": "https://huggingface.co/api/datasets/X-iZhang/CheXpert-plus-RRG",
+      "attempted_at": "2026-09-30T13:09:46.047323+00:00",
+      "action": "bounded anonymous source/contract read",
+      "cap_bytes": 131072,
+      "status": 200,
+      "bytes": 2219,
+      "sha256": "2a5dcec635e181be38415179cd4a43d6efc30d59b9877fb99418a226effd7878",
+      "content_type": "application/json; charset=utf-8",
+      "outcome": "Captured bounded metadata/page bytes; does not establish exact Full case identity, licensing or image acquisition"
+    }
+  ],
+  "browser_review": false,
+  "entry_id": "automedbench-full-chexpert-plus-cxr-task",
+  "grader_run": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "pack_license": "LicenseRef-CheXpertPlus-terms-unresolved",
+  "participant_output_retained": false,
+  "preparer_run": false,
+  "reference_policy": "no-reference-assets",
+  "reviewed_at": "2026-09-29T06:37:00Z",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_files": [
+    {
+      "bytes": 1373,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/task.json",
+      "sha256": "59c388fe6dc64891452860b62f46086e4dc65a6d263d7cbc0889e8daa226994e"
+    },
+    {
+      "bytes": 1158,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/tasks/chexpert-plus-cxr-task/config.yaml",
+      "sha256": "449817f8b30f90b13a6276e487296e920584a849171a0756ddf7276597b2b688"
+    },
+    {
+      "bytes": 7118,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/run_eval.py",
+      "sha256": "c33a520df46666524ac4d836f8a02a57fa760d20779c97fd9243cc2c17b62e6c"
+    },
+    {
+      "bytes": 3113,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/format_checker.py",
+      "sha256": "78f61b3c7f06614766bc53f6164fc40eab2a06e2da42a724534cae00c49eb797"
+    },
+    {
+      "bytes": 15742,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/report_scorer.py",
+      "sha256": "9fcaf315e6ce485d2cfe81392e82ed7b9e8435ce6a22929094924704ace43622"
+    },
+    {
+      "bytes": 4058,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/observation_schemas/cxr_12class.yaml",
+      "sha256": "6f26530caec969fade723da40962a97c51a49cdabe569fe347391a6c381b04f9"
+    }
+  ],
+  "source_revision": {
+    "config_path": "source/tasks/chexpert-plus-cxr-task/config.yaml",
+    "config_sha256": "449817f8b30f90b13a6276e487296e920584a849171a0756ddf7276597b2b688",
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "ref": "0fa32bb2a194c3ffb3cfb67e5e49a7c215dc7072",
+    "staging_manifest_sha256": "f1facdf48a1453104c4d01840b4f473e6d2e95158deacd8dcb266d2a03a11262"
+  },
+  "source_roles": {
+    "answer_owned_output": "agent_outputs/<case_id>/report.txt, 40\u20138000 characters and at least 20 alphabetic characters; empty",
+    "private_reference": "private/<case_id>/report.txt and labels.json; reader-only and not bundled",
+    "scorer": "lightweight backend: 0.7 observation F1 plus 0.3 report similarity (ROUGE-L F1); regex schema and reference text/labels are proxies, not independent clinical adjudication; any missing or invalid report forces rating F",
+    "solver_input": "Full public/<case_id>/images frontal JPEG, configured one view per study; no case locally",
+    "supplied_helper": "Task config, source observation schema and Lite CheXagent-2-3b guidance; weights not bundled or run"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/report/chexpert-plus-cxr-task.tar.gz",
+  "task_contract": {
+    "metric_weights": {
+      "observation_f1": 0.7,
+      "report_similarity": 0.3
+    },
+    "observation_schema": "cxr_12class.yaml",
+    "output_path": "agent_outputs/<case_id>/report.txt",
+    "pilot_split_pointer": "test_100_v1_chexpert_plus.txt in config, absent from this archive; only source/splits/pilot_10_studies.txt retained. No invocation or failure inferred.",
+    "reference_mode": "findings_or_impression",
+    "report_max_chars": 8000,
+    "report_min_alpha_chars": 20,
+    "report_min_chars": 40,
+    "split_config": "test_100_v1; actual manifest absent",
+    "views_per_case": "one frontal JPEG"
+  },
+  "task_package": {
+    "archive": {
+      "bytes": 21193,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task.tar.gz",
+      "sha256": "78665d3fa646a10de9eca4b4afa63e754142a372792f80c1e7681298396b15de"
+    },
+    "manifest": {
+      "bytes": 2203,
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/MANIFEST.sha256",
+      "sha256": "7ae4b4d746b145ebb22d26062bfadaae97cb3a5d52da72f7ba0bc0aba0e7ec94"
+    },
+    "task_json": {
+      "dataset": {
+        "access": "public_mirror",
+        "data_dir_name": "CheXpert_Plus_Report",
+        "included": false,
+        "license": "no license declared by current mirror",
+        "policy": "unknown",
+        "private_mount": "/data/private",
+        "public_mount": "/data/public",
+        "release_gate": "Hold until exact Stanford terms and source revision are recorded",
+        "upstream": "CheXpert Plus",
+        "upstream_url": "https://aimi.stanford.edu/datasets/chexpert-plus"
+      },
+      "evaluator": {
+        "adapter": "report",
+        "entrypoint": "source/run_eval.py",
+        "network_required": false
+      },
+      "evaluator_task_id": "chexpert-plus-cxr-task",
+      "input_contract": {
+        "filename": null,
+        "unit": "case"
+      },
+      "output_contract": {
+        "paths": [
+          "{case_id}/report.txt"
+        ],
+        "root": "agent_outputs",
+        "type": "all_paths"
+      },
+      "package_type": "automedbench_task_harness",
+      "runtime_assets": [],
+      "schema_version": 2,
+      "source": {
+        "config_path": "source/tasks/chexpert-plus-cxr-task/config.yaml",
+        "config_sha256": "449817f8b30f90b13a6276e487296e920584a849171a0756ddf7276597b2b688",
+        "ref": "0fa32bb2a194c3ffb3cfb67e5e49a7c215dc7072",
+        "staging_manifest_sha256": "f1facdf48a1453104c4d01840b4f473e6d2e95158deacd8dcb266d2a03a11262"
+      },
+      "tiers": [
+        "lite",
+        "standard"
+      ],
+      "track": "report",
+      "website_task_id": "chexpert-plus-cxr-task"
+    }
+  },
+  "top_warning": {
+    "label": "JPEG and Full case mapping absent \u00b7 symbolic report task",
+    "text": "Exact Full frontal JPEG, staged case/patient join, reference report and submitted report absent. Official and mirror metadata GET200 do not establish matching derivative bytes or source terms; no access denial is inferred.",
+    "url": "https://aimi.stanford.edu/datasets/chexpert-plus",
+    "link_label": "Official CheXpert Plus acquisition"
+  },
+  "resolved_at": "2026-09-30T13:29:05.775917+00:00",
+  "source_pins": [
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/task.json",
+      "bytes": 1373,
+      "sha256": "59c388fe6dc64891452860b62f46086e4dc65a6d263d7cbc0889e8daa226994e"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/MANIFEST.sha256",
+      "bytes": 2203,
+      "sha256": "7ae4b4d746b145ebb22d26062bfadaae97cb3a5d52da72f7ba0bc0aba0e7ec94"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/run_eval.py",
+      "bytes": 7118,
+      "sha256": "c33a520df46666524ac4d836f8a02a57fa760d20779c97fd9243cc2c17b62e6c"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/format_checker.py",
+      "bytes": 3113,
+      "sha256": "78f61b3c7f06614766bc53f6164fc40eab2a06e2da42a724534cae00c49eb797"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/report_scorer.py",
+      "bytes": 15742,
+      "sha256": "9fcaf315e6ce485d2cfe81392e82ed7b9e8435ce6a22929094924704ace43622"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/aggregate.py",
+      "bytes": 5869,
+      "sha256": "31a0ce12d69eea19949493bf6e9321c4fb9aedc5da4adaea078b127b5311e441"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/task_loader.py",
+      "bytes": 2616,
+      "sha256": "6543fa631f1f77eea2de3a4887443e957fd2162d364d8099c9d83a1c24a1749e"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/observation_schemas/cxr_12class.yaml",
+      "bytes": 4058,
+      "sha256": "6f26530caec969fade723da40962a97c51a49cdabe569fe347391a6c381b04f9"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/tasks/chexpert-plus-cxr-task/config.yaml",
+      "bytes": 1158,
+      "sha256": "449817f8b30f90b13a6276e487296e920584a849171a0756ddf7276597b2b688"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task/automedbench-task/source/tasks/chexpert-plus-cxr-task/model_info.yaml",
+      "bytes": 2123,
+      "sha256": "84d3b5169af3ffb5b4b89f25e24c5d0a4f52174a43ac7da31846b51a00d80e1b"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-e-source/packages/chexpert-plus-cxr-task.tar.gz",
+      "bytes": 21193,
+      "sha256": "78665d3fa646a10de9eca4b4afa63e754142a372792f80c1e7681298396b15de",
+      "role": "pinned-Full-harness"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chexpert-plus-cxr-task/source-evidence/attempts.json",
+      "bytes": 1570,
+      "sha256": "222b57a8888abd1ae4685a0514e9d30285a18739ef4192f8711724303c6f136f",
+      "role": "fresh-anonymous-source-contract-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chexpert-plus-cxr-task/source-evidence/canonical.bin",
+      "bytes": 20201,
+      "sha256": "1d97209ea6fd2a23e30c9fa2fd2c36f07d9d45c230b53235b941a1a1945fc658",
+      "role": "fresh-anonymous-source-contract-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chexpert-plus-cxr-task/source-evidence/mirror-metadata.bin",
+      "bytes": 2219,
+      "sha256": "2a5dcec635e181be38415179cd4a43d6efc30d59b9877fb99418a226effd7878",
+      "role": "fresh-anonymous-source-contract-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-chexpert-plus-cxr-task/source-evidence/official.bin",
+      "bytes": 45645,
+      "sha256": "89b56851a644dd9512ac0ed15ed8accd0b1f8246fdb8f0844f5342e05e89bf3a",
+      "role": "fresh-anonymous-source-contract-receipt"
+    }
+  ],
+  "contract_audit": {
+    "unit": "study; one frontal JPEG; no independent-patient claim",
+    "format": "UTF8 plus ASCII string.printable, 40..8000 chars, >=20 alpha; every discovered case valid, total>0",
+    "output": "agent_outputs/<case_id>/report.txt",
+    "private": "report.txt / labels.json / manifest.json absent",
+    "clinical_score": ".7 macro observation F1 + .3 macro ROUGE-L; all-case invalidity gate",
+    "backend": "lightweight; not MLRG/RadGraph",
+    "labels": "12 text-regex concepts, not original14 labels; no ternary uncertainty conversion; global negative overrides positive",
+    "selector": "nonempty Findings preferred, otherwise full text; no distinct Impression selector",
+    "zero_positive": "both positive sets empty => F1=1 by convention",
+    "micro": "pooled TP/FP/FN diagnostic, distinct from macro and may remain after aggregate gate",
+    "workflow": "five weights .25/.15/.35/.15/.10, S1-S3 default0 absent judge; overall .5workflow+.5clinical",
+    "rating": "valid required, clinical thresholds .80/.55; any invalid => F",
+    "mirror": "revision07c5c6025b9f7f671eaf3251ced18bf60f698ee3, valid62Findings/202Impression; exact Full join absent; license absent"
+  },
+  "reopening_condition": "Recover exact licensed frontal derivative and staged study/case IDs, preserve public helper versus private report/label isolation, verify source label conversion and view constraints; execution and clinical validation require separate evidence."
+}

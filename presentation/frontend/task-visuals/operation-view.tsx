@@ -1,4 +1,8 @@
 import {
+  AutomedChexpertReportScene,
+  AutomedChexpertReportOutput,
+} from './automed-chexpert-report-panels';
+import {
   AutomedSkinLesionScene,
   AutomedSkinLesionOutput,
 } from './automedbench-full-skin-lesion-cls-task-panels';
@@ -297,6 +301,8 @@ export function OperationScene({
   if (state.recipe === 'automed-pcam-cls-v1') return <AutomedPcamClsScene state={state} />;
   if (state.recipe === 'automed-skin-lesion-cls-v1')
     return <AutomedSkinLesionScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'automed-chexpert-report-v1')
+    return <AutomedChexpertReportScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -619,6 +625,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'automed-pcam-cls-v1') return <AutomedPcamClsOutput state={state} />;
   if (state.recipe === 'automed-skin-lesion-cls-v1')
     return <AutomedSkinLesionOutput state={state} />;
+  if (state.recipe === 'automed-chexpert-report-v1')
+    return <AutomedChexpertReportOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

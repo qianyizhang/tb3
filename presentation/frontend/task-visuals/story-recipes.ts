@@ -1,3 +1,4 @@
+import { automedChexpertReportPack } from './automed-chexpert-report';
 import { automedSkinLesionPack } from './automedbench-full-skin-lesion-cls-task';
 import { automedPcamClsPack } from './automed-pcam-cls';
 import { automedCrcClsPack } from './automed-crc-cls';
@@ -112,6 +113,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-chexpert-report-v1',
     'automed-skin-lesion-cls-v1',
     'automed-pcam-cls-v1',
     'automed-crc-cls-v1',
@@ -1029,6 +1031,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Public source image; private label absent'],
           ['#18c6d4', 'Seven-index abbreviation remapping'],
           ['#7ba4b8', 'Canonical class files; output absent'],
+        ],
+      };
+    case 'automed-chexpert-report-v1':
+      return {
+        heading: 'Generate a frontal CheXpert report',
+        corner: 'Symbolic Full report workflow',
+        warning: automedChexpertReportPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Required frontal JPEG socket'],
+          ['#18c6d4', 'Empty report schema'],
+          ['#7ba4b8', 'Private targets absent'],
         ],
       };
     case 'bcer-brain-full-v1':
