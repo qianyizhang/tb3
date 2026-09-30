@@ -1,0 +1,1 @@
+Upstream teaching image; Full case unverified. Official MSD Task08 public test CT recovered; no matching public label, Full staged case, private GT, prediction or score. https://msd-for-monai.s3-us-west-2.amazonaws.com/Task08_HepaticVessel.tar

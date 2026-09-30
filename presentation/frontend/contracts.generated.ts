@@ -4,7 +4,7 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
-export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
+export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -2851,6 +2851,150 @@ export interface AutomedSegAHeartPlan {
   recipe: "automed-full-heart-seg-v1";
   beats: Array<AutomedSegAHeartBeat>;
 }
+export interface AutomedSegBHepaticvesselChannels {
+  view: [number, number];
+  class: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegBHepaticvesselBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegBHepaticvesselChannels;
+  scene: "inputs" | "mapping" | "output" | "reference" | "scorer" | "limits";
+}
+export interface AutomedSegBHepaticvesselPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-hepaticvessel-v1";
+  beats: Array<AutomedSegBHepaticvesselBeat>;
+}
+export interface AutomedSegBKidneyChannels {
+  view: [number, number];
+  class: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegBKidneyBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegBKidneyChannels;
+  scene: "inputs" | "mapping" | "output" | "reference" | "scorer" | "limits";
+}
+export interface AutomedSegBKidneyPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-kidney-v1";
+  beats: Array<AutomedSegBKidneyBeat>;
+}
+export interface AutomedSegBLiverChannels {
+  view: [number, number];
+  class: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegBLiverBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegBLiverChannels;
+  scene: "inputs" | "mapping" | "output" | "reference" | "scorer" | "limits";
+}
+export interface AutomedSegBLiverPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-liver-v1";
+  beats: Array<AutomedSegBLiverBeat>;
+}
+export interface AutomedSegBPancreasOarChannels {
+  view: [number, number];
+  class: [number, number];
+  reference: [number, number];
+}
+export interface AutomedSegBPancreasOarBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  cut: "continuous" | "intentional-cut";
+  startFrame: number;
+  endFrame: number;
+  channels: AutomedSegBPancreasOarChannels;
+  scene: "inputs" | "mapping" | "output" | "reference" | "scorer" | "limits";
+}
+export interface AutomedSegBPancreasOarPlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  asset_pack: string;
+  source_class: "procedural-teaching" | "source-derived-teaching" | "symbolic-protocol";
+  reference_policy: "no-reference-assets" | "reader-reference-reveal";
+  fps: number;
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  recipe: "automed-full-pancreas-oar-v1";
+  beats: Array<AutomedSegBPancreasOarBeat>;
+}
 export interface CardiacMaterialChannels {
   phase: [number, number];
   helper: [number, number];
@@ -3345,7 +3489,7 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
-  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
+  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

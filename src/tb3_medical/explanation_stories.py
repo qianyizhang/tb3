@@ -44,6 +44,10 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-full-pancreas-oar-v1": "retained-automed-full-pancreas-oar-seg-v1",
+    "automed-full-liver-v1": "retained-automed-full-liver-seg-v1",
+    "automed-full-kidney-v1": "retained-automed-full-kidney-seg-v1",
+    "automed-full-hepaticvessel-v1": "retained-automed-full-hepaticvessel-seg-v1",
     "automed-full-heart-seg-v1": "retained-automed-full-heart-seg-v1",
     "automed-full-feta-seg-v1": "retained-automed-full-feta-seg-v1",
     "automed-full-colon-seg-v1": "retained-automed-full-colon-seg-v1",
@@ -132,6 +136,16 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-full-pancreas-oar-seg-v1": (
+        "source-records",
+        None,
+        {"output.json", "DATA-LICENSE.txt", "source.json", "NOTICE.md"},
+    ),
+    "retained-automed-full-hepaticvessel-seg-v1": (
+        "source-slices",
+        None,
+        {"source.json", "DATA-LICENSE.txt", "output.json", "NOTICE.md"},
+    ),
     "retained-automed-full-feta-seg-v1": (
         "source-records",
         None,
@@ -388,6 +402,16 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-full-liver-seg-v1": (
+        "source-slices",
+        "reference.json",
+        {"reference.json", "source.json", "NOTICE.md", "DATA-LICENSE.txt", "output.json"},
+    ),
+    "retained-automed-full-kidney-seg-v1": (
+        "source-slices",
+        "reference.json",
+        {"output.json", "source.json", "NOTICE.md", "DATA-LICENSE.txt", "reference.json"},
+    ),
     "retained-automed-full-heart-seg-v1": (
         "source-slices",
         "reference.json",
@@ -1621,6 +1645,30 @@ class AutomedSegAFetaChannels(Closed):
 class AutomedSegAHeartChannels(Closed):
     slice: Pair
     format: Pair
+    reference: Pair
+
+
+class AutomedSegBHepaticvesselChannels(Closed):
+    view: Pair
+    class_: Pair = Field(alias="class")
+    reference: Pair
+
+
+class AutomedSegBKidneyChannels(Closed):
+    view: Pair
+    class_: Pair = Field(alias="class")
+    reference: Pair
+
+
+class AutomedSegBLiverChannels(Closed):
+    view: Pair
+    class_: Pair = Field(alias="class")
+    reference: Pair
+
+
+class AutomedSegBPancreasOarChannels(Closed):
+    view: Pair
+    class_: Pair = Field(alias="class")
     reference: Pair
 
 
@@ -3122,6 +3170,70 @@ class AutomedSegAHeartStory(Story[AutomedSegAHeartChannels]):
         return self
 
 
+class AutomedSegBHepaticvesselBeat(ExpansionBeat[AutomedSegBHepaticvesselChannels]):
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBHepaticvesselStory(Story[AutomedSegBHepaticvesselChannels]):
+    recipe: Literal["automed-full-hepaticvessel-v1"]
+    beats: tuple[AutomedSegBHepaticvesselBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedSegBKidneyBeat(ExpansionBeat[AutomedSegBKidneyChannels]):
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBKidneyStory(Story[AutomedSegBKidneyChannels]):
+    recipe: Literal["automed-full-kidney-v1"]
+    beats: tuple[AutomedSegBKidneyBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedSegBLiverBeat(ExpansionBeat[AutomedSegBLiverChannels]):
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBLiverStory(Story[AutomedSegBLiverChannels]):
+    recipe: Literal["automed-full-liver-v1"]
+    beats: tuple[AutomedSegBLiverBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class AutomedSegBPancreasOarBeat(ExpansionBeat[AutomedSegBPancreasOarChannels]):
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBPancreasOarStory(Story[AutomedSegBPancreasOarChannels]):
+    recipe: Literal["automed-full-pancreas-oar-v1"]
+    beats: tuple[AutomedSegBPancreasOarBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -3331,6 +3443,10 @@ AnyStory = Annotated[
     | AutomedSegAColonStory
     | AutomedSegAFetaStory
     | AutomedSegAHeartStory
+    | AutomedSegBHepaticvesselStory
+    | AutomedSegBKidneyStory
+    | AutomedSegBLiverStory
+    | AutomedSegBPancreasOarStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3419,6 +3535,10 @@ ADAPTER: TypeAdapter[
     | AutomedSegAColonStory
     | AutomedSegAFetaStory
     | AutomedSegAHeartStory
+    | AutomedSegBHepaticvesselStory
+    | AutomedSegBKidneyStory
+    | AutomedSegBLiverStory
+    | AutomedSegBPancreasOarStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3667,6 +3787,10 @@ def parse_expansion(
     | AutomedSegAColonStory
     | AutomedSegAFetaStory
     | AutomedSegAHeartStory
+    | AutomedSegBHepaticvesselStory
+    | AutomedSegBKidneyStory
+    | AutomedSegBLiverStory
+    | AutomedSegBPancreasOarStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3871,6 +3995,26 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "CC-BY-SA-4.0",
                 "CC-BY-SA-4.0",
             ),
+            "retained-automed-full-hepaticvessel-seg-v1": (
+                "native-NIfTI-voxel-ijk",
+                "CC-BY-SA-4.0",
+                None,
+            ),
+            "retained-automed-full-kidney-seg-v1": (
+                "native-NIfTI-voxel-ijk",
+                "CC-BY-NC-SA-4.0",
+                "CC-BY-NC-SA-4.0",
+            ),
+            "retained-automed-full-liver-seg-v1": (
+                "native-NIfTI-voxel-ijk",
+                "CC-BY-SA-4.0",
+                "CC-BY-SA-4.0",
+            ),
+            "retained-automed-full-pancreas-oar-seg-v1": (
+                "symbolic-unit-grid",
+                "CC-BY-NC-ND-4.0",
+                None,
+            ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",
@@ -4015,6 +4159,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-imaging101-nlos-v1"
                 else "cm^-1"
                 if pack_id == "retained-imaging101-cars-v1"
+                else "unitless"
+                if pack_id == "retained-automed-full-pancreas-oar-seg-v1"
                 else "record"
                 if pack_id == "retained-history-sourcing-v1"
                 else "voxel"
@@ -4023,6 +4169,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     "retained-dental-original-v1",
                     "retained-dental-v2-v1",
                     "retained-dental-v3-v1",
+                    "retained-automed-full-hepaticvessel-seg-v1",
+                    "retained-automed-full-kidney-seg-v1",
+                    "retained-automed-full-liver-seg-v1",
                     "retained-automed-full-aeropath-seg-v1",
                     "retained-automed-full-colon-seg-v1",
                     "retained-automed-full-feta-seg-v1",

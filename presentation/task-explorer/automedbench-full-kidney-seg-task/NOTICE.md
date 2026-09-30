@@ -1,0 +1,1 @@
+Upstream teaching image; Full case unverified. KiTS19 teaching CT and source label only. Full staged case, private GT and results are unverified; the package flags a staging-path mismatch. https://github.com/neheller/kits19

@@ -1,0 +1,181 @@
+{
+  "acquisition_route": "https://github.com/MrGiovanni/PanTS",
+  "actual_data_gap": "Local source retrieval failed; obtain PanTS through the official route. No matched Full case, private GT or result is retained.",
+  "attempts": [
+    {
+      "action": "Approved download and inspect exact pinned Full harness archive",
+      "attempted_at": "2026-09-29T05:27:59Z",
+      "outcome": "HTTP 200; 33489 bytes; manifest states dataset.included=false; SHA256 5b5d91b220c752970e3c9a5ac3cadf28a9e98e6cf9d35d8c472eec201db50beb",
+      "source": "HF revision f894057807cc334421784e702ead2c1883583e1b, segmentation/pancreas-oar-seg-task.tar.gz"
+    },
+    {
+      "action": "Resolve official upstream teaching image or access route",
+      "attempted_at": "2026-09-29T05:48:01Z",
+      "outcome": "Official GitHub PanTS route returned HTTP 200 on 2026-09-29; no image bytes requested because no case-level source is retained and the pinned Full release gate prohibits redistribution of converted/staged derivatives.",
+      "source": "https://github.com/MrGiovanni/PanTS"
+    },
+    {
+      "action": "Bounded unauthenticated range GET of official image archive",
+      "source": "https://huggingface.co/datasets/BodyMaps/PanTSMini/resolve/3b1cd61108116b58ea5c1ddb3512c1847d965f96/PanTSMini_ImageTr_00000001_00001000.tar.gz",
+      "attempted_at": "2026-09-30T00:32:54.685030+00:00",
+      "outcome": "curl exit 7 before receiving bytes: configured local proxy 127.0.0.1:10808 was unreachable in the restricted command environment. This is a local transport failure, not an upstream access refusal.",
+      "requested_range": "0-33554431",
+      "max_seconds": 45,
+      "received_bytes": 0
+    },
+    {
+      "action": "Bounded unauthenticated range GET of official label archive",
+      "source": "https://www.cs.jhu.edu/~zongwei/dataset/PanTSMini_Label.tar.gz",
+      "attempted_at": "2026-09-30T00:32:54.685030+00:00",
+      "outcome": "curl exit 7 before receiving bytes: configured local proxy 127.0.0.1:10808 was unreachable in the restricted command environment. This is a local transport failure, not an upstream access refusal.",
+      "requested_range": "0-8388607",
+      "max_seconds": 45,
+      "received_bytes": 0
+    }
+  ],
+  "contract_caveats": {
+    "aggregate": "Clinical multiclass macro Dice is scaled by inference completeness on partial submissions, then combined with workflow score; no score was executed here.",
+    "denominator_status": "Unresolved intent: config prose excludes GT-empty classes while pinned scorer includes all 21 IDs.",
+    "format_checker": "Rounds observed values for allowed-ID validation and checks shape against input CT if available; the task contract still calls for integer labels. Missing file is completeness rather than malformed-format status. Affine not compared.",
+    "label_count": 21,
+    "label_ids": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28
+    ],
+    "output": "One per-case dseg.nii.gz integer map on the CT grid; no participant map retained.",
+    "scorer": "Rounds array labels and iterates all 21 configured IDs. Both-empty class Dice is 1; this conflicts with config prose saying GT-nonempty classes only."
+  },
+  "entry_id": "automedbench-full-pancreas-oar-seg-task",
+  "full_source_license": "CC BY-NC-ND 4.0",
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "official_route_headers": {
+    "path": ".local/explainers/core-20260929/automed-seg-b-source/pants-route.headers",
+    "sha256": "c073c476259280ca32404ae3982fd2bb86dbe58b1f9a989dd4275aef88835721"
+  },
+  "presentation_contract": {
+    "frame": "symbolic-unit-grid",
+    "illustration_basis": "symbolic",
+    "label_license": null,
+    "reference_policy": "no-reference-assets",
+    "runtime_geometry": "source-records",
+    "source_class": "source-derived-teaching",
+    "units": "unitless"
+  },
+  "reference_policy": "no-reference-assets",
+  "reopening_condition": "Restore approved network execution and retry bounded image/label prefix streaming; verify complete member bytes, paired case, label taxonomy, native shape and affine before displaying pixels. Full selection/private-GT mapping remains separate.",
+  "reviewed_at": "2026-09-29T05:48:01Z",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_example": null,
+  "source_license": "CC-BY-NC-ND-4.0",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99"
+  },
+  "source_roles": {
+    "private_reference": "No source annotation or Full /data/private reference retained; the 21-class key is pinned contract text, not an observed label map.",
+    "required_output": {
+      "paths": [
+        "{case_id}/dseg.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "solver_input": "Full staged ct.nii.gz per case; unavailable in package",
+    "supplied_helper": "Pinned Full task/config label and file contracts only; no PanTS image or source annotation is supplied in this pack."
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/pancreas-oar-seg-task.tar.gz",
+  "task_package": {
+    "bytes": 33489,
+    "dataset": {
+      "access": "public",
+      "data_dir_name": "Abdomen_Pancreas_OAR",
+      "included": false,
+      "license": "CC BY-NC-ND 4.0",
+      "policy": "restricted",
+      "private_mount": "/data/private",
+      "public_mount": "/data/public",
+      "release_gate": "Do not redistribute converted or staged derivatives",
+      "upstream": "PanTS",
+      "upstream_url": "https://github.com/MrGiovanni/PanTS"
+    },
+    "dataset_included": false,
+    "input_contract": {
+      "filename": "ct.nii.gz",
+      "unit": "case"
+    },
+    "output_contract": {
+      "paths": [
+        "{case_id}/dseg.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "path": ".local/explainers/core-20260929/automed-seg-b-source/packages/pancreas-oar.tar.gz",
+    "pinned_files": {
+      "source/aggregate.py": {
+        "bytes": 12559,
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489"
+      },
+      "source/dice_scorer.py": {
+        "bytes": 11863,
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287"
+      },
+      "source/format_checker.py": {
+        "bytes": 8016,
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799"
+      },
+      "source/pancreas-oar-seg-task/config.yaml": {
+        "bytes": 1648,
+        "sha256": "6e3a46f879e8ec853e2be94550ea3b5d3010ad44cfcf5c6d335c81852bf8165c"
+      },
+      "source/run_eval.py": {
+        "bytes": 9414,
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed"
+      },
+      "task.json": {
+        "bytes": 1316,
+        "sha256": "66f11ce44ebcc2045a74e8d520ecbbdb587477acce40fd24b3d24c8e2ca51276"
+      }
+    },
+    "sha256": "5b5d91b220c752970e3c9a5ac3cadf28a9e98e6cf9d35d8c472eec201db50beb"
+  },
+  "upstream_url": "https://github.com/MrGiovanni/PanTS",
+  "acquisition_attempt_receipt": {
+    "path": ".local/explainers/core-20260929/pants-bounded-source-v1/attempt.json",
+    "sha256": "0c21cff60c7d34c341121180524f6c926f96c160e7369be989a21771b92b219c"
+  },
+  "prior_metadata": [
+    {
+      "path": ".local/explainers/core-20260929/automed-seg-c-source/PanTSMini-shard.headers",
+      "sha256": "1626f538cb41ad2b61dcb2d34de8cc13d48ca330666989e5a954ec3c35aa4ffb"
+    },
+    {
+      "path": ".local/explainers/core-20260929/automed-seg-c-source/PanTSMini-label.headers",
+      "sha256": "eb0a27bef63590321bfb5c4774a8cf94a9e933225e3e3aa80edf0a6a96f5669b"
+    }
+  ],
+  "source_access_caveat": "The redistribution gate is not evidence of a local-download prohibition. A compressed tar may permit bounded prefix extraction of early members; feasibility and matched-case recovery remain untested because these GETs failed before network transfer. No Full case equivalence is inferred.",
+  "warning_text": "Symbolic PanTS contract \u2014 Local source retrieval failed; obtain PanTS through the official route. No matched Full case, private GT or result is retained."
+}

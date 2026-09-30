@@ -1,48 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **82** · ready: **0** · needs resolution: **72** · deferred: **0**
+Core: **154** · reviewed: **84** · ready: **2** · needs resolution: **68** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## automedbench-full-hepaticvessel-seg-task — Segment liver vessels and tumors
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-hepaticvessel-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-kidney-seg-task — Segment kidneys and kidney tumors
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-kidney-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-liver-seg-task — Segment liver and liver tumors
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-liver-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
-
-## automedbench-full-pancreas-oar-seg-task — Label 21 structures around the pancreas
-
-- **Group:** clinical-structure
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** input-not-packaged
-- **Attempt:** acquisition-not-established-by-ledger
-- **Current next action:** Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.
-- **Prior blocker:** The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-pancreas-oar-seg-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.
 
 ## automedbench-full-pancreas-seg-task — Segment pancreas and pancreatic tumors
 

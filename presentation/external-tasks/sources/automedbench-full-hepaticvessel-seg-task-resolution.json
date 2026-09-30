@@ -1,0 +1,154 @@
+{
+  "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task08_HepaticVessel.tar",
+  "actual_data_gap": "Official MSD Task08 public test CT recovered; no matching public label, Full staged case, private GT, prediction or score.",
+  "attempts": [
+    {
+      "action": "Approved download and inspect exact pinned Full harness archive",
+      "attempted_at": "2026-09-29T05:27:40Z",
+      "outcome": "HTTP 200; 27634 bytes; manifest states dataset.included=false; SHA256 1000c87bce0cbf549c94af1408a96295741284d67a5a0e105707ff23870156d4",
+      "source": "HF revision f894057807cc334421784e702ead2c1883583e1b, segmentation/hepaticvessel-seg-task.tar.gz"
+    },
+    {
+      "action": "Resolve official upstream teaching image or access route",
+      "attempted_at": "2026-09-29T05:30:26Z",
+      "outcome": "Official MSD Task08 public test CT recovered; no matching public label, Full staged case, private GT, prediction or score.",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task08_HepaticVessel.tar"
+    }
+  ],
+  "entry_id": "automedbench-full-hepaticvessel-seg-task",
+  "full_source_license": "CC BY-SA 4.0",
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "reference_policy": "no-reference-assets",
+  "reopening_condition": "Verify exact Full staged image/GT mapping, source provenance/release gates, and obtain saved participant output before claiming Full-case results.",
+  "reviewed_at": "2026-09-29T05:48:01Z",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_example": {
+    "bytes": 8052446,
+    "native_geometry": {
+      "affine": [
+        [
+          0.7851560115814209,
+          0.0,
+          0.0,
+          -401.2147216796875
+        ],
+        [
+          0.0,
+          0.7851560115814209,
+          0.0,
+          -401.2147216796875
+        ],
+        [
+          0.0,
+          0.0,
+          7.5,
+          0.0
+        ]
+      ],
+      "bitpix": 32,
+      "datatype": 16,
+      "endian": "<",
+      "sform_code": 1,
+      "shape": [
+        512,
+        512,
+        28
+      ],
+      "spacing_mm": [
+        0.7851560115814209,
+        0.7851560115814209,
+        7.5
+      ],
+      "vox_offset": 352.0
+    },
+    "path": ".local/explainers/core-20260929/automed-seg-b-source/hepaticvessel_306.nii.gz",
+    "role": "official-upstream-public-image-not-Full-staged-proof",
+    "sha256": "a31baa9ef2a0be9b3a892c2f5318bf1de812cc54ab925717ab0cae0c5cb71d5c"
+  },
+  "source_license": "CC-BY-SA-4.0",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99"
+  },
+  "source_roles": {
+    "private_reference": "Full /data/private/masks/<case_id>/hepatic_vessel.nii.gz and hepatic_tumor.nii.gz are absent; no upstream source annotation is retained.",
+    "required_output": {
+      "paths": [
+        "{case_id}/dseg.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "solver_input": "Full staged ct.nii.gz per case; unavailable in package",
+    "supplied_helper": "Public upstream source example and contract text; not proven Full staged case"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/hepaticvessel-seg-task.tar.gz",
+  "task_package": {
+    "bytes": 27634,
+    "dataset": {
+      "access": "public",
+      "data_dir_name": "MSD_HepaticVessel",
+      "included": false,
+      "license": "CC BY-SA 4.0",
+      "policy": "redistributable",
+      "private_mount": "/data/private",
+      "public_mount": "/data/public",
+      "release_gate": "Include attribution and share-alike license",
+      "upstream": "MSD Task08 HepaticVessel",
+      "upstream_url": "https://medicaldecathlon.com/"
+    },
+    "dataset_included": false,
+    "input_contract": {
+      "filename": "ct.nii.gz",
+      "unit": "case"
+    },
+    "output_contract": {
+      "paths": [
+        "{case_id}/dseg.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "path": ".local/explainers/core-20260929/automed-seg-b-source/packages/hepaticvessel.tar.gz",
+    "pinned_files": {
+      "source/dice_scorer.py": {
+        "bytes": 11863,
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287"
+      },
+      "source/hepaticvessel-seg-task/config.yaml": {
+        "bytes": 1222,
+        "sha256": "bcb4f760baedac03efcdb45018826f71790eac66198605bb6199e3559eb42bb4"
+      },
+      "source/run_eval.py": {
+        "bytes": 9414,
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed"
+      },
+      "task.json": {
+        "bytes": 1323,
+        "sha256": "6c95229b873e16598d23fc54500ad5fc8348a656fd5924aa29dd19314d2f7070"
+      },
+      "source/format_checker.py": {
+        "bytes": 8016,
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799"
+      },
+      "source/aggregate.py": {
+        "bytes": 12559,
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489"
+      }
+    },
+    "sha256": "1000c87bce0cbf549c94af1408a96295741284d67a5a0e105707ff23870156d4"
+  },
+  "upstream_url": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task08_HepaticVessel.tar",
+  "contract_audit": {
+    "actor": "assistant",
+    "reviewed_at": "2026-09-29T12:04:22.707948+00:00",
+    "package_manifest": "30 of 30 entries verified; no task code executed.",
+    "sampling": "k=7,14,21 selected by rounded volume fractions 0.25/0.5/0.75; no label-guided selection.",
+    "nifti_display": "Header and nibabel proxy slope/intercept 1/0; windowed displayed pixels match scaled arrays exactly.",
+    "formatter": "Declared output is an integer dseg on the input grid; formatter rounds unique values to test membership and checks shape if the input exists. It does not establish exact integer dtype, dimensionality or physical affine equality.",
+    "scorer": "Separated masks are fused in ascending ID order using >0.5; tumor 2 overwrites vessel 1 at overlap. Prediction and reference labels are rounded. Shape mismatch contributes zero per class; missing predictions or GT are skipped. Both-empty class Dice is 1. Macro average covers both foreground classes; no affine comparison."
+  }
+}

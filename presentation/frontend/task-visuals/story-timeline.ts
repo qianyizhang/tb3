@@ -645,6 +645,50 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'automed-full-hepaticvessel-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        class: channel(b.channels.class),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-kidney-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        class: channel(b.channels.class),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-liver-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        class: channel(b.channels.class),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'automed-full-pancreas-oar-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        view: channel(b.channels.view),
+        class: channel(b.channels.class),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

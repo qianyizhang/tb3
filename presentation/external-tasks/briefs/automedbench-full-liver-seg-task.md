@@ -1,60 +1,36 @@
-# Segment liver and liver tumors
+# Segment liver and lesion on CT
 
-Build and run a pipeline to segment liver and liver tumors.
-
-## Value
-
-Spatial labels support measurement and anatomical review; organ overlap and lesion detection are different capabilities.
+The task requests a segmentation from CT. This explainer shows the input or contract boundary and **no completed model result**.
 
 ## Given
 
 ### Original data
 
-CT input, stored as `ct.nii.gz` per case.
+Official MSD Task03 Liver public training CT liver_53, 512 × 512 × 105 voxels at 0.85 × 0.85 × 4 mm. Fixed native k=26, 52 and 79 CT planes retain WL 40 / WW 400 HU. A fourth k=64 teaching plane is appended after examining the public label and choosing the plane with most source label-2 voxels (lower-index tie break). This is post-hoc label-guided illustration, not unbiased input sampling or evidence of a Full staged case.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names MONAI VISTA3D. Standard supplies candidates to investigate; model files may still need provisioning.
+The exact Full harness specifies ct.nii.gz and separate organ and lesion outputs, but declares LiTS as source while its script uses MSD Task03. No dataset images are included in the harness.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+The Full task harness and environment define file submission and a 3,600-second task budget. No model, preparer, grader or clinical tool is run for this explanation.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+The official matched MSD Task03 training annotation is available only after explicit reader reveal. It is not Full private ground truth or a participant output.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: liver-seg-task.
+The task declares two binary submission files. The release gate flags a staging output-directory mismatch, and its declared LiTS source conflicts with the MSD Task03 script. This MSD teaching CT now has its matched public training label, but its Full identity is unverified.
 
 ## Expected output
 
-Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy.
+Write separate binary agents_outputs/{case_id}/organ.nii.gz and lesion.nii.gz on the CT grid. The pinned Full config does not define an organ–lesion overlap rule, and the public MSD source-only conversion does not establish that Full rule. No participant output is retained. The task requires both files even though the formatter treats a missing mask as incomplete rather than malformed.
 
 ## Evaluation
 
-The configuration describes foreground Dice overlap, with task-specific class aggregation. Organ/lesion tasks require both outputs; inspect the selected evaluator for their exact weighting. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
-
-## Visual explanation
-
-### Workflow
-
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit a label map
-
-### Input
-
-**Contract view; native sample not yet illustrated.** CT input, stored as `ct.nii.gz` per case.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names MONAI VISTA3D. Standard supplies candidates to investigate; model files may still need provisioning.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** Write `agents_outputs/{case_id}/organ.nii.gz` and `agents_outputs/{case_id}/lesion.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy.
+The task manifest requires both binary files. The formatter checks exact 0/1 values but treats absent files as incomplete coverage and checks `organ.nii.gz` only when present; the Dice scorer instead thresholds at >0.5. Mean lesion Dice determines the medal tier, while the separate clinical score averages organ and lesion Dice equally and is weighted by completion for partial submissions. Shape is checked, not affine. No score was computed here.
 
 ## Conditions
 
@@ -64,18 +40,27 @@ The configuration describes foreground Dice overlap, with task-specific class ag
 | Full · Standard | Candidate methods and task-specific comparison requirements. | Research, choose, configure, validate and run a suitable pipeline. |
 | Related source listing | The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established. | Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions. |
 
-## Difficulty
-
-Choose a model that covers the requested structures, preserve physical geometry and map class IDs correctly. A general organ segmenter may miss the target lesions.
-
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/liver-seg-task.tar.gz)
+- [Exact pinned AutoMedBench Full harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation)
+- [Official upstream acquisition route](https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar)
 
-## Coverage
+## Visual explanation
 
-Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.
+### Input
 
-## Gaps
+Actual MSD upstream CT with three fixed planes plus one disclosed public-label-guided teaching plane; Full staging and provenance remain unresolved.
 
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.
+### Supplied helpers
+
+Source-defined label names and output paths are contract text. The matched public source annotation stays reader-only; it is not supplied to a Full solver by this pack.
+
+### Reference or output
+
+The requested output slots are empty. Reader reveal shows the matched public source label on all four CT planes. The fourth plane was chosen post-hoc from the public label to make the lesion target inspectable; it is not evidence of Full performance. Source labels 1 or 2 form a teaching organ mask and label 2 a teaching lesion mask; neither conversion is verified for Full private ground truth.
+
+### Workflow
+
+- Inspect the actual public input or abstract grid and its source warning.
+- Map label IDs and required output files without filling a prediction.
+- Read scorer boundaries and reference availability.

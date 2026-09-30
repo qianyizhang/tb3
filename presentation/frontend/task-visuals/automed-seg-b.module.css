@@ -1,0 +1,294 @@
+.scene {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  box-sizing: border-box;
+  height: 425px;
+  overflow: hidden;
+  padding: 12px;
+  border: 1px solid #375367;
+  border-radius: 12px;
+  background: #081b2b;
+  color: #eaf4fb;
+  min-width: 0;
+}
+.scene h3 {
+  font-size: clamp(18px, 2vw, 26px);
+  margin: 0;
+  line-height: 1.15;
+  color: #eaf4fb;
+}
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: 12px;
+  align-items: start;
+  min-width: 0;
+}
+.columns article,
+.outputBody,
+.scoreCards article {
+  padding: 12px 14px;
+  background: #102233;
+  color: #eaf4fb;
+  border: 1px solid #375367;
+  border-radius: 0;
+  min-width: 0;
+}
+.columns article p,
+.outputBody p,
+.scoreCards p {
+  font-size: 13px;
+  line-height: 1.42;
+  margin: 7px 0;
+  color: #cad8e4;
+}
+.columns article h4 {
+  font-size: 17px;
+  margin: 4px 0;
+  color: #fff;
+}
+.kicker {
+  font-size: 11px !important;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  color: #89dce5 !important;
+  margin: 0 0 6px !important;
+}
+.smallNote {
+  color: #b6c8d4 !important;
+}
+.scanFigure {
+  margin: 0;
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+}
+.scanFrame {
+  height: min(300px, 35vw);
+  width: min(100%, 300px);
+  padding: 4px;
+  background: #20384b;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+.scanFrame svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.symbolic {
+  display: block;
+  height: min(300px, 35vw);
+  width: min(100%, 390px);
+}
+.scanFigure figcaption {
+  text-align: center;
+  color: #c2d3df;
+  font-size: 11px;
+  line-height: 1.3;
+  margin-top: 5px;
+}
+.labelArea {
+  min-width: 0;
+}
+.labelList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+}
+.labelList > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 6px;
+  border: 1px solid #466274;
+  border-radius: 0;
+  background: #0b1b2b;
+  color: #eaf4fb;
+  font-size: 12px;
+  min-width: 0;
+}
+.labelList > div[data-current='true'] {
+  border-color: #19c8d8;
+  background: #124052;
+}
+.labelList b {
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 0;
+  background: #275b70;
+  color: #fff;
+}
+.labelList span {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.scene[data-automed-b-task='pancreas-oar'] .labelList {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+}
+.scene[data-automed-b-task='pancreas-oar'] .labelList > div {
+  gap: 4px;
+  padding: 2px 4px;
+  font-size: 10px;
+  line-height: 1.14;
+  min-height: 20px;
+}
+.scene[data-automed-b-task='pancreas-oar'] .labelList b {
+  min-width: 19px;
+  height: 19px;
+  font-size: 10px;
+}
+.scene[data-automed-b-task='pancreas-oar'] .labelArea p {
+  font-size: 11px;
+  line-height: 1.3;
+  margin: 5px 0;
+}
+.fileGrid {
+  display: flex;
+  align-items: stretch;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 11px 0;
+}
+.fileCard {
+  border: 1px solid #5b8294;
+  background: #0b1b2b;
+  color: #eaf4fb;
+  border-radius: 0;
+  padding: 8px 12px;
+  min-width: 140px;
+  display: grid;
+  gap: 2px;
+}
+.fileCard b {
+  font-size: 11px;
+  color: #a8c5d3;
+  text-transform: uppercase;
+}
+.fileCard span {
+  font-size: 13px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.fileCard small {
+  font-size: 11px;
+  color: #bdd0dc;
+}
+.arrow {
+  align-self: center;
+  font-weight: 900;
+  color: #67d6df;
+}
+.legend {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.legend span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 12px;
+  color: #eaf4fb;
+}
+.legend i {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 0;
+}
+.cyan {
+  background: #1fbbc5;
+}
+.gold {
+  background: #fab738;
+}
+.scoreCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.scoreCards article {
+  padding: 10px 13px;
+}
+.scoreCards b {
+  font-size: 14px;
+  color: #fff;
+}
+.scoreCards p {
+  overflow-wrap: anywhere;
+}
+.scoreCards a {
+  color: #9fe7ed;
+}
+.aside {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #375367;
+  border-radius: 0;
+  background: #102233;
+  color: #eaf4fb;
+  font-size: 12px;
+}
+.aside b {
+  color: #fff;
+}
+.aside p {
+  margin: 0;
+  color: #cad8e4;
+  line-height: 1.4;
+}
+.aside small {
+  color: #b5c9d5;
+}
+@media (max-width: 720px) {
+  .scene {
+    height: auto;
+    overflow: visible;
+    padding: 10px;
+  }
+  .columns,
+  .scoreCards {
+    grid-template-columns: 1fr;
+  }
+  .scanFrame {
+    height: 260px;
+    width: 260px;
+  }
+  .symbolic {
+    height: 230px;
+  }
+  .scene h3 {
+    font-size: 18px;
+  }
+  .columns article,
+  .outputBody,
+  .scoreCards article {
+    padding: 10px 12px;
+  }
+  .fileGrid {
+    gap: 6px;
+  }
+  .fileCard {
+    min-width: 125px;
+  }
+  .scene[data-automed-b-task='pancreas-oar'] .labelList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .scene[data-automed-b-task='kidney'] .labelList,
+  .scene[data-automed-b-task='liver'] .labelList {
+    grid-template-columns: 1fr;
+  }
+}

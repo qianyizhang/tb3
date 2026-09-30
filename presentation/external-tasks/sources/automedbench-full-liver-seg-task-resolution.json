@@ -1,0 +1,190 @@
+{
+  "acquisition_route": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar",
+  "actual_data_gap": "MSD Task03 CT and public training label only. Full LiTS/MSD provenance, staging path and private GT mapping remain unresolved; no participant result.",
+  "attempts": [
+    {
+      "action": "Approved download and inspect exact pinned Full harness archive",
+      "attempted_at": "2026-09-29T05:27:55Z",
+      "outcome": "HTTP 200; 27399 bytes; manifest states dataset.included=false; SHA256 58abecb198c534e3148e245b757e9d205922e012ea69422cf219d66558f1868e",
+      "source": "HF revision f894057807cc334421784e702ead2c1883583e1b, segmentation/liver-seg-task.tar.gz"
+    },
+    {
+      "action": "Resolve official upstream teaching image or access route",
+      "attempted_at": "2026-09-29T05:30:26Z",
+      "outcome": "Official MSD Task03 public training CT recovered as upstream illustration; Full package declares unresolved LiTS-vs-MSD provenance and output path mismatch. No paired source label, Full case, private GT, prediction or score.",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar"
+    },
+    {
+      "action": "Bounded first official Task03 tar-header scan for matched labelsTr/liver_53 annotation",
+      "attempted_at": "2026-09-29T12:24:21.637133+00:00",
+      "outcome": "Reached 150-request bound in imagesTr without label bytes; retained exact resume offset and receipt SHA256 6bf1bbb14c287b25de8e29e49dcaa0f5ff917f4c8c924fe8ad326ff2a1c8f8a9",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar"
+    },
+    {
+      "action": "Continue official tar-header scan and recover exact matched source label",
+      "attempted_at": "2026-09-29T12:28:45.955547+00:00",
+      "outcome": "HTTP 206 exact 51949-byte member at data offset 28897463808; SHA256 56282d27ae73a4ea808311dc54363fa344eee473c9af184f069ab94e97a70dae; CT and label share exact native shape/affine and label IDs are 0,1,2. This does not establish Full membership.",
+      "source": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar"
+    }
+  ],
+  "contract_caveats": {
+    "declared_required_paths": "task.json declares both organ.nii.gz and lesion.nii.gz under agents_outputs/{case_id}; use both for the submission contract.",
+    "evaluation_metrics": "run_eval selects mean lesion Dice for medal tier. aggregate clinical score is 0.5 organ Dice + 0.5 lesion Dice; on incomplete cases aggregate scales clinical metrics by inference completeness before blending workflow and clinical scores.",
+    "formatter_completeness": "format_checker.check_submission treats missing mask files as incomplete coverage rather than malformed output and checks organ only if present; this does not supersede task.json all_paths.",
+    "mask_value_rule": "format_checker.check_mask_file accepts exact voxel values 0 or 1; dice_scorer.dice_coefficient thresholds at >0.5 after loading. A fractional mask can score internally but fail format validation.",
+    "physical_geometry": "Formatter and scorer compare array shape but do not compare affines; physically aligned masks remain the meaningful target."
+  },
+  "entry_id": "automedbench-full-liver-seg-task",
+  "full_source_license": "provenance conflict",
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "label_license": "CC-BY-SA-4.0",
+  "reference_policy": "reader-reference-reveal",
+  "reopening_condition": "Verify LiTS versus MSD source identity, exact Full staged CT/GT mapping and output staging path; obtain participant output before any Full-case score claim.",
+  "reviewed_at": "2026-09-29T12:47:03.221637+00:00",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_example": {
+    "bytes": 28808539,
+    "native_geometry": {
+      "affine": [
+        [
+          0.8500000238418579,
+          0.0,
+          0.0,
+          -234.15499877929688
+        ],
+        [
+          0.0,
+          0.8500000238418579,
+          0.0,
+          -216.57701110839844
+        ],
+        [
+          0.0,
+          0.0,
+          4.0,
+          1319.0
+        ]
+      ],
+      "bitpix": 32,
+      "datatype": 16,
+      "endian": "<",
+      "sform_code": 1,
+      "shape": [
+        512,
+        512,
+        105
+      ],
+      "spacing_mm": [
+        0.8500000238418579,
+        0.8500000238418579,
+        4.0
+      ],
+      "vox_offset": 352.0
+    },
+    "path": ".local/explainers/core-20260929/automed-seg-b-source/liver_53.nii.gz",
+    "role": "official-upstream-public-image-not-Full-staged-proof",
+    "sha256": "fb2c353bc4cc35aedd9c8070883791c2241beb36bf7e5f884cd8a0f418226b9d"
+  },
+  "source_license": "CC-BY-SA-4.0",
+  "source_reference": {
+    "bytes": 51949,
+    "display_planes_native_k": [
+      26,
+      52,
+      79
+    ],
+    "illustrative_plane_native_k": 64,
+    "illustrative_plane_selection": "Post-hoc maximum number of public source label-2 voxels across native k; np.argmax lower-index tie break. Appended after fixed k=26,52,79 for teaching; not unbiased input sampling or Full benchmark evidence.",
+    "license": "CC-BY-SA-4.0",
+    "native_geometry_verified": "same 512x512x105 shape and exact affine as retained liver_53 CT; source IDs 0,1,2",
+    "path": ".local/explainers/core-20260929/seg-b-liver-label-attempt/liver_53-labelsTr.nii.gz",
+    "prior_attempt_receipt_path": ".local/explainers/core-20260929/seg-b-liver-label-attempt/resolution.json",
+    "prior_attempt_receipt_sha256": "6bf1bbb14c287b25de8e29e49dcaa0f5ff917f4c8c924fe8ad326ff2a1c8f8a9",
+    "recovery_receipt_path": ".local/explainers/core-20260929/seg-b-liver-label-attempt/resolution-v2.json",
+    "recovery_receipt_sha256": "bb10cc3bd4cc9592a1df4146c7470a73af4c6604b04952a094caee48a9eaafba",
+    "role": "official MSD Task03 labelsTr/liver_53 upstream training annotation; reader-only teaching, not Full private GT",
+    "sha256": "56282d27ae73a4ea808311dc54363fa344eee473c9af184f069ab94e97a70dae",
+    "tar_data_offset": 28897463808,
+    "tar_header_offset": 28897463296,
+    "tar_member": "Task03_Liver/labelsTr/liver_53.nii.gz",
+    "teaching_conversion": "source labels 1 OR 2 -> organ; source label 2 -> lesion; not a verified Full overlap rule"
+  },
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99"
+  },
+  "source_roles": {
+    "private_reference": "Full /data/private absent; MSD Task03 public training annotation is reader-only source reference, not verified Full private GT.",
+    "required_output": {
+      "paths": [
+        "{case_id}/organ.nii.gz",
+        "{case_id}/lesion.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "solver_input": "Full staged ct.nii.gz per case; unavailable in package",
+    "supplied_helper": "Public MSD Task03 CT is an upstream teaching input example; its matched public training annotation is shown only on explicit reader reveal, not as Full solver help."
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/liver-seg-task.tar.gz",
+  "task_package": {
+    "bytes": 27399,
+    "dataset": {
+      "access": "public",
+      "data_dir_name": "Abdomen_Liver",
+      "included": false,
+      "license": "provenance conflict",
+      "policy": "unknown",
+      "private_mount": "/data/private",
+      "public_mount": "/data/public",
+      "release_gate": "Resolve LiTS versus MSD provenance and output directory mismatch",
+      "upstream": "LiTS declared but script uses MSD Task03",
+      "upstream_url": "https://medicaldecathlon.com/"
+    },
+    "dataset_included": false,
+    "input_contract": {
+      "filename": "ct.nii.gz",
+      "unit": "case"
+    },
+    "output_contract": {
+      "paths": [
+        "{case_id}/organ.nii.gz",
+        "{case_id}/lesion.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "path": ".local/explainers/core-20260929/automed-seg-b-source/packages/liver.tar.gz",
+    "pinned_files": {
+      "source/aggregate.py": {
+        "bytes": 12559,
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489"
+      },
+      "source/dice_scorer.py": {
+        "bytes": 11863,
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287"
+      },
+      "source/format_checker.py": {
+        "bytes": 8016,
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799"
+      },
+      "source/liver-seg-task/config.yaml": {
+        "bytes": 256,
+        "sha256": "6d0cf8b6d781604f33125a6c2e7a19ea845dc7902e7052b8db7ddf8092db7d22"
+      },
+      "source/run_eval.py": {
+        "bytes": 9414,
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed"
+      },
+      "task.json": {
+        "bytes": 1365,
+        "sha256": "24eec8a8d5ef350c4baf316e48a4ca3792f203f1c26f6e6719f59f472edc5b2b"
+      }
+    },
+    "sha256": "58abecb198c534e3148e245b757e9d205922e012ea69422cf219d66558f1868e"
+  },
+  "upstream_url": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar"
+}

@@ -1,0 +1,1 @@
+Upstream teaching image; Full case unverified. MSD Task03 CT and public training label only. Full LiTS/MSD provenance, staging path and private GT mapping remain unresolved; no participant result. https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar

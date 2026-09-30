@@ -1,0 +1,170 @@
+{
+  "acquisition_route": "https://github.com/neheller/kits19",
+  "actual_data_gap": "KiTS19 teaching CT and source label only. Full staged case, private GT and results are unverified; the package flags a staging-path mismatch.",
+  "attempts": [
+    {
+      "action": "Approved download and inspect exact pinned Full harness archive",
+      "attempted_at": "2026-09-29T05:27:51Z",
+      "outcome": "HTTP 200; 27086 bytes; manifest states dataset.included=false; SHA256 c176cc4aa9072bd8748fb341f44faae84fafac6d7bbadc6578bda24aff446013",
+      "source": "HF revision f894057807cc334421784e702ead2c1883583e1b, segmentation/kidney-seg-task.tar.gz"
+    },
+    {
+      "action": "Resolve official upstream teaching image or access route",
+      "attempted_at": "2026-09-29T03:11:49Z",
+      "outcome": "Official KiTS19 case_00000 CT and source label retained, but Full staging membership, private GT, prediction and score are unverified. Package flags staging path mismatch.",
+      "source": "https://github.com/neheller/kits19"
+    }
+  ],
+  "contract_caveats": {
+    "declared_required_paths": "task.json declares both organ.nii.gz and lesion.nii.gz under agents_outputs/{case_id}; use both for the submission contract.",
+    "evaluation_metrics": "run_eval selects mean lesion Dice for medal tier. aggregate clinical score is 0.5 organ Dice + 0.5 lesion Dice; on incomplete cases aggregate scales clinical metrics by inference completeness before blending workflow and clinical scores.",
+    "formatter_completeness": "format_checker.check_submission treats missing mask files as incomplete coverage rather than malformed output and checks organ only if present; this does not supersede task.json all_paths.",
+    "mask_value_rule": "format_checker.check_mask_file accepts exact voxel values 0 or 1; dice_scorer.dice_coefficient thresholds at >0.5 after loading. A fractional mask can score internally but fail format validation.",
+    "physical_geometry": "Formatter and scorer compare array shape but do not compare affines; physically aligned masks remain the meaningful target."
+  },
+  "entry_id": "automedbench-full-kidney-seg-task",
+  "full_source_license": "CC BY-NC-SA 4.0",
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "prior_kidney_receipt": {
+    "path": ".local/explainers/core-20260929/kidney-source/resolution-draft.json",
+    "sha256": "97625ae65893db8b02dc48dbbcce49f39193ac22dbe5fa3fe2f1ec8b4e51ec76"
+  },
+  "reference_policy": "reader-reference-reveal",
+  "reopening_condition": "Verify exact Full staged image/GT mapping, source provenance/release gates, and obtain saved participant output before claiming Full-case results.",
+  "reviewed_at": "2026-09-29T05:48:01Z",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_example": {
+    "label_path": ".local/explainers/core-20260929/kidney-source/segmentation.nii.gz",
+    "label_sha256": "d1019d9a690e193e167cadf3518499e9ed54c1c7757ce520152a3ed072159e09",
+    "native_geometry": {
+      "affine": [
+        [
+          0.0,
+          0.0,
+          -0.919921875,
+          0.0
+        ],
+        [
+          0.0,
+          -0.919921875,
+          0.0,
+          0.0
+        ],
+        [
+          -0.5,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "bitpix": 64,
+      "datatype": 64,
+      "endian": "<",
+      "sform_code": 2,
+      "shape": [
+        611,
+        512,
+        512
+      ],
+      "spacing_mm": [
+        0.5,
+        0.919921875,
+        0.919921875
+      ],
+      "vox_offset": 352.0
+    },
+    "path": ".local/explainers/core-20260929/kidney-source/imaging.nii.gz",
+    "role": "official-upstream-public-training-case-and-source-label-not-Full-staged-proof",
+    "sha256": "cdae5f3e0fbc7c98ab0430b3de42677abda2c1cf93ae0f86bd29fb8606688cb7",
+    "view_selection": {
+      "input_scene": "CT pixels only; label counts remain in reader-only reference asset",
+      "native_i_indices": [
+        288,
+        311,
+        344
+      ],
+      "selection_builder_path": "scripts/build_automed_kidney_assets.py",
+      "selection_builder_sha256": "0d3fa0cc2546f66471bf447a4ebde21f2d34ef50930c257ad21b9a11bd6ce827",
+      "status": "fixed curated teaching views inherited from pinned scripts/build_automed_kidney_assets.py; selection methodology not documented"
+    }
+  },
+  "source_license": "CC-BY-NC-SA-4.0",
+  "source_revision": {
+    "full_release_hf_commit": "f894057807cc334421784e702ead2c1883583e1b",
+    "staging_manifest_sha256_declared": "ff5ae06883c4c87171dc61a93c12331996670db20f832a2e775e0fb079ef3d03",
+    "task_source_ref_declared": "609c2a8df21addfff5dbfb680a7263fb8cf91d99"
+  },
+  "source_roles": {
+    "private_reference": "Full /data/private absent; kidney public source annotation is reader-only teaching material",
+    "required_output": {
+      "paths": [
+        "{case_id}/organ.nii.gz",
+        "{case_id}/lesion.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "solver_input": "Full staged ct.nii.gz per case; unavailable in package",
+    "supplied_helper": "Public upstream source example and contract text; not proven Full staged case"
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/kidney-seg-task.tar.gz",
+  "task_package": {
+    "bytes": 27086,
+    "dataset": {
+      "access": "public",
+      "data_dir_name": "Abdomen_Kidney",
+      "included": false,
+      "license": "CC BY-NC-SA 4.0",
+      "policy": "redistributable",
+      "private_mount": "/data/private",
+      "public_mount": "/data/public",
+      "release_gate": "Attribution and NC-SA terms required; staging output directory currently mismatches config",
+      "upstream": "KiTS19",
+      "upstream_url": "https://kits19.grand-challenge.org/"
+    },
+    "dataset_included": false,
+    "input_contract": {
+      "filename": "ct.nii.gz",
+      "unit": "case"
+    },
+    "output_contract": {
+      "paths": [
+        "{case_id}/organ.nii.gz",
+        "{case_id}/lesion.nii.gz"
+      ],
+      "root": "agents_outputs",
+      "type": "all_paths"
+    },
+    "path": ".local/explainers/core-20260929/automed-seg-b-source/packages/kidney.tar.gz",
+    "pinned_files": {
+      "source/aggregate.py": {
+        "bytes": 12559,
+        "sha256": "3e2ef80e395e7da8ac2df401003add35de2dd9a9df16aec6458b128a98b71489"
+      },
+      "source/dice_scorer.py": {
+        "bytes": 11863,
+        "sha256": "37fd86c11238213293792997db3acbc9a442241935502ad70511d186dc357287"
+      },
+      "source/format_checker.py": {
+        "bytes": 8016,
+        "sha256": "ed930d195ecf0b9ef2c461093ba15f42c5ec858549d3c8aa709b2538fe959799"
+      },
+      "source/kidney-seg-task/config.yaml": {
+        "bytes": 261,
+        "sha256": "5ba321961ceaee85da210a3aca057d2bffb91d42202c47753c8f6dc6cf3daad7"
+      },
+      "source/run_eval.py": {
+        "bytes": 9414,
+        "sha256": "fa549062ba9f8c0587da2c028d0cfcb6dc19b58334d35462782b6526f59f28ed"
+      },
+      "task.json": {
+        "bytes": 1371,
+        "sha256": "87f87162f22bfcd393c13fec38af8c115a1801493f93d7b359cc7f6fe9fd74aa"
+      }
+    },
+    "sha256": "c176cc4aa9072bd8748fb341f44faae84fafac6d7bbadc6578bda24aff446013"
+  },
+  "upstream_url": "https://github.com/neheller/kits19"
+}

@@ -1618,6 +1618,86 @@ class AutomedSegAHeartPlan(ExpansionPlan):
     beats: list[AutomedSegAHeartBeat]
 
 
+AutomedSegBHepaticvesselChannels = TypedDict(
+    "AutomedSegBHepaticvesselChannels",
+    {
+        "view": tuple[float, float],
+        "class": tuple[float, float],
+        "reference": tuple[float, float],
+    },
+)
+
+
+class AutomedSegBHepaticvesselBeat(ExpansionBeat):
+    channels: AutomedSegBHepaticvesselChannels
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBHepaticvesselPlan(ExpansionPlan):
+    recipe: Literal["automed-full-hepaticvessel-v1"]
+    beats: list[AutomedSegBHepaticvesselBeat]
+
+
+AutomedSegBKidneyChannels = TypedDict(
+    "AutomedSegBKidneyChannels",
+    {
+        "view": tuple[float, float],
+        "class": tuple[float, float],
+        "reference": tuple[float, float],
+    },
+)
+
+
+class AutomedSegBKidneyBeat(ExpansionBeat):
+    channels: AutomedSegBKidneyChannels
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBKidneyPlan(ExpansionPlan):
+    recipe: Literal["automed-full-kidney-v1"]
+    beats: list[AutomedSegBKidneyBeat]
+
+
+AutomedSegBLiverChannels = TypedDict(
+    "AutomedSegBLiverChannels",
+    {
+        "view": tuple[float, float],
+        "class": tuple[float, float],
+        "reference": tuple[float, float],
+    },
+)
+
+
+class AutomedSegBLiverBeat(ExpansionBeat):
+    channels: AutomedSegBLiverChannels
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBLiverPlan(ExpansionPlan):
+    recipe: Literal["automed-full-liver-v1"]
+    beats: list[AutomedSegBLiverBeat]
+
+
+AutomedSegBPancreasOarChannels = TypedDict(
+    "AutomedSegBPancreasOarChannels",
+    {
+        "view": tuple[float, float],
+        "class": tuple[float, float],
+        "reference": tuple[float, float],
+    },
+)
+
+
+class AutomedSegBPancreasOarBeat(ExpansionBeat):
+    channels: AutomedSegBPancreasOarChannels
+    scene: Literal["inputs", "mapping", "output", "reference", "scorer", "limits"]
+
+
+class AutomedSegBPancreasOarPlan(ExpansionPlan):
+    recipe: Literal["automed-full-pancreas-oar-v1"]
+    beats: list[AutomedSegBPancreasOarBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -1840,6 +1920,10 @@ StoryPlan = (
     | AutomedSegAColonPlan
     | AutomedSegAFetaPlan
     | AutomedSegAHeartPlan
+    | AutomedSegBHepaticvesselPlan
+    | AutomedSegBKidneyPlan
+    | AutomedSegBLiverPlan
+    | AutomedSegBPancreasOarPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

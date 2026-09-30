@@ -25,6 +25,10 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-full-pancreas-oar-v1',
+  'automed-full-liver-v1',
+  'automed-full-kidney-v1',
+  'automed-full-hepaticvessel-v1',
   'cardiac-contour-v1',
   'cardiac-anchor-v1',
   'cardiac-material-v1',
@@ -69,6 +73,38 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-full-pancreas-oar-v1')
+    return {
+      scene: 'data-automed-b-scene',
+      reference: '[data-automed-b-reference-overlay]',
+      referenceChannel: null,
+      output: '[data-automed-b-empty-output]',
+      aside: '[data-automed-b-output]',
+    };
+  if (plan.recipe === 'automed-full-liver-v1')
+    return {
+      scene: 'data-automed-b-scene',
+      reference: '[data-automed-b-reference-overlay]',
+      referenceChannel: 'reference',
+      output: '[data-automed-b-empty-output]',
+      aside: '[data-automed-b-output]',
+    };
+  if (plan.recipe === 'automed-full-kidney-v1')
+    return {
+      scene: 'data-automed-b-scene',
+      reference: '[data-automed-b-reference-overlay]',
+      referenceChannel: 'reference',
+      output: '[data-automed-b-empty-output]',
+      aside: '[data-automed-b-output]',
+    };
+  if (plan.recipe === 'automed-full-hepaticvessel-v1')
+    return {
+      scene: 'data-automed-b-scene',
+      reference: '[data-automed-b-reference-overlay]',
+      referenceChannel: null,
+      output: '[data-automed-b-empty-output]',
+      aside: '[data-automed-b-output]',
+    };
   if (plan.recipe === 'automed-full-heart-seg-v1')
     return {
       scene: 'data-sega-scene',
@@ -331,6 +367,30 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-full-pancreas-oar-v1': [
+      /Full|PanTS|upstream/i,
+      'https://github.com/MrGiovanni/PanTS',
+      'data-automed-b-scene',
+      false,
+    ],
+    'automed-full-liver-v1': [
+      /Full|PanTS|upstream/i,
+      'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task03_Liver.tar',
+      'data-automed-b-scene',
+      false,
+    ],
+    'automed-full-kidney-v1': [
+      /Full|PanTS|upstream/i,
+      'https://github.com/neheller/kits19',
+      'data-automed-b-scene',
+      false,
+    ],
+    'automed-full-hepaticvessel-v1': [
+      /Full|PanTS|upstream/i,
+      'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task08_HepaticVessel.tar',
+      'data-automed-b-scene',
+      false,
+    ],
     'automed-full-heart-seg-v1': [
       /Full/,
       'https://msd-for-monai.s3-us-west-2.amazonaws.com/Task02_Heart.tar',
@@ -3622,6 +3682,10 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-full-pancreas-oar-v1',
+      'automed-full-liver-v1',
+      'automed-full-kidney-v1',
+      'automed-full-hepaticvessel-v1',
       'imaging101-eht-features-dynamic-v1',
       'imaging101-eht-dynamic-v1',
       'imaging101-eht-uq-v1',

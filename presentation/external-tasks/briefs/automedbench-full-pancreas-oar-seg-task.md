@@ -1,60 +1,36 @@
-# Label 21 structures around the pancreas
+# Label 21 pancreas-region structures
 
-Build and run a pipeline to label 21 structures around the pancreas.
-
-## Value
-
-Spatial labels support measurement and anatomical review; organ overlap and lesion detection are different capabilities.
+The task requests a segmentation from CT. This explainer shows the input or contract boundary and **no completed model result**.
 
 ## Given
 
 ### Original data
 
-CT input, stored as `ct.nii.gz` per case.
+The Full harness requires per-case ct.nii.gz, but it includes no dataset pixels and no PanTS case is retained. The input diagram is an abstract unitless grid, not a patient image. Bounded image/label archive requests failed at the configured local proxy before bytes arrived. This does not establish an upstream access restriction. Retry permitted local acquisition through the official PanTS route; the Full package supplies no case.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names VISTA3D (MONAI foundation model for 3D CT, 132 classes). Standard supplies candidates to investigate; model files may still need provisioning.
+The exact Full harness lists 21 nonconsecutive foreground label IDs. Its PanTS release gate says not to redistribute converted or staged derivatives.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+The Full task harness and environment define file submission and a 3,600-second task budget. No model, preparer, grader or clinical tool is run for this explanation.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+No source annotation, Full private mask or patient image is retained; the class key comes only from the pinned contract.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: pancreas-oar-seg-task.
+The 21 targets include pancreas, pancreatic lesion and surrounding structures. Their source IDs are nonconsecutive: 1–4, 6, 8–17, 22–26 and 28. No PanTS pixels or labels are retained. The Full package excludes data and carries a no-redistribution gate for converted or staged derivatives; this view is symbolic.
 
 ## Expected output
 
-Write `agents_outputs/{case_id}/dseg.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy.
+Write agents_outputs/{case_id}/dseg.nii.gz as one integer NIfTI map. Keep the source-defined IDs, including gaps at 5, 7, 18 through 21 and 27. No participant output is retained.
 
 ## Evaluation
 
-The configuration describes foreground Dice overlap, with task-specific class aggregation. Organ/lesion tasks require both outputs; inspect the selected evaluator for their exact weighting. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
-
-## Visual explanation
-
-### Workflow
-
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit a label map
-
-### Input
-
-**Contract view; native sample not yet illustrated.** CT input, stored as `ct.nii.gz` per case.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names VISTA3D (MONAI foundation model for 3D CT, 132 classes). Standard supplies candidates to investigate; model files may still need provisioning.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** Write `agents_outputs/{case_id}/dseg.nii.gz`. Preserve scan geometry and map labels to the configuration’s integer taxonomy.
+The config describes macro Dice over GT-nonempty classes. The pinned scorer iterates all 21 IDs and assigns Dice 1 when both masks are empty, leaving the intended denominator unresolved. The formatter rounds values for allowed-ID checking, though the requested map is integer; it checks shape against available CT, not affine. The aggregate scales multiclass Dice by completion for partial submissions. No score was computed here.
 
 ## Conditions
 
@@ -64,18 +40,27 @@ The configuration describes foreground Dice overlap, with task-specific class ag
 | Full · Standard | Candidate methods and task-specific comparison requirements. | Research, choose, configure, validate and run a suitable pipeline. |
 | Related source listing | The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established. | Use this brief to understand the task’s nature; follow that entry’s exact source for its executable conditions. |
 
-## Difficulty
-
-Cover all 21 scored structures and preserve the source’s nonconsecutive label IDs; good pancreas overlap alone is insufficient.
-
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation/pancreas-oar-seg-task.tar.gz)
+- [Exact pinned AutoMedBench Full harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/segmentation)
+- [Official upstream acquisition route](https://github.com/MrGiovanni/PanTS)
 
-## Coverage
+## Visual explanation
 
-Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.
+### Input
 
-## Gaps
+Document-pinned contract and abstract grid, with no patient pixels.
 
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.
+### Supplied helpers
+
+Source-defined label names and output paths are contract text. This pack supplies no PanTS case or annotation to a Full solver.
+
+### Reference or output
+
+The requested output slots are empty. No source annotation, Full private mask or patient image is retained; the class key comes only from the pinned contract.
+
+### Workflow
+
+- Inspect the abstract grid and its source-access warning.
+- Map label IDs and required output files without filling a prediction.
+- Read scorer boundaries and reference availability.

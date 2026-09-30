@@ -1,3 +1,4 @@
+import { segBData } from './automed-seg-b';
 import { segAPacks } from './automed-full-seg-a';
 import { detectionPacks } from './automed-full-detection';
 import { reportSource } from './report-reading';
@@ -76,6 +77,10 @@ export function showInlineNarration(state: StoryState): boolean {
 export function isPlanarStory(plan: StoryPlan): boolean {
   return [
     'cardiac-anchor-v1',
+    'automed-full-hepaticvessel-v1',
+    'automed-full-kidney-v1',
+    'automed-full-liver-v1',
+    'automed-full-pancreas-oar-v1',
     'cardiac-material-v1',
     'automed-full-heart-seg-v1',
     'automed-full-feta-seg-v1',
@@ -633,6 +638,62 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Upstream source slice'],
           ['#f4bc49', 'Reader-only source labels'],
           ['#16a6a9', 'Empty test output'],
+        ],
+      };
+    case 'automed-full-hepaticvessel-v1':
+      return {
+        heading: 'Segment hepatic vessels and tumor',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segBData['hepaticvessel'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream CT or symbolic grid'],
+          ['#18c6d4', 'Required output IDs'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'automed-full-kidney-v1':
+      return {
+        heading: 'Specify kidney and lesion masks',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segBData['kidney'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream CT'],
+          ['#eab56c', 'Reader-only KiTS19 label'],
+          ['#18c6d4', 'Empty output schema'],
+        ],
+      };
+    case 'automed-full-liver-v1':
+      return {
+        heading: 'Specify liver and lesion masks',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segBData['liver'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream CT'],
+          ['#eab56c', 'Reader-only MSD label'],
+          ['#18c6d4', 'Empty output schema'],
+        ],
+      };
+    case 'automed-full-pancreas-oar-v1':
+      return {
+        heading: 'Map pancreas organs at risk',
+        corner: 'AutoMed Full · segmentation contract',
+        warning: {
+          ...segBData['pancreas-oar'].source.notice,
+          link_label: 'Official source / acquire data',
+        },
+        legend: [
+          ['#91a6ae', 'Upstream CT or symbolic grid'],
+          ['#18c6d4', 'Required output IDs'],
+          ['#7ba4b8', 'No prediction'],
         ],
       };
     case 'cardiac-material-v1':

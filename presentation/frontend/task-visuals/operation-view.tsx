@@ -1,3 +1,4 @@
+import { AutomedSegBScene, AutomedSegBOutput } from './automed-seg-b-panels';
 import { AutoMedSegAScene, AutoMedSegAOutput } from './automed-full-seg-a-panels';
 import { AutoMedDetectionScene, AutoMedDetectionOutput } from './automed-full-detection-panels';
 import { RexTopcowLocalScene, RexTopcowLocalOutput } from './rex-topcow-localization-panels';
@@ -224,6 +225,14 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
   if (state.recipe === 'automed-full-colon-seg-v1') return <AutoMedSegAScene state={state} />;
   if (state.recipe === 'automed-full-feta-seg-v1') return <AutoMedSegAScene state={state} />;
   if (state.recipe === 'automed-full-heart-seg-v1') return <AutoMedSegAScene state={state} />;
+  if (state.recipe === 'automed-full-hepaticvessel-v1')
+    return <AutomedSegBScene task={'hepaticvessel'} state={state} />;
+  if (state.recipe === 'automed-full-kidney-v1')
+    return <AutomedSegBScene task={'kidney'} state={state} />;
+  if (state.recipe === 'automed-full-liver-v1')
+    return <AutomedSegBScene task={'liver'} state={state} />;
+  if (state.recipe === 'automed-full-pancreas-oar-v1')
+    return <AutomedSegBScene task={'pancreas-oar'} state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
@@ -507,6 +516,14 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'automed-full-colon-seg-v1') return <AutoMedSegAOutput state={state} />;
   if (state.recipe === 'automed-full-feta-seg-v1') return <AutoMedSegAOutput state={state} />;
   if (state.recipe === 'automed-full-heart-seg-v1') return <AutoMedSegAOutput state={state} />;
+  if (state.recipe === 'automed-full-hepaticvessel-v1')
+    return <AutomedSegBOutput task={'hepaticvessel'} state={state} />;
+  if (state.recipe === 'automed-full-kidney-v1')
+    return <AutomedSegBOutput task={'kidney'} state={state} />;
+  if (state.recipe === 'automed-full-liver-v1')
+    return <AutomedSegBOutput task={'liver'} state={state} />;
+  if (state.recipe === 'automed-full-pancreas-oar-v1')
+    return <AutomedSegBOutput task={'pancreas-oar'} state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;
