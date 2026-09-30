@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'abra-viewer-control-v1',
   'bcer-brain-full-v1',
   'bcer-cardiac-full-v1',
   'bcer-brain-grade-v1',
@@ -86,6 +87,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'abra-viewer-control-v1')
+    return {
+      scene: 'data-abra-viewer-scene',
+      reference: '[data-abra-private-reference]',
+      referenceChannel: null,
+      output: '[data-abra-output-schema]',
+      aside: '[data-abra-aside]',
+    };
   if (plan.recipe === 'bcer-brain-full-v1')
     return {
       scene: 'data-intb-scene',
@@ -484,6 +493,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'abra-viewer-control-v1': [
+      /source CT is retained.*OHIF viewport and slice mapping are missing/s,
+      'https://www.cancerimagingarchive.net/collection/lidc-idri/',
+      'data-abra-viewer-scene',
+      false,
+    ],
     'bcer-brain-full-v1': [
       /BCER|ABRA|source|unavailable|metadata/i,
       'https://www.med.upenn.edu/cbica/brats2021/',
@@ -919,6 +934,43 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'abra-viewer-control-v1') {
+    const operationIndex = plan.beats.findIndex((beat) => beat.scene === 'operation');
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const preview = page.locator('[data-abra-source-preview] img');
+    const fixedImage = await preview.getAttribute('src');
+    const candidate = page.locator('[data-abra-mock-index]');
+    assert.equal(await candidate.innerText(), '0');
+    const slider = page.locator('[data-abra-mock-control] input[type="range"]');
+    await slider.focus();
+    await slider.press('Home');
+    await slider.press('ArrowRight');
+    assert.equal(await candidate.innerText(), '1');
+    await page.getByRole('button', { name: 'Stage 70 locally', exact: true }).click();
+    assert.equal(await candidate.innerText(), '70');
+    assert.equal(await preview.getAttribute('src'), fixedImage, 'mock control changed source CT');
+    assert.equal(await page.locator('[data-abra-observed-state="absent"]').count(), 1);
+    assert.match(await page.locator('[data-abra-mock-control]').innerText(), /slice_index=70/);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-symbolic-request.png`) });
+    await page.getByRole('button', { name: 'Follow story', exact: true }).click();
+    assert.equal(await candidate.innerText(), '0');
+    await page.getByRole('button', { name: 'Stage 70 locally', exact: true }).click();
+    await page.locator('[data-story-step="0"]').click();
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    assert.equal(await candidate.innerText(), '0', 'chapter unmount did not clear local override');
+    await page.getByRole('button', { name: 'Stage 70 locally', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await page.waitForFunction(
+      () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
+    );
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    assert.equal(await candidate.innerText(), '0', 'canonical reset retained local override');
+    assert.equal(await preview.getAttribute('src'), fixedImage);
   }
   if (plan.recipe === 'automed-full-prostate-seg-v1') {
     const helperIndex = plan.beats.findIndex((b) => b.scene === 'helper');
@@ -4299,6 +4351,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'abra-viewer-control-v1',
       'bcer-brain-full-v1',
       'bcer-cardiac-full-v1',
       'bcer-brain-grade-v1',

@@ -285,7 +285,12 @@ def new(
             beat["scene"] = "input"
         if recipe == "healthagentbench-cxr-correction-v1":
             beat["scene"] = "input"
-        if recipe in {"bcer-brain-grade-v1", "bcer-cardiac-full-v1", "bcer-brain-full-v1"}:
+        if recipe in {
+            "bcer-brain-grade-v1",
+            "bcer-cardiac-full-v1",
+            "bcer-brain-full-v1",
+            "abra-viewer-control-v1",
+        }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"

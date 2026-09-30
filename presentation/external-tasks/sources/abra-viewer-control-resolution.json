@@ -1,0 +1,269 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://www.cancerimagingarchive.net/collection/lidc-idri/",
+  "actual_data_gap": "Retained exact LIDC-IDRI-0003 CT DICOM source exists; actual loaded OHIF viewport, verified viewer slice ordering, final state/action trace and score do not.",
+  "attempts": [
+    {
+      "action": "pinned tier1 generator HTTP retrieval",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "HTTP 200; 5539 bytes saved and SHA-256 pinned.",
+      "source": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier1.py"
+    },
+    {
+      "action": "pinned state-difference scorer HTTP retrieval",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "HTTP 200; 2090 bytes saved and SHA-256 pinned.",
+      "source": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/state_diff_scorer.py"
+    },
+    {
+      "action": "local study manifest and viewer sample inventory",
+      "attempted_at": "2026-09-29T06:11:43.025466+00:00",
+      "outcome": "LIDC-IDRI-0003 has a CT series with 140 instances; generator gives target slice index 70. No source-proven OHIF loaded viewport or matching viewer-index pixel mapping.",
+      "source": ".local/explainers/completion-20260927/037-source/data/studies/study_manifest.json"
+    },
+    {
+      "action": "read-only retained native CT archive integrity and DICOM header audit",
+      "attempted_at": "2026-09-30T06:50:02.296599+00:00",
+      "outcome": "Archive SHA and CRC verified; 140 explicit-VR uncompressed CT DICOM members matched pinned ABRA Study/Series UIDs, unique 1..140 instance numbers and positions, 512x512 signed int16, spacing/slope/intercept verified. No viewer loaded or task executed.",
+      "source": "runs/task-brief-samples/abra/ct.zip"
+    },
+    {
+      "action": "official TCIA LIDC-IDRI collection and data-use page read",
+      "attempted_at": "2026-09-30T06:55:46.730275+00:00",
+      "outcome": "Official collection lists image DICOM under CC BY 3.0, DOI 10.7937/K9/TCIA.2015.LO9QL9SX, and required TCIA data citation/usage policy. Read-only; no new download.",
+      "source": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "action": "official collection attribution and CC BY 3.0 license refinement",
+      "attempted_at": "2026-09-30T07:32:26.521735+00:00",
+      "outcome": "Read official full dataset creator citation, DOI, CC BY 3.0 status, and NCI/FNIH acknowledgement instruction; added direct license and collection links. No data download or publication.",
+      "source": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "action": "correct dataset citation from retained official page text",
+      "attempted_at": "2026-09-30T08:02:14.537305+00:00",
+      "outcome": "Replaced hand-transcribed creator initials with exact Data Citation text between official page headings; raw HTML and normalized text SHA/size pinned. No source image or viewer changes.",
+      "source": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "action": "read retained generator, scorer, tool registry and verify all source SHA/size pins; bounded matched-data archive audit through deterministic source builder",
+      "source": ".local/explainers/goal-20260930/workers/abra-viewer-control",
+      "attempted_at": "2026-09-30T10:59:48.297218+00:00",
+      "outcome": "Generator/scorer/schema read without import execution; correct tool argument is slice_index, replacing index in earlier draft. Archive verification follows in checks.json. No viewer or model launch. Deterministic builder subsequently passed all nine source SHA/size pins, ZIP CRC and 140 matched DICOM headers."
+    },
+    {
+      "action": "entry-specific frontend and isolated integration preparation",
+      "source": ".local/explainers/goal-20260930/workers/abra-viewer-control/proposal-v2",
+      "outcome": "Dedicated five-chapter modules prepared; no sibling pack imports. Guarded integration proposal and isolated checks follow; no production writes.",
+      "attempted_at": "2026-09-30T11:11:44.592988+00:00"
+    }
+  ],
+  "brief": {
+    "path": "presentation/external-tasks/briefs/abra-viewer-control.md",
+    "role": "proposed production brief",
+    "sha256": "032f1aa9eb4f8d669be6df718c48cdac740abc31f726ebfa9ff67b88768afd4f"
+  },
+  "entry_id": "abra-viewer-control",
+  "evaluator_run": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "To claim an observed viewer action or map source CT images to OHIF sliceIndex, load authorized matching series in the pinned viewer, record its ordering/final API state, and verify source-to-viewer mapping; retain grader state separately. Root must review TCIA attribution/packaging before portable export.",
+  "resolved_at": "2026-09-30T11:11:44.592988+00:00",
+  "schema": 1,
+  "source_commit": "688814615dc368a66276798cb864fe9a587d7e6c",
+  "source_integrity": {
+    "all_dicoms_pixel_spacing_mm": [
+      0.820312,
+      0.820312
+    ],
+    "all_dicoms_rows_columns": [
+      512,
+      512
+    ],
+    "all_dicoms_same_study_series": true,
+    "all_dicoms_slope_intercept": [
+      1,
+      -1024
+    ],
+    "all_dicoms_unique_image_positions": 140,
+    "all_dicoms_unique_instance_numbers": 140,
+    "archive_crc": "all members passed",
+    "archive_member_count": 141,
+    "dicom_member_count": 140,
+    "embedded_license_sha256": "549adb2471a8adc13da32860115c5559971b06097bba2922634a5e49f1800e0b",
+    "pixel_dtype": "signed int16",
+    "selected_member": "00000001.dcm",
+    "selected_member_crc32": "0e51ae51",
+    "selected_member_image_position_lps_mm": [
+      -228.800003,
+      -210.0,
+      -229.0
+    ],
+    "selected_member_instance_number": 80,
+    "selected_member_sha256": "54894c22dae09ae8cc99fea77a01c7a64db0b3da9ed22492d9de86317caa2c8c",
+    "selected_member_window_center_hu": -600,
+    "selected_member_window_width_hu": 1600,
+    "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+    "study_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.101370605276577556143013894866",
+    "transfer_syntax": "1.2.840.10008.1.2.1 explicit VR little endian, uncompressed"
+  },
+  "source_license": "ABRA code MIT; LIDC-IDRI CT archive CC BY 3.0 with TCIA data-use and attribution requirements; original archive kept local",
+  "source_pins": [
+    {
+      "bytes": 5539,
+      "path": ".local/explainers/core-20260929/interpretation-b-source/abra-viewer-control/pinned-source/tier1.py",
+      "role": "pinned-generator",
+      "sha256": "42dc0fc77939a120986e99406890b3b17d12b0e9dd1af496109d193a783e83d9",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier1.py"
+    },
+    {
+      "bytes": 2090,
+      "path": ".local/explainers/core-20260929/interpretation-b-source/abra-viewer-control/pinned-source/state_diff_scorer.py",
+      "role": "outcome-scorer",
+      "sha256": "f3837a703af515cdc989f479e521fd227d9a9c5b9db1c67e2c8a91b646815e47",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/state_diff_scorer.py"
+    },
+    {
+      "bytes": 317217,
+      "path": ".local/explainers/completion-20260927/037-source/data/studies/study_manifest.json",
+      "role": "public-study-metadata",
+      "sha256": "a6f367980f071320295adb9832edfcd9d165d377eb74b071b3ba6384738c3086",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/data/studies/study_manifest.json"
+    },
+    {
+      "bytes": 12257,
+      "path": ".local/explainers/completion-20260927/037-source/scripts/task_generators/common.py",
+      "role": "generator-data-model",
+      "sha256": "082d7d9c5d9b93f88504f76a512737ee1c2e2da8f74c6428a709f70973b375ba",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/common.py"
+    },
+    {
+      "bytes": 1069,
+      "path": ".local/explainers/completion-20260927/037-source/LICENSE",
+      "role": "code-license",
+      "sha256": "616457a4d54a40d0e4ffca06c1f1539abd25cb7a63004e8244653476a941cb69",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/LICENSE"
+    },
+    {
+      "bytes": 36104899,
+      "local_path": "runs/task-brief-samples/abra/ct.zip",
+      "path": "runs/task-brief-samples/abra/ct.zip",
+      "role": "retained-native-CT-source-archive",
+      "sha256": "a780bd9438313d98e1b86302c6ed64a9c7d9941f6c418ac93054ec2628b9bb3b",
+      "url": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "bytes": 339811,
+      "local_path": ".local/explainers/core-20260929/abra-viewer-refined-prep-v1/official-page-evidence/collection.html",
+      "path": ".local/explainers/core-20260929/abra-viewer-refined-prep-v1/official-page-evidence/collection.html",
+      "role": "official-collection-raw-page",
+      "sha256": "e623cadb9fa52237cc83dc8fe434a35a2bfef6b434b589a3edef745b44f4534a",
+      "url": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "bytes": 27861,
+      "local_path": ".local/explainers/core-20260929/abra-viewer-refined-prep-v1/official-page-evidence/collection.plain.txt",
+      "path": ".local/explainers/core-20260929/abra-viewer-refined-prep-v1/official-page-evidence/collection.plain.txt",
+      "role": "official-collection-normalized-text",
+      "sha256": "df05ab635f7f12f8b1dbb18f6d8a9eea6cc19d2b6fec860cb68051e1b3792d04",
+      "url": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "path": ".local/explainers/completion-20260927/037-source/src/tasks/tool_registry.py",
+      "bytes": 25343,
+      "sha256": "02ef0d672bbecb143e21b1f2f49c8cd53cb64d99e2087eb7346fef1f9db2bf30",
+      "role": "public-tool-schema",
+      "url": "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/tasks/tool_registry.py"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Performed viewport action and final OHIF API state/screenshot/trace; absent. A local mock candidate index is not output.",
+    "evaluator": "Pinned StateDiffScorer compares only expected API fields in final_state; never run here.",
+    "helper": "Public study/series manifest and prompt-visible target. get_study_series is a callable helper for series-selection variant.",
+    "input": "Pinned task prompt and loaded OHIF/Orthanc CT study. Retained matching LIDC-IDRI-0003 DICOM source archive yields a fixed preview; no loaded viewer state.",
+    "private_reference": "Task YAML expected_outcome is grader representation of prompt-visible target for this slice variant; no extra private image answer. No grader state asset is packaged."
+  },
+  "status": "worker-preparation-not-accepted",
+  "task": "viewer_control",
+  "task_contract": {
+    "derived_example": {
+      "derivation": "Static reading of pinned generator + first CT series in public manifest; no task generator or viewer executed.",
+      "expected_outcome": {
+        "slice_index": 70
+      },
+      "reference_trajectory": [
+        "set_viewport_slice"
+      ],
+      "task_description": "Navigate to slice 70 of the current CT series.",
+      "task_id": "t1_slice_lidc_idri_0003"
+    },
+    "expected_state_field": "sliceIndex",
+    "initial_slice_index": 0,
+    "other_generator_targets": {
+      "bone_window": {
+        "tolerance": 1.0,
+        "window_center": 480,
+        "window_width": 2500
+      },
+      "combined_slice": "num_instances // 3"
+    },
+    "representative_variant": "slice navigation",
+    "scorer": "StateDiffScorer, per-field passed/total; numeric tolerance default 0.01; 1.0 in window-preset variants; string equality for series UID",
+    "scorer_boundary": "Present expected fields only; default numeric abs difference <=0.01; window variants tolerance1.0; strings exact after str(); denominator number of checked fields; no anatomy or index-to-image correctness.",
+    "scorer_field_mapping": {
+      "series_uid": "seriesInstanceUID",
+      "slice_index": "sliceIndex",
+      "window_center": "windowCenter",
+      "window_width": "windowWidth",
+      "zoom": "zoom"
+    },
+    "source_dicom_preview": {
+      "archive_member": "00000001.dcm",
+      "display_window": "DICOM header center -600, width 1600 HU after slope/intercept",
+      "geometry": "512\u00d7512 pixels; native in-plane spacing 0.820312 mm; LPS ImagePositionPatient recorded separately",
+      "instance_number": 80,
+      "preview_role": "actual fixed source image, not observed viewport",
+      "viewer_slice_index": null
+    },
+    "source_instance_count": 140,
+    "source_series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+    "source_study_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.101370605276577556143013894866",
+    "target_formula": "num_instances // 2",
+    "target_slice_index": 70,
+    "target_visibility": "Task description explicitly requests 70; expected_outcome slice_index=70 is duplicate scorer target, not hidden clinical diagnosis.",
+    "task_variants": [
+      "window-level",
+      "slice navigation",
+      "slice+window",
+      "series selection"
+    ],
+    "viewer_index_verified": false,
+    "tool_request": {
+      "name": "set_viewport_slice",
+      "arguments": {
+        "slice_index": 70
+      }
+    },
+    "tool_request_boundary": "Tool registry declares zero-based integer slice_index; tool execution and full filesystem/runtime staging audit were not performed."
+  },
+  "terms": {
+    "cc_by_3_license_url": "https://creativecommons.org/licenses/by/3.0/",
+    "collection_doi": "10.7937/K9/TCIA.2015.LO9QL9SX",
+    "collection_specific_acknowledgement": "For publications/grant applications, collection requests acknowledgement of NCI and FNIH and references to appropriate LIDC publications; use official collection wording.",
+    "collection_url": "https://www.cancerimagingarchive.net/collection/lidc-idri/",
+    "data_use_policy": "https://www.cancerimagingarchive.net/data-usage-policies-and-restrictions/",
+    "official_dataset_citation": "Armato III, S. G., McLennan, G., Bidaut, L., McNitt-Gray, M. F., Meyer, C. R., Reeves, A. P., Zhao, B., Aberle, D. R., Henschke, C. I., Hoffman, E. A., Kazerooni, E. A., MacMahon, H., Van Beek, E. J. R., Yankelevitz, D., Biancardi, A. M., Bland, P. H., Brown, M. S., Engelmann, R. M., Laderach, G. E., Max, D., Pais, R. C. , Qing, D. P. Y. , Roberts, R. Y., Smith, A. R., Starkey, A., Batra, P., Caligiuri, P., Farooqi, A., Gladish, G. W., Jude, C. M., Munden, R. F., Petkovska, I., Quint, L. E., Schwartz, L. H., Sundaram, B., Dodd, L. E., Fenimore, C., Gur, D., Petrick, N., Freymann, J., Kirby, J., Hughes, B., Casteele, A. V., Gupte, S., Sallam, M., Heath, M. D., Kuhn, M. H., Dharaiya, E., Burns, R., Fryd, D. S., Salganicoff, M., Anand, V., Shreter, U., Vastagh, S., Croft, B. Y., Clarke, L. P. (2015). Data From LIDC-IDRI [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX",
+    "official_dataset_citation_sha256": "4eb494ae65585f446778dfea9418bd67bae7f3b30b07fe0817a2e6b6787b1109",
+    "official_dataset_citation_source_path": ".local/explainers/core-20260929/abra-viewer-refined-prep-v1/official-page-evidence/collection.plain.txt",
+    "packaging_status": "local draft; root review before inclusion/export, no publication",
+    "source_archive_license": "CC BY 3.0 per archive LICENSE and official TCIA collection"
+  },
+  "top_warning": "Mixed illustration \u2014 source CT is retained; loaded OHIF viewport and slice mapping are missing. Obtain the study through the official TCIA collection.",
+  "warning_text": "Mixed illustration \u2014 source CT is retained; loaded OHIF viewport and slice mapping are missing. Obtain the study through the official TCIA collection.",
+  "prior_source_review": {
+    "path": ".local/explainers/core-20260929/abra-viewer-refined-prep-v1/presentation/external-tasks/sources/abra-viewer-control-resolution.json",
+    "sha256": "51d3b2a93ba57e3bf63fa7f1cd8cc94e591d82f59b05a01617c35a5a770cf647"
+  }
+}

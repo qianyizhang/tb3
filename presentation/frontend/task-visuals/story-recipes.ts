@@ -1,3 +1,4 @@
+import { abraViewerPack } from './abra-viewer-control';
 import { interpretationBPacks } from './interpretation-b';
 import { interpretationAPacks } from './interpretation-a';
 import { segDData } from './automed-seg-d';
@@ -101,6 +102,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'abra-viewer-control-v1',
     'cardiac-material-v1',
     'automed-full-heart-seg-v1',
     'automed-full-feta-seg-v1',
@@ -886,6 +888,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Unavailable case images'],
           ['#18c6d4', 'Required workflow artifacts'],
           ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'abra-viewer-control-v1':
+      return {
+        heading: 'Set the requested viewer state',
+        corner: 'Mixed source CT and symbolic state',
+        warning: abraViewerPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Fixed native CT source'],
+          ['#18c6d4', 'Symbolic requested state'],
+          ['#7ba4b8', 'Observed state absent'],
         ],
       };
     case 'bcer-brain-full-v1':

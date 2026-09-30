@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "abra-viewer-control-v1": "retained-abra-viewer-control-workflow-v1",
     "bcer-brain-full-v1": "retained-bcer-long-brain-full-workflow-v1",
     "bcer-cardiac-full-v1": "retained-bcer-long-cardiac-full-workflow-v1",
     "bcer-brain-grade-v1": "retained-bcer-medium-brain-grade-classify-workflow-v1",
@@ -150,6 +151,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-abra-viewer-control-workflow-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "source_preview.png",
+        },
+    ),
     "retained-bcer-long-brain-full-workflow-v1": (
         "source-records",
         None,
@@ -1898,6 +1911,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AbraViewerControlChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -3705,6 +3724,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AbraViewerControlBeat(ExpansionBeat[AbraViewerControlChannels]):
+    scene: Literal["input", "route", "operation", "output", "limits"]
+
+
+class AbraViewerControlStory(Story[AbraViewerControlChannels]):
+    recipe: Literal["abra-viewer-control-v1"]
+    beats: tuple[AbraViewerControlBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("Viewer control has no reference assets or reveal channel")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -3932,6 +3969,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraViewerControlStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4038,6 +4076,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraViewerControlStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4304,6 +4343,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AbraViewerControlStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4589,6 +4629,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-abra-viewer-control-workflow-v1": (
+                "LIDC-IDRI-0003-DICOM-LPS-plus-symbolic-viewport",
+                "LicenseRef-ABRA-MIT-plus-LIDC-IDRI-CC-BY-3.0-TCIA",
+                None,
+            ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",
@@ -4734,6 +4779,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "mm and zero-based viewer index"
+                if pack_id == "retained-abra-viewer-control-workflow-v1"
                 else "none"
                 if pack_id == "symbolic-report-reading-v1"
                 else "fraction/pixel"
@@ -4811,7 +4858,10 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         dependencies = {
             p.relative_to(root).as_posix(): storage.sha(p) for p in (index_path, manifest_path)
         }
-        if pack_id in SYMBOLIC_SOURCE_PACKS:
+        if (
+            pack_id in SYMBOLIC_SOURCE_PACKS
+            or pack_id == "retained-abra-viewer-control-workflow-v1"
+        ):
             for source_name, expected_sha in manifest["sources"].items():
                 source_path = storage.inside(root, source_name)
                 if source_path.is_relative_to(manifest_path.parent):
@@ -4824,11 +4874,21 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         for name in pack.retained_files:
             path = storage.inside(manifest_path.parent, name)
             asset = assets[name]
-            role = "reader-reference-reveal" if name in reference_files else "illustration"
+            role = (
+                "input-preview"
+                if pack_id == "retained-abra-viewer-control-workflow-v1"
+                and name == "source_preview.png"
+                else "reader-reference-reveal"
+                if name in reference_files
+                else "illustration"
+            )
             if (
                 asset["provenance"]
                 != (
-                    "symbolic-protocol"
+                    "source-derived"
+                    if pack_id == "retained-abra-viewer-control-workflow-v1"
+                    and name in {"source.json", "source_preview.png"}
+                    else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"
                 )

@@ -1,3 +1,4 @@
+import { AbraViewerScene, AbraViewerOutput } from './abra-viewer-control-panels';
 import { InterpretationBScene, InterpretationBOutput } from './interpretation-b-panels';
 import { InterpretationAScene, InterpretationAOutput } from './interpretation-a-panels';
 import { AutomedSegDScene, AutomedSegDOutput } from './automed-seg-d-panels';
@@ -256,6 +257,7 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
     return <InterpretationAScene state={state} />;
   if (state.recipe === 'bcer-brain-grade-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'bcer-cardiac-full-v1') return <InterpretationBScene state={state} />;
+  if (state.recipe === 'abra-viewer-control-v1') return <AbraViewerScene state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -566,6 +568,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <InterpretationAOutput state={state} />;
   if (state.recipe === 'bcer-brain-grade-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'bcer-cardiac-full-v1') return <InterpretationBOutput state={state} />;
+  if (state.recipe === 'abra-viewer-control-v1') return <AbraViewerOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

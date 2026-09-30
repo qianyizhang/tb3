@@ -9310,15 +9310,15 @@
       ],
       "illustration_kind": "viewer",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "abra-viewer-control",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for abra-viewer-control. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Matched LIDC-IDRI fixed input preview and symbolic viewer state integrated; pending main-agent inspection.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/abra-viewer-control/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "A loaded study in an OHIF viewer backed by Orthanc.",
         "helpers": "Exact target slice/window parameters or a series description; metadata-query tools.",
@@ -9351,14 +9351,109 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T11:26:35.575194+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/abra-viewer-control-resolution.json",
+          "outcome": "Matching CT source and contract audited; loaded OHIF/viewer ordering/action/result remain absent. Mixed faithful explanation integrated; visual acceptance still pending."
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Retained exact LIDC-IDRI-0003 CT DICOM source exists; actual loaded OHIF viewport, verified viewer slice ordering, final state/action trace and score do not.",
+      "acquisition_route": "https://www.cancerimagingarchive.net/collection/lidc-idri/",
+      "warning_text": "Mixed illustration — source CT is retained; loaded OHIF viewport and slice mapping are missing. Obtain the study through the official TCIA collection.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/abra-viewer-control-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/abra-viewer-control-resolution.json",
+        "receipt_sha256": "a6423fac69d914a7606898934f59dda2999e2d2fbaa908743fb93fa9bf81984e",
+        "brief_sha256": "032f1aa9eb4f8d669be6df718c48cdac740abc31f726ebfa9ff67b88768afd4f",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Mixed matching LIDC-IDRI source CT preview and symbolic ABRA viewer workflow; no observed OHIF viewport, ordering, action, final state or score.",
+      "completion_review": {
+        "date": "2026-09-30T11:47:35.149136+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "60dadba911e8b6d614e661deca8e1d8715245b8b2644373c63c5c96d207fb316"
+      },
+      "reviewed_contract_projection": {
+        "title": "Set an ABRA medical viewer to a requested state",
+        "goal": "**Mixed illustration — source CT is retained; loaded OHIF viewport and slice mapping are missing. Obtain the study through the official TCIA collection.** [Official acquisition route](https://www.cancerimagingarchive.net/collection/lidc-idri/).\n\nA pinned ABRA viewer-control task asks for a viewport state, not a diagnosis. This explanation uses **one real, retained LIDC-IDRI-0003 CT archive member** as a fixed source preview and a **symbolic viewer control**. No OHIF action, loaded viewport state, agent result, or score was retained.",
+        "value": "Not yet specified.",
+        "raw": "The task starts from an OHIF/Orthanc study and a prompt requesting a viewer change. ABRA's public manifest identifies a LIDC-IDRI-0003 CT series with **140 DICOM instances**. The retained CT archive contains all 140 files; all share the manifest Study and Series UIDs. Its fixed teaching preview is archive member `00000001.dcm`, DICOM `InstanceNumber=80`, 512×512 pixels. **Archive order and DICOM instance number are not verified OHIF `sliceIndex` values.** The preview uses the member's DICOM slope/intercept and window center −600/width 1600. The actual loaded OHIF viewport, order and index-to-image mapping remain unavailable.",
+        "helpers": "The task description supplies the requested slice number. The study/series manifest supplies instance counts and identifiers. The separate series-selection variant may call `get_study_series`. No segmentation, report, diagnosis, or image finding is supplied by this slice-navigation task.",
+        "tools": "For the representative variant, `set_viewport_slice` would set the active viewport index. Other pinned tier-1 variants call `set_window_level`, combine slice and window control, or use `get_study_series` then `select_series`. None was called here. The local mock control is not OHIF.",
+        "reference": "The generated task YAML repeats a requested target in `expected_outcome` for the scorer. For this slice variant, **70 is already visible in the task description**; it is not hidden clinical truth. The grader-only expected-state representation stays separate from any observed final viewport state, which is absent.",
+        "spec": "Static derivation from the pinned generator and manifest yields task `t1_slice_lidc_idri_0003`: start at index **0**, request `140 // 2 = 70`, and use `set_viewport_slice`. This is a requested **zero-based state index**, not DICOM `InstanceNumber` and not proof that the fixed preview corresponds to index 70. A local mock slider can illustrate candidate state values without calling the viewer. The other variants have distinct target fields and tools; their task answers are not conflated with this slice request.",
+        "output": "A final OHIF viewport state containing API `sliceIndex=70` is the requested outcome. No final API state, screenshot of the loaded viewer, action trace, or observed score exists in this pack. The local control value is an illustration only.",
+        "score": "`StateDiffScorer` maps YAML `slice_index` to API `sliceIndex` and compares only expected fields present in the task outcome. A missing final-state field fails; numeric comparison uses absolute difference ≤ default **0.01**; string fields use string equality. Field passes divided by the number of checked fields gives partial credit. Window-preset tasks set tolerance **1.0**. This is viewer-state comparison, not verification of CT anatomy, physical slice order, or clinical interpretation. No scorer was run.",
+        "challenge": "The task is about controlling and checking state across a viewer API. Manifest order, archive member names, DICOM instance numbers, anatomical z positions, and OHIF indices are different concepts until the viewer's actual ordering is inspected.",
+        "families": "This shared brief explains the representative slice-navigation task and names other pinned viewer-control variants. It asserts neither that OHIF loaded the retained DICOM archive nor that a viewer action or state comparison occurred.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "Exact target slice/window parameters or a series description; metadata-query tools.",
+            "remaining": "Coordinate multiple UI operations and verify the final state; anatomical interpretation is usually unnecessary."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned ABRA tier-1 task generator",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/scripts/task_generators/tier1.py"
+          ],
+          [
+            "state-difference scorer",
+            "https://github.com/Luab/ABRA/blob/688814615dc368a66276798cb864fe9a587d7e6c/src/scoring/outcome/state_diff_scorer.py"
+          ],
+          [
+            "LIDC-IDRI collection, attribution and access terms",
+            "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+          ],
+          [
+            "TCIA data usage policy",
+            "https://www.cancerimagingarchive.net/data-usage-policies-and-restrictions/"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/abra-viewer-control-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p><strong>Mixed illustration — source CT is retained; loaded OHIF viewport and slice mapping are missing. Obtain the study through the official TCIA collection.</strong> <a href=\"https://www.cancerimagingarchive.net/collection/lidc-idri/\">Official acquisition route</a>.</p>\n<p>A pinned ABRA viewer-control task asks for a viewport state, not a diagnosis. This explanation uses <strong>one real, retained LIDC-IDRI-0003 CT archive member</strong> as a fixed source preview and a <strong>symbolic viewer control</strong>. No OHIF action, loaded viewport state, agent result, or score was retained.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The task starts from an OHIF/Orthanc study and a prompt requesting a viewer change. ABRA&#x27;s public manifest identifies a LIDC-IDRI-0003 CT series with <strong>140 DICOM instances</strong>. The retained CT archive contains all 140 files; all share the manifest Study and Series UIDs. Its fixed teaching preview is archive member <code>00000001.dcm</code>, DICOM <code>InstanceNumber=80</code>, 512×512 pixels. <strong>Archive order and DICOM instance number are not verified OHIF <code>sliceIndex</code> values.</strong> The preview uses the member&#x27;s DICOM slope/intercept and window center −600/width 1600. The actual loaded OHIF viewport, order and index-to-image mapping remain unavailable.</p>",
+          "helpers": "<p>The task description supplies the requested slice number. The study/series manifest supplies instance counts and identifiers. The separate series-selection variant may call <code>get_study_series</code>. No segmentation, report, diagnosis, or image finding is supplied by this slice-navigation task.</p>",
+          "tools": "<p>For the representative variant, <code>set_viewport_slice</code> would set the active viewport index. Other pinned tier-1 variants call <code>set_window_level</code>, combine slice and window control, or use <code>get_study_series</code> then <code>select_series</code>. None was called here. The local mock control is not OHIF.</p>",
+          "reference": "<p>The generated task YAML repeats a requested target in <code>expected_outcome</code> for the scorer. For this slice variant, <strong>70 is already visible in the task description</strong>; it is not hidden clinical truth. The grader-only expected-state representation stays separate from any observed final viewport state, which is absent.</p>",
+          "spec": "<p>Static derivation from the pinned generator and manifest yields task <code>t1_slice_lidc_idri_0003</code>: start at index <strong>0</strong>, request <code>140 // 2 = 70</code>, and use <code>set_viewport_slice</code>. This is a requested <strong>zero-based state index</strong>, not DICOM <code>InstanceNumber</code> and not proof that the fixed preview corresponds to index 70. A local mock slider can illustrate candidate state values without calling the viewer. The other variants have distinct target fields and tools; their task answers are not conflated with this slice request.</p>",
+          "output": "<p>A final OHIF viewport state containing API <code>sliceIndex=70</code> is the requested outcome. No final API state, screenshot of the loaded viewer, action trace, or observed score exists in this pack. The local control value is an illustration only.</p>",
+          "score": "<p><code>StateDiffScorer</code> maps YAML <code>slice_index</code> to API <code>sliceIndex</code> and compares only expected fields present in the task outcome. A missing final-state field fails; numeric comparison uses absolute difference ≤ default <strong>0.01</strong>; string fields use string equality. Field passes divided by the number of checked fields gives partial credit. Window-preset tasks set tolerance <strong>1.0</strong>. This is viewer-state comparison, not verification of CT anatomy, physical slice order, or clinical interpretation. No scorer was run.</p>",
+          "challenge": "<p>The task is about controlling and checking state across a viewer API. Manifest order, archive member names, DICOM instance numbers, anatomical z positions, and OHIF indices are different concepts until the viewer&#x27;s actual ordering is inspected.</p>",
+          "families": "<p>This shared brief explains the representative slice-navigation task and names other pinned viewer-control variants. It asserts neither that OHIF loaded the retained DICOM archive nor that a viewer action or state comparison occurred.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -22949,9 +23044,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 94,
+    "reviewed-scripted-planar": 95,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 66,
+    "blocked-source-contract": 65,
     "blocked-source-input": 31,
     "pending-operation-review": 1
   },
