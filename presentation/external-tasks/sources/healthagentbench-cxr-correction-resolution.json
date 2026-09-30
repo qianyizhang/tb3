@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "healthagentbench-cxr-correction",
+  "status": "symbolic explanation source audit refined; no patient assets, evaluator, model or score",
+  "illustration_basis": "symbolic",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "repository_commit": "bcbb8085fd549469e2dc7455f4bfd68a1b98895a"
+  },
+  "source_url": "https://github.com/microsoft/HealthAgentBench/tree/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/xray_report_correction_case_01",
+  "upstream_url": "https://physionet.org/content/mimic-cxr/2.1.0/",
+  "actual_data_gap": "No credentialed matched MIMIC-CXR target/prior reports, MIMIC-CXR-JPG views, target draft, private target gold, participant answer or judge output were acquired. The pack shows only an authored protocol.",
+  "acquisition_route": "https://physionet.org/content/mimic-cxr/2.1.0/",
+  "source_roles": {
+    "input": "Pinned case has 12 chronological study folders, 11 prior and one highest-numbered target; at runtime images and reports are solver inputs, all absent from this pack.",
+    "helper": "Earlier full reports and current target non-generated sections plus corrupted draft FINDINGS are solver-visible. The committed bootstrap manifest is not a solver helper; it contains answer-bearing swap cues and is mounted to bootstrap only.",
+    "private_reference": "Original full target report and parsed gold FINDINGS are verifier-only; CheXprompt compares candidate and gold FINDINGS. No text is retained in the pack.",
+    "output": "One submission.json row uses task_id case_01 and a final_answer starting with literal FINDINGS:; no answer exists."
+  },
+  "scoring_contract": "Default 5 CheXprompt calls, with an absolute pass threshold of at least 3 zero-clinically-significant-error votes. CHEXPROMPT_VOTES and CHEXPROMPT_PASS_THRESHOLD can override defaults. Any missing gold is infrastructure failure; judge-call errors are retained in runs and can prevent reaching the threshold. No judge was run.",
+  "attempts": [
+    {
+      "action": "GET exact HealthAgentBench Git tree and verify task Git blobs",
+      "source": "https://api.github.com/repos/microsoft/HealthAgentBench/git/trees/bcbb8085fd549469e2dc7455f4bfd68a1b98895a?recursive=1",
+      "attempted_at": "2026-09-29T05:52:30Z",
+      "outcome": "HTTP 200; tree SHA256 ca6f72703c0cf3077a800b8ff316efdba544b337c50b7d20c5a90bd3a047d468; 8 selected task files match Git blob IDs."
+    },
+    {
+      "action": "Unauthenticated HEAD official MIMIC-CXR v2.1.0 file route",
+      "source": "https://physionet.org/files/mimic-cxr/2.1.0/",
+      "attempted_at": "2026-09-29T05:53:43Z",
+      "outcome": "HTTP 403; official data page requires credentialed user and signed DUA. No image, draft or report downloaded."
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "tasks/xray_report_correction_case_01/README.md",
+      "bytes": 1954,
+      "sha256": "264723ae38c0d26670852581e40c4735d681ca67755894c5488c98f28cbeda8f",
+      "git_blob": "e35a1de9a039ec728a8a449f3c234fd69866f2b0",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/README.md"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/environment/bootstrap.sh",
+      "bytes": 18474,
+      "sha256": "b60e5035926210b86f09cddda7209f7aa614e9a61b55344d7f3452de40168a6d",
+      "git_blob": "9336336c6022d89e086c6d373cb5ef94e9318c3b",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/environment/bootstrap.sh"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/environment/task_manifest.json",
+      "bytes": 2887,
+      "sha256": "0acc5bde123071a211dc22692cf71023a9bbe0ffee2370d1348c754e9b1c7bed",
+      "git_blob": "d1ea8f9d4d1f00660c6c525352ed7013fb7cba2c",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/environment/task_manifest.json"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/environment/workspace/submission.json",
+      "bytes": 60,
+      "sha256": "4a4f537142ff8be48b0ae22684f1d19eef8ba46dcd08906d101b681a9a6cceba",
+      "git_blob": "0569ba957c3d01c90db7c999121f1950f29c4fb6",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/environment/workspace/submission.json"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/instruction.md",
+      "bytes": 2364,
+      "sha256": "9020370a65cc1fda21b8de5355a57675f375959aee3efaa5519eef4dc44adaa5",
+      "git_blob": "52f35b9a4bc00438ea89f0c69be0fb543f116d80",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/instruction.md"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/task.toml",
+      "bytes": 574,
+      "sha256": "9c4d50188653183d0c1d796465bc0ced03343880f5a9a228f8aa7591f50c57ff",
+      "git_blob": "baa6c0e6e6ee4e7a2b9339b64d8592f573b37660",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/task.toml"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/tests/harbor_evaluator.py",
+      "bytes": 15040,
+      "sha256": "13e1f7337452a70380b9b227c49a0076abec04ae9c5b7d70c6aae19dab834d2c",
+      "git_blob": "35757f06f1f6d968c99e4c44d094f4d147ad4fdb",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/tests/harbor_evaluator.py"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/tests/verify_meta_task.py",
+      "bytes": 12248,
+      "sha256": "711c875913a8e78b530773c3518a5ebb804c88dca08f01c18dca820d3dd7b24a",
+      "git_blob": "586f7b6e3a689e2898eaf629a0b0ebe50df10b55",
+      "local_path": ".local/explainers/core-20260929/interpretation-a-source/pinned-source/tasks/xray_report_correction_case_01/tests/verify_meta_task.py"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/environment/Dockerfile",
+      "local_path": ".local/explainers/core-20260929/cxr-correction-audit-additions-v1/healthagent-dockerfile-bcbb8085.txt",
+      "bytes": 1492,
+      "sha256": "daded5c24d7faae62a9363a9f6041e713a44a2e41d85ab3d3c4e626073318b39",
+      "git_blob": "3bc244371344499e1cde1ab3d28efa0e05b089dd"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/environment/docker-compose.yaml",
+      "local_path": ".local/explainers/core-20260929/cxr-correction-audit-additions-v1/healthagent-compose-bcbb8085.yaml",
+      "bytes": 3195,
+      "sha256": "47009fa9c741342430ad4e7857f3292cae86731dea970c8c334d138167540271",
+      "git_blob": "c4d8ae29e01f649b66e6a6fcdba7726363f88c0d"
+    },
+    {
+      "path": "tasks/xray_report_correction_case_01/tests/test.sh",
+      "local_path": ".local/explainers/core-20260929/cxr-correction-audit-additions-v1/healthagent-test-sh-bcbb8085.txt",
+      "bytes": 110,
+      "sha256": "bdd9ea727c5c2fad419d59e5d2632f83e81e94552ae5be162eedc9d4cebd63b2",
+      "git_blob": "0171e0f4a9341ccbef469fc1f0d17eaeccd47040"
+    }
+  ],
+  "source_license": "LicenseRef-PhysioNet-Credentialed-Health-Data-1.5.0",
+  "additional_acquisition_routes": [
+    {
+      "role": "radiograph JPG views and metadata",
+      "url": "https://physionet.org/content/mimic-cxr-jpg/2.1.0/"
+    }
+  ],
+  "illustration_license": "LicenseRef-TB3-symbolic-teaching",
+  "external_judge": {
+    "task_wrapper_default_deployment": "gpt-5.4",
+    "chexprompt_install": "git+https://github.com/microsoft/chexprompt.git@main in pinned HealthAgentBench Dockerfile; historical/future dependency revision not fixed",
+    "observed_source_tree_2026_09_30": "8cfddeccf1c51d06fc15acce916915e32dcf585d",
+    "observed_source_status": "read-only contemporary prompt/parser snapshot; not a historical run pin",
+    "official_data_handling_guidance": "https://physionet.org/news/post/llm-responsible-use/",
+    "execution_or_compliance_decision": "none; task/judge was not run"
+  },
+  "run_boundary_observation": "Pinned compose file declares a shared env_file for bootstrap and main; actual environment/credentials were not inspected. This source-declared boundary is recorded for future task-run governance, not investigated or changed here.",
+  "reopening_conditions": [
+    "Credentialed access to both exact report and JPG sources under their terms.",
+    "Verified matching 12-study staging, with target draft agent-visible and original target report/gold verifier-only.",
+    "Explicit approved report-text judge data-handling route and a pinned CheXprompt revision before any governed run or score interpretation."
+  ],
+  "audit_addition": {
+    "observed_at": "2026-09-30",
+    "description": "Three public pinned HealthAgentBench source files added from official commit and Git tree; retained in ignored audit additions. No dataset retry, patient text, environment, or credentials inspected.",
+    "chexprompt_source_status": "main branch observed at 8cfddeccf1c51d06fc15acce916915e32dcf585d on 2026-09-30, not pinned by source task"
+  },
+  "top_warning": "MIMIC-CXR reports and MIMIC-CXR-JPG views require credentialed access. This is an authored clause-editing protocol with no patient image, report text, answer, judge call, or score."
+}

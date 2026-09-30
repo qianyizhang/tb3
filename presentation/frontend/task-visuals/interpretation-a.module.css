@@ -1,0 +1,260 @@
+.scene {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+  color: #eaf5fc;
+}
+.scene h3 {
+  color: #183645;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.15;
+  margin: 0;
+}
+.two {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(230px, 0.8fr);
+  gap: 11px;
+  min-width: 0;
+}
+.card,
+.steps > div,
+.limits > div {
+  background: #102335;
+  border: 1px solid #38596b;
+  border-radius: 9px;
+  padding: 12px;
+  min-width: 0;
+}
+.card b,
+.steps b,
+.limits b {
+  color: #fff;
+  font-size: 14px;
+}
+.card p,
+.steps p,
+.limits p {
+  margin: 8px 0;
+  color: #cddce6;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.card small {
+  color: #b9cad5;
+  font-size: 11px;
+}
+.card code {
+  display: block;
+  overflow-wrap: anywhere;
+  background: #071723;
+  border-radius: 6px;
+  padding: 8px;
+  color: #9fe1e8;
+  font-size: 11px;
+}
+.emptyInput,
+.covered {
+  color: #eaf5fc;
+  min-height: 270px;
+  border: 1px dashed #8295a3;
+  border-radius: 9px;
+  background: repeating-linear-gradient(135deg, #11283a, #11283a 16px, #152e42 16px, #152e42 31px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 8px;
+  padding: 20px;
+}
+.emptyInput span,
+.covered p {
+  max-width: 390px;
+  color: #cadce8;
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+}
+.slide {
+  margin: 0;
+  border: 1px solid #4c6570;
+  background: #08131b;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 0;
+}
+.slideHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  background: #172b3c;
+  padding: 6px 9px;
+  color: #d2e1e8;
+  font-size: 10px;
+}
+.slideHead b {
+  color: white;
+}
+.slideCanvas {
+  position: relative;
+  width: min(100%, 470px);
+  aspect-ratio: 1;
+  margin: auto;
+  background: #f2eee9;
+}
+.slideCanvas img,
+.slideCanvas svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.slideCanvas img {
+  object-fit: contain;
+}
+.slide figcaption {
+  font-size: 10px;
+  line-height: 1.35;
+  color: #b9cbd5;
+  padding: 6px 8px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+.flow {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.flow span {
+  border: 1px solid #427383;
+  background: #082333;
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: #b7e4ec;
+  font-size: 11px;
+}
+.flow b {
+  color: #ffcf72;
+}
+.equation {
+  border-radius: 6px;
+  background: #071723;
+  color: #9ee8ee;
+  padding: 10px;
+  font:
+    12px/1.6 ui-monospace,
+    monospace;
+  margin-top: 12px;
+}
+.absent {
+  display: block;
+  color: #ffe0a1;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.limits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+}
+.output {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  font-size: 12px;
+}
+.output p {
+  margin: 0;
+  color: #425f6e;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+@media (max-width: 700px) {
+  .two,
+  .steps,
+  .limits {
+    grid-template-columns: 1fr;
+  }
+  .slideCanvas {
+    width: min(100%, 390px);
+  }
+  .emptyInput,
+  .covered {
+    min-height: 180px;
+  }
+  .card,
+  .steps > div,
+  .limits > div {
+    padding: 10px;
+  }
+}
+
+.ruleRows {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ruleRows label {
+  color: #d8f1f4;
+  display: grid;
+  gap: 4px;
+  font-size: 11px;
+}
+.ruleRows select {
+  width: 100%;
+  min-width: 0;
+  background: #071723;
+  color: #d8f1f4;
+  border: 1px solid #597b8a;
+  border-radius: 4px;
+  padding: 6px;
+  font-size: 11px;
+}
+.card button {
+  margin-top: 10px;
+  background: #123f52;
+  color: #e0f5ff;
+  border: 1px solid #6d9bad;
+  border-radius: 4px;
+  padding: 6px 9px;
+  font-size: 11px;
+}
+
+.gridControls {
+  padding: 3px 8px;
+  color: #dbe9ef;
+  font-size: 11px;
+}
+.gridControls label {
+  display: grid;
+  gap: 3px;
+  color: #dbe9ef;
+  font-size: 11px;
+}
+.gridControls input {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+.gridControls > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.gridControls button {
+  background: #123f52;
+  color: #e0f5ff;
+  border: 1px solid #6d9bad;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 10px;
+}

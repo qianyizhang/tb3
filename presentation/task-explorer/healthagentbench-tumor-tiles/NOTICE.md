@@ -1,0 +1,1 @@
+Symbolic protocol only. No WSI image or mask pixels, tumor locations, prediction, or score are in this pack. Original CAMELYON16 access, intended use, and derived-image distribution terms require review: https://camelyon16.grand-challenge.org/Rules/

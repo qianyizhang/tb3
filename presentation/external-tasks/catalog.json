@@ -19,7 +19,8 @@
         "input": "Non-contrast chest CT volume",
         "output": "Present / absent findings",
         "caption": "Several findings may coexist. A list of labels does not describe their locations.",
-        "subject": "chest-ct"
+        "subject": "chest-ct",
+        "story_id": "healthagentbench"
       },
       "role": "task",
       "agent_work": "direct",
@@ -161,7 +162,8 @@
         "input": "Image evidence",
         "output": "Structured report",
         "caption": "Translate visible evidence into a report; the document drawing contains no clinical findings.",
-        "subject": "chest-ct"
+        "subject": "chest-ct",
+        "story_id": "radagent"
       },
       "role": "task",
       "agent_work": "workflow",
@@ -481,7 +483,8 @@
         "kind": "tiles",
         "input": "A grid of slide tiles",
         "output": "Selected tumor-bearing tiles",
-        "caption": "The task chooses regions from a larger slide rather than classifying a whole patient."
+        "caption": "The task chooses regions from a larger slide rather than classifying a whole patient.",
+        "story_id": "healthagentbench-tumor-tiles"
       },
       "role": "task",
       "agent_work": "direct",
@@ -504,7 +507,8 @@
         "input": "Chest X-ray + draft findings",
         "output": "Corrected findings text",
         "caption": "The supplied draft may contain errors. Revise its findings against the image evidence.",
-        "subject": "chest"
+        "subject": "chest",
+        "story_id": "healthagentbench-cxr-correction"
       },
       "role": "task",
       "agent_work": "direct",

@@ -5838,15 +5838,15 @@
       ],
       "illustration_kind": "multilabel",
       "subject": "chest-ct",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "healthagentbench",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "Ten commit-pinned task files recovered with verified Git blob hashes. Exact CT-RATE scan, paired report and derived requested labels/gold remain unavailable.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Authorized valid_16_a_1 CT-RATE scan and paired validation report row are absent. Need pinned dataset bytes, derived case labels and applicable source-asset delivery terms; account authorization not tested.",
-      "remaining_work": "Recover authorized exact source pair, derive and audit case-specific label/reference boundaries, create native source views, author and bind a task-specific story, export and inspect desktop/mobile/no-GPU/media. No generic CT or invented label replacement.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/healthagentbench-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "One non-contrast chest CT volume (NIfTI).",
         "helpers": "A scan-specific list of 4–12 findings to assess; no lesion coordinates are specified in the inspected prompt.",
@@ -5963,11 +5963,11 @@
         "missing_media": []
       },
       "source_review": {
-        "date": "2026-09-28",
+        "date": "2026-09-30",
         "actor": "assistant",
-        "receipt": "presentation/external-tasks/sources/healthagentbench-ct-audit.json",
-        "receipt_sha256": "4b583c377c8839ba5cfc6443006187d0929492952f7cc1c0cb697a5392016fb6",
-        "brief_sha256": "0c37712d4834ec0ed52d9cb3cc2c8b4233bc9da2f90668e98f9bdae39bcf62ef",
+        "receipt": "presentation/external-tasks/sources/healthagentbench-resolution.json",
+        "receipt_sha256": "1e57034329c92b7bc8623974f5b7404ef66d33d3d45ab115c252eaf4796547a9",
+        "brief_sha256": "d39ac95304ba30399879c0bf5e8455f6f0942898a4c24a46b412e48de39b554b",
         "no_visual_acceptance": true
       },
       "dependency_deferral": {
@@ -5978,14 +5978,103 @@
         "next_action": "Recover authorized exact source pair, derive and audit case-specific label/reference boundaries, create native source views, author and bind a task-specific story, export and inspect desktop/mobile/no-GPU/media. No generic CT or invented label replacement.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "missing-case-evidence",
-        "attempt_status": "prior-audit-recorded-assets-unresolved",
-        "next_action": "Try the official CT-RATE route for valid_16_a_1 and its paired report row using available authorized access; record gate/auth outcome without inventing it. If unavailable, show a task-faithful symbolic CT/report flow without case-specific labels. Include the concise top acquisition warning on any symbolic fallback.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "source_review_history": [
+        {
+          "date": "2026-09-28",
+          "actor": "assistant",
+          "receipt": "presentation/external-tasks/sources/healthagentbench-ct-audit.json",
+          "receipt_sha256": "4b583c377c8839ba5cfc6443006187d0929492952f7cc1c0cb697a5392016fb6",
+          "brief_sha256": "0c37712d4834ec0ed52d9cb3cc2c8b4233bc9da2f90668e98f9bdae39bcf62ef",
+          "no_visual_acceptance": true
+        }
+      ],
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "missing-case-evidence",
+          "attempt_status": "prior-audit-recorded-assets-unresolved",
+          "next_action": "Try the official CT-RATE route for valid_16_a_1 and its paired report row using available authorized access; record gate/auth outcome without inventing it. If unavailable, show a task-faithful symbolic CT/report flow without case-specific labels. Include the concise top acquisition warning on any symbolic fallback.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T04:16:37.707853+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/healthagentbench-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Exact valid_16_a_1 CT, paired report, derived requested-label list, gold and prediction unavailable.",
+      "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+      "source_resolution_receipt": "presentation/external-tasks/sources/healthagentbench-resolution.json",
+      "warning_text": "Symbolic workflow · CT-RATE case gated. Exact CT, requested names and private gold are unavailable (HTTP 401). Request official CT-RATE access and stage the matched case; no patient answer is shown.",
+      "acceptance_scope": "Individually reviewed symbolic CT requested-findings explainer, exact pinned task/gold/parser contract, all-labels teaching controls, exported video, integrated mobile and fallback. No patient answer or clinical/model result.",
+      "completion_review": {
+        "date": "2026-09-30T04:40:55.239392+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "cb29db2222e2fb85396320d49e8dc158880e1b98167ee1eb1657c0f91e5a9178"
+      },
+      "reviewed_contract_projection": {
+        "title": "Decide requested findings on one chest CT",
+        "goal": "Decide requested findings on one chest CT. The worked view is a symbolic protocol with no patient image; no task run or evaluation was performed.",
+        "value": "Not yet specified.",
+        "raw": "The exact valid_16_a_1 CT and paired CT-RATE report require access. The case-specific labels.txt list derived from that report is also unavailable.",
+        "helpers": "The source supplies a scan-specific requested-label list only after report-derived staging; this list is absent.",
+        "tools": "The pinned task permits source-specific terminal or specialist tools under its task conditions. This explanation runs no model, image preparer, grader or learned metric.",
+        "reference": "Report-derived gold.json and evidence sentences are evaluator-only; no actual gold was acquired.",
+        "spec": "For each supplied label name, inspect the 3D CT and write yes or no. The format examples in the prompt are not this patient’s requested list.",
+        "output": "/workspace/submission/predictions.txt, one exact label: yes/no line per requested name. No prediction or final answer was created for this pack.",
+        "score": "Reward 1 only when all retained report-derived gold labels have matching parseable binary predictions; one wrong or missing answer yields 0. This is label agreement, not independent clinical diagnosis. Gold uses 17 report-phrase categories: present-only and absent-only matches are retained; both or neither are omitted. Missing or empty gold is a staging error, not a measured model failure.",
+        "challenge": "The exact CT, report, requested names, private gold and model prediction are missing. Unauthenticated HEAD returned HTTP 401 GatedRepo.",
+        "families": "Also: CXR correction, pathology and other healthcare terminal tasks. This preview only inspects the CT example.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Published CT task",
+            "helper": "Requested-label list",
+            "remaining": "Inspect the volume and classify every requested finding."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task contract",
+            "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1/instruction.md"
+          ],
+          [
+            "Official data acquisition",
+            "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/healthagentbench-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Decide requested findings on one chest CT. The worked view is a symbolic protocol with no patient image; no task run or evaluation was performed.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The exact valid_16_a_1 CT and paired CT-RATE report require access. The case-specific labels.txt list derived from that report is also unavailable.</p>",
+          "helpers": "<p>The source supplies a scan-specific requested-label list only after report-derived staging; this list is absent.</p>",
+          "tools": "<p>The pinned task permits source-specific terminal or specialist tools under its task conditions. This explanation runs no model, image preparer, grader or learned metric.</p>",
+          "reference": "<p>Report-derived gold.json and evidence sentences are evaluator-only; no actual gold was acquired.</p>",
+          "spec": "<p>For each supplied label name, inspect the 3D CT and write yes or no. The format examples in the prompt are not this patient’s requested list.</p>",
+          "output": "<p>/workspace/submission/predictions.txt, one exact label: yes/no line per requested name. No prediction or final answer was created for this pack.</p>",
+          "score": "<p>Reward 1 only when all retained report-derived gold labels have matching parseable binary predictions; one wrong or missing answer yields 0. This is label agreement, not independent clinical diagnosis. Gold uses 17 report-phrase categories: present-only and absent-only matches are retained; both or neither are omitted. Missing or empty gold is a staging error, not a measured model failure.</p>",
+          "challenge": "<p>The exact CT, report, requested names, private gold and model prediction are missing. Unauthenticated HEAD returned HTTP 401 GatedRepo.</p>",
+          "families": "<p>Also: CXR correction, pathology and other healthcare terminal tasks. This preview only inspects the CT example.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -6935,15 +7024,15 @@
       ],
       "illustration_kind": "report",
       "subject": "chest-ct",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "radagent",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "36 pinned source files verified; nonclinical input/reference, trace-format and coverage fixtures pass. Native CT, specialist trace and final report remain absent.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "An authorized native CT plus matching retained RadAgent trace/final report and provenance for any shown tool outputs. A CT alone does not provide the missing case-specific results.",
-      "remaining_work": "Obtain authorized matching source/trace assets, author a case-specific canonical story, export and visually review it. Source audit is retained but does not count as completion.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/radagent-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "A chest CT scan, such as a CT-RATE case.",
         "helpers": "Trained specialist backends can supply draft reports, disease predictions, organ/effusion segmentations and selected slices.",
@@ -6992,24 +7081,24 @@
         "resume": "Verify case identity and source/terms/hashes; separate input, specialist outputs and reference; construct the operation story and run the full export and visual review. Do not execute models or substitute a synthetic report to claim completion."
       },
       "reviewed_contract_projection": {
-        "title": "Write a chest CT report using specialist tools",
-        "goal": "Inspect a chest CT through specialist tools and assemble a report with an inspectable interaction trace.",
-        "value": "The intended product summarizes imaging findings for a reader. Report quality and tool usage need separate evaluation.",
-        "raw": "A chest CT NIfTI volume readable by the tool services. The pinned minimal-inference agent receives the request and image path as text; its specialist backends read the image. CT-RATE batch mode resolves paths from a report-generation manifest.",
-        "helpers": "The v8c prompt supplies a nine-item diagnosis checklist and descriptions of ten callable tools. Draft reports, pathology predictions and masks are generated assistance, not reference annotations. CT-Chat supplies the draft-report and whole-volume VQA backends; separate models support classification, segmentation and slice VQA.",
-        "tools": "Whole-volume and slice VQA, draft-report generation, an 18-pathology classifier, anatomy and effusion segmentation, largest-mask and distributed-mask slice selection, whole-volume slice selection, and windowing. A shared MCP proxy forwards calls to the separate backends. Availability requires the corresponding model assets and services.",
-        "reference": "The minimal batch loader takes only the request and image identity from the manifest. Its scenarios omit the paired reference report. The separate metric reader loads that report for comparison. The full training implementation retains `gt` in the host scenario for reward computation; it is not inserted into the initial user message. These are source-level data-flow observations, not a runtime filesystem-isolation test.",
-        "spec": "Given an image path, orchestrate tool calls and return a generated report. The v8c prompt requests an initial draft, checklist coverage, additional checks of abnormalities, and reconciliation of disagreements. The minimal runtime allows up to 60 assistant steps and requests JSON actions: `call_tool` or `final_answer`. These instructions do not establish that any saved report followed them. This entry covers system inference, not a frozen benchmark submission.",
-        "output": "The single-case CLI streams a JSON list of system/user, assistant and tool messages to stdout. The final assistant action contains an `answer` string. Batch mode writes per-case files under `trajectory/` or `fails/`; successful traces append `status: success` and `reward: 0.0`. That zero is placeholder metadata, not a measured report-quality score.",
-        "score": "CT-RATE evaluation compares generated and reference reports using BLEU-1, ROUGE-L, CIDEr and the learned GREEN scorer. A RadBERT classifier separately extracts 18 binary labels from both texts for classification metrics; these labels are model-derived. RadChest-CT lacks reference reports and instead joins generated-report classifications to its provided label table.\n\n**Coverage:** cases with no output file are removed from the reference set. Recorded failures remain as the literal text `Failed`; they are not assigned a fixed zero by the loader. Report quality therefore needs a separate attempted/completed-case denominator.\n\n**Serialization:** the rollout parser tolerates fenced JSON and Python-style literal dictionaries, but the report-metric reader uses strict JSON parsing. Nonclinical fixtures reproduce accepted runtime decisions becoming empty evaluation reports. A failure file also overrides a success file for the same scan key when both exist. These are source-reader observations; no learned scorer or medical inference was run.",
-        "challenge": "The agent must reconcile several specialist outputs. Its capability depends partly on those models and checkpoints.",
+        "title": "Assemble a chest CT report through specialist tools",
+        "goal": "Assemble a chest CT report through specialist tools. The worked view is a symbolic protocol with no patient image; no task run or evaluation was performed.",
+        "value": "Not yet specified.",
+        "raw": "The pinned agent source defines a nine-item checklist and ten specialist tools. No native CT, saved tool result, generated report or matched reference report is retained.",
+        "helpers": "Pinned task instructions, prompts, runtime contracts and helper descriptions are retained, but no case-specific helper output is available.",
+        "tools": "The pinned task permits source-specific terminal or specialist tools under its task conditions. This explanation runs no model, image preparer, grader or learned metric.",
+        "reference": "The paired clinical report is read separately by report evaluation, not placed in the initial minimal-inference request.",
+        "spec": "The v8c prompt directs a report_generation_tool draft first, then checks across nine checklist areas using specialist tools and resolution of contradictions. No saved trace establishes an actual sequence. The tool description instead suggests drafting after region checks; this source conflict remains explicit.",
+        "output": "final assistant JSON action with answer string; single-case CLI streams the interaction trace. No prediction or final answer was created for this pack.",
+        "score": "Separate offline CT-RATE metrics include BLEU-1, ROUGE-L, CIDEr, GREEN and RadBERT-derived labels. Full-orchestrator learned reward is optional; minimal-batch reward 0.0 is placeholder metadata. CIDEr is skipped for a single paired case. No metric was run.",
+        "challenge": "CT-RATE is gated; the audited source tree contains no worked NIfTI, tool trace or report. No report text or metric is invented.",
         "families": "Report generation · CT-RATE multiple-choice VQA · tool ablations. This anchor covers reporting only.",
-        "gap": "The source contract is audited; the native worked example, canonical story and visual review remain unfinished. Resume with an authorized CT, its matching saved RadAgent trace/final report, and provenance for tool-generated assets. Keep any paired reference report in a separate reader-only reveal. Downloading a CT alone does not supply the missing outputs. No model or learned-metric run was launched, and this audit does not complete the separate VQA entry.",
+        "gap": "Not yet specified.",
         "case_note": "Not yet specified.",
         "stages": [
-          "Chest CT",
-          "Consult and reconcile tools",
-          "Report + interaction trace"
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
         ],
         "variants": [
           {
@@ -7025,75 +7114,47 @@
         ],
         "sources": [
           [
-            "System and tools",
-            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/README.md"
-          ],
-          [
-            "Single-case inference interface",
+            "Pinned task contract",
             "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/README.md"
           ],
           [
-            "Prompt, actions and rollout parser",
-            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/agent_runtime.py"
-          ],
-          [
-            "Batch input projection",
-            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/minimal_inference/app/runtime/dataset_scenarios.py"
-          ],
-          [
-            "Saved-output reader and case pairing",
-            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/process_generated_reports.py"
-          ],
-          [
-            "Report and label metrics",
-            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/radagent/evaluation/compute_metrics.py"
-          ],
-          [
-            "CT-RATE downloader",
-            "https://github.com/eth-medical-ai-lab/rad-agent/blob/9e9d32936ce24676cba32c81605720fe74a5da5a/dataset_utils/CT-RATE/download_scripts/download_dataset.py"
-          ],
-          [
-            "Dataset and access terms",
+            "Official data acquisition",
             "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE"
           ],
           [
-            "Sample download and rendering receipt",
-            "presentation/external-tasks/samples.json"
-          ],
-          [
-            "Pinned source audit and nonclinical fixtures",
-            "presentation/external-tasks/sources/radagent-report-audit.json"
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/radagent-resolution.json"
           ]
         ],
         "html": {
-          "goal": "<p>Inspect a chest CT through specialist tools and assemble a report with an inspectable interaction trace.</p>",
-          "value": "<p>The intended product summarizes imaging findings for a reader. Report quality and tool usage need separate evaluation.</p>",
-          "raw": "<p>A chest CT NIfTI volume readable by the tool services. The pinned minimal-inference agent receives the request and image path as text; its specialist backends read the image. CT-RATE batch mode resolves paths from a report-generation manifest.</p>",
-          "helpers": "<p>The v8c prompt supplies a nine-item diagnosis checklist and descriptions of ten callable tools. Draft reports, pathology predictions and masks are generated assistance, not reference annotations. CT-Chat supplies the draft-report and whole-volume VQA backends; separate models support classification, segmentation and slice VQA.</p>",
-          "tools": "<p>Whole-volume and slice VQA, draft-report generation, an 18-pathology classifier, anatomy and effusion segmentation, largest-mask and distributed-mask slice selection, whole-volume slice selection, and windowing. A shared MCP proxy forwards calls to the separate backends. Availability requires the corresponding model assets and services.</p>",
-          "reference": "<p>The minimal batch loader takes only the request and image identity from the manifest. Its scenarios omit the paired reference report. The separate metric reader loads that report for comparison. The full training implementation retains <code>gt</code> in the host scenario for reward computation; it is not inserted into the initial user message. These are source-level data-flow observations, not a runtime filesystem-isolation test.</p>",
-          "spec": "<p>Given an image path, orchestrate tool calls and return a generated report. The v8c prompt requests an initial draft, checklist coverage, additional checks of abnormalities, and reconciliation of disagreements. The minimal runtime allows up to 60 assistant steps and requests JSON actions: <code>call_tool</code> or <code>final_answer</code>. These instructions do not establish that any saved report followed them. This entry covers system inference, not a frozen benchmark submission.</p>",
-          "output": "<p>The single-case CLI streams a JSON list of system/user, assistant and tool messages to stdout. The final assistant action contains an <code>answer</code> string. Batch mode writes per-case files under <code>trajectory/</code> or <code>fails/</code>; successful traces append <code>status: success</code> and <code>reward: 0.0</code>. That zero is placeholder metadata, not a measured report-quality score.</p>",
-          "score": "<p>CT-RATE evaluation compares generated and reference reports using BLEU-1, ROUGE-L, CIDEr and the learned GREEN scorer. A RadBERT classifier separately extracts 18 binary labels from both texts for classification metrics; these labels are model-derived. RadChest-CT lacks reference reports and instead joins generated-report classifications to its provided label table.</p>\n<p><strong>Coverage:</strong> cases with no output file are removed from the reference set. Recorded failures remain as the literal text <code>Failed</code>; they are not assigned a fixed zero by the loader. Report quality therefore needs a separate attempted/completed-case denominator.</p>\n<p><strong>Serialization:</strong> the rollout parser tolerates fenced JSON and Python-style literal dictionaries, but the report-metric reader uses strict JSON parsing. Nonclinical fixtures reproduce accepted runtime decisions becoming empty evaluation reports. A failure file also overrides a success file for the same scan key when both exist. These are source-reader observations; no learned scorer or medical inference was run.</p>",
-          "challenge": "<p>The agent must reconcile several specialist outputs. Its capability depends partly on those models and checkpoints.</p>",
+          "goal": "<p>Assemble a chest CT report through specialist tools. The worked view is a symbolic protocol with no patient image; no task run or evaluation was performed.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The pinned agent source defines a nine-item checklist and ten specialist tools. No native CT, saved tool result, generated report or matched reference report is retained.</p>",
+          "helpers": "<p>Pinned task instructions, prompts, runtime contracts and helper descriptions are retained, but no case-specific helper output is available.</p>",
+          "tools": "<p>The pinned task permits source-specific terminal or specialist tools under its task conditions. This explanation runs no model, image preparer, grader or learned metric.</p>",
+          "reference": "<p>The paired clinical report is read separately by report evaluation, not placed in the initial minimal-inference request.</p>",
+          "spec": "<p>The v8c prompt directs a report_generation_tool draft first, then checks across nine checklist areas using specialist tools and resolution of contradictions. No saved trace establishes an actual sequence. The tool description instead suggests drafting after region checks; this source conflict remains explicit.</p>",
+          "output": "<p>final assistant JSON action with answer string; single-case CLI streams the interaction trace. No prediction or final answer was created for this pack.</p>",
+          "score": "<p>Separate offline CT-RATE metrics include BLEU-1, ROUGE-L, CIDEr, GREEN and RadBERT-derived labels. Full-orchestrator learned reward is optional; minimal-batch reward 0.0 is placeholder metadata. CIDEr is skipped for a single paired case. No metric was run.</p>",
+          "challenge": "<p>CT-RATE is gated; the audited source tree contains no worked NIfTI, tool trace or report. No report text or metric is invented.</p>",
           "families": "<p>Report generation · CT-RATE multiple-choice VQA · tool ablations. This anchor covers reporting only.</p>",
-          "gap": "<p>The source contract is audited; the native worked example, canonical story and visual review remain unfinished. Resume with an authorized CT, its matching saved RadAgent trace/final report, and provenance for tool-generated assets. Keep any paired reference report in a separate reader-only reveal. Downloading a CT alone does not supply the missing outputs. No model or learned-metric run was launched, and this audit does not complete the separate VQA entry.</p>",
+          "gap": "<p>Not yet specified.</p>",
           "case_note": "<p>Not yet specified.</p>"
         },
         "visuals": {
-          "input": "<p>No native case is retained. The official CT-RATE page, checked on 2026-09-28, still requires accepted conditions and authentication. Its separate access terms restrict redistribution. The older HTTP 401 receipt concerns a HealthAgentBench sample, not a new RadAgent download attempt.</p>",
-          "helpers": "<p>No case-specific specialist trace is retained. The pinned repository&#x27;s complete 288-file tree contains no NIfTI/DICOM/NPZ input and its output directory contains only three task-to-image maps. Those maps do not supply tool results or generated reports.</p>",
-          "answer": "<p>The source audit includes nonclinical text fixtures for prompt/reference separation and trace parsing. They contain no scan, medical finding or model prediction and do not substitute for the missing worked example.</p>"
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
         },
         "missing_media": []
       },
       "source_review": {
-        "date": "2026-09-28",
-        "reviewer": "assistant",
-        "receipt": "presentation/external-tasks/sources/radagent-report-audit.json",
-        "sha256": "39b6371b4f862cc20cb9360036ad910cdbcccccab6a097b859b0b6feab28db8e",
-        "status": "source-contract-audited-input-and-trace-unavailable",
-        "current_brief_sha256": "274ff6476bbe8ddc495051ac36f58b88b8b1183d4d59162439528fbed99a0188"
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/radagent-resolution.json",
+        "receipt_sha256": "31c88b4851f95a5670a62e6497b7a891964f4377028b6b1d8d01bc8cf6c8f321",
+        "brief_sha256": "10816fbe146903dc07c1de981b623f3177d95e0ae51403ccadc03fbf1d55afe8",
+        "no_visual_acceptance": true
       },
       "dependency_deferral": {
         "actor": "user",
@@ -7103,14 +7164,40 @@
         "next_action": "Obtain authorized matching source/trace assets, author a case-specific canonical story, export and visually review it. Source audit is retained but does not count as completion.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "missing-case-evidence",
-        "attempt_status": "prior-audit-recorded-assets-unresolved",
-        "next_action": "Locate a source-matched CT, retained RadAgent trace/report and tool-output provenance; do not create a model run. If unavailable, show a symbolic report/tool workflow without claiming the illustrated outputs were observed. Include the concise top acquisition warning on any symbolic fallback.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "source_review_history": [
+        {
+          "date": "2026-09-28",
+          "reviewer": "assistant",
+          "receipt": "presentation/external-tasks/sources/radagent-report-audit.json",
+          "sha256": "39b6371b4f862cc20cb9360036ad910cdbcccccab6a097b859b0b6feab28db8e",
+          "status": "source-contract-audited-input-and-trace-unavailable",
+          "current_brief_sha256": "274ff6476bbe8ddc495051ac36f58b88b8b1183d4d59162439528fbed99a0188"
+        }
+      ],
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "missing-case-evidence",
+          "attempt_status": "prior-audit-recorded-assets-unresolved",
+          "next_action": "Locate a source-matched CT, retained RadAgent trace/report and tool-output provenance; do not create a model run. If unavailable, show a symbolic report/tool workflow without claiming the illustrated outputs were observed. Include the concise top acquisition warning on any symbolic fallback.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T04:42:50.511488+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/radagent-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "No native CT, saved specialist tool outputs, generated report/trace or matched reference report.",
+      "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+      "source_resolution_receipt": "presentation/external-tasks/sources/radagent-resolution.json",
+      "warning_text": "Symbolic workflow. No matched CT or tool trace; request official CT-RATE access and retain a matched case, trajectory and paired reference before replacing this view.",
+      "acceptance_scope": "Individually reviewed source-backed symbolic RadAgent report workflow, prompt/checklist/tool contracts, minimal/full reference distinctions, exports, integrated mobile/fallback and empty outcome boundaries. No patient image, report, tool trace or measured performance.",
+      "completion_review": {
+        "date": "2026-09-30T05:02:13.770308+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "77a68ce3815ed1aa29a1ff3459657d63cfcf37a9c2d5eec809d73d4c9f050839"
       }
     },
     {
@@ -7930,15 +8017,15 @@
       ],
       "illustration_kind": "tiles",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "healthagentbench-tumor-tiles",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for healthagentbench-tumor-tiles. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/tumor-tiles-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "A whole-slide image, a public task row and an editable submission template.",
         "helpers": "A fixed grid: each displayed 256×256 tile at downsample 16 covers 4096×4096 level-zero pixels. Task ID and output schema are supplied.",
@@ -7971,14 +8058,101 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T05:10:34.530700+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/healthagentbench-tumor-tiles-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "Bounded bytes from the exact upstream slide and a decoded low-resolution overview were recovered into local ignored audit evidence, but no source-image derivative is embedded in the collection pack while original access, reuse, and redistribution terms remain unresolved. Full-resolution solver input, hidden expert mask, predictions, and score are absent from this explanation.",
+      "acquisition_route": "https://camelyon16.grand-challenge.org/Rules/ (review registration and request explicit use/portable derivative permission before image-pack reuse)",
+      "source_resolution_receipt": "presentation/external-tasks/sources/healthagentbench-tumor-tiles-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/healthagentbench-tumor-tiles-resolution.json",
+        "receipt_sha256": "8926865686dcaac473d8b148f5e2b66b27bec5d31499b9153e1970eb9990b040",
+        "brief_sha256": "dfb89c8153525315dba8b817e3e84de8b1892572ff5c9a46a99a03d6e3908a76",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "Source image withheld · symbolic grid. No slide pixels: CAMELYON16 reuse permissions remain unresolved. Obtain registered access and permission through the official route. Grid only; no tumor labels or result.",
+      "acceptance_scope": "Source-audited symbolic native-coordinate grid with absent WSI, answer and result; individually reviewed exports, mobile/fallback and interactions.",
+      "completion_review": {
+        "date": "2026-09-30T05:21:38.253311+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "c38ff9feb0b3ad4e7d5bba3979c8bb84544fdb4be52359a8133bf648ab56cd7e"
+      },
+      "reviewed_contract_projection": {
+        "title": "Find tumor-bearing slide tiles",
+        "goal": "Locate every tumor-containing grid tile in a whole-slide pathology image. **This explanation is a symbolic protocol view:** bounded exact-slide source bytes and a decoded overview were recovered to local audit evidence, but source-image reuse and redistribution terms remain unresolved, so no slide pixels enter this collection pack.",
+        "value": "Not yet specified.",
+        "raw": "The pinned solver task supplies a whole-slide H&E image at `/data/slide/current/slide.tif`. The pack cannot display that image. The verified local source audit establishes its native level-zero extent, **114,688×100,352 px**, but this diagram contains no tissue, anatomy, tumor or patient image.",
+        "helpers": "The public `slide_0001` task row declares `analysis_tile_size=256`, `analysis_downsample=16` and `tumor_threshold=0.2`. A 256-px analysis tile spans 4,096 level-zero pixels per side. The editable `submission.json` template supplies task ID, instruction, `contains_tumor`, and an initially empty `predicted_tumor_tiles` list; its default `contains_tumor:false` is **not a gold label**.",
+        "tools": "The pinned task permits local slide inspection and task-specific software under its conditions. No slide viewer, model, preparer, or evaluator is run in this explanation.",
+        "reference": "The verifier privately obtains an expert mask and derives gold grid coordinates where label-2 pixels occupy at least 0.2 of a tile's mask patch. Neither mask nor selected coordinates are in this pack. An image filename in the bootstrap can imply the answer; the first reader view shows only the opaque task ID and missing-image socket.",
+        "spec": "Search the whole slide, rather than a supplied tumor crop. The source dimensions and stride define **28 columns × 25 rows** (700 possible coordinates, x=0–27 and y=0–24); the last row is **2,048 level-zero pixels high**. `x=floor(level0_x/4096)` and `y=floor(level0_y/4096)` locate a candidate cell. The diagram's unclassified cursor demonstrates this mapping; it is not an image inspection, a selection, or evidence of tumor.",
+        "output": "Write `/workspace/submission.json` as a one-row JSON list with the retained task ID and instruction, a `contains_tumor` boolean, and `predicted_tumor_tiles` as `{x:int,y:int}` coordinates. The pack contains an **empty prediction schema**, no participant answer.",
+        "score": "The pinned scorer normalizes predicted coordinates to a set, dropping duplicates, and computes tile-level precision, recall and F1 against private mask-derived gold. Reward is 1 only if F1≥0.90; `contains_tumor` is requested but not read by this tile scorer. Coordinate bounds are not enforced by the scorer, and Python boolean values can pass its integer type check; these are implementation quirks, not valid coordinate guidance. Both empty gold and prediction yield F1=0 in this scorer. No F1 or reward was observed. The separate CAMELYON16 challenge's AUC/FROC metrics are not this HealthAgentBench score.",
+        "challenge": "A whole-slide search is materially different from a cropped lesion example. The abstract grid explains coordinate bookkeeping but cannot establish a tumor location, completeness, or diagnostic performance.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "Only bounded TIFF ranges and a decoded overview were recovered to local ignored source-audit evidence; the full WSI was not recovered. Image reuse awaits intended-use and derivative-distribution authorization. Full-resolution inspection, hidden mask, participant prediction, and observed score are unavailable. Reopen image-backed presentation only with explicit terms/registration resolution, exact matched WSI identity and a separate private-reference boundary.",
+        "case_note": "The pictured grid is authored geometry, not a case image. Other cases may have different slide dimensions and positive tiles; the numbers above apply to the pinned `slide_0001` source audit only.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A fixed grid: each displayed 256×256 tile at downsample 16 covers 4096×4096 level-zero pixels. Task ID and output schema are supplied.",
+            "remaining": "Search a large slide, ignore non-tissue and recognize tumor across variable tissue appearance. A selected crop would remove much of the search burden."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task prompt",
+            "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/tumor_area_selection_pathology_slide_0001/instruction.md"
+          ],
+          [
+            "Official CAMELYON16 Rules and access route",
+            "https://camelyon16.grand-challenge.org/Rules/"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/healthagentbench-tumor-tiles-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Locate every tumor-containing grid tile in a whole-slide pathology image. <strong>This explanation is a symbolic protocol view:</strong> bounded exact-slide source bytes and a decoded overview were recovered to local audit evidence, but source-image reuse and redistribution terms remain unresolved, so no slide pixels enter this collection pack.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The pinned solver task supplies a whole-slide H&amp;E image at <code>/data/slide/current/slide.tif</code>. The pack cannot display that image. The verified local source audit establishes its native level-zero extent, <strong>114,688×100,352 px</strong>, but this diagram contains no tissue, anatomy, tumor or patient image.</p>",
+          "helpers": "<p>The public <code>slide_0001</code> task row declares <code>analysis_tile_size=256</code>, <code>analysis_downsample=16</code> and <code>tumor_threshold=0.2</code>. A 256-px analysis tile spans 4,096 level-zero pixels per side. The editable <code>submission.json</code> template supplies task ID, instruction, <code>contains_tumor</code>, and an initially empty <code>predicted_tumor_tiles</code> list; its default <code>contains_tumor:false</code> is <strong>not a gold label</strong>.</p>",
+          "tools": "<p>The pinned task permits local slide inspection and task-specific software under its conditions. No slide viewer, model, preparer, or evaluator is run in this explanation.</p>",
+          "reference": "<p>The verifier privately obtains an expert mask and derives gold grid coordinates where label-2 pixels occupy at least 0.2 of a tile&#x27;s mask patch. Neither mask nor selected coordinates are in this pack. An image filename in the bootstrap can imply the answer; the first reader view shows only the opaque task ID and missing-image socket.</p>",
+          "spec": "<p>Search the whole slide, rather than a supplied tumor crop. The source dimensions and stride define <strong>28 columns × 25 rows</strong> (700 possible coordinates, x=0–27 and y=0–24); the last row is <strong>2,048 level-zero pixels high</strong>. <code>x=floor(level0_x/4096)</code> and <code>y=floor(level0_y/4096)</code> locate a candidate cell. The diagram&#x27;s unclassified cursor demonstrates this mapping; it is not an image inspection, a selection, or evidence of tumor.</p>",
+          "output": "<p>Write <code>/workspace/submission.json</code> as a one-row JSON list with the retained task ID and instruction, a <code>contains_tumor</code> boolean, and <code>predicted_tumor_tiles</code> as <code>{x:int,y:int}</code> coordinates. The pack contains an <strong>empty prediction schema</strong>, no participant answer.</p>",
+          "score": "<p>The pinned scorer normalizes predicted coordinates to a set, dropping duplicates, and computes tile-level precision, recall and F1 against private mask-derived gold. Reward is 1 only if F1≥0.90; <code>contains_tumor</code> is requested but not read by this tile scorer. Coordinate bounds are not enforced by the scorer, and Python boolean values can pass its integer type check; these are implementation quirks, not valid coordinate guidance. Both empty gold and prediction yield F1=0 in this scorer. No F1 or reward was observed. The separate CAMELYON16 challenge&#x27;s AUC/FROC metrics are not this HealthAgentBench score.</p>",
+          "challenge": "<p>A whole-slide search is materially different from a cropped lesion example. The abstract grid explains coordinate bookkeeping but cannot establish a tumor location, completeness, or diagnostic performance.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>Only bounded TIFF ranges and a decoded overview were recovered to local ignored source-audit evidence; the full WSI was not recovered. Image reuse awaits intended-use and derivative-distribution authorization. Full-resolution inspection, hidden mask, participant prediction, and observed score are unavailable. Reopen image-backed presentation only with explicit terms/registration resolution, exact matched WSI identity and a separate private-reference boundary.</p>",
+          "case_note": "<p>The pictured grid is authored geometry, not a case image. Other cases may have different slide dimensions and positive tiles; the numbers above apply to the pinned <code>slide_0001</code> source audit only.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -7996,15 +8170,15 @@
       ],
       "illustration_kind": "report",
       "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "healthagentbench-cxr-correction",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for healthagentbench-cxr-correction. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Task-specific pack and source-resolution receipt integrated; pending main-agent visual review.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/core-20260929/cxr-acceptance-v1",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Chronologically organized chest X-ray studies; the highest study_NN is the target study.",
         "helpers": "A draft FINDINGS section and prior reports/studies. These supplied texts reduce the writing burden but may anchor the agent to incorrect claims.",
@@ -8037,14 +8211,109 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "resolved_at": "2026-09-30T05:23:01.166791+00:00",
+          "resolution_receipt": "presentation/external-tasks/sources/healthagentbench-cxr-correction-resolution.json",
+          "outcome": "Task contract and source attempts resolved to the scope described in the retained source-resolution receipt. Task-specific explainer integrated; no visual acceptance yet."
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "No credentialed matched MIMIC-CXR target/prior reports, MIMIC-CXR-JPG views, target draft, private target gold, participant answer or judge output were acquired. The pack shows only an authored protocol.",
+      "acquisition_route": "https://physionet.org/content/mimic-cxr/2.1.0/",
+      "source_resolution_receipt": "presentation/external-tasks/sources/healthagentbench-cxr-correction-resolution.json",
+      "source_review": {
+        "date": "2026-09-30",
+        "actor": "assistant",
+        "receipt": "presentation/external-tasks/sources/healthagentbench-cxr-correction-resolution.json",
+        "receipt_sha256": "5b9e63d01b3a92de641a6aae21c8321d9a583305648e3e618d2a8d355c17cb2e",
+        "brief_sha256": "6863d847ee6da774a13b2e38e0256ea8a6a63d86d3fd1f97dea135718bd7c077",
+        "no_visual_acceptance": true
+      },
+      "warning_text": "MIMIC-CXR reports and MIMIC-CXR-JPG views require credentialed access. This is an authored clause-editing protocol with no patient image, report text, answer, judge call, or score.",
+      "acceptance_scope": "Source-audited symbolic existing-clause editing protocol; individually reviewed interaction, source/reference boundaries, exports and mobile/fallback without patient data or judge calls.",
+      "completion_review": {
+        "date": "2026-09-30T05:35:22.331534+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "7812001c40bbedb95a60a058ef8e6d8c7df14accd1aedaec6e36c88415344f0f"
+      },
+      "reviewed_contract_projection": {
+        "title": "Correct an existing chest X-ray findings section",
+        "goal": "Review a junior draft against the current CXR study and available prior history, then repair **existing** FINDINGS claims. This explanation is symbolic: no patient radiograph, report sentence, correction, judge call or score was acquired.",
+        "value": "Not yet specified.",
+        "raw": "The pinned case manifest names **12** chronological study folders for one patient. The highest-numbered folder, `study_12`, is the target (one listed CXR view); 11 earlier folders list 20 prior views. These are manifest counts, not locally staged patient files. The case requires credentialed [MIMIC-CXR reports](https://physionet.org/content/mimic-cxr/2.1.0/) and [MIMIC-CXR-JPG images](https://physionet.org/content/mimic-cxr-jpg/2.1.0/).",
+        "helpers": "At task runtime, earlier studies provide images and full prior reports. The target report gives non-generated sections and a populated **counterfactual draft FINDINGS** for correction. These are solver helpers, not true answers. The bootstrap-only manifest contains answer-bearing swap cues and must not be presented as a solver helper or initial reader content.",
+        "tools": "The source task gives a terminal workspace and up to one hour. This explainer does not run the task, a report model, image preparer, verifier or judge.",
+        "reference": "The original full target report is staged for the verifier; its true FINDINGS are injected into the answer key in memory and compared with a candidate by CheXprompt. They are not available in this pack. The symbolic clause labels below are authored placeholders, not recovered patient text.",
+        "spec": "For each **existing** draft clause, compare its claim against the current images and relevant prior report evidence. Keep supported wording, correct the existing claim, or remove it. Do **not** add a finding the draft did not mention. Return only corrected FINDINGS, no IMPRESSION. This is constrained editing, not free report generation.",
+        "output": "Set `final_answer` in the one-row `/workspace/submission.json` with `task_id=\"case_01\"`. Begin with the literal `FINDINGS:` header on its own line and then the corrected body. The task directory ID `xray_report_correction_case_01` is distinct from the submitted row ID. No actual final answer exists in this explanation.",
+        "score": "The pinned wrapper extracts candidate and private gold FINDINGS. By default it asks CheXprompt for **five** error-count calls and passes a row only when at least **three** return zero *clinically significant* errors. `CHEXPROMPT_VOTES` and `CHEXPROMPT_PASS_THRESHOLD` can override these numbers. Insignificant counts are diagnostic. Missing gold is an infrastructure error; partial judge errors can prevent three passing votes. The task instruction requires the literal header even though the parser tolerates some missing headers. No call or measured score was produced. The pinned Dockerfile installs CheXprompt from unpinned `main`, so the exact judge prompt/parser version of any future build requires its own pin.",
+        "challenge": "Prior observations can differ from the current study, while a draft can anchor the reader to an incorrect claim. The symbolic gate explains the editing constraint but cannot establish correctness, report quality, or clinical performance.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "The official file route returned HTTP 403 without credentialed access in the retained receipt. No matched patient files, target draft, original report, private answer, judge output, or result are present. Before any task run, the source-declared service environment boundary, report-text data handling and unpinned judge revision require separate governed review; this brief makes no runtime-compliance determination.",
+        "case_note": "The placeholders are deliberately nonclinical. No patient finding, report sentence, study identity, or current-versus-prior change is depicted.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A draft FINDINGS section and prior reports/studies. These supplied texts reduce the writing burden but may anchor the agent to incorrect claims.",
+            "remaining": "Distinguish a wrong claim from a changed finding and avoid importing a historical observation into the current study."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned instruction",
+            "https://github.com/microsoft/HealthAgentBench/blob/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/xray_report_correction_case_01/instruction.md"
+          ],
+          [
+            "PhysioNet MIMIC-CXR reports",
+            "https://physionet.org/content/mimic-cxr/2.1.0/"
+          ],
+          [
+            "JPG views",
+            "https://physionet.org/content/mimic-cxr-jpg/2.1.0/"
+          ],
+          [
+            "PhysioNet guidance on MIMIC data and online services",
+            "https://physionet.org/news/post/llm-responsible-use/"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/healthagentbench-cxr-correction-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Review a junior draft against the current CXR study and available prior history, then repair <strong>existing</strong> FINDINGS claims. This explanation is symbolic: no patient radiograph, report sentence, correction, judge call or score was acquired.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The pinned case manifest names <strong>12</strong> chronological study folders for one patient. The highest-numbered folder, <code>study_12</code>, is the target (one listed CXR view); 11 earlier folders list 20 prior views. These are manifest counts, not locally staged patient files. The case requires credentialed <a href=\"https://physionet.org/content/mimic-cxr/2.1.0/\">MIMIC-CXR reports</a> and <a href=\"https://physionet.org/content/mimic-cxr-jpg/2.1.0/\">MIMIC-CXR-JPG images</a>.</p>",
+          "helpers": "<p>At task runtime, earlier studies provide images and full prior reports. The target report gives non-generated sections and a populated <strong>counterfactual draft FINDINGS</strong> for correction. These are solver helpers, not true answers. The bootstrap-only manifest contains answer-bearing swap cues and must not be presented as a solver helper or initial reader content.</p>",
+          "tools": "<p>The source task gives a terminal workspace and up to one hour. This explainer does not run the task, a report model, image preparer, verifier or judge.</p>",
+          "reference": "<p>The original full target report is staged for the verifier; its true FINDINGS are injected into the answer key in memory and compared with a candidate by CheXprompt. They are not available in this pack. The symbolic clause labels below are authored placeholders, not recovered patient text.</p>",
+          "spec": "<p>For each <strong>existing</strong> draft clause, compare its claim against the current images and relevant prior report evidence. Keep supported wording, correct the existing claim, or remove it. Do <strong>not</strong> add a finding the draft did not mention. Return only corrected FINDINGS, no IMPRESSION. This is constrained editing, not free report generation.</p>",
+          "output": "<p>Set <code>final_answer</code> in the one-row <code>/workspace/submission.json</code> with <code>task_id=&quot;case_01&quot;</code>. Begin with the literal <code>FINDINGS:</code> header on its own line and then the corrected body. The task directory ID <code>xray_report_correction_case_01</code> is distinct from the submitted row ID. No actual final answer exists in this explanation.</p>",
+          "score": "<p>The pinned wrapper extracts candidate and private gold FINDINGS. By default it asks CheXprompt for <strong>five</strong> error-count calls and passes a row only when at least <strong>three</strong> return zero <em>clinically significant</em> errors. <code>CHEXPROMPT_VOTES</code> and <code>CHEXPROMPT_PASS_THRESHOLD</code> can override these numbers. Insignificant counts are diagnostic. Missing gold is an infrastructure error; partial judge errors can prevent three passing votes. The task instruction requires the literal header even though the parser tolerates some missing headers. No call or measured score was produced. The pinned Dockerfile installs CheXprompt from unpinned <code>main</code>, so the exact judge prompt/parser version of any future build requires its own pin.</p>",
+          "challenge": "<p>Prior observations can differ from the current study, while a draft can anchor the reader to an incorrect claim. The symbolic gate explains the editing constraint but cannot establish correctness, report quality, or clinical performance.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>The official file route returned HTTP 403 without credentialed access in the retained receipt. No matched patient files, target draft, original report, private answer, judge output, or result are present. Before any task run, the source-declared service environment boundary, report-text data handling and unpinned judge revision require separate governed review; this brief makes no runtime-compliance determination.</p>",
+          "case_note": "<p>The placeholders are deliberately nonclinical. No patient finding, report sentence, study identity, or current-versus-prior change is depicted.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -22407,10 +22676,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 87,
+    "reviewed-scripted-planar": 91,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-input": 33,
-    "blocked-source-contract": 71,
+    "blocked-source-contract": 69,
+    "blocked-source-input": 31,
     "pending-operation-review": 1
   },
   "completion_program": {

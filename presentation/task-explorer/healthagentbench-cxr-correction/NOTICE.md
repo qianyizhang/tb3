@@ -1,0 +1,1 @@
+Symbolic CXR correction protocol only; no patient image or report text, answer, judge call, or score. Credentialed MIMIC-CXR reports and MIMIC-CXR-JPG views are not included. https://physionet.org/content/mimic-cxr/2.1.0/

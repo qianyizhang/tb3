@@ -44,6 +44,10 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "healthagentbench-cxr-correction-v1": "retained-healthagentbench-cxr-correction-interpretation-v1",
+    "healthagentbench-tumor-tiles-v1": "retained-healthagentbench-tumor-tiles-symbolic-v2",
+    "radagent-report-v1": "retained-radagent-interpretation-v1",
+    "healthagentbench-ct-findings-v1": "retained-healthagentbench-interpretation-v1",
     "automed-full-tsg-multiorgan-v1": "retained-automed-full-tsg-multiorgan-seg-v1",
     "automed-full-spleen-v1": "retained-automed-full-spleen-seg-v1",
     "automed-full-prostate-seg-v1": "retained-automed-full-prostate-seg-v1",
@@ -142,6 +146,33 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-healthagentbench-cxr-correction-interpretation-v1": (
+        "source-records",
+        None,
+        {"DATA-LICENSE.txt", "NOTICE.md", "operation.json", "output.json", "source.json"},
+    ),
+    "retained-healthagentbench-tumor-tiles-symbolic-v2": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "public-task-row.json",
+            "source.json",
+        },
+    ),
+    "retained-radagent-interpretation-v1": (
+        "source-records",
+        None,
+        {"DATA-LICENSE.txt", "NOTICE.md", "operation.json", "output.json", "source.json"},
+    ),
+    "retained-healthagentbench-interpretation-v1": (
+        "source-records",
+        None,
+        {"DATA-LICENSE.txt", "NOTICE.md", "operation.json", "output.json", "source.json"},
+    ),
     "retained-automed-full-tsg-multiorgan-seg-v1": (
         "source-slices",
         None,
@@ -409,6 +440,10 @@ SYMBOLIC_SOURCE_PACKS = frozenset(
         "retained-automed-full-feta-seg-v1",
         "retained-automed-full-panther-t1-seg-v1",
         "retained-automed-full-panther-t2-seg-v1",
+        "retained-healthagentbench-cxr-correction-interpretation-v1",
+        "retained-healthagentbench-interpretation-v1",
+        "retained-healthagentbench-tumor-tiles-symbolic-v2",
+        "retained-radagent-interpretation-v1",
     }
 )
 if not SYMBOLIC_SOURCE_PACKS <= SOURCE_INPUT_PACKS.keys():
@@ -1787,6 +1822,30 @@ class AutomedSegDSpleenChannels(Closed):
 class AutomedSegDTsgMultiorganChannels(Closed):
     view: Pair
     label: Pair
+    reference: Pair
+
+
+class InterpretationAHealthagentbenchChannels(Closed):
+    cursor: Pair
+    detail: Pair
+    reference: Pair
+
+
+class InterpretationARadagentChannels(Closed):
+    cursor: Pair
+    detail: Pair
+    reference: Pair
+
+
+class InterpretationAHealthagentbenchTumorTilesChannels(Closed):
+    cursor: Pair
+    detail: Pair
+    reference: Pair
+
+
+class InterpretationAHealthagentbenchCxrCorrectionChannels(Closed):
+    cursor: Pair
+    detail: Pair
     reference: Pair
 
 
@@ -3448,6 +3507,78 @@ class AutomedSegDTsgMultiorganStory(Story[AutomedSegDTsgMultiorganChannels]):
         return self
 
 
+class InterpretationAHealthagentbenchBeat(ExpansionBeat[InterpretationAHealthagentbenchChannels]):
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationAHealthagentbenchStory(Story[InterpretationAHealthagentbenchChannels]):
+    recipe: Literal["healthagentbench-ct-findings-v1"]
+    beats: tuple[InterpretationAHealthagentbenchBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class InterpretationARadagentBeat(ExpansionBeat[InterpretationARadagentChannels]):
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationARadagentStory(Story[InterpretationARadagentChannels]):
+    recipe: Literal["radagent-report-v1"]
+    beats: tuple[InterpretationARadagentBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class InterpretationAHealthagentbenchTumorTilesBeat(
+    ExpansionBeat[InterpretationAHealthagentbenchTumorTilesChannels]
+):
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationAHealthagentbenchTumorTilesStory(
+    Story[InterpretationAHealthagentbenchTumorTilesChannels]
+):
+    recipe: Literal["healthagentbench-tumor-tiles-v1"]
+    beats: tuple[InterpretationAHealthagentbenchTumorTilesBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
+class InterpretationAHealthagentbenchCxrCorrectionBeat(
+    ExpansionBeat[InterpretationAHealthagentbenchCxrCorrectionChannels]
+):
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationAHealthagentbenchCxrCorrectionStory(
+    Story[InterpretationAHealthagentbenchCxrCorrectionChannels]
+):
+    recipe: Literal["healthagentbench-cxr-correction-v1"]
+    beats: tuple[InterpretationAHealthagentbenchCxrCorrectionBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        return self
+
+
 class CardiacMaterialBeat(ExpansionBeat[CardiacMaterialChannels]):
     scene: Literal[
         "inputs", "initial", "tracking", "tetra", "strain", "comparison", "controls", "limits"
@@ -3667,6 +3798,10 @@ AnyStory = Annotated[
     | AutomedSegCProstateStory
     | AutomedSegDSpleenStory
     | AutomedSegDTsgMultiorganStory
+    | InterpretationAHealthagentbenchStory
+    | InterpretationARadagentStory
+    | InterpretationAHealthagentbenchTumorTilesStory
+    | InterpretationAHealthagentbenchCxrCorrectionStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -3765,6 +3900,10 @@ ADAPTER: TypeAdapter[
     | AutomedSegCProstateStory
     | AutomedSegDSpleenStory
     | AutomedSegDTsgMultiorganStory
+    | InterpretationAHealthagentbenchStory
+    | InterpretationARadagentStory
+    | InterpretationAHealthagentbenchTumorTilesStory
+    | InterpretationAHealthagentbenchCxrCorrectionStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4023,6 +4162,10 @@ def parse_expansion(
     | AutomedSegCProstateStory
     | AutomedSegDSpleenStory
     | AutomedSegDTsgMultiorganStory
+    | InterpretationAHealthagentbenchStory
+    | InterpretationARadagentStory
+    | InterpretationAHealthagentbenchTumorTilesStory
+    | InterpretationAHealthagentbenchCxrCorrectionStory
     | CardiacMaterialStory
     | CardiacAnchorStory
     | ClinicalCavityStory
@@ -4273,6 +4416,26 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "CC-BY-SA-4.0",
             ),
             "retained-automed-full-tsg-multiorgan-seg-v1": ("RAS", "CC-BY-4.0", None),
+            "retained-healthagentbench-interpretation-v1": (
+                "symbolic-task-workflow",
+                "LicenseRef-TB3-symbolic-teaching",
+                "LicenseRef-TB3-symbolic-teaching",
+            ),
+            "retained-radagent-interpretation-v1": (
+                "symbolic-task-workflow",
+                "LicenseRef-TB3-symbolic-teaching",
+                "LicenseRef-TB3-symbolic-teaching",
+            ),
+            "retained-healthagentbench-tumor-tiles-symbolic-v2": (
+                "symbolic-task-workflow",
+                "LicenseRef-TB3-symbolic-teaching",
+                "LicenseRef-TB3-symbolic-teaching",
+            ),
+            "retained-healthagentbench-cxr-correction-interpretation-v1": (
+                "symbolic-task-workflow",
+                "LicenseRef-TB3-symbolic-teaching",
+                "LicenseRef-TB3-symbolic-teaching",
+            ),
             "retained-cardiac-material-v1": (
                 "STRAUS-patient01-healthy-canonical",
                 "LicenseRef-STRAUS-local-noncommercial",
@@ -4399,6 +4562,14 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     "retained-rex-panther-task1-symbolic-v1",
                     "retained-rex-panther-task2-symbolic-v1",
                 }
+                else "none"
+                if pack_id == "retained-healthagentbench-interpretation-v1"
+                else "none"
+                if pack_id == "retained-radagent-interpretation-v1"
+                else "none"
+                if pack_id == "retained-healthagentbench-tumor-tiles-symbolic-v2"
+                else "none"
+                if pack_id == "retained-healthagentbench-cxr-correction-interpretation-v1"
                 else "none"
                 if pack_id == "symbolic-report-reading-v1"
                 else "fraction/pixel"

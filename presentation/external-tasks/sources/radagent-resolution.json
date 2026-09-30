@@ -1,0 +1,277 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "radagent",
+  "status": "source resolution complete; no model/evaluator run or score",
+  "illustration_basis": "symbolic",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "repository_commit": "9e9d32936ce24676cba32c81605720fe74a5da5a"
+  },
+  "source_url": "https://github.com/eth-medical-ai-lab/rad-agent/tree/9e9d32936ce24676cba32c81605720fe74a5da5a",
+  "upstream_url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+  "actual_data_gap": "No native CT, saved specialist tool outputs, generated report/trace or matched reference report.",
+  "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+  "source_roles": {
+    "input": "chest CT NIfTI image path; no case retained",
+    "helper": "ten specialist tools and nine-item checklist; no saved case-specific tool findings",
+    "private_reference": "paired report loaded by separate report evaluator, not initial minimal inference scenario",
+    "output": "final_answer report string within JSON action plus interaction trace; absent"
+  },
+  "scoring_contract": "Separate offline report comparison: BLEU-1, ROUGE-L, CIDEr, GREEN and learned RadBERT pathology labels. CIDEr is skipped for one paired case. Full orchestrator optionally computes a weighted learned reward after task completion; minimal batch reward 0.0 is placeholder metadata. No metric or model was run.",
+  "attempts": [
+    {
+      "action": "Inspect retained RadAgent source audit and verify local pinned source files",
+      "source": "presentation/external-tasks/sources/radagent-report-audit.json",
+      "attempted_at": "2026-09-28T10:08:04Z",
+      "outcome": "36 local source files match retained SHA256 pins; no native volume/trace/report in the pinned source tree."
+    },
+    {
+      "action": "Reuse HealthAgentBench CT-RATE access check; not a selected RadAgent case",
+      "source": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE/resolve/deeca4d89e9f978d4d1bccd88a55071ddbb146bb/dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz",
+      "attempted_at": "2026-09-29T05:53:46Z",
+      "outcome": "Exact public unauthenticated CT-RATE candidate returned HTTP 401; it is not a selected RadAgent case. No matched CT/tool trace/generated report/reference report acquired.",
+      "evidence": {
+        "path": ".local/explainers/core-20260929/interpretation-a-source/ctrate.headers",
+        "sha256": "74ed58086d3d73ee4dd74d7d06a198d8b785e839ce24172ef554178614305eeb"
+      }
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "README.md",
+      "bytes": 25951,
+      "sha256": "8c09afba35a060534c08416371fc367e1b2c03bafc5180d4b5bf0613f712d7cc",
+      "git_blob": "57f4b901b593d089b05f45f680cda8405f2e4303"
+    },
+    {
+      "path": "dataset_utils/CT-RATE/data_preparation_files/internal_split_generation.ipynb",
+      "bytes": 4248,
+      "sha256": "7103c70fcd8a013f8fa468d3f133f06adf219f23a84b9e846e4830f2feef9c7e",
+      "git_blob": "54c60669ee508133524019bf470e5c857aa18a35"
+    },
+    {
+      "path": "dataset_utils/CT-RATE/data_preparation_files/vqa_splits.ipynb",
+      "bytes": 7133,
+      "sha256": "20508ccd8c6e665145ec747bd6978b8c536de1ce873b3db89463970421e5a11b",
+      "git_blob": "2e8e0b376d5719cd24a1ce87af1335ebf49f1cc0"
+    },
+    {
+      "path": "dataset_utils/CT-RATE/download_scripts/download_dataset.py",
+      "bytes": 1363,
+      "sha256": "0d0c22686f506f083e19bafc4ec2cd65be10f01c9ec272d19202dc7c310e31f0",
+      "git_blob": "694d573137cd64556e0803d079bdaf52e5ea0da3"
+    },
+    {
+      "path": "minimal_inference/README.md",
+      "bytes": 22107,
+      "sha256": "622f10129f3761a9a8c51f9db4eb9277cc79cd69bff4964b00db5a1d7794387d",
+      "git_blob": "5ad90e5c8a8b6a9211d817c26a400cef3b49ee08"
+    },
+    {
+      "path": "minimal_inference/app/cli/minimal_ct_agent_batch.py",
+      "bytes": 8938,
+      "sha256": "6618a34c63f0d661f4ada7386e36057a8611acab5e61b0e950a3ca6cc5718924",
+      "git_blob": "ccef195369f8343c08d70410badfc787b178c0e6"
+    },
+    {
+      "path": "minimal_inference/app/cli/minimal_ct_agent_loop.py",
+      "bytes": 1477,
+      "sha256": "99fdb497b0a271e943453ea10204afe5d10d630d8ab7c2114cf112bb5617cf22",
+      "git_blob": "e6ed8830dc68388bbb03e076934c7bc9a77d3586"
+    },
+    {
+      "path": "minimal_inference/app/runtime/agent_runtime.py",
+      "bytes": 17927,
+      "sha256": "cca753d328007b8767d18f7ef32eb19e617098c8eb51c045cfb4ff5be0e2da95",
+      "git_blob": "c1e020de81b65d9b52b1f60af2149b528691b6ee"
+    },
+    {
+      "path": "minimal_inference/app/runtime/dataset_scenarios.py",
+      "bytes": 1388,
+      "sha256": "9452caadcb35c7fb7cf1c1ceea0ac0cd0b773f09964d671eea04c3c46106a7b1",
+      "git_blob": "4c635caf60238a78f41dd51d220b1784e2facf41"
+    },
+    {
+      "path": "minimal_inference/app/runtime/mcp_toolbox_proxy.py",
+      "bytes": 6215,
+      "sha256": "f54f0723de4c616d4a9b8d5bd193fd45fc3fad33b82fb86510496a4e4d3f8e6b",
+      "git_blob": "2fc5277ffa0e754598101db7ac4d0f08b5655d82"
+    },
+    {
+      "path": "minimal_inference/app/runtime/rollout_output_paths.py",
+      "bytes": 1650,
+      "sha256": "4f70aae63d50ea84ab80f13170e0a5e53897825af0524c0ba03257c215be6415",
+      "git_blob": "ba0d5d85779dc466bb1b6e97f084e62ad0afdc95"
+    },
+    {
+      "path": "minimal_inference/infra/Dockerfile",
+      "bytes": 4261,
+      "sha256": "640c50497a2d4d438a6562d7790af5bf12a68d67c19e92aaff6a5c6e4b5a4c13",
+      "git_blob": "b43b3c9acf036fcf75d2a78f2bdc7ce9f2090f55"
+    },
+    {
+      "path": "minimal_inference/launch/start_inference_stack.sh",
+      "bytes": 2456,
+      "sha256": "74988f524e5406ea26869856db8680e7ba643be439c4cfc0ecbd3d43a57e9988",
+      "git_blob": "8c3b1c609e9743923dbcce1b8c2a4190b39ecbe0"
+    },
+    {
+      "path": "minimal_inference/radagent/constants_and_path_utils.py",
+      "bytes": 2539,
+      "sha256": "64f7fd05853cbd46411b7f79f3c8f380f4b29869497618b8bd1f6b3a78cc0905",
+      "git_blob": "a788527b079775aba289bcd89862a2d20600d391"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/anatomy_segmentation_tool.py",
+      "bytes": 2397,
+      "sha256": "bd1cb0670c6539976413dee4138edcdf4e0026d35f2f2b990116717797001f2f",
+      "git_blob": "25e74a153d3a014fae1c8422bf9dde393927675f"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/biggest_slice_selection_tool.py",
+      "bytes": 3105,
+      "sha256": "4cb2c046732a04549a1559647db143e0732cb94cf0009ea73b769f623937f57a",
+      "git_blob": "b3f5f52dd254f4d24158756836dcbef09e3661b8"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/ct_chat.py",
+      "bytes": 4885,
+      "sha256": "580d7783c22a2dc178fda5f932c54ba9f5359e64eef7d720a7a89b279a6a74b9",
+      "git_blob": "93de543a81815d478ea3d69b3df21dcf740c8394"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/disease_classifier.py",
+      "bytes": 1910,
+      "sha256": "7039a70cfba636920be4c652459ddc027cb78be29f85e7aeec4b8108f1610065",
+      "git_blob": "b76c04fa4ddf924e954e8e6afea378ac0a02f0ce"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/effusion_segmentation_tool.py",
+      "bytes": 1632,
+      "sha256": "8e217dfd438efc09baa6eb3f39fc3fa8963cf06b37d2fe377ef9492e18f4e955",
+      "git_blob": "42f6bda2890c40096570ca8785f4e89483cce05e"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/equidistant_slice_selection_seg.py",
+      "bytes": 3834,
+      "sha256": "0ce7e12671aef177591e6509b32a30a8578928d3fdb9799561a25e585fe3ba96",
+      "git_blob": "3b692e7fb87f9023ee017a2113c2852a94a610c3"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/report_generator.py",
+      "bytes": 4559,
+      "sha256": "00512d4a7a4f671f82614c5fb537479374c24b4c66116d3a842bc8eb5d2457c1",
+      "git_blob": "2139d8dab7ff1b012ccc1d805d0b56833165b10b"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/select_ct_slices.py",
+      "bytes": 3000,
+      "sha256": "abcb097a05e4a990b64f636ff3089d53c0690e5eb83e7ea9dcf4428e9505d0fc",
+      "git_blob": "3c8c344bae3aa88ca509f324e53956e2d89eb46d"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/slice_vqa_tool.py",
+      "bytes": 8167,
+      "sha256": "0cb95f704715abc7d52939cb5b905f9b6d5ca7d63d1f0d133437b049b793978e",
+      "git_blob": "116ab60cc0035da256944ee8f8303d2428ccd699"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/tool_configs.py",
+      "bytes": 9211,
+      "sha256": "00586abe3638b4f9ccb4216b35e8a8a231cfc0dd54c8be8c4d08329f86c9b181",
+      "git_blob": "63d5ab820e7236aab3f15a5cf02f0406d7975317"
+    },
+    {
+      "path": "minimal_inference/radagent/tools/windowing_tool.py",
+      "bytes": 4581,
+      "sha256": "6e5189f1639a054a68029078ce9ed1170493736aa78d695270456cf11529a5f2",
+      "git_blob": "036aca688b8bf5b53088c6f4b84b882974e4216e"
+    },
+    {
+      "path": "radagent/agents/art_dataset.py",
+      "bytes": 5185,
+      "sha256": "bc00b17de4a98b6ecb0672726352a7f0e05dc2447330cb1d2c8f04b49ee53c00",
+      "git_blob": "0648f1ce8abf1886b2a10f60efc843635248d8bf"
+    },
+    {
+      "path": "radagent/agents/base_orchestrator.py",
+      "bytes": 34971,
+      "sha256": "f9ccbbfa158cadf433bf613303c1ba7cf77eba3a2bc14b79bb2d2bc277c3014e",
+      "git_blob": "c3f82fded719250fca3be926e06bec4628e70e2b"
+    },
+    {
+      "path": "radagent/agents/custom_orchestrators.py",
+      "bytes": 14243,
+      "sha256": "88bede07e99e1ba076f54de3e14b1dbc20aceb7f52c89ea87482b89d04dfd713",
+      "git_blob": "c30ef8219032ff248aae45b9ce125716c178f2a8"
+    },
+    {
+      "path": "radagent/agents/diagnosis_checklist.py",
+      "bytes": 6262,
+      "sha256": "807a2eb08057da0b0ef3bc4f1c1214c0bc45e48cf644badcc371f0b9ebfc79ef",
+      "git_blob": "68e9a2d7f882a98b71aa6755a6e5c52e25b0935f"
+    },
+    {
+      "path": "radagent/evaluation/compute_f1_wo_bootstrap.py",
+      "bytes": 6153,
+      "sha256": "b64191f19c621a581c9f1e6d1c1e953bed14f4a9693bef4da1ea249a2dc6e5c4",
+      "git_blob": "7866d52c7c2b5fc27b804b54d0d6a99dbfde8911"
+    },
+    {
+      "path": "radagent/evaluation/compute_metrics.py",
+      "bytes": 7279,
+      "sha256": "752c6e0b2e4c59946306e494368ca2b22f8d2d09a8ba639969f5e62b29a7d82f",
+      "git_blob": "371c2dbe2c10b73640fe9388713d7e4235698c08"
+    },
+    {
+      "path": "radagent/evaluation/map_task_to_image_id.py",
+      "bytes": 3800,
+      "sha256": "8068e1724c44741c41247c4584e6495d4ce4d311748a593098b92dd00c655491",
+      "git_blob": "3036d0ecd44f972b44a814121268469cfa8f8fea"
+    },
+    {
+      "path": "radagent/evaluation/process_generated_reports.py",
+      "bytes": 9799,
+      "sha256": "2d423d9ab7cc0c82e57d8181a3ecb4bef7fc850493ec9e47ac2737381c37efc1",
+      "git_blob": "b4b76b1b9bfe475f70aaa5f5de16ef862ed76393"
+    },
+    {
+      "path": "radagent/evaluation/process_generated_reports_radchest.py",
+      "bytes": 4077,
+      "sha256": "1a90666ed0a3881baf9a0723f91a6eb4e7cf85dd5db9b2817f10f72d8c89cbff",
+      "git_blob": "d2c7a5ff7e062c18ce322a83ab43ade674f95578"
+    },
+    {
+      "path": "radagent/evaluation/text_classifier_CT_pathology.py",
+      "bytes": 3425,
+      "sha256": "0f9d9f6d2f34a4ffa557d1292a360d720bfd12dbaf2dc2614ab26ffaec99ff73",
+      "git_blob": "9e78b4ba910b735ce82bfcd6c6bc5e3a247615fa"
+    },
+    {
+      "path": "radagent/tools/tool_configs.py",
+      "bytes": 12148,
+      "sha256": "c826be88ee2064a3f9c52598f11065c653fe232652ebd9e26fbf3507b96c61c9",
+      "git_blob": "33d01c81d27fcb4fb3dda04b1d2783fdaf3df8fe"
+    }
+  ],
+  "source_license": "LicenseRef-TB3-symbolic-teaching",
+  "prior_audit": {
+    "path": "presentation/external-tasks/sources/radagent-report-audit.json",
+    "sha256": "39b6371b4f862cc20cb9360036ad910cdbcccccab6a097b859b0b6feab28db8e"
+  },
+  "contract_audit": {
+    "path": ".local/explainers/core-20260929/radagent-root-prep-audit-v1.json",
+    "sha256": "c862b4ec7cfcbcb413147435034b5cfc3cc007f2b68d2916596f995548ce5d78",
+    "root_read": [
+      "minimal_inference/app/runtime/dataset_scenarios.py",
+      "minimal_inference/app/runtime/agent_runtime.py",
+      "radagent/agents/base_orchestrator.py",
+      "radagent/evaluation/compute_metrics.py"
+    ]
+  },
+  "reference_boundary": "Minimal loader omits conversations[1] from the initial scenario and the separate offline evaluator reads it. Original full host scenarios retain gt for optional post-completion reward; this is not proof of filesystem isolation.",
+  "sequence_conflict": "The minimal v8c prompt directs a report_generation_tool draft first, followed by nine checklist areas and contradiction resolution. The tool description suggests drafting after region checks. No saved trace establishes actual order.",
+  "reopening_condition": "Authorized CT-RATE access, an identified RadAgent case with exact native frame/hash, matched saved specialist-tool trajectory and final report, and a separately paired reference. A CT alone does not reproduce reporting.",
+  "warning_text": "Symbolic workflow. No matched CT or tool trace; request official CT-RATE access and retain a matched case, trajectory and paired reference before replacing this view."
+}

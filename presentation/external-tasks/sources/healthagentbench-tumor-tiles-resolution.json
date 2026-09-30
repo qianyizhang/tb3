@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "healthagentbench-tumor-tiles",
+  "status": "symbolic local collection fallback drafted; native source retained only in ignored audit; no model/evaluator run or score",
+  "illustration_basis": "symbolic",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "repository_commit": "bcbb8085fd549469e2dc7455f4bfd68a1b98895a"
+  },
+  "source_url": "https://github.com/microsoft/HealthAgentBench/tree/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/tumor_area_selection_pathology_slide_0001",
+  "upstream_url": "https://camelyon16.grand-challenge.org/Rules/",
+  "actual_data_gap": "Bounded bytes from the exact upstream slide and a decoded low-resolution overview were recovered into local ignored audit evidence, but no source-image derivative is embedded in the collection pack while original access, reuse, and redistribution terms remain unresolved. Full-resolution solver input, hidden expert mask, predictions, and score are absent from this explanation.",
+  "acquisition_route": "https://camelyon16.grand-challenge.org/Rules/ (review registration and request explicit use/portable derivative permission before image-pack reuse)",
+  "source_roles": {
+    "input": "Pinned task expects an actual CAMELYON16 whole-slide H&E image at /data/slide/current/slide.tif; collection pack has only an absent-input socket and an authored abstract grid.",
+    "helper": "Public slide_0001 task row and editable submission template; 256-pixel task tile at downsample 16 gives a 4096-level-0-pixel stride.",
+    "private_reference": "Evaluator-only expert mask and derived positive tile set; neither is embedded or inferred.",
+    "output": "submission.json fields contains_tumor and predicted_tumor_tiles [{x,y}]; no participant output exists."
+  },
+  "scoring_contract": "Private label-2 mask fraction >=0.2 determines gold tile set. Evaluator deduplicates integer coordinate pairs without grid bounds enforcement and scores set F1 >=0.90; contains_tumor is a requested field but is not read by the tile scorer. No evaluator run.",
+  "attempts": [
+    {
+      "action": "GET exact HealthAgentBench Git tree and verify task Git blobs",
+      "source": "https://api.github.com/repos/microsoft/HealthAgentBench/git/trees/bcbb8085fd549469e2dc7455f4bfd68a1b98895a?recursive=1",
+      "attempted_at": "2026-09-29T05:52:30Z",
+      "outcome": "HTTP 200; tree SHA256 ca6f72703c0cf3077a800b8ff316efdba544b337c50b7d20c5a90bd3a047d468; 8 selected task files match Git blob IDs."
+    },
+    {
+      "action": "HEAD exact official CAMELYON16 task slide",
+      "source": "https://camelyon-dataset.s3.amazonaws.com/CAMELYON16/images/tumor_076.tif",
+      "attempted_at": "2026-09-29T05:53:43Z",
+      "outcome": "HTTP 200; BigTIFF 2,407,473,430 bytes, byte ranges supported; ETag 1f0a9a9ac317ae746678377ed8dbca0f-287."
+    },
+    {
+      "action": "GET BigTIFF header range",
+      "source": "https://camelyon-dataset.s3.amazonaws.com/CAMELYON16/images/tumor_076.tif",
+      "attempted_at": "2026-09-29T05:54:27Z",
+      "outcome": "Range 0\u20131,048,575; 1048576 bytes SHA256 bf307e1f164bfb5b9853c01242d2d54bc91293cbd6399f69827ea33771aaa5bf."
+    },
+    {
+      "action": "GET lowest-resolution JPEG tile range",
+      "source": "https://camelyon-dataset.s3.amazonaws.com/CAMELYON16/images/tumor_076.tif",
+      "attempted_at": "2026-09-29T05:55:26Z",
+      "outcome": "Range 2,407,436,491\u20132,407,472,450; 35960 bytes SHA256 dce9f126f6b4e764cbd35722e27ed1db98d00386284fd207ed2264f41edf2e86."
+    },
+    {
+      "action": "GET JPEG tables range",
+      "source": "https://camelyon-dataset.s3.amazonaws.com/CAMELYON16/images/tumor_076.tif",
+      "attempted_at": "2026-09-29T05:55:40Z",
+      "outcome": "Range 2,407,472,808\u20132,407,473,381; 574 bytes SHA256 33693e6c2a86585c98a2be62afd0570a075214f0c42e15eb30676e735e7421a8."
+    },
+    {
+      "action": "Decode source pyramid overview from exact tile and JPEG table bytes",
+      "source": "local source bytes",
+      "attempted_at": "2026-09-29T05:55:41Z",
+      "outcome": "512\u00d7512 official low-resolution source overview; 233959 bytes SHA256 b6729f152bf642cee965b510af3f44a0e2943fe20fd9c055186124d04755aae3. No tumor mask or labels used."
+    },
+    {
+      "action": "Read official CAMELYON16 Rules and compare local derivative-pack plan",
+      "source": "https://camelyon16.grand-challenge.org/Rules/",
+      "attempted_at": "2026-09-30T04:29:14Z",
+      "outcome": "Registered-team downloaded/derived-data redistribution restriction identified; public S3 route applicability and local-use permission unresolved. No new source download or terms acceptance."
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/README.md",
+      "bytes": 1430,
+      "sha256": "ff22a81d58eb64a8474eac8b1f6d19f50c41c43e0467c3d37dadc9c725bf8131",
+      "git_blob": "e4299ec72997ceed3da61e1629751bd3f63fc238"
+    },
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/environment/bootstrap.sh",
+      "bytes": 1625,
+      "sha256": "30559b778b8866e6eb2b5433008d2f709691d27649b5b29f6e658fe5419636f9",
+      "git_blob": "45609ce3c7a1fbf1d49146fc9977194cd47a5ff7"
+    },
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/environment/workspace/benchmark_tasks.json",
+      "bytes": 552,
+      "sha256": "5565e679546d35f41bec0570884d2a1254188f307eb5eb0d7fe42a72a4bc5648",
+      "git_blob": "808356214c0211df91577200221e714fddba3fb3"
+    },
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/environment/workspace/submission.json",
+      "bytes": 483,
+      "sha256": "b7c5be40cd71d8e7d51b8a12d3ca3b80faf13bce053d846252e876f01bae352a",
+      "git_blob": "95e995be276e9d3b300c8ef84a6f156124751a1b"
+    },
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/instruction.md",
+      "bytes": 1689,
+      "sha256": "12ca4b3ec47993817a8fdcd97dfb45977487a1a8ae2fd15c5e636f655edd3e32",
+      "git_blob": "cbea240af913ed1649d9971142d6b9d5f97781bd"
+    },
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/task.toml",
+      "bytes": 393,
+      "sha256": "b2f8664889a49a2cdcb5cf070fccdc24f6e98bfd8d57022663c7fb578eefdcf0",
+      "git_blob": "2a32a20bd304941b167e45909d3077886aa51838"
+    },
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/tests/harbor_evaluator.py",
+      "bytes": 3305,
+      "sha256": "b00bece5e36cf55125090e55aee927f52b4f0d2ed608dcb7fc831d7ac407c624",
+      "git_blob": "bf9d9ec03b7866a80f632b337a69c5ef2aa6c578"
+    },
+    {
+      "path": "tasks/tumor_area_selection_pathology_slide_0001/tests/verify_meta_task.py",
+      "bytes": 11836,
+      "sha256": "b233f26c9876f235ca6aa33b467b04e61a780468f76f3d895a2a8803783f5a0e",
+      "git_blob": "05ab495b53b71a646f38e3785971d42877bb59fe"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-a-source/tumor-076-ifd-0.bin",
+      "bytes": 4096,
+      "sha256": "0585eff1ddb2ec9a5d9863ec378cad210728d51db770cfd29bc798e7489ebc8c",
+      "role": "IFD0 level-zero native dimensions"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-a-source/tumor-076-ifd-8.bin",
+      "bytes": 978,
+      "sha256": "9b8cd0f2f777c3a2586fc1ca28f29e5d988d4264ccc9b7c4177a50100fd12645",
+      "role": "IFD8 lowest-resolution JPEG tile geometry"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-a-source/tumor-076-ifd-index.json",
+      "bytes": 4269,
+      "sha256": "79daa72595e01d6915c68a1f6995eda82371487f512467a233d2aeda6734ca15",
+      "role": "bounded TIFF pyramid index"
+    }
+  ],
+  "source_license": "LicenseRef-CAMELYON16-terms-unresolved-local-audit",
+  "source_example": {
+    "object_url": "https://camelyon-dataset.s3.amazonaws.com/CAMELYON16/images/tumor_076.tif",
+    "object_bytes": 2407473430,
+    "object_etag": "1f0a9a9ac317ae746678377ed8dbca0f-287",
+    "level0_width_px": 114688,
+    "level0_height_px": 100352,
+    "overview_width_px": 512,
+    "overview_height_px": 512,
+    "overview_content_height_px": 448,
+    "overview_level_index": 8,
+    "overview_tile_sha256": "dce9f126f6b4e764cbd35722e27ed1db98d00386284fd207ed2264f41edf2e86",
+    "jpeg_tables_sha256": "33693e6c2a86585c98a2be62afd0570a075214f0c42e15eb30676e735e7421a8",
+    "overview_png_sha256": "b6729f152bf642cee965b510af3f44a0e2943fe20fd9c055186124d04755aae3",
+    "grid_cols": 28,
+    "grid_rows": 25,
+    "tile_level0_px": 4096,
+    "pack_embeds_image": false,
+    "role": "local-audit-evidence-only",
+    "overview_content_height_meaning": "nominal source extent under 224x horizontal scale, not a tissue boundary"
+  },
+  "illustration_license": "LicenseRef-TB3-symbolic-teaching",
+  "rights_review": {
+    "checked_at": "2026-09-30",
+    "rules_url": "https://camelyon16.grand-challenge.org/Rules/",
+    "statement": "Official Rules prohibit registered teams from giving or redistributing downloaded datasets or derived data outside their team; other scientific uses are restricted without prior participation. Applicability to unauthenticated public S3 range access and local interpretation remains unresolved. Public reachability does not grant portable reuse. No push, publication, export handoff or outside-team transfer is authorized.",
+    "decision": "Keep source TIFF ranges and decoded overview in ignored local evidence; collection pack contains no derivative image. Reopen on explicit authorization for intended use and portable derivative distribution plus verified matched source/reference boundaries."
+  },
+  "warning_text": "Source image withheld \u00b7 symbolic grid. No slide pixels: CAMELYON16 reuse permissions remain unresolved. Obtain registered access and permission through the official route. Grid only; no tumor labels or result.",
+  "root_contract_notes": [
+    "Root read the pinned tile scorer and mask derivation source. Submission parser accepts a list or an object with a results list; it does not accept an unwrapped single row.",
+    "Tile pairs deduplicate; integer type check admits booleans and does not validate bounds. Precision/recall/F1 use zero for zero denominators, including both empty sets. contains_tumor is not used by this scorer.",
+    "Best mask page is chosen for the analysis scale; tile boundaries are scaled and rounded into that page and clipped. Hidden label-2 count divided by actual nonempty patch size must reach 0.2. The cropped final-row height is source geometry, not a known positive label."
+  ]
+}

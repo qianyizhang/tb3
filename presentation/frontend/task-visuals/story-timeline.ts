@@ -755,6 +755,50 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'healthagentbench-ct-findings-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        cursor: channel(b.channels.cursor),
+        detail: channel(b.channels.detail),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'radagent-report-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        cursor: channel(b.channels.cursor),
+        detail: channel(b.channels.detail),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'healthagentbench-tumor-tiles-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        cursor: channel(b.channels.cursor),
+        detail: channel(b.channels.detail),
+        reference: channel(b.channels.reference),
+      });
+    }
+    case 'healthagentbench-cxr-correction-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        cursor: channel(b.channels.cursor),
+        detail: channel(b.channels.detail),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'cardiac-material-v1': {
       const b = plan.beats[index];
       return Object.freeze({

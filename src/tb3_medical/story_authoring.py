@@ -276,6 +276,14 @@ def new(
             beat["scene"] = "inputs"
         if recipe == "automed-full-tsg-multiorgan-v1":
             beat["scene"] = "inputs"
+        if recipe == "healthagentbench-ct-findings-v1":
+            beat["scene"] = "input"
+        if recipe == "radagent-report-v1":
+            beat["scene"] = "input"
+        if recipe == "healthagentbench-tumor-tiles-v1":
+            beat["scene"] = "input"
+        if recipe == "healthagentbench-cxr-correction-v1":
+            beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":
             beat["scene"] = "pair"
         if recipe == "vessel-source-v1":

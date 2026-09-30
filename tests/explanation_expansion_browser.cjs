@@ -25,6 +25,10 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'healthagentbench-cxr-correction-v1',
+  'healthagentbench-tumor-tiles-v1',
+  'radagent-report-v1',
+  'healthagentbench-ct-findings-v1',
   'automed-full-tsg-multiorgan-v1',
   'automed-full-spleen-v1',
   'automed-full-prostate-seg-v1',
@@ -79,6 +83,38 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'healthagentbench-cxr-correction-v1')
+    return {
+      scene: 'data-inta-scene',
+      reference: '[data-inta-reference-state="revealed"]',
+      referenceChannel: null,
+      output: '[data-inta-schema]',
+      aside: '[data-inta-output]',
+    };
+  if (plan.recipe === 'healthagentbench-tumor-tiles-v1')
+    return {
+      scene: 'data-inta-scene',
+      reference: '[data-inta-reference-state="revealed"]',
+      referenceChannel: null,
+      output: '[data-inta-schema]',
+      aside: '[data-inta-output]',
+    };
+  if (plan.recipe === 'radagent-report-v1')
+    return {
+      scene: 'data-inta-scene',
+      reference: '[data-inta-reference-state="revealed"]',
+      referenceChannel: null,
+      output: '[data-inta-schema]',
+      aside: '[data-inta-output]',
+    };
+  if (plan.recipe === 'healthagentbench-ct-findings-v1')
+    return {
+      scene: 'data-inta-scene',
+      reference: '[data-inta-reference-state="revealed"]',
+      referenceChannel: null,
+      output: '[data-inta-schema]',
+      aside: '[data-inta-output]',
+    };
   if (plan.recipe === 'automed-full-tsg-multiorgan-v1')
     return {
       scene: 'data-automed-d-scene',
@@ -421,6 +457,30 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'healthagentbench-cxr-correction-v1': [
+      /CT-RATE|MIMIC|CAMELYON|source|unavailable|gated|upstream/i,
+      'https://physionet.org/content/mimic-cxr/2.1.0/',
+      'data-inta-scene',
+      false,
+    ],
+    'healthagentbench-tumor-tiles-v1': [
+      /CT-RATE|MIMIC|CAMELYON|source|unavailable|gated|upstream/i,
+      'https://camelyon16.grand-challenge.org/Rules/',
+      'data-inta-scene',
+      false,
+    ],
+    'radagent-report-v1': [
+      /CT-RATE|MIMIC|CAMELYON|source|unavailable|gated|upstream/i,
+      'https://huggingface.co/datasets/ibrahimhamamci/CT-RATE',
+      'data-inta-scene',
+      false,
+    ],
+    'healthagentbench-ct-findings-v1': [
+      /CT-RATE|MIMIC|CAMELYON|source|unavailable|gated|upstream/i,
+      'https://huggingface.co/datasets/ibrahimhamamci/CT-RATE',
+      'data-inta-scene',
+      false,
+    ],
     'automed-full-tsg-multiorgan-v1': [
       /Full|MSD|TotalSegmentator|upstream/i,
       'https://zenodo.org/records/10047263',
@@ -842,6 +902,124 @@ async function reviewCardiacInteractions(page, plan, output, label) {
       () => document.querySelector('.scene-player')?.getAttribute('data-committed-frame') === '0',
     );
     assert.equal(await page.locator('[data-segc-training-helper]').count(), 0);
+  }
+  if (plan.recipe === 'healthagentbench-cxr-correction-v1') {
+    const operationIndex = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    const evidenceA = page.getByRole('combobox', { name: 'Existing draft clause A evidence' });
+    const editA = page.getByRole('combobox', { name: 'Existing draft clause A edit' });
+    const result = page.locator('[data-inta-cxr-gate-result]').first();
+    assert.match(await result.innerText(), /Needs current\/prior evidence check/);
+    assert.equal(await editA.locator('option').count(), 3);
+    await evidenceA.selectOption('conflict');
+    assert.match(await result.innerText(), /Cannot keep/);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-clause-conflict.png`) });
+    await editA.selectOption('correct');
+    assert.match(await result.innerText(), /Allowed edit path.*no clinical correctness/);
+    await evidenceA.selectOption('supported');
+    await editA.selectOption('remove');
+    assert.match(await result.innerText(), /Review deletion/);
+    await page
+      .getByRole('combobox', { name: 'Existing draft clause B evidence' })
+      .selectOption('supported');
+    assert.match(
+      await page.locator('[data-inta-cxr-gate-result]').nth(1).innerText(),
+      /Allowed edit path/,
+    );
+    await page.getByRole('button', { name: 'Reset schematic', exact: true }).click();
+    assert.equal(await evidenceA.inputValue(), 'unchecked');
+    assert.equal(await editA.inputValue(), 'keep');
+    await evidenceA.selectOption('conflict');
+    await page.locator('[data-story-step="0"]').click();
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    assert.equal(await evidenceA.inputValue(), 'unchecked');
+    assert.equal(await page.locator('[data-inta-scene] img').count(), 0);
+    assert.equal(await page.locator('[data-inta-reference-state="revealed"]').count(), 0);
+  }
+  if (plan.recipe === 'healthagentbench-tumor-tiles-v1') {
+    assert.equal(await page.locator('[data-inta-scene] img').count(), 0);
+    assert.doesNotMatch(await page.locator('[data-inta-scene]').innerText(), /tumor_076/);
+    const inspectIndex = plan.beats.findIndex((b) => b.scene === 'inspect');
+    await page.locator(`[data-story-step="${inspectIndex}"]`).click();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const slider = page.getByRole('slider', {
+      name: 'Unclassified tile coordinate, 0 through 699',
+    });
+    await slider.fill('699');
+    assert.equal(await page.locator('[data-inta-unclassified-cursor]').getAttribute('height'), '9');
+    assert.match(
+      await page.locator('[data-inta-inspect] figcaption').innerText(),
+      /Cursor \(27, 24\).*x \[110592, 114688\).*y \[98304, 100352\)/,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-last-grid-cell.png`) });
+    await slider.fill('0');
+    assert.equal(
+      await page.locator('[data-inta-unclassified-cursor]').getAttribute('height'),
+      '18',
+    );
+    assert.match(
+      await page.locator('[data-inta-inspect] figcaption').innerText(),
+      /Cursor \(0, 0\)/,
+    );
+    await slider.fill('699');
+    await page.getByRole('button', { name: 'Follow story cursor', exact: true }).click();
+    assert.notEqual(await slider.inputValue(), '699');
+    await slider.fill('699');
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await page.locator('[data-inta-original-image="absent"]').count(), 1);
+    await page.locator(`[data-story-step="${inspectIndex}"]`).click();
+    assert.notEqual(await slider.inputValue(), '699');
+    assert.equal(await page.locator('[data-inta-reference-state="revealed"]').count(), 0);
+  }
+  if (plan.recipe === 'radagent-report-v1') {
+    const inspectIndex = plan.beats.findIndex((b) => b.scene === 'inspect');
+    await page.locator(`[data-story-step="${inspectIndex}"]`).click();
+    const picker = page.getByRole('combobox', { name: 'RadAgent checklist area' });
+    assert.equal(await picker.locator('option').count(), 9);
+    assert.match(await page.locator('[data-inta-checklist-text]').innerText(), /airways/);
+    await picker.selectOption('8');
+    assert.match(
+      await page.locator('[data-inta-checklist-text]').innerText(),
+      /devices.*catheters/s,
+    );
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-checklist-devices.png`) });
+    await picker.selectOption('4');
+    assert.match(await page.locator('[data-inta-checklist-text]').innerText(), /contrast-enhanced/);
+    await page.locator('[data-story-step="0"]').click();
+    await page.locator(`[data-story-step="${inspectIndex}"]`).click();
+    assert.match(await page.locator('[data-inta-checklist-text]').innerText(), /airways/);
+  }
+  if (plan.recipe === 'healthagentbench-ct-findings-v1') {
+    const operationIndex = plan.beats.findIndex((b) => b.scene === 'operation');
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    const result = page.locator('[data-inta-rule-result]');
+    assert.match(await result.innerText(), /2\/3.*returns 0/);
+    const third = page.getByRole('combobox', { name: 'Hypothetical name 3 comparison' });
+    await third.selectOption('match');
+    assert.match(await result.innerText(), /3\/3.*returns 1/);
+    await page
+      .locator('.scene-player')
+      .screenshot({ path: path.join(output, `${label}-hypothetical-all-match.png`) });
+    await third.selectOption('mismatch');
+    assert.match(await result.innerText(), /2\/3.*returns 0/);
+    await page
+      .getByRole('combobox', { name: 'Hypothetical name 1 comparison' })
+      .selectOption('missing');
+    assert.match(await result.innerText(), /1\/3.*returns 0/);
+    await page.getByRole('button', { name: 'Reset illustration', exact: true }).click();
+    assert.match(await result.innerText(), /2\/3.*returns 0/);
+    await third.selectOption('match');
+    await page.locator('[data-story-step="0"]').click();
+    await page.locator(`[data-story-step="${operationIndex}"]`).click();
+    assert.match(await result.innerText(), /2\/3.*returns 0/);
+    assert.equal(await page.locator('[data-inta-reference-state="revealed"]').count(), 0);
   }
   if (plan.recipe === 'automed-full-tsg-multiorgan-v1') {
     const mappingIndex = plan.beats.findIndex((b) => b.scene === 'mapping');
@@ -3844,6 +4022,10 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'healthagentbench-cxr-correction-v1',
+      'healthagentbench-tumor-tiles-v1',
+      'radagent-report-v1',
+      'healthagentbench-ct-findings-v1',
       'automed-full-tsg-multiorgan-v1',
       'automed-full-spleen-v1',
       'automed-full-prostate-seg-v1',

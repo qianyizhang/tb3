@@ -1,3 +1,4 @@
+import { InterpretationAScene, InterpretationAOutput } from './interpretation-a-panels';
 import { AutomedSegDScene, AutomedSegDOutput } from './automed-seg-d-panels';
 import { AutoMedSegCScene, AutoMedSegCOutput } from './automed-full-seg-c-panels';
 import { AutomedSegBScene, AutomedSegBOutput } from './automed-seg-b-panels';
@@ -243,6 +244,13 @@ export function OperationScene({ plan, state }: { plan: StoryPlan; state: StoryS
     return <AutomedSegDScene task={'spleen'} state={state} />;
   if (state.recipe === 'automed-full-tsg-multiorgan-v1')
     return <AutomedSegDScene task={'tsg-multiorgan'} state={state} />;
+  if (state.recipe === 'healthagentbench-ct-findings-v1')
+    return <InterpretationAScene state={state} />;
+  if (state.recipe === 'radagent-report-v1') return <InterpretationAScene state={state} />;
+  if (state.recipe === 'healthagentbench-tumor-tiles-v1')
+    return <InterpretationAScene state={state} />;
+  if (state.recipe === 'healthagentbench-cxr-correction-v1')
+    return <InterpretationAScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityScene state={state} />;
@@ -542,6 +550,13 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <AutomedSegDOutput task={'spleen'} state={state} />;
   if (state.recipe === 'automed-full-tsg-multiorgan-v1')
     return <AutomedSegDOutput task={'tsg-multiorgan'} state={state} />;
+  if (state.recipe === 'healthagentbench-ct-findings-v1')
+    return <InterpretationAOutput state={state} />;
+  if (state.recipe === 'radagent-report-v1') return <InterpretationAOutput state={state} />;
+  if (state.recipe === 'healthagentbench-tumor-tiles-v1')
+    return <InterpretationAOutput state={state} />;
+  if (state.recipe === 'healthagentbench-cxr-correction-v1')
+    return <InterpretationAOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
   if (state.recipe === 'clinical-cavity-v1') return <ClinicalCavityOutput state={state} />;

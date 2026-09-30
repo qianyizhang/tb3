@@ -1794,6 +1794,70 @@ class AutomedSegDTsgMultiorganPlan(ExpansionPlan):
     beats: list[AutomedSegDTsgMultiorganBeat]
 
 
+class InterpretationAHealthagentbenchChannels(TypedDict):
+    cursor: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class InterpretationAHealthagentbenchBeat(ExpansionBeat):
+    channels: InterpretationAHealthagentbenchChannels
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationAHealthagentbenchPlan(ExpansionPlan):
+    recipe: Literal["healthagentbench-ct-findings-v1"]
+    beats: list[InterpretationAHealthagentbenchBeat]
+
+
+class InterpretationARadagentChannels(TypedDict):
+    cursor: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class InterpretationARadagentBeat(ExpansionBeat):
+    channels: InterpretationARadagentChannels
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationARadagentPlan(ExpansionPlan):
+    recipe: Literal["radagent-report-v1"]
+    beats: list[InterpretationARadagentBeat]
+
+
+class InterpretationAHealthagentbenchTumorTilesChannels(TypedDict):
+    cursor: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class InterpretationAHealthagentbenchTumorTilesBeat(ExpansionBeat):
+    channels: InterpretationAHealthagentbenchTumorTilesChannels
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationAHealthagentbenchTumorTilesPlan(ExpansionPlan):
+    recipe: Literal["healthagentbench-tumor-tiles-v1"]
+    beats: list[InterpretationAHealthagentbenchTumorTilesBeat]
+
+
+class InterpretationAHealthagentbenchCxrCorrectionChannels(TypedDict):
+    cursor: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class InterpretationAHealthagentbenchCxrCorrectionBeat(ExpansionBeat):
+    channels: InterpretationAHealthagentbenchCxrCorrectionChannels
+    scene: Literal["input", "inspect", "operation", "schema", "reference", "limits"]
+
+
+class InterpretationAHealthagentbenchCxrCorrectionPlan(ExpansionPlan):
+    recipe: Literal["healthagentbench-cxr-correction-v1"]
+    beats: list[InterpretationAHealthagentbenchCxrCorrectionBeat]
+
+
 class CardiacMaterialChannels(TypedDict):
     phase: tuple[float, float]
     helper: tuple[float, float]
@@ -2026,6 +2090,10 @@ StoryPlan = (
     | AutomedSegCProstatePlan
     | AutomedSegDSpleenPlan
     | AutomedSegDTsgMultiorganPlan
+    | InterpretationAHealthagentbenchPlan
+    | InterpretationARadagentPlan
+    | InterpretationAHealthagentbenchTumorTilesPlan
+    | InterpretationAHealthagentbenchCxrCorrectionPlan
     | CardiacMaterialPlan
     | CardiacAnchorPlan
     | ClinicalCavityPlan

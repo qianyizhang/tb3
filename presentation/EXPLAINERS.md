@@ -446,3 +446,12 @@ scoring paths, array shapes and limitations. `view` advances discrete conditions
 `reference` reveals the clean curve halfway through its chapter and resets hidden.
 This display boundary is not solver privacy: audited staging copies ground truth.
 No inverse solve or agent result is produced; missing thresholds remain unresolved.
+
+
+`healthagentbench-ct-findings-v1` explains the pinned CT requested-label contract with an empty input socket and three hypothetical comparison controls. Report-phrase-derived labels, alias/parser behavior and all-match binary reward remain distinct from diagnosis. The [source notice](task-explorer/healthagentbench/NOTICE.md) records the exact CT-RATE gap. No patient labels, gold, prediction or score are shown.
+
+`radagent-report-v1` exposes the pinned nine-area checklist and tool-action contract without a CT, specialist trace or generated report. The prompt/tool-description draft-order conflict, minimal versus full scenario reference handling, optional reward and separate offline metrics remain explicit. The [source notice](task-explorer/radagent/NOTICE.md) retains the acquisition boundary; checklist selection resets on leaving its scene.
+
+`healthagentbench-tumor-tiles-v1` maps an authored blank 28 by 25 grid to verified native extents, including the half-height final row. Its cursor is unclassified. The [source notice](task-explorer/healthagentbench-tumor-tiles/NOTICE.md) preserves local recovery and unresolved image-reuse terms; no WSI pixels enter the portable pack. Required output, private mask-derived tile set and F1 rule stay separate, with no prediction or score.
+
+`healthagentbench-cxr-correction-v1` uses two abstract existing-clause slots to explain evidence review and keep/correct/remove choices. No new finding action, patient sentence or judge output exists. The [source notice](task-explorer/healthagentbench-cxr-correction/NOTICE.md) identifies missing credentialed report/JPG inputs. FINDINGS-only output, default five calls/absolute three votes, infrastructure errors and the unpinned judge source remain explicit. All four Interpretation A recipes are planar and use the same source-labeled DOM controls without WebGL.

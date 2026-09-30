@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "healthagentbench",
+  "status": "source resolution complete; no model/evaluator run or score",
+  "illustration_basis": "symbolic",
+  "reference_policy": "no-reference-assets",
+  "source_revision": {
+    "repository_commit": "bcbb8085fd549469e2dc7455f4bfd68a1b98895a"
+  },
+  "source_url": "https://github.com/microsoft/HealthAgentBench/tree/bcbb8085fd549469e2dc7455f4bfd68a1b98895a/tasks/ct_abnormality_valid_16_a_1",
+  "upstream_url": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+  "actual_data_gap": "Exact valid_16_a_1 CT, paired report, derived requested-label list, gold and prediction unavailable.",
+  "acquisition_route": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE",
+  "source_roles": {
+    "input": "/workspace/data/scan.nii.gz plus scan-specific labels.txt; both absent",
+    "helper": "requested label names generated from report; actual list unavailable",
+    "private_reference": "report-derived gold.json and evidence sentences, evaluator-only",
+    "output": "predictions.txt, one label: yes/no per requested name; absent"
+  },
+  "scoring_contract": "Binary reward 1 iff all retained report-derived gold labels match parseable yes/no predictions; no localization or complete-report measure.",
+  "attempts": [
+    {
+      "action": "GET exact HealthAgentBench Git tree and verify task Git blobs",
+      "source": "https://api.github.com/repos/microsoft/HealthAgentBench/git/trees/bcbb8085fd549469e2dc7455f4bfd68a1b98895a?recursive=1",
+      "attempted_at": "2026-09-29T05:52:30Z",
+      "outcome": "HTTP 200; tree SHA256 ca6f72703c0cf3077a800b8ff316efdba544b337c50b7d20c5a90bd3a047d468; 5 selected task files match Git blob IDs."
+    },
+    {
+      "action": "Unauthenticated HEAD exact CT-RATE valid_16_a_1 image",
+      "source": "https://huggingface.co/datasets/ibrahimhamamci/CT-RATE/resolve/deeca4d89e9f978d4d1bccd88a55071ddbb146bb/dataset/valid_fixed/valid_16/valid_16_a/valid_16_a_1.nii.gz",
+      "attempted_at": "2026-09-29T05:53:46Z",
+      "outcome": "HTTP 401 GatedRepo; requires dataset access and authentication. No image/report/list/gold/result acquired."
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "tasks/ct_abnormality_valid_16_a_1/README.md",
+      "bytes": 1509,
+      "sha256": "df7d996b36dc6f0499c70792bcb5e1eadd596502dff975de531dcbdc28937d9b",
+      "git_blob": "1d29ddf067eb86f4c3fe71889e2a02982ec81132"
+    },
+    {
+      "path": "tasks/ct_abnormality_valid_16_a_1/environment/bootstrap.sh",
+      "bytes": 3604,
+      "sha256": "182d50123971c11df1725f53b911a7926130e040a65506025e294092f3872b97",
+      "git_blob": "ada643f4a0771822d4474b435fbd7505717ae109"
+    },
+    {
+      "path": "tasks/ct_abnormality_valid_16_a_1/instruction.md",
+      "bytes": 1638,
+      "sha256": "89760d55e2495aade7219e8c0bed4e6fc8b33d95be996d3f251d62e106b05b86",
+      "git_blob": "a81aa9da523e9263cf3038cb9df21c20a5d4e8e6"
+    },
+    {
+      "path": "tasks/ct_abnormality_valid_16_a_1/task.toml",
+      "bytes": 401,
+      "sha256": "8b430ea4529ef2a89dd9b5974babeeff51422eeb1d4ef6975c93174f89d1fa0d",
+      "git_blob": "d73bdd1c6b26c919c3df5c7d19b7d32dc1bd6037"
+    },
+    {
+      "path": "tasks/ct_abnormality_valid_16_a_1/tests/harbor_evaluator.py",
+      "bytes": 8870,
+      "sha256": "0e3b2dcfe2d0ab329ab45313a0f0a342b617b71c7ff8c99a6383d552e51af06c",
+      "git_blob": "c3b27b46111145f2cb9a01eaeefc0b82e8151108"
+    },
+    {
+      "path": "tasks/ct_abnormality_valid_16_a_1/environment/gold_derivation.py",
+      "local_path": ".local/explainers/completion-20260927/036-source/environment/gold_derivation.py",
+      "sha256": "2a07f7b9a9ba751659b4abb56da5ce3354605b7db9999d397150b973eefc8517",
+      "bytes": 13149,
+      "git_blob": "ef21fdd72c06677d6b1541a81aacf52036aa41f7"
+    }
+  ],
+  "source_license": "LicenseRef-TB3-symbolic-teaching",
+  "prior_audit": {
+    "path": "presentation/external-tasks/sources/healthagentbench-ct-audit.json",
+    "sha256": "4b583c377c8839ba5cfc6443006187d0929492952f7cc1c0cb697a5392016fb6",
+    "task_id": "ct_abnormality_valid_16_a_1"
+  },
+  "root_audit": {
+    "path": ".local/explainers/core-20260929/healthagentbench-root-source-audit-v1.json",
+    "sha256": "2356ed7e437fdd484ce9fcc0e21342ad9d8e368206727c6a4e1004cecab01e07",
+    "observations": [
+      "Root read instruction, bootstrap, evaluator, README/task.toml and retained exact-commit gold_derivation.py, verifying Git blob plus SHA256 pins. No source code was executed.",
+      "Single noncontrast chest CT plus case-specific labels.txt; requested names come from report-derived retained findings and are not patient answers. Source prompt examples are not this patient list. Output is predictions.txt exact label names, case-insensitive, yes/no; only listed gold labels affect reward.",
+      "Gold derivation joins Findings_EN and Impressions_EN for exact VolumeName, examines17 categories, uses case-insensitive phrase substrings and preceding-clause negation guards for present phrases. Present-only1, absent-only0, both/neither dropped. This is a benchmark phrase rule, not independent clinical adjudication. Exact patient report/list/gold unavailable.",
+      "Parser trims/lowercases names, splits first colon then first comma, tolerates comments/blank lines and yes/no aliases; last parseable duplicate wins and extra names are ignored. Missing or unparseable required predictions are mismatches. All retained gold labels must match for binary reward1; diagnostic accuracy does not change reward.",
+      "Gold read failure or empty gold writes verifier_error and returns0 before writing normal reward file, so malformed source staging is not established model failure. No evaluator, bootstrap, task or model was run.",
+      "Prior exact-CT unauthenticated HEAD401 GatedRepo is retained. Reopen actual-data view only with authorized CT-RATE access, matched CT/report/staged name list and private gold separation. No credential search or private download attempted."
+    ]
+  },
+  "reopening_condition": "Authorized CT-RATE access plus exact valid_16_a_1 CT/report, case-derived requested-label list and independently separated private gold; retain source hashes and native CT frame before replacing this symbolic view.",
+  "gold_derivation": "Findings_EN and Impressions_EN are joined for exact VolumeName. Seventeen phrase-rule categories are tested; present-only yields 1, absent-only yields 0, both/neither are omitted. Present matches use preceding-clause negation guards. These heuristic report labels are not independent clinical adjudication.",
+  "parser_details": "Case-insensitive names; first colon and first comma token, ignored comments/blanks, yes/no aliases; last parseable duplicate wins; extra names ignored; missing/unparseable required names mismatch.",
+  "source_staging_failure": "Missing or empty gold writes verifier_error and returns 0 before normal reward-file output. This is not evidence of a model failure.",
+  "warning_text": "Symbolic workflow \u00b7 CT-RATE case gated. Exact CT, requested names and private gold are unavailable (HTTP 401). Request official CT-RATE access and stage the matched case; no patient answer is shown."
+}

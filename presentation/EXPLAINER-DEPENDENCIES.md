@@ -1,48 +1,8 @@
 # Explainer dependency register
 
-Core: **154** · reviewed: **92** · ready: **0** · needs resolution: **62** · deferred: **0**
+Core: **154** · reviewed: **96** · ready: **0** · needs resolution: **58** · deferred: **0**
 
 This is a derived view of EXPLAINER-SCOPE.json and EXPLAINER-LEDGER.json. Deferral does not confer visual acceptance.
-
-## healthagentbench — Decide which findings are present in a chest CT
-
-- **Group:** clinical-reading
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** missing-case-evidence
-- **Attempt:** prior-audit-recorded-assets-unresolved
-- **Current next action:** Try the official CT-RATE route for valid_16_a_1 and its paired report row using available authorized access; record gate/auth outcome without inventing it. If unavailable, show a task-faithful symbolic CT/report flow without case-specific labels. Include the concise top acquisition warning on any symbolic fallback.
-- **Prior blocker:** Authorized valid_16_a_1 CT-RATE scan and paired validation report row are absent. Need pinned dataset bytes, derived case labels and applicable source-asset delivery terms; account authorization not tested.
-
-## radagent — Write a chest CT report using specialist tools
-
-- **Group:** clinical-reading
-- **Status:** blocked-source-input
-- **Queue state:** needs-resolution
-- **Classification:** missing-case-evidence
-- **Attempt:** prior-audit-recorded-assets-unresolved
-- **Current next action:** Locate a source-matched CT, retained RadAgent trace/report and tool-output provenance; do not create a model run. If unavailable, show a symbolic report/tool workflow without claiming the illustrated outputs were observed. Include the concise top acquisition warning on any symbolic fallback.
-- **Prior blocker:** An authorized native CT plus matching retained RadAgent trace/final report and provenance for any shown tool outputs. A CT alone does not provide the missing case-specific results.
-
-## healthagentbench-tumor-tiles — Find tumor-bearing slide tiles
-
-- **Group:** clinical-reading
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for healthagentbench-tumor-tiles. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
-
-## healthagentbench-cxr-correction — Correct an existing chest X-ray findings section
-
-- **Group:** clinical-reading
-- **Status:** blocked-source-contract
-- **Queue state:** needs-resolution
-- **Classification:** contract-audit
-- **Attempt:** task-specific-audit-not-established-by-ledger
-- **Current next action:** Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.
-- **Prior blocker:** Resolve source/evaluator visibility and provide a reference-free worked record for healthagentbench-cxr-correction. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.
 
 ## bcer-medium-brain-grade-classify — Predict glioma grade through a tool chain
 

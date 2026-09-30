@@ -1,3 +1,4 @@
+import { interpretationAPacks } from './interpretation-a';
 import { segDData } from './automed-seg-d';
 import { segCPacks } from './automed-full-seg-c';
 import { segBData } from './automed-seg-b';
@@ -89,6 +90,10 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'automed-full-prostate-seg-v1',
     'automed-full-spleen-v1',
     'automed-full-tsg-multiorgan-v1',
+    'healthagentbench-ct-findings-v1',
+    'radagent-report-v1',
+    'healthagentbench-tumor-tiles-v1',
+    'healthagentbench-cxr-correction-v1',
     'cardiac-material-v1',
     'automed-full-heart-seg-v1',
     'automed-full-feta-seg-v1',
@@ -785,6 +790,65 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#91a6ae', 'Upstream CT'],
           ['#18c6d4', 'Required 117-class output'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'healthagentbench-ct-findings-v1':
+      return {
+        heading: 'Answer requested CT findings',
+        corner: 'Source-bounded clinical interpretation',
+        warning: {
+          ...interpretationAPacks['healthagentbench-ct-findings-v1'].source.notice,
+          link_label:
+            interpretationAPacks['healthagentbench-ct-findings-v1'].source.notice.link_label,
+        },
+        legend: [
+          ['#91a6ae', 'Unavailable patient input'],
+          ['#18c6d4', 'Required answer schema'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'radagent-report-v1':
+      return {
+        heading: 'Review a tool-assisted CT report',
+        corner: 'Source-bounded clinical interpretation',
+        warning: {
+          ...interpretationAPacks['radagent-report-v1'].source.notice,
+          link_label: interpretationAPacks['radagent-report-v1'].source.notice.link_label,
+        },
+        legend: [
+          ['#91a6ae', 'Unavailable patient input'],
+          ['#18c6d4', 'Required answer schema'],
+          ['#7ba4b8', 'No prediction'],
+        ],
+      };
+    case 'healthagentbench-tumor-tiles-v1':
+      return {
+        heading: 'Inspect whole-slide tile coordinates',
+        corner: 'Source-bounded clinical interpretation',
+        warning: {
+          ...interpretationAPacks['healthagentbench-tumor-tiles-v1'].source.notice,
+          link_label:
+            interpretationAPacks['healthagentbench-tumor-tiles-v1'].source.notice.link_label,
+        },
+        legend: [
+          ['#557b8d', 'Authored task grid'],
+          ['#ffd16a', 'Unclassified cursor'],
+          ['#18c6d4', 'Empty output'],
+        ],
+      };
+    case 'healthagentbench-cxr-correction-v1':
+      return {
+        heading: 'Correct existing CXR FINDINGS claims',
+        corner: 'Source-bounded clinical interpretation',
+        warning: {
+          ...interpretationAPacks['healthagentbench-cxr-correction-v1'].source.notice,
+          link_label:
+            interpretationAPacks['healthagentbench-cxr-correction-v1'].source.notice.link_label,
+        },
+        legend: [
+          ['#91a6ae', 'Unavailable patient input'],
+          ['#18c6d4', 'Required answer schema'],
           ['#7ba4b8', 'No prediction'],
         ],
       };
