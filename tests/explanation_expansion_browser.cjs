@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-pathvqa-v1',
   'automed-medxpert-mm-v1',
   'automed-medframeqa-v1',
   'automed-pathology-caption-500-v1',
@@ -104,6 +105,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-pathvqa-v1')
+    return {
+      scene: 'data-pathvqa-scene',
+      reference: '[data-pathvqa-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-pathvqa-scene="output"] pre',
+      aside: '[data-pathvqa-output]',
+    };
   if (plan.recipe === 'automed-medxpert-mm-v1')
     return {
       scene: 'data-medxpert-scene',
@@ -640,6 +650,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-pathvqa-v1': [
+      /Public PathVQA train example only.*Full split\/private answer absent/s,
+      'https://huggingface.co/datasets/flaviagiammarino/path-vqa',
+      'data-pathvqa-scene',
+      false,
+    ],
     'automed-medxpert-mm-v1': [
       /Public dev example only; Full selection\/private gold absent/s,
       'https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA',
@@ -1183,6 +1199,134 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-pathvqa-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name);
+    const scene = page.locator('[data-pathvqa-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-pathvqa-reference-revealed]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    const img = scene.locator('img');
+    const src = await img.getAttribute('src');
+    assert.ok(src.startsWith('data:image/jpeg;base64,'), 'native JPEG embedded offline');
+    assert.equal(
+      crypto
+        .createHash('sha256')
+        .update(Buffer.from(src.split(',')[1], 'base64'))
+        .digest('hex'),
+      '5dc180279e32d753a79e17dd8df06075b7867aeb8385dc8b15632ddef3a20e87',
+    );
+    assert.equal(await img.evaluate((el) => el.naturalWidth), 309);
+    assert.equal(await img.evaluate((el) => el.naturalHeight), 272);
+    assert.match(await scene.innerText(), /where are liver stem cells.*oval cells.*located/s);
+    await absent();
+    const expected = (j, o = 0) => {
+      const b = plan.beats.find(
+        (b) => b.scene === 'operation' && Math.abs(b.channels.progress[0] - j / 2) < 1e-6,
+      );
+      if (j !== 1) return b.startFrame;
+      let best = 0,
+        d = Infinity;
+      for (let k = 0; k < b.frames; k++) {
+        const u = k / b.frames,
+          z = u * u * (3 - 2 * u),
+          v = Math.abs(z - o / 2);
+        if (v < d) {
+          d = v;
+          best = k;
+        }
+      }
+      return b.startFrame + best;
+    };
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    for (let j = 0; j < 3; j++) {
+      await page.locator(`[data-pathvqa-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        expected(j),
+      );
+      assert.equal(await scene.getAttribute('data-pathvqa-currentstep'), String(j));
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await page.locator('[data-pathvqa-step="0"]').click();
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-pathvqa-tier]').innerText(),
+      /exactly six.*five.*open-ended/s,
+    );
+    await capture('tier-standard');
+    await scene
+      .getByRole('button', { name: 'Inspect public calibration rule', exact: true })
+      .click();
+    assert.match(
+      await page.locator('#pathvqa-calibration-rule').innerText(),
+      /first 15.*top.up.*not implement.*≥10.*gold optional.*eight-word/s,
+    );
+    await capture('calibration-revealed');
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.equal(await page.locator('#pathvqa-calibration-rule').count(), 0);
+    await page.locator('[data-pathvqa-step="1"]').click();
+    for (let o = 0; o < 3; o++) {
+      await page.locator(`[data-pathvqa-branch="${o}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        expected(1, o),
+      );
+      assert.equal(
+        await page.locator(`[data-pathvqa-branch="${o}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      await capture(`branch-${o}`);
+      await absent();
+    }
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.match(await scene.innerText(), /All actual fields null.*no source train answer copied/s);
+    assert.equal(await page.locator('#pathvqa-format-rule').count(), 0);
+    await scene.getByRole('button', { name: 'Inspect format boundary', exact: true }).click();
+    assert.match(
+      await page.locator('#pathvqa-format-rule').innerText(),
+      /Six required keys.*finite-runtime.*≥50%.*all-ID denominator/s,
+    );
+    await capture('format-revealed');
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    assert.equal(await page.locator('#pathvqa-format-rule').count(), 0);
+    const reveal = scene.getByRole('button', {
+      name: 'Reveal public train annotation',
+      exact: true,
+    });
+    await reveal.click();
+    assert.match(
+      await page.locator('[data-pathvqa-reference-revealed]').innerText(),
+      /in the canals of hering.*Not model evidence.*independent clinical/s,
+    );
+    await capture('reference-revealed');
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
   }
   if (plan.recipe === 'automed-medxpert-mm-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -6470,6 +6614,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-pathvqa-v1',
       'automed-medxpert-mm-v1',
       'automed-medframeqa-v1',
       'automed-pathology-caption-500-v1',

@@ -1,3 +1,4 @@
+import { automedPathvqaPack } from './automedbench-full-pathvqa-task';
 import { automedMedxpertPack } from './automedbench-full-medxpertqa-mm-task';
 import { automedMedframeqaPack } from './automed-medframeqa';
 import { automedPathology500Pack } from './automedbench-full-pathology-caption-500-task';
@@ -119,6 +120,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-pathvqa-v1',
     'automed-medxpert-mm-v1',
     'automed-medframeqa-v1',
     'automed-pathology-caption-500-v1',
@@ -1101,6 +1103,13 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Public dev example; Full split absent',
         warning: automedMedxpertPack.source.notice,
         legend: [['#87d6df', 'Highlighted option border: reader association, not model answer']],
+      };
+    case 'automed-pathvqa-v1':
+      return {
+        heading: 'Short pathology answers; explicit scorer branches',
+        corner: 'Public train example; Full split absent',
+        warning: automedPathvqaPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {
