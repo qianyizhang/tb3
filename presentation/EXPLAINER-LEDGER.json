@@ -8488,15 +8488,15 @@
       ],
       "illustration_kind": "superres",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "bcer-short-superres",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for bcer-short-superres. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted representative native MRI helper and task-specific physical-grid interpolation explanation after main source/38-image visual/export/mobile/no-GPU/late-reader boundary review. Independent voxel/affine/display/grid parity retained; matched BCER output, caller target, high-resolution truth, quality and clinical result remain absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/bcer-short-superres/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Required source modalities \u2014 prostate: one or more of T2w, ADC, DWI_highb; brain: one or more of T1, T1c, T2, FLAIR.",
         "helpers": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
@@ -8529,14 +8529,106 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "source_class": "source-derived-teaching",
+      "actual_data_gap": "Representative PI-CAI native input available; no matching BCER short_superres run, chosen target grid, resampled artifact or independent high-resolution truth retained.",
+      "acquisition_route": "https://zenodo.org/records/6624726",
+      "warning_text": "Representative PI-CAI helper only; no matched BCER resampled output or independent high-resolution truth.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/bcer-short-superres-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/bcer-short-superres-resolution.json",
+        "receipt_sha256": "b105e64a061d0e0820bb4051e26f82c6b908fb16573a7a42ba5813112799bab4",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T05:25:30.409564+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Pinned BCER short_superres physical-grid interpolation contract, unchanged-source representative PI-CAI T2w helper display and independent authored grid calculations. No matched BCER output, chosen caller target, independent high-resolution truth, operator run or quality result.",
+      "completion_review": {
+        "date": "2026-10-01T05:34:54.288199+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "038069d98844d4231a49709429f6056827ddc063d335a8fdadacce9b6786aa87"
+      },
+      "reviewed_contract_projection": {
+        "title": "Resample MRI onto a caller-defined physical grid",
+        "goal": "Produce an MRI volume on a supplied physical sampling grid with `resample_image`. Interpolation changes sampling; it does not acquire new anatomical measurements or estimate alignment.",
+        "value": "A common physical grid lets later processing consume compatible arrays. Artifact completion and reconstruction fidelity require separate evidence.",
+        "raw": "The registry permits any prostate T2w, ADC or DWI_highb, or any brain T1, T1c, T2 or FLAIR. The displayed PI-CAI 10001_1000001 T2w is a **representative upstream helper**, not the selected BCER short case, a degraded/clean pair or high-resolution truth. Its 640\u00d7640\u00d721 unsigned-16-bit voxels have arbitrary MRI intensity units, not HU.\n\nOriginal MHA and prepared NIfTI voxel bytes are equal. The prepared NIfTI spacing is 0.30000001192092896\u00d70.30000001192092896\u00d73.6000001430511475 mm; the original MHA z-spacing differs by about 6.5\u00d710\u207b\u2078 mm after header conversion. Source origin/direction are LPS; the NIfTI sform uses RAS. The display is native index k=10, whole-volume 1\u201399.5 percentile window 15\u2013829, rounded to uint8. The 640\u00b2 PNG then becomes a 320\u00b2 bilinear JPEG quality-70 preview. This display derivative is not a participant resampling output or an ordered clinical viewer.",
+        "helpers": "A case manifest, runtime state, typed artifact references and the registered `resample_image` tool. The caller supplies a reference NIfTI grid or target spacing. No matching target grid or output is retained. A reference grid is a geometry helper; it does not establish clean truth or anatomical correspondence. Fault variants may alter paths, arguments or modalities.",
+        "tools": "`input_nifti` is required. The schema describes reference and spacing routes as mutually exclusive, but executable code chooses the reference when both are supplied. Linear is the default; nearest and B-spline are alternatives. Unknown interpolation names raise. Outside-input values default to zero, and the output retains the input pixel type, so integer interpolation can quantize values. This packet never invokes the tool.",
+        "reference": "No independent high-resolution target or matched resampled image is retained. A later explicit reader reveal shows grader rules only. Exiting, seeking backward or resetting covers that card before paint. The representative input never becomes gold truth.",
+        "spec": "The reference route adopts its size, spacing, origin and direction. The explicit-spacing route computes **ceil(N\u1d62\u00d7s\u1d62/t\u1d62)**, retains input origin/direction and pads a short spacing list from the input. This uses N\u00d7spacing, not the center-to-center extent (N\u22121)\u00d7spacing. The physical transform is the 3D identity; no registration is estimated.\n\nPure calculations from the prepared header give 640\u00d7640\u00d721 for exactly the same spacing, 640\u00d7640\u00d742 for half z-spacing, and 1280\u00d71280\u00d742 for half all spacing. Supplying rounded literals [0.3, 0.3, 3.6] instead gives **641\u00d7641\u00d722**, because tiny positive float differences cross `ceil` boundaries. That is 9,039,382 versus 8,601,600 grid slots: +437,782 (+5.09%). These are illustrative counts, not measured output voxels, new detail or a quality result. No operator ran. The tool has no explicit positive/finite-spacing guard beyond downstream behavior.",
+        "output": "The tool returns `ok`, `data.resampled_nifti`, input/output size and spacing, interpolation, elapsed seconds and artifact references. The default path is `<artifacts_dir>/resample/resampled_<input_stem>.nii.gz`; callers can override it. Actual output path, image, elapsed time and quality remain null here.",
+        "score": "The pinned registry requires `resample_image` stage success, an existing `resampled_nifti` path and a nonempty NIfTI. The runner counts nonzero voxels; on image-read failure it can fall back to positive file size. No target-spacing, affine or image-quality invariant is configured for `short_superres`, despite a space-mismatch fault variant. These are artifact validity checks with no independent quality denominator, PSNR/SSIM or clinical-performance claim.",
+        "challenge": "Source geometry, target conventions, floating-point rounding and input pixel type can change array shape or values. A denser grid alone does not recover acquired resolution.",
+        "families": "This is one registry definition, not an enumeration of external cases or a fresh task run. Code rules are source-derived; grid examples are authored symbolic calculations; the displayed MRI is a representative public helper.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect representative native input geometry and the display derivative.",
+          "Seek three canonical contract steps; select an illustrative spacing grid and interpolation rule.",
+          "Keep actual output empty; explicitly reveal late grader mechanics, then reset or leave to cover them."
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
+            "remaining": "Interpolation changes the grid but does not by itself recover newly measured anatomical detail."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned tool",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/resample_image.py"
+          ],
+          [
+            "Pinned registry",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+          ],
+          [
+            "Pinned runner",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py"
+          ],
+          [
+            "Official PI-CAI acquisition",
+            "https://zenodo.org/records/6624726"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/bcer-short-superres-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Produce an MRI volume on a supplied physical sampling grid with <code>resample_image</code>. Interpolation changes sampling; it does not acquire new anatomical measurements or estimate alignment.</p>",
+          "value": "<p>A common physical grid lets later processing consume compatible arrays. Artifact completion and reconstruction fidelity require separate evidence.</p>",
+          "raw": "<p>The registry permits any prostate T2w, ADC or DWI_highb, or any brain T1, T1c, T2 or FLAIR. The displayed PI-CAI 10001_1000001 T2w is a <strong>representative upstream helper</strong>, not the selected BCER short case, a degraded/clean pair or high-resolution truth. Its 640\u00d7640\u00d721 unsigned-16-bit voxels have arbitrary MRI intensity units, not HU.</p>\n<p>Original MHA and prepared NIfTI voxel bytes are equal. The prepared NIfTI spacing is 0.30000001192092896\u00d70.30000001192092896\u00d73.6000001430511475 mm; the original MHA z-spacing differs by about 6.5\u00d710\u207b\u2078 mm after header conversion. Source origin/direction are LPS; the NIfTI sform uses RAS. The display is native index k=10, whole-volume 1\u201399.5 percentile window 15\u2013829, rounded to uint8. The 640\u00b2 PNG then becomes a 320\u00b2 bilinear JPEG quality-70 preview. This display derivative is not a participant resampling output or an ordered clinical viewer.</p>",
+          "helpers": "<p>A case manifest, runtime state, typed artifact references and the registered <code>resample_image</code> tool. The caller supplies a reference NIfTI grid or target spacing. No matching target grid or output is retained. A reference grid is a geometry helper; it does not establish clean truth or anatomical correspondence. Fault variants may alter paths, arguments or modalities.</p>",
+          "tools": "<p><code>input_nifti</code> is required. The schema describes reference and spacing routes as mutually exclusive, but executable code chooses the reference when both are supplied. Linear is the default; nearest and B-spline are alternatives. Unknown interpolation names raise. Outside-input values default to zero, and the output retains the input pixel type, so integer interpolation can quantize values. This packet never invokes the tool.</p>",
+          "reference": "<p>No independent high-resolution target or matched resampled image is retained. A later explicit reader reveal shows grader rules only. Exiting, seeking backward or resetting covers that card before paint. The representative input never becomes gold truth.</p>",
+          "spec": "<p>The reference route adopts its size, spacing, origin and direction. The explicit-spacing route computes <strong>ceil(N\u1d62\u00d7s\u1d62/t\u1d62)</strong>, retains input origin/direction and pads a short spacing list from the input. This uses N\u00d7spacing, not the center-to-center extent (N\u22121)\u00d7spacing. The physical transform is the 3D identity; no registration is estimated.</p>\n<p>Pure calculations from the prepared header give 640\u00d7640\u00d721 for exactly the same spacing, 640\u00d7640\u00d742 for half z-spacing, and 1280\u00d71280\u00d742 for half all spacing. Supplying rounded literals [0.3, 0.3, 3.6] instead gives <strong>641\u00d7641\u00d722</strong>, because tiny positive float differences cross <code>ceil</code> boundaries. That is 9,039,382 versus 8,601,600 grid slots: +437,782 (+5.09%). These are illustrative counts, not measured output voxels, new detail or a quality result. No operator ran. The tool has no explicit positive/finite-spacing guard beyond downstream behavior.</p>",
+          "output": "<p>The tool returns <code>ok</code>, <code>data.resampled_nifti</code>, input/output size and spacing, interpolation, elapsed seconds and artifact references. The default path is <code>&lt;artifacts_dir&gt;/resample/resampled_&lt;input_stem&gt;.nii.gz</code>; callers can override it. Actual output path, image, elapsed time and quality remain null here.</p>",
+          "score": "<p>The pinned registry requires <code>resample_image</code> stage success, an existing <code>resampled_nifti</code> path and a nonempty NIfTI. The runner counts nonzero voxels; on image-read failure it can fall back to positive file size. No target-spacing, affine or image-quality invariant is configured for <code>short_superres</code>, despite a space-mismatch fault variant. These are artifact validity checks with no independent quality denominator, PSNR/SSIM or clinical-performance claim.</p>",
+          "challenge": "<p>Source geometry, target conventions, floating-point rounding and input pixel type can change array shape or values. A denser grid alone does not recover acquired resolution.</p>",
+          "families": "<p>This is one registry definition, not an enumeration of external cases or a fresh task run. Code rules are source-derived; grid examples are authored symbolic calculations; the displayed MRI is a representative public helper.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25249,9 +25341,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 118,
+    "reviewed-scripted-planar": 119,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 59,
+    "blocked-source-contract": 58,
     "blocked-source-input": 14,
     "pending-operation-review": 1
   },

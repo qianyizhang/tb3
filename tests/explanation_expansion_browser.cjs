@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'bcer-superres-v1',
   'bcer-denoise-v1',
   'automed-slake-v1',
   'automed-pathvqa-v1',
@@ -110,6 +111,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'bcer-superres-v1')
+    return {
+      scene: 'data-bcer-superres-scene',
+      reference: '[data-bcer-superres-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-bcer-superres-scene="output"] pre',
+      aside: '[data-bcer-superres-output]',
+    };
   if (plan.recipe === 'bcer-denoise-v1')
     return {
       scene: 'data-bcer-denoise-scene',
@@ -701,6 +711,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'bcer-superres-v1': [
+      /Representative PI-CAI helper only; no matched BCER resampled output or independent high-resolution truth/s,
+      'https://zenodo.org/records/6624726',
+      'data-bcer-superres-scene',
+      false,
+    ],
     'bcer-denoise-v1': [
       /Representative PI-CAI helper only; matched BM3D input\/output and clean GT absent/s,
       'https://zenodo.org/records/6624726',
@@ -1533,6 +1549,171 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await absent();
     await page.locator('[data-story-step="0"]').click();
     await absent();
+  }
+  if (plan.recipe === 'bcer-superres-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-bcer-superres-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-bcer-superres-reference-revealed]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    const native = await scene
+      .locator('img')
+      .evaluate((img) => ({ src: img.currentSrc, w: img.naturalWidth, h: img.naturalHeight }));
+    assert.deepEqual([native.w, native.h], [320, 320]);
+    assert.equal(
+      sha(Buffer.from(native.src.split(',')[1], 'base64')),
+      'cb76d37da6a4b70a77f865887ab0d44581dbfd5db595ad1e7800a268c295f5c8',
+    );
+    assert.match(
+      await scene.innerText(),
+      /Representative MRI input.*640² k10.*320².*15–829.*640×640×21.*LPS.*not a matched BCER input\/output.*No chosen reference grid/is,
+    );
+    const ops = plan.beats.filter((b) => b.scene === 'operation');
+    assert.equal(ops.length, 3);
+    await page.locator(`[data-story-step="${plan.beats.indexOf(ops[0])}"]`).click();
+    for (let j = 0; j < 3; j++) {
+      await scene.locator(`[data-bcer-superres-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[j].startFrame,
+      );
+      assert.equal(
+        await scene.locator(`[data-bcer-superres-step="${j}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      const re = [
+        /Source size×spacing.*input origin\/direction.*reference wins.*not a clean\/private target/is,
+        /640×640×21.*ceil\(N×s\/t\).*641×641×22.*437,782.*5.09%.*not measured output/is,
+        /Linear is the source default.*Identity physical transform.*Outside FOV default 0.*input pixel type.*quantize/is,
+      ][j];
+      assert.match(await scene.innerText(), re);
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await scene.locator('[data-bcer-superres-step="1"]').click();
+    for (let j = 0; j < 3; j++) {
+      await scene.locator(`[data-bcer-superres-branch="${j}"]`).click();
+      // Symmetric monotonic smoothstep has nearest endpoint/midpoint samples;
+      // select the earlier sample for the floating-point midpoint tie.
+      const expectedLocal = [0, Math.floor((ops[1].frames - 1) / 2), ops[1].frames - 1][j];
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[1].startFrame + expectedLocal,
+      );
+      assert.equal(
+        await scene.locator(`[data-bcer-superres-branch="${j}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        new RegExp(
+          `Illustrative target: ${['640×640×21', '640×640×42', '1280×1280×42'][j]} voxels.*No resampled image computed`,
+          'is',
+        ),
+      );
+      await capture(`grid-${j}`);
+      await absent();
+    }
+    await scene.locator('[data-bcer-superres-step="2"]').click();
+    const modes = ['linear', 'nearest', 'bspline'];
+    for (let j = 0; j < 3; j++) {
+      const before = Number(await page.locator('.scene-player').getAttribute('data-frame'));
+      await scene.locator(`[data-bcer-superres-interpolation="${modes[j]}"]`).click();
+      assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), before);
+      assert.equal(
+        await scene
+          .locator(`[data-bcer-superres-interpolation="${modes[j]}"]`)
+          .getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /Linear is the source default/is,
+          /Nearest selects samples.*does not create detail/is,
+          /B-spline interpolates.*no quality result/is,
+        ][j],
+      );
+      await capture(`interpolation-${j}`);
+      await absent();
+    }
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+      ops[2].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await scene.locator('[data-bcer-superres-step="2"]').click();
+    assert.equal(
+      await scene
+        .locator('[data-bcer-superres-interpolation="linear"]')
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.locator('pre').innerText(),
+      /artifacts\/resample\/resampled_<input_stem>\.nii\.gz/,
+    );
+    assert.match(
+      await scene.innerText(),
+      /actual image, target, elapsed time and quality are null/is,
+    );
+    await absent();
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal grader rules', exact: true });
+    await reveal().click();
+    assert.match(
+      await page.locator('[data-bcer-superres-reference-revealed]').innerText(),
+      /Stage, path and nonempty checks only.*No target-grid, affine or quality invariant.*file size.*not PSNR\/SSIM/is,
+    );
+    await capture('grader-revealed');
+    await scene.getByRole('button', { name: 'Cover grader rules', exact: true }).click();
+    await absent();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+      plan.beats[ri].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page
+      .locator(`[data-story-step="${plan.beats.findIndex((b) => b.scene === 'limits')}"]`)
+      .click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await page.locator('.scene-reset').click();
+    await page.locator('[data-story-step="3"]').click();
+    assert.equal(
+      await scene
+        .locator('[data-bcer-superres-interpolation="linear"]')
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
   }
   if (plan.recipe === 'bcer-denoise-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -7372,6 +7553,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'bcer-superres-v1',
       'bcer-denoise-v1',
       'automed-slake-v1',
       'automed-pathvqa-v1',

@@ -1,3 +1,4 @@
+import { bcerSuperresPack } from './bcer-short-superres';
 import { bcerDenoisePack } from './bcer-short-denoise';
 import { automedVqaRadPack } from './automed-vqa-rad';
 import { automedOmniPack } from './automedbench-full-vqa-omnimedvqa-task';
@@ -125,6 +126,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'bcer-superres-v1',
     'bcer-denoise-v1',
     'automed-vqa-rad-v1',
     'automed-omni-v1',
@@ -1159,6 +1161,13 @@ export function storyPresentation(plan: StoryPlan): {
           ['#18c6d4', 'BM3D parameter/geometry contract'],
           ['#7ba4b8', 'Validator boundary; no clean target'],
         ],
+      };
+    case 'bcer-superres-v1':
+      return {
+        heading: 'Choose physical grid and interpolate',
+        corner: 'Representative input; matched output absent',
+        warning: bcerSuperresPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

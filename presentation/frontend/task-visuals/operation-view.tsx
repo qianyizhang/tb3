@@ -1,3 +1,4 @@
+import { BcerSuperresScene, BcerSuperresOutput } from './bcer-short-superres-panels';
 import { BcerDenoiseScene, BcerDenoiseOutput } from './bcer-short-denoise-panels';
 import { AutomedVqaRadScene, AutomedVqaRadOutput } from './automed-vqa-rad-panels';
 import {
@@ -377,6 +378,8 @@ export function OperationScene({
     );
   if (state.recipe === 'bcer-denoise-v1')
     return <BcerDenoiseScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'bcer-superres-v1')
+    return <BcerSuperresScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -715,6 +718,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'automed-omni-v1') return <AutomedOmniOutput state={state} />;
   if (state.recipe === 'automed-vqa-rad-v1') return <AutomedVqaRadOutput state={state} />;
   if (state.recipe === 'bcer-denoise-v1') return <BcerDenoiseOutput state={state} />;
+  if (state.recipe === 'bcer-superres-v1') return <BcerSuperresOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
