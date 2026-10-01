@@ -24004,15 +24004,15 @@
       ],
       "illustration_kind": "vqa",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-medxpertqa-mm-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-medxpertqa-mm-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted mixed explanation after main source/native/visual/export/mobile/noGPU/reader-reference review: unchanged public dev JPEG/question/options, source-specific MCQ binding/schema and later educational public label. Exact Full membership/staging/split/calibration isolation/native physical geometry/private gold/model outputs and performance remain unestablished.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/medxpertqa-mm/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: MedXpertQA.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names microsoft/llava-med-v1.5-mistral-7b. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -24045,7 +24045,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights."
       },
-      "source_brief_sha256": "3601df21a4c9fe972695497a71e4c55645d6e5f2423efd31c786ce5ae9298ea3",
+      "source_brief_sha256": "d5abf010254a6eeb0a45bb7cb9a030012e06078daf71e9379eea59a8d4e4c4d6",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -24054,14 +24054,112 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Public dev MM-2000 source image/question available; Full selected IDs, membership/private gold, submissions and scores absent.",
+      "acquisition_route": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA",
+      "warning_text": "Public dev example only; Full selection/private gold absent.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-medxpertqa-mm-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-medxpertqa-mm-task-resolution.json",
+        "receipt_sha256": "a2a25b1c825e51f352bde74716a5a4eeb596b83dcd7ae008db8b0907ec12aba4",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T00:27:33.053188+00:00",
+        "scope": "47sourcefiles/9retainedpins/47manifest/48archive;40backendbytes reused;7task-specific files read; native JPEG bytes+CRC+RGB exact;public dev/reference/output separation;Full joins/gold/model absent",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Mixed native public dev MedXpertQA-MM input and pinned task-specific MCQ binding/options/schema, reader-controlled public reference; exact Full membership/private gold/model result absent.",
+      "completion_review": {
+        "date": "2026-10-01T00:41:47.546625+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "2f400d89effca25e0d60240e885189e9c9ad33e57124a9c93c22327d821ba9af"
+      },
+      "reviewed_contract_projection": {
+        "title": "Answer a multimodal MedXpertQA-MM multiple-choice question",
+        "goal": "Bind each question to its required image(s), infer a single option letter and emit that letter with its exact option text. The public dev label is an educational source annotation, not a model result, clinical recommendation or recovered Full private answer.",
+        "value": "Not yet specified.",
+        "raw": "The Full unit is **question**, with question.json, image_paths, options and identifiers. **1 public dev question MM-2000 and 1 matching native JPEG** retained; **0 actual Full cases/submissions** established. Source row images points to MM-2000-a.jpeg; byte-range ZIP member CRC32=3ab54169 and uncompressed size 96,627 verified in retained acquisition. Native bytes unchanged, no crop/annotation/model transformation; whole ZIP hash/revision equivalence unverified because retained route used main. Upstream dataset metadata pinned 7e7c465a68eb2b866926bfa59c8c9d17a8daba65 verified through official API. Image/query language is source content, not an interpretation made here. Full frozen selection and train/dev/test overlap unknown.",
+        "helpers": "Lite names microsoft/llava-med-v1.5-mistral-7b and S2 run_llava_med helper. S3 asks exactly 15 public calibration records with gold in reference_answer or reasoning_chain.answer, the generic executable verifier accepts \u226510 records and makes gold optional, whereas config smoke_sample_min/max is 1/10: these different requirements must not be silently equated. S3 regex maps raw text to letter and options text, probes postprocess(raw) string signature. The helper takes image_paths[0]; general all-image consumption is not proven. This example has exactly 1 image. No weights, decode, calibration or preprocessing executed.\n\nPublic calibration gold is supplied helper information only where explicitly eligible; never tune on private/evaluation gold. Actual calibration split isolation not established. Standard method exploration remains task guidance, not an executed comparison.",
+        "tools": "Task documents staged-image inspection, terminal/model loading and submission. No model or runtime/tool trials, setup or installation occurred.",
+        "reference": "Official dev row correct label is packaged **only in reference.json**, reader-only explicit later reveal/reset. Input source.json contains question/options/image metadata without label. This public educational annotation is not Full private gold or an independently adjudicated imaging finding. Private ground_truth.csv or per-question answer.json absent. Scorer prefers CSV row, then private per-case file; missing gold can raise, not evidence of model failure. Browser-visible reference is educational, not a confidentiality boundary; no private answer assets included.",
+        "spec": "Question + linked image(s) + A\u2013E options \u2192 actual VLM decode \u2192 deterministic letter/option mapper \u2192 answer.json. This pack's canonical option selector demonstrates option-to-text association only; it does not infer an answer from the native image. Exact source task ref 99c166a3546bba348dd618fd310f5d4b8821e77f is envelope declaration; Full archive revision f894057807cc334421784e702ead2c1883583e1b and all MANIFEST entries verified, independent upstream Git equivalence not claimed. Actual prompt assembly and evaluation mount isolation unresolved.",
+        "output": "**<question_id>/answer.json** at submission root `.`. Required keys: question_id, predicted_label, predicted_answer, raw_model_output, model_name, runtime_s. ID exact-match; A\u2013E label trimmed/uppercased by checker; answer text must equal normalized selected option text when nonempty; raw/model strings and nonnegative numeric runtime. Runtime has no explicit finite or boolean exclusion. Unknown/fallback/heuristic/mock prefixes rejected as placeholders; an honest double-empty raw+answer is not placeholder, but does not prove inference. A label with empty answer can slip through the current checker because option-text comparison is conditional; target contract still requires exact option text. Fixture has null output fields rather than invented decode/runtime/checkpoint.",
+        "score": "Config selects **multiple_choice**. Executable scorer normalizes predicted letter (can extract standalone A\u2013E), compares to **gold answer_label exactly**; it does not lowercase/normalize gold or validate all six schema fields/option text. **Accuracy=correct/all supplied question IDs**, missing/malformed/placeholder predictions remain in denominator. File completion counts existing files; parsed/valid rates count scorer-accepted letters. Ground-truth existence/quality must be audited independently. MCQ has no BLEU/F1 semantic partial credit or open-ended judge contribution.\n\nFormat checker is separate: output_format_valid requires every requested file; submission_format_valid requires \u2265  50% valid files, allowing partial validity. Empty question list gives vacuous output_format_valid=True but submission_format_valid=False. Thus scorer-letter-valid is not full schema-valid. Source-only synthetic checks exercise this divergence, not patient/model performance.\n\nWorkflow weights .25/.15/.35/.15/.10 renormalize over active steps; task/workflow overall is 50/50. Source medal defaults good\u2265.40/okay\u2265.25; aggregation applies completion/schema/valid-output gates and placeholder/model-call guards. These are implementation thresholds, not calibrated clinical performance. Full denominator, trial traces and scores absent.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Public dev MM-2000 source image/question available; Full selected IDs, membership/private gold, submissions and scores absent. MIT declared dataset terms retained; source image copyright/clinical adjudication not independently established. No actual Full answer, calibrated performance, diagnosis or patient care advice.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native public dev image and question/options; Full case socket empty.",
+          "Canonical controls inspect question-image binding, option-to-text association and output/schema boundary without claiming prediction.",
+          "Explicit educational reveal shows public dev label; reset covers it, private gold remains absent."
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Task-specific Lite guidance: microsoft/llava-med-v1.5-mistral-7b.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+          ],
+          [
+            "Official MedXpertQA",
+            "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA"
+          ],
+          [
+            "Pinned official dataset metadata",
+            "https://huggingface.co/api/datasets/TsinghuaC3I/MedXpertQA/revision/7e7c465a68eb2b866926bfa59c8c9d17a8daba65"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-medxpertqa-mm-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Bind each question to its required image(s), infer a single option letter and emit that letter with its exact option text. The public dev label is an educational source annotation, not a model result, clinical recommendation or recovered Full private answer.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The Full unit is <strong>question</strong>, with question.json, image_paths, options and identifiers. <strong>1 public dev question MM-2000 and 1 matching native JPEG</strong> retained; <strong>0 actual Full cases/submissions</strong> established. Source row images points to MM-2000-a.jpeg; byte-range ZIP member CRC32=3ab54169 and uncompressed size 96,627 verified in retained acquisition. Native bytes unchanged, no crop/annotation/model transformation; whole ZIP hash/revision equivalence unverified because retained route used main. Upstream dataset metadata pinned 7e7c465a68eb2b866926bfa59c8c9d17a8daba65 verified through official API. Image/query language is source content, not an interpretation made here. Full frozen selection and train/dev/test overlap unknown.</p>",
+          "helpers": "<p>Lite names microsoft/llava-med-v1.5-mistral-7b and S2 run_llava_med helper. S3 asks exactly 15 public calibration records with gold in reference_answer or reasoning_chain.answer, the generic executable verifier accepts \u226510 records and makes gold optional, whereas config smoke_sample_min/max is 1/10: these different requirements must not be silently equated. S3 regex maps raw text to letter and options text, probes postprocess(raw) string signature. The helper takes image_paths[0]; general all-image consumption is not proven. This example has exactly 1 image. No weights, decode, calibration or preprocessing executed.</p>\n<p>Public calibration gold is supplied helper information only where explicitly eligible; never tune on private/evaluation gold. Actual calibration split isolation not established. Standard method exploration remains task guidance, not an executed comparison.</p>",
+          "tools": "<p>Task documents staged-image inspection, terminal/model loading and submission. No model or runtime/tool trials, setup or installation occurred.</p>",
+          "reference": "<p>Official dev row correct label is packaged <strong>only in reference.json</strong>, reader-only explicit later reveal/reset. Input source.json contains question/options/image metadata without label. This public educational annotation is not Full private gold or an independently adjudicated imaging finding. Private ground_truth.csv or per-question answer.json absent. Scorer prefers CSV row, then private per-case file; missing gold can raise, not evidence of model failure. Browser-visible reference is educational, not a confidentiality boundary; no private answer assets included.</p>",
+          "spec": "<p>Question + linked image(s) + A\u2013E options \u2192 actual VLM decode \u2192 deterministic letter/option mapper \u2192 answer.json. This pack&#x27;s canonical option selector demonstrates option-to-text association only; it does not infer an answer from the native image. Exact source task ref 99c166a3546bba348dd618fd310f5d4b8821e77f is envelope declaration; Full archive revision f894057807cc334421784e702ead2c1883583e1b and all MANIFEST entries verified, independent upstream Git equivalence not claimed. Actual prompt assembly and evaluation mount isolation unresolved.</p>",
+          "output": "<p><strong>&lt;question_id&gt;/answer.json</strong> at submission root <code>.</code>. Required keys: question_id, predicted_label, predicted_answer, raw_model_output, model_name, runtime_s. ID exact-match; A\u2013E label trimmed/uppercased by checker; answer text must equal normalized selected option text when nonempty; raw/model strings and nonnegative numeric runtime. Runtime has no explicit finite or boolean exclusion. Unknown/fallback/heuristic/mock prefixes rejected as placeholders; an honest double-empty raw+answer is not placeholder, but does not prove inference. A label with empty answer can slip through the current checker because option-text comparison is conditional; target contract still requires exact option text. Fixture has null output fields rather than invented decode/runtime/checkpoint.</p>",
+          "score": "<p>Config selects <strong>multiple_choice</strong>. Executable scorer normalizes predicted letter (can extract standalone A\u2013E), compares to <strong>gold answer_label exactly</strong>; it does not lowercase/normalize gold or validate all six schema fields/option text. <strong>Accuracy=correct/all supplied question IDs</strong>, missing/malformed/placeholder predictions remain in denominator. File completion counts existing files; parsed/valid rates count scorer-accepted letters. Ground-truth existence/quality must be audited independently. MCQ has no BLEU/F1 semantic partial credit or open-ended judge contribution.</p>\n<p>Format checker is separate: output_format_valid requires every requested file; submission_format_valid requires \u2265  50% valid files, allowing partial validity. Empty question list gives vacuous output_format_valid=True but submission_format_valid=False. Thus scorer-letter-valid is not full schema-valid. Source-only synthetic checks exercise this divergence, not patient/model performance.</p>\n<p>Workflow weights .25/.15/.35/.15/.10 renormalize over active steps; task/workflow overall is 50/50. Source medal defaults good\u2265.40/okay\u2265.25; aggregation applies completion/schema/valid-output gates and placeholder/model-call guards. These are implementation thresholds, not calibrated clinical performance. Full denominator, trial traces and scores absent.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Public dev MM-2000 source image/question available; Full selected IDs, membership/private gold, submissions and scores absent. MIT declared dataset terms retained; source image copyright/clinical adjudication not independently established. No actual Full answer, calibrated performance, diagnosis or patient care advice.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24557,10 +24655,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 111,
+    "reviewed-scripted-planar": 112,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 20,
+    "blocked-source-input": 19,
     "pending-operation-review": 1
   },
   "completion_program": {

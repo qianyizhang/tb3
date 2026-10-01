@@ -1,0 +1,735 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-medxpertqa-mm-task",
+  "source_files": [
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/aggregate.py",
+      "sha256": "bb05e48a19abf4fc6952334288944733a303874ec95c3eb4fd3a21d6d63c203d",
+      "bytes": 11632
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/answer_judge.py",
+      "sha256": "4716ff98f187e233b61d1413a0b3ce271cff3df12013f294581093d70f223d23",
+      "bytes": 17052
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/answer_metrics.py",
+      "sha256": "066e36474b5a05a3622d7eeef64bdb822eafb541927e7102bc0758d1163cfdd2",
+      "bytes": 9821
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/answer_normalizer.py",
+      "sha256": "b866af1cc46deb802f024d90d51a60d566a924ffe4f22294dc8f08d70be164bd",
+      "bytes": 2838
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/answer_utils.py",
+      "sha256": "cb39d4ea80202932d4f865c2c25bacd0f6aae50501b35d19bb61496092a25af7",
+      "bytes": 2298
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/detail_report.py",
+      "sha256": "74c4deee402f9ddeea118dc7219cab8d2ce9f9e2ebd2a304a51672f666c123d6",
+      "bytes": 3980
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/failure_classifier.py",
+      "sha256": "7a0967b4752e0e57e75ab1100061478310f822a37a12ff6bdc7feebc9d288034",
+      "bytes": 6561
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/format_checker.py",
+      "sha256": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6",
+      "bytes": 7329
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/inference_verifier.py",
+      "sha256": "b959d630dd65034720851bb4ac5f388a23fb4288d414f7bd7cbba3867ea21ad0",
+      "bytes": 13110
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/llm_judge.py",
+      "sha256": "8b3c014f3fb05cfdfabe705431eb36acf9bacb935a8998ccd7378bf246ea9202",
+      "bytes": 9007
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/medal_tier.py",
+      "sha256": "c8a75561b4f0c8654e1c4819ac8e7a1ff5c22b3cc442545f41c8793834ac6caa",
+      "bytes": 496
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/medbench_vqa/__init__.py",
+      "sha256": "279098f491e60c7e5e338dddf471c1d031a2f74367041c2bc40b23c8d41d19b4",
+      "bytes": 743
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/medbench_vqa/_logger.py",
+      "sha256": "836b256702395cdc53cecb94c222b7caed4f8c08608bf5c615fce316fc38eacb",
+      "bytes": 1146
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/medbench_vqa/image_inspection.py",
+      "sha256": "48b813360080b238e3460f3d425209965a15d1b70d1a2444effca6003c2cb0a9",
+      "bytes": 5956
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/medbench_vqa/medical_search.py",
+      "sha256": "3ac18152355097b14c515ea31d98ff8fe0fb9bccfdfe87bbf9306d2e424409e9",
+      "bytes": 5271
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/medbench_vqa/submit.py",
+      "sha256": "f4737b7309fd8230a13ed1c806ea5f75f4e0aafdf694a6829ca8d4fd0eabfd7d",
+      "bytes": 3559
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/modality_typing.py",
+      "sha256": "a69bf0456c1f61ea6cdc193f4b7be8723e96f822228d95a0e8a760bb886d3350",
+      "bytes": 6500
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/critical_model_use.md",
+      "sha256": "34cba193cabcac0d950bec71ab68b102301937f32f8b9c3cf903984575e7376c",
+      "bytes": 2073
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "5a168771ef684ce3ce27ca352034e7e07fd5b8e4cab0e914da0d6576744aba35",
+      "bytes": 717
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "ad1eb5d5ab2aa695ba52aaf768f5cfa0838e4c039b566416150cb24f9d2b8bad",
+      "bytes": 605
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "e5799f05530c2a5f2e8922c441ffa970f9c05bec16aba9b0993bcad5314b7919",
+      "bytes": 1475
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "9f1db901e5cfad470fa85ef4da538bffb19123ab559ee7ff25c47a35d064abe0",
+      "bytes": 1446
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "cb1b39eaedd2cc074682f64ed36e09a344af7c0b409ad1c695e67fcf158492d8",
+      "bytes": 145
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/llava_med_skill.md",
+      "sha256": "b9caf72a1e4c9ef12f5356ad68f0eddac727141422b0be82ecc0d6cac773a4f4",
+      "bytes": 5503
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/open_ended_contract.md",
+      "sha256": "8841e1ad8bf06b378684e4af119c80210ac5bd73737b95d90de2c242fc6218ce",
+      "bytes": 722
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "df50039aa1d3949b7bb1220b6216fcc00f3c01c6979531ef9fdbdc880da584cf",
+      "bytes": 4085
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "5518dfb4476a869fcaade8df71babbeb019ff94c609224c95f1b47d74fb451a0",
+      "bytes": 1577
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "6988dc1d8aca9d518d1b58a21ccae7a1883a4be002346d805c665a2f5fd1c461",
+      "bytes": 2014
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "92668a180a129c327798e91424568388c1d1c685d59ad68044bc03fb285c0006",
+      "bytes": 3823
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/s2_setup/standard.md",
+      "sha256": "36d9dc875a97271d0f5331895bb76a9bee4ea8ff26495c307bef985289f4997c",
+      "bytes": 2526
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "e961374b90358a8b8bba9dc3d0bc58cd181722141dcef5b3f70402cafa9342be",
+      "bytes": 6348
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/s4_inference/all.md",
+      "sha256": "f1158d73bc5a328e048dff63c729c5c1e83174d874d48bd34be694672b8cb657",
+      "bytes": 5897
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "9f1d27cc977462bc81028395a589686473f7a607a3c522ea1180ba9d57a5c566",
+      "bytes": 1468
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/run_eval.py",
+      "sha256": "0998fb2a6eb18d3c2d7b0e0797c74f6d98a35b419012dc4fe63d75fdc38703bd",
+      "bytes": 9465
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/task_loader.py",
+      "sha256": "aa7ef5146845a1565623ceb3b05523484920951f92290d8338d562455e35e953",
+      "bytes": 6115
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/config.yaml",
+      "sha256": "c6c3bfe8379b13d519b96e19fd5e3f663f095a39815d2307646a20436b0e0e0b",
+      "bytes": 356
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/lite_s1.md",
+      "sha256": "ddcf9b4e6730883101e7189f601a8c081bfa1d5c799f50e60a4b45d936f94d8e",
+      "bytes": 2602
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/lite_s2.md",
+      "sha256": "2ddfc8fa195c54de68cf6e56ca9c73465e23c2ecebf72f9827472b759730760a",
+      "bytes": 497
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/lite_s3.md",
+      "sha256": "667a4927d37f383d1d143cbb98ea29704b36c8713ff27cf0d6eb41b6a9df209e",
+      "bytes": 4206
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/model_info.yaml",
+      "sha256": "6e83263facf922e96849ccc2d79aaba6e82f2319197bfebdd6b7f0f2d36fddec",
+      "bytes": 4492
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/requirements.txt",
+      "sha256": "098acb08e7eca50ab9cec960be60b666e5b7299bada4ea961ec215f8e50c5c86",
+      "bytes": 623
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/standard_s1.md",
+      "sha256": "789a01212873028d6a17a57dee181c7f7e273ef3a4f3fc9ae859d684904979f3",
+      "bytes": 799
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/standard_s3.md",
+      "sha256": "ef9baddbc98efee1fa94c1fcd0ef740ed7fac9a2fb7b2ce68bdad7c5df6749e0",
+      "bytes": 208
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tier_config.py",
+      "sha256": "0137a0e045a9ce1dfc626241170a3d819e30616a97c400c9c17316bc57360a8c",
+      "bytes": 2610
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tool_usage.py",
+      "sha256": "126117ee8908f23246e9e84b853ff8d55ab31b8a35c250d094edc7418e095455",
+      "bytes": 3125
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/vqa_scorer.py",
+      "sha256": "4a128cbe9668f08a7341da4c23b90b649c3a9168294f45a058ef710d99e37a14",
+      "bytes": 10606
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/task.json",
+      "sha256": "6e0e8b8f42a31d47e9a125d5c6acb5cfbbee182ace251dd1b63244363ef81724",
+      "bytes": 1304
+    }
+  ],
+  "retained_source_pins": [
+    {
+      "bytes": 59883,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task.tar.gz",
+      "role": "pinned-Full-harness-archive",
+      "sha256": "c3608f17c23184bde0c3b5418f643698b73fd297422570057dbf2598512ae037",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "bytes": 1304,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/task.json",
+      "role": "task-envelope",
+      "sha256": "6e0e8b8f42a31d47e9a125d5c6acb5cfbbee182ace251dd1b63244363ef81724",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "bytes": 356,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/tasks/medxpertqa-mm-task/config.yaml",
+      "role": "task-config",
+      "sha256": "c6c3bfe8379b13d519b96e19fd5e3f663f095a39815d2307646a20436b0e0e0b",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "bytes": 10606,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/vqa_scorer.py",
+      "role": "executable-scorer",
+      "sha256": "4a128cbe9668f08a7341da4c23b90b649c3a9168294f45a058ef710d99e37a14",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "bytes": 7329,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/source/format_checker.py",
+      "role": "format-checker",
+      "sha256": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "bytes": 4643,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/packages/medxpertqa-mm-task/automedbench-task/MANIFEST.sha256",
+      "role": "package-manifest",
+      "sha256": "a3d1bc5e5d4f7d2c11c0f859f0fa6c859ee19707cbc0e6ef74045d829552dfdc",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "bytes": 3133,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/upstream/medxpert-row.json",
+      "role": "public-upstream-row-metadata",
+      "sha256": "9365a3932c034d19009accb8bfef5b7c8235c8f0244ea30c1be530c343d8b517",
+      "url": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA"
+    },
+    {
+      "bytes": 96627,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/upstream/medxpert-dev-MM-2000-a.jpeg",
+      "role": "public-upstream-image",
+      "sha256": "35082586ba0b7457db2495f651de8729afdb6d2833b25eb5f19904737ff2610d",
+      "url": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA"
+    },
+    {
+      "bytes": 189757,
+      "path": ".local/explainers/core-20260929/interpretation-g-source/upstream/medxpert-central.bin",
+      "role": "zip-central-directory-byte-range",
+      "sha256": "ee55eb58882be54a8ebc8940205d7f4c1632097c47ffc8386a2e63563edb438b",
+      "url": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA/resolve/main/images.zip"
+    }
+  ],
+  "brief_sha256": "d5abf010254a6eeb0a45bb7cb9a030012e06078daf71e9379eea59a8d4e4c4d6",
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz",
+  "source_revision": "99c166a3546bba348dd618fd310f5d4b8821e77f",
+  "upstream_revision": "7e7c465a68eb2b866926bfa59c8c9d17a8daba65",
+  "actual_data_gap": "Public dev MM-2000 source image/question available; Full selected IDs, membership/private gold, submissions and scores absent.",
+  "warning_text": "Public dev example only; Full selection/private gold absent.",
+  "acquisition_route": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA",
+  "task_contract": {
+    "answer_mode": "multiple_choice",
+    "dataset": "MedXpertQA MM",
+    "dataset_included": false,
+    "full_case_membership_verified": false,
+    "input_filename": "question.json",
+    "metric": "letter accuracy",
+    "output_path": "{question_id}/answer.json",
+    "required_output_keys": [
+      "question_id",
+      "predicted_label",
+      "predicted_answer",
+      "raw_model_output",
+      "model_name",
+      "runtime_s"
+    ],
+    "source_ref": "99c166a3546bba348dd618fd310f5d4b8821e77f",
+    "source_sample_id": "MM-2000",
+    "source_sample_split": "dev",
+    "task_id": "medxpertqa-mm-task",
+    "valid_labels": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "qid_mapping": "Upstream source row id=MM-2000 is not a recovered Full question_id. Intended Full qid must exactly match question.json question_id and output record ID.",
+    "image_binding": "Upstream source row images list differs from intended Full image_paths; conversion/membership unstaged. This retained row has1 image; task supports1+; Lite calibration helper uses first image.",
+    "calibration": {
+      "source_request_exact": 15,
+      "checklist_min_records": 15,
+      "public_gold_fields": [
+        "reference_answer",
+        "reasoning_chain.answer"
+      ],
+      "smoke_bounds": [
+        1,
+        10
+      ],
+      "private_tuning_allowed": false,
+      "actual_calibration": null,
+      "generic_verifier_min_records": 10,
+      "generic_verifier_gold_optional": true
+    },
+    "tiers": {
+      "lite": "Fixed microsoft/llava-med-v1.5-mistral-7b; mistral_instruct conversation; no model swap.",
+      "standard": "Compare all5 named source candidates before selection: MedVLThinker-3B-RL_m23k,MedVLSynther-3B-RL_13K,Qwen2.5-VL-3B-Instruct,gemma-4-E2B-it,gemma-4-E4B-it; source names only, current availability/access/runtime not verified."
+    },
+    "normalization": "Prediction trim/uppercase/extract standalone A\u2013E; gold answer_label exact, not normalized. Options dict keys/text strip; list maps A\u2013E. ID exact match required by checker; scorer compares letter independently.",
+    "denominator": "Correct / all supplied IDs, missing/malformed/placeholder stay denominator. Completion counts prediction files, parsed/valid uses scorer letters; CSV gold preferred else private per-qid answer.json; missing gold can raise. No expected question count enforced.",
+    "format_gap": "6keys and exactID plus option text when nonempty. Label with empty answer may pass conditional text check; wrong nonempty option text fails format but normalized letter can score correct. Double-empty raw+answer is not placeholder; does not establish inference.",
+    "schema_threshold": "output_format_valid every file; submission_format_valid >=50% valid files, expected denominator max(N,1); empty N gives vacuous output True/submission False.",
+    "scorer_backend": "Source run_eval calls vqa_scorer MCQ exact letter. Open-ended EM/F1/yes-no and answer judge do not contribute to MCQ; separate optional workflow judge can affect steps. No generic VQA semantic/clinical score assumed.",
+    "rating": "Default medal good>=.40/okay>=.25; hardF submission invalid/valid_outputs<=0/completion<.5; A/B good/okay elseC. Workflow active-step renormalization .25/.15/.35/.15/.10, overall50%workflow50%task. Artifact/model-call/placeholder guards and tool adjustments separate; no rating observed."
+  },
+  "source_roles": {
+    "input": "Public dev question/options/native image; actual Full selection absent",
+    "helper": "Lite inference/postprocess/public-gold calibration guidance; no model run",
+    "reference": "Public dev source annotation only reader reveal; private Full gold absent",
+    "output": "<question_id>/answer.json, six required keys; actual participant output null",
+    "scorer": "MCQ letter equality over suppliedIDs; separate schema checker\u226550% validity"
+  },
+  "source_question": {
+    "id": "MM-2000",
+    "question": "A 62-year-old woman with a history of type 2 diabetes and early-onset Alzheimer dementia was admitted to the intensive care unit (ICU) one week ago with sepsis. She was found to have Escherichia coli pyelonephritis, was treated with intravenous fluids and appropriate antibiotics, and slowly improved. However, today she developed recurrence of fever and confusion, and she also reports constant abdominal pain.\n\n\nHer current vital signs include a temperature of 38.5\u00b0C, a heart rate of 125 beats per minute, a blood pressure of 85/55 mm Hg, a respiratory rate of 25 breaths per minute, and an oxygen saturation of 96% while she receives 2 liters of oxygen via nasal cannula. Her cardiac and lung sounds are normal. She grimaces with palpation of the abdomen, worst in the right upper quadrant.\n\n\nLaboratory testing yields the following results:\n\n\n\n\n|  | Patient value | Reference range |\n| --- | --- | --- |\n| Leukocyte count (per mm3) | 14,200 | 4500\u201311,000 |\n| Hemoglobin (g/dL) | 12.0 | 12.0\u201316.0 |\n| Hematocrit (%) | 36.0 | 36.0\u201346.0 |\n| Platelet count (per mm3) | 265,000 | 150,000\u2013350,000 |\n| Creatinine (mg/dL) | 2.0 | 0.6\u20131.1 |\n| Bilirubin, total (mg/dL) | 1.2 | 0.3\u20131.0 |\n| Alkaline phosphatase (U/liter) | 160 | 30\u2013120 |\n| Aspartate aminotransferase (U/liter) | 120 | 0\u201335 |\n| Alanine aminotransferase (U/liter) | 100 | 0\u201335 |\n\n\nAn abdominal ultrasound, performed one week ago, revealed a normal liver and biliary system. An upright abdominal radiograph is obtained today (figure).\n\n\nWhat is the most appropriate next imaging study for this patient?\nAnswer Choices: (A) Endoscopic ultrasound (B) Cholescintigraphy (C) Endoscopic retrograde cholangiopancreatography (D) Abdominal ultrasound of the right upper quadrant (E) Magnetic resonance cholangiopancreatography",
+    "options": {
+      "A": "Endoscopic ultrasound",
+      "B": "Cholescintigraphy",
+      "C": "Endoscopic retrograde cholangiopancreatography",
+      "D": "Abdominal ultrasound of the right upper quadrant",
+      "E": "Magnetic resonance cholangiopancreatography"
+    },
+    "images": [
+      "MM-2000-a.jpeg"
+    ],
+    "medical_task": "Diagnosis",
+    "body_system": "Digestive",
+    "question_type": "Reasoning"
+  },
+  "public_reference": {
+    "label": "D",
+    "option_text": "Abdominal ultrasound of the right upper quadrant",
+    "role": "public dev educational annotation; not private Full gold/model/clinical adjudication"
+  },
+  "native_example": {
+    "bytes": 96627,
+    "path": ".local/explainers/core-20260929/interpretation-g-source/upstream/medxpert-dev-MM-2000-a.jpeg",
+    "role": "public-upstream-image",
+    "sha256": "35082586ba0b7457db2495f651de8729afdb6d2833b25eb5f19904737ff2610d",
+    "url": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA",
+    "geometry": {
+      "width": 945,
+      "height": 999,
+      "mode": "RGB",
+      "exif_orientation": null,
+      "pixel_coordinates": "native JPEG row y0..998,column x0..944; no crop/rotation/resampling",
+      "physical_spacing_or_Full_coordinates": null,
+      "RGB_pixel_sha256": "5c3eae0c84f3367b63510f0bef6472276a9457462020b5c3a3c0bc7a1ad3de22",
+      "decode_runtime": "existing bundled Pillow12.3.0; no install"
+    }
+  },
+  "zip_member": {
+    "archive": "images.zip",
+    "central_directory_range": "516940678-517130434",
+    "crc32": "3ab54169",
+    "path": "images/MM-2000-a.jpeg",
+    "source_zip_bytes": 517130457,
+    "uncompressed_bytes": 96627
+  },
+  "transport_receipt": {
+    "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/automedbench-full-medxpertqa-mm-task/upstream-pin.json",
+    "sha256": "aabd8063aae76b2dd3f3ae0c319877ac540b9c3950af03aa2c4800845a13ab11"
+  },
+  "model_run": false,
+  "task_run": false,
+  "browser_review": false,
+  "reference_policy": "reader-reference-reveal",
+  "baseline_commit": "5f7d5296e1f0e91e37d2758fcd69affa9af49d27",
+  "historical_acquisition_attempts": [
+    {
+      "action": "fetch pinned Full harness package and verify internal manifest",
+      "attempted_at": "2026-09-29T06:54:10.931803+00:00",
+      "outcome": "HTTP 200; 59883 bytes; 47/47 internal hashes match.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "action": "inspect official upstream viewer / source route",
+      "attempted_at": "2026-09-29T06:54:10.931803+00:00",
+      "outcome": "Public dev row and matching source image recovered; not a Full frozen case.",
+      "source": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA"
+    },
+    {
+      "action": "range-extract one question-linked image from official ZIP",
+      "attempted_at": "2026-09-29T06:54:10.931803+00:00",
+      "outcome": "HTTP 206; ZIP central directory and member ranged; decompressed and CRC verified; image medxpert-dev-MM-2000-a.jpeg.",
+      "source": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA/resolve/main/images.zip"
+    }
+  ],
+  "attempts": [
+    {
+      "action": "fetch pinned Full harness package and verify internal manifest",
+      "attempted_at": "2026-09-29T06:54:10.931803+00:00",
+      "outcome": "HTTP 200; 59883 bytes; 47/47 internal hashes match.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz"
+    },
+    {
+      "action": "inspect official upstream viewer / source route",
+      "attempted_at": "2026-09-29T06:54:10.931803+00:00",
+      "outcome": "Public dev row and matching source image recovered; not a Full frozen case.",
+      "source": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA"
+    },
+    {
+      "action": "range-extract one question-linked image from official ZIP",
+      "attempted_at": "2026-09-29T06:54:10.931803+00:00",
+      "outcome": "HTTP 206; ZIP central directory and member ranged; decompressed and CRC verified; image medxpert-dev-MM-2000-a.jpeg.",
+      "source": "https://huggingface.co/datasets/TsinghuaC3I/MedXpertQA/resolve/main/images.zip"
+    },
+    {
+      "action": "Retained Full/source ZIP/member/native pixel and exact contract validation for guarded refresh",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medxpertqa-mm-task.tar.gz",
+      "outcome": "47 Full manifest members and 9 unchanged retained archive/Git/native pins verified; original acquisition receipts preserved, no new GET. Public dev MM-2000 JPEG native bytes/SHA/central-member CRC and 945\u00d7999 RGB pixels validated separately. No Full selected IDs/private gold/model/scorer/evaluator execution.",
+      "attempted_at": "2026-09-30T23:33:43.461510+00:00"
+    }
+  ],
+  "illustration_basis": "mixed",
+  "source_class": "source-derived-teaching",
+  "refresh_provenance": {
+    "original_report_sha256": "cc071c6fa95a014ac9799bb6df366144e45972ae3a9297465c999fe98547b2e7",
+    "original_receipt_sha256": "9299e223c5ca0571f1526a9c4fd5c95201fd4f2af5ca0685c56b0c38f26e33fb",
+    "historical_acquisition_preserved": true,
+    "new_attempt_scope": "retained validation only",
+    "final_baseline": "30c00b7b7e77ac2d88393d8f98e39062802efd69"
+  },
+  "archive_members": [
+    {
+      "member": "automedbench-task/task.json",
+      "bytes": 1304,
+      "sha256": "6e0e8b8f42a31d47e9a125d5c6acb5cfbbee182ace251dd1b63244363ef81724"
+    },
+    {
+      "member": "automedbench-task/source/aggregate.py",
+      "bytes": 11632,
+      "sha256": "bb05e48a19abf4fc6952334288944733a303874ec95c3eb4fd3a21d6d63c203d"
+    },
+    {
+      "member": "automedbench-task/source/answer_judge.py",
+      "bytes": 17052,
+      "sha256": "4716ff98f187e233b61d1413a0b3ce271cff3df12013f294581093d70f223d23"
+    },
+    {
+      "member": "automedbench-task/source/answer_metrics.py",
+      "bytes": 9821,
+      "sha256": "066e36474b5a05a3622d7eeef64bdb822eafb541927e7102bc0758d1163cfdd2"
+    },
+    {
+      "member": "automedbench-task/source/answer_normalizer.py",
+      "bytes": 2838,
+      "sha256": "b866af1cc46deb802f024d90d51a60d566a924ffe4f22294dc8f08d70be164bd"
+    },
+    {
+      "member": "automedbench-task/source/answer_utils.py",
+      "bytes": 2298,
+      "sha256": "cb39d4ea80202932d4f865c2c25bacd0f6aae50501b35d19bb61496092a25af7"
+    },
+    {
+      "member": "automedbench-task/source/detail_report.py",
+      "bytes": 3980,
+      "sha256": "74c4deee402f9ddeea118dc7219cab8d2ce9f9e2ebd2a304a51672f666c123d6"
+    },
+    {
+      "member": "automedbench-task/source/failure_classifier.py",
+      "bytes": 6561,
+      "sha256": "7a0967b4752e0e57e75ab1100061478310f822a37a12ff6bdc7feebc9d288034"
+    },
+    {
+      "member": "automedbench-task/source/format_checker.py",
+      "bytes": 7329,
+      "sha256": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6"
+    },
+    {
+      "member": "automedbench-task/source/inference_verifier.py",
+      "bytes": 13110,
+      "sha256": "b959d630dd65034720851bb4ac5f388a23fb4288d414f7bd7cbba3867ea21ad0"
+    },
+    {
+      "member": "automedbench-task/source/llm_judge.py",
+      "bytes": 9007,
+      "sha256": "8b3c014f3fb05cfdfabe705431eb36acf9bacb935a8998ccd7378bf246ea9202"
+    },
+    {
+      "member": "automedbench-task/source/medal_tier.py",
+      "bytes": 496,
+      "sha256": "c8a75561b4f0c8654e1c4819ac8e7a1ff5c22b3cc442545f41c8793834ac6caa"
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/__init__.py",
+      "bytes": 743,
+      "sha256": "279098f491e60c7e5e338dddf471c1d031a2f74367041c2bc40b23c8d41d19b4"
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/_logger.py",
+      "bytes": 1146,
+      "sha256": "836b256702395cdc53cecb94c222b7caed4f8c08608bf5c615fce316fc38eacb"
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/image_inspection.py",
+      "bytes": 5956,
+      "sha256": "48b813360080b238e3460f3d425209965a15d1b70d1a2444effca6003c2cb0a9"
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/medical_search.py",
+      "bytes": 5271,
+      "sha256": "3ac18152355097b14c515ea31d98ff8fe0fb9bccfdfe87bbf9306d2e424409e9"
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/submit.py",
+      "bytes": 3559,
+      "sha256": "f4737b7309fd8230a13ed1c806ea5f75f4e0aafdf694a6829ca8d4fd0eabfd7d"
+    },
+    {
+      "member": "automedbench-task/source/modality_typing.py",
+      "bytes": 6500,
+      "sha256": "a69bf0456c1f61ea6cdc193f4b7be8723e96f822228d95a0e8a760bb886d3350"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/critical_model_use.md",
+      "bytes": 2073,
+      "sha256": "34cba193cabcac0d950bec71ab68b102301937f32f8b9c3cf903984575e7376c"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 717,
+      "sha256": "5a168771ef684ce3ce27ca352034e7e07fd5b8e4cab0e914da0d6576744aba35"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 605,
+      "sha256": "ad1eb5d5ab2aa695ba52aaf768f5cfa0838e4c039b566416150cb24f9d2b8bad"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 1475,
+      "sha256": "e5799f05530c2a5f2e8922c441ffa970f9c05bec16aba9b0993bcad5314b7919"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1446,
+      "sha256": "9f1db901e5cfad470fa85ef4da538bffb19123ab559ee7ff25c47a35d064abe0"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 145,
+      "sha256": "cb1b39eaedd2cc074682f64ed36e09a344af7c0b409ad1c695e67fcf158492d8"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/llava_med_skill.md",
+      "bytes": 5503,
+      "sha256": "b9caf72a1e4c9ef12f5356ad68f0eddac727141422b0be82ecc0d6cac773a4f4"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/open_ended_contract.md",
+      "bytes": 722,
+      "sha256": "8841e1ad8bf06b378684e4af119c80210ac5bd73737b95d90de2c242fc6218ce"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 4085,
+      "sha256": "df50039aa1d3949b7bb1220b6216fcc00f3c01c6979531ef9fdbdc880da584cf"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 1577,
+      "sha256": "5518dfb4476a869fcaade8df71babbeb019ff94c609224c95f1b47d74fb451a0"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2014,
+      "sha256": "6988dc1d8aca9d518d1b58a21ccae7a1883a4be002346d805c665a2f5fd1c461"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 3823,
+      "sha256": "92668a180a129c327798e91424568388c1d1c685d59ad68044bc03fb285c0006"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/standard.md",
+      "bytes": 2526,
+      "sha256": "36d9dc875a97271d0f5331895bb76a9bee4ea8ff26495c307bef985289f4997c"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 6348,
+      "sha256": "e961374b90358a8b8bba9dc3d0bc58cd181722141dcef5b3f70402cafa9342be"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s4_inference/all.md",
+      "bytes": 5897,
+      "sha256": "f1158d73bc5a328e048dff63c729c5c1e83174d874d48bd34be694672b8cb657"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 1468,
+      "sha256": "9f1d27cc977462bc81028395a589686473f7a607a3c522ea1180ba9d57a5c566"
+    },
+    {
+      "member": "automedbench-task/source/run_eval.py",
+      "bytes": 9465,
+      "sha256": "0998fb2a6eb18d3c2d7b0e0797c74f6d98a35b419012dc4fe63d75fdc38703bd"
+    },
+    {
+      "member": "automedbench-task/source/task_loader.py",
+      "bytes": 6115,
+      "sha256": "aa7ef5146845a1565623ceb3b05523484920951f92290d8338d562455e35e953"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/config.yaml",
+      "bytes": 356,
+      "sha256": "c6c3bfe8379b13d519b96e19fd5e3f663f095a39815d2307646a20436b0e0e0b"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/lite_s1.md",
+      "bytes": 2602,
+      "sha256": "ddcf9b4e6730883101e7189f601a8c081bfa1d5c799f50e60a4b45d936f94d8e"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/lite_s2.md",
+      "bytes": 497,
+      "sha256": "2ddfc8fa195c54de68cf6e56ca9c73465e23c2ecebf72f9827472b759730760a"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/lite_s3.md",
+      "bytes": 4206,
+      "sha256": "667a4927d37f383d1d143cbb98ea29704b36c8713ff27cf0d6eb41b6a9df209e"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/model_info.yaml",
+      "bytes": 4492,
+      "sha256": "6e83263facf922e96849ccc2d79aaba6e82f2319197bfebdd6b7f0f2d36fddec"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/requirements.txt",
+      "bytes": 623,
+      "sha256": "098acb08e7eca50ab9cec960be60b666e5b7299bada4ea961ec215f8e50c5c86"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/standard_s1.md",
+      "bytes": 799,
+      "sha256": "789a01212873028d6a17a57dee181c7f7e273ef3a4f3fc9ae859d684904979f3"
+    },
+    {
+      "member": "automedbench-task/source/tasks/medxpertqa-mm-task/standard_s3.md",
+      "bytes": 208,
+      "sha256": "ef9baddbc98efee1fa94c1fcd0ef740ed7fac9a2fb7b2ce68bdad7c5df6749e0"
+    },
+    {
+      "member": "automedbench-task/source/tier_config.py",
+      "bytes": 2610,
+      "sha256": "0137a0e045a9ce1dfc626241170a3d819e30616a97c400c9c17316bc57360a8c"
+    },
+    {
+      "member": "automedbench-task/source/tool_usage.py",
+      "bytes": 3125,
+      "sha256": "126117ee8908f23246e9e84b853ff8d55ab31b8a35c250d094edc7418e095455"
+    },
+    {
+      "member": "automedbench-task/source/vqa_scorer.py",
+      "bytes": 10606,
+      "sha256": "4a128cbe9668f08a7341da4c23b90b649c3a9168294f45a058ef710d99e37a14"
+    },
+    {
+      "member": "automedbench-task/MANIFEST.sha256",
+      "bytes": 4643,
+      "sha256": "a3d1bc5e5d4f7d2c11c0f859f0fa6c859ee19707cbc0e6ef74045d829552dfdc"
+    }
+  ],
+  "main_contract_qualification": {
+    "actor": "Codex main agent",
+    "at": "2026-10-01T00:24:41.246417+00:00",
+    "observation": "Task S3 exactly15/checklist15 differs from generic verifier>=10 with optional gold and config smoke1..10. Numeric runtime lacks explicit finite/bool exclusion. Seven task-specific source differences read; forty identical backend files reused from byte-verified MedFrame main audit. No model/helper/scorer/task execution."
+  }
+}

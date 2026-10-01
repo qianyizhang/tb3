@@ -1,3 +1,4 @@
+import { automedMedxpertPack } from './automedbench-full-medxpertqa-mm-task';
 import { automedMedframeqaPack } from './automed-medframeqa';
 import { automedPathology500Pack } from './automedbench-full-pathology-caption-500-task';
 import { automedPathology100Pack } from './automedbench-full-pathology-caption-100-task';
@@ -118,6 +119,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-medxpert-mm-v1',
     'automed-medframeqa-v1',
     'automed-pathology-caption-500-v1',
     'automed-pathology-caption-100-v1',
@@ -1092,6 +1094,13 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Upstream native frames · symbolic Full contract',
         warning: automedMedframeqaPack.source.notice,
         legend: [],
+      };
+    case 'automed-medxpert-mm-v1':
+      return {
+        heading: 'Bind question, image and option text',
+        corner: 'Public dev example; Full split absent',
+        warning: automedMedxpertPack.source.notice,
+        legend: [['#87d6df', 'Highlighted option border: reader association, not model answer']],
       };
     case 'bcer-brain-full-v1':
       return {

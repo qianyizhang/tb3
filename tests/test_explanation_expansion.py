@@ -23,6 +23,7 @@ class ExpansionTests(unittest.TestCase):
                 "reader-reference-reveal"
                 if plan["recipe"]
                 in {
+                    "automed-medxpert-mm-v1",
                     "mixed-tissue-v1",
                     "prototype-identity-v1",
                     "mask-screen-v1",

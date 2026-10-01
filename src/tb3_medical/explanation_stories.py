@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-medxpert-mm-v1": "retained-automed-medxpert-mm-source-v1",
     "automed-medframeqa-v1": "retained-automed-medframeqa-v1",
     "automed-pathology-caption-500-v1": "retained-automed-pathology-caption-500-workflow-v1",
     "automed-pathology-caption-100-v1": "retained-automed-pathology-caption-100-workflow-v1",
@@ -779,6 +780,20 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-medxpert-mm-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "source-preview.jpeg",
+        },
+    ),
     "retained-automed-full-spleen-seg-v1": (
         "source-slices",
         "reference.json",
@@ -2144,6 +2159,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedMedxpertChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4053,6 +4074,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedMedxpertBeat(ExpansionBeat[AutomedMedxpertChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AutomedMedxpertStory(Story[AutomedMedxpertChannels]):
+    recipe: Literal["automed-medxpert-mm-v1"]
+    beats: tuple[AutomedMedxpertBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AutomedMedframeqaBeat(ExpansionBeat[AutomedMedframeqaChannels]):
     scene: Literal["input", "helper", "operation", "output", "limits"]
 
@@ -4607,6 +4649,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedMedxpertStory
     | AutomedMedframeqaStory
     | AutomedPathology500Story
     | AutomedPathology100Story
@@ -4730,6 +4773,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedMedxpertStory
     | AutomedMedframeqaStory
     | AutomedPathology500Story
     | AutomedPathology100Story
@@ -5013,6 +5057,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedMedxpertStory
     | AutomedMedframeqaStory
     | AutomedPathology500Story
     | AutomedPathology100Story
@@ -5315,6 +5360,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-automed-medxpert-mm-source-v1": (
+                "symbolic-unit-grid",
+                "MIT",
+                None,
+            ),
             "retained-automed-medframeqa-v1": (
                 "MedFrameQA-upstream-JPEG-frames-plus-Full-contract",
                 "CC-BY-4.0",
@@ -5545,6 +5595,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "unitless"
+                if pack_id == "retained-automed-medxpert-mm-source-v1"
                 else "px"
                 if pack_id == "retained-automed-medframeqa-v1"
                 else "unitless"
@@ -5659,6 +5711,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automed-medxpert-mm-source-v1"
             or pack_id == "retained-automed-medframeqa-v1"
             or pack_id == "retained-automed-pathology-caption-500-workflow-v1"
             or pack_id == "retained-automed-pathology-caption-100-workflow-v1"
@@ -5709,6 +5762,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "illustration"
                 if pack_id == "retained-automed-pathology-caption-500-workflow-v1"
                 and name == "study.json"
+                else "input-preview"
+                if pack_id == "retained-automed-medxpert-mm-source-v1"
+                and name == "source-preview.jpeg"
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -5743,6 +5799,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     else "symbolic-protocol"
                     if pack_id == "retained-automed-pathology-caption-500-workflow-v1"
                     and name in {"fixture.json", "study.json"}
+                    else "symbolic-protocol"
+                    if pack_id == "retained-automed-medxpert-mm-source-v1"
+                    and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"
