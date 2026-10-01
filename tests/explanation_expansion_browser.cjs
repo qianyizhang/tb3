@@ -27,6 +27,7 @@ const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const cardiacRecipes = new Set([
   'automed-slake-v1',
   'automed-pathvqa-v1',
+  'automed-kvasir-v1',
   'automed-medxpert-mm-v1',
   'automed-medframeqa-v1',
   'automed-pathology-caption-500-v1',
@@ -123,6 +124,15 @@ function cardiacSelectors(plan) {
       readerControlled: true,
       output: '[data-pathvqa-scene="output"] pre',
       aside: '[data-pathvqa-output]',
+    };
+  if (plan.recipe === 'automed-kvasir-v1')
+    return {
+      scene: 'data-kvasir-scene',
+      reference: '[data-kvasir-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-kvasir-scene="output"] pre',
+      aside: '[data-kvasir-output]',
     };
   if (plan.recipe === 'automed-medxpert-mm-v1')
     return {
@@ -670,6 +680,12 @@ async function checkSourceWarning(page, plan) {
       /Public PathVQA train example only.*Full split\/private answer absent/s,
       'https://huggingface.co/datasets/flaviagiammarino/path-vqa',
       'data-pathvqa-scene',
+      false,
+    ],
+    'automed-kvasir-v1': [
+      /Public raw example only.*Full IDs\/benchmark permission\/private answers absent/s,
+      'https://huggingface.co/datasets/SimulaMet-HOST/Kvasir-VQA',
+      'data-kvasir-scene',
       false,
     ],
     'automed-medxpert-mm-v1': [
@@ -1449,6 +1465,137 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     assert.match(
       await page.locator('[data-pathvqa-reference-revealed]').innerText(),
       /in the canals of hering.*Not model evidence.*independent clinical/s,
+    );
+    await capture('reference-revealed');
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+  }
+  if (plan.recipe === 'automed-kvasir-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name);
+    const scene = page.locator('[data-kvasir-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-kvasir-reference-revealed]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    const img = scene.locator('img');
+    const src = await img.getAttribute('src');
+    assert.ok(src.startsWith('data:image/jpeg;base64,'), 'native JPEG embedded offline');
+    assert.equal(
+      crypto
+        .createHash('sha256')
+        .update(Buffer.from(src.split(',')[1], 'base64'))
+        .digest('hex'),
+      '1500eb8e766c4eb761518b1c5829316416bcd348d06885e146cbd4d2c8ec0de8',
+    );
+    assert.equal(await img.evaluate((el) => el.naturalWidth), 720);
+    assert.equal(await img.evaluate((el) => el.naturalHeight), 576);
+    assert.match(
+      await scene.innerText(),
+      /Are there any abnormalities in the image.*Check all that are present/s,
+    );
+    await absent();
+    const expected = (j, o = 0) => {
+      const b = plan.beats.find(
+        (b) => b.scene === 'operation' && Math.abs(b.channels.progress[0] - j / 2) < 1e-6,
+      );
+      if (j !== 1) return b.startFrame;
+      let best = 0,
+        d = Infinity;
+      for (let k = 0; k < b.frames; k++) {
+        const u = k / b.frames,
+          z = u * u * (3 - 2 * u),
+          v = Math.abs(z - o / 2);
+        if (v < d) {
+          d = v;
+          best = k;
+        }
+      }
+      return b.startFrame + best;
+    };
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    for (let j = 0; j < 3; j++) {
+      await page.locator(`[data-kvasir-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        expected(j),
+      );
+      assert.equal(await scene.getAttribute('data-kvasir-currentstep'), String(j));
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await page.locator('[data-kvasir-step="0"]').click();
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-kvasir-tier]').innerText(),
+      /all six.*endoscopy-image.*free-text/s,
+    );
+    await capture('tier-standard');
+    await scene
+      .getByRole('button', { name: 'Inspect staged validation rule', exact: true })
+      .click();
+    assert.match(
+      await page.locator('#kvasir-calibration-rule').innerText(),
+      /1–10 staged questions.*≥10 public records.*15.*gold optional.*composite prompt unresolved/s,
+    );
+    await capture('calibration-revealed');
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.equal(await page.locator('#kvasir-calibration-rule').count(), 0);
+    await page.locator('[data-kvasir-step="1"]').click();
+    for (let o = 0; o < 3; o++) {
+      await page.locator(`[data-kvasir-branch="${o}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        expected(1, o),
+      );
+      assert.equal(
+        await page.locator(`[data-kvasir-branch="${o}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      await capture(`branch-${o}`);
+      await absent();
+    }
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /All actual fields null.*no source raw annotation copied/s,
+    );
+    assert.equal(await page.locator('#kvasir-format-rule').count(), 0);
+    await scene.getByRole('button', { name: 'Inspect format boundary', exact: true }).click();
+    assert.match(
+      await page.locator('#kvasir-format-rule').innerText(),
+      /Six required keys.*finite-runtime.*≥50%.*all-ID denominator/s,
+    );
+    await capture('format-revealed');
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    assert.equal(await page.locator('#kvasir-format-rule').count(), 0);
+    const reveal = scene.getByRole('button', { name: 'Reveal public raw annotation', exact: true });
+    await reveal.click();
+    assert.match(
+      await page.locator('[data-kvasir-reference-revealed]').innerText(),
+      /ulcerative colitis.*Source category: Ulcerative Colitis.*Not model evidence.*independent clinical/s,
     );
     await capture('reference-revealed');
     await page.locator(`[data-story-step="${beat('limits')}"]`).click();
@@ -6756,6 +6903,7 @@ withBrowser(async (browser) => {
     const planar = [
       'automed-slake-v1',
       'automed-pathvqa-v1',
+      'automed-kvasir-v1',
       'automed-medxpert-mm-v1',
       'automed-medframeqa-v1',
       'automed-pathology-caption-500-v1',

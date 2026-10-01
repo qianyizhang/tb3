@@ -24,6 +24,7 @@ class ExpansionTests(unittest.TestCase):
                 if plan["recipe"]
                 in {
                     "automed-medxpert-mm-v1",
+                    "automed-kvasir-v1",
                     "automed-pathvqa-v1",
                     "automed-slake-v1",
                     "mixed-tissue-v1",

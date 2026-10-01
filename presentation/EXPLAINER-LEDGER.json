@@ -24529,15 +24529,15 @@
       ],
       "illustration_kind": "vqa",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-vqa-kvasir-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-vqa-kvasir-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted mixed explanation after main source/native/visual/export/mobile/no-GPU/reference review: unchanged delivered public raw 720x576 JPEG/question, Kvasir-specific open-ended workflow and explicit later public answer/category. Full IDs, private gold, benchmark permission, raw/helper/test joins, original-pixel equivalence and actual model results remain unresolved.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/kvasir/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: Kvasir-VQA.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names microsoft/llava-med-v1.5-mistral-7b. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -24570,7 +24570,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. The source has not frozen all evaluation/sample identifiers."
       },
-      "source_brief_sha256": "be3589c05e38931ab8dacc1a6cc4518f9877607b8cc49a8acaf20b7dfb548597",
+      "source_brief_sha256": "b112257f4b26e3aae3ff2a2f6f1d56b161864d3dbe89bfdfdf7fb42acab005fa",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -24579,14 +24579,116 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "source_class": "source-derived-teaching",
+      "actual_data_gap": "One public raw image/question available; Full IDs, benchmark permission, private answers, actual outputs/scores absent. Raw split/helper/test isolation unverified.",
+      "acquisition_route": "https://huggingface.co/datasets/SimulaMet-HOST/Kvasir-VQA",
+      "warning_text": "Public raw example only \u2014 Full IDs/benchmark permission/private answers absent; official acquisition route.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-vqa-kvasir-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-vqa-kvasir-task-resolution.json",
+        "receipt_sha256": "ff277479ce117fa2e0cf7b9ceb44abf0efd3d37a450e953e5e1f8487594f24c0",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T02:25:21.098028+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Unchanged delivered public Kvasir-VQA raw image and question, source-specific endoscopy short-answer workflow and nonclinical scoring mechanics, with later deliberate public answer/category reveal. Full membership, benchmark permission, private gold and actual model results remain absent.",
+      "completion_review": {
+        "date": "2026-10-01T02:36:14.054523+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "6b32b368c5704f65213a7aad9564b48ecaa30ba5d9efd65f23a9b6f2f46c8725"
+      },
+      "reviewed_contract_projection": {
+        "title": "Answer a gastrointestinal endoscopy question",
+        "goal": "Explain one image-question unit, short-answer submission and lexical scoring; public annotation remains reader-only.",
+        "value": "Bind one endoscopy image to its question and retain the real raw decode, short-answer processing and declared evaluator branch. The public source answer/category supports educational reveal only; it is not a clinical finding, Full reference or model output.",
+        "raw": "Full unit is **question**, generic question.json fields question_id/question/image_paths/question_type; task-specific LiteS1 says **one endoscopy image per sample**. Official raw row0 supplies one native **720\u00d7576 JPEG, 35,381 bytes**, source img_id **cla820gl0s3nv071u4fgd7xgq**, source question \u201cAre there any abnormalities in the image? Check all that are present.\u201d. Input view retains source border/embedded acquisition text unchanged; no crop, segmentation, color transform or new findings. Actual Full IDs/submissions count **0**, source image/question count **1**. Row0 is a source locator, not recovered Full question_id.\n\nOfficial pinned card describes **6,500 images** and **58,849 question-answer rows**, including six question types. These are different units; this pack does not independently count unique images, recover Full selection or prove split equivalence. Raw split has public annotations rather than verified heldout isolation. No A\u2013E option map staged in the retained row/config, despite source question wording \u201cCheck all\u201d. Task config answer_mode=open_ended; source category and answer are withheld from input.",
+        "helpers": "Lite fixes microsoft/llava-med-v1.5-mistral-7b; Standard selects an image-capable model under task guidance. LiteS2 requests one actual forward pass, then task-specific LiteS3 and StandardS3 validate **1\u201310 staged questions**, with raw decode retained and deterministic short-answer postprocess. **No 15-public-gold calibration requirement is in the Kvasir task-specific S3**; the shared generic S3 separately requests \u226510 public rows (15 recommended) and optional gold. That is not the task-specific 1\u201310 staged-question instruction; effective composite prompt assembly remains unverified. Standard S1 compares all six model_info candidates including LLaVA-Med; current availability/performance unverified. Actual setup, loading, smoke/calibration and model calls are absent. Smoke validation must not consult private labels or substitute heuristic answers.",
+        "tools": "Image inspection, model loading/inference, deterministic postprocess and six-field submission guidance. This explainer performs no model, judge, calibration, runtime installation or benchmark staging.",
+        "reference": "Official raw source **answer and category** live in separate reference.json, only revealed later by reader. Initial source.json includes image/question/locator without either answer or category. Public annotations are not Full private gold or independent clinical adjudication; raw/helper vs heldout overlap unknown. Private ground_truth.csv preferred over per-question answer.json; both unavailable. Educational reveal is a display boundary, not security; no private data bundled.",
+        "spec": "One endoscopy image + question \u2192 real model decode \u2192 concise postprocessed predicted_answer \u2192 question-owned answer.json. Lite plan requires predicted_label empty for open-ended task; six-key schema still requires it. Full archive revision f894057807cc334421784e702ead2c1883583e1b and 47 internal hashes verified; envelope code ref release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78 is declared, not independently fetched Git equality. Config/47 source hashes are authority; actual mounts/effective composite prompt unresolved.",
+        "output": "**<question_id>/answer.json**, submission root`.`; required keys question_id, predicted_label, predicted_answer, raw_model_output, model_name, runtime_s. Exact question ID, nonempty short-answer/raw backing, nonempty model string and nonnegative numeric runtime; checker permits extra keys, whitespace-only model strings, booleans and nonfinite numeric runtimes (no finite guard); predicted_label empty by task guidance, no A\u2013E validation in open-ended checker. Placeholder/mock/fallback/unknown prefixes rejected; empty raw decode alongside nonempty answer considered forged. All actual output values null here, public answer never copied to participant artifact.",
+        "score": "Pinned vqa_scorer/answer_metrics/normalizer mechanics were inspected; prior retained nonclinical checks were not rerun. Normalize lowercase, ASCII punctuation/whitespace, whole-answer yes/no synonyms, number-word tokens and medical abbreviation tokens; **articles remain**, semantic correctness not adjudicated. Exact match and token Counter-overlap F1 give0\u2013100 then/100. **Nonbinary=.5EM+.5tokenF1**; binary gold uses strict normalized equality (\u201cyes because red\u201d \u2260 \u201cyes\u201d). A separate postprocess may collapse prefixes before scoring; actual decode pipeline absent.\n\nDefault primary averages over **all supplied question IDs**, including missing/invalid/placeholder predictions; binary yes_no_accuracy uses **gold-binary subset** denominator. Existing-file completion, parsed-answer validity and complete schema are distinct: scorer accepts nonempty answers without checker\u2019s full fields; graded submission requires\u226550%valid; output_format_valid uses all-files check. Empty IDs yield vacuous all-format-valid but graded false. Main loop does not deduplicate IDs; missing public question/private reference files can raise instead of yielding a model verdict. All reported fractions are 0\u20131, not clinical accuracy.\n\nOptional answer judge enabled by run_eval --enable-answer-judge or VQA_ANSWER_JUDGE=1/true/True can replace primary with **judge score sum/all IDs**, while lexical accuracy_heuristic remains diagnostic. Missing backend/key may cause heuristic-fallback judge branch; cached scores/backend/fallback counts must stay visible. No judge run or clinical/model performance exists. Workflow weights .25/.15/.35/.15/.10 active-renormalized, overall task/workflow50/50, default medal settings .40/.25 plus guards are source configuration only.",
+        "challenge": "Open-ended lexical normalization is distinct from clinical truth. Full frozen question membership, raw/helper/test isolation and actual pipeline remain unresolved.",
+        "families": "One public raw image/question; zero Full IDs, participant submissions, private references or measured results. Public card image and QA counts are different units.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native public raw source frame/question; category/answer covered, Full socket absent.",
+          "Canonical controls inspect one-image binding, schema and lexical/strict-binary/optional-judge mechanics with nonclinical tokens.",
+          "Explicit later reader reveal shows source answer/category; exit/reset covers them; participant output remains empty."
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Task-specific Lite guidance: microsoft/llava-med-v1.5-mistral-7b.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-kvasir-task.tar.gz"
+          ],
+          [
+            "Official Kvasir-VQA dataset",
+            "https://huggingface.co/datasets/SimulaMet-HOST/Kvasir-VQA"
+          ],
+          [
+            "Pinned source card",
+            "https://huggingface.co/datasets/SimulaMet-HOST/Kvasir-VQA/blob/26df9125b98cbad664e5b1801aac1f70a02689e2/README.md"
+          ],
+          [
+            "Original dataset paper",
+            "https://doi.org/10.48550/arXiv.2409.01437"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-vqa-kvasir-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Explain one image-question unit, short-answer submission and lexical scoring; public annotation remains reader-only.</p>",
+          "value": "<p>Bind one endoscopy image to its question and retain the real raw decode, short-answer processing and declared evaluator branch. The public source answer/category supports educational reveal only; it is not a clinical finding, Full reference or model output.</p>",
+          "raw": "<p>Full unit is <strong>question</strong>, generic question.json fields question_id/question/image_paths/question_type; task-specific LiteS1 says <strong>one endoscopy image per sample</strong>. Official raw row0 supplies one native <strong>720\u00d7576 JPEG, 35,381 bytes</strong>, source img_id <strong>cla820gl0s3nv071u4fgd7xgq</strong>, source question \u201cAre there any abnormalities in the image? Check all that are present.\u201d. Input view retains source border/embedded acquisition text unchanged; no crop, segmentation, color transform or new findings. Actual Full IDs/submissions count <strong>0</strong>, source image/question count <strong>1</strong>. Row0 is a source locator, not recovered Full question_id.</p>\n<p>Official pinned card describes <strong>6,500 images</strong> and <strong>58,849 question-answer rows</strong>, including six question types. These are different units; this pack does not independently count unique images, recover Full selection or prove split equivalence. Raw split has public annotations rather than verified heldout isolation. No A\u2013E option map staged in the retained row/config, despite source question wording \u201cCheck all\u201d. Task config answer_mode=open_ended; source category and answer are withheld from input.</p>",
+          "helpers": "<p>Lite fixes microsoft/llava-med-v1.5-mistral-7b; Standard selects an image-capable model under task guidance. LiteS2 requests one actual forward pass, then task-specific LiteS3 and StandardS3 validate <strong>1\u201310 staged questions</strong>, with raw decode retained and deterministic short-answer postprocess. <strong>No 15-public-gold calibration requirement is in the Kvasir task-specific S3</strong>; the shared generic S3 separately requests \u226510 public rows (15 recommended) and optional gold. That is not the task-specific 1\u201310 staged-question instruction; effective composite prompt assembly remains unverified. Standard S1 compares all six model_info candidates including LLaVA-Med; current availability/performance unverified. Actual setup, loading, smoke/calibration and model calls are absent. Smoke validation must not consult private labels or substitute heuristic answers.</p>",
+          "tools": "<p>Image inspection, model loading/inference, deterministic postprocess and six-field submission guidance. This explainer performs no model, judge, calibration, runtime installation or benchmark staging.</p>",
+          "reference": "<p>Official raw source <strong>answer and category</strong> live in separate reference.json, only revealed later by reader. Initial source.json includes image/question/locator without either answer or category. Public annotations are not Full private gold or independent clinical adjudication; raw/helper vs heldout overlap unknown. Private ground_truth.csv preferred over per-question answer.json; both unavailable. Educational reveal is a display boundary, not security; no private data bundled.</p>",
+          "spec": "<p>One endoscopy image + question \u2192 real model decode \u2192 concise postprocessed predicted_answer \u2192 question-owned answer.json. Lite plan requires predicted_label empty for open-ended task; six-key schema still requires it. Full archive revision f894057807cc334421784e702ead2c1883583e1b and 47 internal hashes verified; envelope code ref release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78 is declared, not independently fetched Git equality. Config/47 source hashes are authority; actual mounts/effective composite prompt unresolved.</p>",
+          "output": "<p><strong>&lt;question_id&gt;/answer.json</strong>, submission root<code>.</code>; required keys question_id, predicted_label, predicted_answer, raw_model_output, model_name, runtime_s. Exact question ID, nonempty short-answer/raw backing, nonempty model string and nonnegative numeric runtime; checker permits extra keys, whitespace-only model strings, booleans and nonfinite numeric runtimes (no finite guard); predicted_label empty by task guidance, no A\u2013E validation in open-ended checker. Placeholder/mock/fallback/unknown prefixes rejected; empty raw decode alongside nonempty answer considered forged. All actual output values null here, public answer never copied to participant artifact.</p>",
+          "score": "<p>Pinned vqa_scorer/answer_metrics/normalizer mechanics were inspected; prior retained nonclinical checks were not rerun. Normalize lowercase, ASCII punctuation/whitespace, whole-answer yes/no synonyms, number-word tokens and medical abbreviation tokens; <strong>articles remain</strong>, semantic correctness not adjudicated. Exact match and token Counter-overlap F1 give0\u2013100 then/100. <strong>Nonbinary=.5EM+.5tokenF1</strong>; binary gold uses strict normalized equality (\u201cyes because red\u201d \u2260 \u201cyes\u201d). A separate postprocess may collapse prefixes before scoring; actual decode pipeline absent.</p>\n<p>Default primary averages over <strong>all supplied question IDs</strong>, including missing/invalid/placeholder predictions; binary yes_no_accuracy uses <strong>gold-binary subset</strong> denominator. Existing-file completion, parsed-answer validity and complete schema are distinct: scorer accepts nonempty answers without checker\u2019s full fields; graded submission requires\u226550%valid; output_format_valid uses all-files check. Empty IDs yield vacuous all-format-valid but graded false. Main loop does not deduplicate IDs; missing public question/private reference files can raise instead of yielding a model verdict. All reported fractions are 0\u20131, not clinical accuracy.</p>\n<p>Optional answer judge enabled by run_eval --enable-answer-judge or VQA_ANSWER_JUDGE=1/true/True can replace primary with <strong>judge score sum/all IDs</strong>, while lexical accuracy_heuristic remains diagnostic. Missing backend/key may cause heuristic-fallback judge branch; cached scores/backend/fallback counts must stay visible. No judge run or clinical/model performance exists. Workflow weights .25/.15/.35/.15/.10 active-renormalized, overall task/workflow50/50, default medal settings .40/.25 plus guards are source configuration only.</p>",
+          "challenge": "<p>Open-ended lexical normalization is distinct from clinical truth. Full frozen question membership, raw/helper/test isolation and actual pipeline remain unresolved.</p>",
+          "families": "<p>One public raw image/question; zero Full IDs, participant submissions, private references or measured results. Public card image and QA counts are different units.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24857,10 +24959,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 114,
+    "reviewed-scripted-planar": 115,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 17,
+    "blocked-source-input": 16,
     "pending-operation-review": 1
   },
   "completion_program": {

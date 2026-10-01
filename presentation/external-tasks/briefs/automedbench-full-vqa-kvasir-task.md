@@ -1,60 +1,56 @@
-# Answer questions about endoscopy images
+> **Public raw example only — Full IDs, benchmark permission and private answers absent. Acquire through [the official Kvasir-VQA route](https://huggingface.co/datasets/SimulaMet-HOST/Kvasir-VQA).**
 
-Build and run a pipeline to answer questions about endoscopy images.
+# Answer a gastrointestinal endoscopy question
+
+Explain one image-question unit, short-answer submission and lexical scoring; public annotation remains reader-only.
 
 ## Value
 
-A focused image question tests visual interpretation and answer formatting without requiring a complete report.
+Bind one endoscopy image to its question and retain the real raw decode, short-answer processing and declared evaluator branch. The public source answer/category supports educational reveal only; it is not a clinical finding, Full reference or model output.
 
 ## Given
 
 ### Original data
 
-question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: Kvasir-VQA.
+Full unit is **question**, generic question.json fields question_id/question/image_paths/question_type; task-specific LiteS1 says **one endoscopy image per sample**. Official raw row0 supplies one native **720×576 JPEG, 35,381 bytes**, source img_id **cla820gl0s3nv071u4fgd7xgq**, source question “Are there any abnormalities in the image? Check all that are present.”. Input view retains source border/embedded acquisition text unchanged; no crop, segmentation, color transform or new findings. Actual Full IDs/submissions count **0**, source image/question count **1**. Row0 is a source locator, not recovered Full question_id.
+
+Official pinned card describes **6,500 images** and **58,849 question-answer rows**, including six question types. These are different units; this pack does not independently count unique images, recover Full selection or prove split equivalence. Raw split has public annotations rather than verified heldout isolation. No A–E option map staged in the retained row/config, despite source question wording “Check all”. Task config answer_mode=open_ended; source category and answer are withheld from input.
 
 ### Supplied helpers
 
-Task configuration, label/output conventions and stage-specific guidance. Lite names microsoft/llava-med-v1.5-mistral-7b. Standard supplies candidates to investigate; model files may still need provisioning.
+Lite fixes microsoft/llava-med-v1.5-mistral-7b; Standard selects an image-capable model under task guidance. LiteS2 requests one actual forward pass, then task-specific LiteS3 and StandardS3 validate **1–10 staged questions**, with raw decode retained and deterministic short-answer postprocess. **No 15-public-gold calibration requirement is in the Kvasir task-specific S3**; the shared generic S3 separately requests ≥10 public rows (15 recommended) and optional gold. That is not the task-specific 1–10 staged-question instruction; effective composite prompt assembly remains unverified. Standard S1 compares all six model_info candidates including LLaVA-Med; current availability/performance unverified. Actual setup, loading, smoke/calibration and model calls are absent. Smoke validation must not consult private labels or substitute heuristic answers.
 
 ### Callable tools
 
-A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.
+Image inspection, model loading/inference, deterministic postprocess and six-field submission guidance. This explainer performs no model, judge, calibration, runtime installation or benchmark staging.
 
 ### Reference-only material
 
-Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.
+Official raw source **answer and category** live in separate reference.json, only revealed later by reader. Initial source.json includes image/question/locator without either answer or category. Public annotations are not Full private gold or independent clinical adjudication; raw/helper vs heldout overlap unknown. Private ground_truth.csv preferred over per-question answer.json; both unavailable. Educational reveal is a display boundary, not security; no private data bundled.
 
 ## Task specification
 
-Complete the source’s plan, setup, validation, inference and submission stages. Use the selected tier’s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: vqa-kvasir-task.
+One endoscopy image + question → real model decode → concise postprocessed predicted_answer → question-owned answer.json. Lite plan requires predicted_label empty for open-ended task; six-key schema still requires it. Full archive revision f894057807cc334421784e702ead2c1883583e1b and 47 internal hashes verified; envelope code ref release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78 is declared, not independently fetched Git equality. Config/47 source hashes are authority; actual mounts/effective composite prompt unresolved.
 
 ## Expected output
 
-Write `{question_id}/answer.json`. Keep predicted_label empty; predicted_answer is a concise normalized phrase or exactly yes/no for binary questions.
+**<question_id>/answer.json**, submission root`.`; required keys question_id, predicted_label, predicted_answer, raw_model_output, model_name, runtime_s. Exact question ID, nonempty short-answer/raw backing, nonempty model string and nonnegative numeric runtime; checker permits extra keys, whitespace-only model strings, booleans and nonfinite numeric runtimes (no finite guard); predicted_label empty by task guidance, no A–E validation in open-ended checker. Placeholder/mock/fallback/unknown prefixes rejected; empty raw decode alongside nonempty answer considered forged. All actual output values null here, public answer never copied to participant artifact.
 
 ## Evaluation
 
-Answer correctness uses the task’s multiple-choice or normalized open-ended evaluator; these are separate answer modes. Planning/setup/validation artifacts are distinct from final prediction quality. The evaluator was not run for this brief.
+Pinned vqa_scorer/answer_metrics/normalizer mechanics were inspected; prior retained nonclinical checks were not rerun. Normalize lowercase, ASCII punctuation/whitespace, whole-answer yes/no synonyms, number-word tokens and medical abbreviation tokens; **articles remain**, semantic correctness not adjudicated. Exact match and token Counter-overlap F1 give0–100 then/100. **Nonbinary=.5EM+.5tokenF1**; binary gold uses strict normalized equality (“yes because red” ≠ “yes”). A separate postprocess may collapse prefixes before scoring; actual decode pipeline absent.
+
+Default primary averages over **all supplied question IDs**, including missing/invalid/placeholder predictions; binary yes_no_accuracy uses **gold-binary subset** denominator. Existing-file completion, parsed-answer validity and complete schema are distinct: scorer accepts nonempty answers without checker’s full fields; graded submission requires≥50%valid; output_format_valid uses all-files check. Empty IDs yield vacuous all-format-valid but graded false. Main loop does not deduplicate IDs; missing public question/private reference files can raise instead of yielding a model verdict. All reported fractions are 0–1, not clinical accuracy.
+
+Optional answer judge enabled by run_eval --enable-answer-judge or VQA_ANSWER_JUDGE=1/true/True can replace primary with **judge score sum/all IDs**, while lexical accuracy_heuristic remains diagnostic. Missing backend/key may cause heuristic-fallback judge branch; cached scores/backend/fallback counts must stay visible. No judge run or clinical/model performance exists. Workflow weights .25/.15/.35/.15/.10 active-renormalized, overall task/workflow50/50, default medal settings .40/.25 plus guards are source configuration only.
 
 ## Visual explanation
 
 ### Workflow
 
-- Staged images + task guidance
-- Plan → set up → validate → infer
-- Submit the task-specific prediction artifact
-
-### Input
-
-**Contract view; native sample not yet illustrated.** question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: Kvasir-VQA.
-
-### Supplied helpers
-
-**Given material, not an answer reveal.** Task configuration, label/output conventions and stage-specific guidance. Lite names microsoft/llava-med-v1.5-mistral-7b. Standard supplies candidates to investigate; model files may still need provisioning.
-
-### Reference or output
-
-**Expected artifact, not an actual prediction.** Write `{question_id}/answer.json`. Keep predicted_label empty; predicted_answer is a concise normalized phrase or exactly yes/no for binary questions.
+- Native public raw source frame/question; category/answer covered, Full socket absent.
+- Canonical controls inspect one-image binding, schema and lexical/strict-binary/optional-judge mechanics with nonclinical tokens.
+- Explicit later reader reveal shows source answer/category; exit/reset covers them; participant output remains empty.
 
 ## Conditions
 
@@ -66,16 +62,20 @@ Answer correctness uses the task’s multiple-choice or normalized open-ended ev
 
 ## Difficulty
 
-Pair each question with all required images and map the decoded answer to the exact output schema; medical language alone is insufficient.
+Open-ended lexical normalization is distinct from clinical truth. Full frozen question membership, raw/helper/test isolation and actual pipeline remain unresolved.
 
 ## Sources
 
-- [Pinned Full-release task package](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-kvasir-task.tar.gz)
+- [Pinned Full harness](https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-kvasir-task.tar.gz)
+- [Official Kvasir-VQA dataset](https://huggingface.co/datasets/SimulaMet-HOST/Kvasir-VQA)
+- [Pinned source card](https://huggingface.co/datasets/SimulaMet-HOST/Kvasir-VQA/blob/26df9125b98cbad664e5b1801aac1f70a02689e2/README.md)
+- [Original dataset paper](https://doi.org/10.48550/arXiv.2409.01437)
+- [Resolution receipt](../sources/automedbench-full-vqa-kvasir-task-resolution.json)
+
+## Gaps and attribution
+
+Full IDs/private answers/benchmark permission absent. Source-original pixel equivalence beyond delivered cached JPEG not established. Source label is annotation, not our diagnosis/performance. Official card permits research/educational CC BY-NC4.0 and requires prior written permission for competitions/commercial use; Full harness separately requires written benchmark permission. Local educational use does not recover benchmark staging authorization. Attribution: Sushant Gautam, Andrea Storås, Cise Midoglu, Steven A. Hicks, Vajira Thambawita, Pål Halvorsen, Michael A. Riegler, Kvasir-VQA:A Text-Image Pair GI Tract Dataset (2024), arXiv2409.01437 and DOI10.1145/3689096.3689458, SimulaMet-HOST distribution derived from HyperKvasir/Kvasir-Instrument. Source bytes unchanged; no publication.
 
 ## Coverage
 
-Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.
-
-## Gaps
-
-Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. The source has not frozen all evaluation/sample identifiers.
+One public raw image/question; zero Full IDs, participant submissions, private references or measured results. Public card image and QA counts are different units.

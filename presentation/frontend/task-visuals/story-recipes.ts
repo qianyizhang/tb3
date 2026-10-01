@@ -1,3 +1,4 @@
+import { automedKvasirPack } from './automedbench-full-vqa-kvasir-task';
 import { automedSlakePack } from './automed-slake';
 import { automedPathvqaPack } from './automedbench-full-pathvqa-task';
 import { automedMedxpertPack } from './automedbench-full-medxpertqa-mm-task';
@@ -121,6 +122,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-kvasir-v1',
     'automed-slake-v1',
     'automed-pathvqa-v1',
     'automed-medxpert-mm-v1',
@@ -1119,6 +1121,13 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Native train question · symbolic Full contract',
         warning: automedSlakePack.source.notice,
         legend: [['#e8bd6d', 'Dashed amber box: reader-only public annotation']],
+      };
+    case 'automed-kvasir-v1':
+      return {
+        heading: 'Short pathology answers; explicit scorer branches',
+        corner: 'Public raw example; Full split absent',
+        warning: automedKvasirPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {
