@@ -1,4 +1,8 @@
 import {
+  AutomedIxiT1SrScene,
+  AutomedIxiT1SrOutput,
+} from './automedbench-full-ixi-t1-sr-task-panels';
+import {
   AutomedDeeplesionDenoiseScene,
   AutomedDeeplesionDenoiseOutput,
 } from './automedbench-full-deeplesion-denoising-task-panels';
@@ -473,6 +477,8 @@ export function OperationScene({
     return <AutomedBratsT1cSrScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'automedbench-full-deeplesion-denoising-task-v1')
     return <AutomedDeeplesionDenoiseScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'automedbench-full-ixi-t1-sr-task-v1')
+    return <AutomedIxiT1SrScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -841,6 +847,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <AutomedBratsT1cSrOutput state={state} />;
   if (state.recipe === 'automedbench-full-deeplesion-denoising-task-v1')
     return <AutomedDeeplesionDenoiseOutput state={state} />;
+  if (state.recipe === 'automedbench-full-ixi-t1-sr-task-v1')
+    return <AutomedIxiT1SrOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

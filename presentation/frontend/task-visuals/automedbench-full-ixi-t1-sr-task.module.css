@@ -1,0 +1,160 @@
+.scene {
+  background: #122939;
+  color: #deebf4;
+  min-width: 0;
+  padding: 12px;
+}
+.scene h3 {
+  color: #edf6ff;
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+.scene b,
+.output b {
+  color: #edf6ff;
+}
+.scene p,
+.scene small,
+.scene figcaption,
+.output p,
+.output small {
+  color: #cedeea;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.scene p {
+  font-size: 13px;
+  margin: 7px 0;
+}
+.scene code {
+  color: #93e0e6;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.controls button {
+  background: #203f52;
+  color: #e0f0f7;
+  border: 1px solid #557b92;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 12px;
+  white-space: normal;
+}
+.controls button[aria-pressed='true'] {
+  background: #345b70;
+  border-color: #87d6df;
+}
+.socket {
+  background: #1a3546;
+  border: 1px solid #46677e;
+  padding: 9px;
+  border-radius: 8px;
+  min-width: 0;
+}
+.two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 12px;
+  min-width: 0;
+}
+.scene,
+.socket,
+.two > *,
+.output {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.native {
+  margin: 0;
+  min-width: 0;
+}
+.native img {
+  display: block;
+  height: 124px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  background: #000;
+  image-rendering: pixelated;
+}
+.native svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background: #122939;
+}
+.scene figcaption {
+  font-size: 11px;
+  line-height: 1.25;
+  margin-top: 4px;
+  color: #c6dae7;
+}
+.output {
+  background: #183342 !important;
+  padding: 16px !important;
+}
+.output p,
+.output small {
+  font-size: 12px;
+  line-height: 1.4;
+}
+@media (max-width: 700px) {
+  .scene {
+    padding: 10px;
+  }
+  .two {
+    grid-template-columns: 1fr;
+  }
+  .output {
+    padding: 12px !important;
+  }
+  .controls button {
+    min-height: 40px;
+  }
+}
+
+.revealButton {
+  background: #203f52;
+  color: #e0f0f7;
+  border: 1px solid #87d6df;
+  border-radius: 6px;
+  padding: 7px 10px;
+  margin-bottom: 8px;
+}
+:global(.scene-player[data-recipe='automedbench-full-ixi-t1-sr-task-v1'] .scene-explanation),
+:global(.scene-player[data-recipe='automedbench-full-ixi-t1-sr-task-v1'] .scene-explanation strong),
+:global(.scene-player[data-recipe='automedbench-full-ixi-t1-sr-task-v1'] .scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:global([data-explainer-export-frame]) .scene {
+  max-height: none;
+  padding: 9px;
+}
+
+.scene button {
+  min-height: 40px;
+}
+.scene h3 {
+  font-size: 16px;
+}
+.scene b,
+.output b {
+  font-size: 18px;
+}
+.scene p,
+.scene small,
+.scene figcaption {
+  font-size: 12px;
+}
+
+.socket .two > div > b {
+  display: block;
+  margin-bottom: 6px;
+}

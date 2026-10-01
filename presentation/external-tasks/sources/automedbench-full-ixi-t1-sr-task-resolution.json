@@ -1,0 +1,951 @@
+{
+  "acquisition_route": "https://brain-development.org/ixi-dataset/",
+  "actual_data_gap": "One upstream IXI T1 NIfTI recovered, but Full selected cases/slices, registered grid, bicubic implementation, task normalization and private target mapping remain unresolved. Full harness declares data not included; no input.npy, enhanced.npy, model/LPIPS assets or baseline bands. Native source-example display is not matching Full input, private truth or SR output.",
+  "archive_members": [
+    {
+      "bytes": 1346,
+      "member": "automedbench-task/task.json",
+      "sha256": "0f85af5eafe02da1e7e1da5065afd7f912c04cb61b1550cd214bbd9e44b8a575"
+    },
+    {
+      "bytes": 365,
+      "member": "automedbench-task/source/__init__.py",
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "bytes": 5127,
+      "member": "automedbench-task/source/docker/eval/run_eval.py",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "bytes": 11295,
+      "member": "automedbench-task/source/enhancement_scorer.py",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "bytes": 2188,
+      "member": "automedbench-task/source/format_checker.py",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "bytes": 931,
+      "member": "automedbench-task/source/ixi-t1-sr-task/config.yaml",
+      "sha256": "e7470d3279b6c10a9de45a3bacd9f608b7c3987c9bf4ce7bf2369259217cbfdc"
+    },
+    {
+      "bytes": 324,
+      "member": "automedbench-task/source/ixi-t1-sr-task/lite_s1.md",
+      "sha256": "38ca4a449cf7496109f46eb5e89d911913968abcd5d544c5caa421f909d23249"
+    },
+    {
+      "bytes": 298,
+      "member": "automedbench-task/source/ixi-t1-sr-task/lite_s2.md",
+      "sha256": "3c938f7cbda9ffce35d2093811dab8233362633528ad739f483989d9bb777d17"
+    },
+    {
+      "bytes": 325,
+      "member": "automedbench-task/source/ixi-t1-sr-task/lite_s3.md",
+      "sha256": "08e5f07605279c1a1abb52ed76c661c11f52b52bd11335fd37cb519ac6b5970e"
+    },
+    {
+      "bytes": 782,
+      "member": "automedbench-task/source/ixi-t1-sr-task/model_info.yaml",
+      "sha256": "a0ee6dbf09741181dbf8d7bcf3a97a76192a851e7356daa8e95d2461d5f88db2"
+    },
+    {
+      "bytes": 86,
+      "member": "automedbench-task/source/ixi-t1-sr-task/requirements.txt",
+      "sha256": "e573954502657a2e70e1c022551735daea6add56da5a7dd2b46e53913d1e978e"
+    },
+    {
+      "bytes": 340,
+      "member": "automedbench-task/source/ixi-t1-sr-task/standard_s1.md",
+      "sha256": "ad9844deaff196fb0484f931703af2346bded66fe1af20da50344ab5d25aa5fe"
+    },
+    {
+      "bytes": 238,
+      "member": "automedbench-task/source/ixi-t1-sr-task/standard_s3.md",
+      "sha256": "f805beae3d41e002eee6ddf9df3b2e0110b2864c5a7247493123c93b9019203b"
+    },
+    {
+      "bytes": 493,
+      "member": "automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "bytes": 397,
+      "member": "automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "bytes": 923,
+      "member": "automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "bytes": 1105,
+      "member": "automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "bytes": 196,
+      "member": "automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "bytes": 3455,
+      "member": "automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "bytes": 956,
+      "member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "bytes": 2141,
+      "member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "bytes": 1723,
+      "member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "bytes": 841,
+      "member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "bytes": 1321,
+      "member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "bytes": 813,
+      "member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "bytes": 509,
+      "member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "bytes": 2596,
+      "member": "automedbench-task/MANIFEST.sha256",
+      "sha256": "7c43ab271d792620b4fadcc784a719642f4dcc17cabe7af300cf896265bdf937"
+    }
+  ],
+  "attempts": [
+    {
+      "action": "download exact pinned Full harness",
+      "attempted_at": "2026-09-29T08:04:18.722730+00:00",
+      "outcome": "HTTP 200, 15773 bytes, SHA-256 2e8e8927e9a813b399dd17d19dea7b100ea40a0d8bf10e4fdcdea33ce7c3332b; 26 internal MANIFEST entries verified; dataset.included=false.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/ixi-t1-sr-task.tar.gz"
+    },
+    {
+      "action": "official upstream availability probe",
+      "attempted_at": "2026-09-29T08:04:18.722730+00:00",
+      "outcome": "HTTP 200 landing route; no task-matched Full input.npy, clean reference, case list or small paired sample recovered from the route.",
+      "source": "https://brain-development.org/ixi-dataset/"
+    },
+    {
+      "action": "bounded official T1 archive probe",
+      "attempted_at": "2026-09-29T08:08:40.498291+00:00",
+      "outcome": "HTTPS HEAD 403. Official landing page HTTP 200 and lists this T1 tar; no matching image bytes downloaded.",
+      "source": "https://biomedic.doc.ic.ac.uk/brain-development/downloads/IXI/IXI-T1.tar"
+    },
+    {
+      "action": "Bounded official byte-range recovery; verify TAR header checksum, gzip CRC and NIfTI geometry; reuse retained Full members",
+      "attempted_at": "2026-09-30T22:07:20.180116+00:00",
+      "outcome": "HTTP206 range0\u20136944035, 6,944,036B; first member6,943,524B verified against initial16KiB probe. Whole4,840,816,640B TAR not acquired or hashed. Source-example T1 volume recovered, exact Full case/slice/degradation membership still unknown. No reconstruction/downsample/model/evaluator executed.",
+      "source": "https://biomedic.doc.ic.ac.uk/brain-development/downloads/IXI/IXI-T1.tar"
+    },
+    {
+      "action": "UTC retained-validation of exact Full archive/pins and already acquired official IXI member, geometry and display parity; no new GET",
+      "attempted_at": "2026-10-01T09:21:23.008600+00:00",
+      "outcome": "check_source.py verifies 35 SHA pins, 27 Full members /26 MANIFEST checks, TAR header/gzip/NPY geometry and native display. Existing upstream helper is not a matching Full input/private target; no task/model/scorer processing.",
+      "source": "retained Full f894057807cc334421784e702ead2c1883583e1b / official IXI range receipt"
+    }
+  ],
+  "brief_sha256": "3815096aac5a105c5b0a5fca1c3d21d9de939f7f8b4b1ad75253a94c7d216309",
+  "display_warning": "Matching Full IXI input / private target absent; upstream T1 example is reader-only.",
+  "entry_id": "automedbench-full-ixi-t1-sr-task",
+  "evaluator_run": false,
+  "fixture": {
+    "actual_output": null,
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "clean_reference": null,
+    "high_shape": [
+      4,
+      4
+    ],
+    "high_values": null,
+    "low_grid": [
+      [
+        0.1,
+        0.4
+      ],
+      [
+        0.3,
+        0.8
+      ]
+    ],
+    "low_shape": [
+      2,
+      2
+    ],
+    "patient_image": null
+  },
+  "full_dataset_included": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "label_license": null,
+  "manifest_binding": {
+    "archive_members_verified": 27,
+    "declared_staging_manifest_sha256": "5efea89cfdc27606f6e327186fc710ddba0df819b26cd6717e7f44de92125091",
+    "original_staging_manifest": "unrecovered distinct locator; not claimed equal to outer manifest",
+    "outer_manifest_files_verified": 26,
+    "outer_manifest_sha256": "7c43ab271d792620b4fadcc784a719642f4dcc17cabe7af300cf896265bdf937",
+    "upstream_Git_identity": "authority ref declared, archive identity verified; no per-file upstream Git blob proof"
+  },
+  "model_run": false,
+  "native_source_example": {
+    "archive_total_bytes": 4840816640,
+    "archive_url": "https://biomedic.doc.ic.ac.uk/brain-development/downloads/IXI/IXI-T1.tar",
+    "attribution": "IXI \u2013 Information eXtraction from Images (EPSRC GR/S21533/02), brain-development.org/ixi-dataset/",
+    "bitpix": 16,
+    "datatype": 4,
+    "dims": [
+      3,
+      256,
+      256,
+      150,
+      1,
+      1,
+      1,
+      1
+    ],
+    "display": {
+      "columns": "i=0,2,...254",
+      "formula": "uint8 floor(255*(v-plane_min)/(plane_max-plane_min)), integer arithmetic, min/max from all256\u00d7256 source plane cells; no interpolation",
+      "native_axis": "k=75 zero-based, source array [i,j,k]; no reorientation/registration",
+      "not_bicubic": true,
+      "patient_orientation": "native oblique affine retained, no radiological convention applied",
+      "rows": "j=0,2,...254",
+      "sform_mm_coordinates": {
+        "i=0,j=0,k=75": [
+          1.3598785400390625,
+          116.5320053100586,
+          -112.11355590820314
+        ],
+        "i=0,j=254,k=75": [
+          1.3598785400390625,
+          145.8806049078703,
+          124.19593596458432
+        ],
+        "i=128,j=128,k=75": [
+          1.3598785400390625,
+          12.2367525100708,
+          21.76138782501218
+        ],
+        "i=254,j=0,k=75": [
+          1.3598785400390625,
+          -119.77748656272888,
+          -82.76495631039144
+        ],
+        "i=254,j=254,k=75": [
+          1.3598785400390625,
+          -90.42888696491718,
+          153.54453556239605
+        ]
+      },
+      "shape": [
+        128,
+        128
+      ],
+      "units": "arbitrary stored T1 signal, not task normalized intensities",
+      "voxel_centers_not_Full_grid": true
+    },
+    "etag": "\"120890000-504d8cd6ce25a\"",
+    "full_archive_sha256": null,
+    "license": "CC-BY-SA-3.0",
+    "magic": "b'n+1\\x00'",
+    "member": "IXI002-Guys-0828-T1.nii.gz",
+    "member_bytes": 6943524,
+    "member_sha256": "71c5d110a352f943c96e08f75f5087066b608da6f8d203eb15d8d596d1f80f47",
+    "orientation": {
+      "affine_units": "NIfTI RAS+ millimetres; native index order retained",
+      "native_axis_dominant_positive_world_directions": [
+        "posterior",
+        "superior",
+        "right"
+      ],
+      "oblique": true,
+      "radiological_flip_applied": false,
+      "time": "header time-unit seconds, no temporal axis/acquisition sampling inferred"
+    },
+    "pixdim": [
+      -1.0,
+      0.9375,
+      0.9375,
+      1.1999969482421875,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "qform_affine_mm": [
+      [
+        3.7391709728495925e-08,
+        3.303509580471209e-08,
+        1.1999969482421857,
+        -88.639892578125
+      ],
+      [
+        -0.9303523264447311,
+        0.11554565625273572,
+        4.228481509391232e-08,
+        116.5320053100586
+      ],
+      [
+        0.11554565625273436,
+        0.9303523264447311,
+        -4.786126673466968e-08,
+        -112.11355590820312
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "qform_code": 1,
+    "qform_sform_max_abs_difference": 4.7861266484870134e-08,
+    "qoffset_xyz": [
+      -88.639892578125,
+      116.5320053100586,
+      -112.11355590820312
+    ],
+    "quaternion_bcd": [
+      0.4681749939918518,
+      -0.5299171209335327,
+      -0.4681749939918518
+    ],
+    "range": [
+      0,
+      6944035
+    ],
+    "range_bytes": 6944036,
+    "role": "late reader-only upstream source-example, not Full input/private target",
+    "scl_inter": 0.0,
+    "scl_slope": 1.0,
+    "sform_affine_mm": [
+      [
+        0.0,
+        0.0,
+        1.1999969482421875,
+        -88.639892578125
+      ],
+      [
+        -0.9303523302078247,
+        0.11554566770792007,
+        0.0,
+        116.5320053100586
+      ],
+      [
+        0.11554566770792007,
+        0.9303523302078247,
+        -2.497995452659498e-16,
+        -112.11355590820312
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "sform_code": 1,
+    "sizeof_hdr": 348,
+    "srow": [
+      0.0,
+      0.0,
+      1.1999969482421875,
+      -88.639892578125,
+      -0.9303523302078247,
+      0.11554566770792007,
+      0.0,
+      116.5320053100586,
+      0.11554566770792007,
+      0.9303523302078247,
+      -2.497995452659498e-16,
+      -112.11355590820312
+    ],
+    "uncompressed_bytes": 19661152,
+    "uncompressed_sha256": "68acbb908ae06dc71e83e043c4f686ffefe8b87dd91d40a9ef20105ed942557a",
+    "vox_offset": 352.0,
+    "xyzt_units": 10
+  },
+  "preparer_run": false,
+  "private_reference_available": false,
+  "public_reference": {
+    "clean_image": null,
+    "criteria": [
+      "Private reference shape/range unavailable",
+      "Namedclinical code composite is not clinical validation",
+      "Case/valid metric denominators and missing baseline bands explicit"
+    ],
+    "role": "Reader-only upstream IXI T1 example plus evaluator rules; no Full input, private target or output",
+    "upstream_image": "upstream-t1-slice.png"
+  },
+  "reference_initially_visible": false,
+  "reference_policy": "reader-reference-reveal",
+  "reopening_condition": "Recover selected Full case/slice list, registered normalized input/degradation lineage, authorized private evaluator assets and model/runtime/bands; upstream example alone does not match Full.",
+  "resolved_at": "2026-09-30T22:12:42.078859+00:00",
+  "reviewed_at": "2026-10-01T09:21:23.008600+00:00",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_condition": {
+    "antialias": null,
+    "authority_ref": "1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "bicubic_library": null,
+    "case_mapping": null,
+    "coordinate_alignment": null,
+    "degradation": "bicubic_downsample",
+    "dtype_expected": "float32",
+    "input_format": ".npy",
+    "input_pixels": 16384,
+    "input_shape": [
+      128,
+      128
+    ],
+    "intensity_expected": [
+      0,
+      1
+    ],
+    "intensity_units": "normalized",
+    "inventory_conditions": [
+      "Full \u00b7 Lite",
+      "Full \u00b7 Standard",
+      "Related source listing"
+    ],
+    "n_cases": null,
+    "normalization_definition": null,
+    "output_pixels": 65536,
+    "output_shape": [
+      256,
+      256
+    ],
+    "private_target_available": false,
+    "reference_initially_visible": false,
+    "release_revision": "f894057807cc334421784e702ead2c1883583e1b",
+    "scale": 2,
+    "slice_selection": null,
+    "task_id": "ixi-t1-sr-task",
+    "voxel_spacing": null
+  },
+  "source_files": [
+    {
+      "bytes": 15773,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "2e8e8927e9a813b399dd17d19dea7b100ea40a0d8bf10e4fdcdea33ce7c3332b"
+    },
+    {
+      "bytes": 1346,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/task.json",
+      "role": "task-contract",
+      "sha256": "0f85af5eafe02da1e7e1da5065afd7f912c04cb61b1550cd214bbd9e44b8a575"
+    },
+    {
+      "bytes": 931,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/config.yaml",
+      "role": "pinned-config",
+      "sha256": "e7470d3279b6c10a9de45a3bacd9f608b7c3987c9bf4ce7bf2369259217cbfdc"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "private-scorer-contract",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/format_checker.py",
+      "role": "format-checker",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "bytes": 5127,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/docker/eval/run_eval.py",
+      "role": "evaluator-wrapper",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "bytes": 2596,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/MANIFEST.sha256",
+      "role": "archive-manifest",
+      "sha256": "7c43ab271d792620b4fadcc784a719642f4dcc17cabe7af300cf896265bdf937"
+    },
+    {
+      "archive_member": "automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/__init__.py",
+      "role": "pinned-full-task-member",
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/lite_s1.md",
+      "bytes": 324,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/lite_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "38ca4a449cf7496109f46eb5e89d911913968abcd5d544c5caa421f909d23249"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/lite_s2.md",
+      "bytes": 298,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/lite_s2.md",
+      "role": "pinned-full-task-member",
+      "sha256": "3c938f7cbda9ffce35d2093811dab8233362633528ad739f483989d9bb777d17"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/lite_s3.md",
+      "bytes": 325,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/lite_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "08e5f07605279c1a1abb52ed76c661c11f52b52bd11335fd37cb519ac6b5970e"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/model_info.yaml",
+      "bytes": 782,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/model_info.yaml",
+      "role": "pinned-full-task-member",
+      "sha256": "a0ee6dbf09741181dbf8d7bcf3a97a76192a851e7356daa8e95d2461d5f88db2"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/requirements.txt",
+      "bytes": 86,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/requirements.txt",
+      "role": "pinned-full-task-member",
+      "sha256": "e573954502657a2e70e1c022551735daea6add56da5a7dd2b46e53913d1e978e"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/standard_s1.md",
+      "bytes": 340,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/standard_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "ad9844deaff196fb0484f931703af2346bded66fe1af20da50344ab5d25aa5fe"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/standard_s3.md",
+      "bytes": 238,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/standard_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "f805beae3d41e002eee6ddf9df3b2e0110b2864c5a7247493123c93b9019203b"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/env_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/env_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/important_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/important_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/kickoff.md",
+      "role": "pinned-full-task-member",
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/preamble.md",
+      "role": "pinned-full-task-member",
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "role": "pinned-full-task-member",
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "role": "pinned-full-task-member",
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "bytes": 29248,
+      "path": ".local/explainers/core-20260929/formation-g-source/ixi-landing.html",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "18234a1e57007c220cee0ad5380d6a2b019e5a622d5ae48210b0557a83a0be5a"
+    },
+    {
+      "bytes": 401,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/official-response.headers",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "5ca10f150441e15bd067147748ebaed4d539cc92f7b25606ad2013d4acc905ae"
+    },
+    {
+      "bytes": 16384,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/official-response.bin",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "578b31a499b26c6e2b5ebeb58e307e3b14c614b18f0118948b2977cd7d41f100"
+    },
+    {
+      "bytes": 405,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/native-response.headers",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "80d10da8012a399e16b1c5ed8f33a77a930291f24062f5bd99f9cf978875f26a"
+    },
+    {
+      "bytes": 6944036,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/native-member-range.tar.part",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "0c4f43ead85917cbac9550bece3a2a2ccb5f5c6215288886df29e732770b9dc8"
+    },
+    {
+      "bytes": 6943524,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/IXI002-Guys-0828-T1.nii.gz",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "71c5d110a352f943c96e08f75f5087066b608da6f8d203eb15d8d596d1f80f47"
+    },
+    {
+      "bytes": 1118,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/native-header.json",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "2e5a4ee97c6cea2038a345516508220de8182f4ede2732717e9f89161e08b4ba"
+    }
+  ],
+  "source_license": "CC BY-SA 3.0",
+  "source_license_context": "Official retained IXI landing: CC BY-SA3.0 and source acknowledgement. Pack redistributes one explicitly reader-only native slice display under CC BY-SA3.0, separated from symbolic Full mechanics and private targets.",
+  "source_pins": [
+    {
+      "bytes": 15773,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "2e8e8927e9a813b399dd17d19dea7b100ea40a0d8bf10e4fdcdea33ce7c3332b"
+    },
+    {
+      "bytes": 1346,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/task.json",
+      "role": "task-contract",
+      "sha256": "0f85af5eafe02da1e7e1da5065afd7f912c04cb61b1550cd214bbd9e44b8a575"
+    },
+    {
+      "bytes": 931,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/config.yaml",
+      "role": "pinned-config",
+      "sha256": "e7470d3279b6c10a9de45a3bacd9f608b7c3987c9bf4ce7bf2369259217cbfdc"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "private-scorer-contract",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/format_checker.py",
+      "role": "format-checker",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "bytes": 5127,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/docker/eval/run_eval.py",
+      "role": "evaluator-wrapper",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "bytes": 2596,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/MANIFEST.sha256",
+      "role": "archive-manifest",
+      "sha256": "7c43ab271d792620b4fadcc784a719642f4dcc17cabe7af300cf896265bdf937"
+    },
+    {
+      "archive_member": "automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/__init__.py",
+      "role": "pinned-full-task-member",
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/lite_s1.md",
+      "bytes": 324,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/lite_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "38ca4a449cf7496109f46eb5e89d911913968abcd5d544c5caa421f909d23249"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/lite_s2.md",
+      "bytes": 298,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/lite_s2.md",
+      "role": "pinned-full-task-member",
+      "sha256": "3c938f7cbda9ffce35d2093811dab8233362633528ad739f483989d9bb777d17"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/lite_s3.md",
+      "bytes": 325,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/lite_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "08e5f07605279c1a1abb52ed76c661c11f52b52bd11335fd37cb519ac6b5970e"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/model_info.yaml",
+      "bytes": 782,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/model_info.yaml",
+      "role": "pinned-full-task-member",
+      "sha256": "a0ee6dbf09741181dbf8d7bcf3a97a76192a851e7356daa8e95d2461d5f88db2"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/requirements.txt",
+      "bytes": 86,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/requirements.txt",
+      "role": "pinned-full-task-member",
+      "sha256": "e573954502657a2e70e1c022551735daea6add56da5a7dd2b46e53913d1e978e"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/standard_s1.md",
+      "bytes": 340,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/standard_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "ad9844deaff196fb0484f931703af2346bded66fe1af20da50344ab5d25aa5fe"
+    },
+    {
+      "archive_member": "automedbench-task/source/ixi-t1-sr-task/standard_s3.md",
+      "bytes": 238,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/ixi-t1-sr-task/standard_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "f805beae3d41e002eee6ddf9df3b2e0110b2864c5a7247493123c93b9019203b"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/env_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/env_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/important_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/important_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/kickoff.md",
+      "role": "pinned-full-task-member",
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/common/preamble.md",
+      "role": "pinned-full-task-member",
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "role": "pinned-full-task-member",
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ixi-t1-sr-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "role": "pinned-full-task-member",
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "bytes": 29248,
+      "path": ".local/explainers/core-20260929/formation-g-source/ixi-landing.html",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "18234a1e57007c220cee0ad5380d6a2b019e5a622d5ae48210b0557a83a0be5a"
+    },
+    {
+      "bytes": 401,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/official-response.headers",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "5ca10f150441e15bd067147748ebaed4d539cc92f7b25606ad2013d4acc905ae"
+    },
+    {
+      "bytes": 16384,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/official-response.bin",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "578b31a499b26c6e2b5ebeb58e307e3b14c614b18f0118948b2977cd7d41f100"
+    },
+    {
+      "bytes": 405,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/native-response.headers",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "80d10da8012a399e16b1c5ed8f33a77a930291f24062f5bd99f9cf978875f26a"
+    },
+    {
+      "bytes": 6944036,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/native-member-range.tar.part",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "0c4f43ead85917cbac9550bece3a2a2ccb5f5c6215288886df29e732770b9dc8"
+    },
+    {
+      "bytes": 6943524,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/IXI002-Guys-0828-T1.nii.gz",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "71c5d110a352f943c96e08f75f5087066b608da6f8d203eb15d8d596d1f80f47"
+    },
+    {
+      "bytes": 1118,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-ixi-t1-sr-task/native-header.json",
+      "role": "upstream-source-example-or-transport-not-Full-input",
+      "sha256": "2e5a4ee97c6cea2038a345516508220de8182f4ede2732717e9f89161e08b4ba"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "{output_dir}/agents_outputs/<case_id>/enhanced.npy intended float32 finite normalized256\u00d7256, participant output absent.",
+    "helper": "Full Lite prescribes Swin2SR x2; Standard compares at least3 candidates/at least2 pretrained neural. Public weights/requirements not private targets; no checkpoint/assets bundled. Separate upstream whole NIfTI source-example under CC BY-SA3.0; native 256\u00d7256\u00d7150 stored-int16 volume, not a recovered Full selected slice or normalized input.",
+    "input": "Per-case public input.npy declared normalized128\u00d7128 T1 slice; no native case included or acquired. Case folders called patients by prompts, unique-patient/slice mapping unknown.",
+    "private_reference": "/data/private/<case_id>/reference.npy and ground_truth.csv:data_range evaluator-only; private truth never acquired/displayed.",
+    "source_saved_output": "No saved native enhanced output or score in harness."
+  },
+  "status": "worker-frozen-source-resolution",
+  "task_contract": {
+    "assistance": "Full Lite Swin2SR x2 caidas/swin2SR-classical-sr-x2-64, grayscale/model/grayscale conversion unspecified. Full Standard at least3 methods, at least2 public pretrained neural; training/finetuning/private access forbidden. Related Lite/gallery not equivalent.",
+    "degradation": "bicubic downsample x2",
+    "denominators": "Declaredcase count unknown. score_all averages nonNaN per metric, n_valid checksPSNR only; format n_valid countsfinitefloating shape. Missingoutput contributesNaNs and totalcase denominator retained; runner scoresallIDs ifanyvalid, notfilteredinvalid =>badshape/nonfinite mayraise/propagate. Pass rate ifbands known usesallper-patient rows denominator. Onecase cyclicshuffle unchanged identity, not independentnegativecontrol.",
+    "effective": "TASK ixi-t1-sr-task absent TASK_NORM/RATING_THRESHOLDS; without bands genericclinical=(clip((PSNR\u221220)/30)+clip(SSIM)+clip(1\u2212LPIPS))/3, named clinical is code composite not medical validation. Rating unknown_task C ifotherwise valid, hardfail F oninvalid/abort/noPSNR/completion<.5. Baseline bands absent, pass_rate omitted. Configblocked_metric_assets retained, not executability.",
+    "format": "Task-specific256\u00d7256 conflicts generic preamble same shape as input. Format checker shape from private reference,2D floating finite; acceptsfloat64, no[0,1]/nonconstant check despite promptfloat32normalized requirement. Output root agents_outputs plural versus some task prompt agent_outputs singular; task.json/all.md establishplural.",
+    "input": "input.npy 128x128 normalized",
+    "metric": "mean SSIM; PSNR/LPIPS diagnostics; baseline_bands missing; evaluator blocked_metric_assets",
+    "metrics": "Config mean_ssim, diagnosticsPSNR/LPIPS; runner computesall3 and aligned+cyclicshuffle. SSIM skimage Gaussian true/population covariance, data_range privateCSV or refmax\u2212min; PSNRfloat32MSE<=1e\u221212\u219299; LPIPS Alex per-image independentminmax[-1,1], grayscale3channels, constant\u21920; checkpoint/package absent. No metrics computed.",
+    "modality": "MRI_T1w",
+    "operator": "Declared2\u00d7 bicubic downsample128\u00b2\u2192256\u00b2 target; no degradation implementation, bicubic coefficients/library/antialias/alignment, axis/FOV/voxel spacing, slice selection or normalization pipeline supplied. SVG authored2\u00b2\u21924\u00b2 geometry-only cells, high-resolution values unknown; no resized MRI/result.",
+    "output": "agents_outputs/{case_id}/enhanced.npy 256x256 float finite",
+    "reference": "private /data/private/{case_id}/reference.npy; no cases in package",
+    "reference_policy": "Late reader-only upstream source-example and evaluator rules, never private target/answer reveal",
+    "task_id": "ixi-t1-sr-task",
+    "tiers": "Lite Swin2SR x2"
+  },
+  "top_warning": "Matching Full IXI input / private target absent; upstream T1 example is reader-only.",
+  "upstream_landing_sha256": "18234a1e57007c220cee0ad5380d6a2b019e5a622d5ae48210b0557a83a0be5a",
+  "warning_text": "Matching Full IXI input / private target absent; upstream T1 example is reader-only."
+}

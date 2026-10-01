@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automedbench-full-ixi-t1-sr-task-v1',
   'automedbench-full-deeplesion-denoising-task-v1',
   'automedbench-full-brats-t1c-sr-task-v1',
   'rex-usenhance-v1',
@@ -132,6 +133,7 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automedbench-full-ixi-t1-sr-task-v1') return {scene:'data-automed-ixi-t1-sr-scene',reference:'[data-automed-ixi-t1-sr-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-ixi-t1-sr-scene="output"] code',aside:'[data-automed-ixi-t1-sr-output]'};
   if (plan.recipe === 'automedbench-full-deeplesion-denoising-task-v1') return {scene:'data-automed-deeplesion-denoise-scene',reference:'[data-automed-deeplesion-denoise-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-deeplesion-denoise-scene="output"] code',aside:'[data-automed-deeplesion-denoise-output]'};
   if (plan.recipe === 'automedbench-full-brats-t1c-sr-task-v1') return {scene:'data-automed-brats-t1c-sr-scene',reference:'[data-automed-brats-t1c-sr-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-brats-t1c-sr-scene="output"] code',aside:'[data-automed-brats-t1c-sr-output]'};
   if (plan.recipe === 'rex-usenhance-v1') return {scene:'data-usenhance-scene',reference:'[data-usenhance-training-role], #usenhance-grading-rule, [data-usenhance-method], [data-usenhance-format]',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-usenhance-output-schema]',aside:'[data-usenhance-output]'};
@@ -887,6 +889,7 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automedbench-full-ixi-t1-sr-task-v1': [/Matching Full IXI input .* private target absent; upstream T1 example is reader-only./s,'https://brain-development.org/ixi-dataset/','data-automed-ixi-t1-sr-scene',false],
     'automedbench-full-deeplesion-denoising-task-v1': [/Matching Full DeepLesion input .* private target absent; symbolic normalized-noise rules only./s,'https://nihcc.app.box.com/v/DeepLesion','data-automed-deeplesion-denoise-scene',false],
     'automedbench-full-brats-t1c-sr-task-v1': [/Matching Full BraTS T1c input and private target unavailable; symbolic geometry only./s,'https://www.synapse.org/Synapse:syn51156910/wiki/','data-automed-brats-t1c-sr-scene',false],
     'rex-usenhance-v1': [/Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score./s,'https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/','data-usenhance-scene',false],
@@ -2878,6 +2881,21 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     const ri=plan.beats.findIndex(b=>b.scene==='reference');await page.locator(`[data-story-step="${ri}"]`).click();await absent();const reveal=()=>scene.getByRole('button',{name:'Reveal public reference rules',exact:true});await reveal().click();assert.equal(await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').innerText(),/neither is phantom truth.*Filesystem selects a saved reconstruction, not true speed.*source uses the visible baseline.*230,400 cells.*No-filesystem scorer requires absent ground_truth\.npy.*No participant map, score or private truth/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('rules-revealed');await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).click();await absent();
     await advance(plan.beats[ri].startFrame);await reveal().click();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('[data-story-step="1"]').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();
     const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();assert.match(await scene.innerText(),/No clinical property, reconstruction quality, current CUDA success or convergence claim/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('limits-contract');await absent();await page.locator('.scene-reset').click();await absent();
+  }
+
+  if (plan.recipe === 'automedbench-full-ixi-t1-sr-task-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
+    const scene=page.locator('[data-automed-ixi-t1-sr-scene]');
+    const absent=async()=>{assert.equal(await page.locator('[data-automed-ixi-t1-sr-reference-revealed]').count(),0);assert.equal(await page.locator('[data-automed-ixi-t1-sr-native]').count(),0);};
+    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
+    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,image').count(),0);};
+    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
+    assert.deepEqual(await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>{const c=getComputedStyle(e);return[c.borderTopColor,c.backgroundColor]})),[['rgb(20, 128, 150)','rgba(0, 0, 0, 0)'],['rgb(177, 188, 204)','rgba(0, 0, 0, 0)'],['rgb(101, 121, 135)','rgb(0, 0, 0)'],['rgb(101, 121, 135)','rgb(255, 255, 255)']]);
+    await chapter(0);assert.match(await scene.innerText(),/Matching Full MRI.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*Voxel grid.*normalization unspecified/is);assert.equal(await scene.locator('svg rect[fill="none"]').count(),16);assert.equal(await scene.locator('svg rect:not([fill="none"])').count(),4);await capture('symbolic-input');
+    for(let i=0;i<3;i++){await chapter(1);const name=['Public input / private target','Help + format','2× geometry'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-automed-ixi-t1-sr-operation-step')),i);if(i===0)assert.match(await scene.innerText(),/Public input.npy.*private reference.npy.*mapping unknown.*kernel, antialias.*No degradation/is);if(i===2)assert.match(await scene.innerText(),/Geometry illustration.*unknown high-resolution.*More cells do not establish recovered detail/is);await capture(`operation-${i}`);}
+    for(let i=0;i<3;i++){await chapter(2);const name=['Full Lite','Full Standard','Format boundary'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[336,419,503][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),[/Full Lite.*Swin2SR x2.*caidas.*inference only.*Checkpoint\/runtime not bundled/is,/Full Standard.*≥ 3 methods, ≥ 2 neural.*No private target/is,/float32, finite, normalized 256.*256.*Checker accepts any floating dtype.*Range and constant-image checks absent.*Generic.*same input shape.*conflicts/is][i]);await capture(`branch-${i}`);}
+    await chapter(4);assert.match(await scene.innerText(),/Actual enhanced.npy absent.*agents_outputs.*case_id.*float32.*256.*256.*No submitted array.*metric or rating/is);await capture('empty-output');
+    await chapter(5);const reveal=()=>scene.getByRole('button',{name:'Reveal upstream helper / rules',exact:true});assert.equal(await reveal().getAttribute('aria-expanded'),'false');await reveal().click();assert.equal(await scene.locator('[data-automed-ixi-t1-sr-reference-revealed]').count(),1);assert.doesNotMatch(await scene.innerText(),/outputWhole/);const native=scene.locator('[data-automed-ixi-t1-sr-native]');await native.waitFor({state:'visible'});assert.deepEqual(await native.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[128,128]);assert.match(await scene.innerText(),/IXI002.*k=75.*CC BY-SA\s*3.0.*256.*256.*150.*0.9375.*display sampling.*never.*Full.*No reslicing.*NaNs independently.*Clinical.*code composite/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Hide upstream helper',exact:true}).click();await absent();await advance(840);await reveal().click();await chapter(5);await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(5);await reveal().click();await chapter(6);await chapter(5);await absent();await page.locator('.scene-reset').click();await absent();
   }
 
   if (plan.recipe === 'automedbench-full-deeplesion-denoising-task-v1') {
@@ -11124,6 +11142,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automedbench-full-ixi-t1-sr-task-v1',
       'automedbench-full-deeplesion-denoising-task-v1',
       'automedbench-full-brats-t1c-sr-task-v1',
       'rex-usenhance-v1',

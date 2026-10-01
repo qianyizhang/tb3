@@ -1,3 +1,4 @@
+import { automedIxiT1SrPack } from './automedbench-full-ixi-t1-sr-task';
 import { automedDeeplesionDenoisePack } from './automedbench-full-deeplesion-denoising-task';
 import { automedBratsT1cSrPack } from './automedbench-full-brats-t1c-sr-task';
 import { rexUsenhancePack } from './rex-usenhance';
@@ -147,6 +148,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automedbench-full-ixi-t1-sr-task-v1',
     'automedbench-full-deeplesion-denoising-task-v1',
     'automedbench-full-brats-t1c-sr-task-v1',
     'rex-usenhance-v1',
@@ -1436,6 +1438,18 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#148ca0', 'Authored normalized cell0.5 color; not native CT'],
           ['#b1bccc', 'Outlined cells: unknown clean/output values'],
+        ],
+      };
+    case 'automedbench-full-ixi-t1-sr-task-v1':
+      return {
+        heading: 'IXI T1 2× geometry, assistance and private evaluation',
+        corner: 'Matching Full input, private target and participant output absent',
+        warning: automedIxiT1SrPack.source.notice,
+        legend: [
+          ['#148096', 'Teal shades: authored normalized cells, not Full MRI'],
+          ['#b1bccc', 'Gray outlines: unknown high-resolution values'],
+          ['#000000', 'Black: late upstream display minimum'],
+          ['#ffffff', 'White: late upstream display maximum'],
         ],
       };
     case 'bcer-brain-full-v1':

@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automedbench-full-ixi-t1-sr-task-v1": "retained-automedbench-full-ixi-t1-sr-task-source-v1",
     "automedbench-full-deeplesion-denoising-task-v1": "retained-automedbench-full-deeplesion-denoising-task-source-v1",
     "automedbench-full-brats-t1c-sr-task-v1": "retained-automedbench-full-brats-t1c-sr-task-source-v1",
     "rex-usenhance-v1": "symbolic-rex-usenhance-v1",
@@ -822,6 +823,7 @@ if not SYMBOLIC_SOURCE_PACKS <= SOURCE_INPUT_PACKS.keys():
     raise ValueError("Symbolic source pack lacks an input-pack registration")
 
 SOURCE_EXTRA_REFERENCE_FILES = {
+    "retained-automedbench-full-ixi-t1-sr-task-source-v1": {"upstream-t1-slice.png"},
     "retained-imaging101-pnp-mri-reconstruction-source-v1": {"source-image.png"},
     "retained-automed-full-heart-seg-v1": {
         "source-label-0.png",
@@ -887,6 +889,21 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automedbench-full-ixi-t1-sr-task-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "SOURCE-LICENSE.txt",
+            "upstream-t1-slice.png",
+        },
+    ),
     "retained-automedbench-full-deeplesion-denoising-task-source-v1": (
         "source-records",
         "reference.json",
@@ -2600,6 +2617,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedIxiT1SrChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4683,6 +4706,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedIxiT1SrBeat(ExpansionBeat[AutomedIxiT1SrChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AutomedIxiT1SrStory(Story[AutomedIxiT1SrChannels]):
+    recipe: Literal["automedbench-full-ixi-t1-sr-task-v1"]
+    beats: tuple[AutomedIxiT1SrBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AutomedDeeplesionDenoiseBeat(ExpansionBeat[AutomedDeeplesionDenoiseChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5829,6 +5873,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedIxiT1SrStory
     | AutomedDeeplesionDenoiseStory
     | AutomedBratsT1cSrStory
     | RexUsenhanceStory
@@ -5981,6 +6026,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedIxiT1SrStory
     | AutomedDeeplesionDenoiseStory
     | AutomedBratsT1cSrStory
     | RexUsenhanceStory
@@ -6293,6 +6339,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedIxiT1SrStory
     | AutomedDeeplesionDenoiseStory
     | AutomedBratsT1cSrStory
     | RexUsenhanceStory
@@ -6622,6 +6669,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-automedbench-full-ixi-t1-sr-task-source-v1": (
+                "symbolic-unit-grid",
+                "LicenseRef-AutoMedBench-IXI-symbolic-teaching",
                 None,
             ),
             "retained-automedbench-full-deeplesion-denoising-task-source-v1": (
@@ -6999,6 +7051,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "unitless"
+                if pack_id == "retained-automedbench-full-ixi-t1-sr-task-source-v1"
                 else "illustrative normalized intensity and sigma; no HU or physical voxel scale"
                 if pack_id == "retained-automedbench-full-deeplesion-denoising-task-source-v1"
                 else "illustrative normalized cell value, array-index; physical voxel scale absent"
@@ -7171,6 +7225,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automedbench-full-ixi-t1-sr-task-source-v1"
             or pack_id == "retained-automedbench-full-deeplesion-denoising-task-source-v1"
             or pack_id == "retained-automedbench-full-brats-t1c-sr-task-source-v1"
             or pack_id == "symbolic-rex-usenhance-v1"
@@ -7386,6 +7441,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-automedbench-full-deeplesion-denoising-task-source-v1"
+                    and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-automedbench-full-ixi-t1-sr-task-source-v1"
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS

@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class AutomedIxiT1SrChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedIxiT1SrBeat(ExpansionBeat):
+    channels: AutomedIxiT1SrChannels
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AutomedIxiT1SrPlan(ExpansionPlan):
+    recipe: Literal["automedbench-full-ixi-t1-sr-task-v1"]
+    beats: list[AutomedIxiT1SrBeat]
+
+
 class AutomedDeeplesionDenoiseChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2899,6 +2915,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | AutomedIxiT1SrPlan
     | AutomedDeeplesionDenoisePlan
     | AutomedBratsT1cSrPlan
     | RexUsenhancePlan
