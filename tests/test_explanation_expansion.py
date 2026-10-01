@@ -25,6 +25,7 @@ class ExpansionTests(unittest.TestCase):
                 in {
                     "automed-medxpert-mm-v1",
                     "imaging101-poisson-v1",
+                    "imaging101-sense-v1",
                     "imaging101-noncartesian-v1",
                     "imaging101-pnp-admm-v1",
                     "imaging101-wavelet-v1",

@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-sense-v1',
   'imaging101-pnp-admm-v1',
   'imaging101-noncartesian-v1',
   'imaging101-wavelet-v1',
@@ -119,6 +120,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-sense-v1')
+    return {
+      scene: 'data-imaging-sense-scene',
+      reference: '[data-imaging-sense-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-sense-scene="output"] code',
+      aside: '[data-imaging-sense-output]',
+    };
   if (plan.recipe === 'imaging101-pnp-admm-v1')
     return {
       scene: 'data-imaging-pnp-admm-scene',
@@ -796,6 +806,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-sense-v1': [
+      /Synthetic source only; loader requires absent full-kspace keys and main R4 differs from native R3.*No participant reconstruction/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_sense',
+      'data-imaging-sense-scene',
+      false,
+    ],
     'imaging101-pnp-admm-v1': [
       /No measured k-space or participant result; pinned metadata omits required noise_scale.*Actual masks only/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_pnp_admm',
@@ -1681,6 +1697,182 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page.locator(`[data-story-step="${beat('reference')}"]`).click();
     await absent();
     await page.locator('[data-story-step="0"]').click();
+    await absent();
+  }
+  if (plan.recipe === 'imaging101-sense-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-sense-scene]');
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-sense-reference-revealed]').count(), 0);
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async (m) => {
+      const img = scene.locator('img');
+      assert.equal(await img.count(), 1);
+      const native = await img.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(native.w, 128);
+      assert.equal(native.h, 128);
+      assert.match(
+        native.alt,
+        new RegExp(
+          `Actual synthetic sensitivity magnitude, Coil ${[0, 3, 7][m]}; no reconstructed image`,
+        ),
+      );
+      assert.ok(native.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(native.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            `presentation/task-explorer/imaging101-mri-sense/sensitivity-${[0, 3, 7][m]}.png`,
+          ),
+        ),
+      );
+      assert.match(
+        await scene.locator('figcaption').first().innerText(),
+        /Gray:.*fixed\s*0–\s*\.16\s*display;\s*phase lost.*128²\s*stored indices/s,
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await image(0);
+    assert.match(
+      await scene.innerText(),
+      /8\s*coils.*128×128.*complex source data.*masked keys mismatch full-kspace loader.*main R4 differs from native R3.*54\s*rows\s*×\s*128\s*columns\s*×\s*8\s*coils\s*=\s*55,?296\s*complex values.*no patient\/FOV\/time claim/is,
+    );
+    const rows = await scene
+      .locator('svg rect')
+      .evaluateAll((es) =>
+        es.map((e) => [
+          Number(e.getAttribute('x')),
+          Number(e.getAttribute('width')),
+          e.getAttribute('fill'),
+        ]),
+      );
+    assert.equal(rows.length, 128);
+    for (let i = 0; i < 128; i++)
+      assert.deepEqual(rows[i], [i, 1, i % 3 === 0 || (i >= 56 && i < 72) ? '#57d1cc' : '#122939']);
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const stepNames = ['Coil encoding', 'Native maps + mask', 'CG + scaling'];
+    const branchNames = ['Coil 0', 'Coil 3', 'Coil 7'];
+    const branchFrames = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branchNames[m], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          branchFrames[m],
+        );
+        await image(m);
+        await scene.getByRole('button', { name: stepNames[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? branchFrames[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-sense-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: stepNames[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /y_c=M F\(S_c x\).*spatial axes\s*0\/1.*coil last.*Centered default FFT.*inverse scale\s*1\/16384.*Complex sensitivity phase matters.*Authored matrix.*x=\[1,\s*2\].*y=\[5,\s*5\].*no native solve/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        } else if (i === 1) {
+          await image(m);
+          assert.match(
+            text,
+            /Supplied maps.*no calibration estimation.*float32.*complex128.*Native R3 mask.*ACS\s*16.*main requests absent full data then R4.*Display coil only.*no FFT\/CG.*map power not unity/is,
+          );
+        } else {
+          assert.match(
+            text,
+            /CG: helper\(Ax\)=helper\(data\).*conj\(S\).*IFFT.*no mask.*scaled inverse.*Euclidean adjoint.*Zero start.*rtol\s*1e−5.*max\s*163,?840.*no explicit λ\/preconditioner.*First-coil nonzero mask can miss sampled zeros.*info discarded.*magnitude\/max.*No iteration\/convergence\/result measured/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await image(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*128×128.*Participant image\/score empty.*Saved source SENSE\/RSS.*separate from fresh execution/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-sense-reference-revealed]').innerText(),
+      /phantom key image.*solver-visible.*no private target.*No truth\/reconstruction image.*magnitude comparison.*16,?384\s*pixels.*no scale normalization.*Source main max-normalizes.*selected reference lineage.*windowed SSIM.*generic global SSIM.*range NRMSE.*infinity.*constant reference.*No source SSIM zero-range guard.*(?:no|or) current verdict/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /masked_kspace.*kspace_full.*R3.*R(?:=|\s*)4.*No matched end-to-end.*participant result.*synthetic map previews.*neither patient truth nor reconstruction.*complex phases.*source R.*selected-reference lineage/is,
+    );
+    await capture('limits-contract');
+    await page.locator('.scene-reset').click();
     await absent();
   }
   if (plan.recipe === 'imaging101-pnp-admm-v1') {
@@ -9319,6 +9511,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-sense-v1',
       'imaging101-pnp-admm-v1',
       'imaging101-noncartesian-v1',
       'imaging101-wavelet-v1',

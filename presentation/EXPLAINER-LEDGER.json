@@ -14706,36 +14706,127 @@
       }
     },
     {
-      "entry_id": "imaging101-mri-sense",
-      "title": "Reconstruct accelerated MRI with coil sensitivities",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-mri-sense/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_sense",
+      "actual_data_gap": "Native raw has masked_kspace_real/imag, not loader-required kspace_full_real/imag. Native mask/metadata R3 with ACS16 differs from main R4. No matched end-to-end loader/mask/output lineage or participant result.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-mri-sense.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Spatial coil-sensitivity maps and the SENSE forward model. The assistance level can add an approach and software design.",
+        "output": "A combined brain MRI image.",
+        "raw": "Undersampled multi-coil MRI frequency data.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_sense/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-sense.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A combined brain MRI image.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-mri-sense",
+      "illustration_basis": "mixed",
+      "illustration_kind": "mri",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "mri",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-sense.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A combined brain MRI image.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Undersampled multi-coil MRI frequency data.",
-        "helpers": "Spatial coil-sensitivity maps and the SENSE forward model. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A combined brain MRI image.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native synthetic sensitivity-map magnitudes and row mask with symbolic SENSE/CG contracts after main 19-pin/42-image source/visual/export/mobile/no-GPU/reference review. Native masked R3 versus missing full-data loader keys/main R4 remains explicit; source phantom solver-visible, participant reconstruction/score absent.",
+      "source_brief_sha256": "2b9fe1fa4c2523c910110f0c63e7c2ef4904c8aef3ef78cf32f670805e6c0a94",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-mri-sense-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-mri-sense-resolution.json",
+        "receipt_sha256": "84dd6f621850b327049645fc9a0801d9590378fffc714ac4720dfa54b6e7f4df",
+        "reviewer": "Codex main agent",
+        "reviewed_at": "2026-10-01T12:10:32.318218+00:00",
+        "main_audit": ".local/explainers/goal-20260930/imaging101-mri-sense/source-audit-final-01.json",
+        "main_audit_sha256": "0d7abf69c690fb27c0338b20fe5e841baf0775c14702b57e35f29cf6010f2bfa",
+        "no_visual_acceptance": true,
+        "ready_observation": "Independent19-pin/12Git/3HF/8archive-member/49152RGB-cell verification and exact12-file rebuild; source maskedR3/full-loaderR4 mismatch explicit; final visual/export acceptance pending."
+      },
+      "story_id": "imaging101-mri-sense",
+      "subject": null,
+      "title": "Reconstruct accelerated MRI with coil sensitivities",
+      "warning_text": "Synthetic source only; loader requires absent full-kspace keys and main R4 differs from native R3. No participant reconstruction.",
+      "acceptance_scope": "Native synthetic sensitivity magnitude maps and row mask; symbolic complex SENSE encoding and scaled CG source rules. Released maskedR3 data differ from absent full-data loader keys and mainR4. No reconstructed image, participant result, truth image or score. Source phantom solver-visible; no source operator/solver/scorer/task/model execution.",
+      "completion_review": {
+        "date": "2026-10-01T12:21:27.184209+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "ce8b2f5d8ca15b7290540e05387df7103d98aaf1f55536abfe42c59c4375d88a"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace coil sensitivity encoding without inventing an MRI reconstruction",
+        "goal": "Use actual synthetic sensitivity maps and masked-data geometry to explain SENSE and its source-contract mismatch.",
+        "value": "Not yet specified.",
+        "raw": "One synthetic Shepp-Logan condition, eight Gaussian coil-sensitivity maps. raw_data.npz has masked_kspace_real/imag and sensitivity_maps_real/imag float32 (1,128,128,8); undersampling_mask uint8 (128,). Batch first, spatial rows/columns then coil last. Complex data reconstructed by real+i imaginary, cast float64 components to complex128 by loader helpers. No scanner, patient, anatomical orientation, physical FOV/mm, dwell/TR/TE or time calibration.\n\nNative R3 mask with ACS16 selects every third row plus rows 56:72; 54/128 rows, 6912/16384 cells per coil and 55296 complex sample values across eight coils. Nominal R3 is not effective 128/54\u22482.3704; preserved calibration lines change counts. Coil 0 nonzero pattern exactly matches supplied mask across all columns. Sensitivity maps are supplied synthetic helpers; no calibration estimation, noise covariance, coil compression or whitened data established. Maps are not normalized to unit sum-of-squares (native power range approximately .08582\u2013.14910); never infer patient signal from them.",
+        "helpers": "Ground truth image float32 (1,128,128), source code and metadata. Native metadata R3, source main hardcodes R4/ACS16. Loader expects kspace_full_real/imag absent from released archive; native masked keys must not be silently renamed as fully sampled data. No matching full k-space acquired or synthesized here. Loader also returns normalized source phantom separately.",
+        "tools": "Pinned NumPy CG-SENSE scaffold only; no task/FFT/CG/evaluator execution or runtime installed. Three source-map previews select coils 0/3/7 for display, not solver coil selection. Direct magnitude sqrt(real\u00b2+imag\u00b2), fixed display ceiling .16, grayscale floor(255*min(magnitude/.16,1)), preserves native 128\u00b2 cells. Display loses phase and is not a reconstruction. Native mask strip: teal sampled rows, dark missing; no interpolation, fftshift or acquisition change.",
+        "reference": "Source-visible ground_truth.npz:image staged with data directory, not a private held-out target. Source synthetic phantom never patient truth. Saved source sense_reconstruction/zerofill archives have no fresh execution lineage. No truth, saved reconstruction or participant image shown. Later reader card reveals source/evaluator rules only; backward/exit/reset closes before paint.",
+        "spec": "A x=M F(S_c x), centered default FFT2 on spatial axes 0/1. NumPy forward FFT unnormalized; inverse 1/16384, not ortho. Source centered_ifft2 is inverse for this even 128\u00b2 geometry. Declared AH helper sums conj(S_c)*IFFT(y_c), omits mask and is 1/16384 times Euclidean adjoint on mask-supported inputs. A true arbitrary-domain Euclidean adjoint requires mask and FFT scale. In solver normal equation both sides use the same scaled helper; do not transfer an orthonormal/fully masked adjoint identity without qualification.\n\nSource solver infers mask=abs(first-coil kspace)>0 rather than consuming supplied mask. Native equality verified, but a legitimately sampled zero would be mistaken for unsampled. Complex conjugate inner products in CG; E=AH A, b=AH data. Zero initialization, rtol 1e-5, atol 0, maxiter default 10*n=163840, no preconditioner or explicit lambda/Tikhonov regularization. Denominator breakdown and convergence info are not propagated; code discards info. Not a convergence or reconstruction claim. Final source pipeline takes magnitude and divides by its max; source baseline separately IFFT+RSS then max normalization. No iterations or coil-combined image computed here.\n\nAuthored two-location encoding matrix [[1,2],[3,1]] with illustrative x=[1,2] gives y=[5,5]; independent of native maps, no measured solve or truth. This explains how differing coil responses encode locations, not an actual recovered phantom.",
+        "output": "Generic live participant path output/reconstruction.npy, comparable 128\u00d7128 image (16384 pixels). Source main separately writes evaluation/reference_outputs/sense_reconstruction.npz:reconstruction float32 (1,128,128), zerofill.npz and fully_sampled.npy. Source max normalization is a solver convention; no participant output, convergence record, score or clinical outcome exists.",
+        "score": "The exact primary visualization.compute_metrics helper is retained and Git-blob verified after one approved bounded public HTTPS read; the first local proxy failure remains infrastructure evidence. Source-only inspection shows magnitude arrays converted to float64, range NRMSE (zero reference range gives infinity), uncentered cosine NCC with epsilon 1e-12, and scikit-image structural_similarity on the magnitude 2D arrays with reference range as data_range. Its SSIM is windowed, unlike the generic filesystem global-moment SSIM; the source helper has no explicit zero-range SSIM guard. Generic filesystem NCC uses epsilon 1e-30. Source helper SSIM therefore must not be equated with generic scores or claimed finite on constant references. No helper was imported or executed.\n\nHeader inspection confirms retained data truth contains image, float32 (1,128,128), prepared as (128,128) under the pinned filesystem rule. The retained subset lacks evaluation ground_truth.npy; this subset therefore reaches data/ground_truth.npz before later saved reconstruction candidates. Source main writes normalized phantom as fully_sampled.npy, which is neither an explicit generic truth candidate nor matched by the generic filename tokens. It therefore must not be silently substituted for data/image; that file is not acquired here. No reference/scorer function was invoked. The filesystem route uses unscaled range NRMSE (zero reference range gives infinity); without a filesystem workspace the fallback requires a 2D NPY reference, flux-normalizes output and uses relative L2 NRMSE. These are distinct backend contracts, not results.\n\nGeneric selector prioritizes ground_truth candidates and shape/key compatibility, with source data image solver-visible. Squeeze, complex\u2192magnitude, float64 comparison; no intensity normalization. Source main normalizes phantom and reconstruction maxima before its own metrics; generic harness can instead select unnormalized data truth, so retain actual selected reference/path before comparing scores. Generic cosine NCC (no mean centering), range NRMSE, MSE, PSNR/global SSIM; both ncc_boundary and nrmse_boundary required for pass. Source main metrics.json sense/zerofill groups do not establish installed thresholds. No current evaluator run/reference selection/result. Magnitude discards phase; scale-invariant NCC differs from range-error response. 16384 pixels is not 55296 complex coil samples or 54 sampled rows.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native synthetic sensitivity magnitude and exact mask counts; loader/R mismatch prominent.",
+          "Canonical encoding, three display coils and CG rules; no reconstructed image.",
+          "Empty participant output and later source-truth/evaluator rules with reset/exit/backward cover."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -14755,34 +14846,47 @@
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned README",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_sense/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned physics",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_sense/src/physics_model.py"
+          ],
+          [
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_sense/src/solvers.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_sense"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-mri-sense-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "f73d831ce68259a641b8952776e31d05aeaccc0cc9b4b590f31526006d289ff3",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-sense.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A combined brain MRI image.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Use actual synthetic sensitivity maps and masked-data geometry to explain SENSE and its source-contract mismatch.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>One synthetic Shepp-Logan condition, eight Gaussian coil-sensitivity maps. raw_data.npz has masked_kspace_real/imag and sensitivity_maps_real/imag float32 (1,128,128,8); undersampling_mask uint8 (128,). Batch first, spatial rows/columns then coil last. Complex data reconstructed by real+i imaginary, cast float64 components to complex128 by loader helpers. No scanner, patient, anatomical orientation, physical FOV/mm, dwell/TR/TE or time calibration.</p>\n<p>Native R3 mask with ACS16 selects every third row plus rows 56:72; 54/128 rows, 6912/16384 cells per coil and 55296 complex sample values across eight coils. Nominal R3 is not effective 128/54\u22482.3704; preserved calibration lines change counts. Coil 0 nonzero pattern exactly matches supplied mask across all columns. Sensitivity maps are supplied synthetic helpers; no calibration estimation, noise covariance, coil compression or whitened data established. Maps are not normalized to unit sum-of-squares (native power range approximately .08582\u2013.14910); never infer patient signal from them.</p>",
+          "helpers": "<p>Ground truth image float32 (1,128,128), source code and metadata. Native metadata R3, source main hardcodes R4/ACS16. Loader expects kspace_full_real/imag absent from released archive; native masked keys must not be silently renamed as fully sampled data. No matching full k-space acquired or synthesized here. Loader also returns normalized source phantom separately.</p>",
+          "tools": "<p>Pinned NumPy CG-SENSE scaffold only; no task/FFT/CG/evaluator execution or runtime installed. Three source-map previews select coils 0/3/7 for display, not solver coil selection. Direct magnitude sqrt(real\u00b2+imag\u00b2), fixed display ceiling .16, grayscale floor(255*min(magnitude/.16,1)), preserves native 128\u00b2 cells. Display loses phase and is not a reconstruction. Native mask strip: teal sampled rows, dark missing; no interpolation, fftshift or acquisition change.</p>",
+          "reference": "<p>Source-visible ground_truth.npz:image staged with data directory, not a private held-out target. Source synthetic phantom never patient truth. Saved source sense_reconstruction/zerofill archives have no fresh execution lineage. No truth, saved reconstruction or participant image shown. Later reader card reveals source/evaluator rules only; backward/exit/reset closes before paint.</p>",
+          "spec": "<p>A x=M F(S_c x), centered default FFT2 on spatial axes 0/1. NumPy forward FFT unnormalized; inverse 1/16384, not ortho. Source centered_ifft2 is inverse for this even 128\u00b2 geometry. Declared AH helper sums conj(S_c)*IFFT(y_c), omits mask and is 1/16384 times Euclidean adjoint on mask-supported inputs. A true arbitrary-domain Euclidean adjoint requires mask and FFT scale. In solver normal equation both sides use the same scaled helper; do not transfer an orthonormal/fully masked adjoint identity without qualification.</p>\n<p>Source solver infers mask=abs(first-coil kspace)&gt;0 rather than consuming supplied mask. Native equality verified, but a legitimately sampled zero would be mistaken for unsampled. Complex conjugate inner products in CG; E=AH A, b=AH data. Zero initialization, rtol 1e-5, atol 0, maxiter default 10*n=163840, no preconditioner or explicit lambda/Tikhonov regularization. Denominator breakdown and convergence info are not propagated; code discards info. Not a convergence or reconstruction claim. Final source pipeline takes magnitude and divides by its max; source baseline separately IFFT+RSS then max normalization. No iterations or coil-combined image computed here.</p>\n<p>Authored two-location encoding matrix [[1,2],[3,1]] with illustrative x=[1,2] gives y=[5,5]; independent of native maps, no measured solve or truth. This explains how differing coil responses encode locations, not an actual recovered phantom.</p>",
+          "output": "<p>Generic live participant path output/reconstruction.npy, comparable 128\u00d7128 image (16384 pixels). Source main separately writes evaluation/reference_outputs/sense_reconstruction.npz:reconstruction float32 (1,128,128), zerofill.npz and fully_sampled.npy. Source max normalization is a solver convention; no participant output, convergence record, score or clinical outcome exists.</p>",
+          "score": "<p>The exact primary visualization.compute_metrics helper is retained and Git-blob verified after one approved bounded public HTTPS read; the first local proxy failure remains infrastructure evidence. Source-only inspection shows magnitude arrays converted to float64, range NRMSE (zero reference range gives infinity), uncentered cosine NCC with epsilon 1e-12, and scikit-image structural_similarity on the magnitude 2D arrays with reference range as data_range. Its SSIM is windowed, unlike the generic filesystem global-moment SSIM; the source helper has no explicit zero-range SSIM guard. Generic filesystem NCC uses epsilon 1e-30. Source helper SSIM therefore must not be equated with generic scores or claimed finite on constant references. No helper was imported or executed.</p>\n<p>Header inspection confirms retained data truth contains image, float32 (1,128,128), prepared as (128,128) under the pinned filesystem rule. The retained subset lacks evaluation ground_truth.npy; this subset therefore reaches data/ground_truth.npz before later saved reconstruction candidates. Source main writes normalized phantom as fully_sampled.npy, which is neither an explicit generic truth candidate nor matched by the generic filename tokens. It therefore must not be silently substituted for data/image; that file is not acquired here. No reference/scorer function was invoked. The filesystem route uses unscaled range NRMSE (zero reference range gives infinity); without a filesystem workspace the fallback requires a 2D NPY reference, flux-normalizes output and uses relative L2 NRMSE. These are distinct backend contracts, not results.</p>\n<p>Generic selector prioritizes ground_truth candidates and shape/key compatibility, with source data image solver-visible. Squeeze, complex\u2192magnitude, float64 comparison; no intensity normalization. Source main normalizes phantom and reconstruction maxima before its own metrics; generic harness can instead select unnormalized data truth, so retain actual selected reference/path before comparing scores. Generic cosine NCC (no mean centering), range NRMSE, MSE, PSNR/global SSIM; both ncc_boundary and nrmse_boundary required for pass. Source main metrics.json sense/zerofill groups do not establish installed thresholds. No current evaluator run/reference selection/result. Magnitude discards phase; scale-invariant NCC differs from range-error response. 16384 pixels is not 55296 complex coil samples or 54 sampled rows.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26149,9 +26253,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 127,
+    "reviewed-scripted-planar": 128,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 51,
+    "blocked-source-contract": 50,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

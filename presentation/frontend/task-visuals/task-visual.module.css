@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-sense-v1'],
     [data-recipe='imaging101-pnp-admm-v1'],
     [data-recipe='imaging101-noncartesian-v1'],
     [data-recipe='imaging101-wavelet-v1'],
@@ -3475,6 +3476,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-sense-v1'],
     [data-recipe='imaging101-pnp-admm-v1'],
     [data-recipe='imaging101-noncartesian-v1'],
     [data-recipe='imaging101-wavelet-v1'],
@@ -3565,6 +3567,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-sense-v1'],
     [data-recipe='imaging101-pnp-admm-v1'],
     [data-recipe='imaging101-noncartesian-v1'],
     [data-recipe='imaging101-wavelet-v1'],
@@ -3655,6 +3658,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-sense-v1'],
     [data-recipe='imaging101-pnp-admm-v1'],
     [data-recipe='imaging101-noncartesian-v1'],
     [data-recipe='imaging101-wavelet-v1'],
@@ -3746,6 +3750,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-sense-v1'],
     [data-recipe='imaging101-pnp-admm-v1'],
     [data-recipe='imaging101-noncartesian-v1'],
     [data-recipe='imaging101-wavelet-v1'],
@@ -3837,6 +3842,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-sense-v1'],
     [data-recipe='imaging101-pnp-admm-v1'],
     [data-recipe='imaging101-noncartesian-v1'],
     [data-recipe='imaging101-wavelet-v1'],
@@ -3927,6 +3933,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging101-sense-v1'],
       [data-recipe='imaging101-pnp-admm-v1'],
       [data-recipe='imaging101-noncartesian-v1'],
       [data-recipe='imaging101-wavelet-v1'],
@@ -4016,6 +4023,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging101-sense-v1'],
       [data-recipe='imaging101-pnp-admm-v1'],
       [data-recipe='imaging101-noncartesian-v1'],
       [data-recipe='imaging101-wavelet-v1'],
@@ -4981,4 +4989,20 @@
 }
 :global([data-explainer-export-frame]) .player[data-recipe='imaging101-pnp-admm-v1'] .storyOutput {
   height: 340px;
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='imaging101-sense-v1'] .storyHeading {
+  height: 200px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='imaging101-sense-v1'] .storyOutput {
+  height: 320px;
+}
+
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-sense-v1']
+  :global(.scene-explanation),
+.player[data-recipe='imaging101-sense-v1'] :global(.scene-explanation strong),
+.player[data-recipe='imaging101-sense-v1'] :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }

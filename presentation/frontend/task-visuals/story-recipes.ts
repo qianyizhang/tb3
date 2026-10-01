@@ -1,3 +1,4 @@
+import { imagingSensePack } from './imaging101-mri-sense';
 import { imagingPnpAdmmPack } from './imaging101-mri-pnp-admm';
 import { imagingNoncartesianPack } from './imaging101-mri-noncartesian-cs';
 import { imagingWaveletPack } from './imaging101-mri-l1-wavelet';
@@ -134,6 +135,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-sense-v1',
     'imaging101-pnp-admm-v1',
     'imaging101-noncartesian-v1',
     'imaging101-wavelet-v1',
@@ -1265,6 +1267,17 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#57d1cc', 'Sampled native Fourier mask cells'],
           ['#122939', 'Unsampled native Fourier mask cells'],
+        ],
+      };
+    case 'imaging101-sense-v1':
+      return {
+        heading: 'Coil maps and the SENSE encoding equation',
+        corner: 'Loader/key and R3/R4 mismatch',
+        warning: imagingSensePack.source.notice,
+        legend: [
+          ['#b8b8b8', 'Native coil-map magnitude; grayscale 0–0.16'],
+          ['#57d1cc', 'Native sampled rows'],
+          ['#122939', 'Native missing rows'],
         ],
       };
     case 'bcer-brain-full-v1':
