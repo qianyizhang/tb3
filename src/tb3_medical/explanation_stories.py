@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-medframeqa-v1": "retained-automed-medframeqa-v1",
     "automed-pathology-caption-500-v1": "retained-automed-pathology-caption-500-workflow-v1",
     "automed-pathology-caption-100-v1": "retained-automed-pathology-caption-100-workflow-v1",
     "automed-mimic-report-v1": "symbolic-automed-mimic-report-v1",
@@ -166,6 +167,20 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-automed-medframeqa-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+            "frame-1.jpg",
+            "frame-2.jpg",
+        },
+    ),
     "retained-automed-pathology-caption-500-workflow-v1": (
         "source-records",
         None,
@@ -2134,6 +2149,12 @@ class InterpretationBBcerLongBrainFullChannels(Closed):
     reference: Pair
 
 
+class AutomedMedframeqaChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class AutomedPathology100Channels(Closed):
     progress: Pair
     detail: Pair
@@ -4032,6 +4053,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedMedframeqaBeat(ExpansionBeat[AutomedMedframeqaChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedMedframeqaStory(Story[AutomedMedframeqaChannels]):
+    recipe: Literal["automed-medframeqa-v1"]
+    beats: tuple[AutomedMedframeqaBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("MedFrameQA has no private reference assets or reveal")
+        return self
+
+
 class AutomedPathology100Beat(ExpansionBeat[AutomedPathology100Channels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4568,6 +4607,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedMedframeqaStory
     | AutomedPathology500Story
     | AutomedPathology100Story
     | AutomedMimicReportStory
@@ -4690,6 +4730,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedMedframeqaStory
     | AutomedPathology500Story
     | AutomedPathology100Story
     | AutomedMimicReportStory
@@ -4972,6 +5013,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedMedframeqaStory
     | AutomedPathology500Story
     | AutomedPathology100Story
     | AutomedMimicReportStory
@@ -5273,6 +5315,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-automed-medframeqa-v1": (
+                "MedFrameQA-upstream-JPEG-frames-plus-Full-contract",
+                "CC-BY-4.0",
+                None,
+            ),
             "retained-automed-pathology-caption-500-workflow-v1": (
                 "symbolic-unit-grid",
                 "LicenseRef-PathCap-symbolic-teaching",
@@ -5498,6 +5545,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "px"
+                if pack_id == "retained-automed-medframeqa-v1"
                 else "unitless"
                 if pack_id == "retained-automed-pathology-caption-500-workflow-v1"
                 else "unitless"
@@ -5610,6 +5659,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automed-medframeqa-v1"
             or pack_id == "retained-automed-pathology-caption-500-workflow-v1"
             or pack_id == "retained-automed-pathology-caption-100-workflow-v1"
             or pack_id == "symbolic-automed-mimic-report-v1"

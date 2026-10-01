@@ -1,0 +1,30 @@
+{
+  "accuracy": "Correct normalized label / all evaluator-selected question_ids (explicit list or discovered split), rounded 4, zero when empty. Missing/invalid/placeholder remain denominator. Not frame/video/patient accuracy.",
+  "checker_difference": "Scorer label-valid is weaker than strict schema. Both-empty text with a retained valid A..E label can pass both checks and receive label credit; evidence/log guards are separate. Neither validity nor accuracy proves genuine inference.",
+  "completion": "Prediction files / all questions; existence is not valid inference. Parse/valid/placeholder rates also use all questions.",
+  "fields": {
+    "model_name": "nonempty string",
+    "predicted_answer": "selected option text",
+    "predicted_label": "A..E",
+    "question_id": "matching question string",
+    "raw_model_output": "string from genuine model call",
+    "runtime_s": "nonnegative number, seconds"
+  },
+  "format": "Matching question_id, six required keys (extra keys accepted), stripped/uppercased A..E, string fields and truthy model name. Numeric runtime >=0; no finite or boolean exclusion guard. Nonempty option text must equal selected option. Empty text loophole is not an output recommendation.",
+  "format_gate": "output_format_valid: every file strict-valid. submission_format_valid: strict-valid fraction>=0.5; denominator max(expected,1). Scorer label-valid is weaker than format-valid.",
+  "limits": "Exact private label agreement is not clinical validation. Public test questions/frames do not establish video-disjoint or patient-independent generalization. Open-ended scoring exists but is not this configured task.",
+  "path": "<agent_dir>/<question_id>/answer.json",
+  "private_reference": null,
+  "rating": null,
+  "rating_rule": "F if graded format gate false, no scorer-valid answers or file completion<0.5; otherwise A accuracy>=.40, B>=.25, else C. No measured rating.",
+  "score": null,
+  "values": {
+    "model_name": null,
+    "predicted_answer": null,
+    "predicted_label": null,
+    "question_id": null,
+    "raw_model_output": null,
+    "runtime_s": null
+  },
+  "workflow": "Non-None step weights renormalized. S2 mean env/model-call/smoke evidence. S4 half completion/parse with placeholder/model-call/low-quality caps; S5 half anyvalid/gradedformat. Overall half workflow/half accuracy."
+}

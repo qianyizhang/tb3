@@ -1,0 +1,375 @@
+{
+  "acquisition_route": "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA",
+  "actual_data_gap": "Two native public upstream test frames acquired; exact Full question/image/option mapping absent. Upstream row has6 options, Full acceptsA..E. No source gold/reasoning, private reference, submitted answer or score in pack.",
+  "attempts": [
+    {
+      "action": "retained-source validation for maintained explainer refresh",
+      "source": "pinned Full MANIFEST/archive and retained official dataset/card/row/frame receipts; no new HTTP request",
+      "attempted_at": "2026-09-30T23:11:56.290049+00:00",
+      "outcome": "Verified30 original pins/47 FullMANIFEST members and unchanged native JPEG SHA/byte lengths. Original incomplete-schema attempts (including HTTP transport receipts without outcome) archived unchanged in historical_attempts; no historical requests redated or acquisition repeated. No exact Full question/options/frame/split/private join established."
+    }
+  ],
+  "dataset_metadata": {
+    "access": "public",
+    "data_dir_name": "MedFrameQA",
+    "included": false,
+    "license": "CC BY 4.0",
+    "policy": "redistributable",
+    "private_mount": "/data/private",
+    "public_mount": "/data/public",
+    "release_gate": "Include attribution",
+    "upstream": "MedFrameQA",
+    "upstream_url": "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA"
+  },
+  "entry_id": "automedbench-full-medframeqa-task",
+  "illustration_basis": "mixed",
+  "pack_license": "CC-BY-4.0",
+  "pinned_harness_source": {
+    "config_path": "source/tasks/medframeqa-task/config.yaml",
+    "config_sha256": "4d07132b22c8569aff1cc4e55e677a3f4f456aa85a36a9b1eed0af4ccb84f150",
+    "ref": "99c166a3546bba348dd618fd310f5d4b8821e77f",
+    "staging_manifest_sha256": "0a0cd240a89d893787ed87ca6d4b488f5785fe28703480b07155ec5480c6e21c"
+  },
+  "reopening_condition": "Two native public upstream test frames acquired; exact Full question/image/option mapping absent. Upstream row has6 options, Full acceptsA..E. No source gold/reasoning, private reference, submitted answer or score in pack.",
+  "reviewed_at": "2026-09-29T07:02:00Z",
+  "source_boundary": "No answer, report, score, model result or private reference asset is included.",
+  "source_hashes": {
+    "archive": "4d5e27058212ca071298428995f95e8422ad8bdb700bc0d5617f6db5a961ff9c",
+    "config_yaml": "4d07132b22c8569aff1cc4e55e677a3f4f456aa85a36a9b1eed0af4ccb84f150",
+    "format_checker": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6",
+    "manifest": "41be7e12b4539d24a534948abe13f56a163e17326136bcd64360ba4a7f9d3ce0",
+    "run_eval": "0998fb2a6eb18d3c2d7b0e0797c74f6d98a35b419012dc4fe63d75fdc38703bd",
+    "task_json": "1acb017603cdc3a0cca1f770e9456c345d42af0ef94b27cd8154c217260ae33f"
+  },
+  "source_revision": "f894057807cc334421784e702ead2c1883583e1b",
+  "source_roles": {
+    "answer_owned_output": "./<question_id>/answer.json with question_id, predicted_label A\u2013E, predicted_answer, raw_model_output, model_name, runtime_s; empty teaching slot only.",
+    "original_input": "Multiple image frames plus question.json for each Full question; no exact Full question retained.",
+    "private_reference": "Private answer_label from ground_truth.csv or <question_id>/answer.json; none shown.",
+    "scorer": "Exact-match predicted_label against private answer_label for multiple_choice, with format and placeholder checks; no result computed.",
+    "supplied_helpers": "Pinned Full task config and output checker; no participant execution."
+  },
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medframeqa-task.tar.gz",
+  "task_contract": {
+    "answer_mode": "multiple_choice",
+    "full_case_mapping": "unverified",
+    "upstream_sample_option_count": 6,
+    "valid_labels": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ]
+  },
+  "top_warning": {
+    "label": "Full case absent \u00b7 upstream frames only",
+    "text": "Two native public upstream test frames acquired; exact Full question/image/option mapping absent. Upstream row has6 options, Full acceptsA..E. No source gold/reasoning, private reference, submitted answer or score in pack.",
+    "url": "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA",
+    "link_label": "Official MedFrameQA acquisition"
+  },
+  "upstream_example": {
+    "dataset_server_row_response_sha256": "82c534ce085cbd8a1ee7a581fca91df5a16cffe7cb90fb2d07847390bfa1fba8",
+    "frame_role": "public upstream input teaching only",
+    "frame_sha256": [
+      "75fe53e62cd6c48b91ba165311c43d409fe92f5212490404c6897551989d2e4a",
+      "bbf298e1ccfd3cc64dd7b2e21905b084c3a09aa4043ead43f9a010eb5928bafd"
+    ],
+    "frame_shape_px": [
+      1280,
+      720
+    ],
+    "full_membership": "unverified",
+    "license": "CC BY 4.0 per official dataset card",
+    "public_card_sha256": "3fe44178b5c7f00aef5d0c25993d60af71727ddcf046be0154a1798a9fd02238",
+    "public_dataset_url": "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA/tree/96083ae9405b2fdb687005c65902f2ee3d7c9f12",
+    "public_tree_response_sha256": "a0230a43507b8a88e42d8e0b477db55e02a94b8a73091f2cc0dc0b9f65078255",
+    "raw_row_sha256": "82c534ce085cbd8a1ee7a581fca91df5a16cffe7cb90fb2d07847390bfa1fba8",
+    "upstream_revision": "96083ae9405b2fdb687005c65902f2ee3d7c9f12",
+    "fresh_frame_bytes_verified": true,
+    "source_partition": "test",
+    "ordering": "Source slots, not video time or native DICOM order"
+  },
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "source_class": "source-derived-teaching",
+  "reference_policy": "no-reference-assets",
+  "resolved_at": "2026-09-30T14:15:54.028051+00:00",
+  "source_pins": [
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/task.json",
+      "bytes": 1279,
+      "sha256": "1acb017603cdc3a0cca1f770e9456c345d42af0ef94b27cd8154c217260ae33f",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/MANIFEST.sha256",
+      "bytes": 4619,
+      "sha256": "41be7e12b4539d24a534948abe13f56a163e17326136bcd64360ba4a7f9d3ce0",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task.tar.gz",
+      "bytes": 59979,
+      "sha256": "4d5e27058212ca071298428995f95e8422ad8bdb700bc0d5617f6db5a961ff9c",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/medframe-README.md",
+      "bytes": 1471,
+      "sha256": "3fe44178b5c7f00aef5d0c25993d60af71727ddcf046be0154a1798a9fd02238",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/medframe-row.json",
+      "bytes": 4404,
+      "sha256": "82c534ce085cbd8a1ee7a581fca91df5a16cffe7cb90fb2d07847390bfa1fba8",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/medframe-tree.json",
+      "bytes": 2271,
+      "sha256": "a0230a43507b8a88e42d8e0b477db55e02a94b8a73091f2cc0dc0b9f65078255",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/run_eval.py",
+      "bytes": 9465,
+      "sha256": "0998fb2a6eb18d3c2d7b0e0797c74f6d98a35b419012dc4fe63d75fdc38703bd",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/format_checker.py",
+      "bytes": 7329,
+      "sha256": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/answer_utils.py",
+      "bytes": 2298,
+      "sha256": "cb39d4ea80202932d4f865c2c25bacd0f6aae50501b35d19bb61496092a25af7",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/vqa_scorer.py",
+      "bytes": 10606,
+      "sha256": "4a128cbe9668f08a7341da4c23b90b649c3a9168294f45a058ef710d99e37a14",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/aggregate.py",
+      "bytes": 11632,
+      "sha256": "bb05e48a19abf4fc6952334288944733a303874ec95c3eb4fd3a21d6d63c203d",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/medal_tier.py",
+      "bytes": 496,
+      "sha256": "c8a75561b4f0c8654e1c4819ac8e7a1ff5c22b3cc442545f41c8793834ac6caa",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/tier_config.py",
+      "bytes": 2610,
+      "sha256": "0137a0e045a9ce1dfc626241170a3d819e30616a97c400c9c17316bc57360a8c",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/task_loader.py",
+      "bytes": 6115,
+      "sha256": "aa7ef5146845a1565623ceb3b05523484920951f92290d8338d562455e35e953",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/inference_verifier.py",
+      "bytes": 13110,
+      "sha256": "b959d630dd65034720851bb4ac5f388a23fb4288d414f7bd7cbba3867ea21ad0",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/tool_usage.py",
+      "bytes": 3125,
+      "sha256": "126117ee8908f23246e9e84b853ff8d55ab31b8a35c250d094edc7418e095455",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/medbench_vqa/image_inspection.py",
+      "bytes": 5956,
+      "sha256": "48b813360080b238e3460f3d425209965a15d1b70d1a2444effca6003c2cb0a9",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/medbench_vqa/medical_search.py",
+      "bytes": 5271,
+      "sha256": "3ac18152355097b14c515ea31d98ff8fe0fb9bccfdfe87bbf9306d2e424409e9",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/medbench_vqa/submit.py",
+      "bytes": 3559,
+      "sha256": "f4737b7309fd8230a13ed1c806ea5f75f4e0aafdf694a6829ca8d4fd0eabfd7d",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/tasks/medframeqa-task/config.yaml",
+      "bytes": 362,
+      "sha256": "4d07132b22c8569aff1cc4e55e677a3f4f456aa85a36a9b1eed0af4ccb84f150",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/tasks/medframeqa-task/model_info.yaml",
+      "bytes": 4483,
+      "sha256": "c6bc0f18485cee6e3f87f77ed1e814188f1f83a416918f2451c638f2268f3edc",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/tasks/medframeqa-task/lite_s2.md",
+      "bytes": 497,
+      "sha256": "2ddfc8fa195c54de68cf6e56ca9c73465e23c2ecebf72f9827472b759730760a",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/tasks/medframeqa-task/lite_s3.md",
+      "bytes": 4105,
+      "sha256": "5ab1820482173bdb98a7e6244e7692c91e633721bb678bd66b01ee687fd7ab86",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-f-source/packages/medframeqa-task/automedbench-task/source/tasks/medframeqa-task/standard_s3.md",
+      "bytes": 284,
+      "sha256": "d9e927b6a46e19092b295744fb3fd78af2e48264edefb6a0763c9db9569f70cb",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-medframeqa-task/source-evidence/attempts.json",
+      "bytes": 2879,
+      "sha256": "ac0a35ed9c693e6a9b04effa63a8671c0bb933cc8de9cd81cd236d4a68f8f947",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-medframeqa-task/source-evidence/card.bin",
+      "bytes": 1471,
+      "sha256": "3fe44178b5c7f00aef5d0c25993d60af71727ddcf046be0154a1798a9fd02238",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-medframeqa-task/source-evidence/frame-1.bin",
+      "bytes": 38494,
+      "sha256": "75fe53e62cd6c48b91ba165311c43d409fe92f5212490404c6897551989d2e4a",
+      "role": "upstream-input-frame-1"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-medframeqa-task/source-evidence/frame-2.bin",
+      "bytes": 43811,
+      "sha256": "bbf298e1ccfd3cc64dd7b2e21905b084c3a09aa4043ead43f9a010eb5928bafd",
+      "role": "upstream-input-frame-2"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-medframeqa-task/source-evidence/row-summary.json",
+      "bytes": 312,
+      "sha256": "925079188fbc4b120d50791547acf334d29a6e2c6b3e886be8a29e89fad1d2c0",
+      "role": "source-contract-or-receipt"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-medframeqa-task/source-evidence/row.bin",
+      "bytes": 4404,
+      "sha256": "817d95d5de5f14cee073e0fbdf773495b8bafc541a452563c79a8bc285f86201",
+      "role": "source-contract-or-receipt"
+    }
+  ],
+  "contract_audit": {
+    "unit": "question_ids; no frame/video/patient-independent claim",
+    "source_split": "Official card test2851rows only; exact Full IDs and video/patient disjointness absent",
+    "option_normalizer": "lists map first5 toA..E, drop6th; dictF canremainbut validlabels rejectF",
+    "format": "six fields, exactqid, plainA..E, strings, nonemptymodelname, nonnegative runtime; option equality only if nonemptytext",
+    "scorer": "weaker than strictformat: normalizesembeddedA..E, rejectsplaceholders, labelmatchagainstprivateanswer_label",
+    "accuracy_denominator": "all discovered question_ids; missing/invalid/placeholder wrong, no frame averaging",
+    "format_gate": "strictallfiles output_format_valid vsstrictvalidfraction>=.5 submission_format_valid",
+    "rating": "Fifgradedformatfalse, zero scorer-valid or filecompletion<.5; Aaccuracy>=.40, B>=.25 elseC",
+    "workflow": "renormalize nonNoneactiveweights; S2binaryevidence, guardedS4, S5gradedformat; halfworkflow/halfaccuracy",
+    "calibration_visibility": "S3publicgoldfromreference_answer/reasoningchain whenpresent; guidance15 vs verifier10; livevisibility/isolationunaudited",
+    "private": "CSVgold preferred elseprivateanswer.json; sourcepubliccorrect_answer/reasoning audit-only; nonecopiedtoassets",
+    "configured_mode": "multiple_choice; openendedmetrics/judge notselected",
+    "empty_text_with_valid_label": "Both raw_model_output and predicted_answer empty avoids placeholder; if label remains A..E, both checker and scorer can accept it. Genuinely empty-label skip is invalid; comments do not enforce a real inference requirement."
+  },
+  "historical_attempts": [
+    {
+      "attempted_at": "2026-09-29T06:50:19.166474Z",
+      "manifest_verified": true,
+      "outcome": "downloaded and MANIFEST.sha256 verified; transient proxy failures retained in local headers",
+      "route": "pinned Full archive",
+      "sha256": "4d5e27058212ca071298428995f95e8422ad8bdb700bc0d5617f6db5a961ff9c",
+      "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medframeqa-task.tar.gz"
+    },
+    {
+      "attempted_at": "2026-09-29T06:51:16.953989Z",
+      "outcome": "public upstream first row and two JPEG frames downloaded; no Full mapping",
+      "route": "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA"
+    },
+    {
+      "attempted_at": "2026-09-29T06:53:19.090962Z",
+      "frame_sha256": [
+        "75fe53e62cd6c48b91ba165311c43d409fe92f5212490404c6897551989d2e4a",
+        "bbf298e1ccfd3cc64dd7b2e21905b084c3a09aa4043ead43f9a010eb5928bafd"
+      ],
+      "outcome": "two upstream CT JPEG frames recovered; six-option source row withheld from pack; no Full case link",
+      "route": "official dataset-server row and cached upstream image URLs at pinned public dataset revision"
+    },
+    {
+      "action": "bounded anonymous pinned public source read",
+      "source": "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA/resolve/96083ae9405b2fdb687005c65902f2ee3d7c9f12/README.md",
+      "attempted_at": "2026-09-30T14:03:17.692700+00:00",
+      "cap_bytes": 65536,
+      "status": 200,
+      "bytes": 1471,
+      "sha256": "3fe44178b5c7f00aef5d0c25993d60af71727ddcf046be0154a1798a9fd02238",
+      "revision": null,
+      "content_type": "text/plain; charset=utf-8"
+    },
+    {
+      "action": "bounded anonymous pinned public source read",
+      "source": "https://datasets-server.huggingface.co/rows?dataset=SuhaoYu1020%2FMedFrameQA&config=default&split=test&offset=0&length=1",
+      "attempted_at": "2026-09-30T14:03:19.439457+00:00",
+      "cap_bytes": 65536,
+      "status": 200,
+      "bytes": 4404,
+      "sha256": "817d95d5de5f14cee073e0fbdf773495b8bafc541a452563c79a8bc285f86201",
+      "revision": "96083ae9405b2fdb687005c65902f2ee3d7c9f12",
+      "content_type": "application/json"
+    },
+    {
+      "action": "bounded anonymous pinned public source read",
+      "source": "https://datasets-server.huggingface.co/cached-assets/SuhaoYu1020/MedFrameQA/--/96083ae9405b2fdb687005c65902f2ee3d7c9f12/--/default/test/0/image_1/image.jpg",
+      "attempted_at": "2026-09-30T14:03:21.702405+00:00",
+      "cap_bytes": 262144,
+      "status": 200,
+      "bytes": 38494,
+      "sha256": "75fe53e62cd6c48b91ba165311c43d409fe92f5212490404c6897551989d2e4a",
+      "revision": null,
+      "content_type": "binary/octet-stream",
+      "retained_frame_hash_match": true,
+      "request_record": "Exact temporary transport URL retained only in owned source-evidence/attempts.json; stable identity is pinned revision/frame SHA256"
+    },
+    {
+      "action": "bounded anonymous pinned public source read",
+      "source": "https://datasets-server.huggingface.co/cached-assets/SuhaoYu1020/MedFrameQA/--/96083ae9405b2fdb687005c65902f2ee3d7c9f12/--/default/test/0/image_2/image.jpg",
+      "attempted_at": "2026-09-30T14:03:22.636702+00:00",
+      "cap_bytes": 262144,
+      "status": 200,
+      "bytes": 43811,
+      "sha256": "bbf298e1ccfd3cc64dd7b2e21905b084c3a09aa4043ead43f9a010eb5928bafd",
+      "revision": null,
+      "content_type": "binary/octet-stream",
+      "retained_frame_hash_match": true,
+      "request_record": "Exact temporary transport URL retained only in owned source-evidence/attempts.json; stable identity is pinned revision/frame SHA256"
+    }
+  ],
+  "baseline_commit": "e172fc87fabfc661466593beceb3e0c222b22cda",
+  "status": "local-source-preparation",
+  "brief_sha256": "9006c61d6fc402e4b2c2cf2f6431de957222cd61bcab5335c67ceb9fdaa4a9f4",
+  "main_contract_qualification": {
+    "actor": "Codex main agent",
+    "reviewed_at": "2026-09-30T23:33:00.689860+00:00",
+    "observation": "run_eval accepts explicit question_ids; accuracy denominator is the selected list, default discovered split. Retained HTTP200 acquisitions are historical, not new refresh requests. No evaluator execution."
+  }
+}

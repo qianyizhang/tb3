@@ -210,6 +210,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
           {(planar || projected) && plan && player.storyState && (
             <>
               <OperationScene
+                key={player.resetRevision}
                 plan={plan}
                 state={player.storyState}
                 onSeekFrame={(frame) => actions.current?.seekFrame(frame)}
@@ -280,7 +281,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
           (player.storyState.recipe === 'route-unfold-v1' ? (
             <StoryOutput state={player.storyState} />
           ) : (
-            <OperationOutput plan={plan} state={player.storyState} />
+            <OperationOutput key={player.resetRevision} plan={plan} state={player.storyState} />
           ))}
       </div>
       <div className="scene-transport" hidden={fallback && !projected}>
@@ -319,6 +320,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
             </p>
             {plan && plan.recipe !== 'route-unfold-v1' && player.storyState ? (
               <OperationScene
+                key={player.resetRevision}
                 plan={plan}
                 state={player.storyState}
                 onSeekFrame={(frame) => actions.current?.seekFrame(frame)}

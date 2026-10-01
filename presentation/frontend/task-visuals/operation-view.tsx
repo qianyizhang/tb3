@@ -1,3 +1,4 @@
+import { AutomedMedframeqaScene, AutomedMedframeqaOutput } from './automed-medframeqa-panels';
 import {
   AutomedPathology500Scene,
   AutomedPathology500Output,
@@ -331,6 +332,15 @@ export function OperationScene({
     );
   if (state.recipe === 'automed-pathology-caption-500-v1')
     return <AutomedPathology500Scene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'automed-medframeqa-v1')
+    return (
+      <AutomedMedframeqaScene
+        key={state.beatId}
+        state={state}
+        plan={plan}
+        onSeekFrame={onSeekFrame}
+      />
+    );
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -661,6 +671,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <AutomedPathology100Output state={state} />;
   if (state.recipe === 'automed-pathology-caption-500-v1')
     return <AutomedPathology500Output state={state} />;
+  if (state.recipe === 'automed-medframeqa-v1') return <AutomedMedframeqaOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

@@ -1,0 +1,22 @@
+{
+  "calibration": "S3 guide requests 15 public calibration rows and reads reference_answer/reasoning_chain.answer when present. Actual verifier accepts>=10; public-gold visibility and separation remain unaudited.",
+  "mapping": "Full list normalizer maps only first 5 slots to A..E; sixth is dropped. Do not silently adapt this six-option upstream row into a Full question.",
+  "public_reference": null,
+  "source_options": 6,
+  "tiers": {
+    "lite": "Fixed microsoft/llava-med-v1.5-mistral-7b via LLaVA-Med helper and conversation prompt. No weights or inference used.",
+    "standard": "Bounded candidate selection with loader/prompt/access guidance; source priority is not measured performance or current availability."
+  },
+  "tools": [
+    "inspect_image: dimensions/intent/log, not a diagnosis",
+    "public_medical_search: whitelist/sanitization, not proved isolation",
+    "submit_answer: WORKSPACE_DIR/<question_id>/answer.json"
+  ],
+  "valid_labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ]
+}

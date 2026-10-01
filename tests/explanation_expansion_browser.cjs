@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-medframeqa-v1',
   'automed-pathology-caption-500-v1',
   'automed-pathology-caption-100-v1',
   'automed-mimic-report-v1',
@@ -102,6 +103,14 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-medframeqa-v1')
+    return {
+      scene: 'data-medframeqa-scene',
+      reference: '[data-medframeqa-reference]',
+      referenceChannel: null,
+      output: '[data-medframeqa-output-schema]',
+      aside: '[data-medframeqa-output]',
+    };
   if (plan.recipe === 'automed-pathology-caption-500-v1')
     return {
       scene: 'data-pathology500-scene',
@@ -621,6 +630,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-medframeqa-v1': [
+      /Two native public upstream test frames acquired.*exact Full question\/image\/option mapping absent.*No source gold\/reasoning, private reference, submitted answer or score/s,
+      'https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA',
+      'data-medframeqa-scene',
+      false,
+    ],
     'automed-pathology-caption-500-v1': [
       /Native image\/caption and selected\s*500 IDs absent.*symbolic protocol/s,
       'https://huggingface.co/datasets/jamessyx/PathCap',
@@ -1152,6 +1167,140 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-medframeqa-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name);
+    const scene = page.locator('[data-medframeqa-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () => {
+      assert.equal(await page.locator('[data-medframeqa-reference]').count(), 0);
+      assert.ok(plan.beats.every((b) => b.channels.reference.every((v) => v === 0)));
+    };
+    await page.locator('[data-story-step="0"]').click();
+    assert.match(
+      await scene.innerText(),
+      /1280×720.*Full question.*absent.*no video time.*no HU.*patient-independent/s,
+    );
+    const img = scene.locator('img');
+    const nativeHash = async () => {
+      const src = await scene.locator('img').getAttribute('src');
+      assert.ok(src.startsWith('data:image/jpeg;base64,'), 'Native JPEG embedded for offline use');
+      return sha(Buffer.from(src.split(',')[1], 'base64'));
+    };
+    assert.equal(
+      await nativeHash(),
+      '75fe53e62cd6c48b91ba165311c43d409fe92f5212490404c6897551989d2e4a',
+    );
+    await scene.getByRole('button', { name: 'Source slot 2', exact: true }).click();
+    assert.equal(
+      await nativeHash(),
+      'bbf298e1ccfd3cc64dd7b2e21905b084c3a09aa4043ead43f9a010eb5928bafd',
+    );
+    assert.equal(await img.evaluate((el) => el.naturalWidth), 1280);
+    assert.equal(await img.evaluate((el) => el.naturalHeight), 720);
+    await capture('source-slot-2');
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    assert.equal(await page.locator('[data-medframeqa-calibration]').count(), 0);
+    assert.match(
+      await scene.innerText(),
+      /slot 6.*A.*B.*C.*D.*E.*six-option.*No source question, options, gold or reasoning/s,
+    );
+    await scene.getByRole('button', { name: 'Inspect calibration rule', exact: true }).click();
+    assert.match(
+      await page.locator('[data-medframeqa-calibration]').innerText(),
+      /15.*>=10.*public-gold.*unaudited/s,
+    );
+    await capture('calibration-revealed');
+    await absent();
+    await page.locator(`[data-story-step="${beat('operation')}"]`).click();
+    const assistance = page.getByRole('group', { name: 'MedFrameQA assistance' });
+    await assistance.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-medframeqa-tier]').innerText(),
+      /Bounded candidate.*not measured performance/s,
+    );
+    await capture('tier-standard');
+    const expected = plan.beats.find((b) => b.scene === 'operation');
+    for (let i = 0; i < 4; i++) {
+      const button = page.locator(`[data-medframeqa-step="${i}"]`);
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await scene.getAttribute('data-medframeqa-currentstep'), String(i));
+      const frame = Math.round(expected.startFrame + ((expected.frames - 1) * i) / 3);
+      assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), frame);
+      assert.match(
+        await scene.innerText(),
+        [
+          /Verify question\.json/,
+          /method-specific prompt/,
+          /Run provisioned method; parse raw text to A\.\.E/,
+          /Map label to exact option text/,
+        ][i],
+      );
+      await capture(`contract-${i}`);
+      await absent();
+    }
+    await page.locator('[data-medframeqa-step="0"]').click();
+    assert.equal(
+      await assistance
+        .getByRole('button', { name: 'lite', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    assert.equal(await page.locator('[data-medframeqa-calibration]').count(), 0);
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-medframeqa-format]').count(), 0);
+    assert.match(
+      await page.locator('[data-medframeqa-output-schema]').innerText(),
+      /model_name.*predicted_label.*question_id.*raw_model_output.*runtime_s.*unset.*Both-empty/s,
+    );
+    await scene.getByRole('button', { name: 'Inspect format checks', exact: true }).click();
+    assert.match(
+      await page.locator('[data-medframeqa-format]').innerText(),
+      /extra keys accepted.*stripped\/uppercased.*no finite or boolean.*Empty text loophole/s,
+    );
+    await capture('format-revealed');
+    await absent();
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    const metric = page.getByRole('group', { name: 'Scoring boundary' });
+    for (const name of ['accuracy', 'format gate', 'workflow']) {
+      await metric.getByRole('button', { name, exact: true }).click();
+      assert.match(
+        await page.locator('[data-medframeqa-metric]').innerText(),
+        name === 'accuracy'
+          ? /all evaluator-selected.*Missing\/invalid\/placeholder/s
+          : name === 'format gate'
+            ? /every file strict-valid.*fraction>=0.5.*max\(expected,1\)/s
+            : /renormaliz.*S4.*S5/s,
+      );
+      await capture(`metric-${name.replace(' ', '-')}`);
+    }
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-medframeqa-format]').count(), 0);
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    assert.equal(
+      await metric
+        .getByRole('button', { name: 'accuracy', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(
+      await nativeHash(),
+      '75fe53e62cd6c48b91ba165311c43d409fe92f5212490404c6897551989d2e4a',
+    );
+    await scene.getByRole('button', { name: 'Source slot 2', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    assert.equal(
+      await nativeHash(),
+      '75fe53e62cd6c48b91ba165311c43d409fe92f5212490404c6897551989d2e4a',
+    );
+    await absent();
   }
   if (plan.recipe === 'automed-pathology-caption-500-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -6169,6 +6318,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-medframeqa-v1',
       'automed-pathology-caption-500-v1',
       'automed-pathology-caption-100-v1',
       'automed-mimic-report-v1',

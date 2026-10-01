@@ -1,3 +1,4 @@
+import { automedMedframeqaPack } from './automed-medframeqa';
 import { automedPathology500Pack } from './automedbench-full-pathology-caption-500-task';
 import { automedPathology100Pack } from './automedbench-full-pathology-caption-100-task';
 import { automedMimicReportPack } from './automed-mimic-report';
@@ -117,6 +118,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-medframeqa-v1',
     'automed-pathology-caption-500-v1',
     'automed-pathology-caption-100-v1',
     'automed-mimic-report-v1',
@@ -1082,6 +1084,13 @@ export function storyPresentation(plan: StoryPlan): {
         heading: 'One image, one pathology caption',
         corner: 'PathCap500; source gated, split absent',
         warning: automedPathology500Pack.source.notice,
+        legend: [],
+      };
+    case 'automed-medframeqa-v1':
+      return {
+        heading: 'Link frames to a Full question',
+        corner: 'Upstream native frames · symbolic Full contract',
+        warning: automedMedframeqaPack.source.notice,
         legend: [],
       };
     case 'bcer-brain-full-v1':

@@ -13,6 +13,7 @@ const INITIAL_YAW = -0.24,
   INITIAL_PITCH = 0.14;
 interface PlayerState {
   storyState?: StoryState;
+  resetRevision: number;
   stage: Stage;
   playing: boolean;
   fallback: boolean;
@@ -26,7 +27,7 @@ export interface PlayerActions {
   rotate(dx: number, dy: number): void;
   drag(active: boolean): void;
 }
-const INITIAL: PlayerState = { stage: 0, playing: false, fallback: false };
+const INITIAL: PlayerState = { stage: 0, playing: false, fallback: false, resetRevision: 0 };
 
 /** React owns UI state. The effect owns the GPU and a single on-demand animation clock. */
 export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
@@ -59,6 +60,7 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       failed = false;
     let stage: Stage = 0,
       elapsed = 0,
+      resetRevision = 0,
       frame = 0,
       last = 0;
     const initialPitch =
@@ -79,6 +81,7 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       if (!disposed)
         setState({
           stage,
+          resetRevision,
           playing,
           fallback: failed,
           storyState: plan ? sampleStory(plan, storyFrame()) : undefined,
@@ -253,6 +256,8 @@ export function useScenePlayer(entry: VisualEntry, plan?: StoryPlan) {
       },
       reset() {
         pause();
+        // Reset local React controls even when the timeline is already at frame zero.
+        resetRevision += 1;
         yaw = INITIAL_YAW;
         pitch = initialPitch;
         elapsed = 0;

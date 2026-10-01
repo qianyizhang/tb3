@@ -1,0 +1,240 @@
+.scene {
+  --accent: #6bd6d1;
+  display: grid;
+  gap: 12px;
+  padding: 10px;
+  align-content: start;
+}
+.scene[data-medframeqa-scene='helper'] {
+  --accent: #e8bd6d;
+}
+.scene[data-medframeqa-scene='operation'] {
+  --accent: #b6a7ec;
+}
+.scene[data-medframeqa-scene='output'] {
+  --accent: #92d9ae;
+}
+.scene[data-medframeqa-scene='limits'] {
+  --accent: #eea698;
+}
+.scene h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--accent);
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.card {
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px;
+  background: #122b34;
+  color: #e4f0f2;
+}
+.card b {
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.card p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 9px 0;
+}
+.figure {
+  margin: 0;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.figure img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  background: #000;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+}
+.figure figcaption {
+  font-size: 12px;
+  color: #bbd1d6;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.buttons button,
+.card button {
+  border: 1px solid #8bb2bd;
+  border-radius: 7px;
+  padding: 7px 10px;
+  color: #e7f6fa;
+  background: #1d414d;
+  cursor: pointer;
+}
+.buttons button[aria-pressed='true'] {
+  background: #287084;
+  border-color: #d1ecf1;
+}
+.steps {
+  padding-left: 19px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.steps li[data-active='true'] {
+  color: var(--accent);
+}
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 11px 0;
+}
+.slots span,
+.slots code {
+  padding: 7px;
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  background: #193943;
+  color: #e4f1f3;
+  font-size: 12px;
+}
+.slots [data-unmapped='true'] {
+  border-color: #eea698;
+  color: #f6c3b4;
+  border-style: dashed;
+}
+.tokens {
+  display: grid;
+  gap: 10px;
+  margin: 15px 0;
+}
+.tokens span {
+  font: 12px monospace;
+  border-left: 3px solid var(--accent);
+  padding-left: 9px;
+}
+.fields {
+  display: grid;
+  gap: 7px;
+  margin: 11px 0;
+}
+.fields > div {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr auto;
+  gap: 7px;
+  font-size: 11px;
+  padding: 6px;
+  background: #193943;
+  border-radius: 5px;
+}
+.fields code {
+  overflow-wrap: anywhere;
+}
+.fields em {
+  font-style: normal;
+  color: #c6dcdf;
+}
+.sidebarFields {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.sidebarFields > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid #416471;
+  padding-bottom: 6px;
+}
+.caution {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #f0c988;
+}
+@media (max-width: 650px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .fields > div {
+    grid-template-columns: 1fr 1fr auto;
+  }
+  .figure img {
+    max-height: 240px;
+  }
+  .scene h3 {
+    font-size: 18px;
+  }
+}
+.scene,
+.sidebar {
+  min-width: 0;
+  color: #e4f0f2;
+  background: #102631;
+}
+.scene :is(p, b, strong, span, code, li, figcaption),
+.sidebar :is(p, small, span, code) {
+  color: #e4f0f2;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.scene :is(h3),
+.sidebar h3 {
+  color: #bde9ed;
+}
+.scene :is(.card, .figure, .columns, .fields, .tokens) {
+  min-width: 0;
+}
+.scene .caution {
+  color: #f0c988;
+}
+.scene .slots [data-unmapped='true'] {
+  color: #f6c3b4;
+}
+.sidebar {
+  padding: 12px;
+  border-radius: 12px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.sidebar h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.sidebar p,
+.sidebar small {
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 0;
+}
+.path {
+  overflow-wrap: anywhere;
+}
+.sidebarFields code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.fields span {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 650px) {
+  .fields > div {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  }
+  .sidebarFields {
+    gap: 4px;
+  }
+  .scene .card {
+    padding: 10px;
+  }
+  .scene .buttons button {
+    font-size: 12px;
+  }
+}

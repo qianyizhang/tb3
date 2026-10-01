@@ -23831,15 +23831,15 @@
       ],
       "illustration_kind": "vqa",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-medframeqa-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-medframeqa-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted mixed explanation after main source/native/visual/export/mobile/noGPU/reference review: two exact upstream JPEG slots and pinned Full MCQ contracts. Exact Full question/frame/options/split joins, calibration/private isolation, native CT geometry, public gold, private references, actual outputs and scores remain absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/medframeqa/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: MedFrameQA.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names microsoft/llava-med-v1.5-mistral-7b. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -23872,7 +23872,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights."
       },
-      "source_brief_sha256": "c470e85ccb056a163821e113af94af4bd977c105121751f145a14ee2262ae31a",
+      "source_brief_sha256": "9006c61d6fc402e4b2c2cf2f6431de957222cd61bcab5335c67ceb9fdaa4a9f4",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -23881,14 +23881,112 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "source_class": "source-derived-teaching",
+      "actual_data_gap": "Two native public upstream test frames acquired; exact Full question/image/option mapping absent. Upstream row has6 options, Full acceptsA..E. No source gold/reasoning, private reference, submitted answer or score in pack.",
+      "acquisition_route": "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA",
+      "warning_text": "Two native public upstream test frames acquired; exact Full question/image/option mapping absent. Upstream row has6 options, Full acceptsA..E. No source gold/reasoning, private reference, submitted answer or score in pack.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-medframeqa-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-medframeqa-task-resolution.json",
+        "receipt_sha256": "fbdd96fb5b59ef5c7777643d27637668058a0b8d7904994d02ce691d33194594",
+        "reviewer": "Codex main agent",
+        "reviewed_at": "2026-09-30T23:33:00.834254+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Mixed explanation using two exact public upstream MedFrameQA JPEG slots and source-pinned Full MCQ contracts; exact Full question/frame/options/split join absent, source gold/reasoning/private references/model outputs excluded.",
+      "completion_review": {
+        "date": "2026-10-01T00:03:32.575646+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "218a97da5256c879c01cedd61e8d5e6c6986307d5d49ed16ca26c44ac3fbf6de"
+      },
+      "reviewed_contract_projection": {
+        "title": "Answer a question from supplied medical frames",
+        "goal": "Develop the declared method to answer each staged multiple-choice question using all referenced frames. **Mixed illustration \u2014 upstream frames only; exact Full case and option mapping absent.** [Official acquisition](https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA). No source answer, model output or score is shown.",
+        "value": "The task links a question, its frame list and explicit option tokens to one answer record. Label agreement does not establish independent image diagnosis or clinical benefit.",
+        "raw": "Full question.json supplies question_id, question, image_paths and options. The question is the scoring unit; frames, videos and patients are different units. This pack includes two byte-identical upstream public test JPEG frames at1280x720, pinned revision96083ae9405b2fdb687005c65902f2ee3d7c9f12. Source image_1/image_2 slots establish display order only, not video timestamps, native CT slice order, orientation, spacing or HU. Exact Full row/frame membership is unknown.\n\nThe public card lists2851 test questions and video_id, but supplies no video/patient-disjoint split guarantee. Its sample has6 options; Full acceptsA..E. A list normalizer zips only5 slots and drops the6th; do not silently truncate this row into a Full question. Source clinical question/options/keywords/gold/reasoning are withheld from the pack.",
+        "helpers": "Pinned config and loader/prompt guidance. Lite fixes microsoft/llava-med-v1.5-mistral-7b via LLaVA-Med loader/conversation prompt; Standard supplies bounded candidates and source priority guidance. Source availability/performance assertions are instructions, not verified current access or outcomes. All listed frames must be passed to the actual method.\n\nS3 guide requests15 public calibration rows and reads question.reference_answer or reasoning_chain.answer if present. Actual verifier accepts>=10 records and optional gold, with raw/invalid-gold checks. Smoke config1..10 is separate. Exact staged calibration/evaluation overlap and answer visibility remain unaudited.",
+        "tools": "inspect_image records dimensions, declared intent and logs, not a learned finding. public_medical_search applies a URL whitelist and term sanitization; this is not proof of private isolation. submit_answer atomically writes WORKSPACE_DIR/<question_id>/answer.json; evaluator uses the corresponding agent_dir path. No helper, model, postprocess probe or grader ran here.",
+        "reference": "Private ground_truth.csv by question_id is preferred, otherwise private/<question_id>/answer.json. Public upstream correct_answer/reasoning_chain is answer-bearing benchmark material, retained audit-only and absent from the teaching pack. Future educational reference text requires explicit reader reveal and public-source partition, never an alleged model result or private Full answer. Runtime filesystem isolation is untested.",
+        "spec": "Plan, provision, validate multi-frame prompt/postprocess, infer and submit under Lite or Standard. This configured task is multiple_choice; generic open-ended EM/F1/judge branches are not its answer mode. Keep raw model evidence separate from label normalization and exact option-text mapping. No real decoded output is available.",
+        "output": "Write <agent_dir>/<question_id>/answer.json with six required fields (extra keys are accepted): question_id, predicted_label, predicted_answer, raw_model_output, model_name and runtime_s. Require matching ID, label stripped/uppercased to A..E, string fields, nonempty model_name and numeric runtime_s \u2265 0. The checker does not enforce an exact key set, finite runtime or exclude booleans as numbers; whitespace-only model_name is truthy. These are implementation boundaries, not recommended output. If selected option exists and predicted_answer is nonempty, strict checker demands exact option text. Empty-text loophole is not an output recommendation. Placeholder/generic/fallback records are distinct from both-empty honest skip; empty label still fails MCQ parsing. If a valid A..E label is retained while both text fields are empty, both checker and scorer can accept the record and award label credit. This is a source loophole, not evidence of inference or an output recommendation. All teaching values remain null.",
+        "score": "Accuracy is exact normalized predicted_label agreement with private answer_label divided by **all evaluator-selected question IDs (an explicit list, or IDs discovered for the selected split)**, rounded 4 and zero when empty. Missing/invalid/placeholder stay in denominator. Scorer label validity is weaker than full format validity, so a raw correct label can come from a strict-schema-invalid record. Private gold is not normalized by the matching step; missing gold errors do not establish model failure.\n\noutput_format_valid requires every file strict-valid; submission_format_valid uses strict-validfilefraction>=0.5 with max(expected,1). Completion counts prediction files, not valid inference; parse/valid/placeholder rates use all questions. Rating F if gradedformatfalse, no scorer-valid answers or completion<.5; otherwise A accuracy>=.40, B>=.25, else C. These are thresholds, not outcomes. No all-case report-task zeroing is assumed.\n\nWorkflow renormalizes non-None active weights. S2 uses env/model-call/smoke binary evidence. S4 half completion/half parse has placeholder>.05\u2192.2, undetectedmodelcall\u2192.3, nearlycomplete genuine lowaccuracy<.05\u2192.5 caps. S5 half anyvalid/half gradedformat. Optional workflow judge and postprocess guards affect steps. Overall half workflow/half accuracy. fail_rate uses 1-filecompletion despite a valid-answer comment. No score, runtime, model or verifier run exists.",
+        "challenge": "Preserve every actual frame and the declared option mapping without treating 6 source options as 5. Source public-gold calibration may change assistance; decoding/schema/log evidence does not independently establish patient interpretation.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "Exact Full question/frame/options/split mapping, calibration/reference isolation and any participant output or metric absent. Retained successful HTTP 200 acquisitions establish two upstream frames, not Full equivalence. No source request was repeated during this refresh. Reopen Full-data claims only after exact mapping and 6-to-5 conversion audit; reopen clinical/model claims only with independent authorized evidence.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Upstream native frame slots and unresolved Full question",
+          "Method-specific prompt and A..E contract",
+          "Empty six-field answer and question-based scoring boundaries"
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Task-specific Lite guidance: microsoft/llava-med-v1.5-mistral-7b.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/medframeqa-task.tar.gz"
+          ],
+          [
+            "Pinned public dataset",
+            "https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA/tree/96083ae9405b2fdb687005c65902f2ee3d7c9f12"
+          ],
+          [
+            "CC BY4.0",
+            "https://creativecommons.org/licenses/by/4.0/"
+          ],
+          [
+            "Resolution and source receipts",
+            "presentation/external-tasks/sources/automedbench-full-medframeqa-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Develop the declared method to answer each staged multiple-choice question using all referenced frames. <strong>Mixed illustration \u2014 upstream frames only; exact Full case and option mapping absent.</strong> <a href=\"https://huggingface.co/datasets/SuhaoYu1020/MedFrameQA\">Official acquisition</a>. No source answer, model output or score is shown.</p>",
+          "value": "<p>The task links a question, its frame list and explicit option tokens to one answer record. Label agreement does not establish independent image diagnosis or clinical benefit.</p>",
+          "raw": "<p>Full question.json supplies question_id, question, image_paths and options. The question is the scoring unit; frames, videos and patients are different units. This pack includes two byte-identical upstream public test JPEG frames at1280x720, pinned revision96083ae9405b2fdb687005c65902f2ee3d7c9f12. Source image_1/image_2 slots establish display order only, not video timestamps, native CT slice order, orientation, spacing or HU. Exact Full row/frame membership is unknown.</p>\n<p>The public card lists2851 test questions and video_id, but supplies no video/patient-disjoint split guarantee. Its sample has6 options; Full acceptsA..E. A list normalizer zips only5 slots and drops the6th; do not silently truncate this row into a Full question. Source clinical question/options/keywords/gold/reasoning are withheld from the pack.</p>",
+          "helpers": "<p>Pinned config and loader/prompt guidance. Lite fixes microsoft/llava-med-v1.5-mistral-7b via LLaVA-Med loader/conversation prompt; Standard supplies bounded candidates and source priority guidance. Source availability/performance assertions are instructions, not verified current access or outcomes. All listed frames must be passed to the actual method.</p>\n<p>S3 guide requests15 public calibration rows and reads question.reference_answer or reasoning_chain.answer if present. Actual verifier accepts&gt;=10 records and optional gold, with raw/invalid-gold checks. Smoke config1..10 is separate. Exact staged calibration/evaluation overlap and answer visibility remain unaudited.</p>",
+          "tools": "<p>inspect_image records dimensions, declared intent and logs, not a learned finding. public_medical_search applies a URL whitelist and term sanitization; this is not proof of private isolation. submit_answer atomically writes WORKSPACE_DIR/&lt;question_id&gt;/answer.json; evaluator uses the corresponding agent_dir path. No helper, model, postprocess probe or grader ran here.</p>",
+          "reference": "<p>Private ground_truth.csv by question_id is preferred, otherwise private/&lt;question_id&gt;/answer.json. Public upstream correct_answer/reasoning_chain is answer-bearing benchmark material, retained audit-only and absent from the teaching pack. Future educational reference text requires explicit reader reveal and public-source partition, never an alleged model result or private Full answer. Runtime filesystem isolation is untested.</p>",
+          "spec": "<p>Plan, provision, validate multi-frame prompt/postprocess, infer and submit under Lite or Standard. This configured task is multiple_choice; generic open-ended EM/F1/judge branches are not its answer mode. Keep raw model evidence separate from label normalization and exact option-text mapping. No real decoded output is available.</p>",
+          "output": "<p>Write &lt;agent_dir&gt;/&lt;question_id&gt;/answer.json with six required fields (extra keys are accepted): question_id, predicted_label, predicted_answer, raw_model_output, model_name and runtime_s. Require matching ID, label stripped/uppercased to A..E, string fields, nonempty model_name and numeric runtime_s \u2265 0. The checker does not enforce an exact key set, finite runtime or exclude booleans as numbers; whitespace-only model_name is truthy. These are implementation boundaries, not recommended output. If selected option exists and predicted_answer is nonempty, strict checker demands exact option text. Empty-text loophole is not an output recommendation. Placeholder/generic/fallback records are distinct from both-empty honest skip; empty label still fails MCQ parsing. If a valid A..E label is retained while both text fields are empty, both checker and scorer can accept the record and award label credit. This is a source loophole, not evidence of inference or an output recommendation. All teaching values remain null.</p>",
+          "score": "<p>Accuracy is exact normalized predicted_label agreement with private answer_label divided by <strong>all evaluator-selected question IDs (an explicit list, or IDs discovered for the selected split)</strong>, rounded 4 and zero when empty. Missing/invalid/placeholder stay in denominator. Scorer label validity is weaker than full format validity, so a raw correct label can come from a strict-schema-invalid record. Private gold is not normalized by the matching step; missing gold errors do not establish model failure.</p>\n<p>output_format_valid requires every file strict-valid; submission_format_valid uses strict-validfilefraction&gt;=0.5 with max(expected,1). Completion counts prediction files, not valid inference; parse/valid/placeholder rates use all questions. Rating F if gradedformatfalse, no scorer-valid answers or completion&lt;.5; otherwise A accuracy&gt;=.40, B&gt;=.25, else C. These are thresholds, not outcomes. No all-case report-task zeroing is assumed.</p>\n<p>Workflow renormalizes non-None active weights. S2 uses env/model-call/smoke binary evidence. S4 half completion/half parse has placeholder&gt;.05\u2192.2, undetectedmodelcall\u2192.3, nearlycomplete genuine lowaccuracy&lt;.05\u2192.5 caps. S5 half anyvalid/half gradedformat. Optional workflow judge and postprocess guards affect steps. Overall half workflow/half accuracy. fail_rate uses 1-filecompletion despite a valid-answer comment. No score, runtime, model or verifier run exists.</p>",
+          "challenge": "<p>Preserve every actual frame and the declared option mapping without treating 6 source options as 5. Source public-gold calibration may change assistance; decoding/schema/log evidence does not independently establish patient interpretation.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>Exact Full question/frame/options/split mapping, calibration/reference isolation and any participant output or metric absent. Retained successful HTTP 200 acquisitions establish two upstream frames, not Full equivalence. No source request was repeated during this refresh. Reopen Full-data claims only after exact mapping and 6-to-5 conversion audit; reopen clinical/model claims only with independent authorized evidence.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Native upstream input, not a Full case.</strong> Switch between two exact JPEG source slots; no diagnostic overlay or invented CT geometry. Source order is not time or native slice order.</p>",
+          "helpers": "<p><strong>Public rule and assistance view, not an answer reveal.</strong> Compare 6 upstream option slots against 5 Full token slots; inspect Lite/Standard prompt and calibration roles without source gold.</p>",
+          "answer": "<p><strong>Unsubmitted schema, not a generated answer.</strong> Six null fields, strict/graded validity gates and all-question denominator; private answers and public gold are absent.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24459,10 +24557,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 110,
+    "reviewed-scripted-planar": 111,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 21,
+    "blocked-source-input": 20,
     "pending-operation-review": 1
   },
   "completion_program": {
