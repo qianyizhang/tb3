@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging-dynamic-mri-v1": "retained-imaging-dynamic-mri-v1",
     "imaging-eit-v1": "retained-imaging-eit-v1",
     "imaging101-poisson-v1": "retained-imaging101-poisson-source-v1",
     "bcer-grappa-v1": "retained-bcer-grappa-source-v1",
@@ -178,6 +179,19 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-imaging-dynamic-mri-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+            "measurement.json",
+        },
+    ),
     "retained-imaging-eit-v1": (
         "source-records",
         None,
@@ -2311,6 +2325,12 @@ class InterpretationBBcerLongBrainFullChannels(Closed):
     reference: Pair
 
 
+class ImagingDynamicMriChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class ImagingEitChannels(Closed):
     progress: Pair
     detail: Pair
@@ -4281,6 +4301,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class ImagingDynamicMriBeat(ExpansionBeat[ImagingDynamicMriChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class ImagingDynamicMriStory(Story[ImagingDynamicMriChannels]):
+    recipe: Literal["imaging-dynamic-mri-v1"]
+    beats: tuple[ImagingDynamicMriBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("Dynamic MRI has no private reference assets or reveal")
+        return self
+
+
 class ImagingEitBeat(ExpansionBeat[ImagingEitChannels]):
     scene: Literal["input", "helper", "operation", "output", "limits"]
 
@@ -5061,6 +5099,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingDynamicMriStory
     | ImagingEitStory
     | ImagingPoissonStory
     | BcerGrappaStory
@@ -5195,6 +5234,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingDynamicMriStory
     | ImagingEitStory
     | ImagingPoissonStory
     | BcerGrappaStory
@@ -5489,6 +5529,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingDynamicMriStory
     | ImagingEitStory
     | ImagingPoissonStory
     | BcerGrappaStory
@@ -5802,6 +5843,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-imaging-dynamic-mri-v1": (
+                "Dynamic-MRI-native-kspace-plus-symbolic-temporal-inverse",
+                "MIT",
+                None,
+            ),
             "retained-imaging-eit-v1": (
                 "EIT-native-boundary-voltage-plus-symbolic-inverse",
                 "MIT",
@@ -6087,6 +6133,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "pixel-grid, seconds; arbitrary intensity"
+                if pack_id == "retained-imaging-dynamic-mri-v1"
                 else "m, V; normalized change"
                 if pack_id == "retained-imaging-eit-v1"
                 else "unitless"
@@ -6223,6 +6271,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-imaging-dynamic-mri-v1"
             or pack_id == "retained-imaging-eit-v1"
             or pack_id == "retained-imaging101-poisson-source-v1"
             or pack_id == "retained-bcer-grappa-source-v1"

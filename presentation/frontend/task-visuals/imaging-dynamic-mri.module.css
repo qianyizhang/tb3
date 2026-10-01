@@ -1,0 +1,286 @@
+.scene {
+  --accent: #73c7e6;
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  background: #0c2130;
+  color: #e7f1f6;
+  align-content: start;
+  min-width: 0;
+}
+.scene[data-dynamic-mri-scene='helper'] {
+  --accent: #eeb989;
+}
+.scene[data-dynamic-mri-scene='operation'] {
+  --accent: #a7c1f0;
+}
+.scene[data-dynamic-mri-scene='output'] {
+  --accent: #92d9ae;
+}
+.scene[data-dynamic-mri-scene='limits'] {
+  --accent: #eea698;
+}
+.scene h3 {
+  color: var(--accent);
+  margin: 0;
+  font-size: 20px;
+}
+.scene p,
+.scene b,
+.scene strong,
+.scene label,
+.scene li,
+.scene code,
+.scene dt,
+.scene dd {
+  color: #e7f1f6;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  min-width: 0;
+}
+.card {
+  padding: 12px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: #142c3d;
+  min-width: 0;
+}
+.card p,
+.card li {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 8px 0;
+}
+.card b,
+.card strong {
+  font-size: 14px;
+  line-height: 1.4;
+}
+.card small {
+  display: block;
+  color: #c3d8e5;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+.figure {
+  margin: 0;
+  min-width: 0;
+}
+.figure svg {
+  display: block;
+  max-height: 190px;
+  width: 100%;
+  background: #0b1d2a;
+  border: 1px solid #527084;
+  border-radius: 9px;
+}
+.figure figcaption,
+.legend {
+  font-size: 12px;
+  color: #c3d8e5;
+  line-height: 1.5;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 5px;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0;
+}
+.buttons button,
+.card button {
+  border: 1px solid #95bdd1;
+  background: #244659;
+  color: #eef8fc;
+  padding: 7px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.buttons button[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: #305b71;
+}
+.card input {
+  width: 100%;
+  accent-color: #73c7e6;
+}
+.values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 13px;
+}
+.values dd {
+  margin: 0;
+}
+.steps {
+  padding-left: 22px;
+}
+.steps li[data-active='true'] {
+  color: #f5b75b;
+}
+.formula {
+  display: block;
+  margin: 14px 0;
+  padding: 10px;
+  border: 1px solid #6d96ae;
+  background: #0b1d2a;
+  font-size: 18px !important;
+  text-align: center;
+}
+.reveal {
+  border-left: 3px solid #eeb989;
+  padding: 9px;
+  margin-top: 9px;
+  background: #263846;
+}
+.reveal ul {
+  padding-left: 18px;
+}
+.empty {
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  min-height: 110px;
+  margin: 12px 0;
+  border: 1px dashed #7fb598;
+  color: #d9eee2;
+  text-align: center;
+}
+.caution {
+  color: #f0c399 !important;
+  display: block;
+  margin-top: 9px;
+}
+.sidebar {
+  background: #112939;
+  color: #e7f1f6;
+  min-width: 0;
+}
+.sidebar h3,
+.sidebar p,
+.sidebar small,
+.sidebar code,
+.sidebar span,
+.sidebar strong {
+  color: #e7f1f6;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.sidebarFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.sidebarFields strong {
+  color: #edc592;
+}
+@media (max-width: 620px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .scene h3 {
+    font-size: 17px;
+  }
+  .figure svg {
+    max-height: 190px;
+  }
+  .card {
+    padding: 10px;
+  }
+}
+:global([data-explainer-export-frame]) .scene {
+  gap: 8px;
+  padding: 8px;
+}
+:global([data-explainer-export-frame]) .card p,
+:global([data-explainer-export-frame]) .card li {
+  font-size: 12px;
+  margin: 6px 0;
+}
+:global([data-explainer-export-frame]) .figure svg {
+  max-height: 190px;
+}
+:global([data-explainer-export-frame]) .card {
+  padding: 10px;
+}
+
+.tokens {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  font-size: 11px;
+  margin-top: 8px;
+}
+.tokens span {
+  color: #e7f1f6;
+}
+
+.scene h3,
+.card b,
+.card p,
+.card small,
+.card label,
+.figure figcaption {
+  color: #e7f1f6 !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.sidebar {
+  padding: 14px;
+  border: 1px solid #557a90;
+  border-radius: 10px;
+  align-self: start;
+}
+.sidebar h3,
+.sidebar b,
+.sidebar p,
+.sidebar small,
+.sidebar code,
+.sidebar span,
+.sidebar strong {
+  color: #e7f1f6 !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.sidebar p,
+.sidebar small {
+  font-size: 12px;
+  line-height: 1.4;
+}
+.eyebrow {
+  display: block;
+  color: #c3d8e5;
+  font-size: 12px;
+}
+.scene :focus-visible {
+  outline: 2px solid #73c7e6;
+  outline-offset: 3px;
+}
+:global(.scene-player[data-recipe='imaging-dynamic-mri-v1'] .scene-explanation),
+:global(.scene-player[data-recipe='imaging-dynamic-mri-v1'] .scene-explanation strong),
+:global(.scene-player[data-recipe='imaging-dynamic-mri-v1'] .scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+@media (max-width: 620px) {
+  .tokens {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

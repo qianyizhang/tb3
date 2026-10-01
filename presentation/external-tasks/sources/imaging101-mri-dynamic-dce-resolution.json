@@ -1,0 +1,310 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce",
+  "actual_data_gap": "Native synthetic k-space/masks are present, but source truth is solver-visible; generator defaults differ from the retained15% acquisition. No participant reconstruction or perfusion result is shown.",
+  "attempts": [
+    {
+      "action": "Revalidate retained dynamic MRI code/native/source-output/transport pins and read acquisition, temporal operator and reference-scoring contracts without execution",
+      "source": "Code dc2f668939b21e8312e22529615def610f8611df; HF assets a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+      "outcome": "17SHA/size pins,6Git blobs,4HF LFS/tree identities verified;571735B retained syntheticraw asset remains matching source input.15%/noise0.005 retained metadata distinguished from25%/0.02 generator defaults; no calibrated concentration/kinetic parameter, participant reconstruction/score. Historical acquisitions preserved; no freshGET, source operator/Fourier/solver/scorer/model run.",
+      "attempted_at": "2026-10-01T06:16:14.936519+00:00"
+    },
+    {
+      "action": "Re-read pinned generic filesystem/no-filesystem reference discovery and DCE native tree",
+      "source": "Pinned reference_scoring.py/scorer.py and retained mri_dynamic_dce-tree.json at exact declared revisions",
+      "outcome": "Dynamic images4D squeeze to20x128x128 in filesystem route; generic ground_truth.npy absent for no-filesystem route. No scorer/source operator/model execution or fresh GET.",
+      "attempted_at": "2026-10-01T07:49:16.944961+00:00"
+    }
+  ],
+  "display_warning": "Native synthetic k-space/masks are present, but source truth is solver-visible; generator defaults differ from the retained15% acquisition. No participant reconstruction or perfusion result is shown.",
+  "entry_id": "imaging101-mri-dynamic-dce",
+  "evaluator_run": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Choose blind inversion or source-method reproduction; isolate source truth if blind, preserve15%/0.005 retained acquisition, pin real20x128x128 output and exact evaluator/reference before scoring.",
+  "resolved_at": "2026-09-29T07:17:39.156065+00:00",
+  "schema": 1,
+  "scientific_gaps": [
+    "Synthetic scalar2D image operator has no coil dimension, sensitivity map, B0 or trajectory calibration; no patient spatial spacing/orientation. Cartesian random point masks are not radial GRASP acquisition.",
+    "Retained masks exactly2457/16384 sampled points per frame, central10x10 fully sampled;20times0-60s from synthetic truth. Generator executable defaults25%/noise0.02 differ retained15%/0.005.",
+    "Main header says ADMM but calls temporal_tv_pgd withlambda0.001/200iterations/tol1e-5. Prox implementation acts on complex temporal differences despite magnitude wording; final output is abs(x). No run occurred.",
+    "Entire data including ground_truth.npz is staged visibly; synthetic truth reader reveal is not private evaluator isolation.",
+    "Generic uses whole-volume range RMSE and uncentered cosine; source also reports mean per-frame metrics. Per-frame means and globalvolume values differ. Source zero-range errorreturns0, genericreturnsinfinity; PSNR edge cases differ.",
+    "Native saved TV is not model output; generic output is single real.npy, main saves source NPZ. No metrics.json top-level boundaries in pinned asset tree."
+  ],
+  "solver_run": false,
+  "source_license": "MIT",
+  "source_pins": [
+    {
+      "bytes": 4326,
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_dynamic_dce/README.md",
+      "role": "pinned-task-source",
+      "sha256": "6098c15f98c20f4a99fa35bff396255ae026f86245c47168807dea3a5e863cf3",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 6105,
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_dynamic_dce/main.py",
+      "role": "pinned-task-source",
+      "sha256": "ce4b5920bc21ce7baa019328c0b84a9184269e7030d5b5b58682eaba77983c09",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 9962,
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_dynamic_dce/src/generate_data.py",
+      "role": "pinned-task-source",
+      "sha256": "561ae596f1dbf47fec7e9a27b54c9ab144dbd05a89aeeb0963250a2823131f05",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 3525,
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_dynamic_dce/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "1ca4e258ca2c1a4f2e179bee3ffae7a795943ad8018aa4434d33dc7bba1aa0e7",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 2158,
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_dynamic_dce/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "74d4463c612c145a5d5099fdeabc7830dd986418b8b8a607ef6e1bb3be2fdccd",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 8898,
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_dynamic_dce/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "bead2c967a7eefa3920904b96c255f3b80e5f557f7f3b9712335ce476570b88a",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 16095,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_dynamic_dce/data/ground_truth.npz",
+      "role": "solver-visible-ground-truth",
+      "sha256": "3f6ba2e2e6a2cafe06bccb1f08f132aebb689ed829b8ee672ad520de3b1ae564",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 299,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_dynamic_dce/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "bf546fae53fea72ec2e8cf8d7b5245863a3ff5546cb4e970d7d4c0ab1ee7a0b1",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 571735,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_dynamic_dce/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "c6247fbdbefe6186beaf890f54201fa56459cf9695f48f6d05eb4b558e9a9d56",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 1179828,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_dynamic_dce/evaluation/reference_outputs/tv_reconstruction.npz",
+      "role": "source-saved-output",
+      "sha256": "b3f6907819e08b4d9d70451863c8f255144a5419fe89187601820abb68e42bc7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 4713,
+      "path": ".local/explainers/core-20260929/formation-b-source/mri_dynamic_dce-tree.json",
+      "role": "pinned-HF-tree",
+      "sha256": "5e6f49b56fffad4f79fae0812876091e892406ea43b1acd7b49ac3c2d3c9659b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce"
+    },
+    {
+      "bytes": 8313,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-dynamic-dce/source-evidence/visualization.py",
+      "role": "fresh-pinned-native-or-source",
+      "sha256": "93db288a0c002ad4e07144681c1a29198e97a02965d3358001d31b6a09c0cbf0",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce/src/visualization.py"
+    },
+    {
+      "bytes": 571735,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-dynamic-dce/source-evidence/raw_data.npz",
+      "role": "fresh-pinned-native-or-source",
+      "sha256": "c6247fbdbefe6186beaf890f54201fa56459cf9695f48f6d05eb4b558e9a9d56",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce/data/raw_data.npz"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/evaluation_harness/reference_scoring.py",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/evaluation_harness/runner.py",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/evaluation_harness/scorer.py",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 1076,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/LICENSE",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Generic output/reconstruction.npy versus main evaluation/reference_outputs/tv_reconstruction.npz key reconstruction",
+    "helper": "L1 README,data,requirements; L2 approach; L3 design. data/ground_truth.npz is already solver-visible",
+    "input": "Native synthetic20-frame complex k-space and binary frame-varying Cartesian point masks",
+    "private_reference": "No sequestered reference established; teaching reveal does not change source staging",
+    "source_saved_output": "Pinned source TV output retained only for audit; not participant reconstruction"
+  },
+  "status": "local-source-preparation",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "frame-varying masked Fourier reconstruction",
+    "reference_policy": "no-reference-assets",
+    "synthetic_source": true,
+    "task_id": "mri_dynamic_dce",
+    "title": "Dynamic DCE MRI reconstruction",
+    "signal_vs_concentration": "Generator labels gamma-variate curves concentration, but adds them to synthetic phantom intensity. No calibrated signal-to-mM conversion, T1/relaxivity, sequence parameters, AIF/Tofts/Ktrans or fitted kinetic output established.",
+    "temporal_units": "Native time_points are float32 seconds0\u201360 across20frames; source temporal differences are adjacent-index x[t+1]-x[t], not divided by elapsed seconds or a concentration-rate estimate.",
+    "filesystem_vs_no_filesystem_scorer": "Filesystem scoring discovers data/ground_truth.npz and squeezes the four-dimensional dynamic_images array to (20,128,128); time_points (20,) cannot match this output. No-filesystem scoring instead requires generic ground_truth.npy under reference_outputs or data, absent from the pinned DCE listing; the saved TV NPZ is not a substitute for that filename. Staged files and scorer route must be pinned before any verdict."
+  },
+  "top_warning": {
+    "label": "Native synthetic input \u00b7 blind condition unproven",
+    "link_label": "Pinned dynamic MRI acquisition",
+    "text": "Native synthetic input; source truth is solver-visible and generator defaults differ. No reconstruction or perfusion result.",
+    "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce"
+  },
+  "verification": [
+    {
+      "git_blob_sha1": "bb3d032ebc9cb19a0eb57f99930707ff6dc25ebc",
+      "path": "tasks/mri_dynamic_dce/README.md",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "ce039ce2d643717dc31bada8f18bc8536756c07e",
+      "path": "tasks/mri_dynamic_dce/main.py",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "2e3c955a201c604fa4092594aef8c9baf7df910b",
+      "path": "tasks/mri_dynamic_dce/src/generate_data.py",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "00f9467b4cf767f0022b89d0036b44f2e027e2b7",
+      "path": "tasks/mri_dynamic_dce/src/physics_model.py",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "6cba12232d4eb06a7fe6708d6d9afa86a54f3f63",
+      "path": "tasks/mri_dynamic_dce/src/preprocessing.py",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "b56ace3b04cebef35135337039335b74b251de31",
+      "path": "tasks/mri_dynamic_dce/src/solvers.py",
+      "status": "matched"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_dynamic_dce/data/ground_truth.npz"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_dynamic_dce/data/meta_data.json"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_dynamic_dce/data/raw_data.npz"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_dynamic_dce/evaluation/reference_outputs/tv_reconstruction.npz"
+    }
+  ],
+  "historical_acquisition_attempts": [
+    {
+      "action": "review pinned task source and Git blob identities",
+      "attempted_at": "2026-09-29T07:17:39.156065+00:00",
+      "outcome": "6 task source files matched pinned Git blob SHA-1.",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce"
+    },
+    {
+      "action": "download bounded pinned native data/metadata/truth and saved source output",
+      "attempted_at": "2026-09-29T07:17:39.156065+00:00",
+      "outcome": "HTTP 200; 4 asset bytes match pinned asset manifest and HF LFS SHA-256. No task/preparer/solver/scorer executed.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET",
+      "outcome": "HTTP200;8313bytes; no task/operator/solver/scorer executed",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce/src/visualization.py"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET",
+      "outcome": "HTTP200;571735bytes; no task/operator/solver/scorer executed",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce/data/raw_data.npz"
+    },
+    {
+      "action": "verify retained exact pinned common harness and license receipt",
+      "outcome": "4 freshly acquired common source/contract files verified by hashes; read-only reuse, no execution",
+      "source": "dc2f668939b21e8312e22529615def610f8611df"
+    }
+  ],
+  "historical_transport_receipt": {
+    "path": ".local/explainers/goal-20260930/workers/imaging101-mri-dynamic-dce/source-evidence/attempts.json",
+    "bytes": 813,
+    "sha256": "3dbe2ff01a240d7baf84f49bdaa5441a8e16ba055ed03b063b3aea247ef5aad3",
+    "role": "Exact historical acquisition objects; untimestamped records unchanged, no new GET"
+  },
+  "reference_policy": "no-reference-assets",
+  "source_class": "source-derived-teaching",
+  "warning_text": "Native synthetic input; source truth is solver-visible and generator defaults differ. No reconstruction or perfusion result.",
+  "refresh_provenance": {
+    "baseline": "94251ce5bfaa32638aec43f00482bb7c11b2410e",
+    "old_receipt_sha256": "ea164c2336f4e339c9cd6facc507e5c2135a566c89f2336c94849d20edb1dab3",
+    "historical_acquisition_objects_preserved_exactly": true
+  },
+  "original_conditions": {
+    "draft_basis": "94251ce5bfaa32638aec43f00482bb7c11b2410e",
+    "section_sha256": "8869ba41c824f53d9817e05024aa25f01cde9672c948ed0688af400ff2990959",
+    "rows": [
+      {
+        "name": "L1 \u00b7 README",
+        "helper": "README, data description and method hints.",
+        "remaining": "Choose and implement a workable algorithm."
+      },
+      {
+        "name": "L2 \u00b7 + approach",
+        "helper": "A proposed algorithmic approach is added.",
+        "remaining": "Design the software and implement the method."
+      },
+      {
+        "name": "L3 \u00b7 + design",
+        "helper": "Approach and software design are added.",
+        "remaining": "Implement the specified design and numerical details."
+      }
+    ]
+  },
+  "brief_sha256": "79adcb428d269e05091075d5e02c2f9fc81855ecd5f7e74a3399e1ced09815b7"
+}

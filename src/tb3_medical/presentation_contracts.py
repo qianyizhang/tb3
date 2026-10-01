@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class ImagingDynamicMriChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class ImagingDynamicMriBeat(ExpansionBeat):
+    channels: ImagingDynamicMriChannels
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class ImagingDynamicMriPlan(ExpansionPlan):
+    recipe: Literal["imaging-dynamic-mri-v1"]
+    beats: list[ImagingDynamicMriBeat]
+
+
 class ImagingEitChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2611,6 +2627,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | ImagingDynamicMriPlan
     | ImagingEitPlan
     | ImagingPoissonPlan
     | BcerGrappaPlan

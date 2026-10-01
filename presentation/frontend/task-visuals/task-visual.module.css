@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging-dynamic-mri-v1'],
     [data-recipe='imaging-eit-v1'],
     [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
@@ -3470,6 +3471,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging-dynamic-mri-v1'],
     [data-recipe='imaging-eit-v1'],
     [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
@@ -3555,6 +3557,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging-dynamic-mri-v1'],
     [data-recipe='imaging-eit-v1'],
     [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
@@ -3640,6 +3643,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging-dynamic-mri-v1'],
     [data-recipe='imaging-eit-v1'],
     [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
@@ -3726,6 +3730,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging-dynamic-mri-v1'],
     [data-recipe='imaging-eit-v1'],
     [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
@@ -3812,6 +3817,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging-dynamic-mri-v1'],
     [data-recipe='imaging-eit-v1'],
     [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
@@ -3897,6 +3903,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging-dynamic-mri-v1'],
       [data-recipe='imaging-eit-v1'],
       [data-recipe='imaging101-poisson-v1'],
       [data-recipe='bcer-grappa-v1'],
@@ -3981,6 +3988,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging-dynamic-mri-v1'],
       [data-recipe='imaging-eit-v1'],
       [data-recipe='imaging101-poisson-v1'],
       [data-recipe='bcer-grappa-v1'],
@@ -4864,6 +4872,24 @@
 :global(.scene-player)[data-recipe='imaging-eit-v1'] :global(.scene-explanation),
 :global(.scene-player)[data-recipe='imaging-eit-v1'] :global(.scene-explanation strong),
 :global(.scene-player)[data-recipe='imaging-eit-v1'] :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+:global([data-explainer-export-frame])
+  :global(.scene-player)[data-recipe='imaging-dynamic-mri-v1']
+  .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame])
+  :global(.scene-player)[data-recipe='imaging-dynamic-mri-v1']
+  .storyOutput {
+  height: 280px;
+}
+
+:global(.scene-player)[data-recipe='imaging-dynamic-mri-v1'] :global(.scene-explanation),
+:global(.scene-player)[data-recipe='imaging-dynamic-mri-v1'] :global(.scene-explanation strong),
+:global(.scene-player)[data-recipe='imaging-dynamic-mri-v1'] :global(.scene-explanation a) {
   min-width: 0;
   overflow-wrap: anywhere;
 }

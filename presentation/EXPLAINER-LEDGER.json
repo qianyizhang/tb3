@@ -13792,15 +13792,15 @@
       ],
       "illustration_kind": "mri_dynamic",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-mri-dynamic-dce",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-dynamic-dce.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A dynamic MRI image sequence.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted native synthetic dynamic-MRI masks/complex measurements and symbolic temporal-TV/prox contracts after main17-pin/45-image visual/export/mobile/no-GPU/reader-boundary review. Source truth is already solver-visible; no participant reconstruction or perfusion result; retained acquisition and reference aggregation remain qualified.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-mri-dynamic-dce/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Undersampled MRI frequency measurements over time.",
         "helpers": "Sampling information and a temporal-regularization model. The assistance level can add an approach and software design.",
@@ -13837,7 +13837,7 @@
         ],
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
-      "source_brief_sha256": "79bda05b46d287f0d78649666da4508573f4b9eff9f7edf840133cecc1069eb8",
+      "source_brief_sha256": "79adcb428d269e05091075d5e02c2f9fc81855ecd5f7e74a3399e1ced09815b7",
       "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
       "dependency_deferral": {
         "actor": "user",
@@ -13847,14 +13847,104 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Native synthetic k-space/masks are present, but source truth is solver-visible; generator defaults differ from the retained15% acquisition. No participant reconstruction or perfusion result is shown.",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce",
+      "warning_text": "Native synthetic input; source truth is solver-visible and generator defaults differ. No reconstruction or perfusion result.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-mri-dynamic-dce-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-mri-dynamic-dce-resolution.json",
+        "receipt_sha256": "697d00c0fa826250e8a9deef701a1df841ca1c1af0ca7f1859a663a587fca4b0",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T07:55:40.885145+00:00",
+        "no_visual_acceptance": true,
+        "main_audit": ".local/explainers/goal-20260930/imaging101-mri-dynamic-dce/source-audit-preliminary-01.json"
+      },
+      "acceptance_scope": "Pinned native synthetic dynamic-MRI masks and complex k-space; symbolic zero-filled/temporal-TV/prox contracts, reader-controlled source-visible truth and qualified generic reference aggregation. No participant reconstruction or perfusion result.",
+      "completion_review": {
+        "date": "2026-10-01T08:20:14.901876+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "e635272c33ac01da5b97246fe9027535a5320e3b3bdfca172be74795ba680666"
+      },
+      "reviewed_contract_projection": {
+        "title": "Reconstruct a contrast-enhanced MRI time series",
+        "goal": "Implement a computational method to reconstruct a contrast-enhanced MRI time series.\n\n> **Actual gap:** Native synthetic k-space/masks are present, but source truth is solver-visible; generator defaults differ from the retained 15% acquisition. No participant reconstruction or perfusion result is shown. [Pinned official acquisition](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce).",
+        "value": "This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.",
+        "raw": "Matching native **synthetic complex64 k-space and float32 binary masks** over 20 time frames, not patient acquisition. Each 128\u00d7128 frame retains 2457/16384 frequency cells; masks are distinct and include a central 10\u00d710 square. Time is float32 seconds 0\u201360; no coil axis/sensitivities, physical spacing or anatomical orientation is established.",
+        "helpers": "Sampling information and a temporal-regularization model. The assistance level can add an approach and software design.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "reference": "data/ground_truth.npz is copied with solver-visible data. Synthetic reference images are initially covered in teaching, with explicit reveal/reset; this does not establish solver-blind evaluation.",
+        "spec": "Reconstruct a **real magnitude sequence**, preserving native time/grid order after removing the supplied batch axis. The declared model is framewise masked centered orthonormal Fourier encoding with complex sampled-point noise; no Fourier operator is executed here. Retained metadata is 15% / noise 0.005, whereas generator defaults are 25% / 0.02; seed 42 is a source default, not a newly verified retained acquisition history.\n\nGenerator comments call gamma-variate uptake curves concentration, but executable code adds them to arbitrary phantom intensity. No signal-to-mM calibration, T1/relaxivity/sequence mapping, arterial input function, Tofts/Ktrans fit or physiological parameter is established. Source pixel (49,79) is a public synthetic truth series, not a participant reconstruction, ROI average or clinical kinetic result.\n\nExecutable main selects temporal-TV **PGD**, lambda 0.001 / max 200 / tol 1e-5, despite an ADMM header; source function defaults differ. Proximal steps act on complex temporal differences, with final magnitude output, despite magnitude-only prose. The 20-frame sequence has 19 adjacent differences, without division by elapsed seconds; this is not a concentration derivative.",
+        "output": "Generic output/reconstruction.npy: one real 20\u00d7128\u00d7128 magnitude sequence. Task main instead saves source tv_reconstruction.npz with key reconstruction in evaluation/reference_outputs. No participant output is shown.",
+        "score": "Generic scoring averages **327,680 array entries** for global MSE and range-normalized RMSE; NCC is uncentered cosine over the full magnitude volume. Source visualization also reports per-frame errors over 16,384 pixels and a 20-frame mean; that average differs from one global error. Source zero-range NRMSE returns 0 while generic scoring gives infinity. Source numeric PSNR/zero-norm conventions also differ. Shape-based reference discovery favors dynamic_images after squeezing batch; the 20-entry time axis is not an image reference. Retained tree has metrics_detail but no top-level metrics.json boundary file. No metric, pass/fail or participant performance is computed.\n\nFilesystem scoring discovers data/ground_truth.npz and squeezes the four-dimensional dynamic_images array to (20,128,128); time_points (20,) cannot match this output. No-filesystem scoring instead requires generic ground_truth.npy under reference_outputs or data, absent from the pinned DCE listing; the saved TV NPZ is not a substitute for that filename. Staged files and scorer route must be pinned before any verdict.",
+        "challenge": "Strong temporal smoothing can hide the contrast changes the scan was intended to measure.",
+        "families": "One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.",
+        "gap": "Native synthetic k-space/masks are present, but source truth is solver-visible; generator defaults differ from the retained 15% acquisition. No participant reconstruction or perfusion result is shown. Choose blind inversion or source-method reproduction; isolate source truth if blind, preserve 15%/0.005 retained acquisition, pin real 20\u00d7128\u00d7128 output and exact evaluator/reference before scoring.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Undersampled MRI frequency measurements over time",
+          "Reconstruct a contrast-enhanced MRI time series",
+          "A dynamic MRI image sequence"
+        ],
+        "variants": [
+          {
+            "name": "L1 \u00b7 README",
+            "helper": "README, data description and method hints.",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "name": "L2 \u00b7 + approach",
+            "helper": "A proposed algorithmic approach is added.",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "name": "L3 \u00b7 + design",
+            "helper": "Approach and software design are added.",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_dynamic_dce/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Implement a computational method to reconstruct a contrast-enhanced MRI time series.</p>\n<p>&gt; <strong>Actual gap:</strong> Native synthetic k-space/masks are present, but source truth is solver-visible; generator defaults differ from the retained 15% acquisition. No participant reconstruction or perfusion result is shown. <a href=\"https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce\">Pinned official acquisition</a>.</p>",
+          "value": "<p>This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.</p>",
+          "raw": "<p>Matching native <strong>synthetic complex64 k-space and float32 binary masks</strong> over 20 time frames, not patient acquisition. Each 128\u00d7128 frame retains 2457/16384 frequency cells; masks are distinct and include a central 10\u00d710 square. Time is float32 seconds 0\u201360; no coil axis/sensitivities, physical spacing or anatomical orientation is established.</p>",
+          "helpers": "<p>Sampling information and a temporal-regularization model. The assistance level can add an approach and software design.</p>",
+          "tools": "<p>Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.</p>",
+          "reference": "<p>data/ground_truth.npz is copied with solver-visible data. Synthetic reference images are initially covered in teaching, with explicit reveal/reset; this does not establish solver-blind evaluation.</p>",
+          "spec": "<p>Reconstruct a <strong>real magnitude sequence</strong>, preserving native time/grid order after removing the supplied batch axis. The declared model is framewise masked centered orthonormal Fourier encoding with complex sampled-point noise; no Fourier operator is executed here. Retained metadata is 15% / noise 0.005, whereas generator defaults are 25% / 0.02; seed 42 is a source default, not a newly verified retained acquisition history.</p>\n<p>Generator comments call gamma-variate uptake curves concentration, but executable code adds them to arbitrary phantom intensity. No signal-to-mM calibration, T1/relaxivity/sequence mapping, arterial input function, Tofts/Ktrans fit or physiological parameter is established. Source pixel (49,79) is a public synthetic truth series, not a participant reconstruction, ROI average or clinical kinetic result.</p>\n<p>Executable main selects temporal-TV <strong>PGD</strong>, lambda 0.001 / max 200 / tol 1e-5, despite an ADMM header; source function defaults differ. Proximal steps act on complex temporal differences, with final magnitude output, despite magnitude-only prose. The 20-frame sequence has 19 adjacent differences, without division by elapsed seconds; this is not a concentration derivative.</p>",
+          "output": "<p>Generic output/reconstruction.npy: one real 20\u00d7128\u00d7128 magnitude sequence. Task main instead saves source tv_reconstruction.npz with key reconstruction in evaluation/reference_outputs. No participant output is shown.</p>",
+          "score": "<p>Generic scoring averages <strong>327,680 array entries</strong> for global MSE and range-normalized RMSE; NCC is uncentered cosine over the full magnitude volume. Source visualization also reports per-frame errors over 16,384 pixels and a 20-frame mean; that average differs from one global error. Source zero-range NRMSE returns 0 while generic scoring gives infinity. Source numeric PSNR/zero-norm conventions also differ. Shape-based reference discovery favors dynamic_images after squeezing batch; the 20-entry time axis is not an image reference. Retained tree has metrics_detail but no top-level metrics.json boundary file. No metric, pass/fail or participant performance is computed.</p>\n<p>Filesystem scoring discovers data/ground_truth.npz and squeezes the four-dimensional dynamic_images array to (20,128,128); time_points (20,) cannot match this output. No-filesystem scoring instead requires generic ground_truth.npy under reference_outputs or data, absent from the pinned DCE listing; the saved TV NPZ is not a substitute for that filename. Staged files and scorer route must be pinned before any verdict.</p>",
+          "challenge": "<p>Strong temporal smoothing can hide the contrast changes the scan was intended to measure.</p>",
+          "families": "<p>One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.</p>",
+          "gap": "<p>Native synthetic k-space/masks are present, but source truth is solver-visible; generator defaults differ from the retained 15% acquisition. No participant reconstruction or perfusion result is shown. Choose blind inversion or source-method reproduction; isolate source truth if blind, preserve 15%/0.005 retained acquisition, pin real 20\u00d7128\u00d7128 output and exact evaluator/reference before scoring.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Native synthetic input.</strong> Raw complex64 k-space and float32 masks have shape 1\u00d720\u00d7128\u00d7128; loader removes batch axis. Each frame samples 2457/16384 points (14.9963%), with native order preserved; time spans 0\u201360 seconds. No coil axis, sensitivities, physical spacing or patient geometry.</p>",
+          "helpers": "<p><strong>Given material, not an answer reveal.</strong> Sampling information and a temporal-regularization model. The assistance level can add an approach and software design.</p>",
+          "answer": "<p><strong>Expected artifact, not an actual prediction.</strong> Generic output/reconstruction.npy: one real 20\u00d7128\u00d7128 magnitude sequence. Task main instead saves source tv_reconstruction.npz with key reconstruction in evaluation/reference_outputs. No participant output is shown.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25621,9 +25711,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 122,
+    "reviewed-scripted-planar": 123,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 56,
+    "blocked-source-contract": 55,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging-dynamic-mri-v1',
   'imaging-eit-v1',
   'imaging101-poisson-v1',
   'bcer-grappa-v1',
@@ -114,6 +115,16 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging-dynamic-mri-v1')
+    return {
+      scene: 'data-dynamic-mri-scene',
+      reference: '[data-dynamic-mri-source-series], [data-dynamic-mri-acquisition]',
+      referenceChannel: null,
+      readerControlled: true,
+      referencePolicy: 'no-reference-assets',
+      output: '[data-dynamic-mri-output-schema]',
+      aside: '[data-dynamic-mri-output]',
+    };
   if (plan.recipe === 'imaging-eit-v1')
     return {
       scene: 'data-eit-scene',
@@ -742,6 +753,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging-dynamic-mri-v1': [
+      /Native synthetic input; source truth is solver-visible and generator defaults differ.*No reconstruction or perfusion result/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_dynamic_dce',
+      'data-dynamic-mri-scene',
+      false,
+    ],
     'imaging-eit-v1': [
       /Native synthetic input; source truth is solver-visible and output\/reference scale unresolved.*No participant reconstruction/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/eit_conductivity_reconstruction',
@@ -1598,6 +1615,250 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await absent();
     await page.locator('[data-story-step="0"]').click();
     await absent();
+  }
+  if (plan.recipe === 'imaging-dynamic-mri-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-dynamic-mri-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(
+        await page
+          .locator('[data-dynamic-mri-source-series], [data-dynamic-mri-acquisition]')
+          .count(),
+        0,
+      );
+    const advance = async (frame) => {
+      await page.bringToFront();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.locator('.scene-play').click();
+      await page.waitForFunction(
+        (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+        frame + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const native = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/imaging101-mri-dynamic-dce/measurement.json',
+        'utf8',
+      ),
+    );
+    const helper = JSON.parse(
+      fs.readFileSync('presentation/task-explorer/imaging101-mri-dynamic-dce/helper.json', 'utf8'),
+    );
+    const bytes = Buffer.from(native.mask_bits_base64, 'base64');
+    assert.equal(bytes.length, 40960);
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    const slider = scene.locator('input[type="range"]');
+    for (const [index, key] of [
+      [0, 'Home'],
+      [1, 'ArrowRight'],
+      [19, 'End'],
+    ]) {
+      await slider.focus();
+      await slider.press(key);
+      assert.equal(await slider.inputValue(), String(index));
+      const text = await scene.innerText();
+      assert.ok(
+        text.includes(
+          `Frame ${index} · ${native.time_seconds[index].toFixed(2)} synthetic seconds`,
+        ),
+      );
+      assert.ok(text.includes('2457/16384'));
+      assert.ok(
+        text.includes(
+          native.native_kspace_center_64_64[index].map((v) => v.toPrecision(5)).join(' + i ') +
+            ' a.u.',
+        ),
+      );
+      const expected = [];
+      for (let y = 0; y < 128; y++)
+        for (let x = 0; x < 128; x++) {
+          const i = index * 16384 + y * 128 + x;
+          if ((bytes[Math.floor(i / 8)] >>> (i % 8)) & 1)
+            expected.push([String(x), String(y), '1', '1', '#73c7e6']);
+        }
+      assert.equal(expected.length, 2457);
+      assert.deepEqual(
+        await scene
+          .locator('svg rect')
+          .evaluateAll((els) =>
+            els
+              .slice(1)
+              .map((e) => ['x', 'y', 'width', 'height', 'fill'].map((k) => e.getAttribute(k))),
+          ),
+        expected,
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /128×128 k-space index grid.*rows down, columns right/,
+      );
+      assert.match(text, /14\.9963%.*not 25%.*No coil dimension.*physical spacing/is);
+      await capture(`frame-${index}`);
+      await absent();
+    }
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await slider.inputValue(), '0');
+    const hi = plan.beats.findIndex((b) => b.scene === 'helper');
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    const truth = () =>
+      scene.getByRole('button', { name: 'Reveal synthetic source series', exact: true });
+    await truth().click();
+    assert.match(
+      await scene.locator('[data-dynamic-mri-source-series]').innerText(),
+      /\(49,79\).*already solver-visible.*not reconstruction.*ROI average.*perfusion/is,
+    );
+    assert.deepEqual(
+      await scene.locator('[data-dynamic-mri-source-series] span').allTextContents(),
+      helper.source_pixel_series.map((v, i) => `t${i}: ${v.toPrecision(4)} a.u.`),
+    );
+    await capture('source-series');
+    for (const tier of ['L1', 'L2', 'L3']) {
+      await scene.getByRole('button', { name: tier, exact: true }).click();
+      assert.equal(
+        await scene.getByRole('button', { name: tier, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(await scene.locator('[data-dynamic-mri-tier]').innerText(), helper.tiers[tier]);
+    }
+    await scene.getByRole('button', { name: 'Hide synthetic source series', exact: true }).click();
+    await absent();
+    await advance(plan.beats[hi].startFrame);
+    await truth().click();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    assert.equal(
+      await scene.getByRole('button', { name: 'L1', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await truth().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    await truth().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    const ops = plan.beats.filter((b) => b.scene === 'operation');
+    assert.equal(ops.length, 4);
+    await page.locator(`[data-story-step="${plan.beats.indexOf(ops[0])}"]`).click();
+    for (let step = 0; step < 4; step++)
+      for (let method = 0; method < 3; method++) {
+        await scene.locator(`[data-dynamic-mri-operation-step="${step}"]`).click();
+        await scene
+          .getByRole('group', { name: 'Dynamic MRI source method', exact: true })
+          .getByRole('button', {
+            name: ['zero filled', 'temporal tv', 'prox'][method],
+            exact: true,
+          })
+          .click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          ops[step].startFrame +
+            [0, Math.floor((ops[step].frames - 1) / 2), ops[step].frames - 1][method],
+        );
+        assert.equal(
+          await scene
+            .locator(`[data-dynamic-mri-operation-step="${step}"]`)
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        assert.match(
+          await scene.locator('[data-dynamic-mri-step]').innerText(),
+          [
+            /Remove batch axis.*time and grid/,
+            /y_t=M_t F\(x_t\).*masked complex noise/,
+            /19 intervals/,
+            /measured data consistency.*temporal TV/,
+          ][step],
+        );
+        assert.match(
+          await scene.locator('[data-dynamic-mri-method]').innerText(),
+          [
+            /abs.*inverseFFT.*no baseline image/is,
+            /temporal_tv_pgd.*0\.001.*200.*1e-5.*ADMM conflicts/is,
+            /complex temporal differences.*no explicit magnitude-only.*abs\(x\)/is,
+          ][method],
+        );
+        assert.match(
+          await scene.innerText(),
+          /19 adjacent-index differences.*no division by time.*\[1,3,2\].*\[2,−1\].*not concentration/is,
+        );
+        await capture(`contract-${step}-${method}`);
+        await absent();
+      }
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /output\/reconstruction\.npy.*20×128×128 real magnitude sequence.*UNSUBMITTED.*not contrast concentration/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    assert.equal(await scene.locator('[data-dynamic-mri-format]').count(), 0);
+    await scene.getByRole('button', { name: 'Inspect artifact format', exact: true }).click();
+    assert.match(
+      await scene.locator('[data-dynamic-mri-format]').innerText(),
+      /single real numeric array.*tv_reconstruction\.npz.*not participant/is,
+    );
+    await capture('output-contract');
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    for (const rule of ['metric', 'task metric', 'threshold']) {
+      await scene.getByRole('button', { name: rule, exact: true }).click();
+      assert.equal(
+        await scene.getByRole('button', { name: rule, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.locator('[data-dynamic-mri-rule]').innerText(),
+        {
+          metric: /327680.*global max.*uncentered cosine.*no flux scaling.*dynamic_images/is,
+          'task metric': /16384 pixels.*20 frames.*not 20 patients.*0.*infinity/is,
+          threshold: /metrics_detail.*no metrics\.json boundary.*No generic pass\/fail/is,
+        }[rule],
+      );
+      await capture(`rule-${rule.replaceAll(' ', '-')}`);
+    }
+    const acquisition = () =>
+      scene.getByRole('button', { name: 'Reveal acquisition mismatch', exact: true });
+    await acquisition().click();
+    assert.match(
+      await scene.locator('[data-dynamic-mri-acquisition]').innerText(),
+      /noise 0\.005.*sampled points.*0\.02 and 25%.*not regenerate/is,
+    );
+    await capture('acquisition-revealed');
+    await scene.getByRole('button', { name: 'Hide acquisition mismatch', exact: true }).click();
+    await absent();
+    await advance(plan.beats[li].startFrame);
+    await acquisition().click();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.equal(
+      await scene.getByRole('button', { name: 'metric', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await acquisition().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    await acquisition().click();
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.equal(await scene.locator('[data-dynamic-mri-format]').count(), 0);
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    await page.locator('.scene-reset').click();
   }
   if (plan.recipe === 'imaging-eit-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -8207,6 +8468,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging-dynamic-mri-v1',
       'imaging-eit-v1',
       'imaging101-poisson-v1',
       'bcer-grappa-v1',

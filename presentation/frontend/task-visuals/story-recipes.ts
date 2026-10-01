@@ -1,3 +1,4 @@
+import { imagingDynamicMriPack } from './imaging-dynamic-mri';
 import { imagingEitPack } from './imaging-eit';
 import { imagingPoissonPack } from './imaging101-ct-poisson-lowdose';
 import { bcerGrappaPack } from './bcer-short-recon-grappa';
@@ -129,6 +130,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging-dynamic-mri-v1',
     'imaging-eit-v1',
     'imaging101-poisson-v1',
     'bcer-grappa-v1',
@@ -1202,6 +1204,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#456477', 'Native synthetic FEM mesh'],
           ['#f5b75b', 'Injected electrode'],
           ['#73c7e6', 'Measured voltage pair'],
+        ],
+      };
+    case 'imaging-dynamic-mri-v1':
+      return {
+        heading: 'Native dynamic MRI masks and temporal contracts',
+        corner: 'Synthetic measurements · unsubmitted inverse',
+        warning: imagingDynamicMriPack.source.notice,
+        legend: [
+          ['#73c7e6', 'Native sampled k-space point'],
+          ['#c3d8e5', 'Unsampled / zero-filled point'],
+          ['#eeb989', 'Explicit source helper only'],
         ],
       };
     case 'bcer-brain-full-v1':
