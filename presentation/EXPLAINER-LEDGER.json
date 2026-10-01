@@ -14514,36 +14514,135 @@
       }
     },
     {
-      "entry_id": "imaging101-mri-pnp-admm",
-      "title": "Reconstruct brain MRI with a learned denoiser prior",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-mri-pnp-admm/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_pnp_admm",
+      "actual_data_gap": "Raw source contains masks and noise, not measured k-space. prepare_data requires metadata noise_scale absent in the pinned file; source-visible Brain.jpg image rights not separately verified. No participant reconstruction or score.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-mri-pnp-admm.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "A sampling mask and pretrained DnCNN denoiser used inside ADMM iterations. The assistance level can add an approach and software design.",
+        "output": "A reconstructed brain image.",
+        "raw": "Partially sampled brain MRI frequency measurements.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_pnp_admm/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-pnp-admm.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A reconstructed brain image.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-mri-pnp-admm",
+      "illustration_basis": "mixed",
+      "illustration_kind": "mri",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "mri",
-      "subject": "brain",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-pnp-admm.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A reconstructed brain image.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Partially sampled brain MRI frequency measurements.",
-        "helpers": "A sampling mask and pretrained DnCNN denoiser used inside ADMM iterations. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A reconstructed brain image.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted three native binary Fourier masks and symbolic pinned PnP-ADMM contracts after main 20-pin/42-image visual/export/mobile/no-GPU/reference review. Required metadata noise scale and Brain.jpg attribution remain unresolved; source image solver-visible, checkpoint byte identity only, participant observation/reconstruction/score absent.",
+      "source_brief_sha256": "3d5e9fb3912b2ba7fea8738dff31a8c9a5c5e6a55f41a72b69c29f902c1cf7bc",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-mri-pnp-admm-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-mri-pnp-admm-resolution.json",
+        "receipt_sha256": "c3445f3746214114423f3515dcd62c136310d11b9621d450a88a5a9fe25f12fc",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T11:44:36.277454+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-mri-pnp-admm/source-audit-final-01.json",
+        "audit_sha256": "39a63fa629ad400f1ae1f4101d94b6950592c0919650bdc8ed129ee40c387d1a",
+        "no_visual_acceptance": true,
+        "resolution_observation": {
+          "assessed_at": "2026-10-01T11:44:36.277454+00:00",
+          "assessor": "Codex main agent",
+          "category": "source-and-contract-resolution",
+          "state": "ready-for-visual-review",
+          "attempt_status": "retained-source-verified",
+          "evidence": ".local/explainers/goal-20260930/imaging101-mri-pnp-admm/source-audit-final-01.json",
+          "next_action": "Main fresh visual/export/mobile/no-GPU/playback and source-reference reset review; no source FFT/denoiser/checkpoint/solver/scorer/task/model execution."
+        }
+      },
+      "story_id": "imaging101-mri-pnp-admm",
+      "subject": "brain",
+      "title": "Reconstruct brain MRI with a learned denoiser prior",
+      "warning_text": "No measured k-space or participant result; pinned metadata omits required noise_scale. Actual masks only.",
+      "acceptance_scope": "Native binary Fourier mask displays and symbolic pinned PnP-ADMM rules. Required metadata noise scale absent; no measured observation, participant reconstruction, score or truth image. Source image is solver-visible. Checkpoint byte identity only; no source operator, solver, scorer, task or model execution.",
+      "completion_review": {
+        "date": "2026-10-01T12:00:37.063347+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "1a34bfa92e535f0f7c39baa0a4593264675bb43f7355de30c34e27fac5a85572"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace PnP-ADMM without inventing a reconstructed brain image",
+        "goal": "Explain actual source masks and the pinned data-consistency / denoiser / dual updates.",
+        "value": "Not yet specified.",
+        "raw": "One single-coil 256\u00d7256 source image condition. raw_data.npz has five float32 arrays (1,256,256): mask_random, mask_radial, mask_cartesian, noises_real, noises_imag. No acquired or synthesized y is stored. Actual mask cells: random 19674/65536, radial 19249/65536, Cartesian 19456/65536. Radial here is a Cartesian-grid binary pattern, not a non-Cartesian trajectory. No coil sensitivity maps, physical FOV, millimetre spacing, scanner orientation or time calibration.",
+        "helpers": "Source image image float32 (1,256,256), cast float64 by preprocessing; metadata says float64, a loading convention rather than stored dtype. Pretrained RealSN_DnCNN_noise15.pth is 11028772 bytes; retained SHA pinned, never deserialized. 17 convolution layers, 64 features, batch normalization in middle layers, real spectral-normalization hooks; loader wraps DataParallel and eval. README convergence and Lipschitz claims do not establish a verified property of this loaded checkpoint/runtime or actual iterations.",
+        "tools": "Pinned NumPy/Torch scaffold only, not executed. Source get_complex_noise default scale=3 exists, but prepare_data explicitly indexes metadata['noise_scale']; pinned metadata lacks the key. No effective scale or distribution variance inferred. Stored noise described as Gaussian, not a new generated realization. Noise is added at every Fourier bin, including outside the mask. Denoiser sigma=15 is an 8-bit training/scaling parameter, not measurement noise standard deviation or physical MRI units.",
+        "reference": "Visible data includes ground_truth.npz:image. Local runner copies data directory recursively; truth is solver-visible, not held-out private truth. Used to synthesize observation and compute per-iteration PSNR. No source truth image, saved source reconstruction, participant image or score is bundled. Later reader card reveals source/evaluator rules only, covered synchronously on backward/exit/reset. Upstream Brain.jpg rights not independently verified.",
+        "spec": "The unshifted default FFT forward is not unitary. Its linear Hilbert adjoint requires the grid-size factor 256\u00b2 = 65536 times inverse FFT, with the sampling mask; the helper called zero-filled adjoint returns magnitude of inverse FFT, which is a nonlinear initializer. No Fourier operation was executed here.\n\nThe retained 11028772-byte checkpoint matches the primary HF LFS identity. We did not load or unpickle it, inspect learned parameters, run spectral normalization or denoise. Source code targets a 17-layer RealSN-DnCNN residual model and scales convolution weights by 0.3^(1/17); the eval hook does not recompute normalization. That source declaration and checkpoint identity do not establish an effective network Lipschitz bound, training provenance, PnP convergence or reconstruction quality. Batch normalization, runtime state and theorem assumptions would require separate verification.\n\nUnshifted NumPy default FFT2 (forward unnormalized, inverse 1/65536): y=M FFT2(image)+scale(noise_real+i noise_imag). Single coil, complex128 synthesized y; real image iterates. x0=v0=abs(ifft2(y)), u0=0. Source main fixes alpha=2, sigma=15, 100 iterations, CPU; no adaptive schedule or stopping test. No initialization or FFT performed in this explainer.\n\nvtilde=x+u; vf=FFT2(vtilde); sampled vf=(La2 vf+y)/(1+La2), La2=1/(2alpha)=.25; unsampled vf unchanged; v=real(ifft2(vf)). Code weighting is retained verbatim; do not substitute another ADMM/rho convention or an orthonormal complex adjoint.\n\nxtilde=2v\u2212xold\u2212uold. Normalize using min/max without a constant-input guard. Scale range=1+15/255/2, shift=(1\u2212range)/2, send float tensor (1,1,256,256) to residual network. Subtract model residual, invert scaling and range, then u=uold+xold\u2212v. This update order differs from generic textbook ADMM notation. No learned residual or reconstructed output invented; authored scalar sampled-bin examples demonstrate only arithmetic. No checkpoint inference, convergence or clinical effect.\n\nNative mask PNGs preserve all 256\u00b2 binary cells: teal (87,209,204) sampled, dark (18,41,57) unsampled; rows/columns are stored Fourier-array indices, not anatomical axes. No fftshift, interpolation or reconstruction. Three controls select a display mask only; pinned main remains random.",
+        "output": "Generic live participant path output/reconstruction.npy, comparable real 256\u00d7256 image (65536 comparison pixels). Source main separately writes evaluation/reference_outputs/pnp_admm_reconstruction.npz:reconstruction float32 (1,256,256), zerofill.npz, psnr_history.npy, ground_truth.npy and metrics.json. Saved source examples are not participant submissions or fresh runs. Actual output, truth display and scores absent.",
+        "score": "Actual retained truth has only image: float32 (1,256,256), reduced to (256,256) by the filesystem helper because ndim > 2. Candidate path, key and prepared shape were audited without calling a scorer; The retained subset has no evaluation/reference_outputs/ground_truth.npy, so its data truth precedes fallback saved reconstruction candidates. Source main separately writes an evaluation ground_truth.npy, which would outrank data truth when actually staged; that file is not acquired or pixel-verified in this packet. The no-filesystem fallback instead requires a 2D NPY reference, flux-normalizes output and uses relative L2 NRMSE, unlike filesystem unscaled range NRMSE. These routes establish no measured result.\n\nGeneric source reference selection prefers ground_truth files and shape/key compatibility. Squeezes only arrays above two dimensions, complex becomes magnitude, float64 comparison without intensity normalization. Cosine NCC has no mean centering; range NRMSE=RMS error/reference range (constant reference \u2192 infinity). MSE, PSNR and global SSIM are declared metrics; both ncc_boundary and nrmse_boundary required for a pass predicate. Source main metrics.json pnp_admm/zerofill fields are distinct from a verified installed threshold contract. No task evaluator executed, reference selected live or metric verdict. Phase information is discarded by generic magnitude comparison; cosine NCC is scale-insensitive while range NRMSE is not.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Actual binary source masks, missing observation and metadata scale explained first.",
+          "Canonical steps expose Fourier consistency, three display masks and residual-denoiser/dual rules.",
+          "Participant output empty; late reader rules cover on backward/exit/reset."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -14563,34 +14662,47 @@
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned README",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_pnp_admm/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_pnp_admm/src/solvers.py"
+          ],
+          [
+            "Pinned preprocessing",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_pnp_admm/src/preprocessing.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_pnp_admm"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-mri-pnp-admm-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "8cda89749b72455736e2fb27e9dec631db246221ff0d967a520edb0cbbce93d5",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-pnp-admm.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A reconstructed brain image.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Explain actual source masks and the pinned data-consistency / denoiser / dual updates.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>One single-coil 256\u00d7256 source image condition. raw_data.npz has five float32 arrays (1,256,256): mask_random, mask_radial, mask_cartesian, noises_real, noises_imag. No acquired or synthesized y is stored. Actual mask cells: random 19674/65536, radial 19249/65536, Cartesian 19456/65536. Radial here is a Cartesian-grid binary pattern, not a non-Cartesian trajectory. No coil sensitivity maps, physical FOV, millimetre spacing, scanner orientation or time calibration.</p>",
+          "helpers": "<p>Source image image float32 (1,256,256), cast float64 by preprocessing; metadata says float64, a loading convention rather than stored dtype. Pretrained RealSN_DnCNN_noise15.pth is 11028772 bytes; retained SHA pinned, never deserialized. 17 convolution layers, 64 features, batch normalization in middle layers, real spectral-normalization hooks; loader wraps DataParallel and eval. README convergence and Lipschitz claims do not establish a verified property of this loaded checkpoint/runtime or actual iterations.</p>",
+          "tools": "<p>Pinned NumPy/Torch scaffold only, not executed. Source get_complex_noise default scale=3 exists, but prepare_data explicitly indexes metadata[&#x27;noise_scale&#x27;]; pinned metadata lacks the key. No effective scale or distribution variance inferred. Stored noise described as Gaussian, not a new generated realization. Noise is added at every Fourier bin, including outside the mask. Denoiser sigma=15 is an 8-bit training/scaling parameter, not measurement noise standard deviation or physical MRI units.</p>",
+          "reference": "<p>Visible data includes ground_truth.npz:image. Local runner copies data directory recursively; truth is solver-visible, not held-out private truth. Used to synthesize observation and compute per-iteration PSNR. No source truth image, saved source reconstruction, participant image or score is bundled. Later reader card reveals source/evaluator rules only, covered synchronously on backward/exit/reset. Upstream Brain.jpg rights not independently verified.</p>",
+          "spec": "<p>The unshifted default FFT forward is not unitary. Its linear Hilbert adjoint requires the grid-size factor 256\u00b2 = 65536 times inverse FFT, with the sampling mask; the helper called zero-filled adjoint returns magnitude of inverse FFT, which is a nonlinear initializer. No Fourier operation was executed here.</p>\n<p>The retained 11028772-byte checkpoint matches the primary HF LFS identity. We did not load or unpickle it, inspect learned parameters, run spectral normalization or denoise. Source code targets a 17-layer RealSN-DnCNN residual model and scales convolution weights by 0.3^(1/17); the eval hook does not recompute normalization. That source declaration and checkpoint identity do not establish an effective network Lipschitz bound, training provenance, PnP convergence or reconstruction quality. Batch normalization, runtime state and theorem assumptions would require separate verification.</p>\n<p>Unshifted NumPy default FFT2 (forward unnormalized, inverse 1/65536): y=M FFT2(image)+scale(noise_real+i noise_imag). Single coil, complex128 synthesized y; real image iterates. x0=v0=abs(ifft2(y)), u0=0. Source main fixes alpha=2, sigma=15, 100 iterations, CPU; no adaptive schedule or stopping test. No initialization or FFT performed in this explainer.</p>\n<p>vtilde=x+u; vf=FFT2(vtilde); sampled vf=(La2 vf+y)/(1+La2), La2=1/(2alpha)=.25; unsampled vf unchanged; v=real(ifft2(vf)). Code weighting is retained verbatim; do not substitute another ADMM/rho convention or an orthonormal complex adjoint.</p>\n<p>xtilde=2v\u2212xold\u2212uold. Normalize using min/max without a constant-input guard. Scale range=1+15/255/2, shift=(1\u2212range)/2, send float tensor (1,1,256,256) to residual network. Subtract model residual, invert scaling and range, then u=uold+xold\u2212v. This update order differs from generic textbook ADMM notation. No learned residual or reconstructed output invented; authored scalar sampled-bin examples demonstrate only arithmetic. No checkpoint inference, convergence or clinical effect.</p>\n<p>Native mask PNGs preserve all 256\u00b2 binary cells: teal (87,209,204) sampled, dark (18,41,57) unsampled; rows/columns are stored Fourier-array indices, not anatomical axes. No fftshift, interpolation or reconstruction. Three controls select a display mask only; pinned main remains random.</p>",
+          "output": "<p>Generic live participant path output/reconstruction.npy, comparable real 256\u00d7256 image (65536 comparison pixels). Source main separately writes evaluation/reference_outputs/pnp_admm_reconstruction.npz:reconstruction float32 (1,256,256), zerofill.npz, psnr_history.npy, ground_truth.npy and metrics.json. Saved source examples are not participant submissions or fresh runs. Actual output, truth display and scores absent.</p>",
+          "score": "<p>Actual retained truth has only image: float32 (1,256,256), reduced to (256,256) by the filesystem helper because ndim &gt; 2. Candidate path, key and prepared shape were audited without calling a scorer; The retained subset has no evaluation/reference_outputs/ground_truth.npy, so its data truth precedes fallback saved reconstruction candidates. Source main separately writes an evaluation ground_truth.npy, which would outrank data truth when actually staged; that file is not acquired or pixel-verified in this packet. The no-filesystem fallback instead requires a 2D NPY reference, flux-normalizes output and uses relative L2 NRMSE, unlike filesystem unscaled range NRMSE. These routes establish no measured result.</p>\n<p>Generic source reference selection prefers ground_truth files and shape/key compatibility. Squeezes only arrays above two dimensions, complex becomes magnitude, float64 comparison without intensity normalization. Cosine NCC has no mean centering; range NRMSE=RMS error/reference range (constant reference \u2192 infinity). MSE, PSNR and global SSIM are declared metrics; both ncc_boundary and nrmse_boundary required for a pass predicate. Source main metrics.json pnp_admm/zerofill fields are distinct from a verified installed threshold contract. No task evaluator executed, reference selected live or metric verdict. Phase information is discarded by generic magnitude comparison; cosine NCC is scale-insensitive while range NRMSE is not.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26037,9 +26149,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 126,
+    "reviewed-scripted-planar": 127,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 52,
+    "blocked-source-contract": 51,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

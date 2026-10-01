@@ -1,3 +1,4 @@
+import { imagingPnpAdmmPack } from './imaging101-mri-pnp-admm';
 import { imagingNoncartesianPack } from './imaging101-mri-noncartesian-cs';
 import { imagingWaveletPack } from './imaging101-mri-l1-wavelet';
 import { imagingGrappaPack } from './imaging-grappa';
@@ -133,6 +134,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-pnp-admm-v1',
     'imaging101-noncartesian-v1',
     'imaging101-wavelet-v1',
     'imaging-grappa-v1',
@@ -1253,6 +1255,16 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#57d1cc', 'Native radial coordinates; frequency-grid units'],
           ['#526373', 'Frequency-coordinate axes; no physical FOV calibration'],
+        ],
+      };
+    case 'imaging101-pnp-admm-v1':
+      return {
+        heading: 'Masks, data consistency and learned denoiser',
+        corner: 'No measured k-space; metadata scale missing',
+        warning: imagingPnpAdmmPack.source.notice,
+        legend: [
+          ['#57d1cc', 'Sampled native Fourier mask cells'],
+          ['#122939', 'Unsampled native Fourier mask cells'],
         ],
       };
     case 'bcer-brain-full-v1':

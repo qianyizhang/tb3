@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-pnp-admm-v1',
   'imaging101-noncartesian-v1',
   'imaging101-wavelet-v1',
   'imaging-grappa-v1',
@@ -118,6 +119,16 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-pnp-admm-v1')
+    return {
+      scene: 'data-imaging-pnp-admm-scene',
+      reference: '[data-imaging-pnp-admm-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-pnp-admm-scene="output"] code',
+      aside: '[data-imaging-pnp-admm-output]',
+    };
+
   if (plan.recipe === 'imaging101-noncartesian-v1')
     return {
       scene: 'data-imaging-noncartesian-scene',
@@ -785,6 +796,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-pnp-admm-v1': [
+      /No measured k-space or participant result; pinned metadata omits required noise_scale.*Actual masks only/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_pnp_admm',
+      'data-imaging-pnp-admm-scene',
+      false,
+    ],
     'imaging101-noncartesian-v1': [
       /Synthetic source-visible phantom; no participant reconstruction or calibrated FOV\/time.*README coordinate units differ from source NUFFT grid scaling/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs',
@@ -1666,6 +1683,174 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page.locator('[data-story-step="0"]').click();
     await absent();
   }
+  if (plan.recipe === 'imaging101-pnp-admm-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-pnp-admm-scene]');
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-pnp-admm-reference-revealed]').count(), 0);
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async (m) => {
+      const img = scene.locator('img');
+      assert.equal(await img.count(), 1);
+      const native = await img.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(native.w, 256);
+      assert.equal(native.h, 256);
+      assert.match(
+        native.alt,
+        new RegExp(
+          `Actual ${['Random', 'Radial grid', 'Cartesian'][m]} binary source mask.*stored unshifted Fourier cells`,
+        ),
+      );
+      assert.ok(native.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(native.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            `presentation/task-explorer/imaging101-mri-pnp-admm/mask-${['random', 'radial', 'cartesian'][m]}.png`,
+          ),
+        ),
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        new RegExp(
+          `Teal\\s*=\\s*sampled.*dark\\s*=\\s*unsampled.*${[19674, 19249, 19456][m]}/65536.*256² native indices`,
+          's',
+        ),
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await image(0);
+    assert.match(
+      await scene.innerText(),
+      /Single coil.*256×256.*No measured k-space.*metadata omits required.*noise_scale.*No calibrated FOV\/time/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const stepNames = ['Synthesize + initialize', 'Fourier consistency', 'Denoiser + dual'];
+    const branchNames = ['Random', 'Radial grid', 'Cartesian'];
+    const branchFrames = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branchNames[m], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          branchFrames[m],
+        );
+        await image(m);
+        await scene.getByRole('button', { name: stepNames[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? branchFrames[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-pnp-admm-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: stepNames[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /y=M FFT2\(image\).*noise_real.*noise_imag.*Unshifted default FFT.*noise added at all bins.*real image iterates.*Missing metadata scale.*Default helper scale=3.*does not resolve main/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        } else if (i === 1) {
+          await image(m);
+          assert.match(
+            text,
+            /α=2.*sampled vf.*\.25vf.*1\.25.*Unsampled vf unchanged.*vf=2.*y=6.*5\.2.*arithmetic only.*never change the pinned random-mask main/is,
+          );
+        } else {
+          assert.match(
+            text,
+            /xtilde=2v−xold−uold.*Min\/max normalize.*1\+15\/255\/2.*subtract model residual.*u←uold\+xold−v.*100 fixed iterations.*σ=15 training parameter.*not measured noise.*Constant-input normalization unguarded.*No model residual or convergence claim/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await image(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*256×256.*Participant image\/score empty.*Saved source PnP examples.*separate from a fresh response/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-pnp-admm-reference-revealed]').innerText(),
+      /solver-visible.*no private target.*No truth image.*squeezes only ndim>2.*magnitude.*float64.*evaluation\/ground_truth\.npy.*priority.*absent\/unverified.*unscaled range NRMSE.*cosine NCC.*No-filesystem fallback.*flux-normalized relative L2.*No current score/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /noise_scale.*Brain\.jpg.*rights.*No participant.*Mask diagrams.*not brain image evidence.*README convergence claims require conditions.*source inspection.*not a checkpoint or solver test/is,
+    );
+    await capture('limits-contract');
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
   if (plan.recipe === 'imaging101-noncartesian-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
       await page.locator('.scene-play').click();
@@ -9134,6 +9319,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-pnp-admm-v1',
       'imaging101-noncartesian-v1',
       'imaging101-wavelet-v1',
       'imaging-grappa-v1',

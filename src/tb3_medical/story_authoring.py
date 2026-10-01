@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "imaging101-pnp-admm-v1",
             "imaging101-noncartesian-v1",
             "imaging101-wavelet-v1",
             "imaging101-poisson-v1",
