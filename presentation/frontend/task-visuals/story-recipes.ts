@@ -1,3 +1,4 @@
+import { automedLdctDenoisingPack } from './automed-ldct-denoising';
 import { automedIxiT1SrPack } from './automedbench-full-ixi-t1-sr-task';
 import { automedDeeplesionDenoisePack } from './automedbench-full-deeplesion-denoising-task';
 import { automedBratsT1cSrPack } from './automedbench-full-brats-t1c-sr-task';
@@ -148,6 +149,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-ldct-denoising-v1',
     'automedbench-full-ixi-t1-sr-task-v1',
     'automedbench-full-deeplesion-denoising-task-v1',
     'automedbench-full-brats-t1c-sr-task-v1',
@@ -1451,6 +1453,13 @@ export function storyPresentation(plan: StoryPlan): {
           ['#000000', 'Black: late upstream display minimum'],
           ['#ffffff', 'White: late upstream display maximum'],
         ],
+      };
+    case 'automed-ldct-denoising-v1':
+      return {
+        heading: 'Map CT HU through an unsubmitted denoising pipeline',
+        corner: 'Full CT pair absent · symbolic protocol',
+        warning: automedLdctDenoisingPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

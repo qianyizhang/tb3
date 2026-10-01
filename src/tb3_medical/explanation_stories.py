@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-ldct-denoising-v1": "symbolic-automed-ldct-denoising-v1",
     "automedbench-full-ixi-t1-sr-task-v1": "retained-automedbench-full-ixi-t1-sr-task-source-v1",
     "automedbench-full-deeplesion-denoising-task-v1": "retained-automedbench-full-deeplesion-denoising-task-source-v1",
     "automedbench-full-brats-t1c-sr-task-v1": "retained-automedbench-full-brats-t1c-sr-task-source-v1",
@@ -197,6 +198,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "symbolic-automed-ldct-denoising-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+        },
+    ),
     "symbolic-rex-usenhance-v1": (
         "source-records",
         None,
@@ -805,6 +818,7 @@ SOURCE_INPUT_PACKS = {
 # Explicitly registered input packs with authored symbolic protocol assets.
 SYMBOLIC_SOURCE_PACKS = frozenset(
     {
+        "symbolic-automed-ldct-denoising-v1",
         "symbolic-rex-usenhance-v1",
         "symbolic-automed-mimic-report-v1",
         "symbolic-automed-chexpert-report-v1",
@@ -2617,6 +2631,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedLdctDenoisingChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4706,6 +4726,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedLdctDenoisingBeat(ExpansionBeat[AutomedLdctDenoisingChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedLdctDenoisingStory(Story[AutomedLdctDenoisingChannels]):
+    recipe: Literal["automed-ldct-denoising-v1"]
+    beats: tuple[AutomedLdctDenoisingBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("Report generation has no private reference assets or reveal")
+        return self
+
+
 class AutomedIxiT1SrBeat(ExpansionBeat[AutomedIxiT1SrChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5873,6 +5911,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedLdctDenoisingStory
     | AutomedIxiT1SrStory
     | AutomedDeeplesionDenoiseStory
     | AutomedBratsT1cSrStory
@@ -6026,6 +6065,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedLdctDenoisingStory
     | AutomedIxiT1SrStory
     | AutomedDeeplesionDenoiseStory
     | AutomedBratsT1cSrStory
@@ -6339,6 +6379,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedLdctDenoisingStory
     | AutomedIxiT1SrStory
     | AutomedDeeplesionDenoiseStory
     | AutomedBratsT1cSrStory
@@ -6669,6 +6710,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "symbolic-automed-ldct-denoising-v1": (
+                "LDCT-declared-HU-inference-contract-symbolic-only",
+                "LicenseRef-TB3-symbolic-teaching",
                 None,
             ),
             "retained-automedbench-full-ixi-t1-sr-task-source-v1": (
@@ -7051,6 +7097,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "declared-HU-contract; no observed pixel calibration"
+                if pack_id == "symbolic-automed-ldct-denoising-v1"
                 else "unitless"
                 if pack_id == "retained-automedbench-full-ixi-t1-sr-task-source-v1"
                 else "illustrative normalized intensity and sigma; no HU or physical voxel scale"
@@ -7225,6 +7273,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "symbolic-automed-ldct-denoising-v1"
             or pack_id == "retained-automedbench-full-ixi-t1-sr-task-source-v1"
             or pack_id == "retained-automedbench-full-deeplesion-denoising-task-source-v1"
             or pack_id == "retained-automedbench-full-brats-t1c-sr-task-source-v1"

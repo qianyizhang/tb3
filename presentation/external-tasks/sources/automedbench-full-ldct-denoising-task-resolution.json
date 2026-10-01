@@ -1,0 +1,251 @@
+{
+  "acquisition_route": "https://www.aapm.org/grandchallenge/lowdosect/",
+  "actual_data_gap": "Exact Full simulated noisy-clean CT arrays, selected case IDs, noise realization and native upstream mapping absent. No patient image, clean reference, participant output or score.",
+  "attempts": [
+    {
+      "action": "download exact pinned Full harness",
+      "attempted_at": "2026-09-29T08:04:18.722730+00:00",
+      "outcome": "HTTP 200, 19480 bytes, SHA-256 cb7ac38cb210bd983daf5da14e26a6dcfecc043d19045d364206524260855f18; 27 internal MANIFEST entries verified; dataset.included=false.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/ldct-denoising-task.tar.gz"
+    },
+    {
+      "action": "official upstream availability probe",
+      "attempted_at": "2026-09-29T08:04:18.722730+00:00",
+      "outcome": "HTTP 200 landing route; no task-matched Full input.npy, clean reference, case list or small paired sample recovered from the route.",
+      "source": "https://www.aapm.org/grandchallenge/lowdosect/"
+    },
+    {
+      "action": "bounded official landing and linked acquisition read; retained exact harness validation",
+      "attempted_at": "2026-09-30T22:10:18.727385+00:00",
+      "source": "https://www.aapm.org/grandchallenge/lowdosect/ ; https://aapm.box.com/s/eaw4jddb53keg1bptavvvd1sf4x3pe9h ; https://ctcicblog.mayo.edu/hubcap/patient-ct-projection-data-library/",
+      "outcome": "AAPM landing readable;2021 Box link redirected to inaccessible tool URL (500), Mayo linked library returned404. No matching Full array/pair acquired. Archive and27manifestmembers verified. No auth/current-account denial inferred."
+    },
+    {
+      "action": "Retained source archive, MANIFEST and official-acquisition audit validation for source-only refresh",
+      "source": "Retained pinned AutoMedBench Full ldct-denoising-task archive and previous AAPM/Box/Mayo attempt records",
+      "outcome": "Reused exact retained source and historical bounded official attempt; no new GET or source processing. Exact Full noisy-clean pair, case IDs and private references remain absent.",
+      "attempted_at": "2026-10-01T09:28:41.477349+00:00"
+    }
+  ],
+  "brief_sha256": "8b25a98d23df1b51c8539a766d9a7ae3487f98d11a2718525231b692a3340b86",
+  "display_warning": "No task-matched Full low-dose CT array is staged; only the HU and output contracts are shown.",
+  "entry_id": "automedbench-full-ldct-denoising-task",
+  "evaluator_run": false,
+  "full_dataset_included": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "label_license": null,
+  "model_run": false,
+  "preparer_run": false,
+  "private_reference_available": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "AAPM source acquisition, permission for local use, simulated Full case construction, exact degradation, and split mapping remain unresolved.",
+  "resolved_at": "2026-09-29T08:04:18.722730+00:00",
+  "reviewed_at": "2026-09-29T08:04:18.722730+00:00",
+  "schema": 1,
+  "source_class": "symbolic-protocol",
+  "source_license": "LicenseRef-AAPM-LDCT-no-redistribution-grant-located",
+  "source_license_context": "Pinned task.json states no explicit redistribution grant located; the pack contains no AAPM image.",
+  "source_pins": [
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/__init__.py",
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb",
+      "bytes": 365,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/docker/eval/run_eval.py",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c",
+      "bytes": 5127,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/enhancement_scorer.py",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd",
+      "bytes": 11295,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/format_checker.py",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de",
+      "bytes": 2188,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/baseline_bands.json",
+      "sha256": "10f2d9381995f156accfd5d4233a6d31ce39bdf33ba2599d5840e15e468d7846",
+      "bytes": 1664,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/config.yaml",
+      "sha256": "61361874f0ea9c061395c3ba0780f01fe0f606b38df72db03ac2ab50c29f0261",
+      "bytes": 609,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/lite_s1.md",
+      "sha256": "3a0fcedb491b1f0f039fa4c1c51852ac4e7a85389107ae32e56d36eec77e0ab7",
+      "bytes": 1738,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/lite_s2.md",
+      "sha256": "b910aa41653cd8aba8df2ca52df1dacbd8de6ea2cf0249aee92f7dc8e799dab9",
+      "bytes": 856,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/lite_s3.md",
+      "sha256": "89ba66db2c28a87435c4d5586af8cac03b93667ed50d43c9a1cd9cdf1c4c1d29",
+      "bytes": 1459,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/model_info.yaml",
+      "sha256": "bba76361aeb94ca826058eaabac8446cd4c4724a0e403e7bd03df3cb1d423b38",
+      "bytes": 3131,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/requirements.txt",
+      "sha256": "f386de70b85c0d302ce746ad9f94174158d9c4c935f5cb9784ed5ff794b9a681",
+      "bytes": 81,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/standard_s1.md",
+      "sha256": "5373adc68cde77e4259e64986179b3e79a2cd30fe4d81505a29cf600b6c2fd86",
+      "bytes": 2876,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/ldct-denoising-task/standard_s3.md",
+      "sha256": "f8cfe1c54b7e552c75dec94ce37ad3836a5a88ff5310ca9bf921a350fe1c6adb",
+      "bytes": 1710,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97",
+      "bytes": 493,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe",
+      "bytes": 397,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94",
+      "bytes": 923,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795",
+      "bytes": 1105,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921",
+      "bytes": 196,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960",
+      "bytes": 3455,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917",
+      "bytes": 956,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4",
+      "bytes": 2141,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a",
+      "bytes": 1723,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb",
+      "bytes": 841,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e",
+      "bytes": 1321,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd",
+      "bytes": 813,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5",
+      "bytes": 509,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/task.json",
+      "sha256": "be55dd0bf2b75467f1ab37a6db2532b3a0d9bebd07140f6657fbb77993a17654",
+      "bytes": 1385,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task/automedbench-task/MANIFEST.sha256",
+      "sha256": "9d979eca15cb89da2e33f21723ea650609b6232b693643a79e964efa624ae3bc",
+      "bytes": 2749,
+      "role": "manifest"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-g-source/full/ldct-denoising-task.tar.gz",
+      "sha256": "cb7ac38cb210bd983daf5da14e26a6dcfecc043d19045d364206524260855f18",
+      "bytes": 19480,
+      "role": "archive"
+    }
+  ],
+  "task_contract": {
+    "input": "CT input.npy, 512\u00d7512 float32, roughly \u22121300 to +3200 HU",
+    "metric": "private-reference PSNR, SSIM and LPIPS; per-case data_range from ground_truth.csv or reference extrema",
+    "operator": "The pinned config describes simulated low-dose noise but does not specify a seed or exact noise/sparse-view operator.",
+    "output": "512\u00d7512 finite float32 enhanced.npy in plausible HU range",
+    "private_reference": "/data/private/{case_id}/reference.npy; absent",
+    "source_dataset": "AAPM Low Dose CT Grand Challenge",
+    "tiers": "DRUNet named (Lite); method selection (Standard)",
+    "format": "Any finite floating2D array matching private reference shape; strictfloat32/HU bounds not enforced",
+    "effective_rating": "Present v3 bands: A PSNR>=42.798dB AND SSIM>=.9863; B40.798/.9463; C38.798/.9163; no LPIPS gate.",
+    "units": "HU declared; config prose[-1300,3200], field[-1024,3000], guidance normalization[-1024,3072] differ; actual pixels absent",
+    "source_baseline_claims_not_reproduced": true,
+    "metric_guard_gap": "No positive/finite data_range or finite-score guard; NaN comparisons can bypass v3 checks. Not executed or validated."
+  },
+  "historical_source_class": "source-derived-teaching",
+  "baseline_commit": "0ad0600af861332d2b117182b5787fbdc8420328",
+  "status": "local-source-preparation",
+  "warning_text": "Full noisy-clean CT pair absent; symbolic HU and submission protocol.",
+  "top_warning": {
+    "label": "Full CT pair absent \u00b7 symbolic protocol",
+    "text": "Full noisy-clean CT pair absent; symbolic HU and submission protocol.",
+    "url": "https://www.aapm.org/grandchallenge/lowdosect/",
+    "link_label": "Official AAPM acquisition"
+  },
+  "historical_attempts_preserved": true,
+  "refresh_limits": "Source-only unaccepted; final shared guards await exact146. No source operator/model/checker/scorer/task or browser/render execution."
+}

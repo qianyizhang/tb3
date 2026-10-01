@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automed-ldct-denoising-v1'],
     [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
     [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
     [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -3489,6 +3490,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automed-ldct-denoising-v1'],
     [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
     [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
     [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -3593,6 +3595,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automed-ldct-denoising-v1'],
     [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
     [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
     [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -3697,6 +3700,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automed-ldct-denoising-v1'],
     [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
     [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
     [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -3802,6 +3806,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automed-ldct-denoising-v1'],
     [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
     [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
     [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -3907,6 +3912,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automed-ldct-denoising-v1'],
     [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
     [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
     [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -4011,6 +4017,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='automed-ldct-denoising-v1'],
       [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
       [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
       [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -4114,6 +4121,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='automed-ldct-denoising-v1'],
       [data-recipe='automedbench-full-ixi-t1-sr-task-v1'],
       [data-recipe='automedbench-full-deeplesion-denoising-task-v1'],
       [data-recipe='automedbench-full-brats-t1c-sr-task-v1'],
@@ -5379,4 +5387,22 @@
   height: 5px;
   background: var(--key);
   border: 1px solid #657987;
+}
+
+:global([data-explainer-export-frame])
+  .player[data-recipe='automed-ldct-denoising-v1']
+  .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='automed-ldct-denoising-v1']
+  .storyOutput {
+  height: 340px;
+}
+
+.player[data-recipe='automed-ldct-denoising-v1'] :global(.scene-explanation),
+.player[data-recipe='automed-ldct-denoising-v1'] :global(.scene-explanation strong),
+.player[data-recipe='automed-ldct-denoising-v1'] :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }

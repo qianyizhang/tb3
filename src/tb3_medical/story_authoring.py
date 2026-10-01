@@ -336,6 +336,7 @@ def new(
             "imaging-grappa-v1",
             "imaging-ultrasound-sos-v1",
             "rex-usenhance-v1",
+            "automed-ldct-denoising-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":
