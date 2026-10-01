@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-xray-tooth-gridrec-v1'],
     [data-recipe='imaging101-usct-fwi-v1'],
     [data-recipe='imaging-ultrasound-sos-v1'],
     [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -3484,6 +3485,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-xray-tooth-gridrec-v1'],
     [data-recipe='imaging101-usct-fwi-v1'],
     [data-recipe='imaging-ultrasound-sos-v1'],
     [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -3583,6 +3585,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-xray-tooth-gridrec-v1'],
     [data-recipe='imaging101-usct-fwi-v1'],
     [data-recipe='imaging-ultrasound-sos-v1'],
     [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -3682,6 +3685,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-xray-tooth-gridrec-v1'],
     [data-recipe='imaging101-usct-fwi-v1'],
     [data-recipe='imaging-ultrasound-sos-v1'],
     [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -3782,6 +3786,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-xray-tooth-gridrec-v1'],
     [data-recipe='imaging101-usct-fwi-v1'],
     [data-recipe='imaging-ultrasound-sos-v1'],
     [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -3882,6 +3887,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-xray-tooth-gridrec-v1'],
     [data-recipe='imaging101-usct-fwi-v1'],
     [data-recipe='imaging-ultrasound-sos-v1'],
     [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -3981,6 +3987,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging101-xray-tooth-gridrec-v1'],
       [data-recipe='imaging101-usct-fwi-v1'],
       [data-recipe='imaging-ultrasound-sos-v1'],
       [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -4079,6 +4086,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging101-xray-tooth-gridrec-v1'],
       [data-recipe='imaging101-usct-fwi-v1'],
       [data-recipe='imaging-ultrasound-sos-v1'],
       [data-recipe='imaging101-pnp-mri-reconstruction-v1'],
@@ -5223,4 +5231,37 @@
 .player[data-recipe='imaging101-usct-fwi-v1'] :global(.scene-explanation a) {
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-xray-tooth-gridrec-v1']
+  .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-xray-tooth-gridrec-v1']
+  .storyOutput {
+  height: 340px;
+}
+
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-xray-tooth-gridrec-v1']
+  :global(.scene-explanation),
+.player[data-recipe='imaging101-xray-tooth-gridrec-v1'] :global(.scene-explanation strong),
+.player[data-recipe='imaging101-xray-tooth-gridrec-v1'] :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.player[data-recipe='imaging101-xray-tooth-gridrec-v1'] :global(.scene-legend i) {
+  height: 5px;
+  background: var(--key);
+  border: 1px solid #657987;
+}
+.player[data-recipe='imaging101-xray-tooth-gridrec-v1']
+  :global(.scene-legend span:nth-child(n + 4) i) {
+  height: 0;
+  background: transparent;
+  border: 0;
+  border-top: 3px solid var(--key);
 }

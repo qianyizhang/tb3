@@ -1,3 +1,4 @@
+import { imagingToothGridrecPack } from './imaging101-xray-tooth-gridrec';
 import { imagingUsctFwiPack } from './imaging101-usct-fwi';
 import { imagingUltrasoundSosPack } from './imaging-ultrasound-sos';
 import { imagingPnpMriPack } from './imaging101-pnp-mri-reconstruction';
@@ -143,6 +144,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-xray-tooth-gridrec-v1',
     'imaging101-usct-fwi-v1',
     'imaging-ultrasound-sos-v1',
     'imaging101-pnp-mri-reconstruction-v1',
@@ -1384,6 +1386,19 @@ export function storyPresentation(plan: StoryPlan): {
           ['#000000', 'Negative real observation endpoint; per-frequency scale'],
           ['#808080', 'Zero real observation component; no calibrated pressure'],
           ['#ffffff', 'Positive real observation endpoint; per-frequency scale'],
+        ],
+      };
+    case 'imaging101-xray-tooth-gridrec-v1':
+      return {
+        heading: 'Tooth projection counts, correction and rotation-center rules',
+        corner: 'Native tooth counts; calibrated attenuation and participant output absent',
+        warning: imagingToothGridrecPack.source.notice,
+        legend: [
+          ['#000000', 'Black: native count display minimum'],
+          ['#808080', 'Gray: common minmax count display'],
+          ['#ffffff', 'White: native count display maximum'],
+          ['#54d3dd', 'Teal: first flat-frame detector profile'],
+          ['#aebec8', 'Gray line: first dark-frame detector profile'],
         ],
       };
     case 'bcer-brain-full-v1':

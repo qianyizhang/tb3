@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class ImagingToothGridrecChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class ImagingToothGridrecBeat(ExpansionBeat):
+    channels: ImagingToothGridrecChannels
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingToothGridrecPlan(ExpansionPlan):
+    recipe: Literal["imaging101-xray-tooth-gridrec-v1"]
+    beats: list[ImagingToothGridrecBeat]
+
+
 class ImagingUsctFwiChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2835,6 +2851,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | ImagingToothGridrecPlan
     | ImagingUsctFwiPlan
     | ImagingUltrasoundSosPlan
     | ImagingPnpMriPlan

@@ -17351,36 +17351,126 @@
       "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
     },
     {
-      "entry_id": "imaging101-xray-tooth-gridrec",
-      "title": "Reconstruct a tooth from X-ray projections",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-xray-tooth-gridrec/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec",
+      "actual_data_gap": "Native experimental tooth projections retained; detector/voxel spacing, X-ray energy, dose, physical attenuation calibration and independent truth absent. Source main implements pixel-driven FBP, not TomoPy gridrec. Saved reconstruction equals supplied baseline, but is not a participant output. Source scores first slice only versus generic both slices; current thresholds and clinical quality unverified.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-xray-tooth-gridrec.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Flat/dark calibration frames, projection angles and rotation-center information. The assistance level can add an approach and software design.",
+        "output": "A tomographic attenuation reconstruction.",
+        "raw": "Raw transmission images of a tooth.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-xray-tooth-gridrec.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A tomographic attenuation reconstruction.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-xray-tooth-gridrec",
+      "illustration_basis": "mixed",
+      "illustration_kind": "ct",
       "modalities": [
         "x-ray"
       ],
-      "illustration_kind": "ct",
-      "subject": "teeth",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-xray-tooth-gridrec.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A tomographic attenuation reconstruction.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Raw transmission images of a tooth.",
-        "helpers": "Flat/dark calibration frames, projection angles and rotation-center information. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A tomographic attenuation reconstruction.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native tooth detector counts and first-frame flat/dark profiles with task-specific authored correction and source center/FBP rules after main18-pin/42-image source/visual/export/mobile/no-GPU review. Physical attenuation calibration,detector/voxel spacing,independent truth and participant output remain absent. Saved reconstruction equals solver-visible baseline; source first-slice versus generic both-slice metric scope and no-filesystem missing truth remain qualified. Explicit late reader reveal and before-paint reset passed. No source routine or model executed.",
+      "source_brief_sha256": "61fb31345af549def6f13940dd67486e49be6ab7e42f3eb49ccb030444246b63",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-xray-tooth-gridrec-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-xray-tooth-gridrec-resolution.json",
+        "receipt_sha256": "7b795ab4d7cf1ed3b69be8c9b4aff70b29f28bd54bc321dae6739b1dcaf5bcff",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T18:15:48.900790+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-xray-tooth-gridrec/source-audit-final-01.json",
+        "audit_sha256": "df8dfe0d40a7f733bbe5c55f40e4ee4151c900707c08843cae76c3d4b70eee03",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-xray-tooth-gridrec",
+      "subject": "teeth",
+      "title": "Reconstruct a tooth from X-ray projections",
+      "warning_text": "Native tooth counts; calibrated attenuation, independent truth and participant output absent.",
+      "acceptance_scope": "Native experimental tooth detector counts and first-frame flat/dark profiles,authored correction and source center/FBP rules; late explicit reader-only baseline identity and metric-scope rules. Calibrated attenuation,independent truth,participant reconstruction and score absent. No source routine executed.",
+      "completion_review": {
+        "date": "2026-10-01T18:39:48.136328+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "7df210d20c006bf6d643314021c54a77ecf5a903ca6ba19f9a0fb7929ad7fa02"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace tooth projection counts without inventing a reconstructed cross-section",
+        "goal": "Native experimental count rows and source-pinned correction/centre rules; participant reconstruction empty.",
+        "value": "Not yet specified.",
+        "raw": "Pinned task xray_tooth_gridrec. Source README identifies a real APS beamline 2-BM/32-ID tooth specimen experiment; no patient linkage or anatomical/clinical finding established. raw_data.npz:projections float32 (1,181,2,640), axes batch/angle/sinogram row/detector. 231,680 raw count cells. theta float64 (1,181), radians 0 to 3.124235788100347, step \u03c0/181, endpoint \u03c0 excluded. Two axial detector rows, not a 640-slice volume. Native counts may be fractional; no calibrated photon count, Poisson noise model, dose, beam energy, detector pitch or voxel spacing supplied.",
+        "helpers": "flat_field and dark_field float32 each (1,10,2,640): 10 frames / 12,800 cells per stack. Source float64 averages over calibration frames; first-frame reader profiles below are explicitly not means. Metadata only array dimensions, angular interval and x-ray_transmission_ct label. Parallel-beam assumptions are declared by source, not verified scan geometry. TomoPy gridrec baseline reconstruction float32 (1,2,640,640), solver-visible data helper, no independent ground-truth scan. Source saved reconstruction.npy (2,640,640) equals baseline native cells exactly. Saved rot_center.npy=[296.34375] detector pixels is prior provenance, not a centre newly estimated here. All three original Conditions preserved.",
+        "tools": "No task/tool/evaluator source imported or executed. Native PNGs display raw projections row 0 / row 1, select angle indices 0, 2,\u2026180 and detector indices 0, 4,\u2026636 (91\u00d7160 cells), common full-projection minmax 3921.25..33891.5 counts, floor 255\u00d7float64(v\u2212min)/(max\u2212min), no resize/interpolation/filter/log/reconstruction. Gray low\u2192high raw counts, angle rows/detector columns, not an attenuation image or source saved sinogram. First flat/dark frame row 0 full 640-cell profiles retained/displayed with teal/gray line legend, detector index units. Raw input/calibration cell and PNG pixel parity checked. No native preprocessing or inverse calculation.",
+        "reference": "No ground_truth.npz. End-to-end visible paths README.md/data/requirements.txt stage the whole data directory, including baseline_reference.npz; evaluation/source trees are not in that default list. The baseline it is solver-visible TomoPy reconstruction, not hidden truth. Generic first evaluation/reference_outputs/reconstruction.npy equals supplied baseline exactly, but its source-derived origin is not current participant success. Saved reconstructions remain audit-only, no tooth cross-section display or inferred pathology. Late reader reveal teaches reference identity and denominator, exit/backward/reset hides rules before paint; actual output remains empty.",
+        "spec": "Source flat/dark correction T=(I\u2212mean(D))/(mean(F)\u2212mean(D)) in float64. Exact zero denominator replaced by 1 rather than rejecting invalid calibration. minus_log clips lower bound 1e\u221212 only, then \u2212ln(T); no upper clipping, so T>1 produces negative line integrals. Fractional counts and log values do not establish calibrated photons or attenuation per mm. Authored I=500,F=1000,D=100 gives T=4/9; native correction/log not run. Symbolic explanation labels counts versus dimensionless transmission versus line integral; no new sinogram or inverse outcome.\n\nSource main implements ramp-filtered pixel-driven FBP, NOT a TomoPy/Gridrec function call. Ramp abs(fftfreq) in cycles/detector-index units; 640 detectors zero-padded FFT length 2048, real IFFT cropped first 640. No filter/window control or inverse executed. Image centre and detector midpoint 319.5, row 0 positive y, t=xcos\u03b8+ysin\u03b8+319.5. np.interp default endpoint-hold outside detector range (not zero extension); final factor \u03c0/181. forward projector uses map_coordinates zero extension and opposite y-row convention; no adjoint identity proof or numerical-equivalence-to-gridrec claim. No voxel spacing or calibrated attenuation unit.\n\nRotation centre: correlate first projection with reversed last (last angle \u03c0\u2212\u03c0/181, not exact opposing \u03c0); peak integer shift gives 319.5+shift/2. Refine candidate\u00b15 detector pixels, 0.5 step: 20 repeated FBP trials, minimise\u2212variance (maximise reconstructed variance), not independent accuracy truth. init 290 argument is only checked/defaulted and is not used in correlation or refinement, so not an active centre prior. tol 0.5 is search step, not convergence bound. _shift_sinogram uses scipy.ndimage.shift negative(center\u2212319.5), default cubic interpolation, constant zero edge. No centre estimation or trial reconstruction here. Saved centre 296.34375 would imply shift \u221223.15625 pixels; provenance only, no fitted output.\n\nSource circular mask radius 0.95\u00d7640/2=304 detector-index pixels, centre 319.5; output outside circle zero. This does not remove those pixels from generic metric denominator. Source reconstruction uses both rows; no patient tooth tissue, clinical resolution or performance claim. Runtime/SciPy versions and source-gridrec equivalence unverified.",
+        "output": "Single real output/reconstruction.npy intended (2,640,640), 819,200 values in source pixel-scaled arbitrary reconstruction units, not calibrated attenuation coefficient/mm. Source main also saves output/metrics.json and results.png; no current files produced. Saved sinogram/rot_center/reconstruction provenance never substituted for participant outputs. Actual image, reconstruction_npy, quality score and clean reference remain null.",
+        "score": "Source compute_metrics on recon_volume[0],ref_recon[0]:first slice, 409,600 pixels only, NRMSE=RMSE/reference range and cosine NCC (no mean subtraction; zero norm\u21920). Filesystem generic first selects the existing saved reconstruction.npy before checking target shape; its ndim>2 squeeze leaves a (2,640,640) array because neither slice axis is singleton. Generic scores both slices, 819,200 values, after complex\u2192magnitude/float64; same range-normalized NRMSE and cosine NCC, no output flux/max/minmax normalization. References equal, but denominators/scope differ. Circular-zero background included. Generic MSE/PSNR/global SSIM not clinical image quality. Source output/metrics.json nested fbp_vs_ref is not generic evaluation/metrics.json ncc_boundary/nrmse_boundary; Neither evaluation/metrics.json nor evaluation/reference_outputs/metrics.json is listed in the pinned official tree; without such a file the filesystem scorer adds no boundary/verdict. No-filesystem scoring requires ground_truth.npy in evaluation/reference_outputs or data, both absent in that tree, so it errors before comparison rather than substituting the baseline. Its fallback also requires strictly 2D output and would flux-rescale/use norm-relative NRMSE if separately supplied truth existed, unlike the filesystem shape/formula. These backend contracts are not interchangeable. No metric or participant performance computed.",
+        "challenge": "Normalize detector response and find the rotation center; small errors produce obvious rings or doubled edges.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Exact native raw projection count display, calibration gaps and official acquisition warning.",
+          "Canonical correction boundaries, two detector rows / calibration profile selectors, and symbolic centre/filter geometry.",
+          "Empty output; later solver-visible reference identity/metric scope reveal; backward/exit/reset covers."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -17400,34 +17490,51 @@
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned README",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned preprocessing",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/preprocessing.py"
+          ],
+          [
+            "Pinned source physics",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/physics_model.py"
+          ],
+          [
+            "Pinned metric definition",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/visualization.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-xray-tooth-gridrec-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "c681292dd260f56d8710c6e094df03cebc34c3e3ec97030cfeed1d2b21f5310a",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-xray-tooth-gridrec.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A tomographic attenuation reconstruction.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Native experimental count rows and source-pinned correction/centre rules; participant reconstruction empty.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Pinned task xray_tooth_gridrec. Source README identifies a real APS beamline 2-BM/32-ID tooth specimen experiment; no patient linkage or anatomical/clinical finding established. raw_data.npz:projections float32 (1,181,2,640), axes batch/angle/sinogram row/detector. 231,680 raw count cells. theta float64 (1,181), radians 0 to 3.124235788100347, step \u03c0/181, endpoint \u03c0 excluded. Two axial detector rows, not a 640-slice volume. Native counts may be fractional; no calibrated photon count, Poisson noise model, dose, beam energy, detector pitch or voxel spacing supplied.</p>",
+          "helpers": "<p>flat_field and dark_field float32 each (1,10,2,640): 10 frames / 12,800 cells per stack. Source float64 averages over calibration frames; first-frame reader profiles below are explicitly not means. Metadata only array dimensions, angular interval and x-ray_transmission_ct label. Parallel-beam assumptions are declared by source, not verified scan geometry. TomoPy gridrec baseline reconstruction float32 (1,2,640,640), solver-visible data helper, no independent ground-truth scan. Source saved reconstruction.npy (2,640,640) equals baseline native cells exactly. Saved rot_center.npy=[296.34375] detector pixels is prior provenance, not a centre newly estimated here. All three original Conditions preserved.</p>",
+          "tools": "<p>No task/tool/evaluator source imported or executed. Native PNGs display raw projections row 0 / row 1, select angle indices 0, 2,\u2026180 and detector indices 0, 4,\u2026636 (91\u00d7160 cells), common full-projection minmax 3921.25..33891.5 counts, floor 255\u00d7float64(v\u2212min)/(max\u2212min), no resize/interpolation/filter/log/reconstruction. Gray low\u2192high raw counts, angle rows/detector columns, not an attenuation image or source saved sinogram. First flat/dark frame row 0 full 640-cell profiles retained/displayed with teal/gray line legend, detector index units. Raw input/calibration cell and PNG pixel parity checked. No native preprocessing or inverse calculation.</p>",
+          "reference": "<p>No ground_truth.npz. End-to-end visible paths README.md/data/requirements.txt stage the whole data directory, including baseline_reference.npz; evaluation/source trees are not in that default list. The baseline it is solver-visible TomoPy reconstruction, not hidden truth. Generic first evaluation/reference_outputs/reconstruction.npy equals supplied baseline exactly, but its source-derived origin is not current participant success. Saved reconstructions remain audit-only, no tooth cross-section display or inferred pathology. Late reader reveal teaches reference identity and denominator, exit/backward/reset hides rules before paint; actual output remains empty.</p>",
+          "spec": "<p>Source flat/dark correction T=(I\u2212mean(D))/(mean(F)\u2212mean(D)) in float64. Exact zero denominator replaced by 1 rather than rejecting invalid calibration. minus_log clips lower bound 1e\u221212 only, then \u2212ln(T); no upper clipping, so T&gt;1 produces negative line integrals. Fractional counts and log values do not establish calibrated photons or attenuation per mm. Authored I=500,F=1000,D=100 gives T=4/9; native correction/log not run. Symbolic explanation labels counts versus dimensionless transmission versus line integral; no new sinogram or inverse outcome.</p>\n<p>Source main implements ramp-filtered pixel-driven FBP, NOT a TomoPy/Gridrec function call. Ramp abs(fftfreq) in cycles/detector-index units; 640 detectors zero-padded FFT length 2048, real IFFT cropped first 640. No filter/window control or inverse executed. Image centre and detector midpoint 319.5, row 0 positive y, t=xcos\u03b8+ysin\u03b8+319.5. np.interp default endpoint-hold outside detector range (not zero extension); final factor \u03c0/181. forward projector uses map_coordinates zero extension and opposite y-row convention; no adjoint identity proof or numerical-equivalence-to-gridrec claim. No voxel spacing or calibrated attenuation unit.</p>\n<p>Rotation centre: correlate first projection with reversed last (last angle \u03c0\u2212\u03c0/181, not exact opposing \u03c0); peak integer shift gives 319.5+shift/2. Refine candidate\u00b15 detector pixels, 0.5 step: 20 repeated FBP trials, minimise\u2212variance (maximise reconstructed variance), not independent accuracy truth. init 290 argument is only checked/defaulted and is not used in correlation or refinement, so not an active centre prior. tol 0.5 is search step, not convergence bound. _shift_sinogram uses scipy.ndimage.shift negative(center\u2212319.5), default cubic interpolation, constant zero edge. No centre estimation or trial reconstruction here. Saved centre 296.34375 would imply shift \u221223.15625 pixels; provenance only, no fitted output.</p>\n<p>Source circular mask radius 0.95\u00d7640/2=304 detector-index pixels, centre 319.5; output outside circle zero. This does not remove those pixels from generic metric denominator. Source reconstruction uses both rows; no patient tooth tissue, clinical resolution or performance claim. Runtime/SciPy versions and source-gridrec equivalence unverified.</p>",
+          "output": "<p>Single real output/reconstruction.npy intended (2,640,640), 819,200 values in source pixel-scaled arbitrary reconstruction units, not calibrated attenuation coefficient/mm. Source main also saves output/metrics.json and results.png; no current files produced. Saved sinogram/rot_center/reconstruction provenance never substituted for participant outputs. Actual image, reconstruction_npy, quality score and clean reference remain null.</p>",
+          "score": "<p>Source compute_metrics on recon_volume[0],ref_recon[0]:first slice, 409,600 pixels only, NRMSE=RMSE/reference range and cosine NCC (no mean subtraction; zero norm\u21920). Filesystem generic first selects the existing saved reconstruction.npy before checking target shape; its ndim&gt;2 squeeze leaves a (2,640,640) array because neither slice axis is singleton. Generic scores both slices, 819,200 values, after complex\u2192magnitude/float64; same range-normalized NRMSE and cosine NCC, no output flux/max/minmax normalization. References equal, but denominators/scope differ. Circular-zero background included. Generic MSE/PSNR/global SSIM not clinical image quality. Source output/metrics.json nested fbp_vs_ref is not generic evaluation/metrics.json ncc_boundary/nrmse_boundary; Neither evaluation/metrics.json nor evaluation/reference_outputs/metrics.json is listed in the pinned official tree; without such a file the filesystem scorer adds no boundary/verdict. No-filesystem scoring requires ground_truth.npy in evaluation/reference_outputs or data, both absent in that tree, so it errors before comparison rather than substituting the baseline. Its fallback also requires strictly 2D output and would flux-rescale/use norm-relative NRMSE if separately supplied truth existed, unlike the filesystem shape/formula. These backend contracts are not interchangeable. No metric or participant performance computed.</p>",
+          "challenge": "<p>Normalize detector response and find the rotation center; small errors produce obvious rings or doubled edges.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -27065,9 +27172,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 136,
+    "reviewed-scripted-planar": 137,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 42,
+    "blocked-source-contract": 41,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

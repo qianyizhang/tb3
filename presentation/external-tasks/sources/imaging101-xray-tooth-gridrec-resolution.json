@@ -1,0 +1,449 @@
+{
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec",
+  "actual_data_gap": "Native experimental tooth projections retained; detector/voxel spacing, X-ray energy, dose, physical attenuation calibration and independent truth absent. Source main implements pixel-driven FBP, not TomoPy gridrec. Saved reconstruction equals supplied baseline, but is not a participant output. Source scores first slice only versus generic both slices; current thresholds and clinical quality unverified.",
+  "attempts": [
+    {
+      "action": "download bounded native raw, metadata, baseline and saved output",
+      "attempted_at": "2026-09-29T07:53:36.670845+00:00",
+      "outcome": "HTTP 200; six data files LFS SHA-256/size verified.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec"
+    },
+    {
+      "action": "download and verify pinned task code",
+      "attempted_at": "2026-09-29T07:53:36.670845+00:00",
+      "outcome": "Five source files match pinned Git blob SHA-1.",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec"
+    },
+    {
+      "action": "Reverify matching retained native projections/calibration/angles/baseline and source/Git/LFS pins; fetch bounded missing pinned metric module",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/visualization.py",
+      "outcome": "2807 bytes fetched and Git verified. Matching source native inputs already retained. Direct raw-count row PNGs and calibration profiles only; no normalization/log, rotation-center estimate, FFT, inverse, reconstruction or metric on native data.",
+      "attempted_at": "2026-09-30T21:21:42.060016+00:00"
+    },
+    {
+      "action": "Validate retained native projections/calibration/angle/header and source/Git/tree identities, without source runtime import",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec",
+      "outcome": "No GET needed: matching native inputs and complete pinned official tree retained. Reverified projection PNG and full calibration/angle cell parity, baseline identity, detector-index geometry, source first-slice versus generic both-slice, absent no-filesystem ground_truth and absent boundary metadata. No native normalization/log, FFT, centre search, CT inverse, scorer or model run.",
+      "attempted_at": "2026-10-01T08:57:54.737539+00:00"
+    }
+  ],
+  "brief_sha256": "61fb31345af549def6f13940dd67486e49be6ab7e42f3eb49ccb030444246b63",
+  "display_warning": "Native tooth counts; calibrated attenuation, independent truth and participant output absent.",
+  "entry_id": "imaging101-xray-tooth-gridrec",
+  "evaluator_run": false,
+  "ground_truth_solver_visible": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "label_license": "MIT",
+  "model_run": false,
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "No ground-truth attenuation scan; solver-visible TomoPy baseline and source-saved FBP are references, not independent anatomical truth.",
+  "resolved_at": "2026-09-29T07:53:36.670845+00:00",
+  "saved_output_is_participant_result": false,
+  "schema": 1,
+  "source_baseline_solver_visible": true,
+  "source_license": "MIT",
+  "source_pins": [
+    {
+      "bytes": 3277082,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/data/baseline_reference.npz",
+      "role": "solver-visible-data",
+      "sha256": "c716fcaf2c472565fce13c3eb4d6b323e8e24d71e9c93d2439f0b4ac4135531e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/data/baseline_reference.npz"
+    },
+    {
+      "bytes": 221,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/data/meta_data.json",
+      "role": "solver-visible-data",
+      "sha256": "b872850f92724d1aafaf4c97a1e9fb32b7bf3e4a8e5581743beca0bbe3345698",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/data/meta_data.json"
+    },
+    {
+      "bytes": 1031590,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/data/raw_data.npz",
+      "role": "solver-visible-data",
+      "sha256": "cc880a93b3fea16059ebcdf4a33001afb396936d8178ca864b47ea76114b1d6e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/data/raw_data.npz"
+    },
+    {
+      "bytes": 3276928,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/evaluation/reference_outputs/reconstruction.npy",
+      "role": "source-saved-output",
+      "sha256": "06726d43ef2dad453d2869bb90504beeb6f3860f0843ead2398b15e1b64ea313",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/evaluation/reference_outputs/reconstruction.npy"
+    },
+    {
+      "bytes": 136,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/evaluation/reference_outputs/rot_center.npy",
+      "role": "source-saved-output",
+      "sha256": "ff29676b733641e76f49d273bb82ff4383fc3df64122bc1507a66ae0e3cc2ba7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/evaluation/reference_outputs/rot_center.npy"
+    },
+    {
+      "bytes": 926848,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/evaluation/reference_outputs/sinogram.npy",
+      "role": "source-saved-output",
+      "sha256": "bbe5e214172c04857c1d0b03482771440ee8d7a27fe6236fb93f57bd269b2575",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/evaluation/reference_outputs/sinogram.npy"
+    },
+    {
+      "bytes": 4777,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/README.md",
+      "role": "pinned-task-source",
+      "sha256": "9e86a43b4f990c6d85960f9b9df744feaba4b751a9388cd609bdf89304e4353b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/README.md",
+      "git_blob": "a6d657e743d09efbd97c1a802719b33d91ded023"
+    },
+    {
+      "bytes": 4258,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/main.py",
+      "role": "pinned-task-source",
+      "sha256": "099cd2f2f8f6e36d85f72fb47dee8faa581a6a3639bfe65ef762affc501e9ae2",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/main.py",
+      "git_blob": "f9da49541cf3c13c7c6e922c24f3e2fbf361c785"
+    },
+    {
+      "bytes": 6135,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "326be76a4ad2fea6dbb0e524c6679292603a7d0a3c455241f7c7081401f0622c",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/physics_model.py",
+      "git_blob": "9152b98cf40946fc40968120466f02809eab187c"
+    },
+    {
+      "bytes": 3057,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "beabd27899525bc23c8fab2ec49907bf93ddbeae31992386dba5b6c87c869679",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/preprocessing.py",
+      "git_blob": "6564da3742ee546fb2b4480641ca625442a3aedd"
+    },
+    {
+      "bytes": 5135,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "1901818ce252845739e69bb2ac4199e500f16ddd67186c21044d706b082efb47",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/solvers.py",
+      "git_blob": "9c834388375421280757145e28a63fd2955d2779"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-xray-tooth-gridrec/visualization.py",
+      "sha256": "e6a2ae1fbd19ddae395d7b2efd2a2cbc3d29dcffe88f66265ffda3a1c60f08f1",
+      "bytes": 2807,
+      "git_blob": "648f338007c368c3001911700391b82cfbf9a516",
+      "role": "source-native-metric-definition",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "role": "pinned-generic-harness",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "bytes": 15186,
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "role": "pinned-generic-harness",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "role": "pinned-generic-harness",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/xray-tree.json",
+      "bytes": 14993,
+      "sha256": "7a9adb0b174d8126f17afc5229b78c0c419c86919b02d7556d98073177c14106",
+      "role": "official-retained-revision-tree",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec"
+    }
+  ],
+  "task_contract": {
+    "angle_unit": "radian",
+    "generic_output": "output/reconstruction.npy",
+    "operator": "Parallel beam Radon assumption, pixel-index geometry only. Source normalize uses float64 stack means, denominator0->1, -log clips only below1e-12 (transmission>1 allowed). Source FBP ramp abs(fftfreq),2048 padded FFT, pixel interpolation/backprojection pi/181 and circular ratio.95; no native method executed.",
+    "output_shape": [
+      2,
+      640,
+      640
+    ],
+    "raw_shape": [
+      181,
+      2,
+      640
+    ],
+    "reference": "solver-visible TomoPy baseline (1,2,640,640); source-saved FBP output (2,640,640)",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "algorithm": "Center first versus last reversed projection correlation, then20 trial reconstructions at0.5px steps over[-5,+5); init290 unused; estimated center prior296.34375 is saved provenance only. Cubic scipy shift center−319.5, zeros at edge; reconstruction variance objective is not calibrated truth.",
+    "runtime": "Source NumPy/SciPy/matplotlib implementation, no TomoPy call; equivalence/adjoint/sampling/runtime claims not demonstrated. No source import, FFT, inverse or evaluator.",
+    "metrics": "Source RMSE/reference-range NRMSE and cosine NCC first slice409600 cells; generic same formulas but all819200 pixels across2slices. Generic first saved reconstruction.npy equals supplied TomoPy baseline exactly. main output/metrics.json nestedfbp_vs_ref differs from generic evaluation/metrics.json boundary keys; no current threshold verdict established.",
+    "reference_policy": "Late reader-only saved-reference identity and denominator rules, no reconstructed reference images",
+    "staging": "End-to-end README.md/data/requirements.txt includes solver-visible baseline_reference.npz, not a private truth. Evaluation/source trees not default staged."
+  },
+  "source_files": [
+    {
+      "bytes": 3277082,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/data/baseline_reference.npz",
+      "role": "solver-visible-data",
+      "sha256": "c716fcaf2c472565fce13c3eb4d6b323e8e24d71e9c93d2439f0b4ac4135531e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/data/baseline_reference.npz"
+    },
+    {
+      "bytes": 221,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/data/meta_data.json",
+      "role": "solver-visible-data",
+      "sha256": "b872850f92724d1aafaf4c97a1e9fb32b7bf3e4a8e5581743beca0bbe3345698",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/data/meta_data.json"
+    },
+    {
+      "bytes": 1031590,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/data/raw_data.npz",
+      "role": "solver-visible-data",
+      "sha256": "cc880a93b3fea16059ebcdf4a33001afb396936d8178ca864b47ea76114b1d6e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/data/raw_data.npz"
+    },
+    {
+      "bytes": 3276928,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/evaluation/reference_outputs/reconstruction.npy",
+      "role": "source-saved-output",
+      "sha256": "06726d43ef2dad453d2869bb90504beeb6f3860f0843ead2398b15e1b64ea313",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/evaluation/reference_outputs/reconstruction.npy"
+    },
+    {
+      "bytes": 136,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/evaluation/reference_outputs/rot_center.npy",
+      "role": "source-saved-output",
+      "sha256": "ff29676b733641e76f49d273bb82ff4383fc3df64122bc1507a66ae0e3cc2ba7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/evaluation/reference_outputs/rot_center.npy"
+    },
+    {
+      "bytes": 926848,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/assets/evaluation/reference_outputs/sinogram.npy",
+      "role": "source-saved-output",
+      "sha256": "bbe5e214172c04857c1d0b03482771440ee8d7a27fe6236fb93f57bd269b2575",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec/evaluation/reference_outputs/sinogram.npy"
+    },
+    {
+      "bytes": 4777,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/README.md",
+      "role": "pinned-task-source",
+      "sha256": "9e86a43b4f990c6d85960f9b9df744feaba4b751a9388cd609bdf89304e4353b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/README.md",
+      "git_blob": "a6d657e743d09efbd97c1a802719b33d91ded023"
+    },
+    {
+      "bytes": 4258,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/main.py",
+      "role": "pinned-task-source",
+      "sha256": "099cd2f2f8f6e36d85f72fb47dee8faa581a6a3639bfe65ef762affc501e9ae2",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/main.py",
+      "git_blob": "f9da49541cf3c13c7c6e922c24f3e2fbf361c785"
+    },
+    {
+      "bytes": 6135,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "326be76a4ad2fea6dbb0e524c6679292603a7d0a3c455241f7c7081401f0622c",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/physics_model.py",
+      "git_blob": "9152b98cf40946fc40968120466f02809eab187c"
+    },
+    {
+      "bytes": 3057,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "beabd27899525bc23c8fab2ec49907bf93ddbeae31992386dba5b6c87c869679",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/preprocessing.py",
+      "git_blob": "6564da3742ee546fb2b4480641ca625442a3aedd"
+    },
+    {
+      "bytes": 5135,
+      "path": ".local/explainers/core-20260929/formation-f-source/tooth/code/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "1901818ce252845739e69bb2ac4199e500f16ddd67186c21044d706b082efb47",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/solvers.py",
+      "git_blob": "9c834388375421280757145e28a63fd2955d2779"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-xray-tooth-gridrec/visualization.py",
+      "sha256": "e6a2ae1fbd19ddae395d7b2efd2a2cbc3d29dcffe88f66265ffda3a1c60f08f1",
+      "bytes": 2807,
+      "git_blob": "648f338007c368c3001911700391b82cfbf9a516",
+      "role": "source-native-metric-definition",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/xray_tooth_gridrec/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "role": "pinned-generic-harness",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "bytes": 15186,
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "role": "pinned-generic-harness",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "role": "pinned-generic-harness",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/xray-tree.json",
+      "bytes": 14993,
+      "sha256": "7a9adb0b174d8126f17afc5229b78c0c419c86919b02d7556d98073177c14106",
+      "role": "official-retained-revision-tree",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec"
+    }
+  ],
+  "status": "worker-frozen-source-resolution",
+  "warning_text": "Native tooth counts; calibrated attenuation, independent truth and participant output absent.",
+  "top_warning": "Native tooth counts; calibrated attenuation, independent truth and participant output absent.",
+  "reference_policy": "reader-reference-reveal",
+  "source_condition": {
+    "task_id": "xray_tooth_gridrec",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "projection_shape": [
+      1,
+      181,
+      2,
+      640
+    ],
+    "projection_dtype": "float32",
+    "theta_shape": [
+      1,
+      181
+    ],
+    "theta_dtype": "float64",
+    "axes": [
+      "batch",
+      "angle",
+      "slice_row",
+      "detector"
+    ],
+    "projection_cells": 231680,
+    "flat_dark_each_shape": [
+      1,
+      10,
+      2,
+      640
+    ],
+    "flat_dark_each_cells": 12800,
+    "angles": 181,
+    "rows": 2,
+    "detectors": 640,
+    "angle_range_rad": [
+      0,
+      3.124235788100347
+    ],
+    "angular_step_rad": "pi/181",
+    "output_shape": [
+      2,
+      640,
+      640
+    ],
+    "generic_pixels": 819200,
+    "source_metric_pixels": 409600,
+    "detector_spacing": null,
+    "voxel_spacing": null,
+    "attenuation_physical_unit": null,
+    "photon_calibration": null,
+    "xray_energy": null,
+    "independent_truth": null,
+    "available_truth_keys": [],
+    "saved_center_detector_pixels": 296.34375,
+    "saved_reference_equals_baseline": true,
+    "reference_initially_visible": false,
+    "inventory_conditions": [
+      "L1 · README",
+      "L2 · + approach",
+      "L3 · + design"
+    ]
+  },
+  "source_roles": {
+    "input": "Native experimental projections float32 counts, two detector rows; source says APS tooth specimen, no patient/clinical identity or calibration established.",
+    "helper": "Ten flat and ten dark frames, theta radians, metadata and solver-visible TomoPy baseline. Native first calibration frame profiles are not stack means.",
+    "private_reference": "No independent ground-truth attenuation scan; generic first saved reconstruction equals source data baseline exactly.",
+    "source_saved_output": "Saved sinogram/center and reconstruction are audit provenance, not new participant result. Saved reconstructed images never displayed.",
+    "answer_owned_output": "output/reconstruction.npy real(2,640,640), pixel-scaled reconstruction; actual output/metric absent."
+  },
+  "fixture": {
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "toy_counts": 500,
+    "toy_flat": 1000,
+    "toy_dark": 100,
+    "toy_transmission": 0.4444444444444444,
+    "toy_line_integral": null,
+    "actual_output": null,
+    "clean_reference": null
+  },
+  "public_reference": {
+    "role": "Public solver-visible baseline equals generic saved reconstruction; neither is independent attenuation truth",
+    "clean_image": null,
+    "criteria": [
+      "Saved reconstruction equals baseline native cells",
+      "Source first slice409600 versus generic both slices819200",
+      "Same range NRMSE and cosine NCC, no participant output/threshold/clinical quality"
+    ]
+  },
+  "generic_evaluator_contract": {
+    "no_filesystem": "Required ground_truth.npy absent official tree; errors before comparison. Hypothetical fallback also strictly2D/flux-rescale/norm-relative, unlike two-slice filesystem output; not an alternate proven route.",
+    "filesystem": "First existing saved reconstruction.npy selected before target-shape check; _prepare_metric_array only squeezes ndim>2, leaving (2,640,640). Both slices/all819200 pixels, no flux rescale; same baseline cells but source metrics only first409600.",
+    "thresholds": "Neither evaluation/metrics.json nor evaluation/reference_outputs/metrics.json listed official pinned tree; no boundary/verdict attached without file. Source nested output/metrics.json is not a replacement."
+  },
+  "historical_acquisition_objects_preserved": true
+}

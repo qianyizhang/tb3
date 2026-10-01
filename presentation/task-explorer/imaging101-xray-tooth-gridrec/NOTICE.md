@@ -1,0 +1,2 @@
+Native tooth counts; calibrated attenuation, independent truth and participant output absent. https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec
+Gray=raw projection counts common minmax; angle/detector stride2/4. Teal/gray=first flat/dark frame counts, not stack means. No native log, centre fit, ramp FFT, backprojection, reconstruction or metric.

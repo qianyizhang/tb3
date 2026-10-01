@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-xray-tooth-gridrec-v1',
   'imaging101-usct-fwi-v1',
   'imaging-ultrasound-sos-v1',
   'imaging101-pnp-mri-reconstruction-v1',
@@ -128,6 +129,7 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-xray-tooth-gridrec-v1') return {scene:'data-imaging-tooth-gridrec-scene',reference:'[data-imaging-tooth-gridrec-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-imaging-tooth-gridrec-output-schema]',aside:'[data-imaging-tooth-gridrec-output]'};
   if (plan.recipe === 'imaging101-usct-fwi-v1') return {scene:'data-imaging-usct-fwi-scene',reference:'[data-imaging-usct-fwi-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-imaging-usct-fwi-output-schema]',aside:'[data-imaging-usct-fwi-output]'};
   if (plan.recipe === 'imaging-ultrasound-sos-v1')
     return {
@@ -879,6 +881,7 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-xray-tooth-gridrec-v1': [/Native tooth counts; calibrated attenuation, independent truth and participant output absent./s,'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec','data-imaging-tooth-gridrec-scene',false],
     'imaging101-usct-fwi-v1': [/Numerical phantom observations; true speed, calibrated pressure and participant output absent./s,'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI','data-imaging-usct-fwi-scene',false],
     'imaging-ultrasound-sos-v1': [
       /Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score./s,
@@ -2866,6 +2869,31 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     const ri=plan.beats.findIndex(b=>b.scene==='reference');await page.locator(`[data-story-step="${ri}"]`).click();await absent();const reveal=()=>scene.getByRole('button',{name:'Reveal public reference rules',exact:true});await reveal().click();assert.equal(await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').innerText(),/neither is phantom truth.*Filesystem selects a saved reconstruction, not true speed.*source uses the visible baseline.*230,400 cells.*No-filesystem scorer requires absent ground_truth\.npy.*No participant map, score or private truth/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('rules-revealed');await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).click();await absent();
     await advance(plan.beats[ri].startFrame);await reveal().click();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('[data-story-step="1"]').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();
     const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();assert.match(await scene.innerText(),/No clinical property, reconstruction quality, current CUDA success or convergence claim/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('limits-contract');await absent();await page.locator('.scene-reset').click();await absent();
+  }
+
+  if (plan.recipe === 'imaging101-xray-tooth-gridrec-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
+    const scene=page.locator('[data-imaging-tooth-gridrec-scene]');
+    const keys=await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>({bg:getComputedStyle(e).backgroundColor,line:getComputedStyle(e).borderTopColor,width:getComputedStyle(e).borderTopWidth})));assert.equal(keys.length,5);for(let i=0;i<3;i++)assert.equal(keys[i].bg,['rgb(0, 0, 0)','rgb(128, 128, 128)','rgb(255, 255, 255)'][i]);for(let i=3;i<5;i++){assert.equal(keys[i].line,['rgb(84, 211, 221)','rgb(174, 190, 200)'][i-3]);assert.equal(keys[i].width,'3px');}
+    const absent=async()=>assert.equal(await scene.locator('[data-imaging-tooth-gridrec-reference-revealed]').count(),0);
+    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
+    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
+    const image=async i=>{const imgs=scene.locator('img');assert.equal(await imgs.count(),1);const d=await imgs.evaluate(e=>({src:e.src,w:e.naturalWidth,h:e.naturalHeight,alt:e.alt}));assert.equal(d.w,160);assert.equal(d.h,91);assert.ok(d.src.startsWith('data:image/png;base64,'));assert.equal(sha(Buffer.from(d.src.split(',')[1],'base64')),sha(fs.readFileSync(`presentation/task-explorer/imaging101-xray-tooth-gridrec/counts-row${i}.png`)));assert.match(d.alt,new RegExp(`Native tooth raw detector count matrix, detector row ${i}, angle rows and detector columns; no log or reconstruction`));assert.match(await scene.locator('figcaption').innerText(),/angle rows.*detector columns.*stride 2.*4.*3921\.25.*33891\.5 raw counts.*No calibrated photons/is);};
+    const calibration=async()=>{assert.equal(await scene.locator('img').count(),0);assert.equal(await scene.locator('svg').count(),1);const profiles=JSON.parse(fs.readFileSync('presentation/task-explorer/imaging101-xray-tooth-gridrec/source.json','utf8')).native_display.calibration_profiles;const lines=scene.locator('polyline');assert.equal(await lines.count(),2);for(let k=0;k<2;k++){const pts=(await lines.nth(k).getAttribute('points')).split(' ').map(x=>x.split(',').map(Number));assert.equal(pts.length,640);assert.equal(await lines.nth(k).getAttribute('stroke'),['#54d3dd','#aebec8'][k]);for(let i=0;i<640;i++){assert.ok(Math.abs(pts[i][0]-i/639*320)<1e-11);assert.ok(Math.abs(pts[i][1]-(95-profiles[k].values[i]/35000*85))<1e-11);}}assert.match(await scene.locator('figcaption').innerText(),/Teal flat.*gray dark.*frame 0, row 0.*all 640 detector cells.*0–35,000 counts.*NOT ten-frame means/is);};
+    await page.locator('[data-story-step="0"]').click();await image(0);await absent();assert.match(await scene.innerText(),/181 angles.*2 rows.*640 detectors.*231,680 native count cells.*not an attenuation cross-section.*experimental tooth specimen.*No detector\/voxel spacing, photon calibration, energy, independent truth or participant output/is);await capture('native-input');await advance(0);await page.locator('[data-story-step="0"]').click();
+    const steps=['Counts → transmission','Native inputs','Centre + FBP rules'],branches=['Detector row 0','Detector row 1','Flat / dark frames'],bf=[336,419,503];
+    for(let i=0;i<3;i++)for(let m=0;m<3;m++){
+      await page.locator('[data-story-step="2"]').click();await scene.getByRole('button',{name:branches[m],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),bf[m]);await scene.getByRole('button',{name:steps[i],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),i===1?bf[m]:[168,0,504][i]);assert.equal(await scene.getAttribute('data-imaging-tooth-gridrec-operation-step'),String(i));assert.equal(await scene.getByRole('button',{name:steps[i],exact:true}).getAttribute('aria-pressed'),'true');const text=await scene.innerText();
+      if(i===0){assert.match(text,/T = \(I − mean\(D\)\) \/ \(mean\(F\) − mean\(D\)\).*Ten flat and ten dark frames.*Zero denominator → 1.*−log clips only below 10⁻¹².*Transmission above 1 stays above 1.*Authored I = 500, F = 1000, D = 100 gives T = 0\.4444.*no native correction\/log or new sinogram computed/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
+      else if(i===1){assert.equal(await scene.getByRole('button',{name:branches[m],exact:true}).getAttribute('aria-pressed'),'true');if(m<2)await image(m);else await calibration();await capture(`native-branch-${m}`);}
+      else{assert.match(text,/Source runs pixel-driven FBP, not a TomoPy gridrec call.*first.*reversed last correlation.*20 variance-based FBP trials.*Init 290 unused.*midpoint 319\.5 detector pixels.*640 detectors.*2048.*ramp.*π\/181.*radius 304 pixels.*no FFT, centre estimate or inverse executed/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
+      await absent();await capture(`contract-${i}-${m}`);
+    }
+    await page.locator('[data-story-step="2"]').click();await advance(336);await page.locator('[data-story-step="2"]').click();await image(0);await absent();
+    const oi=plan.beats.findIndex(b=>b.scene==='output');await page.locator(`[data-story-step="${oi}"]`).click();assert.match(await scene.innerText(),/Participant reconstruction absent.*output\/reconstruction\.npy.*2, 640, 640.*819,200 pixel-scaled values.*calibrated attenuation units unknown.*Saved baseline, centre and sinogram are prior provenance/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await absent();await capture('empty-output');
+    const ri=plan.beats.findIndex(b=>b.scene==='reference');await page.locator(`[data-story-step="${ri}"]`).click();await absent();const reveal=()=>scene.getByRole('button',{name:'Reveal public reference rules',exact:true});await reveal().click();assert.equal(await scene.getByRole('button',{name:'Hide public reference rules',exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-imaging-tooth-gridrec-reference-revealed]').innerText(),/Saved reference equals solver-visible baseline.*Source metrics use first slice, 409,600 pixels.*filesystem generic uses both slices, 819,200.*Not independent truth.*No-filesystem requires absent ground_truth\.npy.*no listed boundary file.*Actual output and score absent/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('rules-revealed');await scene.getByRole('button',{name:'Hide public reference rules',exact:true}).click();await absent();
+    await advance(plan.beats[ri].startFrame);await reveal().click();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('[data-story-step="1"]').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();
+    const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();assert.match(await scene.innerText(),/No reconstructed anatomy, resolution, clinical findings or source-gridrec equivalence claim/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('limits-contract');await absent();await page.locator('.scene-reset').click();await absent();
   }
 
   if (plan.recipe === 'imaging101-pnp-mri-reconstruction-v1') {
@@ -11040,6 +11068,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-xray-tooth-gridrec-v1',
       'imaging101-usct-fwi-v1',
       'imaging-ultrasound-sos-v1',
       'imaging101-pnp-mri-reconstruction-v1',

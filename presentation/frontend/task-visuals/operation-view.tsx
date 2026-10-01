@@ -1,3 +1,7 @@
+import {
+  ImagingToothGridrecScene,
+  ImagingToothGridrecOutput,
+} from './imaging101-xray-tooth-gridrec-panels';
 import { ImagingUsctFwiScene, ImagingUsctFwiOutput } from './imaging101-usct-fwi-panels';
 import {
   ImagingUltrasoundSosScene,
@@ -452,6 +456,8 @@ export function OperationScene({
     return <ImagingUltrasoundSosScene state={state} plan={plan} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'imaging101-usct-fwi-v1')
     return <ImagingUsctFwiScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'imaging101-xray-tooth-gridrec-v1')
+    return <ImagingToothGridrecScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -813,6 +819,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'imaging-ultrasound-sos-v1')
     return <ImagingUltrasoundSosOutput state={state} />;
   if (state.recipe === 'imaging101-usct-fwi-v1') return <ImagingUsctFwiOutput state={state} />;
+  if (state.recipe === 'imaging101-xray-tooth-gridrec-v1')
+    return <ImagingToothGridrecOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
