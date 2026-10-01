@@ -1,3 +1,4 @@
+import { imagingPoissonPack } from './imaging101-ct-poisson-lowdose';
 import { bcerGrappaPack } from './bcer-short-recon-grappa';
 import { bcerSuperresPack } from './bcer-short-superres';
 import { bcerDenoisePack } from './bcer-short-denoise';
@@ -127,6 +128,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-poisson-v1',
     'bcer-grappa-v1',
     'bcer-superres-v1',
     'bcer-denoise-v1',
@@ -1181,6 +1183,13 @@ export function storyPresentation(plan: StoryPlan): {
           ['#57d1cc', 'Symbolic central ACS24 lines'],
           ['#526373', 'Symbolic missing ky; not image pixels'],
         ],
+      };
+    case 'imaging101-poisson-v1':
+      return {
+        heading: 'Counts, post-log and weighted reconstruction',
+        corner: '300-photon noisy input unmatched',
+        warning: imagingPoissonPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

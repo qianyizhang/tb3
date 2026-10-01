@@ -24,6 +24,7 @@ class ExpansionTests(unittest.TestCase):
                 if plan["recipe"]
                 in {
                     "automed-medxpert-mm-v1",
+                    "imaging101-poisson-v1",
                     "bcer-superres-v1",
                     "automed-kvasir-v1",
                     "automed-pathvqa-v1",

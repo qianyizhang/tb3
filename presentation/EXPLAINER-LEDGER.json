@@ -11413,15 +11413,15 @@
       ],
       "illustration_kind": "ct",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-ct-poisson-lowdose",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "13 task and 60 shared source files verified. Four of six numerical/metadata assets match the manifest; raw data and truth match pinned HF LFS identities but fail benchmark SHA-256 checks. The release mixes 1000- and 300-photon conditions.",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Missing manifest-matching 300-photon raw data and truth; downloaded 1000-photon arrays cannot be paired with the saved 300-photon fixture/results. Units and solver/output provenance also conflict.",
-      "remaining_work": "Recover the two expected asset hashes or a coherent revised source condition, reconcile units and saved-output provenance, then author/export/review a native story. Continue the ordered queue while this entry remains incomplete.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted task-specific Poisson count/log/weight explanation and native expected-count fixture after main source/39-image visual/export/mobile/no-GPU/late-reader boundary review. Matching300 noisy input/truth and actual reconstruction/score remain absent; retained1000 arrays, units dispute and distinct scorer routes stay qualified.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-ct-poisson-lowdose/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "title": "Reconstruct CT from noisy photon counts",
         "goal": "Recover an attenuation slice from noisy projections, giving lower-count rays less\nweight. **Source-input blocker:** the pinned release mixes two acquisition conditions.",
@@ -11502,11 +11502,11 @@
       "source_brief_sha256": "ee18cf131766009a5b5c9603d34685d0c01db5ae0f11139d7cf0ede29274b79e",
       "blocker_resolution": "Staging and scoring contracts are audited: truth is visible in L1-L3; live generic full-image scoring differs from the cropped task-aware helper. The remaining dependency is a coherent source packet, not permission to run a solver. No exclusion or alternate completion scope approved.",
       "source_review": {
-        "date": "2026-09-29",
-        "reviewer": "assistant",
-        "receipt": "presentation/external-tasks/sources/imaging101-poisson-lowdose-audit.json",
-        "sha256": "0e3ecd661a5e19d05df51f71b15ec479ad8b9d91dc6dc164bc085f33b9c2ae0c",
-        "status": "source-audited-inputs-inconsistent"
+        "receipt": "presentation/external-tasks/sources/imaging101-ct-poisson-lowdose-resolution.json",
+        "receipt_sha256": "b6fbed495af355790c9e4c0dac70326270eba36022a6edf6030d41fadb846eb1",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T06:17:10.809855+00:00",
+        "no_visual_acceptance": true
       },
       "dependency_deferral": {
         "actor": "user",
@@ -11516,14 +11516,109 @@
         "next_action": "Recover the two expected asset hashes or a coherent revised source condition, reconcile units and saved-output provenance, then author/export/review a native story. Continue the ordered queue while this entry remains incomplete.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "source-version-mismatch",
-        "attempt_status": "prior-attempt-found-incompatible-data",
-        "next_action": "Look for the exact 300-photon raw/truth pair and resolve units and solver provenance; do not combine the 1000-photon arrays with 300-photon results. If unavailable, derive a self-contained symbolic Poisson example with explicit invented parameters, no historical score claim and the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "source-version-mismatch",
+          "attempt_status": "prior-attempt-found-incompatible-data",
+          "next_action": "Look for the exact 300-photon raw/truth pair and resolve units and solver provenance; do not combine the 1000-photon arrays with 300-photon results. If unavailable, derive a self-contained symbolic Poisson example with explicit invented parameters, no historical score claim and the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "source_class": "source-derived-teaching",
+      "actual_data_gap": "No manifest-matching 300-photon raw data or truth recovered; retained 1000-photon noisy arrays cannot substantiate the 300-photon task. No new reconstruction, participant output or metric. Units cm^-1 README vs mm^-1 metadata unresolved.",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose/data",
+      "warning_text": "Matching 300-photon noisy input/truth missing; retained raw data uses 1000. Symbolic counts; later fixture shows expectation only.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-ct-poisson-lowdose-resolution.json",
+      "acceptance_scope": "Pinned CT Poisson mechanics, authored count/log explanation and actual expected-count fixture subset; matching 300-photon noisy input/truth and reconstruction remain missing.",
+      "completion_review": {
+        "date": "2026-10-01T06:42:39.721619+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "3c3f1cefe6c7caa4e05860e393d1647772b240606bc17a033ce42c00da2a10f3"
+      },
+      "reviewed_contract_projection": {
+        "title": "Count photons without substituting a different-dose outcome",
+        "goal": "Trace transmission, count flooring and weighted reconstruction while preserving the release mismatch and evaluator boundaries.",
+        "value": "Count-derived weighting distinguishes rays with different uncertainty; a coherent acquisition condition is needed to attribute reconstruction differences.",
+        "raw": "Synthetic 256\u00d7256 attenuation phantom, 256 views over [0,\u03c0), 367 detector channels. Stored sinograms and count weights have shape (1,256,367); angles (1,256). The loader strips the batch dimension and SVMBIR receives (V,1,C). Parallel geometry, nominal detector/pixel spacing 1. Metadata says mm\u207b\u00b9 while README says cm\u207b\u00b9; no physical conversion inferred. Metadata declares generation seed 42. No new noise is generated. Photon counts are simulation parameters, not a patient dose in mGy or mSv.\n\nThe task metadata specifies I0=300 incident photons/ray and high-dose I0=50000. The official bounded listing confirms retained raw/truth LFS hashes differ from the benchmark manifest. Required raw SHA-256 is 631d51212a46e6b56a47f8aae87f9894f71b24510d96d1e6425c8b30291d3e2d; observed is 96cebbf96bb56a1e71ab696563a1b132f741fbf319e471abce8e4219931c0d4a. No matching 300-photon noisy input or truth recovered.",
+        "helpers": "README, metadata, plans, preprocessing, project/backproject and solver code; clean/high-dose arrays bundled. Actual L1/L2/L3 staging copies the complete data directory, including ground_truth.npz: truth is solver-visible. Evaluation fixtures and saved outputs remain outside the workspace.\n\nA manifest-matching physics fixture has I0=300, 256 views and 367 channels. Its expected transmission is a deterministic model fixture, not a noisy acquisition. A native 16\u00d716 bin subset is retained only in the later reader reference, without phantom or saved reconstruction images.",
+        "tools": "Python/SVMBIR task scaffold; no task module/function, tool or evaluator executed and no runtime installed. Array inspection and original pure mathematical controls only.",
+        "reference": "Physics/metrics fixtures and saved reconstructions have separate source roles. Reader reveal shows expected-count fixture and evaluator rules; backward, exit and reset cover it. No participant prediction, GT image or saved reconstruction is rendered. Educational hiding does not change solver-visible truth in source staging.",
+        "spec": "Ax is a dimensionless line integral when attenuation and path-length units are compatible. Expected counts \u03bb=I0 exp(\u2212Ax); counts Y~Poisson(\u03bb), variance \u03bb. Source floors Y to 1, computes \u2212log(max(Y,1)/I0) and uses floored counts as weights. Counts can exceed I0, giving negative post-log values. The post-log inverse-count variance approximation can be poor near the floor; the floored values no longer encode original zero events. Original zeros cannot be distinguished from ones after flooring.\n\nAuthored toy Ax=[0,1,3] gives expected counts [300,110.3638,14.9361]. Illustrative Y=[300,100,0] becomes [300,100,1], then [0,1.0986123,5.7037825]. These manually selected counts are not seed-42 draws or patient measurements.\n\nRetained noisy data satisfies \u2212log(weights/1000) across all 93952 bins. Using 300 instead shifts every ray by **\u2212ln(1000/300)=\u22121.2039728043**. Do not relabel these arrays as the 300-photon condition. Plans advertise SVMBIR q-GGMRF/ICD; actual solver uses project/backproject proximal-gradient TV, normalizes weights by their maximum and clips negative estimates. No convergence or reconstruction claim. The generator's 32\u00b2/18-view/I0=10000 fallback differs from the retained fixture and cannot recover this contract.",
+        "output": "Actual end-to-end output is **output/reconstruction.npy**, a real 256\u00d7256 array. A separate source archive uses recon_fbp/recon_pwls_low/recon_pwls_high. Actual participant path, image and score are null here; saved arrays and historical notebook values are not participant predictions or 300-photon task outcomes.",
+        "score": "The filesystem dispatch uses generic full-array scoring. A separate registered task-aware helper selects recon_pwls_low before recon_unweighted/recon_fbp and crops [26:230,26:230]: **41616/65536 pixels**. Cosine NCC=sum(xy)/(||x||||y||), without mean centering; range NRMSE=RMS error/(max(reference)\u2212min(reference)), with distinct constant-reference guards: the task-local helper returns 0.0 when reference range is zero, while filesystem generic scoring returns infinity. The generic NCC adds a small denominator stabilizer. The filesystem generic path does not flux-rescale image intensity. The separate no-filesystem/Docker fallback in scorer.py instead flux-normalizes the output, uses L2-relative NRMSE with a 1e-30 denominator stabilizer and requires a .npy truth; it is not the same metric route. No backend or scorer was run here.\n\nOriginal pure scaled-reference and outside-crop controls demonstrate metric limits only. Missing truth discovery can fall back to recon_fbp, which is not recovered truth. No metrics.json exists in the pinned task tree, manifest or complete HF listing; historical notebook thresholds are not installed, so no current pass/fail verdict. These are implementation boundaries, not clinical/model performance or a population denominator.",
+        "challenge": "Weighting, regularization and the count floor can change the solution. Conflicting dose, truth and units prevent attributing saved-array differences to weighting alone.",
+        "families": "One synthetic 256-pixel task; 73 source/Git pins, six numerical/metadata assets and retained official acquisition records. Four assets match the manifest; raw data and truth do not. No patient or model capability claim.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Missing matched input plus symbolic parallel rays, labelled dimensionless integrals and expected photons.",
+          "Canonical step/count controls teach floor/log/weight mechanics without inventing reconstruction.",
+          "Empty output; later pinned expected-count subset and evaluator rules, covered on backward/exit/reset."
+        ],
+        "variants": [
+          {
+            "name": "L1 \u00b7 README",
+            "helper": "README, complete data directory, requirements.",
+            "remaining": "Choose and implement reconstruction."
+          },
+          {
+            "name": "L2 \u00b7 + approach",
+            "helper": "Adds an SVMBIR/q-GGMRF approach.",
+            "remaining": "Resolve differences from the supplied TV implementation."
+          },
+          {
+            "name": "L3 \u00b7 + design",
+            "helper": "Adds the software plan.",
+            "remaining": "Resolve outdated function names and implement the method."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ct_poisson_lowdose/README.md"
+          ],
+          [
+            "Pinned scorer",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose/data"
+          ],
+          [
+            "Maintained audit",
+            "presentation/external-tasks/sources/imaging101-poisson-lowdose-audit.json"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-ct-poisson-lowdose-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Trace transmission, count flooring and weighted reconstruction while preserving the release mismatch and evaluator boundaries.</p>",
+          "value": "<p>Count-derived weighting distinguishes rays with different uncertainty; a coherent acquisition condition is needed to attribute reconstruction differences.</p>",
+          "raw": "<p>Synthetic 256\u00d7256 attenuation phantom, 256 views over [0,\u03c0), 367 detector channels. Stored sinograms and count weights have shape (1,256,367); angles (1,256). The loader strips the batch dimension and SVMBIR receives (V,1,C). Parallel geometry, nominal detector/pixel spacing 1. Metadata says mm\u207b\u00b9 while README says cm\u207b\u00b9; no physical conversion inferred. Metadata declares generation seed 42. No new noise is generated. Photon counts are simulation parameters, not a patient dose in mGy or mSv.</p>\n<p>The task metadata specifies I0=300 incident photons/ray and high-dose I0=50000. The official bounded listing confirms retained raw/truth LFS hashes differ from the benchmark manifest. Required raw SHA-256 is 631d51212a46e6b56a47f8aae87f9894f71b24510d96d1e6425c8b30291d3e2d; observed is 96cebbf96bb56a1e71ab696563a1b132f741fbf319e471abce8e4219931c0d4a. No matching 300-photon noisy input or truth recovered.</p>",
+          "helpers": "<p>README, metadata, plans, preprocessing, project/backproject and solver code; clean/high-dose arrays bundled. Actual L1/L2/L3 staging copies the complete data directory, including ground_truth.npz: truth is solver-visible. Evaluation fixtures and saved outputs remain outside the workspace.</p>\n<p>A manifest-matching physics fixture has I0=300, 256 views and 367 channels. Its expected transmission is a deterministic model fixture, not a noisy acquisition. A native 16\u00d716 bin subset is retained only in the later reader reference, without phantom or saved reconstruction images.</p>",
+          "tools": "<p>Python/SVMBIR task scaffold; no task module/function, tool or evaluator executed and no runtime installed. Array inspection and original pure mathematical controls only.</p>",
+          "reference": "<p>Physics/metrics fixtures and saved reconstructions have separate source roles. Reader reveal shows expected-count fixture and evaluator rules; backward, exit and reset cover it. No participant prediction, GT image or saved reconstruction is rendered. Educational hiding does not change solver-visible truth in source staging.</p>",
+          "spec": "<p>Ax is a dimensionless line integral when attenuation and path-length units are compatible. Expected counts \u03bb=I0 exp(\u2212Ax); counts Y~Poisson(\u03bb), variance \u03bb. Source floors Y to 1, computes \u2212log(max(Y,1)/I0) and uses floored counts as weights. Counts can exceed I0, giving negative post-log values. The post-log inverse-count variance approximation can be poor near the floor; the floored values no longer encode original zero events. Original zeros cannot be distinguished from ones after flooring.</p>\n<p>Authored toy Ax=[0,1,3] gives expected counts [300,110.3638,14.9361]. Illustrative Y=[300,100,0] becomes [300,100,1], then [0,1.0986123,5.7037825]. These manually selected counts are not seed-42 draws or patient measurements.</p>\n<p>Retained noisy data satisfies \u2212log(weights/1000) across all 93952 bins. Using 300 instead shifts every ray by <strong>\u2212ln(1000/300)=\u22121.2039728043</strong>. Do not relabel these arrays as the 300-photon condition. Plans advertise SVMBIR q-GGMRF/ICD; actual solver uses project/backproject proximal-gradient TV, normalizes weights by their maximum and clips negative estimates. No convergence or reconstruction claim. The generator&#x27;s 32\u00b2/18-view/I0=10000 fallback differs from the retained fixture and cannot recover this contract.</p>",
+          "output": "<p>Actual end-to-end output is <strong>output/reconstruction.npy</strong>, a real 256\u00d7256 array. A separate source archive uses recon_fbp/recon_pwls_low/recon_pwls_high. Actual participant path, image and score are null here; saved arrays and historical notebook values are not participant predictions or 300-photon task outcomes.</p>",
+          "score": "<p>The filesystem dispatch uses generic full-array scoring. A separate registered task-aware helper selects recon_pwls_low before recon_unweighted/recon_fbp and crops [26:230,26:230]: <strong>41616/65536 pixels</strong>. Cosine NCC=sum(xy)/(||x||||y||), without mean centering; range NRMSE=RMS error/(max(reference)\u2212min(reference)), with distinct constant-reference guards: the task-local helper returns 0.0 when reference range is zero, while filesystem generic scoring returns infinity. The generic NCC adds a small denominator stabilizer. The filesystem generic path does not flux-rescale image intensity. The separate no-filesystem/Docker fallback in scorer.py instead flux-normalizes the output, uses L2-relative NRMSE with a 1e-30 denominator stabilizer and requires a .npy truth; it is not the same metric route. No backend or scorer was run here.</p>\n<p>Original pure scaled-reference and outside-crop controls demonstrate metric limits only. Missing truth discovery can fall back to recon_fbp, which is not recovered truth. No metrics.json exists in the pinned task tree, manifest or complete HF listing; historical notebook thresholds are not installed, so no current pass/fail verdict. These are implementation boundaries, not clinical/model performance or a population denominator.</p>",
+          "challenge": "<p>Weighting, regularization and the count floor can change the solution. Conflicting dose, truth and units prevent attributing saved-array differences to weighting alone.</p>",
+          "families": "<p>One synthetic 256-pixel task; 73 source/Git pins, six numerical/metadata assets and retained official acquisition records. Four assets match the manifest; raw data and truth do not. No patient or model capability claim.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25436,11 +25531,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 120,
+    "reviewed-scripted-planar": 121,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 57,
-    "blocked-source-input": 14,
-    "pending-operation-review": 1
+    "pending-operation-review": 1,
+    "blocked-source-input": 13
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

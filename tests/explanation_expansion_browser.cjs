@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-poisson-v1',
   'bcer-grappa-v1',
   'bcer-superres-v1',
   'bcer-denoise-v1',
@@ -112,6 +113,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-poisson-v1')
+    return {
+      scene: 'data-imaging-poisson-scene',
+      reference: '[data-imaging-poisson-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-poisson-scene="output"] code',
+      aside: '[data-imaging-poisson-output]',
+    };
   if (plan.recipe === 'bcer-grappa-v1')
     return {
       scene: 'data-bcer-grappa-scene',
@@ -721,6 +731,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-poisson-v1': [
+      /Matching 300-photon noisy input\/truth missing; retained raw data uses 1000.*Symbolic counts.*expectation only/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose/data',
+      'data-imaging-poisson-scene',
+      false,
+    ],
     'bcer-grappa-v1': [
       /Matching cardiac H5, reconstruction and clean GT absent; mask and modes are symbolic/s,
       'https://cmrxrecon.github.io/2025/Join-the-Challenge.html',
@@ -1565,6 +1581,211 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await absent();
     await page.locator('[data-story-step="0"]').click();
     await absent();
+  }
+  if (plan.recipe === 'imaging101-poisson-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-poisson-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-imaging-poisson-reference-revealed]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /Matching 300-photon noisy input missing.*256 views × 367 channels.*no patient data.*1000-photon arrays stay separate/is,
+    );
+    assert.equal(await scene.locator('img').count(), 0);
+    assert.deepEqual(
+      await scene
+        .locator('svg path')
+        .evaluateAll((els) => els.map((e) => e.getAttribute('stroke'))),
+      ['#88b4e0', '#88b4e0', '#88b4e0'],
+    );
+    assert.match(
+      await scene.locator('figcaption').innerText(),
+      /Blue solid lines = symbolic rays.*slate box = attenuation object.*Expected λ differs.*random count Y/is,
+    );
+    const ops = plan.beats.filter((b) => b.scene === 'operation');
+    assert.equal(ops.length, 3);
+    await page.locator(`[data-story-step="${plan.beats.indexOf(ops[0])}"]`).click();
+    for (let j = 0; j < 3; j++) {
+      await scene.locator(`[data-imaging-poisson-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[j].startFrame,
+      );
+      assert.equal(
+        await scene.locator(`[data-imaging-poisson-step="${j}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /λ=300exp.*Y~Poisson.*Variance λ.*cm⁻¹.*mm⁻¹ unresolved/is,
+          /Illustrative Y=300.*max\(Y,1\)=300.*−log\(count\/300\)=0\.000000.*weight=300.*authored counts, no random draw.*Zero\/one indistinguishable/is,
+          /Toy weights: 1\.000 \/ 0\.333 \/ 0\.003.*max-normalizes.*proximal-gradient TV.*No run\/convergence.*Stored \(1,V,C\).*SVMBIR \(V,1,C\)/is,
+        ][j],
+      );
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await scene.locator('[data-imaging-poisson-step="1"]').click();
+    for (let j = 0; j < 3; j++) {
+      await scene.locator(`[data-imaging-poisson-count="${j}"]`).click();
+      const local = [0, Math.floor((ops[1].frames - 1) / 2), ops[1].frames - 1][j];
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[1].startFrame + local,
+      );
+      assert.equal(
+        await scene.locator(`[data-imaging-poisson-count="${j}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      const counts = [300, 100, 0],
+        floored = [300, 100, 1];
+      assert.ok(
+        (await scene.innerText()).includes(`Illustrative Y=${counts[j]} →max(Y,1)=${floored[j]}`),
+      );
+      assert.ok(
+        (await scene.innerText()).includes(
+          `−log(count/300)=${(-Math.log(floored[j] / 300)).toFixed(6)}; weight=${floored[j]}`,
+        ),
+      );
+      await capture(`count-${j}`);
+      await absent();
+    }
+    await scene.locator('[data-imaging-poisson-step="2"]').click();
+    for (const mode of ['counts', 'uniform']) {
+      const frame = Number(await page.locator('.scene-player').getAttribute('data-frame'));
+      await scene.locator(`[data-imaging-poisson-weight="${mode}"]`).click();
+      assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), frame);
+      assert.match(
+        await scene.innerText(),
+        mode === 'counts'
+          ? /Toy weights: 1\.000 \/ 0\.333 \/ 0\.003/
+          : /Toy weights: 1\.000 \/ 1\.000 \/ 1\.000/,
+      );
+      await capture(`weight-${mode}`);
+    }
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+      ops[2].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await page.locator(`[data-story-step="${plan.beats.indexOf(ops[2])}"]`).click();
+    assert.equal(
+      await scene.locator('[data-imaging-poisson-weight="counts"]').getAttribute('aria-pressed'),
+      'true',
+    );
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.locator('code').innerText(),
+      /output\/reconstruction\.npy.*real 256×256/,
+    );
+    assert.match(await scene.innerText(), /No reconstructed image, GT, score or model outcome/is);
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal fixture and rules', exact: true });
+    await reveal().click();
+    const ref = page.locator('[data-imaging-poisson-reference-revealed]');
+    const native = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/imaging101-ct-poisson-lowdose/reference.json',
+        'utf8',
+      ),
+    ).expected_count_subset.values;
+    const expected = native.flat().map((v) => {
+      const g = Math.round((v / 300) * 255);
+      return `rgb(${g},${g},${g})`;
+    });
+    assert.deepEqual(
+      await ref.locator('svg rect').evaluateAll((els) => els.map((e) => e.getAttribute('fill'))),
+      expected,
+    );
+    assert.deepEqual(
+      await ref.locator('svg text').evaluateAll((els) =>
+        els.map((e) => {
+          const b = e.getBBox(),
+            v = e.ownerSVGElement.viewBox.baseVal;
+          return (
+            b.x >= v.x &&
+            b.y >= v.y &&
+            b.x + b.width <= v.x + v.width &&
+            b.y + b.height <= v.y + v.height
+          );
+        }),
+      ),
+      [true, true, true, true],
+    );
+    assert.equal(expected.length, 256);
+    assert.equal(await ref.locator('img').count(), 0);
+    assert.match(
+      await ref.innerText(),
+      /Expected photons\/bin.*Black 0 → white 300.*Views 120–135.*detectors 175–190.*native 16×16 subset, no rescale.*Mathematical expectation, never noisy realization/is,
+    );
+    for (let j = 0; j < 3; j++) {
+      await ref.locator(`[data-imaging-poisson-metric="${j}"]`).click();
+      assert.equal(
+        await ref.locator(`[data-imaging-poisson-metric="${j}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await ref.innerText(),
+        [
+          /Filesystem generic: full256².*constant reference gives infinity, no flux normalization/is,
+          /Separate task-aware helper: central204² =41616\/65536 pixels.*constant reference gives 0\.0/is,
+          /No-filesystem fallback: output flux scaled to \.npy truth, relative L2 NRMSE.*different route/is,
+        ][j],
+      );
+      assert.match(
+        await ref.innerText(),
+        /No metrics\.json thresholds retained.*no score or pass\/fail.*truth to solver.*educational boundary/is,
+      );
+      await capture(`scorer-${j}`);
+    }
+    await capture('fixture-revealed');
+    await scene.getByRole('button', { name: 'Cover fixture and rules', exact: true }).click();
+    await absent();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+      plan.beats[ri].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    assert.equal(
+      await ref.locator('[data-imaging-poisson-metric="0"]').getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page
+      .locator(`[data-story-step="${plan.beats.findIndex((b) => b.scene === 'limits')}"]`)
+      .click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await page.locator('.scene-reset').click();
   }
   if (plan.recipe === 'bcer-grappa-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -7704,6 +7925,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-poisson-v1',
       'bcer-grappa-v1',
       'bcer-superres-v1',
       'bcer-denoise-v1',

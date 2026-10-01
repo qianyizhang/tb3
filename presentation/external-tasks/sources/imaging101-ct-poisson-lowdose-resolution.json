@@ -1,0 +1,648 @@
+{
+  "schema": 1,
+  "entry_id": "imaging101-ct-poisson-lowdose",
+  "date": "2026-10-01",
+  "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+  "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+  "baseline_commit": "137076b3395600f2e362ea97a3d5e4d6bb7fe286",
+  "source_files": [
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/README.md",
+      "sha256": "ef073d9c81e3f47beed07f0d519a0eb1961230f06ef6ab008c7d8e3caa910da1",
+      "git_blob": "6a36c2e36955e0caae070215ddfce58ab20111fc",
+      "bytes": 6716
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/generate_fixtures.py",
+      "sha256": "20513d94f22f16458fadd056f65b01e3ad36a5e575f4d94bbd5043753e52305a",
+      "git_blob": "9f65ccd986865062df6fe36c945d679a3dc4f9c8",
+      "bytes": 6964
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/main.py",
+      "sha256": "1dddc5abf3957b3b5461da9695f568e211ca927e267d315896d4a1f175fb1279",
+      "git_blob": "d8dda99f95e745c9e735d32858473077f14d6dc3",
+      "bytes": 5555
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/notebooks/ct_poisson_lowdose.ipynb",
+      "sha256": "ffa3e480e033d89e93a88f633cb97a12d9abcef29016f39ae0b3906fde77b3a8",
+      "git_blob": "002220a1fd8c31105022f2ccdbe9d4654e6f49d9",
+      "bytes": 2884510
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/plan/approach.md",
+      "sha256": "a03fa173b1b748ec1438a546cbd8e207dc52844a004cf394ea47241b0af6f716",
+      "git_blob": "239061e64295e98c1cc480d1d3dccfcc158761ad",
+      "bytes": 2654
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/plan/design.md",
+      "sha256": "3d579b30bb2ae191231c5a5c3c3ac2800dce53f9bd903af2d32da350b0622fc0",
+      "git_blob": "17dcb7e673ea5870d1fc796e0f8400abe788f0e5",
+      "bytes": 4292
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/requirements.txt",
+      "sha256": "9f8a4cb81816d30eda47f725a136e7cf934dff09827ff8d181e4dc7dafbcd1b9",
+      "git_blob": "70684ffa3089652ad96eb226e246afb75a0c7781",
+      "bytes": 101
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/src/generate_data.py",
+      "sha256": "5e0780bf537887e7fb81f07952e9d42faa1a91b08381a77766eb408e114ab890",
+      "git_blob": "be795dd20b8ff2504eecf4d4daca4aa5d20ca22e",
+      "bytes": 6496
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/src/physics_model.py",
+      "sha256": "24d366956f7da36a5e2197d8d027386583f3c59f61087d6d56996b2aa18fa622",
+      "git_blob": "da44d224a1c0e4ed31cec942d38ff6a450aab85b",
+      "bytes": 3440
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/src/preprocessing.py",
+      "sha256": "a4a3e34210ffec0eeaba4fcbed460751bd023677fba3dd973f99b261ac4e0f50",
+      "git_blob": "f79a2875a4f87d6f2f8e5a83dd0bb8acf4a05865",
+      "bytes": 2678
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/src/solvers.py",
+      "sha256": "b0eced23febf798c3e8a3afea10e53f35e4747b0e13e5da567ee41f815435d0d",
+      "git_blob": "963e3100c8f2b2c493beea2d941329cc3b17aeba",
+      "bytes": 6382
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/src/visualization.py",
+      "sha256": "481d0620f6c8610516b456ce70eb85e193da908103dfd9e6f607bda015069f1e",
+      "git_blob": "bf5e094f059d3647b3279f653884a456bbff00c7",
+      "bytes": 6229
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "bytes": 1076
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/README.md",
+      "sha256": "33b226ba0171c595b655c52da7bd4e38c7192e1d274051eb677af4aa49681fef",
+      "git_blob": "60233784ecb46358623ee3be1e9de40e23c70eee",
+      "bytes": 7194
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/assets_manifest.json",
+      "sha256": "66568d11536efc12c8be6f03fd0e2ece0a6080ca4abeeea05ab73a3f8e98c797",
+      "git_blob": "6c0d85a9ad9ad8f4ddeeac4a0a8e9953fcf80884",
+      "bytes": 315512
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/docs/END2END_EVALUATION.md",
+      "sha256": "d4a07d6b25bb4b983f1c47cf9b858486e93500554e19ac6421bd40fc69cd987a",
+      "git_blob": "912fb91731f4427c9190c51997372cfb974f1818",
+      "bytes": 8188
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/docs/EVALUATION_GUIDE.md",
+      "sha256": "28c32eda23906b2c69b86af28f7f66da4fa8ab3d024de885619340cfcf4b92d9",
+      "git_blob": "48195e9f098f46fd957b69e2754dbf7eba0a9340",
+      "bytes": 4894
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/docs/function_level_evaluation.md",
+      "sha256": "799ecaa32db6bf05784c4789692ab98493161b027fcaf66f26cf4cf57ab4e267",
+      "git_blob": "45d1e24102c55b278986e2af7aa1bdf86c8bc78a",
+      "bytes": 9348
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/docs/plan_evaluation.md",
+      "sha256": "d51b5efb8d349de27251454c706e0e5d6446c9fb0a054c2dace1fe63297d0b37",
+      "git_blob": "fa9a00275d21acb0e8111d92def6fc268b037bbe",
+      "bytes": 8733
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/Dockerfile",
+      "sha256": "3c9b4ee8e87a022a383597e33531c5e6a61c64c6a445f45a383be165f57e09fa",
+      "git_blob": "7763c091e48fbd4d6580befd971a73d2cf87652c",
+      "bytes": 166
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/README.md",
+      "sha256": "4758ca8e26e8464f3c3bba57b03b52357c953aaa5c3e100b63ce7bc4f7634bd0",
+      "git_blob": "4175991a54ea3f28197acf100db2e2f2ac99ee4a",
+      "bytes": 5199
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/__init__.py",
+      "sha256": "6638875de491c616d5e44b271a2f76324464871e26fa8a867e0cd34cc66dd874",
+      "git_blob": "8cf86e231ca72c897f1ff6204349f6ce1b24eb0d",
+      "bytes": 199
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/__main__.py",
+      "sha256": "f25a61fbda26b216e1aee6817a50dd9bb7d3b681412d1a4eef819c3dd18b4445",
+      "git_blob": "634fdf98a3f04a55556c2243f91546a52ba1da3d",
+      "bytes": 28282
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/agent.py",
+      "sha256": "ffeea0d6c3261589833f0887b91c42ebc1cf7190a118ad23cfc7924cb765db15",
+      "git_blob": "ee4c8d2f0cb34f411587f59b92ff659a65c4d761",
+      "bytes": 32610
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/__init__.py",
+      "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+      "git_blob": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+      "bytes": 392
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/architect_agent.py",
+      "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+      "git_blob": "27e043a670636c1881d7dbd746560896fb10556e",
+      "bytes": 4029
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/base.py",
+      "sha256": "f22cd120705acb77052af47b56b2a1a4a926c82c8769c6dc1962a6f5efa8a90a",
+      "git_blob": "a53f1309245a22ceb85109341573fb775d48d49b",
+      "bytes": 3948
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/coder_agent.py",
+      "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+      "git_blob": "79a670932420d85358ae035c0bbdbd719f10eb83",
+      "bytes": 9187
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/judge_agent.py",
+      "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+      "git_blob": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+      "bytes": 8924
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/agents/planner_agent.py",
+      "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+      "git_blob": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+      "bytes": 11747
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/config.py",
+      "sha256": "428bacdcd01f4a24e132fa50ac59ad3ff5023e2850494b7e42421b60f1710584",
+      "git_blob": "c78bc04b8c82a1649c7106d3900525441bdcbabf",
+      "bytes": 1765
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/docker_runner.py",
+      "sha256": "8c8d5fb663701fa141402416593b69fe2dc4a13f96648fa210e6d66e1f2f1ee4",
+      "git_blob": "79f71f432b405f40c087b323b6369c4015403729",
+      "bytes": 4792
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/env_manager.py",
+      "sha256": "c6fa6d5e855eb302a3d7a4de23d1bfecf5f91222e6196652fbfb99a987c40252",
+      "git_blob": "cee2df4d5392093571807dcebdfac42e5582d377",
+      "bytes": 8475
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/__init__.py",
+      "sha256": "81f25389770abe1051f4a0e1c9cd4f09466f5b34f55ec58107b16acc7d533d44",
+      "git_blob": "4b1f462e03a91a3170ca87b19c92362fdd054af0",
+      "bytes": 489
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/README.md",
+      "sha256": "285f8474c75570a8ae5c720414a95f518d9c5570ab69ebadc0b727187faf7923",
+      "git_blob": "7f7d4a313beb4cb3de04917c0f23a738c6c497dc",
+      "bytes": 2729
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/__init__.py",
+      "sha256": "b0e1e174619b1d3135b6a95de9e8b732938773f96f3c253df1a8c41449c042ef",
+      "git_blob": "f6e0403cc65d270f4a1998a16f68edd1de0ac546",
+      "bytes": 1036
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/copilot_prompt.py",
+      "sha256": "12d4d2b0094523184196b9eda88108f783123b40ae7f0f34fba2a829de4847be",
+      "git_blob": "a14f50e7ec54a42d487c8a130bc9b8d1202f1516",
+      "bytes": 10492
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/copilot_runner.py",
+      "sha256": "adc54b3971bcc9c8a7ee303b36cfbe2650948e77c4c5f162bc8d0b5c29fb1a6b",
+      "git_blob": "83a10cfa613135abfc4222fa4831d6195d179d77",
+      "bytes": 20758
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/copilot_scorer.py",
+      "sha256": "c4c2cc9047f28be087c38b594d86dadfe6be0ab673ee7d1d903742dfd4615e58",
+      "git_blob": "15ff30434cff0f3391acbefda225bfd443face34",
+      "bytes": 6937
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/prepare_all.ps1",
+      "sha256": "0c1618624ba1f4bd55779ff717456b9ba07fe9382d873c53d2c2150a1d87e937",
+      "git_blob": "ce499961c2297e5a76503c6fee1d95108dc4f2f7",
+      "bytes": 2321
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/claude_code/prepare_all.sh",
+      "sha256": "39b91bb48c11a8e6f23a1a862e129731472cfb23c86928c5a399aef60fc71137",
+      "git_blob": "9e291b1a576d41c43cef4cd0b687e2c206315270",
+      "bytes": 1714
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/README.md",
+      "sha256": "6585e2263da08f394aec6b33a5ab0caa01b25552fc921b0499520576b5c90471",
+      "git_blob": "19e3c6413dba14037e4c0a70f2cd25a256e642f0",
+      "bytes": 4279
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/__init__.py",
+      "sha256": "392f28d3e9246e0b0eaa03531feb9c649eb055d0c99a223d1213a69323d92859",
+      "git_blob": "d707c57d116f16f11b7f1d5f36f97528d208a584",
+      "bytes": 579
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/config.py",
+      "sha256": "b312a79bddba3d28d7e6702827173f80338cf6738c64fc3a9e35f81d7487ee05",
+      "git_blob": "891e02faf339340019b7fb26fcf8452432475c70",
+      "bytes": 2315
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/deepcode_config.yaml",
+      "sha256": "0c1a7169f4e1db3f7ca452e4833a8e9351b19241d5e8be32d8ee2a8ebac1ca99",
+      "git_blob": "ec5dbf57cbd1202cab89edd4a970f309c34c3c0b",
+      "bytes": 719
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/deepcode/runner.py",
+      "sha256": "53e2aa4ad727587a6e515110f29511a280cfa014c4e1c3bf61411503fbecc2d9",
+      "git_blob": "fa20e36cfec7bbb8d58237ce35a44a26d10416f4",
+      "bytes": 8726
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/README.md",
+      "sha256": "d440eb7124a8877ce5a4f4feea2eb8d58bea0a92a75f71a46d7fe9f10119071f",
+      "git_blob": "dd38dbbc37edd50c15039bff35e3d0ab882f30f8",
+      "bytes": 2507
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/__init__.py",
+      "sha256": "30411fceb45df21d37556003631e323a9ff145cb9f1a7c8d33f296b47da6a7a5",
+      "git_blob": "3cbce98e7b78f4987605217409c9746aaf2d9cac",
+      "bytes": 441
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/__init__.py",
+      "sha256": "6a4ade3870198ea9376196d524a0b90d50cfcf782a5702f570f9ffe31dfce123",
+      "git_blob": "3908f884bcf6ceaa9bd4631f33e5ff32155ceded",
+      "bytes": 392
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/architect_agent.py",
+      "sha256": "62eb96c2b4f279e75ef3b212cf74cbe809fcbefe24872c1e032b0fd89162e590",
+      "git_blob": "27e043a670636c1881d7dbd746560896fb10556e",
+      "bytes": 4029
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/base.py",
+      "sha256": "68a0f5f9f230c84f2cea8378c45a22a79100c09dfd40ebb49ef148aa5a7d91b9",
+      "git_blob": "8343b0b8ac43c90db74f6894a0708866334f6f54",
+      "bytes": 3965
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/coder_agent.py",
+      "sha256": "94d297f20e38d3ec65a8d1c9b5f7c9113c476819cd75f6a6ca54ed0bcf2a34e7",
+      "git_blob": "79a670932420d85358ae035c0bbdbd719f10eb83",
+      "bytes": 9187
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/judge_agent.py",
+      "sha256": "3c5651e839a24cec006b8e45c1ba4f129e612c5ebbc86f39da5843ef6ece3182",
+      "git_blob": "7356c46ce8698dd34cf922690a3ebc17f623f1ac",
+      "bytes": 8924
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/agents/planner_agent.py",
+      "sha256": "b2f0b308d4b6603cd3af3e9f98e5c1454a2070e49bae8791448eb9a57c5d96f8",
+      "git_blob": "4a26bd9ee47ace344dfa978378c99577b59b4b19",
+      "bytes": 11747
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/multi_agent/multi_agent.py",
+      "sha256": "733c142dc593621aafffb8719455e0d51b8d04f06cf33c598d3c6de0aecd14f7",
+      "git_blob": "017a4c8063437c31d4d6b201c400bff7b707edd7",
+      "bytes": 55097
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/react/README.md",
+      "sha256": "fcdaf2708c65f975a6e2a840a85251d4a68cd89e15508114668b08cc07aa7bf3",
+      "git_blob": "1e49b02b31d75c98998a6f37e1e673551753a38b",
+      "bytes": 1173
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/react/__init__.py",
+      "sha256": "ad12c82942ebc1285fb09358212faa79c2227383013799a3a500f9cb712f0ecc",
+      "git_blob": "1babd4cfc3c6444f9e07a75cb33cb9326058589a",
+      "bytes": 347
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/frameworks/react/prompts.py",
+      "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+      "git_blob": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+      "bytes": 14489
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/llm_client.py",
+      "sha256": "0c9abc3e725bdaf712912c3e34381f75975eb82ad74b91093c4621afd85fcf43",
+      "git_blob": "56c3a932bcdf48dcb0ba7a08da7f413bfc22a943",
+      "bytes": 5658
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/local_runner.py",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "bytes": 13941
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/multi_agent.py",
+      "sha256": "cedf8a0db70f1c4f399e33f10d2fc4a9b6d5f8dfbef0636213ef0b9a4f9de0ab",
+      "git_blob": "3bb2d18281b365ec4ec39c4cf8b8009e256155ae",
+      "bytes": 55044
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/plan_scorer.py",
+      "sha256": "ab374d64dae2a4dd5758e4d56b54d8d1ef529d3dc80b1c1fa377df05528700d1",
+      "git_blob": "9cfb772a8604f201aae1d992cd6263581c3098c9",
+      "bytes": 11956
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/prompts.py",
+      "sha256": "3bfc53d6dff130ea7176d90cdfb126f3d01e9929f2b0fe6d02c65e6a5115f3b8",
+      "git_blob": "62400053d5ab984c96ec3eca91bc6a0c685e172f",
+      "bytes": 14489
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/reference_scoring.py",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "bytes": 9172
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/requirements.txt",
+      "sha256": "af1d882a2cc1717c9da20d96d963d2bf7f83b28f2a191612a17599e0e44ff3a5",
+      "git_blob": "b18d513474f4804f996a469c7424a69097eaa717",
+      "bytes": 15
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/runner.py",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "bytes": 15186
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/scorer.py",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "bytes": 23821
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/task_recipes.json",
+      "sha256": "3086bb41906ff096b80f9d53ab4d69fd6eb86256d4826959b11df0f0332f3c3c",
+      "git_blob": "58b0536442c89c59f5d4d5ee2d106bb0fcc82851",
+      "bytes": 9844
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/task_scoring.py",
+      "sha256": "04596307728d59880ad09376ec511f90400f0527c48887f16ce57c8a6d9d4f6b",
+      "git_blob": "d5f5043d353d9a29ff9f9044def53334f79d96d0",
+      "bytes": 19005
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/task_scoring_custom.py",
+      "sha256": "d9ca21d8350d6600bbc9acce82875c821828f9e44e1b886347fd5a4fa06087cf",
+      "git_blob": "fe69b4d4a1dd537815f8e5c496bbffef0125d732",
+      "bytes": 31984
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/visualizer.py",
+      "sha256": "a73bd8c63e87353eab4e2b68f0639e32af08973e1774e39fd9e57072ca541cd6",
+      "git_blob": "7e50750d5405fb009f2789559d1cf2dea40d23c5",
+      "bytes": 20288
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/scripts/download_assets.py",
+      "sha256": "8c45517a99a8bfc4d8baf2384156e8e5ff7c5ead1737a9e1ff04fb2c3e780480",
+      "git_blob": "93c7b4bb01304f9709362aef04052149907cac32",
+      "bytes": 4068
+    }
+  ],
+  "source_inputs": [
+    {
+      "path": ".local/explainers/completion-20260927/048-source/recovery/ground_truth.npz",
+      "sha256": "17e07d43c6ae3eef4c40140a466865153cdb9641c5272e8d04cf6cbc65dc27b3",
+      "manifest_sha256": "28c83d2a90313a56d97fa00097fca43248b0bc2471373747e3bcf1e3444b8144",
+      "manifest_match": false,
+      "bytes": 524556
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/data/meta_data.json",
+      "sha256": "64667d67a6e85cabc22407e7577c510f7e22c5da03e1e738de757eea04db7e53",
+      "manifest_sha256": "64667d67a6e85cabc22407e7577c510f7e22c5da03e1e738de757eea04db7e53",
+      "manifest_match": true,
+      "bytes": 281
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/recovery/raw_data.npz",
+      "sha256": "96cebbf96bb56a1e71ab696563a1b132f741fbf319e471abce8e4219931c0d4a",
+      "manifest_sha256": "631d51212a46e6b56a47f8aae87f9894f71b24510d96d1e6425c8b30291d3e2d",
+      "manifest_match": false,
+      "bytes": 3761718
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/evaluation/fixtures/metrics_fixtures.npz",
+      "sha256": "a51cd77737fa6c3602cb1ae6f545ca90128487cc15986cbb82d8cff5e5a5cb0b",
+      "manifest_sha256": "a51cd77737fa6c3602cb1ae6f545ca90128487cc15986cbb82d8cff5e5a5cb0b",
+      "manifest_match": true,
+      "bytes": 1000690
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/evaluation/fixtures/physics_model_fixtures.npz",
+      "sha256": "db38be5d2c4ba740bb05a8c690fcf86f037b2b05be297a7882f71dedc2c1020b",
+      "manifest_sha256": "db38be5d2c4ba740bb05a8c690fcf86f037b2b05be297a7882f71dedc2c1020b",
+      "manifest_match": true,
+      "bytes": 3307608
+    },
+    {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/evaluation/reference_outputs/reconstructions.npz",
+      "sha256": "bbd05cd0beb867a4a96b33906280f2c85281d3b0abfc0ac7291baa326cadf52b",
+      "manifest_sha256": "bbd05cd0beb867a4a96b33906280f2c85281d3b0abfc0ac7291baa326cadf52b",
+      "manifest_match": true,
+      "bytes": 1573658
+    }
+  ],
+  "retained_audit": {
+    "path": "presentation/external-tasks/sources/imaging101-poisson-lowdose-audit.json",
+    "sha256": "0e3ecd661a5e19d05df51f71b15ec479ad8b9d91dc6dc164bc085f33b9c2ae0c"
+  },
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose/data",
+  "warning_text": "Matching 300-photon noisy input/truth missing; retained raw data uses 1000. Symbolic counts; later fixture shows expectation only.",
+  "actual_data_gap": "No manifest-matching 300-photon raw data or truth recovered; retained 1000-photon noisy arrays cannot substantiate the 300-photon task. No new reconstruction, participant output or metric. Units cm^-1 README vs mm^-1 metadata unresolved.",
+  "source_roles": {
+    "input": "Required 300-photon noisy sinogram and count weights; not recovered",
+    "helper": "Metadata, clean/high-dose arrays and solver code; staging copies truth too",
+    "reference": "Evaluation fixture expected counts only shown later; phantom/saved reconstructions never presented as this task outcome",
+    "output": "Actual participant reconstruction.npy absent"
+  },
+  "task_contract": {
+    "I0": 300,
+    "image_shape": [
+      256,
+      256
+    ],
+    "stored_sinogram_shape": [
+      1,
+      256,
+      367
+    ],
+    "angles_shape": [
+      1,
+      256
+    ],
+    "geometry": "parallel",
+    "delta_pixel": 1,
+    "delta_channel": 1,
+    "seed": 42,
+    "units": "metadata mm^-1 vs README cm^-1 unresolved",
+    "floor_counts": 1,
+    "output": "output/reconstruction.npy",
+    "scorer": "generic full-array actual dispatch; separate registered task-aware helper crops204\u00b2",
+    "backend_difference": "Filesystem generic uses full-array range NRMSE without flux scaling; no-filesystem fallback in scorer.py flux-normalizes output and uses L2-relative NRMSE. Neither executed.",
+    "constant_reference_rules": {
+      "task_local_helper": 0.0,
+      "filesystem_generic": "infinity",
+      "no_filesystem_fallback": "relative L2 denominator norm(gt)+1e-30, not range-normalized"
+    }
+  },
+  "fixture": {
+    "I0": 300,
+    "line_integrals": [
+      0,
+      1,
+      3
+    ],
+    "expected_counts": [
+      300.0,
+      110.3638323514327,
+      14.936120510359183
+    ],
+    "illustrative_counts": [
+      300,
+      100,
+      0
+    ],
+    "floored_counts": [
+      300,
+      100,
+      1
+    ],
+    "postlog": [
+      -0.0,
+      1.0986122886681098,
+      5.703782474656201
+    ],
+    "actual_output": null,
+    "clean_reference": null,
+    "dose_shift": -1.2039728043259361
+  },
+  "public_reference": {
+    "role": "Manifest-matching source physics fixture expected transmission; not noisy counts, task output or GT",
+    "criteria": [
+      "NCC cosine similarity",
+      "NRMSE range-normalized",
+      "helper crop 41616/65536 pixels vs actual dispatch full image"
+    ],
+    "clean_image": null,
+    "constant_reference_rules": {
+      "task_local_helper": 0.0,
+      "filesystem_generic": "infinity",
+      "no_filesystem_fallback": "relative L2 denominator norm(gt)+1e-30, not range-normalized"
+    }
+  },
+  "source_transport": [
+    {
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/imaging101-ct-poisson-lowdose/official-data-tree.json",
+      "sha256": "736e16498f5d7b24b22451905a9495db20df0a2a38727d4e65a9ddf8d9718fce",
+      "bytes": 2840
+    }
+  ],
+  "official_objects": [
+    {
+      "path": "tasks/ct_poisson_lowdose/data/ground_truth.npz",
+      "lfs_sha256": "17e07d43c6ae3eef4c40140a466865153cdb9641c5272e8d04cf6cbc65dc27b3",
+      "bytes": 524556
+    },
+    {
+      "path": "tasks/ct_poisson_lowdose/data/meta_data.json",
+      "lfs_sha256": "64667d67a6e85cabc22407e7577c510f7e22c5da03e1e738de757eea04db7e53",
+      "bytes": 281
+    },
+    {
+      "path": "tasks/ct_poisson_lowdose/data/raw_data.npz",
+      "lfs_sha256": "96cebbf96bb56a1e71ab696563a1b132f741fbf319e471abce8e4219931c0d4a",
+      "bytes": 3761718
+    }
+  ],
+  "brief_sha256": "cf6b474284d885ab7ee371fcdedee283a9bed88d8edf0f9753582192806b018b",
+  "historical_attempts": [
+    {
+      "date": "2026-10-01",
+      "route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose/data",
+      "request": "Pinned official HF data tree, capped64KiB/30s",
+      "outcome": "Sandboxproxy connection failed; approved read-only retryHTTP2002840B. Raw/truth LFS OIDs remain retained mismatching bytes; no manifest-matching300 input surfaced. No exhaustive history search."
+    }
+  ],
+  "attempts": [
+    {
+      "action": "retained-validation",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose/data",
+      "attempted_at": "2026-10-01T05:30:36.668971+00:00",
+      "outcome": "Verified73 source SHA/Git blobs against pinned tree,6 assets and original official HTTP200 tree; raw/truth remain incompatible with manifest. Native300 expected-count subset parity verified. No new network request."
+    }
+  ],
+  "retained_evidence": [
+    {
+      "path": ".local/explainers/completion-20260927/048-source/github-tree.json",
+      "sha256": "0ed33133a6dba6c52a44e2955b17b66454d224c8578cbdf5b0dac04242d56f24",
+      "bytes": 567825
+    },
+    {
+      "path": "presentation/external-tasks/sources/imaging101-poisson-lowdose-audit.json",
+      "sha256": "0e3ecd661a5e19d05df51f71b15ec479ad8b9d91dc6dc164bc085f33b9c2ae0c",
+      "bytes": 80628
+    }
+  ],
+  "kind": "explainer-source-resolution",
+  "constant_range_source_evidence": {
+    "task_local_helper": {
+      "path": ".local/explainers/completion-20260927/048-source/tasks/ct_poisson_lowdose/src/visualization.py",
+      "sha256": "481d0620f6c8610516b456ce70eb85e193da908103dfd9e6f607bda015069f1e",
+      "function": "compute_nrmse",
+      "verified_source_excerpt": "def compute_nrmse(estimate: np.ndarray, reference: np.ndarray) -> float:\n    \"\"\"Normalized root mean squared error.\n\n    NRMSE = sqrt(mean((x_hat - x_ref)^2)) / (max(x_ref) - min(x_ref))\n\n    Args:\n        estimate: Reconstructed image.\n        reference: Reference image.\n\n    Returns:\n        NRMSE value >= 0.\n    \"\"\"\n    drange = float(reference.max() - reference.min())\n    if drange == 0:\n        return 0.0\n    rmse = float(np.sqrt(np.mean((estimate - reference) ** 2)))\n    return rmse / drange"
+    },
+    "filesystem_generic": {
+      "path": ".local/explainers/completion-20260927/048-source/evaluation_harness/reference_scoring.py",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "function": "compute_quality_metrics_from_arrays",
+      "verified_source_excerpt": "def compute_quality_metrics_from_arrays(out: np.ndarray, gt: np.ndarray) -> dict:\n    if out.shape != gt.shape:\n        return {\"error\": f\"Shape mismatch: reconstruction {out.shape} vs expected {gt.shape}\",\n                \"expected_shape\": list(gt.shape)}\n    # NRMSE = range-normalized RMSE = RMSE / (max(gt) - min(gt)), matching each\n    # task's compute_metrics convention and the metrics.json *_boundary values.\n    # No flux/scale normalization: the agent must output a correctly-scaled\n    # reconstruction (NCC below is cosine and thus scale-invariant regardless).\n    mse = float(np.mean((out - gt) ** 2))\n    rng = float(gt.max() - gt.min())\n    nrmse = float(np.sqrt(mse) / rng) if rng > 0 else float(\"inf\")\n    ncc = float(np.sum(out * gt) / (np.linalg.norm(out) * np.linalg.norm(gt) + 1e-30))\n    max_val = float(gt.max())\n    psnr = float(20 * np.log10(max_val / np.sqrt(mse))) if mse > 0 else float(\"inf\")\n\n    def _ssim_2d(a, b, data_range):\n        c1 = (0.01 * data_range) ** 2; c2 = (0.03 * data_range) ** 2\n        mu_a, mu_b = a.mean(), b.mean(); sig_a2, sig_b2 = a.var(), b.var()\n        sig_ab = np.mean((a - mu_a) * (b - mu_b))\n        num = (2 * mu_a * mu_b + c1) * (2 * sig_ab + c2)\n        den = (mu_a**2 + mu_b**2 + c1) * (sig_a2 + sig_b2 + c2)\n        return float(num / den)\n\n    return {\"nrmse\": round(nrmse, 6), \"ncc\": round(ncc, 6), \"mse\": round(mse, 10),\n            \"psnr\": round(psnr, 2), \"ssim\": round(_ssim_2d(out, gt, max_val), 6)}"
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { ImagingPoissonScene, ImagingPoissonOutput } from './imaging101-ct-poisson-lowdose-panels';
 import { BcerGrappaScene, BcerGrappaOutput } from './bcer-short-recon-grappa-panels';
 import { BcerSuperresScene, BcerSuperresOutput } from './bcer-short-superres-panels';
 import { BcerDenoiseScene, BcerDenoiseOutput } from './bcer-short-denoise-panels';
@@ -383,6 +384,8 @@ export function OperationScene({
     return <BcerSuperresScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-grappa-v1')
     return <BcerGrappaScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'imaging101-poisson-v1')
+    return <ImagingPoissonScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -723,6 +726,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'bcer-denoise-v1') return <BcerDenoiseOutput state={state} />;
   if (state.recipe === 'bcer-superres-v1') return <BcerSuperresOutput state={state} />;
   if (state.recipe === 'bcer-grappa-v1') return <BcerGrappaOutput state={state} />;
+  if (state.recipe === 'imaging101-poisson-v1') return <ImagingPoissonOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

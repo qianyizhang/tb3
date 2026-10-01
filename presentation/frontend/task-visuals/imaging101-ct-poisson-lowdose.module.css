@@ -1,0 +1,128 @@
+.scene {
+  background: #122939;
+  color: #deebf4;
+  min-width: 0;
+  padding: 14px;
+  overflow: auto;
+  max-height: 310px;
+}
+.scene h3 {
+  color: #f1f7fb;
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+.scene p,
+.scene small,
+.scene figcaption {
+  color: #c7dce7;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+.scene p {
+  font-size: 13px;
+  margin: 7px 0;
+}
+.scene b {
+  color: #e3f2fa;
+}
+.scene code {
+  color: #8fe0df;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.controls {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+.controls button {
+  background: #203f52;
+  color: #e1f0f7;
+  border: 1px solid#557b92;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 12px;
+  white-space: normal;
+}
+.controls button[aria-pressed='true'] {
+  background: #345b70;
+  border-color: #87d6df;
+}
+.socket {
+  background: #1a3546;
+  border: 1px solid#46677e;
+  padding: 10px;
+  border-radius: 8px;
+  min-width: 0;
+}
+.rays {
+  margin: 6px 0;
+  min-width: 0;
+}
+.rays svg {
+  display: block;
+  max-height: 94px;
+  width: 100%;
+}
+.rays figcaption {
+  font-size: 11px;
+}
+.output {
+  background: #183342 !important;
+  min-width: 0;
+  padding: 16px !important;
+  overflow-wrap: anywhere;
+}
+.output b {
+  color: #eef8fc;
+}
+.output p,
+.output small {
+  color: #c8dfe9;
+  font-size: 12px;
+  line-height: 1.4;
+}
+@media (max-width: 700px) {
+  .scene {
+    max-height: none;
+    padding: 10px;
+  }
+  .scene h3 {
+    font-size: 16px;
+  }
+  .output {
+    padding: 12px !important;
+  }
+}
+
+.scene button.reveal {
+  background: #183b4b;
+  color: #e8f7fd;
+  border: 1px solid #64899d;
+  border-radius: 6px;
+  padding: 7px 12px;
+}
+.scene :is(h3, b, strong, small, a, figcaption),
+.output :is(b, strong, small, a) {
+  color: #e8f7fd;
+  overflow-wrap: anywhere;
+}
+.scene :is(nav, div, figure, pre),
+.output {
+  min-width: 0;
+}
+:global(.scene-player[data-recipe='imaging101-poisson-v1']) :global(.scene-explanation),
+:global(.scene-player[data-recipe='imaging101-poisson-v1']) :global(.scene-explanation strong),
+:global(.scene-player[data-recipe='imaging101-poisson-v1']) :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.scene small {
+  display: block;
+  margin-top: 7px;
+}
+.scene[data-imaging-poisson-scene='reference'] {
+  max-height: none;
+}

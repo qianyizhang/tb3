@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
@@ -3468,6 +3469,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
@@ -3551,6 +3553,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
@@ -3634,6 +3637,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
@@ -3718,6 +3722,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
@@ -3802,6 +3807,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='imaging101-poisson-v1'],
     [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
@@ -3885,6 +3891,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging101-poisson-v1'],
       [data-recipe='bcer-grappa-v1'],
       [data-recipe='bcer-superres-v1'],
       [data-recipe='bcer-denoise-v1'],
@@ -3967,6 +3974,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='imaging101-poisson-v1'],
       [data-recipe='bcer-grappa-v1'],
       [data-recipe='bcer-superres-v1'],
       [data-recipe='bcer-denoise-v1'],
@@ -4816,4 +4824,20 @@
   min-width: 0;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='imaging101-poisson-v1'] .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='imaging101-poisson-v1'] .storyOutput {
+  height: 288px;
+}
+
+:global([data-explainer-export-frame])
+  .player[data-recipe='imaging101-poisson-v1']
+  :global(.scene-explanation),
+.player[data-recipe='imaging101-poisson-v1'] :global(.scene-explanation strong),
+.player[data-recipe='imaging101-poisson-v1'] :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }

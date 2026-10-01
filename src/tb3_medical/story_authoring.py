@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "imaging101-poisson-v1",
             "bcer-grappa-v1",
             "bcer-superres-v1",
             "bcer-denoise-v1",
