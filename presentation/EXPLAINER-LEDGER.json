@@ -8799,15 +8799,15 @@
       ],
       "illustration_kind": "mri",
       "subject": "heart",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "bcer-short-recon-grappa",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for bcer-short-recon-grappa. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted task-specific symbolic cardiac frequency-mask and GRAPPA mode explanation after main source/34-image visual/export/mobile/no-GPU/late-reader boundary review. Applied/skip/passthrough/failure distinctions and ACS discrepancy are qualified; matching H5, calibration, actual reconstruction, patient geometry and quality remain absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/bcer-short-recon-grappa/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Required source modalities \u2014 cardiac: one or more of h5, raw_kspace.",
         "helpers": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
@@ -8830,7 +8830,7 @@
         ],
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
-      "source_brief_sha256": "0b498c88a7c9d3ba49aa4a36ff35f85e84c96012f69e29368aebd8b88fb3cc21",
+      "source_brief_sha256": "83b71490ff18e889982051bff85e4550e38cee47446ee80994494773154be9c8",
       "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
       "dependency_deferral": {
         "actor": "user",
@@ -8840,14 +8840,109 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "symbolic",
+      "actual_data_gap": "No matching cardiac complex multi-coil HDF5, ACS/mask layout, participant reconstruction or image-quality reference is retained. Official CMRxRecon 2025 routes data through Synapse; an anonymous matching small H5 was not located. The BCER default 24-line ACS and official FAQ 16-line/16\u00d716 description have not been reconciled for a selected case or H5 adapter.",
+      "acquisition_route": "https://cmrxrecon.github.io/2025/Join-the-Challenge.html",
+      "warning_text": "Matching cardiac H5, reconstruction and clean GT absent; mask and modes are symbolic.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/bcer-short-recon-grappa-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/bcer-short-recon-grappa-resolution.json",
+        "receipt_sha256": "322500cebd0e7adf6f8a44d7040c8bc9e5180ffc2712ae1aecce7dd771c42be1",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T05:51:10.313403+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Pinned BCER short_recon_grappa mechanics and task-specific symbolic frequency-mask/mode explanation; no matching cardiac measurement, reconstruction or private truth.",
+      "completion_review": {
+        "date": "2026-10-01T06:01:44.756588+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "f2225b9e52850f6a1dcb68d325cafe77e5dd94821464e7b8fff213e21f639d6f"
+      },
+      "reviewed_contract_projection": {
+        "title": "Distinguish GRAPPA, skip, image passthrough and zero-filled fallback",
+        "goal": "Bind complex cardiac measurements to explicit axes, coils, calibration and physical metadata. Teach the source-defined mode decisions without inventing measured k-space, reconstructed images or quality results.",
+        "value": "Not yet specified.",
+        "raw": "The short registry accepts cardiac `h5` or `raw_kspace`; the tool requires `h5_path`. **0 matching H5 files, 0 reconstructions and 0 clean image references** are retained. The diagram is an authored **8 kx \u00d7 32 ky \u00d7 2 coil** sampling layout, with frequency indices and Boolean inclusion, not image pixels, physical distances or measured amplitudes. An unrelated prostate MRI cannot establish matching cardiac raw input.\n\nRetained official join and FAQ pages are 29,369 and 64,612 bytes. They route acquisition through Synapse; no anonymous small matching BCER-compatible H5 was established. The original acquisition objects are historical, without invented UTC timestamps. Current attempts revalidate retained bytes only; no new GET, account, terms acceptance or data download.",
+        "helpers": "Case manifest, runtime state and registered tool references. Optional dataset/calibration keys, `coil_axis`, `nonspatial_order` and pixel spacing need actual H5 verification. Source auto-ACS defaults to **24 central ky lines** and kernel **[5,5]**; official FAQ describes central **16 lines or 16\u00d716**. These separate statements do not resolve any selected file adapter. Explicit calibration failure falls back to auto-ACS. Auto-ACS checks summed energy, not that every central line was fully acquired.",
+        "tools": "`reconstruct_grappa` uses h5py/NumPy and pygrappa for complex mode, with a SimpleITK/nibabel image writer. No dependency installation, source runtime import or operator execution is part of this explanation. Spacing comes from an argument, H5 attributes, or placeholder **[1,1,1] mm**. Placeholder spacing is not measured patient geometry; explicit frame order does not establish slice or cardiac-phase timing.",
+        "reference": "No pristine/fully sampled/private cardiac image is bundled. A later explicit reader button exposes public mode/grader rules only; backward seek, exit and reset cover them before paint. Optional `zerofilled_nifti` is a control derived from the same retrospectively decimated measurements, not pristine truth; none is retained.",
+        "spec": "Executable axis inference assumes the last two axes are kx/ky, then selects the last remaining dimension \u226464 as coils, or the last remaining dimension if none qualifies. The docstring's \u201csmallest\u201d description differs; do not transfer that wording. Explicit coil hints must not collide with kx/ky. Each frame becomes `(kx,ky,coils)`; nonspatial slice/phase order is separately validated.\n\nThe source counts ky lines with nonzero summed absolute energy. A fraction **<0.90** triggers GRAPPA; this is not an authenticated acquisition mask. Explicit or central ACS supplies pygrappa with `coil_axis=-1`. Successful, fully sampled skipped and failed frames have separate counts. On pygrappa failure the acquired/zero-filled frame remains; real image datasets can pass through, including dependency fallback, without demonstrating GRAPPA.\n\nThe source describes `ifftshift \u2192 ifft2(axes 0,1) \u2192 ifftshift \u2192 sqrt(sum |coil image|\u00b2)` and float32 magnitude output. Complex phase is not retained in RSS magnitude. This formula is explained only; **no FFT or reconstruction is calculated**.\n\nOptional retrospective decimation is off by default. Symbolic R2 sampling plus central ACS24 retains **28/32 ky lines = 0.875**, with effective line ratio **32/28**, not net 2\u00d7 acceleration. Full sampling retains32/32 and skips GRAPPA; the failure branch is hypothetical, not observed. No acquired amplitudes, calibration coefficients or computed coil image appear.\n\nReadout crop requires an explicit request. Center crop shifts origin by discarded sample offset \u00d7 spacing; millimetre requests reject placeholder spacing. NIfTI output uses declared/default spacing and writer geometry, not independently validated patient orientation or time calibration. The short grader does not test affine equality.",
+        "output": "Registry key **`reconstructed_nifti`**, default path `artifacts/grappa/reconstructed_<h5stem>.nii.gz`. Tool response retains mode, source key, output shape, spacing/source, crop and elapsed time; complex mode also reports coils, ACS/kernel, frame counts, nonspatial order and optional decimation/control artifact. Here actual path, image, mode, counts, elapsed and quality remain **null**. Authored mode rules are not telemetry.",
+        "score": "The short registry requires stage/tool success, `path_exists` and `nifti_nonempty`. The runner checks **nonzero voxel count**; read failure can fall back to positive file size, which does not prove readable image content. No GRAPPA-applied, correct axes/calibration, affine/phase fidelity, PSNR/SSIM or independent image-reference invariant is specified. A successful artifact may be passthrough, skipped reconstruction or include failed zero-filled frames. Artifact checks are not cardiac accuracy or clinical/model performance.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Symbolic frequency mask: blue sampled outside ACS, teal central ACS, gray missing; shared across two illustrative coils.",
+          "Canonical steps inspect axes, calibration and apply/skip/failure predicates; output stays empty.",
+          "Later public rule is explicitly reader-controlled; backward/exit/reset cover it, without revealing private truth."
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
+            "remaining": "Raw measurement dimensions and calibration must reach the correct tool in the correct form."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned GRAPPA tool",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/reconstruct_grappa.py"
+          ],
+          [
+            "Pinned registry",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+          ],
+          [
+            "Pinned grader",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py"
+          ],
+          [
+            "Official acquisition",
+            "https://cmrxrecon.github.io/2025/Join-the-Challenge.html"
+          ],
+          [
+            "Official FAQ",
+            "https://cmrxrecon.github.io/2025/FAQ.html"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/bcer-short-recon-grappa-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Bind complex cardiac measurements to explicit axes, coils, calibration and physical metadata. Teach the source-defined mode decisions without inventing measured k-space, reconstructed images or quality results.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>The short registry accepts cardiac <code>h5</code> or <code>raw_kspace</code>; the tool requires <code>h5_path</code>. <strong>0 matching H5 files, 0 reconstructions and 0 clean image references</strong> are retained. The diagram is an authored <strong>8 kx \u00d7 32 ky \u00d7 2 coil</strong> sampling layout, with frequency indices and Boolean inclusion, not image pixels, physical distances or measured amplitudes. An unrelated prostate MRI cannot establish matching cardiac raw input.</p>\n<p>Retained official join and FAQ pages are 29,369 and 64,612 bytes. They route acquisition through Synapse; no anonymous small matching BCER-compatible H5 was established. The original acquisition objects are historical, without invented UTC timestamps. Current attempts revalidate retained bytes only; no new GET, account, terms acceptance or data download.</p>",
+          "helpers": "<p>Case manifest, runtime state and registered tool references. Optional dataset/calibration keys, <code>coil_axis</code>, <code>nonspatial_order</code> and pixel spacing need actual H5 verification. Source auto-ACS defaults to <strong>24 central ky lines</strong> and kernel <strong>[5,5]</strong>; official FAQ describes central <strong>16 lines or 16\u00d716</strong>. These separate statements do not resolve any selected file adapter. Explicit calibration failure falls back to auto-ACS. Auto-ACS checks summed energy, not that every central line was fully acquired.</p>",
+          "tools": "<p><code>reconstruct_grappa</code> uses h5py/NumPy and pygrappa for complex mode, with a SimpleITK/nibabel image writer. No dependency installation, source runtime import or operator execution is part of this explanation. Spacing comes from an argument, H5 attributes, or placeholder <strong>[1,1,1] mm</strong>. Placeholder spacing is not measured patient geometry; explicit frame order does not establish slice or cardiac-phase timing.</p>",
+          "reference": "<p>No pristine/fully sampled/private cardiac image is bundled. A later explicit reader button exposes public mode/grader rules only; backward seek, exit and reset cover them before paint. Optional <code>zerofilled_nifti</code> is a control derived from the same retrospectively decimated measurements, not pristine truth; none is retained.</p>",
+          "spec": "<p>Executable axis inference assumes the last two axes are kx/ky, then selects the last remaining dimension \u226464 as coils, or the last remaining dimension if none qualifies. The docstring&#x27;s \u201csmallest\u201d description differs; do not transfer that wording. Explicit coil hints must not collide with kx/ky. Each frame becomes <code>(kx,ky,coils)</code>; nonspatial slice/phase order is separately validated.</p>\n<p>The source counts ky lines with nonzero summed absolute energy. A fraction <strong>&lt;0.90</strong> triggers GRAPPA; this is not an authenticated acquisition mask. Explicit or central ACS supplies pygrappa with <code>coil_axis=-1</code>. Successful, fully sampled skipped and failed frames have separate counts. On pygrappa failure the acquired/zero-filled frame remains; real image datasets can pass through, including dependency fallback, without demonstrating GRAPPA.</p>\n<p>The source describes <code>ifftshift \u2192 ifft2(axes 0,1) \u2192 ifftshift \u2192 sqrt(sum |coil image|\u00b2)</code> and float32 magnitude output. Complex phase is not retained in RSS magnitude. This formula is explained only; <strong>no FFT or reconstruction is calculated</strong>.</p>\n<p>Optional retrospective decimation is off by default. Symbolic R2 sampling plus central ACS24 retains <strong>28/32 ky lines = 0.875</strong>, with effective line ratio <strong>32/28</strong>, not net 2\u00d7 acceleration. Full sampling retains32/32 and skips GRAPPA; the failure branch is hypothetical, not observed. No acquired amplitudes, calibration coefficients or computed coil image appear.</p>\n<p>Readout crop requires an explicit request. Center crop shifts origin by discarded sample offset \u00d7 spacing; millimetre requests reject placeholder spacing. NIfTI output uses declared/default spacing and writer geometry, not independently validated patient orientation or time calibration. The short grader does not test affine equality.</p>",
+          "output": "<p>Registry key <strong><code>reconstructed_nifti</code></strong>, default path <code>artifacts/grappa/reconstructed_&lt;h5stem&gt;.nii.gz</code>. Tool response retains mode, source key, output shape, spacing/source, crop and elapsed time; complex mode also reports coils, ACS/kernel, frame counts, nonspatial order and optional decimation/control artifact. Here actual path, image, mode, counts, elapsed and quality remain <strong>null</strong>. Authored mode rules are not telemetry.</p>",
+          "score": "<p>The short registry requires stage/tool success, <code>path_exists</code> and <code>nifti_nonempty</code>. The runner checks <strong>nonzero voxel count</strong>; read failure can fall back to positive file size, which does not prove readable image content. No GRAPPA-applied, correct axes/calibration, affine/phase fidelity, PSNR/SSIM or independent image-reference invariant is specified. A successful artifact may be passthrough, skipped reconstruction or include failed zero-filled frames. Artifact checks are not cardiac accuracy or clinical/model performance.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25341,9 +25436,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 119,
+    "reviewed-scripted-planar": 120,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 58,
+    "blocked-source-contract": 57,
     "blocked-source-input": 14,
     "pending-operation-review": 1
   },

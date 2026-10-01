@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "bcer-grappa-v1": "retained-bcer-grappa-source-v1",
     "bcer-superres-v1": "retained-bcer-superres-source-v1",
     "bcer-denoise-v1": "retained-bcer-denoise-source-v1",
     "automed-vqa-rad-v1": "retained-automed-vqa-rad-v1",
@@ -800,6 +801,20 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-bcer-grappa-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "BCER-LICENSE.txt",
+        },
+    ),
     "retained-bcer-superres-source-v1": (
         "source-records",
         "reference.json",
@@ -2262,6 +2277,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class BcerGrappaChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4219,6 +4240,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class BcerGrappaBeat(ExpansionBeat[BcerGrappaChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class BcerGrappaStory(Story[BcerGrappaChannels]):
+    recipe: Literal["bcer-grappa-v1"]
+    beats: tuple[BcerGrappaBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class BcerSuperresBeat(ExpansionBeat[BcerSuperresChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4939,6 +4981,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | BcerGrappaStory
     | BcerSuperresStory
     | BcerDenoiseStory
     | AutomedVqaRadStory
@@ -5070,6 +5113,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | BcerGrappaStory
     | BcerSuperresStory
     | BcerDenoiseStory
     | AutomedVqaRadStory
@@ -5361,6 +5405,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | BcerGrappaStory
     | BcerSuperresStory
     | BcerDenoiseStory
     | AutomedVqaRadStory
@@ -5671,6 +5716,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-bcer-grappa-source-v1": (
+                "symbolic-unit-grid",
+                "MIT",
+                None,
+            ),
             "retained-bcer-superres-source-v1": (
                 "symbolic-unit-grid",
                 "CC-BY-NC-4.0",
@@ -5942,6 +5992,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
                 else "unitless"
+                if pack_id == "retained-bcer-grappa-source-v1"
+                else "unitless"
                 if pack_id == "retained-bcer-superres-source-v1"
                 else "arbitrary-MRI-intensity-and-normalized-sigma"
                 if pack_id == "retained-bcer-denoise-source-v1"
@@ -6071,6 +6123,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-bcer-grappa-source-v1"
             or pack_id == "retained-bcer-superres-source-v1"
             or pack_id == "retained-bcer-denoise-source-v1"
             or pack_id == "retained-automed-vqa-rad-v1"
@@ -6189,6 +6242,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     if pack_id == "retained-bcer-denoise-source-v1" and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-bcer-superres-source-v1" and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-bcer-grappa-source-v1" and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"

@@ -1,3 +1,4 @@
+import { bcerGrappaPack } from './bcer-short-recon-grappa';
 import { bcerSuperresPack } from './bcer-short-superres';
 import { bcerDenoisePack } from './bcer-short-denoise';
 import { automedVqaRadPack } from './automed-vqa-rad';
@@ -126,6 +127,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'bcer-grappa-v1',
     'bcer-superres-v1',
     'bcer-denoise-v1',
     'automed-vqa-rad-v1',
@@ -1168,6 +1170,17 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Representative input; matched output absent',
         warning: bcerSuperresPack.source.notice,
         legend: [],
+      };
+    case 'bcer-grappa-v1':
+      return {
+        heading: 'Coils, ACS and reconstruction mode',
+        corner: 'Symbolic k-space; matching H5 absent',
+        warning: bcerGrappaPack.source.notice,
+        legend: [
+          ['#88b4e0', 'Symbolic sampled ky outside ACS'],
+          ['#57d1cc', 'Symbolic central ACS24 lines'],
+          ['#526373', 'Symbolic missing ky; not image pixels'],
+        ],
       };
     case 'bcer-brain-full-v1':
       return {

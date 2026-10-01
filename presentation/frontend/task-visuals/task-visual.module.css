@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
     [data-recipe='automed-vqa-rad-v1'],
@@ -3467,6 +3468,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
     [data-recipe='automed-vqa-rad-v1'],
@@ -3549,6 +3551,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
     [data-recipe='automed-vqa-rad-v1'],
@@ -3631,6 +3634,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
     [data-recipe='automed-vqa-rad-v1'],
@@ -3714,6 +3718,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
     [data-recipe='automed-vqa-rad-v1'],
@@ -3797,6 +3802,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='bcer-grappa-v1'],
     [data-recipe='bcer-superres-v1'],
     [data-recipe='bcer-denoise-v1'],
     [data-recipe='automed-vqa-rad-v1'],
@@ -3879,6 +3885,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='bcer-grappa-v1'],
       [data-recipe='bcer-superres-v1'],
       [data-recipe='bcer-denoise-v1'],
       [data-recipe='automed-vqa-rad-v1'],
@@ -3960,6 +3967,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='bcer-grappa-v1'],
       [data-recipe='bcer-superres-v1'],
       [data-recipe='bcer-denoise-v1'],
       [data-recipe='automed-vqa-rad-v1'],
@@ -4793,4 +4801,19 @@
 }
 :global([data-explainer-export-frame]) .player[data-recipe='bcer-superres-v1'] .storyOutput {
   height: 288px;
+}
+
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-grappa-v1'] .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame]) .player[data-recipe='bcer-grappa-v1'] .storyOutput {
+  height: 288px;
+}
+
+:global(.scene-player[data-recipe='bcer-grappa-v1'] .scene-explanation),
+:global(.scene-player[data-recipe='bcer-grappa-v1'] .scene-explanation strong),
+:global(.scene-player[data-recipe='bcer-grappa-v1'] .scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }

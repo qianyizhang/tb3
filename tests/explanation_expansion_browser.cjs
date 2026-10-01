@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'bcer-grappa-v1',
   'bcer-superres-v1',
   'bcer-denoise-v1',
   'automed-slake-v1',
@@ -111,6 +112,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'bcer-grappa-v1')
+    return {
+      scene: 'data-bcer-grappa-scene',
+      reference: '[data-bcer-grappa-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-bcer-grappa-output-schema]',
+      aside: '[data-bcer-grappa-output]',
+    };
   if (plan.recipe === 'bcer-superres-v1')
     return {
       scene: 'data-bcer-superres-scene',
@@ -711,6 +721,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'bcer-grappa-v1': [
+      /Matching cardiac H5, reconstruction and clean GT absent; mask and modes are symbolic/s,
+      'https://cmrxrecon.github.io/2025/Join-the-Challenge.html',
+      'data-bcer-grappa-scene',
+      false,
+    ],
     'bcer-superres-v1': [
       /Representative PI-CAI helper only; no matched BCER resampled output or independent high-resolution truth/s,
       'https://zenodo.org/records/6624726',
@@ -1549,6 +1565,141 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await absent();
     await page.locator('[data-story-step="0"]').click();
     await absent();
+  }
+  if (plan.recipe === 'bcer-grappa-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-bcer-grappa-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-bcer-grappa-reference-revealed]').count(), 0);
+    const mask = async (mode) => {
+      const fills = await scene
+        .locator('svg rect')
+        .evaluateAll((els) => els.map((e) => e.getAttribute('fill')));
+      assert.equal(fills.length, 8 * 32);
+      const expected = Array.from({ length: 8 }, () =>
+        Array.from({ length: 32 }, (_, ky) =>
+          ky >= 4 && ky < 28 ? '#57d1cc' : mode === 1 || ky % 2 === 0 ? '#88b4e0' : '#526373',
+        ),
+      ).flat();
+      assert.deepEqual(fills, expected);
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /Blue = sampled outside ACS.*teal = central ACS24.*gray = missing.*frequency samples, not missing image pixels/is,
+      );
+      assert.equal(await scene.locator('img').count(), 0);
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await mask(0);
+    assert.match(
+      await scene.innerText(),
+      /No matching cardiac H5.*8 kx × 32 ky × 2 coils.*No representative prostate image/is,
+    );
+    const ops = plan.beats.filter((b) => b.scene === 'operation');
+    assert.equal(ops.length, 3);
+    await page.locator(`[data-story-step="${plan.beats.indexOf(ops[0])}"]`).click();
+    for (let j = 0; j < 3; j++) {
+      await scene.locator(`[data-bcer-grappa-operation-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[j].startFrame,
+      );
+      assert.equal(
+        await scene
+          .locator(`[data-bcer-grappa-operation-step="${j}"]`)
+          .getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /Frame \(kx,ky,coils\).*Last two H5 axes.*last remaining axis ≤64.*placeholder 1 mm is not patient geometry/is,
+          /28\/32 ky lines sampled; 0.875.*Below 0.90.*not 2× acquisition acceleration.*ACS24 vs FAQ 16-line\/16×16/is,
+          /ifftshift → IFFT2 → ifftshift → RSS magnitude.*sqrt\(sum\|coil image\|²\).*float32.*No measured image output/is,
+        ][j],
+      );
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await scene.locator('[data-bcer-grappa-operation-step="1"]').click();
+    const labels = ['Undersampled', 'Full sampling', 'If GRAPPA fails'];
+    for (let j = 0; j < 3; j++) {
+      await scene.getByRole('button', { name: labels[j], exact: true }).click();
+      const local = [0, Math.floor((ops[1].frames - 1) / 2), ops[1].frames - 1][j];
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[1].startFrame + local,
+      );
+      assert.equal(
+        await scene
+          .getByRole('button', { name: labels[j], exact: true })
+          .getAttribute('aria-pressed'),
+        'true',
+      );
+      await mask(j);
+      assert.match(
+        await scene.innerText(),
+        [
+          /28\/32.*0.875.*Below 0.90.*net 32\/28/is,
+          /32\/32.*1.*Fully sampled → skip GRAPPA.*IFFT\+RSS only/is,
+          /28\/32.*0.875.*pygrappa raises.*zero-filled frame.*hypothetical rule, no observed failure/is,
+        ][j],
+      );
+      await capture(`mode-${j}`);
+      await absent();
+    }
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await page.locator('[data-bcer-grappa-output-schema]').innerText(),
+      /artifacts\/grappa\/reconstructed_<h5stem>\.nii\.gz/,
+    );
+    assert.match(await scene.innerText(), /Actual mode, image, frame counts and quality null/is);
+    await absent();
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public mode rule', exact: true });
+    await reveal().click();
+    assert.match(
+      await page.locator('[data-bcer-grappa-reference-revealed]').innerText(),
+      /GRAPPA-applied, sampled-skip, image-passthrough and frame-zero-fill differ.*Stage\/path\/nonempty only.*No applied-kernel, axes\/spacing or PSNR\/SSIM check.*file size/is,
+    );
+    await capture('mode-rule-revealed');
+    await scene.getByRole('button', { name: 'Cover public mode rule', exact: true }).click();
+    await absent();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+      plan.beats[ri].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page
+      .locator(`[data-story-step="${plan.beats.findIndex((b) => b.scene === 'limits')}"]`)
+      .click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await page.locator('.scene-reset').click();
   }
   if (plan.recipe === 'bcer-superres-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -7553,6 +7704,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'bcer-grappa-v1',
       'bcer-superres-v1',
       'bcer-denoise-v1',
       'automed-slake-v1',
