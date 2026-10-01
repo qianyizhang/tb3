@@ -25,6 +25,7 @@ class ExpansionTests(unittest.TestCase):
                 in {
                     "automed-medxpert-mm-v1",
                     "automed-pathvqa-v1",
+                    "automed-slake-v1",
                     "mixed-tissue-v1",
                     "prototype-identity-v1",
                     "mask-screen-v1",

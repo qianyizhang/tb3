@@ -1,0 +1,303 @@
+.scene {
+  --accent: #6bd6d1;
+  display: grid;
+  gap: 12px;
+  padding: 10px;
+  align-content: start;
+}
+.scene[data-slake-scene='helper'] {
+  --accent: #e8bd6d;
+}
+.scene[data-slake-scene='operation'] {
+  --accent: #b6a7ec;
+}
+.scene[data-slake-scene='output'] {
+  --accent: #92d9ae;
+}
+.scene[data-slake-scene='limits'] {
+  --accent: #eea698;
+}
+.scene h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--accent);
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.card {
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px;
+  background: #122b34;
+  color: #e4f0f2;
+}
+.card b {
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.card p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 9px 0;
+}
+.figure {
+  margin: 0;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+.figure img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #000;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+}
+.figure figcaption {
+  font-size: 12px;
+  color: #bbd1d6;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.buttons button,
+.card button {
+  border: 1px solid #8bb2bd;
+  border-radius: 7px;
+  padding: 7px 10px;
+  color: #e7f6fa;
+  background: #1d414d;
+  cursor: pointer;
+}
+.buttons button[aria-pressed='true'] {
+  background: #287084;
+  border-color: #d1ecf1;
+}
+.steps {
+  padding-left: 19px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.steps li[data-active='true'] {
+  color: var(--accent);
+}
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 11px 0;
+}
+.slots span,
+.slots code {
+  padding: 7px;
+  border: 1px solid var(--accent);
+  border-radius: 7px;
+  background: #193943;
+  color: #e4f1f3;
+  font-size: 12px;
+}
+.slots [data-unmapped='true'] {
+  border-color: #eea698;
+  color: #f6c3b4;
+  border-style: dashed;
+}
+.tokens {
+  display: grid;
+  gap: 10px;
+  margin: 15px 0;
+}
+.tokens span {
+  font: 12px monospace;
+  border-left: 3px solid var(--accent);
+  padding-left: 9px;
+}
+.fields {
+  display: grid;
+  gap: 7px;
+  margin: 11px 0;
+}
+.fields > div {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr auto;
+  gap: 7px;
+  font-size: 11px;
+  padding: 6px;
+  background: #193943;
+  border-radius: 5px;
+}
+.fields code {
+  overflow-wrap: anywhere;
+}
+.fields em {
+  font-style: normal;
+  color: #c6dcdf;
+}
+.sidebarFields {
+  display: grid;
+  gap: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.sidebarFields > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid #416471;
+  padding-bottom: 6px;
+}
+.caution {
+  font-size: 12px;
+  line-height: 1.4;
+  color: #f0c988;
+}
+@media (max-width: 650px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .fields > div {
+    grid-template-columns: 1fr 1fr auto;
+  }
+  .figure img {
+    max-height: 220px;
+  }
+  .scene h3 {
+    font-size: 18px;
+  }
+}
+
+.scene .card :is(p, li, span, code, blockquote, em) {
+  color: #e4f0f2;
+}
+.scene .card blockquote {
+  margin: 12px 0;
+  padding: 12px;
+  border-left: 3px solid var(--accent);
+  font-size: 16px;
+  line-height: 1.45;
+  background: #193943;
+}
+.scene .card .caution {
+  color: #f0c988;
+}
+.scene .card .reveal {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px dashed #e8bd6d;
+  background: #243b39;
+  color: #fff0c8;
+}
+.scene .card .reveal strong {
+  color: #fff0c8;
+}
+.figure img {
+  max-height: 290px;
+}
+.sidebarFields code {
+  overflow-wrap: anywhere;
+}
+.scene :is(p, li, b, span, code, blockquote) {
+  overflow-wrap: anywhere;
+}
+
+.scene {
+  background: #122b34;
+  min-width: 0;
+  gap: 8px;
+  max-height: none;
+  overflow: visible;
+}
+.scene h3 {
+  color: #edf6ff !important;
+  font-size: 17px;
+}
+.scene :is(b, p, small, li, span, code, blockquote, em),
+.output :is(h3, b, p, small, span, code) {
+  color: #dfedf2 !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.columns {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 10px;
+  min-width: 0;
+}
+.columns > *,
+.card {
+  min-width: 0;
+}
+.card {
+  padding: 10px;
+}
+.card p {
+  font-size: 12px;
+  margin: 6px 0;
+}
+.figure img {
+  height: 162px;
+  width: 100%;
+  aspect-ratio: auto;
+}
+.figure figcaption {
+  color: #c9dfe8 !important;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+.scene .card blockquote {
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 14px;
+}
+.scene .card .reveal strong {
+  color: #fff0c8 !important;
+}
+.scene .caution {
+  color: #f0c988 !important;
+}
+.fields > div {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) auto;
+}
+.tokens {
+  margin: 8px 0;
+  gap: 6px;
+}
+.output {
+  background: #183342;
+  color: #dfedf2;
+  padding: 12px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.output h3 {
+  font-size: 17px;
+  margin: 5px 0 8px;
+}
+.output p,
+.output small,
+.eyebrow {
+  font-size: 12px;
+  line-height: 1.35;
+}
+@media (max-width: 650px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .scene {
+    max-height: none;
+  }
+  .figure img {
+    height: 130px;
+  }
+  .buttons button,
+  .card button {
+    min-height: 40px;
+    white-space: normal;
+  }
+}

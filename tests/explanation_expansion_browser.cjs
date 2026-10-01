@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automed-slake-v1',
   'automed-pathvqa-v1',
   'automed-medxpert-mm-v1',
   'automed-medframeqa-v1',
@@ -105,6 +106,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automed-slake-v1')
+    return {
+      scene: 'data-slake-scene',
+      reference: '[data-slake-public-annotation]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-slake-output-schema]',
+      aside: '[data-slake-output]',
+    };
   if (plan.recipe === 'automed-pathvqa-v1')
     return {
       scene: 'data-pathvqa-scene',
@@ -650,6 +660,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automed-slake-v1': [
+      /Public train example only; Full test selection\/private gold absent/s,
+      'https://huggingface.co/datasets/BoKelvin/SLAKE',
+      'data-slake-scene',
+      false,
+    ],
     'automed-pathvqa-v1': [
       /Public PathVQA train example only.*Full split\/private answer absent/s,
       'https://huggingface.co/datasets/flaviagiammarino/path-vqa',
@@ -1199,6 +1215,130 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page
       .locator('.scene-player')
       .screenshot({ path: path.join(output, `${label}-${beat.scene}.png`) });
+  }
+  if (plan.recipe === 'automed-slake-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name);
+    const scene = page.locator('[data-slake-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-slake-public-annotation]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    const img = scene.locator('[data-slake-native]');
+    const src = await img.getAttribute('src');
+    assert.ok(src.startsWith('data:image/jpeg;base64,'), 'native JPEG embedded offline');
+    assert.equal(
+      crypto
+        .createHash('sha256')
+        .update(Buffer.from(src.split(',')[1], 'base64'))
+        .digest('hex'),
+      '4e591a1ace76cbf3e539069b73e848f9fde485879a24b95f212bbe0ac1d84609',
+    );
+    assert.equal(await img.evaluate((el) => el.naturalWidth), 256);
+    assert.equal(await img.evaluate((el) => el.naturalHeight), 256);
+    assert.match(await scene.innerText(), /What modality is used to take this image/);
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    const reveal = scene.getByRole('button', {
+      name: 'Reveal public training annotation',
+      exact: true,
+    });
+    await reveal.click();
+    assert.match(
+      await page.locator('[data-slake-public-annotation]').innerText(),
+      /MRI.*Public train annotation.*not Full gold.*model output/s,
+    );
+    await capture('annotation-revealed');
+    await scene
+      .getByRole('button', { name: 'Hide public training annotation', exact: true })
+      .click();
+    await absent();
+    await reveal.click();
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    const assistance = scene.getByRole('group', { name: 'SLAKE assistance' });
+    await assistance.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-slake-tier]').innerText(),
+      /six candidates.*five.*PathVQA.*unresolved/s,
+    );
+    await capture('tier-standard');
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    assert.equal(
+      await assistance
+        .getByRole('button', { name: 'lite', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    for (let j = 0; j < 4; j++) {
+      const b = plan.beats.find(
+        (b) =>
+          b.scene === 'operation' &&
+          Math.abs(b.channels.progress[0] - j / 3) < 1e-8 &&
+          b.channels.progress[0] === b.channels.progress[1],
+      );
+      await page.locator(`[data-slake-operation-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        b.startFrame,
+      );
+      assert.equal(
+        await page.locator('[data-slake-currentstage]').getAttribute('data-slake-currentstage'),
+        String(j),
+      );
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-slake-format]').count(), 0);
+    await scene.getByRole('button', { name: 'Inspect format checks', exact: true }).click();
+    assert.match(
+      await page.locator('[data-slake-format]').innerText(),
+      /Six keys.*No five-word.*nonfinite.*guard/s,
+    );
+    await capture('format-revealed');
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    assert.equal(await page.locator('[data-slake-format]').count(), 0);
+    const metrics = scene.getByRole('group', { name: 'SLAKE scoring boundary' });
+    for (const m of ['accuracy', 'judge', 'format gate']) {
+      await metrics.getByRole('button', { name: m, exact: true }).click();
+      assert.ok((await page.locator('[data-slake-metric]').innerText()).length > 40);
+      await capture(`metric-${m.replace(' ', '-')}`);
+      await absent();
+    }
+    await page.locator('[data-story-step="0"]').click();
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    assert.equal(
+      await metrics
+        .getByRole('button', { name: 'accuracy', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-slake-format]').count(), 0);
+    assert.match(
+      await scene.innerText(),
+      /No answer was generated.*Private reference, score and participant output absent/s,
+    );
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
   }
   if (plan.recipe === 'automed-pathvqa-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -6614,6 +6754,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automed-slake-v1',
       'automed-pathvqa-v1',
       'automed-medxpert-mm-v1',
       'automed-medframeqa-v1',

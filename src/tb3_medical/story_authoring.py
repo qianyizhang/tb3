@@ -308,6 +308,7 @@ def new(
             "automed-chexpert-report-v1",
             "automed-mimic-report-v1",
             "automed-medframeqa-v1",
+            "automed-slake-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

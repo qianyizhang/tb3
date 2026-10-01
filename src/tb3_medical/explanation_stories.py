@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-slake-v1": "retained-automed-slake-v1",
     "automed-pathvqa-v1": "retained-automed-pathvqa-source-v1",
     "automed-medxpert-mm-v1": "retained-automed-medxpert-mm-source-v1",
     "automed-medframeqa-v1": "retained-automed-medframeqa-v1",
@@ -781,6 +782,20 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-slake-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+            "image.jpg",
+            "reference.json",
+        },
+    ),
     "retained-automed-pathvqa-source-v1": (
         "source-records",
         "reference.json",
@@ -2174,6 +2189,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedSlakeChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4095,6 +4116,28 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedSlakeBeat(ExpansionBeat[AutomedSlakeChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedSlakeStory(Story[AutomedSlakeChannels]):
+    recipe: Literal["automed-slake-v1"]
+    beats: tuple[AutomedSlakeBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "helper" and beat.channels.reference != (0.0, 0.0) for beat in self.beats
+        ):
+            raise ValueError(
+                "SLAKE public annotation eligibility is limited to helper; no private reference"
+            )
+        return self
+
+
 class AutomedPathvqaBeat(ExpansionBeat[AutomedPathvqaChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4691,6 +4734,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedSlakeStory
     | AutomedPathvqaStory
     | AutomedMedxpertStory
     | AutomedMedframeqaStory
@@ -4816,6 +4860,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedSlakeStory
     | AutomedPathvqaStory
     | AutomedMedxpertStory
     | AutomedMedframeqaStory
@@ -5101,6 +5146,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedSlakeStory
     | AutomedPathvqaStory
     | AutomedMedxpertStory
     | AutomedMedframeqaStory
@@ -5405,6 +5451,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-automed-slake-v1": (
+                "SLAKE-native-train-question-plus-Full-contract",
+                "CC-BY-4.0",
+                None,
+            ),
             "retained-automed-pathvqa-source-v1": (
                 "symbolic-unit-grid",
                 "LicenseRef-PathVQA-MIT-distribution-image-rights-unresolved",
@@ -5645,6 +5696,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "px"
+                if pack_id == "retained-automed-slake-v1"
                 else "unitless"
                 if pack_id == "retained-automed-pathvqa-source-v1"
                 else "unitless"
@@ -5763,6 +5816,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automed-slake-v1"
             or pack_id == "retained-automed-pathvqa-source-v1"
             or pack_id == "retained-automed-medxpert-mm-source-v1"
             or pack_id == "retained-automed-medframeqa-v1"
@@ -5820,6 +5874,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 and name == "source-preview.jpeg"
                 else "input-preview"
                 if pack_id == "retained-automed-pathvqa-source-v1" and name == "source-preview.jpeg"
+                else "input-preview"
+                if pack_id == "retained-automed-slake-v1" and name == "image.jpg"
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"

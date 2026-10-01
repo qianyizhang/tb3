@@ -1,3 +1,4 @@
+import { automedSlakePack } from './automed-slake';
 import { automedPathvqaPack } from './automedbench-full-pathvqa-task';
 import { automedMedxpertPack } from './automedbench-full-medxpertqa-mm-task';
 import { automedMedframeqaPack } from './automed-medframeqa';
@@ -120,6 +121,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-slake-v1',
     'automed-pathvqa-v1',
     'automed-medxpert-mm-v1',
     'automed-medframeqa-v1',
@@ -1110,6 +1112,13 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Public train example; Full split absent',
         warning: automedPathvqaPack.source.notice,
         legend: [],
+      };
+    case 'automed-slake-v1':
+      return {
+        heading: 'Link SLAKE image and short-answer contract',
+        corner: 'Native train question · symbolic Full contract',
+        warning: automedSlakePack.source.notice,
+        legend: [['#e8bd6d', 'Dashed amber box: reader-only public annotation']],
       };
     case 'bcer-brain-full-v1':
       return {

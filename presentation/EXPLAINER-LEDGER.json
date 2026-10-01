@@ -24351,15 +24351,15 @@
       ],
       "illustration_kind": "vqa",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-slake-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-slake-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted mixed explanation after main source/native/visual/export/mobile/no-GPU/reference review: unchanged public train 256x256 JPEG and English question, SLAKE open-ended schema/scoring and deliberate later public annotation. Full selected IDs, test split, private gold, calibration isolation, physical acquisition geometry and model results remain unestablished.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/slake/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: SLAKE-EN.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names microsoft/llava-med-v1.5-mistral-7b. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -24392,7 +24392,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights."
       },
-      "source_brief_sha256": "1c7674d507e9524776a4876ca3a454a50515029289e15484a8ed3c9e301732f8",
+      "source_brief_sha256": "98261783fc1f67a970dfc5286c3b119ef715957082c939167dab1fb7edc1336f",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -24401,14 +24401,117 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Native upstream English train qid0 image/question acquired; exact Full test membership and calibration/private separation unverified. No submitted answer, score or clinical finding.",
+      "acquisition_route": "https://huggingface.co/datasets/BoKelvin/SLAKE",
+      "warning_text": "Public train example only; Full test selection/private gold absent.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-slake-task-resolution.json",
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-slake-task-resolution.json",
+        "receipt_sha256": "765c7ce2026f3ec20e6166eb51e87e93e37bd00cb957c7699a3634bb29bd8a30",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T01:52:49.251420+00:00",
+        "scope": "47sourcefiles/34retainedpins/47manifest/48archive;38backendbytes reused and9task-specific differences read; native256x256 encodedJPEG+CRC+RGB exact; original Conditions exact; public train/private Full/output separation",
+        "no_visual_acceptance": true
+      },
+      "source_class": "source-derived-teaching",
+      "acceptance_scope": "Native public SLAKE training image and English question, source-specific open-ended answer workflow and scoring contracts, with a later deliberate public annotation reveal. Full test membership, private gold and model results remain absent.",
+      "completion_review": {
+        "date": "2026-10-01T02:15:14.733226+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "48b825ae2a23deb45e655a4dcfe6ff32bbbf5de435b4816ce9c80109c559fc59"
+      },
+      "reviewed_contract_projection": {
+        "title": "Answer English radiology questions from SLAKE",
+        "goal": "Answer each staged English image question under the declared Lite or Standard method. **Full case absent; public train example only.** [Official acquisition](https://huggingface.co/datasets/BoKelvin/SLAKE). No model output or score is shown.",
+        "value": "A short question links image interpretation, answer normalization and an inspectable submission. Reference agreement does not establish independent diagnosis or clinical benefit.",
+        "raw": "Full question.json supplies question_id, question and image_paths. Config names SLAKE-EN and open_ended, including open phrases and closed yes/no. There is no multiple-choice option mapping or A-E requirement. A question ID is the scoring unit; repeated images and patients are different units.\n\nThis illustration uses the exact 256x256 upstream train qid0 JPEG and English question \u201cWhat modality is used to take this image?\u201d. Source revision a9083ce6c34ac3ffb17671a605962924d8a8f9e9; img_name xmlab1/source.jpg and img_id1 are source associations, not verified Full IDs. JPEG pixels supply no physical spacing, orientation, native acquisition geometry or patient identity. Public train/validation/test exist; viewer9835 train rows include both language declarations and do not count unique images or English-only Full cases. Exact Full mapping, filtering and patient/image split independence remain unknown.",
+        "helpers": "Pinned task configuration and tier/stage guidance are instructions, not executed evidence. Config and Lite S1 identify **SLAKE-EN English radiology, open phrases or binary answers**. Lite fixes microsoft/llava-med-v1.5-mistral-7b with its declared loader/conversation prompt. No model weights, prompt, tool, calibration or runtime is executed here.\n\n**Lite S3:** exactly 15 public samples and checklist \u226515 records. Its example selects only the first 15 question files, drops missing/invalid gold and does not top up, so fewer than 15 records may result. It reads public `reference_answer` or `reasoning_chain.answer`, and only `image_paths[0]`; general all-image use and calibration/private split isolation are unproven.\n\n**Standard S3:** explicitly a 1\u201310 question smoke/schema check, despite its \u201cunchanged from lite\u201d opening. It does not repeat Lite's 15-sample prescription. **Generic executable verifier:** \u226510 records; gold may be absent/None without failing its invalid-gold guard. Supplied invalid gold or malformed raw text may each occupy at most 20% (failure is strictly >0.2). Malformed raw is non-string, shorter than five stripped characters or punctuation-led. These checks do not prove genuine calibration or private isolation.\n\n**Source inconsistencies remain unresolved:** Standard S1 lists six candidates and asks comparison of all six, but model_info lists five Standard candidates; S1's choice justification incorrectly names a PathVQA single pathology image, and metadata repeats PathVQA/MCQ wording. These copied statements do not redefine SLAKE's configured input/mode. Access, one-GPU suitability and model quality are source claims, unverified locally; no source file is corrected here.",
+        "tools": "inspect_image records dimensions, stated intent and tool logs, not an inferred finding. public_medical_search whitelists routes and sanitizes terms; neither proves private filesystem isolation. submit_answer writes WORKSPACE_DIR/<question_id>/answer.json atomically; evaluator reads agent_dir/<question_id>/answer.json. Its docstring's outputs/ prefix is inconsistent with executable path. No helper, model, postprocess import or evaluator was executed here.",
+        "reference": "Private ground_truth.csv by question_id is preferred, else private/<question_id>/answer.json. Gold text is answer_text or answer. Public train qid0's answer is shown only after explicit educational reveal and resets on scene exit or backward replay. It is source annotation, not Full private gold, generated output or independent diagnosis. Other answer-bearing source fields are excluded from the default input display. Private references are absent. Runtime isolation is untested.",
+        "spec": "Plan, provision the method, validate postprocessing, infer and submit under the declared condition. Full open_ended mode ignores predicted_label. Preserve a concise phrase or exact yes/no and separate it from raw model text. Source S4 explicitly warns against a five-word cap because some answers have 6\u201310 words; it describes typical 1\u201310 word phrases, not a schema length limit.",
+        "output": "Write <agent_dir>/<question_id>/answer.json with question_id, predicted_label, predicted_answer, raw_model_output, model_name and runtime_s. Require matching ID; predicted_answer nonempty string; raw output string; model name nonempty string; runtime nonnegative number in seconds. Empty label is conventional and ignored in open mode. Python bool satisfies the numeric type check; extra keys and nonfinite runtime have no explicit rejection guard. Those implementation limits are not recommendations. No output value is supplied here.\n\nBoth-empty raw/answer is an honest skip, not a placeholder, but open mode then remains invalid and earns no credit. Nonempty answer with empty raw is a placeholder; generic raw and specified prefixes are rejected. Scorer is weaker than strict format: it string-coerces answer text and does not validate every provenance field. Parse/format validity does not prove a real inference.",
+        "score": "Effective heuristic per-question score is strict normalized yes/no for binary gold, otherwise **0.5 normalized exact match +0.5 token F1**. Metrics internally0-100 are divided by100 into0-1. Normalization lowercases, removes punctuation, collapses whitespace and maps selected yes/no synonyms, number words and standalone medical abbreviations. A longer yes/no sentence need not normalize to exact yes/no. S4 recommends removing articles, while the scorer normalizer retains articles; the recommendation is not an implementation equivalence. Mean heuristic accuracy/EM/F1 use **all evaluator-supplied question IDs (default: discovered split IDs)**, rounded4 and zero whenempty; missing, invalid and placeholders remain denominator. yes_no_accuracy uses the binary-gold subset denominator. Breakdowns count sample_score>=1 as correct, so are distinct from mean fractional heuristic accuracy.\n\nOptional --enable-answer-judge or VQA_ANSWER_JUDGE=1/true/True activates the answer judge for open mode. It promotes sum of judge scores/all evaluator-supplied question IDs (default: discovered split IDs) to primary accuracy and retains heuristic diagnostics. Only parsed records are judged, but invalid/missing IDs remain in denominator. Backend fallback count/rationales are reported; judge score is not necessarily independently LLM-graded. Workflow --llm-judge is a separate route. No active backend/result is known here. Missing private gold errors do not establish model failure.\n\nStrict output_format_valid requires every file valid; graded submission_format_valid requires strict-valid fraction>=0.5 using max(expected,1). Completion counts files/all evaluator-supplied IDs, not validity. Rating F if graded gate false, no scorer-valid answers or filecompletion<0.5; otherwise A primaryaccuracy>=0.40, B>=0.25, else C. Workflow renormalizes active non-None weights; guarded S4 uses halfcompletion/halfparse with placeholder/model-call/low-quality caps; S5 halfanyvalid/halfgradedformat. Overall halfworkflow/halfprimaryaccuracy. fail_rate is1-filecompletion despite its valid-answer comment. No score or measured rating exists.",
+        "challenge": "Keep source/public calibration/private gold separate, preserve question/image pairing and exact short-answer normalization. Neither repeated-image questions nor a training annotation establish patient-independent generalization.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "Exact Full ID/image/test split mapping, English filtering, repeated-image/patient independence and calibration/private isolation remain unverified. Retained 2026-09-30 card/row GET200 receipts and the verified ZIP member establish only this public training pair. Reopen Full-data claims after exact join and visibility audit; model/performance/clinical claims need separately authorized evidence.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect native public training image and exact question",
+          "Reveal public annotation explicitly; inspect assistance and normalization",
+          "Read an empty output contract and question-denominator/judge boundaries"
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Task-specific Lite guidance: microsoft/llava-med-v1.5-mistral-7b.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/slake-task.tar.gz"
+          ],
+          [
+            "Pinned SLAKE dataset",
+            "https://huggingface.co/datasets/BoKelvin/SLAKE/tree/a9083ce6c34ac3ffb17671a605962924d8a8f9e9"
+          ],
+          [
+            "project",
+            "https://www.med-vqa.com/slake/"
+          ],
+          [
+            "CC BY4.0",
+            "https://creativecommons.org/licenses/by/4.0/"
+          ],
+          [
+            "Source resolution",
+            "presentation/external-tasks/sources/automedbench-full-slake-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Answer each staged English image question under the declared Lite or Standard method. <strong>Full case absent; public train example only.</strong> <a href=\"https://huggingface.co/datasets/BoKelvin/SLAKE\">Official acquisition</a>. No model output or score is shown.</p>",
+          "value": "<p>A short question links image interpretation, answer normalization and an inspectable submission. Reference agreement does not establish independent diagnosis or clinical benefit.</p>",
+          "raw": "<p>Full question.json supplies question_id, question and image_paths. Config names SLAKE-EN and open_ended, including open phrases and closed yes/no. There is no multiple-choice option mapping or A-E requirement. A question ID is the scoring unit; repeated images and patients are different units.</p>\n<p>This illustration uses the exact 256x256 upstream train qid0 JPEG and English question \u201cWhat modality is used to take this image?\u201d. Source revision a9083ce6c34ac3ffb17671a605962924d8a8f9e9; img_name xmlab1/source.jpg and img_id1 are source associations, not verified Full IDs. JPEG pixels supply no physical spacing, orientation, native acquisition geometry or patient identity. Public train/validation/test exist; viewer9835 train rows include both language declarations and do not count unique images or English-only Full cases. Exact Full mapping, filtering and patient/image split independence remain unknown.</p>",
+          "helpers": "<p>Pinned task configuration and tier/stage guidance are instructions, not executed evidence. Config and Lite S1 identify <strong>SLAKE-EN English radiology, open phrases or binary answers</strong>. Lite fixes microsoft/llava-med-v1.5-mistral-7b with its declared loader/conversation prompt. No model weights, prompt, tool, calibration or runtime is executed here.</p>\n<p><strong>Lite S3:</strong> exactly 15 public samples and checklist \u226515 records. Its example selects only the first 15 question files, drops missing/invalid gold and does not top up, so fewer than 15 records may result. It reads public <code>reference_answer</code> or <code>reasoning_chain.answer</code>, and only <code>image_paths[0]</code>; general all-image use and calibration/private split isolation are unproven.</p>\n<p><strong>Standard S3:</strong> explicitly a 1\u201310 question smoke/schema check, despite its \u201cunchanged from lite\u201d opening. It does not repeat Lite&#x27;s 15-sample prescription. <strong>Generic executable verifier:</strong> \u226510 records; gold may be absent/None without failing its invalid-gold guard. Supplied invalid gold or malformed raw text may each occupy at most 20% (failure is strictly &gt;0.2). Malformed raw is non-string, shorter than five stripped characters or punctuation-led. These checks do not prove genuine calibration or private isolation.</p>\n<p><strong>Source inconsistencies remain unresolved:</strong> Standard S1 lists six candidates and asks comparison of all six, but model_info lists five Standard candidates; S1&#x27;s choice justification incorrectly names a PathVQA single pathology image, and metadata repeats PathVQA/MCQ wording. These copied statements do not redefine SLAKE&#x27;s configured input/mode. Access, one-GPU suitability and model quality are source claims, unverified locally; no source file is corrected here.</p>",
+          "tools": "<p>inspect_image records dimensions, stated intent and tool logs, not an inferred finding. public_medical_search whitelists routes and sanitizes terms; neither proves private filesystem isolation. submit_answer writes WORKSPACE_DIR/&lt;question_id&gt;/answer.json atomically; evaluator reads agent_dir/&lt;question_id&gt;/answer.json. Its docstring&#x27;s outputs/ prefix is inconsistent with executable path. No helper, model, postprocess import or evaluator was executed here.</p>",
+          "reference": "<p>Private ground_truth.csv by question_id is preferred, else private/&lt;question_id&gt;/answer.json. Gold text is answer_text or answer. Public train qid0&#x27;s answer is shown only after explicit educational reveal and resets on scene exit or backward replay. It is source annotation, not Full private gold, generated output or independent diagnosis. Other answer-bearing source fields are excluded from the default input display. Private references are absent. Runtime isolation is untested.</p>",
+          "spec": "<p>Plan, provision the method, validate postprocessing, infer and submit under the declared condition. Full open_ended mode ignores predicted_label. Preserve a concise phrase or exact yes/no and separate it from raw model text. Source S4 explicitly warns against a five-word cap because some answers have 6\u201310 words; it describes typical 1\u201310 word phrases, not a schema length limit.</p>",
+          "output": "<p>Write &lt;agent_dir&gt;/&lt;question_id&gt;/answer.json with question_id, predicted_label, predicted_answer, raw_model_output, model_name and runtime_s. Require matching ID; predicted_answer nonempty string; raw output string; model name nonempty string; runtime nonnegative number in seconds. Empty label is conventional and ignored in open mode. Python bool satisfies the numeric type check; extra keys and nonfinite runtime have no explicit rejection guard. Those implementation limits are not recommendations. No output value is supplied here.</p>\n<p>Both-empty raw/answer is an honest skip, not a placeholder, but open mode then remains invalid and earns no credit. Nonempty answer with empty raw is a placeholder; generic raw and specified prefixes are rejected. Scorer is weaker than strict format: it string-coerces answer text and does not validate every provenance field. Parse/format validity does not prove a real inference.</p>",
+          "score": "<p>Effective heuristic per-question score is strict normalized yes/no for binary gold, otherwise <strong>0.5 normalized exact match +0.5 token F1</strong>. Metrics internally0-100 are divided by100 into0-1. Normalization lowercases, removes punctuation, collapses whitespace and maps selected yes/no synonyms, number words and standalone medical abbreviations. A longer yes/no sentence need not normalize to exact yes/no. S4 recommends removing articles, while the scorer normalizer retains articles; the recommendation is not an implementation equivalence. Mean heuristic accuracy/EM/F1 use <strong>all evaluator-supplied question IDs (default: discovered split IDs)</strong>, rounded4 and zero whenempty; missing, invalid and placeholders remain denominator. yes_no_accuracy uses the binary-gold subset denominator. Breakdowns count sample_score&gt;=1 as correct, so are distinct from mean fractional heuristic accuracy.</p>\n<p>Optional --enable-answer-judge or VQA_ANSWER_JUDGE=1/true/True activates the answer judge for open mode. It promotes sum of judge scores/all evaluator-supplied question IDs (default: discovered split IDs) to primary accuracy and retains heuristic diagnostics. Only parsed records are judged, but invalid/missing IDs remain in denominator. Backend fallback count/rationales are reported; judge score is not necessarily independently LLM-graded. Workflow --llm-judge is a separate route. No active backend/result is known here. Missing private gold errors do not establish model failure.</p>\n<p>Strict output_format_valid requires every file valid; graded submission_format_valid requires strict-valid fraction&gt;=0.5 using max(expected,1). Completion counts files/all evaluator-supplied IDs, not validity. Rating F if graded gate false, no scorer-valid answers or filecompletion&lt;0.5; otherwise A primaryaccuracy&gt;=0.40, B&gt;=0.25, else C. Workflow renormalizes active non-None weights; guarded S4 uses halfcompletion/halfparse with placeholder/model-call/low-quality caps; S5 halfanyvalid/halfgradedformat. Overall halfworkflow/halfprimaryaccuracy. fail_rate is1-filecompletion despite its valid-answer comment. No score or measured rating exists.</p>",
+          "challenge": "<p>Keep source/public calibration/private gold separate, preserve question/image pairing and exact short-answer normalization. Neither repeated-image questions nor a training annotation establish patient-independent generalization.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>Exact Full ID/image/test split mapping, English filtering, repeated-image/patient independence and calibration/private isolation remain unverified. Retained 2026-09-30 card/row GET200 receipts and the verified ZIP member establish only this public training pair. Reopen Full-data claims after exact join and visibility audit; model/performance/clinical claims need separately authorized evidence.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Native public train input; Full test absent.</strong> One byte-identical 256x256 JPEG and its English source question. No measurement overlay or clinical claim.</p>",
+          "helpers": "<p><strong>Source annotation only after reader reveal.</strong> Explicit reveal/hide and reset on scene exit/backward replay. Lite/Standard and public calibration are separate assistance conditions.</p>",
+          "answer": "<p><strong>Unsubmitted schema; no private reference.</strong> Six null values, phrase/yes-no rules, strict/graded gates and optional judge; no generated answer or metric.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24754,10 +24857,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 113,
+    "reviewed-scripted-planar": 114,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 18,
+    "blocked-source-input": 17,
     "pending-operation-review": 1
   },
   "completion_program": {
