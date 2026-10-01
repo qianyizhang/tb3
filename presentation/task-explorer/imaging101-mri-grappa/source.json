@@ -1,0 +1,15 @@
+{
+  "basis": "mixed",
+  "geometry": "Synthetic Shepp-Logan phantom; native batch 1 x 128 x 128 x 8 coil-last, Gaussian complex sensitivity maps. No acquired patient brain MRI, physical spacing, anatomical orientation or calibrated k-space frequencies.",
+  "notice": {
+    "label": "Full source input \u00b7 blind reconstruction unproven",
+    "link_label": "Pinned GRAPPA acquisition",
+    "text": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown.",
+    "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+  },
+  "patient": null,
+  "private_reference": null,
+  "sampling": "Source rule: retain even phase-encode rows (dim 0) plus ACS 54..73 inclusive. 74/128 lines 57.8125%, effective 128/74\u22481.73 versus nominal R=2. Rule illustration only; native archive remains full.",
+  "units": "K-space/sensitivity complex pairs and RSS magnitude in arbitrary source units; grid/coil indices are not physical distances.",
+  "visibility": "Full k-space and data phantom already solver-visible; evaluation directory absent initially in end-to-end mode does not establish full-data isolation."
+}

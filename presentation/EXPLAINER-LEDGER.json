@@ -13948,36 +13948,126 @@
       }
     },
     {
-      "entry_id": "imaging101-mri-grappa",
-      "title": "Reconstruct multi-coil MRI with GRAPPA",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-mri-grappa/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa",
+      "actual_data_gap": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-mri-grappa.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown. Choose method reproduction or blind reconstruction; stage only undersampled k-space/ACS for blind work, isolate full data/truth, pin RSS versus phantom reference and output/scorer semantics.",
+        "helpers": "An autocalibration region that teaches missing-sample interpolation. The assistance level can add an approach and software design.",
+        "output": "Generic output/reconstruction.npy: one real 128\u00d7128 magnitude image. Source main instead writes grappa_reconstruction.npz key reconstruction with 1\u00d7128\u00d7128 batch and compares fully sampled RSS. No participant result is shown.",
+        "raw": "Native fully sampled synthetic complex k-space and Gaussian sensitivity maps: 1\u00d7128\u00d7128\u00d78 float32 real/imag arrays. Source preprocessing defines R=2 even phase-encode rows plus ACS 54\u201373; 74/128 retained lines, not raw missing data.",
+        "reference": "Full eight-coil k-space, sensitivity maps and phantom truth are solver-visible in data. Source main compares fully sampled RSS, a different intensity reference from the bare phantom. Teaching reveal does not establish blind evaluation.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-grappa.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A reconstructed MRI image after k-space completion and coil combination.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-mri-grappa",
+      "illustration_basis": "mixed",
+      "illustration_kind": "mri",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "mri",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-grappa.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A reconstructed MRI image after k-space completion and coil combination.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Accelerated multi-coil MRI frequency data.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native synthetic full eight-coil k-space/sensitivity centers and symbolic R2/ACS20 GRAPPA contracts after main18-pin/42-image visual/export/mobile/no-GPU/reader-boundary review. Full data/truth already solver-visible; no participant reconstruction or result. RSS versus phantom reference and source/generic scoring remain explicit.",
+      "source_brief_sha256": "df6f57d638b51d257a26e72029bc50f9e862188bfc072a09ab982238d5454e7d",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-mri-grappa-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-mri-grappa-resolution.json",
+        "receipt_sha256": "2a644ddd8830dd9b659b36cf1d2d37a2f1b1aa7c34ff8da02249cb6ff581474f",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T08:40:05.517153+00:00",
+        "main_audit": ".local/explainers/goal-20260930/imaging101-mri-grappa/source-audit-final-01.json",
+        "main_audit_sha256": "edb6676e50e7aa3982e791950d5444f202beb3862bddde1fbf968fb429ee5c07",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-mri-grappa",
+      "subject": null,
+      "title": "Reconstruct multi-coil MRI with GRAPPA",
+      "warning_text": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown.",
+      "acceptance_scope": "Native synthetic full eight-coil k-space and sensitivity centers; supplied R2/ACS20 rule and symbolic GRAPPA calibration/interpolation/RSS contracts. Source full-data target is already solver-visible and reader reveal is educational. Unsubmitted artifact, no participant reconstruction or result.",
+      "completion_review": {
+        "date": "2026-10-01T09:34:59.548433+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "f9bf59c99b72997a144d2e348d4834c521657d40aa0e2b7858132b89abe000e1"
+      },
+      "reviewed_contract_projection": {
+        "title": "Reconstruct multi-coil MRI with GRAPPA",
+        "goal": "Implement a computational method to reconstruct multi-coil MRI with GRAPPA.\n\n> **Actual gap:** Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown. [Official pinned acquisition](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa).",
+        "value": "This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.",
+        "raw": "Native fully sampled synthetic complex k-space and Gaussian sensitivity maps: 1\u00d7128\u00d7128\u00d78 float32 real/imag arrays. Source preprocessing defines R=2 even phase-encode rows plus ACS 54\u201373; 74/128 retained lines, not raw missing data.",
         "helpers": "An autocalibration region that teaches missing-sample interpolation. The assistance level can add an approach and software design.",
         "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "reference": "Full eight-coil k-space, sensitivity maps and phantom truth are solver-visible in data. Source main compares fully sampled RSS, a different intensity reference from the bare phantom. Teaching reveal does not establish blind evaluation.",
         "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A reconstructed MRI image after k-space completion and coil combination.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "output": "Generic output/reconstruction.npy: one real 128\u00d7128 magnitude image. Source main instead writes grappa_reconstruction.npz key reconstruction with 1\u00d7128\u00d7128 batch and compares fully sampled RSS. No participant result is shown.",
+        "score": "The filesystem generic route prefers evaluation/reference_outputs/ground_truth.npy (full-data RSS) before data/ground_truth.npz (bare phantom). It compares 16384 pixels without flux scaling: range NRMSE returns infinity for zero reference range and cosine uses epsilon 1e-30. The task-local helper also returns infinity for zero range, uses cosine epsilon 1e-12 and skimage local SSIM; generic SSIM uses whole-image moments. The no-filesystem fallback instead flux-normalizes output and uses relative L2 NRMSE against a 2D NPY reference. Nested saved source metrics supply no top-level pass thresholds. No route was executed and no metric result is shown.",
+        "challenge": "Calibrate the interpolation from the available center region and respect coil/sample indexing.",
+        "families": "One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.",
+        "gap": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown. Choose method reproduction or blind reconstruction; stage only undersampled k-space/ACS for blind work, isolate full data/truth, pin RSS versus phantom reference and output/scorer semantics.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native full eight-coil k-space; supplied R2/ACS20 rule",
+          "Reconstruct multi-coil MRI with GRAPPA",
+          "Expected magnitude-image contract after k-space completion and coil combination; no image submitted"
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -14005,26 +14095,27 @@
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "0beb78e95b1aa1c14284c9eb871a8c18d440087ba4f4a282df18583188df7edd",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-grappa.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A reconstructed MRI image after k-space completion and coil combination.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Implement a computational method to reconstruct multi-coil MRI with GRAPPA.</p>\n<p>&gt; <strong>Actual gap:</strong> Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown. <a href=\"https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa\">Official pinned acquisition</a>.</p>",
+          "value": "<p>This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.</p>",
+          "raw": "<p>Native fully sampled synthetic complex k-space and Gaussian sensitivity maps: 1\u00d7128\u00d7128\u00d78 float32 real/imag arrays. Source preprocessing defines R=2 even phase-encode rows plus ACS 54\u201373; 74/128 retained lines, not raw missing data.</p>",
+          "helpers": "<p>An autocalibration region that teaches missing-sample interpolation. The assistance level can add an approach and software design.</p>",
+          "tools": "<p>Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.</p>",
+          "reference": "<p>Full eight-coil k-space, sensitivity maps and phantom truth are solver-visible in data. Source main compares fully sampled RSS, a different intensity reference from the bare phantom. Teaching reveal does not establish blind evaluation.</p>",
+          "spec": "<p>Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.</p>",
+          "output": "<p>Generic output/reconstruction.npy: one real 128\u00d7128 magnitude image. Source main instead writes grappa_reconstruction.npz key reconstruction with 1\u00d7128\u00d7128 batch and compares fully sampled RSS. No participant result is shown.</p>",
+          "score": "<p>The filesystem generic route prefers evaluation/reference_outputs/ground_truth.npy (full-data RSS) before data/ground_truth.npz (bare phantom). It compares 16384 pixels without flux scaling: range NRMSE returns infinity for zero reference range and cosine uses epsilon 1e-30. The task-local helper also returns infinity for zero range, uses cosine epsilon 1e-12 and skimage local SSIM; generic SSIM uses whole-image moments. The no-filesystem fallback instead flux-normalizes output and uses relative L2 NRMSE against a 2D NPY reference. Nested saved source metrics supply no top-level pass thresholds. No route was executed and no metric result is shown.</p>",
+          "challenge": "<p>Calibrate the interpolation from the available center region and respect coil/sample indexing.</p>",
+          "families": "<p>One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.</p>",
+          "gap": "<p>Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown. Choose method reproduction or blind reconstruction; stage only undersampled k-space/ACS for blind work, isolate full data/truth, pin RSS versus phantom reference and output/scorer semantics.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Native full source array samples; supplied mask illustrated separately.</strong> Native fully sampled synthetic complex k-space and Gaussian sensitivity maps: 1\u00d7128\u00d7128\u00d78 float32 real/imag arrays. Source preprocessing defines R=2 even phase-encode rows plus ACS 54\u201373; 74/128 retained lines, not raw missing data.</p>",
+          "helpers": "<p><strong>Given material, not an answer reveal.</strong> An autocalibration region that teaches missing-sample interpolation. The assistance level can add an approach and software design.</p>",
+          "answer": "<p><strong>Expected artifact, not an actual prediction.</strong> Generic output/reconstruction.npy: one real 128\u00d7128 magnitude image. Source main instead writes grappa_reconstruction.npz key reconstruction with 1\u00d7128\u00d7128 batch and compares fully sampled RSS. No participant result is shown.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25711,9 +25802,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 123,
+    "reviewed-scripted-planar": 124,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 55,
+    "blocked-source-contract": 54,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

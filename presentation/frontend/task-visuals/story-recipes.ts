@@ -1,3 +1,4 @@
+import { imagingGrappaPack } from './imaging-grappa';
 import { imagingDynamicMriPack } from './imaging-dynamic-mri';
 import { imagingEitPack } from './imaging-eit';
 import { imagingPoissonPack } from './imaging101-ct-poisson-lowdose';
@@ -130,6 +131,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging-grappa-v1',
     'imaging-dynamic-mri-v1',
     'imaging-eit-v1',
     'imaging101-poisson-v1',
@@ -1215,6 +1217,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#73c7e6', 'Native sampled k-space point'],
           ['#c3d8e5', 'Unsampled / zero-filled point'],
           ['#eeb989', 'Explicit source helper only'],
+        ],
+      };
+    case 'imaging-grappa-v1':
+      return {
+        heading: 'Calibrate GRAPPA across eight coils',
+        corner: 'Full native k-space · symbolic ACS inverse',
+        warning: imagingGrappaPack.source.notice,
+        legend: [
+          ['#73c7e6', 'Retained row under R2/ACS rule'],
+          ['#eeb989', 'ACS training rows'],
+          ['#92d9ae', 'Missing row target · no estimate'],
         ],
       };
     case 'bcer-brain-full-v1':

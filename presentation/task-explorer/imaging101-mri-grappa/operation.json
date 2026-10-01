@@ -1,0 +1,15 @@
+{
+  "executed": false,
+  "kernel": "5x5 rule illustration with central target and acquired-row neighbors; no prediction, inverse FFT or GRAPPA computation.",
+  "methods": {
+    "calibration": "W=solve(S\u1d34S+\u03bb\u2080I,S\u1d34T).T; \u03bb\u2080=0.01\u00b7||S\u1d34S||_F/n_sources. Source and target matrices are ACS examples; no weight matrix is computed here.",
+    "combination": "Centered FFT spatial axes (0,1), forward 1/128, inverse 128 after removing batch; coil axis 2 excluded. Image magnitude is sqrt(sum_coils |IFFT(k_c)|\u00b2), not a bare phantom or sensitivity-weighted clinical intensity.",
+    "interpolation": "Source infers mask from first-coil |k|>0, pads k-space/ACS with zeros, skips all-empty patterns and applies cross-coil weights to holes. True acquired zero can be misidentified in other data; native acquired coil 0 exact zeros=0."
+  },
+  "steps": [
+    "Keep native coil-last axes; illustrate R2/ACS20 rule",
+    "Extract padded 5 x 5 ACS patches across 8 coils",
+    "Fit each unique hole pattern with scaled ridge weights",
+    "Interpolate missing k-space, centered IFFT, then RSS"
+  ]
+}

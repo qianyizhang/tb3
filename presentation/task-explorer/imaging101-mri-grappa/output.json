@@ -1,0 +1,17 @@
+{
+  "format": "Generic real 128 x 128 NPY versus main source grappa_reconstruction.npz key reconstruction with 1 x 128 x 128 batch. No participant image or saved GRAPPA result is displayed.",
+  "limits": "Choose method reproduction or blind reconstruction; stage only undersampled k-space/ACS for blind work, isolate full data/truth, pin RSS versus phantom reference and output/scorer semantics.",
+  "map": null,
+  "metric": "Filesystem generic NRMSE range-normalized RMSE (zero range \u2192 infinity) and uncentered cosine over 16384 pixels. No flux scaling; source same broad NRMSE/cosine but denominator epsilon differs: 1e-12 versus generic 1e-30.",
+  "path": "output/reconstruction.npy",
+  "prediction": null,
+  "reference": null,
+  "reference_selection": "Generic first discovers evaluation/reference_outputs/ground_truth.npy (full-data RSS), before data/ground_truth.npz image (bare phantom). If RSS file absent, reference changes. Both shape 128 x 128, unequal pixel values; shape does not establish equivalent physical intensity.",
+  "score": null,
+  "shape": [
+    128,
+    128
+  ],
+  "task_metric": "Task-local NRMSE also returns infinity for zero range. Source SSIM is skimage local structural_similarity with reference range. Generic SSIM uses whole-image means/variances and max(reference) as scale; these are different estimators. Without a filesystem workspace, the fallback flux-normalizes output and uses relative L2 NRMSE against a 2D NPY reference; this is a separate backend contract.",
+  "threshold": "Pinned metrics.json contains nested grappa/zerofill source results, no top-level ncc_boundary/nrmse_boundary. Generic passed=None; source metric numbers remain provenance only and are not displayed."
+}

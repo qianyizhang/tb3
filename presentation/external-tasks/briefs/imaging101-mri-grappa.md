@@ -2,6 +2,8 @@
 
 Implement a computational method to reconstruct multi-coil MRI with GRAPPA.
 
+> **Actual gap:** Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown. [Official pinned acquisition](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa).
+
 ## Value
 
 This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.
@@ -10,7 +12,7 @@ This imaging problem tests the computational step between acquired measurements 
 
 ### Original data
 
-Accelerated multi-coil MRI frequency data.
+Native fully sampled synthetic complex k-space and Gaussian sensitivity maps: 1×128×128×8 float32 real/imag arrays. Source preprocessing defines R=2 even phase-encode rows plus ACS 54–73; 74/128 retained lines, not raw missing data.
 
 ### Supplied helpers
 
@@ -22,7 +24,7 @@ Python and the task’s numerical/model dependencies. End-to-end, function-level
 
 ### Reference-only material
 
-Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.
+Full eight-coil k-space, sensitivity maps and phantom truth are solver-visible in data. Source main compares fully sampled RSS, a different intensity reference from the bare phantom. Teaching reveal does not establish blind evaluation.
 
 ## Task specification
 
@@ -30,23 +32,23 @@ Implement the linked README’s forward/inverse problem with its array conventio
 
 ## Expected output
 
-A reconstructed MRI image after k-space completion and coil combination.
+Generic output/reconstruction.npy: one real 128×128 magnitude image. Source main instead writes grappa_reconstruction.npz key reconstruction with 1×128×128 batch and compares fully sampled RSS. No participant result is shown.
 
 ## Evaluation
 
-End-to-end mode compares numerical outputs where a reference exists; the project uses metrics including correlation and normalized error. Function tests and plan judgments are separate. Task-specific metric availability has not been replayed.
+The filesystem generic route prefers evaluation/reference_outputs/ground_truth.npy (full-data RSS) before data/ground_truth.npz (bare phantom). It compares 16384 pixels without flux scaling: range NRMSE returns infinity for zero reference range and cosine uses epsilon 1e-30. The task-local helper also returns infinity for zero range, uses cosine epsilon 1e-12 and skimage local SSIM; generic SSIM uses whole-image moments. The no-filesystem fallback instead flux-normalizes output and uses relative L2 NRMSE against a 2D NPY reference. Nested saved source metrics supply no top-level pass thresholds. No route was executed and no metric result is shown.
 
 ## Visual explanation
 
 ### Workflow
 
-- Accelerated multi-coil MRI frequency data
+- Native full eight-coil k-space; supplied R2/ACS20 rule
 - Reconstruct multi-coil MRI with GRAPPA
-- A reconstructed MRI image after k-space completion and coil combination
+- Expected magnitude-image contract after k-space completion and coil combination; no image submitted
 
 ### Input
 
-**Contract view; native sample not yet illustrated.** Accelerated multi-coil MRI frequency data.
+**Native full source array samples; supplied mask illustrated separately.** Native fully sampled synthetic complex k-space and Gaussian sensitivity maps: 1×128×128×8 float32 real/imag arrays. Source preprocessing defines R=2 even phase-encode rows plus ACS 54–73; 74/128 retained lines, not raw missing data.
 
 ### Supplied helpers
 
@@ -54,7 +56,7 @@ End-to-end mode compares numerical outputs where a reference exists; the project
 
 ### Reference or output
 
-**Expected artifact, not an actual prediction.** A reconstructed MRI image after k-space completion and coil combination.
+**Expected artifact, not an actual prediction.** Generic output/reconstruction.npy: one real 128×128 magnitude image. Source main instead writes grappa_reconstruction.npz key reconstruction with 1×128×128 batch and compares fully sampled RSS. No participant result is shown.
 
 ## Conditions
 
@@ -79,4 +81,4 @@ One scientific task definition across L1/L2/L3 assistance. This collection inclu
 
 ## Gaps
 
-Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.
+Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown. Choose method reproduction or blind reconstruction; stage only undersampled k-space/ACS for blind work, isolate full data/truth, pin RSS versus phantom reference and output/scorer semantics.

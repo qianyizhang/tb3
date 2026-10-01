@@ -1,0 +1,307 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa",
+  "actual_data_gap": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown.",
+  "attempts": [
+    {
+      "action": "retained-validation",
+      "attempted_at": "2026-10-01T06:21:47.240238+00:00",
+      "outcome": "Validated all 18 retained source SHA-256/byte pins, 10 primary Git-tree blob identities and 6 retained HF asset identities; reused historical HTTP records, no new GET, Fourier/operator/solver/scorer execution.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    },
+    {
+      "action": "retained-validation",
+      "attempted_at": "2026-10-01T08:26:40.934222+00:00",
+      "outcome": "Final128 exact committed-base isolated source validation; retained acquisition objects unchanged, no repeated GET or source operator/scorer execution.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    }
+  ],
+  "brief_sha256": "df6f57d638b51d257a26e72029bc50f9e862188bfc072a09ab982238d5454e7d",
+  "display_warning": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown.",
+  "entry_id": "imaging101-mri-grappa",
+  "evaluator_run": false,
+  "historical_attempts": [
+    {
+      "action": "review pinned task source and Git blob identities",
+      "attempted_at": "2026-09-29T07:17:39.156065+00:00",
+      "outcome": "5 task source files matched pinned Git blob SHA-1.",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa"
+    },
+    {
+      "action": "download bounded pinned native data/metadata/truth and saved source output",
+      "attempted_at": "2026-09-29T07:17:39.156065+00:00",
+      "outcome": "HTTP 200; 4 asset bytes match pinned asset manifest and HF LFS SHA-256. No task/preparer/solver/scorer executed.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET",
+      "outcome": "HTTP200;3310bytes; no source operator/preparer/solver/scorer executed",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa/src/visualization.py"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET",
+      "outcome": "HTTP200;1616053bytes; no source operator/preparer/solver/scorer executed",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa/data/raw_data.npz"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET",
+      "outcome": "HTTP200;65664bytes; no source operator/preparer/solver/scorer executed",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa/evaluation/reference_outputs/ground_truth.npy"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET",
+      "outcome": "HTTP200;235bytes; no source operator/preparer/solver/scorer executed",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa/evaluation/reference_outputs/metrics.json"
+    },
+    {
+      "action": "verify retained pinned common harness and license",
+      "outcome": "4matching frozen common source hashes, read-only reuse; no execution",
+      "source": "dc2f668939b21e8312e22529615def610f8611df"
+    }
+  ],
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Choose method reproduction or blind reconstruction; stage only undersampled k-space/ACS for blind work, isolate full data/truth, pin RSS versus phantom reference and output/scorer semantics.",
+  "resolved_at": "2026-09-29T07:17:39.156065+00:00",
+  "schema": 1,
+  "scientific_gaps": [
+    "Raw full k-space/sensitivities and phantom visible in data; no blind condition established. Source synthetic Shepp-Logan is not acquired patient brain MRI.",
+    "128x128x8 coil-last after removing batch; centered FFT axes(0,1), normalization1/128 and inverse128. Arbitrary intensity, no physical spacing, patient orientation or k-space frequency calibration.",
+    "R2 even phase-encode rows plus ACS54..73 gives74/128 sampled lines, effective1.73 acceleration, not exactly50% acquisition. Mask is preprocessing rule, not native raw missing data.",
+    "GRAPPA infers mask by first-coil magnitude>0; true acquired zero could be mistaken as hole. Retained acquired coil0 has no exact zeros, so hypothetical hazard is not an observed native failure.",
+    "Kernel5x5 with zero-padded ACS boundaries; lambda0=lambda*norm(S^H S)/number_sources, not bare0.01 ridge. Learned ACS weights/filled k-space/RSS not calculated here.",
+    "Source main compares full-data RSS and writes ground_truth.npy; generic chooses that before bare phantom data/ground_truth.npz. Reference changes if evaluation file absent.",
+    "Source SSIM uses skimage local structural_similarity with reference range; generic SSIM is global mean/variance surrogate using max(reference), not same metric. Nested source metrics are not top-level thresholds.",
+    "Filesystem generic scoring uses unscaled range NRMSE; no-filesystem fallback instead flux-normalizes output and uses relative L2 NRMSE against a 2D NPY reference. Neither route was executed here."
+  ],
+  "solver_run": false,
+  "source_license": "MIT",
+  "source_pins": [
+    {
+      "bytes": 3800,
+      "git_blob_sha1": "4ba07c149d9422f5ee3133b9b8cc95d7e46f2486",
+      "git_path": "tasks/mri_grappa/README.md",
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_grappa/README.md",
+      "role": "pinned-task-source",
+      "sha256": "13bf3387f186e64d0456e999e8eac8fa41d6d925ba2f9fbf8a039098ae8190f6",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa"
+    },
+    {
+      "bytes": 3377,
+      "git_blob_sha1": "23b2f3573d4f18ee71ecb5e74eb7878aa51477f1",
+      "git_path": "tasks/mri_grappa/main.py",
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_grappa/main.py",
+      "role": "pinned-task-source",
+      "sha256": "40aec4312c138e88d988e779af5720002cd927cf3756dc32b765a228b9ccf411",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa"
+    },
+    {
+      "bytes": 2676,
+      "git_blob_sha1": "c690eec60caf40aaf5ffa7c93b18838442d7bfd6",
+      "git_path": "tasks/mri_grappa/src/physics_model.py",
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_grappa/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "5a2ea826c5b221031385725d0f9c33e0ac3afa47cc34b2f60fa9371360ad1818",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa"
+    },
+    {
+      "bytes": 3576,
+      "git_blob_sha1": "068b8af79ea31e950fe4e903341976672fc0db15",
+      "git_path": "tasks/mri_grappa/src/preprocessing.py",
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_grappa/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "465362995f54e9901862ec164ea356daf921fe7a1121cf71a6ff7e04f5634b4d",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa"
+    },
+    {
+      "bytes": 6092,
+      "git_blob_sha1": "9c9ab24a82e989d6c6178d5010b447b7a466422e",
+      "git_path": "tasks/mri_grappa/src/solvers.py",
+      "path": ".local/explainers/core-20260929/formation-b-source/tasks/mri_grappa/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "16cccd3c259375da80136e956d5cb86d2b3b4b3e3e1e43f5149e6b5c28c63d1f",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa"
+    },
+    {
+      "bytes": 1203,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_grappa/data/ground_truth.npz",
+      "role": "solver-visible-ground-truth",
+      "sha256": "3f17d407fee472ffd41dc1f2ed190b3e8184cf850352676c1230b1525a631099",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    },
+    {
+      "bytes": 184,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_grappa/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "3b0e41a493bbc1e6fb5219ebaf62061b1299219b0a962fd9b62d1d6707b11503",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    },
+    {
+      "bytes": 1616053,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_grappa/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "3b5d900f87ea2cd458e6cff92f50bdeb1f15206e9abc3a46dacb1f9d3c63f743",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    },
+    {
+      "bytes": 59176,
+      "path": ".local/explainers/core-20260929/formation-b-source/assets/mri_grappa/evaluation/reference_outputs/grappa_reconstruction.npz",
+      "role": "source-saved-output",
+      "sha256": "9b6ede186295f0966511dd2cef67264010ef22f2a1d911494d2c615562fc376f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    },
+    {
+      "bytes": 4298,
+      "path": ".local/explainers/core-20260929/formation-b-source/mri_grappa-tree.json",
+      "role": "pinned-HF-tree",
+      "sha256": "84b059855fe0556bd7bf6cf634b8e753c5cc8a7ec12628fdb4062d6bbb82646b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+    },
+    {
+      "bytes": 3310,
+      "git_blob_sha1": "39e6fe2ef5638947aef9c2087551fb3dc5c9d88d",
+      "git_path": "tasks/mri_grappa/src/visualization.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-grappa/source-evidence/visualization.py",
+      "role": "fresh-pinned-native-source-or-reference",
+      "sha256": "1f4b790ddc53f6b060e2f24f5025d5e683b5f063b02ae5fe1c5eb3fed8f95373",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_grappa/src/visualization.py"
+    },
+    {
+      "bytes": 1616053,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-grappa/source-evidence/raw_data.npz",
+      "role": "fresh-pinned-native-source-or-reference",
+      "sha256": "3b5d900f87ea2cd458e6cff92f50bdeb1f15206e9abc3a46dacb1f9d3c63f743",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa/data/raw_data.npz"
+    },
+    {
+      "bytes": 65664,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-grappa/source-evidence/ground_truth.npy",
+      "role": "fresh-pinned-native-source-or-reference",
+      "sha256": "adea6855347eee7ae5f959e1050fb87c136dff11998b6baf5b330ca9bd600c74",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa/evaluation/reference_outputs/ground_truth.npy"
+    },
+    {
+      "bytes": 235,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-grappa/source-evidence/metrics.json",
+      "role": "fresh-pinned-native-source-or-reference",
+      "sha256": "a33036fe3c01151c834c113bf3cef7dbb024a6a589bcc4cdd137ecdc423df83d",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa/evaluation/reference_outputs/metrics.json"
+    },
+    {
+      "bytes": 9172,
+      "git_blob_sha1": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "git_path": "evaluation_harness/reference_scoring.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/evaluation_harness/reference_scoring.py",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 15186,
+      "git_blob_sha1": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "git_path": "evaluation_harness/runner.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/evaluation_harness/runner.py",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py"
+    },
+    {
+      "bytes": 23821,
+      "git_blob_sha1": "07125c06b504291288ab8b3d04c046b476446e04",
+      "git_path": "evaluation_harness/scorer.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/evaluation_harness/scorer.py",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 1076,
+      "git_blob_sha1": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "git_path": "LICENSE",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-eit-conductivity-reconstruction/source-evidence/LICENSE",
+      "role": "fresh-pinned-source-or-contract",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Generic output/reconstruction.npy versus source main saved grappa_reconstruction.npz key reconstruction",
+    "helper": "L1 README,data,requirements; L2 approach; L3 design. Supplied R2/ACS20 rule; full k-space and phantom truth remain visible",
+    "input": "Full native8-coil complex k-space split float32 real/imag and Gaussian sensitivity arrays, batch1x128x128x8",
+    "private_reference": "No independent private reference established; end-to-end evaluation directory is not initially copied but full data suffice for source RSS comparison",
+    "source_saved_output": "Saved GRAPPA source output retained audit only; fresh saved RSS ground_truth.npy is source comparison target, not participant output"
+  },
+  "status": "local-source-preparation",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "ACS-calibrated multi-coil interpolation",
+    "reference_policy": "no-reference-assets",
+    "synthetic_source": true,
+    "task_id": "mri_grappa",
+    "title": "MRI GRAPPA reconstruction"
+  },
+  "top_warning": {
+    "label": "Full source input \u00b7 blind reconstruction unproven",
+    "link_label": "Pinned GRAPPA acquisition",
+    "text": "Native full eight-coil k-space and phantom truth are solver-visible; R=2/20-line ACS undersampling is a supplied rule, not raw missing data. No participant reconstruction or performance is shown.",
+    "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa"
+  },
+  "validated_at": "2026-10-01T06:21:47.240238+00:00",
+  "verification": [
+    {
+      "git_blob_sha1": "4ba07c149d9422f5ee3133b9b8cc95d7e46f2486",
+      "path": "tasks/mri_grappa/README.md",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "23b2f3573d4f18ee71ecb5e74eb7878aa51477f1",
+      "path": "tasks/mri_grappa/main.py",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "c690eec60caf40aaf5ffa7c93b18838442d7bfd6",
+      "path": "tasks/mri_grappa/src/physics_model.py",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "068b8af79ea31e950fe4e903341976672fc0db15",
+      "path": "tasks/mri_grappa/src/preprocessing.py",
+      "status": "matched"
+    },
+    {
+      "git_blob_sha1": "9c9ab24a82e989d6c6178d5010b447b7a466422e",
+      "path": "tasks/mri_grappa/src/solvers.py",
+      "status": "matched"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_grappa/data/ground_truth.npz"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_grappa/data/meta_data.json"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_grappa/data/raw_data.npz"
+    },
+    {
+      "lfs_sha256_match": true,
+      "manifest_sha256_match": true,
+      "path": "tasks/mri_grappa/evaluation/reference_outputs/grappa_reconstruction.npz"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { ImagingGrappaScene, ImagingGrappaOutput } from './imaging-grappa-panels';
 import { ImagingDynamicMriScene, ImagingDynamicMriOutput } from './imaging-dynamic-mri-panels';
 import { ImagingEitScene, ImagingEitOutput } from './imaging-eit-panels';
 import { ImagingPoissonScene, ImagingPoissonOutput } from './imaging101-ct-poisson-lowdose-panels';
@@ -392,6 +393,14 @@ export function OperationScene({
     return <ImagingEitScene state={state} plan={plan} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'imaging-dynamic-mri-v1')
     return <ImagingDynamicMriScene state={state} plan={plan} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'imaging-grappa-v1')
+    return (
+      <ImagingGrappaScene
+        state={state}
+        plan={plan.recipe === 'imaging-grappa-v1' ? plan : undefined}
+        onSeekFrame={onSeekFrame}
+      />
+    );
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -735,6 +744,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'imaging101-poisson-v1') return <ImagingPoissonOutput state={state} />;
   if (state.recipe === 'imaging-eit-v1') return <ImagingEitOutput state={state} />;
   if (state.recipe === 'imaging-dynamic-mri-v1') return <ImagingDynamicMriOutput state={state} />;
+  if (state.recipe === 'imaging-grappa-v1') return <ImagingGrappaOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
