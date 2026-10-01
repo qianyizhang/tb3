@@ -1,0 +1,23 @@
+{
+  "basis": "symbolic",
+  "declared_counts": {
+    "pairs": 1500,
+    "patients": 109
+  },
+  "input": "Required public/test/low_quality PNGs; exact native pair and prepared split absent.",
+  "native_geometry": null,
+  "notice": {
+    "label": "Paired source images missing \u00b7 symbolic protocol",
+    "link_label": "Official paired ultrasound acquisition",
+    "text": "Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score.",
+    "url": "https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/"
+  },
+  "observed_counts": null,
+  "pair_id": null,
+  "pairing": "Within each organ, same low/high PNG filename; image_id=organ_name+'_'+filename stem. Organ traversal unsorted, low PNGs sorted; no native patient/frame join or registration proof.",
+  "partition": "Image-ID train_test_split test_size=0.2,random_state=42; expected 1200/300 only if 1500 valid pairs. Seed does not establish patient isolation or independence from input ordering.",
+  "patient": null,
+  "pixels": null,
+  "split_ids": null,
+  "units": "Grader PIL convert L or OpenCV grayscale, then float32 display values. Native dimensions, acoustic intensity, pixel spacing and orientation unverified; no calibrated physical units."
+}

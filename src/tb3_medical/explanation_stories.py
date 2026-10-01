@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "rex-usenhance-v1": "symbolic-rex-usenhance-v1",
     "imaging101-xray-tooth-gridrec-v1": "retained-imaging101-xray-tooth-gridrec-source-v1",
     "imaging101-usct-fwi-v1": "retained-imaging101-usct-fwi-source-v1",
     "imaging-ultrasound-sos-v1": "retained-imaging-ultrasound-sos-v1",
@@ -193,6 +194,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "symbolic-rex-usenhance-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+        },
+    ),
     "retained-imaging-ultrasound-sos-v1": (
         "source-records",
         None,
@@ -789,6 +802,7 @@ SOURCE_INPUT_PACKS = {
 # Explicitly registered input packs with authored symbolic protocol assets.
 SYMBOLIC_SOURCE_PACKS = frozenset(
     {
+        "symbolic-rex-usenhance-v1",
         "symbolic-automed-mimic-report-v1",
         "symbolic-automed-chexpert-report-v1",
         "symbolic-automed-brain-cls-v1",
@@ -2556,6 +2570,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class RexUsenhanceChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4621,6 +4641,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class RexUsenhanceBeat(ExpansionBeat[RexUsenhanceChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class RexUsenhanceStory(Story[RexUsenhanceChannels]):
+    recipe: Literal["rex-usenhance-v1"]
+    beats: tuple[RexUsenhanceBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("Report generation has no private reference assets or reveal")
+        return self
+
+
 class ImagingToothGridrecBeat(ExpansionBeat[ImagingToothGridrecChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5707,6 +5745,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RexUsenhanceStory
     | ImagingToothGridrecStory
     | ImagingUsctFwiStory
     | ImagingUltrasoundSosStory
@@ -5856,6 +5895,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RexUsenhanceStory
     | ImagingToothGridrecStory
     | ImagingUsctFwiStory
     | ImagingUltrasoundSosStory
@@ -6165,6 +6205,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | RexUsenhanceStory
     | ImagingToothGridrecStory
     | ImagingUsctFwiStory
     | ImagingUltrasoundSosStory
@@ -6491,6 +6532,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "symbolic-rex-usenhance-v1": (
+                "symbolic-case-workflow",
+                "LicenseRef-TB3-symbolic-teaching",
                 None,
             ),
             "retained-imaging101-xray-tooth-gridrec-source-v1": (
@@ -6853,6 +6899,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "unitless"
+                if pack_id == "symbolic-rex-usenhance-v1"
                 else "angle-radians, detector-index, raw-counts; dimensionless transmission rule only"
                 if pack_id == "retained-imaging101-xray-tooth-gridrec-source-v1"
                 else "receiver-index, source-index, uncalibrated-complex-amplitude, MHz; speed m/s rule only"
@@ -7019,6 +7067,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "symbolic-rex-usenhance-v1"
             or pack_id == "retained-imaging101-xray-tooth-gridrec-source-v1"
             or pack_id == "retained-imaging101-usct-fwi-source-v1"
             or pack_id == "retained-imaging-ultrasound-sos-v1"

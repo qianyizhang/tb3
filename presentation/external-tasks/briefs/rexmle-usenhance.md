@@ -2,6 +2,8 @@
 
 Develop and apply a prediction method to enhance handheld ultrasound images.
 
+> **Actual gap:** Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score. [Official acquisition](https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/).
+
 ## Value
 
 Quality assessment/repair can support image review, but agreement with a benchmark reference does not demonstrate a clinical benefit.
@@ -10,11 +12,11 @@ Quality assessment/repair can support image review, but agreement with a benchma
 
 ### Original data
 
-Lower-quality handheld ultrasound B-mode images.
+Required low-quality B-mode PNGs are absent locally. Source metadata describes five organs, 109 patients and 1500 pairs; no native pixel geometry or patient/frame correspondence is verified.
 
 ### Supplied helpers
 
-Paired training examples from higher-quality ultrasound and the source image conventions. These are training aids; held-out targets remain evaluation references.
+ReX public/train low/high PNG pairs are training helpers; public/test exposes only lows, private/test holds highs and labels. Match same filename within organ, prefix organ to image ID; image-ID seed 42 80/20 split does not establish patient isolation.
 
 ### Callable tools
 
@@ -22,11 +24,11 @@ A medical ML development environment; dependency installation, training and infe
 
 ### Reference-only material
 
-Evaluation targets are references, not extra solver inputs. Local filesystem visibility has not been audited by running this external task.
+Private high-quality test PNGs and test_labels.csv are grader-only by source staging. Public training highs are helpers. No reference pixels are shown; later reveal covers public rule mechanics only, not a private image.
 
 ## Task specification
 
-Develop the learning/inference pipeline using the allowed training partition, then submit predictions for every required evaluation case. Preserve case IDs, label taxonomy and image geometry.
+Develop a pipeline from allowed public training pairs; infer each required public-test low; submit every image ID and enhanced image path. No specific checkpoint/model or mandatory inference runtime established. Pair registration, patient split and low/high geometry remain source-specific gaps.
 
 ## Expected output
 
@@ -34,7 +36,7 @@ Enhanced images saved as PNG and a CSV with image_id and enhanced_image_path.
 
 ## Evaluation
 
-Local correlation, SSIM and PSNR; original challenge rank aggregation differs from the description’s normalized composite. This statement describes the published task; no new score or equivalence with the original challenge grader is claimed.
+Pinned ReX grade.py uses local 11-pixel variance-masked LNCC, SSIM and PSNR (dB), means across merged image rows. It converts to grayscale float32 and resizes enhanced image to high-reference shape; SSIM/PSNR range is joint max-min. Existing leaderboard yields lower-better mean method=min ranks; fallback negative(LNCC+SSIM+PSNR/30) differs description normalized composite. Coverage uses merge row count, not explicit unique-ID/set check. The source copies public grade.py without adjacent metric configuration/leaderboard; standalone runtime recovery is unverified. No score or clinical benefit measured.
 
 ## Visual explanation
 
@@ -46,11 +48,11 @@ Local correlation, SSIM and PSNR; original challenge rank aggregation differs fr
 
 ### Input
 
-**Contract view; native sample not yet illustrated.** Lower-quality handheld ultrasound B-mode images.
+**Symbolic input sockets; native source not acquired.** Required low-quality B-mode PNGs are absent locally. Source metadata describes five organs, 109 patients and 1500 pairs; no native pixel geometry or patient/frame correspondence is verified.
 
 ### Supplied helpers
 
-**Given material, not an answer reveal.** Paired training examples from higher-quality ultrasound and the source image conventions. These are training aids; held-out targets remain evaluation references.
+**Given material, not an answer reveal.** ReX public/train low/high PNG pairs are training helpers; public/test exposes only lows, private/test holds highs and labels. Match same filename within organ, prefix organ to image ID; image-ID seed 42 80/20 split does not establish patient isolation.
 
 ### Reference or output
 
@@ -76,4 +78,4 @@ A shared definition brief for the linked catalogue entries. Case identities and 
 
 ## Gaps
 
-The challenge description was inspected; its local ReX-MLE data-preparation and grading adapters were not replayed. Native example views are not yet attached to this definition.
+Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score. Recover official low/high pairs with applicable data terms; verify pair pixels, patient/frame joins and split IDs; prove public-train versus private-test separation and grading unit/rank denominator before matching-data or performance claims.

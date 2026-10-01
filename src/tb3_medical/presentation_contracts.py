@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class RexUsenhanceChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class RexUsenhanceBeat(ExpansionBeat):
+    channels: RexUsenhanceChannels
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class RexUsenhancePlan(ExpansionPlan):
+    recipe: Literal["rex-usenhance-v1"]
+    beats: list[RexUsenhanceBeat]
+
+
 class ImagingToothGridrecChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2851,6 +2867,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | RexUsenhancePlan
     | ImagingToothGridrecPlan
     | ImagingUsctFwiPlan
     | ImagingUltrasoundSosPlan

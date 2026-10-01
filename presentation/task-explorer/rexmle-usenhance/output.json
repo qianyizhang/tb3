@@ -1,0 +1,22 @@
+{
+  "boundary": "ReX task-specific image grader, not generic imaging101 scorer; no hidden Full reference, actual metric, ranking or clinical accuracy. Native pairs/terms/split/patient correspondence remain unresolved.",
+  "columns": [
+    "image_id",
+    "enhanced_image_path"
+  ],
+  "coverage": "Inner merge on image_id then merged-row count equals answer-row count; no explicit uniqueness or set-equivalence guard. Duplicates can offset missing IDs. Mean metric denominator is merged image rows, not patients.",
+  "format": "CSV image_id and enhanced_image_path, e.g. enhanced/<image_id>.png. The source loader supports images but required artifact is PNG plus CSV; no actual case ID or pixel dimension illustrated.",
+  "geometry": "Grader loads enhanced and private high in grayscale float32; if shapes differ, prediction is INTER_LINEAR resized to high shape. Match does not prove low/high registration or clinical anatomy preservation.",
+  "images": null,
+  "path": "submission.csv",
+  "prediction": null,
+  "reference": null,
+  "rules": {
+    "fallback": "If leaderboard absent/read fails: overall=-(mean LNCC+mean SSIM+mean PSNR/30). No division by 3, no (PSNR-20)/30 or LNCC shift; differs description normalized composite.",
+    "lncc": "Each image independently min-max normalized; 11 x 11 cv2.filter2D local windows. Valid only where both variance > 1e-10. Uniform normalized images become zeros; allclose branch can return 1 for different original constant levels. Mechanics only, not a measured score.",
+    "rank": "Pinned historical original-challenge leaderboard exists; ReX held-out training split differs original challenge test. Rank comparability is not established. Append submission mean LNCC/SSIM/PSNR, higher-better ranks method=min, then mean ranks lower-better. Percentile=1-(mean_position-1)/number competitor rows, not patient denominator.",
+    "ssim_psnr": "SSIM and PSNR use joint max-minus-min range, not fixed 255. PSNR in dB, infinite for exact equality; SSIM may be negative. No universal 0..1 restriction or clinical meaning."
+  },
+  "score": null,
+  "shape": null
+}

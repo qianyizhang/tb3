@@ -1,3 +1,4 @@
+import { rexUsenhancePack } from './rex-usenhance';
 import { imagingToothGridrecPack } from './imaging101-xray-tooth-gridrec';
 import { imagingUsctFwiPack } from './imaging101-usct-fwi';
 import { imagingUltrasoundSosPack } from './imaging-ultrasound-sos';
@@ -144,6 +145,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'rex-usenhance-v1',
     'imaging101-xray-tooth-gridrec-v1',
     'imaging101-usct-fwi-v1',
     'imaging-ultrasound-sos-v1',
@@ -1048,7 +1050,7 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#91a6ae', 'Required MRI input socket'],
           ['#18c6d4', 'Unsubmitted CSV or JSON schema'],
-          ['#7ba4b8', 'Private targets absent'],
+          ['#7ba4b8', 'Private targets absent', true],
         ],
       };
     case 'automed-pneumonia-cls-v1':
@@ -1103,7 +1105,7 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#91a6ae', 'Required frontal JPEG socket'],
           ['#18c6d4', 'Empty report schema'],
-          ['#7ba4b8', 'Private targets absent'],
+          ['#7ba4b8', 'Private targets absent', true],
         ],
       };
     case 'automed-iu-xray-report-v1':
@@ -1399,6 +1401,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#ffffff', 'White: native count display maximum'],
           ['#54d3dd', 'Teal: first flat-frame detector profile'],
           ['#aebec8', 'Gray line: first dark-frame detector profile'],
+        ],
+      };
+    case 'rex-usenhance-v1':
+      return {
+        heading: 'Pair ultrasound helpers and enhance-image schema',
+        corner: 'Paired source absent · symbolic protocol',
+        warning: rexUsenhancePack.source.notice,
+        legend: [
+          ['#91a6ae', 'Required low-quality PNG sockets', true],
+          ['#18c6d4', 'Unsubmitted enhanced-image schema', true],
+          ['#7ba4b8', 'Private targets absent', true],
         ],
       };
     case 'bcer-brain-full-v1':

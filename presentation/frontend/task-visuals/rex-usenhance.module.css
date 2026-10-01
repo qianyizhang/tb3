@@ -1,0 +1,191 @@
+.scene {
+  display: grid;
+  gap: 12px;
+  padding: 10px;
+  align-content: start;
+}
+.scene h3 {
+  margin: 0;
+  font-size: 21px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.card,
+.socket {
+  border: 1px solid #728e98;
+  border-radius: 12px;
+  padding: 15px;
+  background: #0d252e;
+  color: #e1f1f2;
+}
+.card p {
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 8px 0;
+}
+.socket {
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  text-align: center;
+  gap: 18px;
+  border-style: dashed;
+}
+.socket span {
+  font-size: 13px;
+  color: #b7ccd1;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.buttons button,
+.card button {
+  background: #0b3a43;
+  color: #e9ffff;
+  border: 1px solid #8ab9c5;
+  border-radius: 7px;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+.buttons button[aria-pressed='true'] {
+  background: #176876;
+  border-color: #56e3e6;
+}
+.tags {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 12px;
+}
+.tags code {
+  font-size: 11px;
+  overflow-wrap: anywhere;
+  background: #163842;
+  padding: 5px;
+}
+.steps {
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.steps li[data-active='true'] {
+  color: #61e0e7;
+}
+.path {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.empty {
+  border: 1px dashed #8ab1ba;
+  padding: 15px;
+  border-radius: 7px;
+  margin: 10px 0;
+  color: #bfd7dc;
+}
+.caution {
+  color: #f1d28d !important;
+  font-size: 13px;
+  line-height: 1.45;
+}
+@media (max-width: 650px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+  .socket {
+    min-height: 140px;
+  }
+  .tags {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.scene {
+  background: #0c232c;
+  color: #e1f1f2;
+  min-width: 0;
+}
+.scene h3,
+.scene p,
+.scene b,
+.scene strong,
+.scene span,
+.scene code,
+.scene li,
+.scene small {
+  color: #e1f1f2;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.columns,
+.card,
+.socket {
+  min-width: 0;
+}
+.buttons {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.buttons button {
+  font-size: 12px;
+  padding: 6px 8px;
+}
+.socket {
+  min-height: 170px;
+}
+.sidebar {
+  background: #102d35;
+  min-width: 0;
+  color: #e1f1f2;
+}
+.sidebar h3,
+.sidebar p,
+.sidebar span,
+.sidebar code,
+.sidebar strong,
+.sidebar small {
+  color: #e1f1f2;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:global([data-explainer-export-frame]) .card,
+:global([data-explainer-export-frame]) .socket {
+  padding: 10px;
+}
+:global([data-explainer-export-frame]) .card p {
+  font-size: 12px;
+  margin: 6px 0;
+}
+
+:global(.scene-player[data-recipe='rex-usenhance-v1'] .scene-explanation),
+:global(.scene-player[data-recipe='rex-usenhance-v1'] .scene-explanation strong),
+:global(.scene-player[data-recipe='rex-usenhance-v1'] .scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.scene button {
+  min-height: 40px;
+  background: #24475b;
+  color: #e0f0f7;
+  border: 1px solid #557b92;
+  white-space: normal;
+}
+.sidebar {
+  padding: 16px !important;
+}
+.sidebar h3 {
+  font-size: 18px;
+  line-height: 1.2;
+}
+.sidebar p,
+.sidebar small {
+  font-size: 12px;
+  line-height: 1.4;
+}

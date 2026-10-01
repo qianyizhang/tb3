@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'rex-usenhance-v1',
   'imaging101-xray-tooth-gridrec-v1',
   'imaging101-usct-fwi-v1',
   'imaging-ultrasound-sos-v1',
@@ -129,6 +130,7 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'rex-usenhance-v1') return {scene:'data-usenhance-scene',reference:'[data-usenhance-training-role], #usenhance-grading-rule, [data-usenhance-method], [data-usenhance-format]',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-usenhance-output-schema]',aside:'[data-usenhance-output]'};
   if (plan.recipe === 'imaging101-xray-tooth-gridrec-v1') return {scene:'data-imaging-tooth-gridrec-scene',reference:'[data-imaging-tooth-gridrec-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-imaging-tooth-gridrec-output-schema]',aside:'[data-imaging-tooth-gridrec-output]'};
   if (plan.recipe === 'imaging101-usct-fwi-v1') return {scene:'data-imaging-usct-fwi-scene',reference:'[data-imaging-usct-fwi-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-imaging-usct-fwi-output-schema]',aside:'[data-imaging-usct-fwi-output]'};
   if (plan.recipe === 'imaging-ultrasound-sos-v1')
@@ -881,6 +883,7 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'rex-usenhance-v1': [/Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score./s,'https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/','data-usenhance-scene',false],
     'imaging101-xray-tooth-gridrec-v1': [/Native tooth counts; calibrated attenuation, independent truth and participant output absent./s,'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec','data-imaging-tooth-gridrec-scene',false],
     'imaging101-usct-fwi-v1': [/Numerical phantom observations; true speed, calibrated pressure and participant output absent./s,'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI','data-imaging-usct-fwi-scene',false],
     'imaging-ultrasound-sos-v1': [
@@ -2869,6 +2872,25 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     const ri=plan.beats.findIndex(b=>b.scene==='reference');await page.locator(`[data-story-step="${ri}"]`).click();await absent();const reveal=()=>scene.getByRole('button',{name:'Reveal public reference rules',exact:true});await reveal().click();assert.equal(await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').innerText(),/neither is phantom truth.*Filesystem selects a saved reconstruction, not true speed.*source uses the visible baseline.*230,400 cells.*No-filesystem scorer requires absent ground_truth\.npy.*No participant map, score or private truth/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('rules-revealed');await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).click();await absent();
     await advance(plan.beats[ri].startFrame);await reveal().click();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('[data-story-step="1"]').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();
     const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();assert.match(await scene.innerText(),/No clinical property, reconstruction quality, current CUDA success or convergence claim/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('limits-contract');await absent();await page.locator('.scene-reset').click();await absent();
+  }
+
+  if (plan.recipe === 'rex-usenhance-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
+    const scene=page.locator('[data-usenhance-scene]');
+    const absent=async()=>assert.equal(await page.locator('[data-usenhance-training-role], #usenhance-grading-rule, [data-usenhance-method], [data-usenhance-format]').count(),0);
+    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
+    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,svg,image').count(),0);};
+    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
+    const keys=await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>({color:getComputedStyle(e).borderTopColor,style:getComputedStyle(e).borderTopStyle})));assert.deepEqual(keys.map(x=>x.color),['rgb(145, 166, 174)','rgb(24, 198, 212)','rgb(123, 164, 184)']);assert.ok(keys.every(x=>x.style==='dashed'));
+    await chapter(0);assert.match(await scene.innerText(),/Empty schematic socket.*no ultrasound pixels or anatomy.*organ.*filename.*grayscale.*float32.*No native shape, spacing, patient join or frame correspondence acquired/is);await capture('symbolic-input');
+    await chapter(1);const helper=()=>scene.getByRole('button',{name:'Reveal public training role',exact:true});await helper().click();assert.match(await scene.locator('[data-usenhance-training-role]').innerText(),/public\/train\/low_quality.*public\/train\/high_quality.*training helpers.*never pixels/is);await capture('helper-revealed');await scene.getByRole('button',{name:'Hide training role',exact:true}).click();await absent();await advance(288);await helper().click();await chapter(1);await helper().click();await page.locator('.scene-reset').click();await absent();await chapter(1);await helper().click();await chapter(2);await chapter(1);await absent();
+    const stages=JSON.parse(fs.readFileSync('presentation/task-explorer/rexmle-usenhance/operation.json','utf8')).steps;
+    for(let i=0;i<4;i++){await chapter(2);await scene.locator(`[data-usenhance-step="${i}"]`).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[576,687,752,863][i]);assert.equal(await scene.locator(`[data-usenhance-step="${i}"]`).getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('[data-usenhance-currentstage]').innerText(),stages[i]);await scene.getByRole('button',{name:'Inspect method/runtime boundary',exact:true}).click();assert.match(await scene.locator('[data-usenhance-method]').innerText(),/No fixed checkpoint\/model.*grade\.py lacks adjacent metric_config\.json\/leaderboard\.csv.*standalone recovery unverified/is);await capture(`contract-${i}`);await page.locator('.scene-reset').click();await absent();}
+    await chapter(2);await advance(576);await scene.getByRole('button',{name:'Inspect method/runtime boundary',exact:true}).click();await chapter(2);await absent();
+    await chapter(3);assert.match(await scene.innerText(),/submission\.csv.*image_id,enhanced_image_path.*No case row.*no enhanced PNG.*Private high-quality reference absent/is);await capture('empty-output');await scene.getByRole('button',{name:'Inspect submission and geometry',exact:true}).click();assert.match(await scene.locator('[data-usenhance-format]').innerText(),/CSV image_id and enhanced_image_path.*no actual case ID.*grayscale float32.*INTER_LINEAR.*does not prove.*registration/is);await capture('output-detail');await advance(864);await chapter(3);await absent();await scene.getByRole('button',{name:'Inspect submission and geometry',exact:true}).click();await page.locator('.scene-reset').click();await absent();
+    await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal grading mechanics',exact:true});await reveal().click();const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/rexmle-usenhance/output.json','utf8')).rules;
+    for(const rule of ['lncc','ssim_psnr','rank','fallback']){const button=scene.getByRole('button',{name:rule.replaceAll('_',' / '),exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('[data-usenhance-rule]').innerText(),rules[rule]);await capture(`rule-${rule}`);}
+    assert.match(await scene.innerText(),/merged-row count equals answer-row count.*Duplicates can offset missing IDs.*not patients.*no hidden Full reference.*actual metric.*clinical accuracy/is);assert.equal(await scene.locator('img,canvas,svg,image').count(),0);await scene.getByRole('button',{name:'Hide grading mechanics',exact:true}).click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'lncc',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
   }
 
   if (plan.recipe === 'imaging101-xray-tooth-gridrec-v1') {
@@ -11068,6 +11090,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'rex-usenhance-v1',
       'imaging101-xray-tooth-gridrec-v1',
       'imaging101-usct-fwi-v1',
       'imaging-ultrasound-sos-v1',

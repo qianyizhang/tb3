@@ -20159,36 +20159,112 @@
       }
     },
     {
-      "entry_id": "rexmle-usenhance",
-      "title": "Enhance handheld ultrasound images",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/rexmle-usenhance/acceptance-01.json",
+      "acquisition_route": "https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/",
+      "actual_data_gap": "Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/rexmle-usenhance.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "rexmle",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-restoration",
+      "contract_projection": {
+        "gap": "The challenge description was inspected; its local ReX-MLE data-preparation and grading adapters were not replayed. Native example views are not yet attached to this definition.",
+        "helpers": "Paired training examples from higher-quality ultrasound and the source image conventions. These are training aids; held-out targets remain evaluation references.",
+        "output": "Enhanced images saved as PNG and a CSV with image_id and enhanced_image_path.",
+        "raw": "Lower-quality handheld ultrasound B-mode images.",
+        "reference": "Evaluation targets are references, not extra solver inputs. Local filesystem visibility has not been audited by running this external task.",
+        "sources": [
+          [
+            "Pinned challenge description",
+            "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/description.md"
+          ]
+        ],
+        "spec": "Develop the learning/inference pipeline using the allowed training partition, then submit predictions for every required evaluation case. Preserve case IDs, label taxonomy and image geometry.",
+        "tools": "A medical ML development environment; dependency installation, training and inference resources are task-specific and were not exercised in this survey.",
+        "variants": [
+          {
+            "helper": "Paired training examples from higher-quality ultrasound and the source image conventions.",
+            "name": "Competition workflow",
+            "remaining": "Prepare data, train or adapt a model, validate and produce the final submission."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-usenhance. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "rexmle-usenhance",
+      "illustration_basis": "symbolic",
+      "illustration_kind": "denoise",
       "modalities": [
         "ultrasound"
       ],
-      "illustration_kind": "denoise",
-      "subject": "ultrasound",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-usenhance. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Lower-quality handheld ultrasound B-mode images.",
-        "helpers": "Paired training examples from higher-quality ultrasound and the source image conventions. These are training aids; held-out targets remain evaluation references.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "rexmle",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted task-specific symbolic paired-ultrasound protocol after main6-pin/39-image source/visual/export/mobile/no-GPU review. Official footer request timed out0B/noHTTP,not evidence of source absence or persistent access barrier. Exact low/high pairs,prepared split,patient/frame correspondence,geometry and data rights remain unresolved. Public train roles and later grading rules require explicit reveal; participant image,CSV and score remain empty. Image-row metrics and lower-better mean competitor rank remain source-qualified. No source preparer,grader,model or task executed.",
+      "source_brief_sha256": "73a43b993811c83699b1eaddaa01a1bd4b7e29f1adfc117de43d7f1d0e106862",
+      "source_resolution_receipt": "presentation/external-tasks/sources/rexmle-usenhance-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/rexmle-usenhance-resolution.json",
+        "receipt_sha256": "bc508cd0c2910e0dd3a6819fcbaa3c9c7457455f7412659d1e4fd8be2a1cbcc7",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T18:52:49.329832+00:00",
+        "audit": ".local/explainers/goal-20260930/rexmle-usenhance/source-audit-final-01.json",
+        "audit_sha256": "bf0f33723341df5d21bd3957e1de8c7983704619e2c6207d2ecbe87d0f166125",
+        "no_visual_acceptance": true
+      },
+      "story_id": "rexmle-usenhance",
+      "subject": "ultrasound",
+      "title": "Enhance handheld ultrasound images",
+      "warning_text": "Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score.",
+      "acceptance_scope": "Symbolic USEnhance paired-source protocol and task-specific training/inference/submission roles with late public grader mechanics only. Exact low/high PNGs,prepared split,native geometry,patient/frame joins,private reference,enhancement and score absent. No source task,preparer,grader or model executed.",
+      "completion_review": {
+        "date": "2026-10-01T19:07:26.033620+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "d29940358ff6f61079f2b5523bd99e250cad06cf1fcd04cdbf606a0e30753319"
+      },
+      "reviewed_contract_projection": {
+        "title": "Enhance handheld ultrasound images",
+        "goal": "Develop and apply a prediction method to enhance handheld ultrasound images.\n\n> **Actual gap:** Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score. [Official acquisition](https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/).",
+        "value": "Quality assessment/repair can support image review, but agreement with a benchmark reference does not demonstrate a clinical benefit.",
+        "raw": "Required low-quality B-mode PNGs are absent locally. Source metadata describes five organs, 109 patients and 1500 pairs; no native pixel geometry or patient/frame correspondence is verified.",
+        "helpers": "ReX public/train low/high PNG pairs are training helpers; public/test exposes only lows, private/test holds highs and labels. Match same filename within organ, prefix organ to image ID; image-ID seed 42 80/20 split does not establish patient isolation.",
         "tools": "A medical ML development environment; dependency installation, training and inference resources are task-specific and were not exercised in this survey.",
-        "spec": "Develop the learning/inference pipeline using the allowed training partition, then submit predictions for every required evaluation case. Preserve case IDs, label taxonomy and image geometry.",
+        "reference": "Private high-quality test PNGs and test_labels.csv are grader-only by source staging. Public training highs are helpers. No reference pixels are shown; later reveal covers public rule mechanics only, not a private image.",
+        "spec": "Develop a pipeline from allowed public training pairs; infer each required public-test low; submit every image ID and enhanced image path. No specific checkpoint/model or mandatory inference runtime established. Pair registration, patient split and low/high geometry remain source-specific gaps.",
         "output": "Enhanced images saved as PNG and a CSV with image_id and enhanced_image_path.",
-        "reference": "Evaluation targets are references, not extra solver inputs. Local filesystem visibility has not been audited by running this external task.",
+        "score": "Pinned ReX grade.py uses local 11-pixel variance-masked LNCC, SSIM and PSNR (dB), means across merged image rows. It converts to grayscale float32 and resizes enhanced image to high-reference shape; SSIM/PSNR range is joint max-min. Existing leaderboard yields lower-better mean method=min ranks; fallback negative(LNCC+SSIM+PSNR/30) differs description normalized composite. Coverage uses merge row count, not explicit unique-ID/set check. The source copies public grade.py without adjacent metric configuration/leaderboard; standalone runtime recovery is unverified. No score or clinical benefit measured.",
+        "challenge": "Improve contrast and noise without inventing structures; paired devices may not depict exactly identical anatomy.",
+        "families": "A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.",
+        "gap": "Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score. Recover official low/high pairs with applicable data terms; verify pair pixels, patient/frame joins and split IDs; prove public-train versus private-test separation and grading unit/rank denominator before matching-data or performance claims.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Lower-quality handheld ultrasound B-mode images",
+          "Develop and apply a prediction pipeline",
+          "Enhanced images saved as PNG and a CSV with image_id and enhanced_image_path"
+        ],
         "variants": [
           {
             "name": "Competition workflow",
@@ -20202,26 +20278,27 @@
             "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/description.md"
           ]
         ],
-        "gap": "The challenge description was inspected; its local ReX-MLE data-preparation and grading adapters were not replayed. Native example views are not yet attached to this definition."
-      },
-      "source_brief_sha256": "2eba97d54fba1069e3baf683e1f09825e22a4d89c83b18120b4b4be495293122",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Resolve source/evaluator visibility and provide a reference-free worked record for rexmle-usenhance. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Develop and apply a prediction method to enhance handheld ultrasound images.</p>\n<p>&gt; <strong>Actual gap:</strong> Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score. <a href=\"https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/\">Official acquisition</a>.</p>",
+          "value": "<p>Quality assessment/repair can support image review, but agreement with a benchmark reference does not demonstrate a clinical benefit.</p>",
+          "raw": "<p>Required low-quality B-mode PNGs are absent locally. Source metadata describes five organs, 109 patients and 1500 pairs; no native pixel geometry or patient/frame correspondence is verified.</p>",
+          "helpers": "<p>ReX public/train low/high PNG pairs are training helpers; public/test exposes only lows, private/test holds highs and labels. Match same filename within organ, prefix organ to image ID; image-ID seed 42 80/20 split does not establish patient isolation.</p>",
+          "tools": "<p>A medical ML development environment; dependency installation, training and inference resources are task-specific and were not exercised in this survey.</p>",
+          "reference": "<p>Private high-quality test PNGs and test_labels.csv are grader-only by source staging. Public training highs are helpers. No reference pixels are shown; later reveal covers public rule mechanics only, not a private image.</p>",
+          "spec": "<p>Develop a pipeline from allowed public training pairs; infer each required public-test low; submit every image ID and enhanced image path. No specific checkpoint/model or mandatory inference runtime established. Pair registration, patient split and low/high geometry remain source-specific gaps.</p>",
+          "output": "<p>Enhanced images saved as PNG and a CSV with image_id and enhanced_image_path.</p>",
+          "score": "<p>Pinned ReX grade.py uses local 11-pixel variance-masked LNCC, SSIM and PSNR (dB), means across merged image rows. It converts to grayscale float32 and resizes enhanced image to high-reference shape; SSIM/PSNR range is joint max-min. Existing leaderboard yields lower-better mean method=min ranks; fallback negative(LNCC+SSIM+PSNR/30) differs description normalized composite. Coverage uses merge row count, not explicit unique-ID/set check. The source copies public grade.py without adjacent metric configuration/leaderboard; standalone runtime recovery is unverified. No score or clinical benefit measured.</p>",
+          "challenge": "<p>Improve contrast and noise without inventing structures; paired devices may not depict exactly identical anatomy.</p>",
+          "families": "<p>A shared definition brief for the linked catalogue entries. Case identities and source conditions remain in the catalogue; this is not a claim to enumerate all generated or external cases.</p>",
+          "gap": "<p>Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score. Recover official low/high pairs with applicable data terms; verify pair pixels, patient/frame joins and split IDs; prove public-train versus private-test separation and grading unit/rank denominator before matching-data or performance claims.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Symbolic input sockets; native source not acquired.</strong> Required low-quality B-mode PNGs are absent locally. Source metadata describes five organs, 109 patients and 1500 pairs; no native pixel geometry or patient/frame correspondence is verified.</p>",
+          "helpers": "<p><strong>Given material, not an answer reveal.</strong> ReX public/train low/high PNG pairs are training helpers; public/test exposes only lows, private/test holds highs and labels. Match same filename within organ, prefix organ to image ID; image-ID seed 42 80/20 split does not establish patient isolation.</p>",
+          "answer": "<p><strong>Expected artifact, not an actual prediction.</strong> Enhanced images saved as PNG and a CSV with image_id and enhanced_image_path.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -27172,9 +27249,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 137,
+    "reviewed-scripted-planar": 138,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 41,
+    "blocked-source-contract": 40,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

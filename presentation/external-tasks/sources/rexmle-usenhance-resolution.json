@@ -1,0 +1,138 @@
+{
+  "acquisition_route": "https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/",
+  "actual_data_gap": "Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score.",
+  "attempts": [
+    {
+      "action": "download and verify pinned adapter",
+      "attempted_at": "2026-09-29T07:53:36.670845+00:00",
+      "outcome": "Six files match pinned Git blob SHA-1.",
+      "source": "https://github.com/rajpurkarlab/ReX-MLE/tree/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance"
+    },
+    {
+      "action": "bounded official archive access and range attempt",
+      "attempted_at": "2026-09-29T07:53:36.670845+00:00",
+      "outcome": "Drive virus-scan warning resolves to 70,726,597-byte public ZIP with accept-ranges; confirmed transfer host timed out on bounded footer request (three retries), no native pair bytes.",
+      "source": "https://drive.google.com/uc?export=download&id=1RrM8YIwAENxzONSEaVZCzDkiiPMSmDxH"
+    },
+    {
+      "action": "bounded official page read via web.open",
+      "attempted_at": "2026-09-30T21:26:54.026795+00:00",
+      "outcome": "Failed to fetch: HTTP403 Forbidden. No native image pair or source terms acquired; no account entitlement or persistent barrier inferred.",
+      "source": "https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/"
+    },
+    {
+      "action": "read-only retained source and acquisition receipt validation",
+      "attempted_at": "2026-09-30T21:26:54.027520+00:00",
+      "outcome": "6SHA/length source pins verified; no native pair bytes retained; original range attempt headers do not establish image acquisition; no preparer/grader/model executed.",
+      "source": "ReX-MLE b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53 and formation-f audits"
+    },
+    {
+      "action": "bounded read-only official training ZIP footer range GET: bytes70661061-70726596, 64KiB maximum, direct public HTTPS,20s timeout",
+      "attempted_at": "2026-10-01T09:04:20.849586+00:00",
+      "outcome": "curl exit28 after20004ms, HTTP000/no response,0 bytes. No native pair/archive footer acquired; no terms accepted or persistent access barrier inferred.",
+      "source": "https://drive.usercontent.google.com/download?id=1RrM8YIwAENxzONSEaVZCzDkiiPMSmDxH&export=download&confirm=t"
+    },
+    {
+      "action": "UTC retained-validation of six primary SHA/length/Git pins and original acquisition objects without source imports",
+      "attempted_at": "2026-10-01T09:06:44.978221+00:00",
+      "outcome": "Source-only check_source.py records six matching Git blobs. All four original attempt objects unchanged; no native dimensions, patient joins, sample counts or data rights recovered.",
+      "source": "retained ReX-MLE b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53"
+    }
+  ],
+  "brief_sha256": "73a43b993811c83699b1eaddaa01a1bd4b7e29f1adfc117de43d7f1d0e106862",
+  "display_warning": "Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score.",
+  "entry_id": "rexmle-usenhance",
+  "evaluator_run": false,
+  "historical_data_gap": "Original retained transfer resolved a 70,726,597-byte ZIP response; bounded ranged footer transfers timed out. This is dated transfer evidence, not present availability.",
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "label_license": "LicenseRef-USenhance-data-terms-unverified",
+  "model_run": false,
+  "pack_license": "LicenseRef-TB3-symbolic-teaching",
+  "preparer_run": false,
+  "private_reference_available": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Recover official low/high pairs with applicable data terms; verify pair pixels, patient/frame joins and split IDs; prove public-train versus private-test separation and grading unit/rank denominator before matching-data or performance claims.",
+  "resolved_at": "2026-10-01T09:06:44.978221+00:00",
+  "saved_output_is_participant_result": false,
+  "schema": 1,
+  "scientific_gaps": [
+    "Preparation pairs same PNG filename within organ and prefixes organ to image_id; organ directories iterated without sorting, PNG names sorted. Seed42 split depends collected ID order; patient-level or anatomical registration guarantees absent.",
+    "80/20 split by image ID; expected1200/300 only if1500pairs survive matching. Declared109patients/1500pairs are source metadata, not observed sample/patient counts. Original challenge test differs ReX held-out original training pairs.",
+    "No native pixel shape/spacing/orientation/correspondence recovered; grader converts PIL mode to grayscale L (OpenCV fallback), float32 display values, not acoustic speed/HU/calibrated signal. Enhanced output resized to high reference shape via INTER_LINEAR; geometry mismatch may be hidden.",
+    "LNCC independently min-max normalizes each image;11pixel square cv2 filter windows; only local variance>1e-10 in both contributes. Uniform images normalize to zeros, so allclose branch can report1 even if raw constant levels differ; a source rule, not measured result.",
+    "SSIM and PSNR use joint maximum-minus-minimum range, not a fixed255; exact identical arrays PSNR infinite. Score ranges cannot be presented as universally0\u20131.",
+    "Metric means are over merged image rows, not patients or organs. Inner merge row-count equality is the coverage check; no explicit unique-ID/set-equivalence assertion, so duplicated rows can offset missing ID count.",
+    "Pinned leaderboard present: append average metric row; higher-better method=min ranks per metric; overall mean position is lower-better, percentile uses competitor-row count. Fallback negative(LNCC+SSIM+PSNR/30) has no /3 or (PSNR-20)/30 and differs normalized description composite.",
+    "No required fixed model/checkpoint or training runtime pinned by these task files; numerical/ML environment declarations are not execution evidence. Source grade imports files/dependencies on import; builder never imports it.",
+    "Historical original-challenge leaderboard and ReX held-out original-training split are distinct evaluation populations; appended mean-rank protocol does not establish comparable method performance.",
+    "Public prepare copies grade.py but not its adjacent metric_config.json or leaderboard.csv; the standalone copy still requires rexmle.grade_helpers and numerical/image dependencies. Public rule visibility is not proof of standalone grader recovery. No source module imported."
+  ],
+  "source_license": "LicenseRef-USenhance-data-terms-unverified",
+  "source_pins": [
+    {
+      "bytes": 1421,
+      "path": ".local/explainers/core-20260929/formation-f-source/rex-usenhance/config.yaml",
+      "role": "pinned-adapter",
+      "sha256": "8672ec34a5a7a67ab6a58705d4a145b171ad0fc721684477d0b47fcead5a282d",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/config.yaml"
+    },
+    {
+      "bytes": 6964,
+      "path": ".local/explainers/core-20260929/formation-f-source/rex-usenhance/description.md",
+      "role": "pinned-adapter",
+      "sha256": "ca951ee46315882b577cbe51ae710ab081f05953cd3e67dfcf6c11d85331f3a1",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/description.md"
+    },
+    {
+      "bytes": 13319,
+      "path": ".local/explainers/core-20260929/formation-f-source/rex-usenhance/grade.py",
+      "role": "pinned-adapter",
+      "sha256": "056db2a635552444ca1cd104db14da1c6e296ffb51cb38d39a3238bdf2771b45",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/grade.py"
+    },
+    {
+      "bytes": 564,
+      "path": ".local/explainers/core-20260929/formation-f-source/rex-usenhance/leaderboard.csv",
+      "role": "pinned-adapter",
+      "sha256": "004afb970755c3486325ca00aa0893e15230479046d7f998b64ee334b0697b51",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/leaderboard.csv"
+    },
+    {
+      "bytes": 118,
+      "path": ".local/explainers/core-20260929/formation-f-source/rex-usenhance/metric_config.json",
+      "role": "pinned-adapter",
+      "sha256": "1039978d23a0e086822079999730ba0d631fae24cf81d69dee8d70cdfff6cfa5",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/metric_config.json"
+    },
+    {
+      "bytes": 8788,
+      "path": ".local/explainers/core-20260929/formation-f-source/rex-usenhance/prepare.py",
+      "role": "pinned-adapter",
+      "sha256": "3bc625ca70ef16734fbcfe3b69dfc71d4eb6e4b4ccd4da6d355fcf445f0cde81",
+      "url": "https://github.com/rajpurkarlab/ReX-MLE/blob/b3d8f7c3ff1df5af46d8f3e5312760af3ad18a53/rex-mle/rexmle/challenges/usenhance/prepare.py"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "submission.csv image_id,enhanced_image_path and corresponding enhanced images. No submission/image/model output supplied.",
+    "helper": "Prepared public train low/high pairs would be training helpers, not private test references. Same-name organ matching has no verified frame registration.",
+    "input": "Public test low-quality PNGs; exact native pixels, dimensions, case IDs and prepared manifest absent.",
+    "private_reference": "Prepared private/test/high_quality and private/test_labels.csv evaluator-only. No private image/labels packaged.",
+    "public_grading_rule": "Source prepare copies grade.py public. Rule reveal is teaching, never private high-quality pixels."
+  },
+  "source_runtime_boundary": "Six task files declare imports, not a pinned complete dependency/runtime/model/checkpoint or execution proof.",
+  "status": "local-source-preparation",
+  "task_contract": {
+    "metric": "ReX local LNCC 11-window valid-variance, SSIM and PSNR; grade.py overall mean leaderboard position when leaderboard exists, fallback negative normalized expression otherwise",
+    "pairing": "same PNG filename within organ low_quality/high_quality; organ-prefixed image_id",
+    "reference": "public train high quality helper; private test high quality evaluator only",
+    "split": "train_test_split image IDs, test_size=0.2, random_state=42; expected 1200 public train pairs, 300 public test lows/private highs if 1500 valid pairs",
+    "submission": "submission.csv columns image_id,enhanced_image_path plus one PNG per test ID"
+  },
+  "top_warning": {
+    "label": "Paired source images missing \u00b7 symbolic protocol",
+    "link_label": "Official paired ultrasound acquisition",
+    "text": "Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score.",
+    "url": "https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/"
+  }
+}
