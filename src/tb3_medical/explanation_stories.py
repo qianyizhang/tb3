@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-noncartesian-v1": "retained-imaging101-noncartesian-source-v1",
     "imaging101-wavelet-v1": "retained-imaging101-wavelet-source-v1",
     "imaging-grappa-v1": "retained-imaging-grappa-v1",
     "imaging-dynamic-mri-v1": "retained-imaging-dynamic-mri-v1",
@@ -845,6 +846,21 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-noncartesian-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "SOURCE-LICENSE.txt",
+            "trajectory.png",
+        },
+    ),
     "retained-imaging101-wavelet-source-v1": (
         "source-records",
         "reference.json",
@@ -2352,6 +2368,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class ImagingNoncartesianChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4345,6 +4367,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class ImagingNoncartesianBeat(ExpansionBeat[ImagingNoncartesianChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingNoncartesianStory(Story[ImagingNoncartesianChannels]):
+    recipe: Literal["imaging101-noncartesian-v1"]
+    beats: tuple[ImagingNoncartesianBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class ImagingWaveletBeat(ExpansionBeat[ImagingWaveletChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5182,6 +5225,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingNoncartesianStory
     | ImagingWaveletStory
     | ImagingGrappaStory
     | ImagingDynamicMriStory
@@ -5319,6 +5363,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingNoncartesianStory
     | ImagingWaveletStory
     | ImagingGrappaStory
     | ImagingDynamicMriStory
@@ -5616,6 +5661,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingNoncartesianStory
     | ImagingWaveletStory
     | ImagingGrappaStory
     | ImagingDynamicMriStory
@@ -5932,6 +5978,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-imaging101-noncartesian-source-v1": (
+                "symbolic-unit-grid",
+                "MIT",
+                None,
+            ),
             "retained-imaging101-wavelet-source-v1": (
                 "symbolic-unit-grid",
                 "LicenseRef-MIT-distribution-fastMRI-rights-unresolved",
@@ -6233,6 +6284,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
                 else "unitless"
+                if pack_id == "retained-imaging101-noncartesian-source-v1"
+                else "unitless"
                 if pack_id == "retained-imaging101-wavelet-source-v1"
                 else "pixel-grid, coil index; arbitrary units"
                 if pack_id == "retained-imaging-grappa-v1"
@@ -6374,6 +6427,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-imaging101-noncartesian-source-v1"
             or pack_id == "retained-imaging101-wavelet-source-v1"
             or pack_id == "retained-imaging-grappa-v1"
             or pack_id == "retained-imaging-dynamic-mri-v1"
@@ -6453,6 +6507,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-superres-source-v1" and name == "source-preview.jpeg"
                 else "input-preview"
                 if pack_id == "retained-imaging101-wavelet-source-v1" and name.startswith("coil-")
+                else "input-preview"
+                if pack_id == "retained-imaging101-noncartesian-source-v1"
+                and name == "trajectory.png"
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -6506,6 +6563,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     if pack_id == "retained-imaging101-poisson-source-v1" and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-imaging101-wavelet-source-v1" and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-imaging101-noncartesian-source-v1"
+                    and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"

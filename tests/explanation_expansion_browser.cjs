@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-noncartesian-v1',
   'imaging101-wavelet-v1',
   'imaging-grappa-v1',
   'imaging-dynamic-mri-v1',
@@ -117,6 +118,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-noncartesian-v1')
+    return {
+      scene: 'data-imaging-noncartesian-scene',
+      reference: '[data-imaging-noncartesian-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-noncartesian-scene="output"] code',
+      aside: '[data-imaging-noncartesian-output]',
+    };
   if (plan.recipe === 'imaging101-wavelet-v1')
     return {
       scene: 'data-imaging-wavelet-scene',
@@ -775,6 +785,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-noncartesian-v1': [
+      /Synthetic source-visible phantom; no participant reconstruction or calibrated FOV\/time.*README coordinate units differ from source NUFFT grid scaling/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs',
+      'data-imaging-noncartesian-scene',
+      false,
+    ],
     'imaging101-wavelet-v1': [
       /Released R4 knee k-space differs from README R8 synthetic case.*loader truth key also differs.*No participant output/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet',
@@ -1648,6 +1664,196 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page.locator(`[data-story-step="${beat('reference')}"]`).click();
     await absent();
     await page.locator('[data-story-step="0"]').click();
+    await absent();
+  }
+  if (plan.recipe === 'imaging101-noncartesian-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-noncartesian-scene]');
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const absent = async () =>
+      assert.equal(
+        await scene.locator('[data-imaging-noncartesian-reference-revealed]').count(),
+        0,
+      );
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const source = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/imaging101-mri-noncartesian-cs/source.json',
+        'utf8',
+      ),
+    );
+    const plot = async (m) => {
+      const svg = scene.locator('svg');
+      assert.match(
+        await svg.getAttribute('aria-label'),
+        /Actual source radial trajectory subset.*grid coordinates.*not a reconstructed image/,
+      );
+      assert.equal(await svg.locator('path').getAttribute('stroke'), '#526373');
+      const rows = await svg
+        .locator('circle')
+        .evaluateAll((es) =>
+          es.map((e) => [
+            Number(e.getAttribute('cx')),
+            Number(e.getAttribute('cy')),
+            e.getAttribute('r'),
+            e.getAttribute('fill'),
+          ]),
+        );
+      const points = source.trajectory.points.slice(0, [1, 16, 64][m] * 8);
+      assert.equal(rows.length, points.length);
+      points.forEach((p, j) => {
+        assert.ok(Math.abs(rows[j][0] - (8 + ((p[1] + 64) * 240) / 128)) < 1e-9);
+        assert.ok(Math.abs(rows[j][1] - (8 + ((64 - p[0]) * 240) / 128)) < 1e-9);
+        assert.deepEqual(rows[j].slice(2), ['1.3', '#57d1cc']);
+      });
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /of 8192 points.*of 64 spokes.*1-in-16 display.*acquisition unchanged/s,
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    const img = scene.locator('img');
+    const native = await img.evaluate((e) => ({
+      src: e.src,
+      w: e.naturalWidth,
+      h: e.naturalHeight,
+      alt: e.alt,
+    }));
+    assert.equal(native.w, 256);
+    assert.equal(native.h, 256);
+    assert.match(
+      native.alt,
+      /Pinned synthetic radial coordinates.*512 of 8192.*no image reconstruction/,
+    );
+    assert.ok(native.src.startsWith('data:image/png;base64,'));
+    assert.equal(
+      sha(Buffer.from(native.src.split(',')[1], 'base64')),
+      '1ea07a047fe848b749d6b98d0dd420cf1f825576a7714c11590024ba37182b98',
+    );
+    assert.match(
+      await scene.innerText(),
+      /4 coils.*64 spokes.*128 readout.*8192 samples\/coil.*Source-visible phantom.*no held-out.*physical FOV\/time uncalibrated/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const stepNames = ['Trajectory + coils', 'NUFFT + density', 'Complex wavelet prior'];
+    const branchNames = ['Show 1 spoke', 'Show 16 spokes', 'Show 64 spokes'];
+    const branchFrames = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branchNames[m], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          branchFrames[m],
+        );
+        await plot(m);
+        await scene.getByRole('button', { name: stepNames[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? branchFrames[m] : [168, 0, 504][i],
+        );
+        assert.equal(
+          await scene.getAttribute('data-imaging-noncartesian-operation-step'),
+          String(i),
+        );
+        assert.equal(
+          await scene
+            .getByRole('button', { name: stepNames[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /coord\s*\(1,\s*8192,\s*2\).*complex kdata\s*\(1,\s*4,\s*8192\).*maps\s*\(1,\s*4,\s*128,\s*128\).*no millisecond time axis.*÷128.*not 50% unique coverage/is,
+          );
+        } else if (i === 1) {
+          await plot(m);
+          assert.match(
+            text,
+            /DCF baseline differs.*30 default iterations.*weighted adjoint.*Actual weights\/image absent.*SigPy runtime defaults not exactly pinned/is,
+          );
+        } else {
+          assert.match(
+            text,
+            /λ=5e−5.*100 iterations.*solver adjoint sums conjugated coil maps.*no gridding DCF\/normalization.*3 \+ 4i.*2\.4\+3\.2i.*preserves phase.*noise_std=\.005.*declared.*No NUFFT/is,
+          );
+        }
+        assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await plot(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*128×128.*Participant image\/score empty.*saved examples.*never a fresh response/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-noncartesian-reference-revealed]').innerText(),
+      /solver-visible.*truth key phantom.*no private hidden target.*No truth\/reconstruction image.*above two dimensions.*magnitude.*no scale normalization.*flux-normalizes.*relative L2.*16384.*8192.*no native score or pass\/fail/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /coordinate units.*calibrat|physical FOV|runtime\/evaluator/is,
+    );
+    await capture('limits-contract');
+    await page.locator('.scene-reset').click();
     await absent();
   }
   if (plan.recipe === 'imaging101-wavelet-v1') {
@@ -8928,6 +9134,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-noncartesian-v1',
       'imaging101-wavelet-v1',
       'imaging-grappa-v1',
       'imaging-dynamic-mri-v1',

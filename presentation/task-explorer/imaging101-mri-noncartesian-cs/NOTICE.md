@@ -1,0 +1,2 @@
+Synthetic source-visible phantom; no participant reconstruction or calibrated FOV/time. README coordinate units differ from source NUFFT grid scaling. Official acquisition route. https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs
+Coordinates are 1-in-16 actual source samples, no interpolation. Gray axes guide only; teal actual display points. Views of 1/16/64 spokes change display, not acquisition or solver.

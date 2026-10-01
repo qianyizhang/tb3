@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class ImagingNoncartesianChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class ImagingNoncartesianBeat(ExpansionBeat):
+    channels: ImagingNoncartesianChannels
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingNoncartesianPlan(ExpansionPlan):
+    recipe: Literal["imaging101-noncartesian-v1"]
+    beats: list[ImagingNoncartesianBeat]
+
+
 class ImagingWaveletChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2659,6 +2675,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | ImagingNoncartesianPlan
     | ImagingWaveletPlan
     | ImagingGrappaPlan
     | ImagingDynamicMriPlan

@@ -1,0 +1,503 @@
+{
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs",
+  "actual_data_gap": "Synthetic phantom source provides no participant reconstruction/outcome or held-out private target. README calls coordinates cycles/pixel, but source scaling is NUFFT grid-sample indices; physical FOV/time calibration and pinned SigPy runtime defaults are not established.",
+  "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+  "attempts": [
+    {
+      "action": "retained-validation",
+      "attempted_at": "2026-10-01T07:10:57.092731+00:00",
+      "outcome": "Validated 21 source SHA-256/byte pins, 13 primary Git blobs, four official data LFS records and both historical transport objects. Array headers and exact reference ranking inspected; no new GET, operator or scorer execution.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    }
+  ],
+  "baseline_commit": "ffc0b7edfa6b5ef455510e4a2a42e18c73e27efd",
+  "brief_sha256": "3ec325a59766f70bd7fd63734c988202719eb6d7425c9c1d914a81e80b25a8a3",
+  "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+  "entry_id": "imaging101-mri-noncartesian-cs",
+  "fixture": {
+    "actual_output": null,
+    "branches": [
+      1,
+      16,
+      64
+    ],
+    "clean_reference": null,
+    "role": "Authored complex coefficient and density-update mechanics, not actual result",
+    "toy_complex": [
+      3,
+      4
+    ],
+    "toy_shrunk": [
+      2.4,
+      3.2
+    ],
+    "toy_threshold": 1
+  },
+  "historical_attempts": [
+    {
+      "action": "Reuse retained task/data/harness audit and reverify sourceSHA/Git/LFS identities",
+      "attempted_at": "2026-09-30T17:48:14.945763+00:00",
+      "outcome": "Native synthetic4coil128-square/64spoke data retained; no NUFFT/task/evaluator execution; source-visible truth and native trajectory roles audited.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "action": "Bounded pinned official HF data listing and tiny GitHub requirements read",
+      "attempted_at": "2026-09-30T17:48:14.945763+00:00",
+      "outcome": "HTTP200 data tree3580B; requirements127B. AllfourdataLFS match retained assets; requirements Gitblob verified, SigPy>=0.1.26 is not an exact runtime pin. Max64KiB/file30seconds; no install.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs ; https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_noncartesian_cs/requirements.txt"
+    }
+  ],
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "public_reference": {
+    "clean_image": null,
+    "criteria": [
+      "source truth phantom solver-visible",
+      "magnitude-only generic comparison discards phase",
+      "no private held-out target established",
+      "source-saved algorithms not participant output"
+    ],
+    "role": "Reader-only solver-visible source truth and generic evaluator rules; no reference/GT image"
+  },
+  "reference_header_audit": [
+    {
+      "descr": "<c8",
+      "filesystem_metric_shape": [
+        128,
+        128
+      ],
+      "fortran_order": false,
+      "member": "phantom.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/ground_truth.npz",
+      "shape": [
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "descr": "<c8",
+      "filesystem_metric_shape": [
+        4,
+        8192
+      ],
+      "fortran_order": false,
+      "member": "kdata.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/raw_data.npz",
+      "shape": [
+        1,
+        4,
+        8192
+      ]
+    },
+    {
+      "descr": "<f4",
+      "filesystem_metric_shape": [
+        8192,
+        2
+      ],
+      "fortran_order": false,
+      "member": "coord.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/raw_data.npz",
+      "shape": [
+        1,
+        8192,
+        2
+      ]
+    },
+    {
+      "descr": "<c8",
+      "filesystem_metric_shape": [
+        4,
+        128,
+        128
+      ],
+      "fortran_order": false,
+      "member": "coil_maps.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/raw_data.npz",
+      "shape": [
+        1,
+        4,
+        128,
+        128
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        8
+      ],
+      "fortran_order": false,
+      "member": "db4_dec_lo.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        8
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        8
+      ],
+      "fortran_order": false,
+      "member": "db4_dec_hi.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        8
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        8
+      ],
+      "fortran_order": false,
+      "member": "db4_rec_lo.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        8
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        8
+      ],
+      "fortran_order": false,
+      "member": "db4_rec_hi.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        8
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        2
+      ],
+      "fortran_order": false,
+      "member": "haar_dec_lo.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        2
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        2
+      ],
+      "fortran_order": false,
+      "member": "haar_dec_hi.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        2
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        2
+      ],
+      "fortran_order": false,
+      "member": "haar_rec_lo.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        2
+      ]
+    },
+    {
+      "descr": "<f8",
+      "filesystem_metric_shape": [
+        2
+      ],
+      "fortran_order": false,
+      "member": "haar_rec_hi.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "shape": [
+        2
+      ]
+    },
+    {
+      "descr": "<c8",
+      "filesystem_metric_shape": [
+        128,
+        128
+      ],
+      "fortran_order": false,
+      "member": "reconstruction.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/evaluation/reference_outputs/gridding_reconstruction.npz",
+      "shape": [
+        1,
+        128,
+        128
+      ]
+    },
+    {
+      "descr": "<f4",
+      "filesystem_metric_shape": [
+        1,
+        8192
+      ],
+      "fortran_order": false,
+      "member": "dcf.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/evaluation/reference_outputs/gridding_reconstruction.npz",
+      "shape": [
+        1,
+        8192
+      ]
+    },
+    {
+      "descr": "<c8",
+      "filesystem_metric_shape": [
+        128,
+        128
+      ],
+      "fortran_order": false,
+      "member": "reconstruction.npy",
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/evaluation/reference_outputs/l1wav_reconstruction.npz",
+      "shape": [
+        1,
+        128,
+        128
+      ]
+    }
+  ],
+  "reopening_conditions": [
+    "Resolve coordinate-unit/FOV convention for physical claims",
+    "Pin SigPy runtime/default numerical normalization before method reproduction",
+    "Retain fresh participant artifact and exact evaluator/reference lineage before outcomes"
+  ],
+  "schema": 1,
+  "source_condition": {
+    "FOV": null,
+    "available_truth_keys": [
+      "phantom"
+    ],
+    "batch": 1,
+    "coils": 4,
+    "coord_units": "NUFFT grid scaling, not literal cycles/pixel or physical mm^-1",
+    "declared_noise_std": 0.005,
+    "height": 128,
+    "readout_points": 128,
+    "readout_timing_ms": null,
+    "samples_per_coil": 8192,
+    "signal_units": "arbitrary complex signal",
+    "spokes": 64,
+    "trajectory": "golden-angle radial",
+    "truth_shape": [
+      1,
+      128,
+      128
+    ],
+    "width": 128
+  },
+  "source_files": [
+    {
+      "bytes": 1462,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/ground_truth.npz",
+      "role": "solver-visible-ground-truth",
+      "sha256": "1c07f2de48795a74ba56317f5ba51a64c6890ca11b78e26007ad04296ed09f89",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 204,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "8e33d1082437d1b7955e261772a55a40f380dffe68eb6c72a4d37619e4c35117",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 695940,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "47c2bcec646c8d1fa3c6dc76edadeda8d2bdecf370b76da5df2f5e492888ead6",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 2366,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/data/wavelet_filters.npz",
+      "role": "supplied-helper",
+      "sha256": "3fa55caac10d71186b2ae073b00d59d7710867c100f5752dabd907bc7f23859a",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 151203,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/evaluation/reference_outputs/gridding_reconstruction.npz",
+      "role": "source-saved-output",
+      "sha256": "f97a999419b6bb9eb1f38f5bdd1de5253ab5b7dab2a7178481301df9a7bd81b5",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 122918,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_noncartesian_cs/evaluation/reference_outputs/l1wav_reconstruction.npz",
+      "role": "source-saved-output",
+      "sha256": "04a690ae7e5010d37ba2373856a73d05b29e977a721b43bd2bfb59938cfd0dde",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 5757,
+      "git_blob": "50c6a063f6aff95fad79344d3081a36a1534c782",
+      "git_path": "tasks/mri_noncartesian_cs/README.md",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_noncartesian_cs/README.md",
+      "role": "pinned-task-source",
+      "sha256": "0c00613b5281d731a86c9e70450721acf2135c102f87981d90c51d83fe84a540",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 4338,
+      "git_blob": "971b3dc9459fdefba2a7b7520135519a6f3f7bb7",
+      "git_path": "tasks/mri_noncartesian_cs/main.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_noncartesian_cs/main.py",
+      "role": "pinned-task-source",
+      "sha256": "87145bda4559fccfeb865bf71be32ed9f6eb618c02870d3eda15dd7903537a75",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 6663,
+      "git_blob": "782b6a41ee9688872232a41bd31e007246949c98",
+      "git_path": "tasks/mri_noncartesian_cs/src/generate_data.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_noncartesian_cs/src/generate_data.py",
+      "role": "pinned-task-source",
+      "sha256": "035b970bacd5fc05309c163b6b68f4bc890fe113ff3e880256c2dd06d2c8dad4",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 5050,
+      "git_blob": "05da2f97d3752973e3dcf4097fd839a237753541",
+      "git_path": "tasks/mri_noncartesian_cs/src/physics_model.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_noncartesian_cs/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "a60d685da346bd0e63ac60a664668650762f20e2ab15ef903308d91af11504c3",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 2564,
+      "git_blob": "941ce66aa2ae3135fe2b1fa817d1bdd12e92fc8d",
+      "git_path": "tasks/mri_noncartesian_cs/src/preprocessing.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_noncartesian_cs/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "b6e1c688d81ca18f30ee5254f631d12e34e16252a3d3f2162722ec7881fd2ac4",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 14263,
+      "git_blob": "57b47760838995bc1470acd0a43d640ce5d22544",
+      "git_path": "tasks/mri_noncartesian_cs/src/solvers.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_noncartesian_cs/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "647c75c00fc01c8c2b53a8ced8265225c13578f740b93bf8dd2f755210150bec",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 7749,
+      "path": ".local/explainers/core-20260929/formation-c-source/trees/mri_noncartesian_cs.json",
+      "role": "supplied-helper",
+      "sha256": "7c1213f544f9d2888b7c93e8514743181fef841305e806d0dd8ecd452324abc6",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_noncartesian_cs"
+    },
+    {
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "git_path": "evaluation_harness/reference_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 15186,
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "git_path": "evaluation_harness/runner.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py"
+    },
+    {
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "git_path": "evaluation_harness/scorer.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 19005,
+      "git_blob": "d5f5043d353d9a29ff9f9044def53334f79d96d0",
+      "git_path": "evaluation_harness/task_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/task_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "04596307728d59880ad09376ec511f90400f0527c48887f16ce57c8a6d9d4f6b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-c-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/README.md"
+    },
+    {
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "git_path": "LICENSE",
+      "path": ".local/explainers/completion-20260927/047-source/LICENSE",
+      "role": "pinned-source-contract",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09"
+    },
+    {
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "git_path": "evaluation_harness/local_runner.py",
+      "path": ".local/explainers/completion-20260927/047-source/evaluation_harness/local_runner.py",
+      "role": "pinned-source-contract",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b"
+    },
+    {
+      "bytes": 127,
+      "git_blob": "f308589cbd68f9816cfe29f57a8a4e9d8621f4f3",
+      "git_path": "tasks/mri_noncartesian_cs/requirements.txt",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-noncartesian-cs/requirements.txt",
+      "role": "pinned-source-contract",
+      "sha256": "59cc918e21d7dbf4aa5205e242dcb731d47de34d0005e0ef5dd18a59957c3bf4"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Live generic end-to-end: one output/reconstruction.npy real numeric image; complex inputs/algorithm outputs are reduced to magnitude before numerical comparison. No participant artifact exists here.",
+    "helper": "Per-coil complex sensitivity maps, explicit NUFFT sample coordinates, wavelet coefficients and solver-visible phantom truth. The source also saves gridding/density compensation and L1-wavelet examples.",
+    "input": "synthetic non-Cartesian four-coil kdata and explicit radial coordinate arrays",
+    "private_reference": "No separate private target established in downloaded source; do not call source-visible truth private",
+    "solver_visible_ground_truth": "data/ground_truth.npz in source archive and local runner staging",
+    "source_saved_output": "source-saved gridding and L1-wavelet output examples, not participant artifacts"
+  },
+  "source_transport": [
+    {
+      "bytes": 3580,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-noncartesian-cs/official-data-tree.json",
+      "sha256": "a810445f6c98caa98b9405c9565df7cd0e5bd102d3ad23353cd785916c06e26f"
+    },
+    {
+      "bytes": 127,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-noncartesian-cs/requirements.txt",
+      "sha256": "59cc918e21d7dbf4aa5205e242dcb731d47de34d0005e0ef5dd18a59957c3bf4"
+    }
+  ],
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "Use NUFFT at the supplied non-grid coordinate pairs for each coil. Source gridding uses iterative density compensation; source CS branch balances NUFFT data residuals with wavelet L1 sparsity. A Cartesian FFT does not sample these positions.",
+    "reference_policy": "reader-reference-reveal",
+    "reference_role": "Explicit late source/criteria rules only; no private or native truth image bundled.",
+    "task_id": "mri_noncartesian_cs"
+  },
+  "validated_at": "2026-10-01T07:10:57.092731+00:00",
+  "warning_text": "Synthetic source-visible phantom; no participant reconstruction or calibrated FOV/time. README coordinate units differ from source NUFFT grid scaling. Official acquisition route."
+}
