@@ -14119,36 +14119,146 @@
       }
     },
     {
-      "entry_id": "imaging101-mri-l1-wavelet",
-      "title": "Reconstruct MRI with a sparse wavelet prior",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-mri-l1-wavelet/acceptance-02.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet",
+      "actual_data_gap": "README synthetic 8-coil 128-square R8 differs from released 15-coil 320-square R4 knee data. Source loader asks for phantom but the ground-truth archive contains mvue. No participant reconstruction, output or score; upstream fastMRI rights separately unresolved.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-mri-l1-wavelet.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Coil-sensitivity maps, sampling mask and wavelet-sparsity formulation. The assistance level can add an approach and software design.",
+        "output": "An MRI image reconstructed from the incomplete frequency samples.",
+        "raw": "Strongly undersampled multi-coil MRI measurements.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-l1-wavelet.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: An MRI image reconstructed from the incomplete frequency samples.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-mri-l1-wavelet",
+      "illustration_basis": "mixed",
+      "illustration_kind": "mri",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "mri",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-l1-wavelet.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: An MRI image reconstructed from the incomplete frequency samples.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Strongly undersampled multi-coil MRI measurements.",
-        "helpers": "Coil-sensitivity maps, sampling mask and wavelet-sparsity formulation. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "An MRI image reconstructed from the incomplete frequency samples.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native released R4 masked 15-coil complex MRI input and symbolic SENSE/wavelet contracts after main19-pin/42-image visual/export/mobile/no-GPU/reader-boundary review. README R8 and phantom-versus-mvue loader mismatch preserved; source truth solver-visible, participant reconstruction/result absent.",
+      "source_brief_sha256": "ddf3563700d49ba2e3fcf6cc6df8ac2cb9aaac0f7be40b39be3143f91a197966",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-mri-l1-wavelet-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-mri-l1-wavelet-resolution.json",
+        "receipt_sha256": "c746087eb4215c3e0b6c5e781f367d1ec5462e9e48adaf38e22a6b2d768fe65c",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T10:02:47.294320+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-mri-l1-wavelet/source-audit-final-01.json",
+        "audit_sha256": "e70514dbc9c902dd4c649f369700da0d7c79f3369df54bcce362a6d313d67756",
+        "no_visual_acceptance": true,
+        "resolution_observation": {
+          "assessed_at": "2026-10-01T10:02:47.294320+00:00",
+          "assessor": "Codex main agent",
+          "category": "source-and-contract-resolution",
+          "state": "ready-for-visual-review",
+          "attempt_status": "retained-source-verified",
+          "evidence": ".local/explainers/goal-20260930/imaging101-mri-l1-wavelet/source-audit-final-01.json",
+          "next_action": "Main fresh visual/export/mobile/no-GPU/playback and reference reset review; no task/operator/model execution."
+        },
+        "acceptance_note_correction": {
+          "schema": 1,
+          "actor": "Codex main agent",
+          "at": "2026-10-01T10:41:11.225395+00:00",
+          "superseded_receipt": ".local/explainers/goal-20260930/imaging101-mri-l1-wavelet/acceptance-01.json",
+          "receipt_sha256": "db6e61b1e61fe956a2f543ed24a12fa5a16b272943924d8e18a1d222b10b6e67",
+          "reason": "Inspection prose transcribed zero-valued unsampled complex-entry count incorrectly. Native source audit is exact 1152000 across all 15 coils, not 152000 in selected coils. Artifact/source/visual checks are unchanged.",
+          "evidence": ".local/explainers/goal-20260930/imaging101-mri-l1-wavelet/source-audit-final-01.json",
+          "evidence_sha256": "e70514dbc9c902dd4c649f369700da0d7c79f3369df54bcce362a6d313d67756",
+          "action": "Restore current entry to pending for fresh corrected inspection/acceptance. Prior 129 reviews unchanged."
+        }
+      },
+      "story_id": "imaging101-mri-l1-wavelet",
+      "subject": null,
+      "title": "Reconstruct MRI with a sparse wavelet prior",
+      "warning_text": "Released R4 knee k-space differs from README R8 synthetic case; loader truth key also differs. No participant output. Official acquisition route.",
+      "acceptance_scope": "Released native masked complex MRI k-space/mask and symbolic SENSE/wavelet contracts; README/data/loader mismatch explicit. Source truth is solver-visible; reader rules are educational. No participant reconstruction, truth image, result or fresh source execution.",
+      "completion_review": {
+        "date": "2026-10-01T10:41:11.332988+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "437421a0de508c417f8e3cceac2ede9e5535d7d2aefad37e59803c057f273b75"
+      },
+      "reviewed_contract_projection": {
+        "title": "Balance measured complex k-space with a sparse wavelet prior",
+        "goal": "Explain the source operator and numerical boundaries while preserving the released data/README/loader mismatch.",
+        "value": "Not yet specified.",
+        "raw": "Released arrays contain one fastMRI-derived knee slice: masked_kspace and sensitivity_maps both complex64 (1,15,320,320), binary float32 mask (320,). Metadata cites file1000000.h5 slice 21, ESPIRiT sensitivity estimation, R=4, seed 0/random mask and ACS fraction 0.08. Exact mask retains 80/320 last-axis columns; unsampled columns are all zero across 15 coils. Metadata vertical mask means last-array-axis columns, not anatomical orientation. No DICOM/NIfTI affine, physical spacing or intensity calibration supplied; arbitrary complex signal.\n\nREADME describes synthetic 8 coil 128\u00b2 /R8 and preprocessing docstrings describe Gaussian coils/phantom complex128; actual released arrays differ. Retained data is an actual source measurement example for the released condition, not proof of README difficulty or an outcome. Official bounded 3560 B listing verifies all four data LFS identities. Original raw archive remains retained, not copied into portable assets.",
+        "helpers": "Coil sensitivity maps, mask, db4/Haar filters, source forward/adjoint and solver code. Source uses centered orthonormal FFT over final two axes: ifftshift\u2192FFT(norm=ortho)\u2192fftshift. Mask broadcasts (1,1,W); image multiplies by each complex coil map before FFT. No magnitude conversion before data-consistency optimization. Source metadata R4 is sampling count 320/80, not a measured acceleration/time or clinical claim.",
+        "tools": "Task Python/NumPy numerical scaffold, no task/model/evaluator execution. Source FISTA implements .5||MFSx\u2212y||\u00b2+\u03bb||\u03a8x||\u2081, db4, \u03bb=1e\u22123, max 100 iterations. Power-iteration step estimate and optional acceleration are source rules, not new runs. Public API infers mask from nonzero energy of first coil instead of receiving supplied mask; verify consistency before future execution. Missing source columns must not be confused with missing image pixels.",
+        "reference": "Runner staging copies full data directory, including ground_truth.npz. Its only native key is **mvue**, shape (1,1,320,320) complex64; source preprocessing requests **phantom** and would fail key lookup for this archive. No task invoked to trigger that failure. Source-visible truth is not a hidden benchmark reference. Saved L1-wavelet source output is separately retained, without fresh method lineage; no participant output or GT image is bundled/rendered. Late reader card reveals these rules only; backward/exit/reset closes it synchronously.",
+        "spec": "Use y_c=M F(S_c x) with complex coil maps and unitary FFT. Source solver's true SENSE adjoint sums conjugated coil maps\u00d7IFFT, without division. Physics helper named adjoint separately divides by sqrt(sum|S|\u00b2), floored 1e\u221212; this normalized combination is not the same linear adjoint used in solver. No IFFT or coil combination performed on native data here.\n\nComplex shrinkage preserves phase: (|z|\u2212\u03c4)\u208az/|z|, zero at z=0. Authored coefficient 3+4i with \u03c4=1\u21922.4+3.2i illustrates one coefficient only; \u03c4 is hypothetical, not \u03bb or actual solver step. Wavelet source implements multilevel db4 transform with zero-extension and inverse cropping, not proof of reconstructive accuracy. Missing measurements remain unconstrained by acquisition; prior regularization does not create verified anatomy.\n\nNative input displays are direct log-magnitude k-space derivatives for coil 0/7/14, native 320\u00b2, no FFT/resize. Display uint8=truncate(255log1p(hypot(re,im))/per-coil max log). Separate per-coil scales make brightness incomparable across coils; phase is hidden for display only. Original complex data remain the optimization domain. Mask legend: teal acquired, gray missing; horizontal phase-encode frequency column index, no mm/patient plane.",
+        "output": "Actual generic end-to-end contract: **output/reconstruction.npy**, comparable 320\u00d7320 released condition. Source main independently writes evaluation/reference_outputs/l1_wavelet_reconstruction.npz:key reconstruction, complex64. Participant path/image/score null here; source-saved output is not a new response or evidence that this mismatching source loader completed.",
+        "score": "The filesystem generic dispatch discovers source truth candidates by filename/shape/key, squeezes extra dimensions, converts complex values to magnitude and compares float64 arrays without flux/scale normalization. NCC is cosine correlation, no mean-centering; range NRMSE is RMS error/reference range, zero range\u2192infinity. Generic metrics include MSE/PSNR/global SSIM; only installed metrics.json thresholds produce pass/fail. Source listing contains metrics_detail.json rather than metrics.json; no current threshold claim. Separate task-aware registrations are not proof of live dispatch. Without a filesystem workspace, the fallback instead uses a 2D NPY reference, flux-normalizes output and calculates relative L2 NRMSE; it is a different backend contract, not range NRMSE.\n\nMagnitude comparison discards phase differences; a global phase-rotated image can match magnitude. Zero arrays, scaling and reference range affect metrics. Original pure controls illustrate those limits without invoking evaluator or assigning native/image/model scores. Denominator for pixelwise generic comparison is 320\u00b2=102400 pixels after comparable shape reduction, not 15 coils or a population/sample-performance estimate.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Actual released mask and coil k-space display, clearly separated from README case and image domain.",
+          "Canonical three-step/three-coil controls explain complex forward model and an authored phase-preserving shrinkage example.",
+          "Actual output empty; later source-truth/loader/evaluator rules cover on backward/exit/reset."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -14168,34 +14278,47 @@
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned README",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned physics model",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet/src/physics_model.py"
+          ],
+          [
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet/src/solvers.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-mri-l1-wavelet-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "7cbca4c7b0862891009f5562c7a41625f531329f4cbdf8ec65791318ea6c4bb4",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-l1-wavelet.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: An MRI image reconstructed from the incomplete frequency samples.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Explain the source operator and numerical boundaries while preserving the released data/README/loader mismatch.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Released arrays contain one fastMRI-derived knee slice: masked_kspace and sensitivity_maps both complex64 (1,15,320,320), binary float32 mask (320,). Metadata cites file1000000.h5 slice 21, ESPIRiT sensitivity estimation, R=4, seed 0/random mask and ACS fraction 0.08. Exact mask retains 80/320 last-axis columns; unsampled columns are all zero across 15 coils. Metadata vertical mask means last-array-axis columns, not anatomical orientation. No DICOM/NIfTI affine, physical spacing or intensity calibration supplied; arbitrary complex signal.</p>\n<p>README describes synthetic 8 coil 128\u00b2 /R8 and preprocessing docstrings describe Gaussian coils/phantom complex128; actual released arrays differ. Retained data is an actual source measurement example for the released condition, not proof of README difficulty or an outcome. Official bounded 3560 B listing verifies all four data LFS identities. Original raw archive remains retained, not copied into portable assets.</p>",
+          "helpers": "<p>Coil sensitivity maps, mask, db4/Haar filters, source forward/adjoint and solver code. Source uses centered orthonormal FFT over final two axes: ifftshift\u2192FFT(norm=ortho)\u2192fftshift. Mask broadcasts (1,1,W); image multiplies by each complex coil map before FFT. No magnitude conversion before data-consistency optimization. Source metadata R4 is sampling count 320/80, not a measured acceleration/time or clinical claim.</p>",
+          "tools": "<p>Task Python/NumPy numerical scaffold, no task/model/evaluator execution. Source FISTA implements .5||MFSx\u2212y||\u00b2+\u03bb||\u03a8x||\u2081, db4, \u03bb=1e\u22123, max 100 iterations. Power-iteration step estimate and optional acceleration are source rules, not new runs. Public API infers mask from nonzero energy of first coil instead of receiving supplied mask; verify consistency before future execution. Missing source columns must not be confused with missing image pixels.</p>",
+          "reference": "<p>Runner staging copies full data directory, including ground_truth.npz. Its only native key is <strong>mvue</strong>, shape (1,1,320,320) complex64; source preprocessing requests <strong>phantom</strong> and would fail key lookup for this archive. No task invoked to trigger that failure. Source-visible truth is not a hidden benchmark reference. Saved L1-wavelet source output is separately retained, without fresh method lineage; no participant output or GT image is bundled/rendered. Late reader card reveals these rules only; backward/exit/reset closes it synchronously.</p>",
+          "spec": "<p>Use y_c=M F(S_c x) with complex coil maps and unitary FFT. Source solver&#x27;s true SENSE adjoint sums conjugated coil maps\u00d7IFFT, without division. Physics helper named adjoint separately divides by sqrt(sum|S|\u00b2), floored 1e\u221212; this normalized combination is not the same linear adjoint used in solver. No IFFT or coil combination performed on native data here.</p>\n<p>Complex shrinkage preserves phase: (|z|\u2212\u03c4)\u208az/|z|, zero at z=0. Authored coefficient 3+4i with \u03c4=1\u21922.4+3.2i illustrates one coefficient only; \u03c4 is hypothetical, not \u03bb or actual solver step. Wavelet source implements multilevel db4 transform with zero-extension and inverse cropping, not proof of reconstructive accuracy. Missing measurements remain unconstrained by acquisition; prior regularization does not create verified anatomy.</p>\n<p>Native input displays are direct log-magnitude k-space derivatives for coil 0/7/14, native 320\u00b2, no FFT/resize. Display uint8=truncate(255log1p(hypot(re,im))/per-coil max log). Separate per-coil scales make brightness incomparable across coils; phase is hidden for display only. Original complex data remain the optimization domain. Mask legend: teal acquired, gray missing; horizontal phase-encode frequency column index, no mm/patient plane.</p>",
+          "output": "<p>Actual generic end-to-end contract: <strong>output/reconstruction.npy</strong>, comparable 320\u00d7320 released condition. Source main independently writes evaluation/reference_outputs/l1_wavelet_reconstruction.npz:key reconstruction, complex64. Participant path/image/score null here; source-saved output is not a new response or evidence that this mismatching source loader completed.</p>",
+          "score": "<p>The filesystem generic dispatch discovers source truth candidates by filename/shape/key, squeezes extra dimensions, converts complex values to magnitude and compares float64 arrays without flux/scale normalization. NCC is cosine correlation, no mean-centering; range NRMSE is RMS error/reference range, zero range\u2192infinity. Generic metrics include MSE/PSNR/global SSIM; only installed metrics.json thresholds produce pass/fail. Source listing contains metrics_detail.json rather than metrics.json; no current threshold claim. Separate task-aware registrations are not proof of live dispatch. Without a filesystem workspace, the fallback instead uses a 2D NPY reference, flux-normalizes output and calculates relative L2 NRMSE; it is a different backend contract, not range NRMSE.</p>\n<p>Magnitude comparison discards phase differences; a global phase-rotated image can match magnitude. Zero arrays, scaling and reference range affect metrics. Original pure controls illustrate those limits without invoking evaluator or assigning native/image/model scores. Denominator for pixelwise generic comparison is 320\u00b2=102400 pixels after comparable shape reduction, not 15 coils or a population/sample-performance estimate.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25802,9 +25925,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 124,
+    "reviewed-scripted-planar": 125,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 54,
+    "blocked-source-contract": 53,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

@@ -1,0 +1,144 @@
+.scene {
+  background: #122939;
+  color: #deebf4;
+  min-width: 0;
+  padding: 12px;
+}
+.scene h3 {
+  color: #f1f7fb;
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+.scene b {
+  color: #e4f3fa;
+}
+.scene p,
+.scene small,
+.scene figcaption {
+  color: #c6dce7;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.scene p {
+  font-size: 13px;
+  margin: 7px 0;
+}
+.scene code {
+  color: #93e0e6;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.controls button {
+  background: #203f52;
+  color: #e0f0f7;
+  border: 1px solid#557b92;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 12px;
+  white-space: normal;
+}
+.controls button[aria-pressed='true'] {
+  background: #345b70;
+  border-color: #87d6df;
+}
+.socket {
+  background: #1a3546;
+  border: 1px solid#46677e;
+  padding: 9px;
+  border-radius: 8px;
+  min-width: 0;
+}
+.two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 12px;
+  min-width: 0;
+}
+.two > * {
+  min-width: 0;
+}
+.native,
+.mask {
+  margin: 0;
+  min-width: 0;
+}
+.native img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  background: #000;
+}
+.native figcaption,
+.mask figcaption {
+  font-size: 11px;
+  margin-top: 4px;
+}
+.mask svg {
+  width: 100%;
+  height: 26px;
+  display: block;
+}
+.output {
+  background: #183342 !important;
+  min-width: 0;
+  padding: 16px !important;
+  overflow-wrap: anywhere;
+}
+.output b {
+  color: #eef8fc;
+}
+.output p,
+.output small {
+  color: #c8dfe9;
+  font-size: 12px;
+  line-height: 1.4;
+}
+@media (max-width: 700px) {
+  .scene {
+    max-height: none;
+    padding: 10px;
+  }
+  .two {
+    grid-template-columns: 1fr;
+  }
+  .output {
+    padding: 12px !important;
+  }
+  .native img {
+    height: 150px;
+  }
+  .controls button {
+    min-height: 40px;
+  }
+}
+
+:global(.scene-player[data-recipe='imaging101-wavelet-v1']) :global(.scene-explanation),
+:global(.scene-player[data-recipe='imaging101-wavelet-v1']) :global(.scene-explanation strong),
+:global(.scene-player[data-recipe='imaging101-wavelet-v1']) :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.output h3 {
+  color: #eef8fc;
+}
+
+.scene > button {
+  background: #203f52;
+  color: #e0f0f7;
+  border: 1px solid #557b92;
+  border-radius: 5px;
+  padding: 7px 10px;
+}
+@media (max-width: 700px) {
+  .scene > button {
+    min-height: 40px;
+  }
+}

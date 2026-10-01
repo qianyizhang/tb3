@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-wavelet-v1',
   'imaging-grappa-v1',
   'imaging-dynamic-mri-v1',
   'imaging-eit-v1',
@@ -116,11 +117,26 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
-  if (plan.recipe === 'imaging-grappa-v1') return {
-    scene:'data-grappa-scene',reference:'[data-grappa-full-target], [data-grappa-ssim]',
-    referenceChannel:null,readerControlled:true,referencePolicy:'no-reference-assets',
-    output:'[data-grappa-output-schema]',aside:'[data-grappa-output]',
-  };
+  if (plan.recipe === 'imaging101-wavelet-v1')
+    return {
+      scene: 'data-imaging-wavelet-scene',
+      reference: '[data-imaging-wavelet-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-wavelet-scene="output"] code',
+      aside: '[data-imaging-wavelet-output]',
+    };
+
+  if (plan.recipe === 'imaging-grappa-v1')
+    return {
+      scene: 'data-grappa-scene',
+      reference: '[data-grappa-full-target], [data-grappa-ssim]',
+      referenceChannel: null,
+      readerControlled: true,
+      referencePolicy: 'no-reference-assets',
+      output: '[data-grappa-output-schema]',
+      aside: '[data-grappa-output]',
+    };
   if (plan.recipe === 'imaging-dynamic-mri-v1')
     return {
       scene: 'data-dynamic-mri-scene',
@@ -759,10 +775,17 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-wavelet-v1': [
+      /Released R4 knee k-space differs from README R8 synthetic case.*loader truth key also differs.*No participant output/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet',
+      'data-imaging-wavelet-scene',
+      false,
+    ],
     'imaging-grappa-v1': [
       /Native full eight-coil k-space and phantom truth are solver-visible.*supplied rule.*not raw missing data.*No participant reconstruction or performance/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_grappa',
-      'data-grappa-scene',false,
+      'data-grappa-scene',
+      false,
     ],
     'imaging-dynamic-mri-v1': [
       /Native synthetic input; source truth is solver-visible and generator defaults differ.*No reconstruction or perfusion result/s,
@@ -1627,61 +1650,431 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page.locator('[data-story-step="0"]').click();
     await absent();
   }
-  if (plan.recipe === 'imaging-grappa-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-grappa-scene]');
-    const capture=async(name)=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${name}.png`)});
-    const absent=async()=>assert.equal(await page.locator('[data-grappa-full-target], [data-grappa-ssim]').count(),0);
-    const advance=async(frame)=>{
-      await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();
-      await page.waitForFunction(f=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>f,frame+4);
+  if (plan.recipe === 'imaging101-wavelet-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-wavelet-scene]');
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-imaging-wavelet-reference-revealed]').count(), 0);
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
       await page.locator('.scene-play').click();
     };
-    const native=JSON.parse(fs.readFileSync('presentation/task-explorer/imaging101-mri-grappa/measurement.json','utf8'));
-    const helper=JSON.parse(fs.readFileSync('presentation/task-explorer/imaging101-mri-grappa/helper.json','utf8'));
-    const pair=v=>`${v[0].toPrecision(7)} + i(${v[1].toPrecision(7)})`;
-    await page.locator('[data-story-step="0"]').click();await absent();assert.equal(await scene.locator('img,canvas,image').count(),0);
-    const slider=scene.locator('input[type="range"]');
-    for(const [index,key] of [[0,'Home'],[1,'ArrowRight'],[7,'End']]) {
-      await slider.focus();await slider.press(key);assert.equal(await slider.inputValue(),String(index));
-      const text=await scene.innerText();assert.ok(text.includes(`Coil ${index} · native center [64,64]`));
-      assert.ok(text.includes(pair(native.native_center_kspace[index])+' a.u.'));assert.ok(text.includes(pair(native.native_center_sensitivity[index])+' a.u.'));
-      const expected=native.symbolic_rule_retained_rows.map(y=>['0',String(y),'128','1',y>=54&&y<=73?'#eeb989':'#73c7e6']);expected.push(['0','51','128','1','#92d9ae']);
-      assert.deepEqual(await scene.locator('svg rect').evaluateAll(els=>els.slice(1).map(e=>['x','y','width','height','fill'].map(k=>e.getAttribute(k)))),expected);
-      assert.match(await scene.locator('figcaption').innerText(),/Illustrated rule.*rows \(dim 0\) down.*columns right/);
-      assert.match(text,/74\/128.*57\.8125%.*nominal R=2.*Rule illustration only.*raw archive is fully sampled/is);await capture(`coil-${index}`);await absent();
+    const source = JSON.parse(
+      fs.readFileSync('presentation/task-explorer/imaging101-mri-l1-wavelet/source.json', 'utf8'),
+    );
+    const image = async (coil) => {
+      const img = scene.locator('img');
+      assert.equal(await img.count(), 1);
+      const state = await img.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(state.w, 320);
+      assert.equal(state.h, 320);
+      assert.match(state.alt, new RegExp(`coil ${coil}.*log-magnitude.*not reconstructed`));
+      assert.ok(state.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(state.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(`presentation/task-explorer/imaging101-mri-l1-wavelet/coil-${coil}.png`),
+        ),
+      );
+    };
+    const mask = async () => {
+      assert.deepEqual(
+        await scene
+          .locator('svg rect')
+          .evaluateAll((es) =>
+            es.map((e) => [
+              e.getAttribute('x'),
+              e.getAttribute('width'),
+              e.getAttribute('height'),
+              e.getAttribute('fill'),
+            ]),
+          ),
+        source.native_mask.map((v, j) => [String(j), '1', '20', v ? '#57d1cc' : '#526373']),
+      );
+      assert.match(
+        await scene.locator('svg').getAttribute('aria-label'),
+        /80 of 320 last-axis phase-encode columns/,
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await image(0);
+    await mask();
+    assert.match(
+      await scene.innerText(),
+      /1 slice.*15 coils.*320×320.*no physical affine\/spacing.*No reconstructed image/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    const stepNames = ['Sampling + coils', 'Complex forward model', 'Wavelet prior'];
+    const coilNames = ['Coil 0', 'Coil 7', 'Coil 14'];
+    const coilFrames = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: coilNames[m], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          coilFrames[m],
+        );
+        await image([0, 7, 14][m]);
+        await scene.getByRole('button', { name: stepNames[i], exact: true }).click();
+        const frame = i === 1 ? coilFrames[m] : [168, 0, 504][i];
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), frame);
+        assert.equal(await scene.getAttribute('data-imaging-wavelet-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: stepNames[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        if (i === 0) {
+          await mask();
+          assert.match(
+            await scene.innerText(),
+            /80\/320.*Complex64\s*\(1,\s*15,\s*320,\s*320\).*Metadata R4.*README\s+8 coils/is,
+          );
+          assert.equal(await scene.locator('img').count(), 0);
+        } else if (i === 1) {
+          await image([0, 7, 14][m]);
+          assert.match(
+            await scene.innerText(),
+            /y_c=M F\(S_c x\).*centered orthonormal FFT.*not solver preprocessing.*Separate per-coil log scales/is,
+          );
+        } else {
+          assert.match(
+            await scene.innerText(),
+            /FISTA uses λ=1e−3.*τ=λα.*3 \+ 4i.*2\.4\+3\.2i.*no native coefficients.*normalized physics helper divides.*distinct operator/is,
+          );
+          assert.equal(await scene.locator('img').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), 336);
+    await image(0);
+    await absent();
+    const out = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${out}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*320×320.*Actual image, score and outcome empty.*not a participant prediction/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-wavelet-reference-revealed]').innerText(),
+      /solver-visible.*mvue.*missing phantom.*No truth image.*phase discarded.*no intensity renormalization.*fallback instead flux-normalizes.*relative L2.*102400.*not 15 coils/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /README synthetic 8-coil 128-square R8 differs.*15-coil 320-square R4.*phantom.*mvue.*fastMRI rights/is,
+    );
+    await capture('limits-contract');
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+  if (plan.recipe === 'imaging-grappa-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-grappa-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-grappa-full-target], [data-grappa-ssim]').count(), 0);
+    const advance = async (frame) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+        frame + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const native = JSON.parse(
+      fs.readFileSync('presentation/task-explorer/imaging101-mri-grappa/measurement.json', 'utf8'),
+    );
+    const helper = JSON.parse(
+      fs.readFileSync('presentation/task-explorer/imaging101-mri-grappa/helper.json', 'utf8'),
+    );
+    const pair = (v) => `${v[0].toPrecision(7)} + i(${v[1].toPrecision(7)})`;
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    const slider = scene.locator('input[type="range"]');
+    for (const [index, key] of [
+      [0, 'Home'],
+      [1, 'ArrowRight'],
+      [7, 'End'],
+    ]) {
+      await slider.focus();
+      await slider.press(key);
+      assert.equal(await slider.inputValue(), String(index));
+      const text = await scene.innerText();
+      assert.ok(text.includes(`Coil ${index} · native center [64,64]`));
+      assert.ok(text.includes(pair(native.native_center_kspace[index]) + ' a.u.'));
+      assert.ok(text.includes(pair(native.native_center_sensitivity[index]) + ' a.u.'));
+      const expected = native.symbolic_rule_retained_rows.map((y) => [
+        '0',
+        String(y),
+        '128',
+        '1',
+        y >= 54 && y <= 73 ? '#eeb989' : '#73c7e6',
+      ]);
+      expected.push(['0', '51', '128', '1', '#92d9ae']);
+      assert.deepEqual(
+        await scene
+          .locator('svg rect')
+          .evaluateAll((els) =>
+            els
+              .slice(1)
+              .map((e) => ['x', 'y', 'width', 'height', 'fill'].map((k) => e.getAttribute(k))),
+          ),
+        expected,
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /Illustrated rule.*rows \(dim 0\) down.*columns right/,
+      );
+      assert.match(
+        text,
+        /74\/128.*57\.8125%.*nominal R=2.*Rule illustration only.*raw archive is fully sampled/is,
+      );
+      await capture(`coil-${index}`);
+      await absent();
     }
-    await advance(0);await page.locator('[data-story-step="0"]').click();assert.equal(await slider.inputValue(),'0');
-    const hi=plan.beats.findIndex(b=>b.scene==='helper');await page.locator(`[data-story-step="${hi}"]`).click();await absent();
-    const truth=()=>scene.getByRole('button',{name:'Reveal source full-data target',exact:true});await truth().click();
-    assert.match(await scene.locator('[data-grappa-full-target]').innerText(),/row 51, col 64.*8 coils.*already solver-visible.*not GRAPPA estimate or private evaluator/is);
-    assert.deepEqual(await scene.locator('[data-grappa-full-target] span').allTextContents(),helper.native_full_target_pairs.map((v,c)=>`coil ${c}: ${pair(v)}`));await capture('source-target');
-    for(const tier of ['L1','L2','L3']){await scene.getByRole('button',{name:tier,exact:true}).click();assert.equal(await scene.getByRole('button',{name:tier,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('[data-grappa-tier]').innerText(),helper.tiers[tier]);}
-    await scene.getByRole('button',{name:'Hide source full-data target',exact:true}).click();await absent();
-    await advance(plan.beats[hi].startFrame);await truth().click();await page.locator(`[data-story-step="${hi}"]`).click();await absent();assert.equal(await scene.getByRole('button',{name:'L1',exact:true}).getAttribute('aria-pressed'),'true');
-    await truth().click();await page.locator('[data-story-step="0"]').click();await absent();await page.locator(`[data-story-step="${hi}"]`).click();await absent();await truth().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${hi}"]`).click();await absent();
-    const op=plan.beats.findIndex(b=>b.scene==='operation');assert.equal(plan.beats.filter(b=>b.scene==='operation').length,1);await page.locator(`[data-story-step="${op}"]`).click();
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await slider.inputValue(), '0');
+    const hi = plan.beats.findIndex((b) => b.scene === 'helper');
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    const truth = () =>
+      scene.getByRole('button', { name: 'Reveal source full-data target', exact: true });
+    await truth().click();
+    assert.match(
+      await scene.locator('[data-grappa-full-target]').innerText(),
+      /row 51, col 64.*8 coils.*already solver-visible.*not GRAPPA estimate or private evaluator/is,
+    );
+    assert.deepEqual(
+      await scene.locator('[data-grappa-full-target] span').allTextContents(),
+      helper.native_full_target_pairs.map((v, c) => `coil ${c}: ${pair(v)}`),
+    );
+    await capture('source-target');
+    for (const tier of ['L1', 'L2', 'L3']) {
+      await scene.getByRole('button', { name: tier, exact: true }).click();
+      assert.equal(
+        await scene.getByRole('button', { name: tier, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(await scene.locator('[data-grappa-tier]').innerText(), helper.tiers[tier]);
+    }
+    await scene.getByRole('button', { name: 'Hide source full-data target', exact: true }).click();
+    await absent();
+    await advance(plan.beats[hi].startFrame);
+    await truth().click();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    assert.equal(
+      await scene.getByRole('button', { name: 'L1', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await truth().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    await truth().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    const op = plan.beats.findIndex((b) => b.scene === 'operation');
+    assert.equal(plan.beats.filter((b) => b.scene === 'operation').length, 1);
+    await page.locator(`[data-story-step="${op}"]`).click();
     // Independently solved inverse smoothstep and earliest-tie rule for288-frame canonical beat.
-    const nearest=[576,687,752,863];assert.equal(plan.beats[op].startFrame,576);assert.equal(plan.beats[op].frames,288);
-    for(let step=0;step<4;step++)for(let method=0;method<3;method++){
-      await scene.locator(`[data-grappa-step="${step}"]`).click();const name=['calibration','interpolation','combination'][method];await scene.getByRole('group',{name:'GRAPPA source mechanism',exact:true}).getByRole('button',{name,exact:true}).click();
-      assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),nearest[step]);assert.equal(await scene.locator(`[data-grappa-step="${step}"]`).getAttribute('aria-pressed'),'true');
-      assert.equal(await scene.getAttribute('data-grappa-scene'),'operation');assert.equal(await scene.locator('[data-grappa-current-step]').getAttribute('data-grappa-current-step'),String(step));
-      assert.match(await scene.locator('[data-grappa-method]').innerText(),[/λ₀=0\.01.*n_sources.*no weight matrix/is,/first-coil.*True acquired zero.*exact zeros=0/is,/spatial axes \(0,1\).*forward 1\/128.*coil axis 2 excluded.*sqrt.*bare phantom/is][method]);
-      assert.deepEqual(await scene.locator('[data-kind]').evaluateAll(els=>els.map(e=>[e.getAttribute('data-kind'),e.textContent])),Array.from({length:25},(_,i)=>[i===12?'target':Math.floor(i/5)%2===1?'source':'hole',i===12?'T':Math.floor(i/5)%2===1?'S':'·']));
-      assert.match(await scene.innerText(),/No calibration solve, missing samples or reconstructed image computed/);await capture(`contract-${step}-${method}`);await absent();
+    const nearest = [576, 687, 752, 863];
+    assert.equal(plan.beats[op].startFrame, 576);
+    assert.equal(plan.beats[op].frames, 288);
+    for (let step = 0; step < 4; step++)
+      for (let method = 0; method < 3; method++) {
+        await scene.locator(`[data-grappa-step="${step}"]`).click();
+        const name = ['calibration', 'interpolation', 'combination'][method];
+        await scene
+          .getByRole('group', { name: 'GRAPPA source mechanism', exact: true })
+          .getByRole('button', { name, exact: true })
+          .click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          nearest[step],
+        );
+        assert.equal(
+          await scene.locator(`[data-grappa-step="${step}"]`).getAttribute('aria-pressed'),
+          'true',
+        );
+        assert.equal(await scene.getAttribute('data-grappa-scene'), 'operation');
+        assert.equal(
+          await scene
+            .locator('[data-grappa-current-step]')
+            .getAttribute('data-grappa-current-step'),
+          String(step),
+        );
+        assert.match(
+          await scene.locator('[data-grappa-method]').innerText(),
+          [
+            /λ₀=0\.01.*n_sources.*no weight matrix/is,
+            /first-coil.*True acquired zero.*exact zeros=0/is,
+            /spatial axes \(0,1\).*forward 1\/128.*coil axis 2 excluded.*sqrt.*bare phantom/is,
+          ][method],
+        );
+        assert.deepEqual(
+          await scene
+            .locator('[data-kind]')
+            .evaluateAll((els) => els.map((e) => [e.getAttribute('data-kind'), e.textContent])),
+          Array.from({ length: 25 }, (_, i) => [
+            i === 12 ? 'target' : Math.floor(i / 5) % 2 === 1 ? 'source' : 'hole',
+            i === 12 ? 'T' : Math.floor(i / 5) % 2 === 1 ? 'S' : '·',
+          ]),
+        );
+        assert.match(
+          await scene.innerText(),
+          /No calibration solve, missing samples or reconstructed image computed/,
+        );
+        await capture(`contract-${step}-${method}`);
+        await absent();
+      }
+    await scene.locator('[data-grappa-step="0"]').click();
+    await scene.getByRole('button', { name: 'combination', exact: true }).click();
+    await advance(nearest[0]);
+    await scene.locator('[data-grappa-step="0"]').click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'calibration', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /output\/reconstruction\.npy.*128×128 real magnitude image.*UNSUBMITTED.*Synthetic phantom is not an acquired patient brain/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    assert.equal(await scene.locator('[data-grappa-format]').count(), 0);
+    await scene.getByRole('button', { name: 'Inspect artifact format', exact: true }).click();
+    assert.match(
+      await scene.locator('[data-grappa-format]').innerText(),
+      /real 128 x 128 NPY.*grappa_reconstruction\.npz.*1 x 128 x 128 batch.*No participant/is,
+    );
+    await capture('output-contract');
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    for (const rule of ['metric', 'reference selection', 'threshold']) {
+      await scene.getByRole('button', { name: rule, exact: true }).click();
+      assert.equal(
+        await scene.getByRole('button', { name: rule, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.locator('[data-grappa-rule]').innerText(),
+        {
+          metric: /zero range.*infinity.*16384.*No flux scaling.*1e-12.*1e-30/is,
+          'reference selection':
+            /ground_truth\.npy.*full-data RSS.*ground_truth\.npz.*bare phantom.*unequal pixel values/is,
+          threshold: /nested grappa\/zerofill.*no top-level.*passed=None.*not displayed/is,
+        }[rule],
+      );
+      await capture(`rule-${rule.replaceAll(' ', '-')}`);
     }
-    await scene.locator('[data-grappa-step="0"]').click();await scene.getByRole('button',{name:'combination',exact:true}).click();await advance(nearest[0]);await scene.locator('[data-grappa-step="0"]').click();assert.equal(await scene.getByRole('button',{name:'calibration',exact:true}).getAttribute('aria-pressed'),'true');
-    const oi=plan.beats.findIndex(b=>b.scene==='output');await page.locator(`[data-story-step="${oi}"]`).click();await absent();assert.match(await scene.innerText(),/output\/reconstruction\.npy.*128×128 real magnitude image.*UNSUBMITTED.*Synthetic phantom is not an acquired patient brain/is);assert.equal(await scene.locator('img,canvas,image').count(),0);
-    assert.equal(await scene.locator('[data-grappa-format]').count(),0);await scene.getByRole('button',{name:'Inspect artifact format',exact:true}).click();assert.match(await scene.locator('[data-grappa-format]').innerText(),/real 128 x 128 NPY.*grappa_reconstruction\.npz.*1 x 128 x 128 batch.*No participant/is);await capture('output-contract');
-    const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();await absent();
-    for(const rule of ['metric','reference selection','threshold']){
-      await scene.getByRole('button',{name:rule,exact:true}).click();assert.equal(await scene.getByRole('button',{name:rule,exact:true}).getAttribute('aria-pressed'),'true');
-      assert.match(await scene.locator('[data-grappa-rule]').innerText(),{metric:/zero range.*infinity.*16384.*No flux scaling.*1e-12.*1e-30/is,'reference selection':/ground_truth\.npy.*full-data RSS.*ground_truth\.npz.*bare phantom.*unequal pixel values/is,threshold:/nested grappa\/zerofill.*no top-level.*passed=None.*not displayed/is}[rule]);await capture(`rule-${rule.replaceAll(' ','-')}`);
-    }
-    const reveal=()=>scene.getByRole('button',{name:'Reveal SSIM implementation difference',exact:true});await reveal().click();assert.match(await scene.locator('[data-grappa-ssim]').innerText(),/also returns infinity.*skimage local.*whole-image.*max\(reference\).*Without a filesystem.*flux-normalizes.*relative L2/is);await capture('ssim-revealed');
-    await scene.getByRole('button',{name:'Hide SSIM implementation difference',exact:true}).click();await absent();await advance(plan.beats[li].startFrame);await reveal().click();await page.locator(`[data-story-step="${li}"]`).click();await absent();assert.equal(await scene.getByRole('button',{name:'reference selection',exact:true}).getAttribute('aria-pressed'),'true');
-    await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${li}"]`).click();await absent();await reveal().click();await page.locator(`[data-story-step="${oi}"]`).click();await absent();assert.equal(await scene.locator('[data-grappa-format]').count(),0);await page.locator(`[data-story-step="${li}"]`).click();await absent();await page.locator('.scene-reset').click();
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal SSIM implementation difference', exact: true });
+    await reveal().click();
+    assert.match(
+      await scene.locator('[data-grappa-ssim]').innerText(),
+      /also returns infinity.*skimage local.*whole-image.*max\(reference\).*Without a filesystem.*flux-normalizes.*relative L2/is,
+    );
+    await capture('ssim-revealed');
+    await scene
+      .getByRole('button', { name: 'Hide SSIM implementation difference', exact: true })
+      .click();
+    await absent();
+    await advance(plan.beats[li].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'reference selection', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.equal(await scene.locator('[data-grappa-format]').count(), 0);
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    await page.locator('.scene-reset').click();
   }
   if (plan.recipe === 'imaging-dynamic-mri-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -8535,6 +8928,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-wavelet-v1',
       'imaging-grappa-v1',
       'imaging-dynamic-mri-v1',
       'imaging-eit-v1',

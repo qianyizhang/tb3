@@ -1,0 +1,270 @@
+{
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet",
+  "actual_data_gap": "README synthetic 8-coil 128-square R8 differs from released 15-coil 320-square R4 knee data. Source loader asks for phantom but the ground-truth archive contains mvue. No participant reconstruction, output or score; upstream fastMRI rights separately unresolved.",
+  "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+  "attempts": [
+    {
+      "action": "retained-validation",
+      "attempted_at": "2026-10-01T06:47:35.491997+00:00",
+      "outcome": "Revalidated all 19 retained hashes, 12 primary Git tree blobs and four official data LFS entries. Historical HTTP object retained unchanged; no new GET or source operator execution.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+    }
+  ],
+  "baseline_commit": "ffc0b7edfa6b5ef455510e4a2a42e18c73e27efd",
+  "brief_sha256": "ddf3563700d49ba2e3fcf6cc6df8ac2cb9aaac0f7be40b39be3143f91a197966",
+  "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+  "entry_id": "imaging101-mri-l1-wavelet",
+  "fixture": {
+    "actual_output": null,
+    "clean_reference": null,
+    "coils": [
+      0,
+      7,
+      14
+    ],
+    "role": "Authored complex-wavelet coefficient example, not native reconstruction",
+    "toy_complex": [
+      3,
+      4
+    ],
+    "toy_shrunk": [
+      2.4,
+      3.2
+    ],
+    "toy_threshold": 1
+  },
+  "historical_attempts": [
+    {
+      "date": "2026-10-01",
+      "outcome": "HTTP2003560B; allfourdataLFS pins match retained assets. No new rawdataset/taskexecution.",
+      "request": "Pinned official data tree, max64KiB/30s"
+    }
+  ],
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "public_reference": {
+    "clean_image": null,
+    "criteria": [
+      "ground_truth:mvue is source/solver-visible",
+      "loader phantom key absent",
+      "generic comparison complex\u2192magnitude phase discarded",
+      "no fresh reconstruction or metric"
+    ],
+    "role": "Reader-only source-truth/loader and evaluator rules; no truth image/reference prediction"
+  },
+  "reopening_conditions": [
+    "Reconcile README and released data condition",
+    "Repair/adjudicate phantom-versus-mvue loader without rewriting source truth",
+    "Pin coherent output lineage/evaluator and rights before outcome/publication claim"
+  ],
+  "schema": 1,
+  "source_condition": {
+    "FFT": "centered orthonormal",
+    "R": 4,
+    "README_case": [
+      8,
+      128,
+      128,
+      8
+    ],
+    "available_truth_keys": [
+      "mvue"
+    ],
+    "batch": 1,
+    "coils": 15,
+    "height": 320,
+    "loader_key": "phantom",
+    "sampled_columns": 80,
+    "signal_units": "arbitrary complex signal",
+    "source_slice": "fastMRI file1000000.h5 slice 21 (metadata attribution; upstream identity not independently joined)",
+    "spatial_affine": null,
+    "total_columns": 320,
+    "width": 320
+  },
+  "source_files": [
+    {
+      "bytes": 758321,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_l1_wavelet/data/ground_truth.npz",
+      "role": "solver-visible-ground-truth",
+      "sha256": "14fa4861c7450b61d7a367abb1a09f5a2f19750f55a54632c9692f202975fce7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 366,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_l1_wavelet/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "1041eeb165ba5bbbc3fceb19ffdce38845371a53bc1a8410cdfdaea3a3617340",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 15203381,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_l1_wavelet/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "af8f4aef8714b55c172e794aaaece26a86d87931849fdf8634666b139d0eb4be",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 2366,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_l1_wavelet/data/wavelet_filters.npz",
+      "role": "supplied-helper",
+      "sha256": "3fa55caac10d71186b2ae073b00d59d7710867c100f5752dabd907bc7f23859a",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 760084,
+      "path": ".local/explainers/core-20260929/formation-c-source/assets/mri_l1_wavelet/evaluation/reference_outputs/l1_wavelet_reconstruction.npz",
+      "role": "source-saved-output",
+      "sha256": "ce9e61bcdae11af9070aa03f234c66701a4b22fc7d4801fa8684ef21ffcecf1e",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 6199,
+      "git_blob": "4cde72e2cb82467ea96d018197344f3b7164f3d2",
+      "git_path": "tasks/mri_l1_wavelet/README.md",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_l1_wavelet/README.md",
+      "role": "pinned-task-source",
+      "sha256": "b0980e80fed99deb8218aa54097b7d8ddeaa0800d2986ed4c35a8a4af53baeb2",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 4734,
+      "git_blob": "53e10a272694f9c5796def02ba7b717eda617649",
+      "git_path": "tasks/mri_l1_wavelet/main.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_l1_wavelet/main.py",
+      "role": "pinned-task-source",
+      "sha256": "25624d72a54f8856606f18a6c2a0dcb75db744936b9a0045d249cd9a426d553e",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 6158,
+      "git_blob": "40793030be3894054af26b537787c84931422ce3",
+      "git_path": "tasks/mri_l1_wavelet/src/generate_data.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_l1_wavelet/src/generate_data.py",
+      "role": "pinned-task-source",
+      "sha256": "a258a1b9f29c02862ca4c8e5fc986ed414992c22bd443eaedd27cf708bcaaf72",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 4287,
+      "git_blob": "3236db884b532a7220fc329b8bcb78a5b68226bf",
+      "git_path": "tasks/mri_l1_wavelet/src/physics_model.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_l1_wavelet/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "c0a0a6418bde89436a16496eeb565226b183ceec588a660bedc08843550108e9",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 2732,
+      "git_blob": "5f45eeca1d36ecdeef2da9efce49aee11562009b",
+      "git_path": "tasks/mri_l1_wavelet/src/preprocessing.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_l1_wavelet/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "7678b28b8dfb26d531559f3d44d5ed8395efc642ad56f04a1a97548508cd65dc",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 14999,
+      "git_blob": "dac966d0133d5763b16ce2419f2d4ea9d4f9659a",
+      "git_path": "tasks/mri_l1_wavelet/src/solvers.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/tasks/mri_l1_wavelet/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "264d9aa2c411e213e5c59be595d735a14433eb30510b8d08bcd824eeabb402d6",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 7628,
+      "path": ".local/explainers/core-20260929/formation-c-source/trees/mri_l1_wavelet.json",
+      "role": "supplied-helper",
+      "sha256": "808ffeb679ded2afe1b9e7762dd565fce6405de8e1419a604adf01221d94c802",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet"
+    },
+    {
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "git_path": "evaluation_harness/reference_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 15186,
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab",
+      "git_path": "evaluation_harness/runner.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/runner.py"
+    },
+    {
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "git_path": "evaluation_harness/scorer.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 19005,
+      "git_blob": "d5f5043d353d9a29ff9f9044def53334f79d96d0",
+      "git_path": "evaluation_harness/task_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/task_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "04596307728d59880ad09376ec511f90400f0527c48887f16ce57c8a6d9d4f6b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/task_scoring.py"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-c-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/README.md"
+    },
+    {
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "git_path": "LICENSE",
+      "path": ".local/explainers/completion-20260927/047-source/LICENSE",
+      "role": "source-license",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09"
+    },
+    {
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "git_path": "evaluation_harness/local_runner.py",
+      "path": ".local/explainers/completion-20260927/047-source/evaluation_harness/local_runner.py",
+      "role": "pinned-staging-local-runner",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Live generic end-to-end: one output/reconstruction.npy real numeric image; complex inputs/algorithm outputs are reduced to magnitude before numerical comparison. No participant artifact exists here.",
+    "helper": "Source-supplied sensitivity maps, db4 wavelet coefficients, centered orthonormal FFT and solver-visible data/ground_truth.npz:mvue. This source-visible truth does not create a blind challenge.",
+    "input": "native masked fastMRI-derived k-space, 15 coils, 320 square, arbitrary signal",
+    "private_reference": "No separate private target established in downloaded source; do not call source-visible truth private",
+    "solver_visible_ground_truth": "data/ground_truth.npz in source archive and local runner staging",
+    "source_saved_output": "source-saved L1-wavelet output; source condition compatible by array shape but not fresh verified execution"
+  },
+  "source_transport": {
+    "bytes": 3560,
+    "path": ".local/explainers/goal-20260930/workers/imaging101-mri-l1-wavelet/official-data-tree.json",
+    "sha256": "fb5e915f34a6cc6bd0cbb68207086e7de19542f18642fb38f4ac9f572f9502d8"
+  },
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "For each trial image, multiply by each coil map, apply centered orthonormal FFT, retain measured columns and balance residuals against the L1 norm of db4 wavelet coefficients.",
+    "reference_policy": "reader-reference-reveal",
+    "reference_role": "Late explicit reader reveal of source/loader/scoring rules only; no native truth image or private target bundled.",
+    "task_id": "mri_l1_wavelet"
+  },
+  "validated_at": "2026-10-01T06:47:35.491997+00:00",
+  "warning_text": "Released R4 knee k-space differs from README R8 synthetic case; loader truth key also differs. No participant output. Official acquisition route."
+}

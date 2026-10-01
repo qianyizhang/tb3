@@ -1,0 +1,2 @@
+Released R4 knee k-space differs from README R8 synthetic case; loader truth key also differs. No participant output. Official acquisition route. https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_l1_wavelet
+Source k-space coil displays preserve native 320-square frequency frame, separate grayscale display scale per coil. Metadata fastMRI file1000000.h5 slice 21; no patient-image orientation or physical spacing established. No outcome/GT image.

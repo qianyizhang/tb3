@@ -1,3 +1,4 @@
+import { imagingWaveletPack } from './imaging101-mri-l1-wavelet';
 import { imagingGrappaPack } from './imaging-grappa';
 import { imagingDynamicMriPack } from './imaging-dynamic-mri';
 import { imagingEitPack } from './imaging-eit';
@@ -131,6 +132,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-wavelet-v1',
     'imaging-grappa-v1',
     'imaging-dynamic-mri-v1',
     'imaging-eit-v1',
@@ -1228,6 +1230,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#73c7e6', 'Retained row under R2/ACS rule'],
           ['#eeb989', 'ACS training rows'],
           ['#92d9ae', 'Missing row target · no estimate'],
+        ],
+      };
+    case 'imaging101-wavelet-v1':
+      return {
+        heading: 'Masked complex MRI and wavelet regularization',
+        corner: 'README/assets/loader differ',
+        warning: imagingWaveletPack.source.notice,
+        legend: [
+          ['#91a6ae', 'Actual released R4 mask and coil k-space'],
+          ['#18c6d4', 'Symbolic complex-domain wavelet rule'],
+          ['#7ba4b8', 'Source truth/evaluator limits; no outcome'],
         ],
       };
     case 'bcer-brain-full-v1':

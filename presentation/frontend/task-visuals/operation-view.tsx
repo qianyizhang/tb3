@@ -1,3 +1,4 @@
+import { ImagingWaveletScene, ImagingWaveletOutput } from './imaging101-mri-l1-wavelet-panels';
 import { ImagingGrappaScene, ImagingGrappaOutput } from './imaging-grappa-panels';
 import { ImagingDynamicMriScene, ImagingDynamicMriOutput } from './imaging-dynamic-mri-panels';
 import { ImagingEitScene, ImagingEitOutput } from './imaging-eit-panels';
@@ -401,6 +402,8 @@ export function OperationScene({
         onSeekFrame={onSeekFrame}
       />
     );
+  if (state.recipe === 'imaging101-wavelet-v1')
+    return <ImagingWaveletScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -745,6 +748,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'imaging-eit-v1') return <ImagingEitOutput state={state} />;
   if (state.recipe === 'imaging-dynamic-mri-v1') return <ImagingDynamicMriOutput state={state} />;
   if (state.recipe === 'imaging-grappa-v1') return <ImagingGrappaOutput state={state} />;
+  if (state.recipe === 'imaging101-wavelet-v1') return <ImagingWaveletOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;
