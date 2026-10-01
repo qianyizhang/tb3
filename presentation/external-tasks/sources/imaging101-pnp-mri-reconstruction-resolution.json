@@ -1,0 +1,572 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+  "actual_data_gap": "Raw source image is exactly source-visible truth. No acquired k-space, coil measurements or new Fourier/PGM/denoiser result supplied here. Retained saved mask is geometry evidence only. Checkpoint shards are present but never loaded; graph/runtime compatibility, sigma training claim and upstream fastMRI/MSSN rights unverified. Source and generic error normalizations differ.",
+  "attempts": [
+    {
+      "action": "download selected pinned official source/native arrays/source-saved examples; verify Git blob or HF LFS identity",
+      "attempted_at": "2026-09-29T07:44:12.024829+00:00",
+      "outcome": "41/41 combined requested task files verified across four entries; no task method executed",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction ; https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "action": "download and verify pinned public generic-scoring ground_truth.npy by HF LFS SHA-256",
+      "attempted_at": "2026-09-29T07:53:26.775448+00:00",
+      "outcome": "SHA-256 matched LFS; array equals min-max normalized raw image exactly.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction/evaluation/reference_outputs"
+    },
+    {
+      "action": "download three pinned public MSSN TensorFlow checkpoint shards without loading the model",
+      "attempted_at": "2026-09-29T07:46:32.456964+00:00",
+      "outcome": "All three checkpoint files matched pinned Git blob SHA-1; no model executed.",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/models/checkpoints"
+    },
+    {
+      "action": "Reverify retained native/mask/metadata/checkpoint/Git/LFS pins and fetch bounded pinned metrics/display module",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/src/visualization.py",
+      "outcome": "Fetched5966 bytes Git verified; native raw/truth/reference equality and mask geometry inspected. No source import, FFT, generated measurements, graph, model forward, reconstruction or metric executed. Source image display is minmax/stride derivative only, later reader reveal.",
+      "attempted_at": "2026-09-30T20:46:00.741794+00:00"
+    },
+    {
+      "action": "Validate retained official task, generic harness, checkpoint and native display identities without source imports",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "outcome": "No new GET. Retained raw/truth archive equality, normalized reference, saved mask and display parity revalidated; filesystem and no-filesystem route, baseline scaling and default checkpoint visibility reread. No FFT, model, solver or scorer executed.",
+      "attempted_at": "2026-10-01T08:34:14.867118+00:00"
+    },
+    {
+      "action": "Acquire missing official revision-pinned 235-byte metric metadata",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction/evaluation/reference_outputs/metrics.json",
+      "attempted_at": "2026-10-01T08:37:24.361171+00:00",
+      "status": 200,
+      "bytes": 235,
+      "sha256": "3ca0cd67412f67d12e833d7c884e1c810d15e53a802f0b54b40d856c9cbb0be8",
+      "git_blob": "e07606922cedac0244af023b887a18bf8009fab5",
+      "outcome": "HTTP200;235-byte JSON matched exact HF revision Git blob. No metric/solver executed."
+    }
+  ],
+  "checkpoint_identity": "Three Git-blob-verified TensorFlow checkpoint shards retained as supplied help, never loaded.",
+  "display_warning": "Source image equals visible truth; acquired k-space and participant PnP result absent.",
+  "entry_id": "imaging101-pnp-mri-reconstruction",
+  "evaluator_run": false,
+  "generic_evaluator_contract": {
+    "metrics": "range-normalized NRMSE, cosine NCC, MSE, PSNR, global SSIM if an actual output and usable reference exist",
+    "normalization": "squeeze dimensions >2 and reduce complex arrays to magnitude; no flux rescaling",
+    "output": "one real numeric output/reconstruction.npy",
+    "run": false,
+    "selection": "Filesystem first existing evaluation/reference_outputs/ground_truth.npy is returned even if target shape differs; shape check follows. The no-filesystem route also requires ground_truth.npy, present in this pinned release, but successful sandbox transfer/exec is not proven. Native saved reference equals float32 minmax-normalized raw image.",
+    "no_filesystem_difference": "Requires ground_truth.npy (present here), strictly 2D output cast float64 with no squeeze/complex magnitude preparation; flux-normalizes output by gt.sum/(out.sum+1e-30), then norm-relative NRMSE rather than filesystem range-relative NRMSE. Different precision. Host reference staging to non-filesystem runner is a pass branch; actual readability/exec unverified.",
+    "thresholds": "Official pinned evaluation/reference_outputs/metrics.json contains nested IFFT/PnP-MSSN saved result records, not flat ncc_boundary/nrmse_boundary. Filesystem _apply_boundaries attaches both None and passed=None. No-filesystem snippet does not apply boundary verdict. Saved values are historical source records, not current performance."
+  },
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "native_arrays": {
+    "data/ground_truth.npz": {
+      "img": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          320,
+          320
+        ]
+      }
+    },
+    "data/raw_data.npz": {
+      "img": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          320,
+          320
+        ]
+      }
+    }
+  },
+  "native_checks": {
+    "native": "raw_data.npz:img is exactly equal to data/ground_truth.npz:img; raw intensity range 5.25863e-6 to 9.88968e-5.",
+    "reference": "Generic scorer first chooses evaluation/reference_outputs/ground_truth.npy; it is exactly equal to min-max normalized raw image (320,320), not raw-intensity data/ground_truth.npz.",
+    "score_boundary": "Source-visible raw permits reconstructing selected reference normalization; not a blind masked-k-space result."
+  },
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Clarify whether the intended challenge is method reproduction with visible truth or a held-out inverse problem before interpreting performance.",
+  "resolved_at": "2026-09-29T07:48:45.499549+00:00",
+  "reviewed_at": "2026-09-29T07:54:16.053413+00:00",
+  "schema": 1,
+  "solver_run": false,
+  "source_license": "Pinned Imaging101 dataset card declares MIT. Upstream fastMRI knee and MSSN/BSD500 checkpoint reuse rights were not independently verified; local teaching only.",
+  "source_pins": [
+    {
+      "bytes": 409860,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/data/ground_truth.npz",
+      "role": "solver-visible-reference",
+      "sha256": "861f77b4302b866e9aadd60bf2e73538c70aecf7393950e80e0e4ca71a52b088",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 384,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "ce54a25d36b878d751a214c79db63b920f094c135f493e86aa91a64b7293a3ee",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 409860,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "861f77b4302b866e9aadd60bf2e73538c70aecf7393950e80e0e4ca71a52b088",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 819328,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/ifft_recon.npy",
+      "role": "source-saved-output",
+      "sha256": "5e55a1d82e21b1070fdff127cfad7fe3533ec4ac7609a839e3c07724b5ad4990",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 409728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/pnp_mssn_recon.npy",
+      "role": "source-saved-output",
+      "sha256": "11a925ba822edee8430f36f5574cda862d961182369340a2ae71b48c480eeff9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 102528,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/sampling_mask.npy",
+      "role": "source-saved-output",
+      "sha256": "0f4231221289f7f8b126193a8f6d08f3885eaedae043fc0c8c13d4a0974df9b7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-e-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04"
+    },
+    {
+      "bytes": 3614,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/README.md",
+      "role": "pinned-task-source",
+      "sha256": "57486edf6ec0b30e8622417a4628d8418ecf1fc9ca7a8d9fd3a467eb0002899d",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "ad13f23b2ef2c06f98fbf55c880bfd6bf83fb572"
+    },
+    {
+      "bytes": 3736,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/main.py",
+      "role": "pinned-task-source",
+      "sha256": "21ce9cb7a5a648caa1db918ed023c46623c99ee54bed17690d31f69991d2cdc0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "cb44b71c8e910e85ec184d4b2649345171ac59d2"
+    },
+    {
+      "bytes": 4662808,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/models/checkpoints/mssn-550000iters.data-00000-of-00001",
+      "role": "pinned-task-source",
+      "sha256": "ad27e0b77ba085e28b4660e0ed277612984da165c1d21deeb770384be5a07106",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "2654b55374b512520ed8591f133c81fcf260f782"
+    },
+    {
+      "bytes": 8948,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/models/checkpoints/mssn-550000iters.index",
+      "role": "pinned-task-source",
+      "sha256": "cf1037ecad330774a75b1121fe968100007be6b9be0d2db530dc89fddd31f456",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "79c44d933c81721bf028232b99515e204d30d22b"
+    },
+    {
+      "bytes": 4101062,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/models/checkpoints/mssn-550000iters.meta",
+      "role": "pinned-task-source",
+      "sha256": "f3f4a87fa15f754db183616fb78c4e1ee009a28cf67b5885b42435ab23469dfb",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "b652cfb92e8463415bea02187d9351545eea08fe"
+    },
+    {
+      "bytes": 4606,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "d6a2bb015d06504a1040e6049839161603e1b806c282e0d74add7757de3f6898",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "41507e5720dc54eba98bf36832384c913d3f1662"
+    },
+    {
+      "bytes": 1932,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "966bf2d88395510de9ae755b79ba40ee87732d7e27cdfc5d8025975505cc7ddd",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "b5be0061a7333ae59dfd41657e6422c178e6a05c"
+    },
+    {
+      "bytes": 14594,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "2b31cf245a5afdcb158190973e877fdba5d46a809d3bbe6f11aa9273a540b98c",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "2e5ea234f791a8824bd8f85ce3636809dba4bbf1"
+    },
+    {
+      "bytes": 10438,
+      "path": ".local/explainers/core-20260929/formation-e-source/trees/pnp_mri_reconstruction.json",
+      "role": "source-tree-or-helper",
+      "sha256": "a20ed17ef54afd8e9f6dc2528349fc74f6849bf40a940515681fa15261c06fa9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 409728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/ground_truth.npy",
+      "role": "source-saved-scoring-reference",
+      "sha256": "7c8738d38551eb7c2374b991585a71a92d51c685bf3505add95d96cbfa6cb9f2",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-pnp-mri-reconstruction/visualization.py",
+      "sha256": "17c871a522db8adfcb4b99210fc9ce1cb826ffd6330da46156d204ca55b4da79",
+      "bytes": 5966,
+      "git_blob": "e38cf5ce18d42c87d18abbc91305a9dde95fd6d0",
+      "role": "source-native-metrics",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-pnp-mri-reconstruction/refresh-plane-wave/source-evidence/metrics.json",
+      "bytes": 235,
+      "sha256": "3ca0cd67412f67d12e833d7c884e1c810d15e53a802f0b54b40d856c9cbb0be8",
+      "hf_git_blob": "e07606922cedac0244af023b887a18bf8009fab5",
+      "role": "source-saved-metric-record-not-threshold-or-current-performance",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction/evaluation/reference_outputs/metrics.json"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "output/reconstruction.npy, intended real320×320 normalized image; actual output and metric absent",
+    "helper": "Metadata and retained source-saved sampling_mask.npy; three verified TensorFlow checkpoint shards not loaded. Public normalization, mask and patch rules.",
+    "input": "Raw image img float32 (1,320,320), exactly equal to data truth; not acquired complex k-space. Image display later only because it reveals source-visible truth.",
+    "reference": "source-visible ground_truth or baseline where supplied; no separate hidden target established",
+    "source_saved_output": "Saved IFFT/PnP arrays remain audit only, never participant result or displayed outcome",
+    "private_reference": "No separate hidden target established; data truth and normalized saved generic reference solver-visible"
+  },
+  "status": "worker-frozen-source-resolution",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "Unitary discrete A=M fftshift(FFT2 x)/320; AH=320 IFFT2(ifftshift(Mz)), binary real mask; gradient real(AH(Ax−y)). No coil/FOV/NUFFT or measured noise. Source y generated from normalized visible image; no FFT computed here.",
+    "reference_policy": "Public source image and scoring truth; explanation reveal late only",
+    "task_id": "pnp_mri_reconstruction",
+    "algorithm": "PGM, not ADMM: x0=0;200 fixed steps1. s=max(x−grad,0), xnext=D(s); no post-denoiser clipping/stopping. MSSN overlapping42² patches stride7 plus end278:41²=1681, input*255,float32 residual+input averaged then/255. sigma argument accepted but unused; no measured noise injection.",
+    "runtime": "TensorFlow compat.v1 disables eager on import, tf.layers APIs and legacy Keras environment; three Git-verified checkpoint shards retained, no graph/load/inference. Exact runtime and variable/checkpoint compatibility unverified. main all_metrics keys IFFT/PnP-MSSN disagree with plot_comparison ifft/pnp_mssn, so figure call KeyError after output save under this code.",
+    "metrics": "Source NRMSE=||gt−est||/||gt|| versus generic RMSE/(max(gt)−min(gt)); source SNR=20log10(||gt||/error norm), not acquisition noise SNR. Both cosine NCC; generic 102400 full pixels no flux/scale normalization. First ref evaluation/reference_outputs/ground_truth.npy equals float32 minmax raw; no private target. Source output/metrics.json is not generic evaluation/metrics.json boundary file.",
+    "history": "Source SNR records pre-update x, first zero estimate =>0dB for nonzero truth; dist is squared iterate difference, not data residual/objective; relative change inf atfirst, unguarded normzero later. No convergence/history run.",
+    "checkpoint_visibility": "README.md/data/requirements.txt are default end-to-end visible paths; checkpoint shards are retained upstream help, not automatically staged in that list. Runtime/access/compatibility unverified."
+  },
+  "top_warning": "Source image equals visible truth; acquired k-space and participant PnP result absent.",
+  "source_files": [
+    {
+      "bytes": 409860,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/data/ground_truth.npz",
+      "role": "solver-visible-reference",
+      "sha256": "861f77b4302b866e9aadd60bf2e73538c70aecf7393950e80e0e4ca71a52b088",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 384,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "ce54a25d36b878d751a214c79db63b920f094c135f493e86aa91a64b7293a3ee",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 409860,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "861f77b4302b866e9aadd60bf2e73538c70aecf7393950e80e0e4ca71a52b088",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 819328,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/ifft_recon.npy",
+      "role": "source-saved-output",
+      "sha256": "5e55a1d82e21b1070fdff127cfad7fe3533ec4ac7609a839e3c07724b5ad4990",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 409728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/pnp_mssn_recon.npy",
+      "role": "source-saved-output",
+      "sha256": "11a925ba822edee8430f36f5574cda862d961182369340a2ae71b48c480eeff9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 102528,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/sampling_mask.npy",
+      "role": "source-saved-output",
+      "sha256": "0f4231221289f7f8b126193a8f6d08f3885eaedae043fc0c8c13d4a0974df9b7",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-e-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04"
+    },
+    {
+      "bytes": 3614,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/README.md",
+      "role": "pinned-task-source",
+      "sha256": "57486edf6ec0b30e8622417a4628d8418ecf1fc9ca7a8d9fd3a467eb0002899d",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "ad13f23b2ef2c06f98fbf55c880bfd6bf83fb572"
+    },
+    {
+      "bytes": 3736,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/main.py",
+      "role": "pinned-task-source",
+      "sha256": "21ce9cb7a5a648caa1db918ed023c46623c99ee54bed17690d31f69991d2cdc0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "cb44b71c8e910e85ec184d4b2649345171ac59d2"
+    },
+    {
+      "bytes": 4662808,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/models/checkpoints/mssn-550000iters.data-00000-of-00001",
+      "role": "pinned-task-source",
+      "sha256": "ad27e0b77ba085e28b4660e0ed277612984da165c1d21deeb770384be5a07106",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "2654b55374b512520ed8591f133c81fcf260f782"
+    },
+    {
+      "bytes": 8948,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/models/checkpoints/mssn-550000iters.index",
+      "role": "pinned-task-source",
+      "sha256": "cf1037ecad330774a75b1121fe968100007be6b9be0d2db530dc89fddd31f456",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "79c44d933c81721bf028232b99515e204d30d22b"
+    },
+    {
+      "bytes": 4101062,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/models/checkpoints/mssn-550000iters.meta",
+      "role": "pinned-task-source",
+      "sha256": "f3f4a87fa15f754db183616fb78c4e1ee009a28cf67b5885b42435ab23469dfb",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "b652cfb92e8463415bea02187d9351545eea08fe"
+    },
+    {
+      "bytes": 4606,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "d6a2bb015d06504a1040e6049839161603e1b806c282e0d74add7757de3f6898",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "41507e5720dc54eba98bf36832384c913d3f1662"
+    },
+    {
+      "bytes": 1932,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "966bf2d88395510de9ae755b79ba40ee87732d7e27cdfc5d8025975505cc7ddd",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "b5be0061a7333ae59dfd41657e6422c178e6a05c"
+    },
+    {
+      "bytes": 14594,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/pnp_mri_reconstruction/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "2b31cf245a5afdcb158190973e877fdba5d46a809d3bbe6f11aa9273a540b98c",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction",
+      "git_blob": "2e5ea234f791a8824bd8f85ce3636809dba4bbf1"
+    },
+    {
+      "bytes": 10438,
+      "path": ".local/explainers/core-20260929/formation-e-source/trees/pnp_mri_reconstruction.json",
+      "role": "source-tree-or-helper",
+      "sha256": "a20ed17ef54afd8e9f6dc2528349fc74f6849bf40a940515681fa15261c06fa9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "bytes": 409728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/pnp_mri_reconstruction/evaluation/reference_outputs/ground_truth.npy",
+      "role": "source-saved-scoring-reference",
+      "sha256": "7c8738d38551eb7c2374b991585a71a92d51c685bf3505add95d96cbfa6cb9f2",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-pnp-mri-reconstruction/visualization.py",
+      "sha256": "17c871a522db8adfcb4b99210fc9ce1cb826ffd6330da46156d204ca55b4da79",
+      "bytes": 5966,
+      "git_blob": "e38cf5ce18d42c87d18abbc91305a9dde95fd6d0",
+      "role": "source-native-metrics",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-pnp-mri-reconstruction/refresh-plane-wave/source-evidence/metrics.json",
+      "bytes": 235,
+      "sha256": "3ca0cd67412f67d12e833d7c884e1c810d15e53a802f0b54b40d856c9cbb0be8",
+      "hf_git_blob": "e07606922cedac0244af023b887a18bf8009fab5",
+      "role": "source-saved-metric-record-not-threshold-or-current-performance",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction/evaluation/reference_outputs/metrics.json"
+    }
+  ],
+  "warning_text": "Source image equals visible truth; acquired k-space and participant PnP result absent.",
+  "reference_policy": "reader-reference-reveal",
+  "source_condition": {
+    "raw_shape": [
+      1,
+      320,
+      320
+    ],
+    "dtype": "float32",
+    "raw_equals_truth": true,
+    "acquired_kspace": null,
+    "coil_axis": null,
+    "complex_measurements": null,
+    "image_pixels": 102400,
+    "mask_shape": [
+      320,
+      320
+    ],
+    "saved_sampled_cells": 11766,
+    "num_lines": 36,
+    "mask_fraction": 0.11490234375,
+    "inverse_mask_fraction": 8.703042665306816,
+    "fft_scale": 320,
+    "noise_added": false,
+    "metadata_sigma": 5,
+    "sigma_used_by_constructor": false,
+    "iterations": 200,
+    "step_size": 1,
+    "patch_size": 42,
+    "stride": 7,
+    "patch_positions_per_axis": 41,
+    "patches": 1681,
+    "state_num": 8,
+    "checkpoint_shards_present": 3,
+    "model_loaded": false,
+    "available_truth_keys": [
+      "img"
+    ],
+    "preview_stride": 2,
+    "preview_shape": [
+      160,
+      160
+    ],
+    "reference_initially_visible": false,
+    "inventory_conditions": [
+      "L1 · README",
+      "L2 · + approach",
+      "L3 · + design"
+    ],
+    "ifft_baseline": "abs(IFFT2(ifftshift(y * 320))); explicit undo of forward scale, not unscaled y"
+  },
+  "fixture": {
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "toy_y": 0.6,
+    "toy_gradient": -0.6,
+    "toy_pre_denoise": 0.6,
+    "denoiser_output": null,
+    "actual_output": null,
+    "clean_reference": null
+  },
+  "public_reference": {
+    "role": "Later public source image = solver-visible truth; not reconstruction",
+    "clean_image": null,
+    "image_file": "source-image.png",
+    "criteria": [
+      "Raw image equals data truth; minmax equals first generic saved reference",
+      "Source norm-relative versus generic range-normalized error",
+      "No participant image, metric, denoiser output or private truth"
+    ]
+  },
+  "brief_sha256": "d3f4eb1c09d25a6607e38f814fd513b443bb221f4dc5342f97464584ffe051bd",
+  "historical_acquisition_objects_preserved": true
+}

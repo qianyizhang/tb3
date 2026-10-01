@@ -1,3 +1,4 @@
+import { imagingPnpMriPack } from './imaging101-pnp-mri-reconstruction';
 import { imagingPlaneWavePack } from './imaging101-plane-wave-ultrasound';
 import { imagingPhotoacousticPack } from './imaging101-photoacoustic-tomography';
 import { imagingPetMlemPack } from './imaging101-pet-mlem';
@@ -140,6 +141,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-pnp-mri-reconstruction-v1',
     'imaging101-plane-wave-ultrasound-v1',
     'imaging101-photoacoustic-tomography-v1',
     'imaging101-pet-mlem-v1',
@@ -1345,6 +1347,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#ffffff', 'White: ADC code 255'],
           ['#57d1cc', 'Teal line: raw ADC trace'],
           ['#b2c2ce', 'Gray line: global source mean'],
+        ],
+      };
+    case 'imaging101-pnp-mri-reconstruction-v1':
+      return {
+        heading: 'Solver-visible source image, radial mask and PnP gradient rules',
+        corner: 'Image supplied; acquired k-space and PnP result absent',
+        warning: imagingPnpMriPack.source.notice,
+        legend: [
+          ['#ffffff', 'Sampled mask cells / high normalized image intensity'],
+          ['#000000', 'Omitted mask cells / low normalized image intensity'],
+          ['#808080', 'Intermediate normalized source intensity; late reader-only'],
         ],
       };
     case 'bcer-brain-full-v1':

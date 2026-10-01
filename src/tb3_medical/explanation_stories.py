@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-pnp-mri-reconstruction-v1": "retained-imaging101-pnp-mri-reconstruction-source-v1",
     "imaging101-plane-wave-ultrasound-v1": "retained-imaging101-plane-wave-ultrasound-source-v1",
     "imaging101-photoacoustic-tomography-v1": "retained-imaging101-photoacoustic-tomography-source-v1",
     "imaging101-pet-mlem-v1": "retained-imaging101-pet-mlem-source-v1",
@@ -789,6 +790,7 @@ if not SYMBOLIC_SOURCE_PACKS <= SOURCE_INPUT_PACKS.keys():
     raise ValueError("Symbolic source pack lacks an input-pack registration")
 
 SOURCE_EXTRA_REFERENCE_FILES = {
+    "retained-imaging101-pnp-mri-reconstruction-source-v1": {"source-image.png"},
     "retained-automed-full-heart-seg-v1": {
         "source-label-0.png",
         "source-label-2.png",
@@ -853,6 +855,22 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-pnp-mri-reconstruction-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "SOURCE-LICENSE.txt",
+            "mask.png",
+            "source-image.png",
+        },
+    ),
     "retained-imaging101-plane-wave-ultrasound-source-v1": (
         "source-records",
         "reference.json",
@@ -2489,6 +2507,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class ImagingPnpMriChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4530,6 +4554,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class ImagingPnpMriBeat(ExpansionBeat[ImagingPnpMriChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingPnpMriStory(Story[ImagingPnpMriChannels]):
+    recipe: Literal["imaging101-pnp-mri-reconstruction-v1"]
+    beats: tuple[ImagingPnpMriBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class ImagingPlaneWaveBeat(ExpansionBeat[ImagingPlaneWaveChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5535,6 +5580,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPnpMriStory
     | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
     | ImagingPetMlemStory
@@ -5680,6 +5726,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPnpMriStory
     | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
     | ImagingPetMlemStory
@@ -5985,6 +6032,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPnpMriStory
     | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
     | ImagingPetMlemStory
@@ -6307,6 +6355,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-imaging101-pnp-mri-reconstruction-source-v1": (
+                "PnP-MRI-native-mask-plus-reader-source-image-and-symbolic-PGM",
+                "LicenseRef-fastMRI-MSSN-local-teaching",
                 None,
             ),
             "retained-imaging101-plane-wave-ultrasound-source-v1": (
@@ -6649,6 +6702,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "native-image-index, normalized-intensity, mask-bit; physical calibration absent"
+                if pack_id == "retained-imaging101-pnp-mri-reconstruction-source-v1"
                 else "ADC-code, seconds, element-index, angle-degrees"
                 if pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
                 else "seconds, metres; signed relative pressure"
@@ -6807,6 +6862,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-imaging101-pnp-mri-reconstruction-source-v1"
             or pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
             or pack_id == "retained-imaging101-photoacoustic-tomography-source-v1"
             or pack_id == "retained-imaging101-pet-mlem-source-v1"
@@ -6917,6 +6973,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "input-preview"
                 if pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
                 and name in ("rf-fibers.png", "rf-cysts.png")
+                else "input-preview"
+                if pack_id == "retained-imaging101-pnp-mri-reconstruction-source-v1"
+                and name in ("mask.png",)
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -6991,6 +7050,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
+                    and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-imaging101-pnp-mri-reconstruction-source-v1"
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS

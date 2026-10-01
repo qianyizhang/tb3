@@ -15869,36 +15869,126 @@
       }
     },
     {
-      "entry_id": "imaging101-pnp-mri-reconstruction",
-      "title": "Reconstruct MRI with a self-similarity network prior",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-pnp-mri-reconstruction/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction",
+      "actual_data_gap": "Raw source image is exactly source-visible truth. No acquired k-space, coil measurements or new Fourier/PGM/denoiser result supplied here. Retained saved mask is geometry evidence only. Checkpoint shards are present but never loaded; graph/runtime compatibility, sigma training claim and upstream fastMRI/MSSN rights unverified. Source and generic error normalizations differ.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-pnp-mri-reconstruction.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Sampling metadata, iteration parameters and a pretrained MSSN denoiser checkpoint. The assistance level can add an approach and software design.",
+        "output": "A 320\u00d7320 knee-image reconstruction.",
+        "raw": "A knee image used to synthesize a 36-line radial frequency-sampling problem.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-pnp-mri-reconstruction.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 320\u00d7320 knee-image reconstruction.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-pnp-mri-reconstruction",
+      "illustration_basis": "mixed",
+      "illustration_kind": "mri",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "mri",
-      "subject": "knee",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-pnp-mri-reconstruction.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 320\u00d7320 knee-image reconstruction.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "A knee image used to synthesize a 36-line radial frequency-sampling problem.",
-        "helpers": "Sampling metadata, iteration parameters and a pretrained MSSN denoiser checkpoint. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A 320\u00d7320 knee-image reconstruction.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native saved Cartesian mask and explicit late solver-visible source-image derivative with task-specific symbolic unitary Fourier, PGM and unknown MSSN/patch contracts after main24-pin/41-image source/visual/export/mobile/no-GPU/reference review. Raw image equals visible truth; acquired k-space, participant reconstruction and scores absent. Runtime/checkpoint rights, source-versus-generic normalization and filesystem-versus-Docker scoring routes remain qualified.",
+      "source_brief_sha256": "d3f4eb1c09d25a6607e38f814fd513b443bb221f4dc5342f97464584ffe051bd",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-pnp-mri-reconstruction-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-pnp-mri-reconstruction-resolution.json",
+        "receipt_sha256": "75e87838d167271b758b0c2f5fc60606ccad0eb80921db6ae87bf9f4d9cc62d0",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T16:20:27.629081+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-pnp-mri-reconstruction/source-audit-final-01.json",
+        "audit_sha256": "503705f47cec778a3312f08dd80cd9d97ca62946f26ccb10380c806962a00dfc",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-pnp-mri-reconstruction",
+      "subject": "knee",
+      "title": "Reconstruct MRI with a self-similarity network prior",
+      "warning_text": "Source image equals visible truth; acquired k-space and participant PnP result absent.",
+      "acceptance_scope": "Native saved Cartesian mask and explicit late public source-image derivative; supplied raw image equals solver-visible truth. Task-specific symbolic unitary Fourier, PGM, unknown MSSN and patch contracts. No acquired k-space, participant reconstruction, quality score or clinical effect; no source FFT, graph, checkpoint, solver, scorer, task or model execution.",
+      "completion_review": {
+        "date": "2026-10-01T16:34:11.336017+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "8576626345be14a6121e263cd502f9718a29b2e346084b471ce4a587a5638e37"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace PnP data consistency without inventing a reconstructed knee",
+        "goal": "Source-pinned mask and public mechanics; source image revealed later as visible truth, actual result empty.",
+        "value": "Not yet specified.",
+        "raw": "Native raw_data.npz:img float32 (1, 320, 320), source-described fastMRI knee image, exactly equal to data/ground_truth.npz:img. No acquired complex k-space, coil axis, scanner sequence, FOV, pixel spacing, physical intensity or acquisition-noise distribution established. 102,400 real image pixels, raw range 5.2586347e\u22126..9.889684e\u22125 arbitrary units. A derived image is not measured 36-line radial acquisition. It reveals supplied truth; default scene covers it. No anatomical diagnosis or new reconstruction.",
+        "helpers": "Metadata: 36 lines, 200 PGM iterations, step 1, sigma 5, patch 42, stride 7, recurrent states 8; checkpoint prefix models/checkpoints/mssn-550000iters. Three .data/.index/.meta shards Git verified but never loaded. Retained source-saved bool sampling_mask.npy (320,320), 11,766 sampled Cartesian cells /102,400=11.490234375%; inverse fraction 8.70304, not 36-fold acceleration or timing evidence. Geometry only, not acquired samples. All 3 inventory assistance Conditions preserved below.",
+        "tools": "Source code inspected, never imported (solvers disables TensorFlow eager on import). No forward FFT, IFFT, denoiser, PGM, metric or evaluator executed. Default mask PNG 320 \u00d7 320 directly maps saved bool cells white sampled /black omitted; no new mask generation. Late source image preview samples every second row/column (160\u00d7160) after exact float32 minmax normalization. Grayscale floor 255\u00d7float64(normalized float32), no resize/interpolation/FFT; image indices and display units only, not mm or clinical tissue contrast. Source max\u2212min has no constant-image guard. This display derivative is not a participant reconstruction.",
+        "reference": "End-to-end visible paths are README.md, data and requirements.txt; the entire data directory includes raw_data.npz and data/ground_truth.npz. Evaluation and source/model checkpoint trees are not in that default visible-path list; source reproduction would need an explicit route for the model. Thus supplied checkpoint retention does not establish default solver access. Normalized evaluation/reference_outputs/ground_truth.npy is first generic scoring candidate, exactly equal to float32 normalized raw image. Data raw and truth archives have identical bytes. Reference is solver-visible, not private or held-out. Late public image shares source input identity; explicit source-role label, covered immediately on exit/backward/reset before paint. Saved IFFT/PnP arrays audit only, no comparison/reconstructed image shown.",
+        "spec": "Source minmax x=(raw\u2212min)/(max\u2212min), float32. y=M fftshift(FFT2 x)/sqrt(102400)=M F x/320, no added noise despite README eta and main seed 0. Binary mask is rasterized radial lines on a Cartesian Fourier grid, not native non-Cartesian trajectories/NUFFT. Angles 0..pi excluding endpoint, deterministic ROUND_HALF_UP coordinate rasterization; ceil(size/2)+1 one-based centre gives zero-based(160,160). No coil sensitivities or random acquisition mask.\n\nAdjoint 320 IFFT2(ifftshift(Mz)) includes mask, matching unitary discrete complex normalization. Real-valued image gradient real(AH(Ax\u2212y)); fidelity .5 sum |Ax\u2212y|\u00b2, Fortran flatten for norm only. Missing physical k-space units/FOV prevent cycles/mm inference. Naive source IFFT explicitly multiplies y by 320 before inverse FFT, then takes magnitude; it undoes forward normalization. This magnitude baseline differs from the real-valued adjoint gradient. Mathematical discrete adjoint explanation does not verify scanner operator or runtime. No native FFT/adjoint computed.\n\nImplemented PGM, not ADMM: x0=0; s=max(x\u2212step\u00d7g,0), then xnext=MSSN(s), 200 fixed iterations, step 1, no momentum, dual variable or explicit penalty parameter. Positivity applies BEFORE denoiser only; no post-output clipping or upper bound. General learned denoiser is not proven proximal or contractive. Authored scalar A=M=1, y=.6 gives initial gradient\u2212.6 and pre-denoise .6; D(.6) left unknown. No invented denoised/reconstructed outcome.\n\nMSSN patches 42 \u00d7 42 stride 7 with terminal start 278; 41 positions per axis, 1,681 overlapping patches. Input scaled 255, cast float32, model residual per patch averaged by coverage then added to noisy input, divided by 255. Last stride gap 5, not uniform 7; no missing borders. sigma 5 accepted constructor argument is UNUSED by graph/inference, so it is a README training-noise claim, not measurement sigma or a tunable reconstruction-strength control. States 8, heads 2, key/value 128, batch 1 defaults; main passes state count but other defaults not arbitrary metadata binding. BSD500 training/learned weights semantics and exact TensorFlow/legacy Keras compatibility unverified. No graph/checkpoint/model loading.\n\nHistory SNR uses pre-update x (first zero estimate gives 0 dB against nonzero truth); iterate-distance squared is not data-fidelity residual/objective, relative change starts infinity and later has no zero-norm guard. No stopping test/convergence certificate. Source main all_metrics keys IFFT/PnP-MSSN differ from plot_comparison keys ifft/pnp_mssn: KeyError on figure stage AFTER reconstruction/metrics save if earlier stages succeed. Retained outputs do not establish successful current end-to-end execution.",
+        "output": "One real output/reconstruction.npy, intended 320 \u00d7 320 normalized image. main also writes snr_history.npy, dist_history.npy, output/metrics.json and per-iteration MAT files. These do not replace generic output/scoring files. Participant image, denoiser output, histories and numerical outcome absent.",
+        "score": "Filesystem generic scoring first selects normalized evaluation/reference_outputs/ground_truth.npy regardless of target shape, then requires matching output shape. No-filesystem scoring also seeks that exact ground_truth.npy, which is retained and listed here, then relies on runner exec to make it readable in its sandbox; successful transfer/execution is unverified. Both use the normalized saved reference, not raw-scale data truth; all 102,400 pixels. Filesystem generic prepares ndim>2 by squeeze, complex\u2192magnitude and float64, with no flux/max/minmax normalization of output. The no-filesystem snippet instead requires strictly 2D output, casts float64 without the same preparation, rescales output by gt.sum/(out.sum+1e\u221230), and uses norm-relative NRMSE. It rounds differently and does not apply the filesystem boundary verdict. These are different effective contracts, not interchangeable backend scores. Its non-filesystem host-to-sandbox reference-copy branch is pass; reference readability and successful execution are unverified. Source NRMSE=error norm/reference norm; generic NRMSE=RMSE/reference range. Source SNR 20 log10(reference norm/error norm) measures reconstruction error against visible truth, not acquisition noise. Both cosine NCC, no mean-centering; generic MSE/PSNR/globalSSIM additional. Source output/metrics.json is not generic evaluation/metrics.json; Pinned evaluation/reference_outputs/metrics.json contains nested saved IFFT/PnP-MSSN results, not flat ncc_boundary/nrmse_boundary. Filesystem therefore has both boundaries None and passed=None; the no-filesystem snippet applies no verdict. Historical metric values are not reproduced or presented as performance. No metric or performance computed. Visible source identity means no blind inverse-problem claim.",
+        "challenge": "Patch scaling and overlap affect the learned prior. The source uses the same image as raw input and reference, so visibility must be checked.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Saved source mask with persistent missing acquired-k-space/result warning and acquisition route.",
+          "Canonical PGM step, Fourier scale, mask geometry and patch coverage controls; denoiser output unknown.",
+          "Empty participant output; late public source-image/reference-normalization reveal, reset/exit/backward cover."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -15922,30 +16012,43 @@
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned preprocessing",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/src/preprocessing.py"
+          ],
+          [
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pnp_mri_reconstruction/src/solvers.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-pnp-mri-reconstruction-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "ac524adb66803a5e24fdaa8ee1366b64835ece169fd9532ed92640e7b1fb5c8d",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-pnp-mri-reconstruction.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 320\u00d7320 knee-image reconstruction.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Source-pinned mask and public mechanics; source image revealed later as visible truth, actual result empty.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Native raw_data.npz:img float32 (1, 320, 320), source-described fastMRI knee image, exactly equal to data/ground_truth.npz:img. No acquired complex k-space, coil axis, scanner sequence, FOV, pixel spacing, physical intensity or acquisition-noise distribution established. 102,400 real image pixels, raw range 5.2586347e\u22126..9.889684e\u22125 arbitrary units. A derived image is not measured 36-line radial acquisition. It reveals supplied truth; default scene covers it. No anatomical diagnosis or new reconstruction.</p>",
+          "helpers": "<p>Metadata: 36 lines, 200 PGM iterations, step 1, sigma 5, patch 42, stride 7, recurrent states 8; checkpoint prefix models/checkpoints/mssn-550000iters. Three .data/.index/.meta shards Git verified but never loaded. Retained source-saved bool sampling_mask.npy (320,320), 11,766 sampled Cartesian cells /102,400=11.490234375%; inverse fraction 8.70304, not 36-fold acceleration or timing evidence. Geometry only, not acquired samples. All 3 inventory assistance Conditions preserved below.</p>",
+          "tools": "<p>Source code inspected, never imported (solvers disables TensorFlow eager on import). No forward FFT, IFFT, denoiser, PGM, metric or evaluator executed. Default mask PNG 320 \u00d7 320 directly maps saved bool cells white sampled /black omitted; no new mask generation. Late source image preview samples every second row/column (160\u00d7160) after exact float32 minmax normalization. Grayscale floor 255\u00d7float64(normalized float32), no resize/interpolation/FFT; image indices and display units only, not mm or clinical tissue contrast. Source max\u2212min has no constant-image guard. This display derivative is not a participant reconstruction.</p>",
+          "reference": "<p>End-to-end visible paths are README.md, data and requirements.txt; the entire data directory includes raw_data.npz and data/ground_truth.npz. Evaluation and source/model checkpoint trees are not in that default visible-path list; source reproduction would need an explicit route for the model. Thus supplied checkpoint retention does not establish default solver access. Normalized evaluation/reference_outputs/ground_truth.npy is first generic scoring candidate, exactly equal to float32 normalized raw image. Data raw and truth archives have identical bytes. Reference is solver-visible, not private or held-out. Late public image shares source input identity; explicit source-role label, covered immediately on exit/backward/reset before paint. Saved IFFT/PnP arrays audit only, no comparison/reconstructed image shown.</p>",
+          "spec": "<p>Source minmax x=(raw\u2212min)/(max\u2212min), float32. y=M fftshift(FFT2 x)/sqrt(102400)=M F x/320, no added noise despite README eta and main seed 0. Binary mask is rasterized radial lines on a Cartesian Fourier grid, not native non-Cartesian trajectories/NUFFT. Angles 0..pi excluding endpoint, deterministic ROUND_HALF_UP coordinate rasterization; ceil(size/2)+1 one-based centre gives zero-based(160,160). No coil sensitivities or random acquisition mask.</p>\n<p>Adjoint 320 IFFT2(ifftshift(Mz)) includes mask, matching unitary discrete complex normalization. Real-valued image gradient real(AH(Ax\u2212y)); fidelity .5 sum |Ax\u2212y|\u00b2, Fortran flatten for norm only. Missing physical k-space units/FOV prevent cycles/mm inference. Naive source IFFT explicitly multiplies y by 320 before inverse FFT, then takes magnitude; it undoes forward normalization. This magnitude baseline differs from the real-valued adjoint gradient. Mathematical discrete adjoint explanation does not verify scanner operator or runtime. No native FFT/adjoint computed.</p>\n<p>Implemented PGM, not ADMM: x0=0; s=max(x\u2212step\u00d7g,0), then xnext=MSSN(s), 200 fixed iterations, step 1, no momentum, dual variable or explicit penalty parameter. Positivity applies BEFORE denoiser only; no post-output clipping or upper bound. General learned denoiser is not proven proximal or contractive. Authored scalar A=M=1, y=.6 gives initial gradient\u2212.6 and pre-denoise .6; D(.6) left unknown. No invented denoised/reconstructed outcome.</p>\n<p>MSSN patches 42 \u00d7 42 stride 7 with terminal start 278; 41 positions per axis, 1,681 overlapping patches. Input scaled 255, cast float32, model residual per patch averaged by coverage then added to noisy input, divided by 255. Last stride gap 5, not uniform 7; no missing borders. sigma 5 accepted constructor argument is UNUSED by graph/inference, so it is a README training-noise claim, not measurement sigma or a tunable reconstruction-strength control. States 8, heads 2, key/value 128, batch 1 defaults; main passes state count but other defaults not arbitrary metadata binding. BSD500 training/learned weights semantics and exact TensorFlow/legacy Keras compatibility unverified. No graph/checkpoint/model loading.</p>\n<p>History SNR uses pre-update x (first zero estimate gives 0 dB against nonzero truth); iterate-distance squared is not data-fidelity residual/objective, relative change starts infinity and later has no zero-norm guard. No stopping test/convergence certificate. Source main all_metrics keys IFFT/PnP-MSSN differ from plot_comparison keys ifft/pnp_mssn: KeyError on figure stage AFTER reconstruction/metrics save if earlier stages succeed. Retained outputs do not establish successful current end-to-end execution.</p>",
+          "output": "<p>One real output/reconstruction.npy, intended 320 \u00d7 320 normalized image. main also writes snr_history.npy, dist_history.npy, output/metrics.json and per-iteration MAT files. These do not replace generic output/scoring files. Participant image, denoiser output, histories and numerical outcome absent.</p>",
+          "score": "<p>Filesystem generic scoring first selects normalized evaluation/reference_outputs/ground_truth.npy regardless of target shape, then requires matching output shape. No-filesystem scoring also seeks that exact ground_truth.npy, which is retained and listed here, then relies on runner exec to make it readable in its sandbox; successful transfer/execution is unverified. Both use the normalized saved reference, not raw-scale data truth; all 102,400 pixels. Filesystem generic prepares ndim&gt;2 by squeeze, complex\u2192magnitude and float64, with no flux/max/minmax normalization of output. The no-filesystem snippet instead requires strictly 2D output, casts float64 without the same preparation, rescales output by gt.sum/(out.sum+1e\u221230), and uses norm-relative NRMSE. It rounds differently and does not apply the filesystem boundary verdict. These are different effective contracts, not interchangeable backend scores. Its non-filesystem host-to-sandbox reference-copy branch is pass; reference readability and successful execution are unverified. Source NRMSE=error norm/reference norm; generic NRMSE=RMSE/reference range. Source SNR 20 log10(reference norm/error norm) measures reconstruction error against visible truth, not acquisition noise. Both cosine NCC, no mean-centering; generic MSE/PSNR/globalSSIM additional. Source output/metrics.json is not generic evaluation/metrics.json; Pinned evaluation/reference_outputs/metrics.json contains nested saved IFFT/PnP-MSSN results, not flat ncc_boundary/nrmse_boundary. Filesystem therefore has both boundaries None and passed=None; the no-filesystem snippet applies no verdict. Historical metric values are not reproduced or presented as performance. No metric or performance computed. Visible source identity means no blind inverse-problem claim.</p>",
+          "challenge": "<p>Patch scaling and overlap affect the learned prior. The source uses the same image as raw input and reference, so visibility must be checked.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26768,9 +26871,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 133,
+    "reviewed-scripted-planar": 134,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 45,
+    "blocked-source-contract": 44,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

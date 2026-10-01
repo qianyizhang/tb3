@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-pnp-mri-reconstruction-v1',
   'imaging101-plane-wave-ultrasound-v1',
   'imaging101-photoacoustic-tomography-v1',
   'imaging101-pet-mlem-v1',
@@ -125,6 +126,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-pnp-mri-reconstruction-v1')
+    return {
+      scene: 'data-imaging-pnp-mri-scene',
+      reference: '[data-imaging-pnp-mri-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-pnp-mri-scene="output"] code',
+      aside: '[data-imaging-pnp-mri-output]',
+    };
   if (plan.recipe === 'imaging101-plane-wave-ultrasound-v1')
     return {
       scene: 'data-imaging-plane-wave-scene',
@@ -856,6 +866,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-pnp-mri-reconstruction-v1': [
+      /Source image equals visible truth; acquired k-space and participant PnP result absent./s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction',
+      'data-imaging-pnp-mri-scene',
+      false,
+    ],
     'imaging101-plane-wave-ultrasound-v1': [
       /Phantom RF only; no participant B-mode. Baseline and generic binding unresolved./s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound',
@@ -2552,6 +2568,200 @@ async function reviewCardiacInteractions(page, plan, output, label) {
       await scene.innerText(),
       /Physical phantoms are not patients.*no focused tissue finding or numerical performance/is,
     );
+    await capture('limits-contract');
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
+  if (plan.recipe === 'imaging101-pnp-mri-reconstruction-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-pnp-mri-scene]');
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-pnp-mri-reference-revealed]').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async (reference) => {
+      const imgs = scene.locator('img');
+      assert.equal(await imgs.count(), 1);
+      const d = await imgs.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(d.w, reference ? 160 : 320);
+      assert.equal(d.h, reference ? 160 : 320);
+      assert.ok(d.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(d.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            `presentation/task-explorer/imaging101-pnp-mri-reconstruction/${reference ? 'source-image' : 'mask'}.png`,
+          ),
+        ),
+      );
+      if (reference) {
+        assert.match(
+          d.alt,
+          /Public source image equals solver-visible truth; stride-two minmax display, not reconstruction/,
+        );
+        assert.match(
+          await scene.locator('figcaption').innerText(),
+          /Public source input = visible truth.*160 × 160 stride-two display.*no reconstruction/is,
+        );
+      } else {
+        assert.match(
+          d.alt,
+          /Native source-saved radial mask on a Cartesian 320 by 320 grid; white sampled and black omitted, no measured k-space/,
+        );
+        assert.match(
+          await scene.locator('figcaption').innerText(),
+          /White\s*\/\s*black:\s*11,?766 sampled\s*\/\s*90,?634 omitted grid cells.*Saved geometry.*no Fourier\s*samples/is,
+        );
+      }
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await image(false);
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /Raw image\s*=\s*solver-visible truth.*320\s*×\s*320 source image.*generates noiseless masked Fourier data.*no scanner k-space or coil measurements.*Source image covered.*No FFT, reconstruction, denoiser or\s*score run/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const steps = ['Input boundary', 'Mask + operator', 'PGM + MSSN'],
+      branches = ['Saved mask', 'Unitary scale', 'Patch coverage'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branches[m], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[m]);
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-pnp-mri-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /Visible image\s*→\s*minmax\s*→\s*deterministic mask\s*→\s*generated y.*No acquired k-space or added measurement noise.*sigma\s*=\s*5.*unused.*training claim unverified.*L1\s*\/\s*L2\s*\/\s*L3.*No new source measurements generated/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        } else if (i === 1) {
+          assert.equal(
+            await scene
+              .getByRole('button', { name: branches[m], exact: true })
+              .getAttribute('aria-pressed'),
+            'true',
+          );
+          if (m === 0) {
+            await image(false);
+            assert.match(
+              text,
+              /36 rasterized radial lines.*11\.490% Cartesian cells sampled.*inverse fraction\s*≈\s*8\.703.*Not acquired.*non-Cartesian trajectories or scan-time acceleration/is,
+            );
+          } else if (m === 1) {
+            assert.match(
+              text,
+              /A\s*=\s*M fftshift\(FFT2\)\s*\/\s*320.*Aᴴ\s*=\s*320 IFFT2\(ifftshift\(Mz\)\).*real image gradient uses real\(Aᴴ\(Ax−y\)\).*Unitary discrete scaling.*no coil or physical FOV model.*no native FFT, adjoint or reconstructed image computed/is,
+            );
+            assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+          } else {
+            assert.match(
+              text,
+              /42\s*×\s*42 patches.*stride\s*7.*final start\s*278.*41 positions per axis\s*=\s*1,?681 patches.*overlap averaged.*Input\s*×\s*255.*residual\s*\+\s*input.*÷\s*255.*Checkpoint shards present.*compatibility and\s*output unknown.*No model loaded/is,
+            );
+            assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+          }
+        } else {
+          assert.match(
+            text,
+            /x₀\s*=\s*0.*s\s*=\s*max\(x\s*−\s*g,\s*0\).*x_next\s*=\s*D\(s\).*PGM:\s*200 fixed iterations.*step\s*1.*No ADMM dual variable.*positivity before\s*denoiser only.*Authored scalar y\s*=\s*0\.6.*pre-denoise s\s*=\s*0\.6.*D\(s\).*unknown.*no denoised output, convergence or performance/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await image(false);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*320\s*×\s*320 normalized image.*Participant output.*denoiser result.*histories and score empty.*Saved IFFT\s*\/\s*PnP arrays\s*are audit provenance only/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await absent();
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public source image', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Cover public source image', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await image(true);
+    assert.match(
+      await scene.locator('[data-imaging-pnp-mri-reference-revealed]').innerText(),
+      /Later public source image\s*=\s*solver-visible truth;\s*not reconstruction.*Normalized reference.*all\s*102,?400 pixels.*source norm-relative error differs from\s*generic range-normalized error.*Actual participant output and score absent/is,
+    );
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Cover public source image', exact: true }).click();
+    await absent();
+    assert.equal(await scene.locator('img').count(), 0);
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /No blind inverse-problem.*learned proximal.*clinical or model-performance claim/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
     await capture('limits-contract');
     await absent();
     await page.locator('.scene-reset').click();
@@ -10536,6 +10746,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-pnp-mri-reconstruction-v1',
       'imaging101-plane-wave-ultrasound-v1',
       'imaging101-photoacoustic-tomography-v1',
       'imaging101-pet-mlem-v1',
