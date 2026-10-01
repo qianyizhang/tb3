@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-photoacoustic-tomography-v1',
   'imaging101-pet-mlem-v1',
   'imaging101-varnet-v1',
   'imaging101-t2-mapping-v1',
@@ -123,6 +124,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-photoacoustic-tomography-v1')
+    return {
+      scene: 'data-imaging-photoacoustic-scene',
+      reference: '[data-imaging-photoacoustic-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-photoacoustic-scene="output"] code',
+      aside: '[data-imaging-photoacoustic-output]',
+    };
   if (plan.recipe === 'imaging101-pet-mlem-v1')
     return {
       scene: 'data-imaging-pet-mlem-scene',
@@ -836,6 +846,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-photoacoustic-tomography-v1': [
+      /Synthetic pressure signals only; no tissue scan, participant reconstruction or score./s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/photoacoustic_tomography',
+      'data-imaging-photoacoustic-scene',
+      false,
+    ],
     'imaging101-pet-mlem-v1': [
       /Synthetic scaled-count sinogram only; no patient study, participant activity image or score./s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pet_mlem',
@@ -2117,6 +2133,204 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     assert.match(
       await scene.innerText(),
       /Native synthetic sinogram\/background retained.*no participant reconstruction or calibrated patient uptake.*Simplified Radon model lacks attenuation.*detector normalization.*separate scatter.*timing and scanner-unit calibration.*exact discrete adjoint\/runtime not established.*Native measurements are input evidence only.*No reconstructed finding.*likelihood monotonicity.*clinical uptake or numerical performance/is,
+    );
+    await capture('limits-contract');
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
+  if (plan.recipe === 'imaging101-photoacoustic-tomography-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-photoacoustic-scene]');
+    const absent = async () =>
+      assert.equal(
+        await scene.locator('[data-imaging-photoacoustic-reference-revealed]').count(),
+        0,
+      );
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async () => {
+      const img = scene.locator('img');
+      assert.equal(await img.count(), 1);
+      const d = await img.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(d.w, 1301);
+      assert.equal(d.h, 31);
+      assert.match(
+        d.alt,
+        /Native center-y pressure slice: time columns, detector-x rows; red positive, blue negative, white zero/,
+      );
+      assert.ok(d.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(d.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            'presentation/task-explorer/imaging101-photoacoustic-tomography/signals.png',
+          ),
+        ),
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /31 detector-x rows\s*×\s*1,?301 time columns.*center-y index\s*15.*Blue\s*\/\s*red: negative\s*\/\s*positive pressure.*fixed\s*±0\.1\s*a\.u\..*white zero/s,
+      );
+    };
+    const source = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/imaging101-photoacoustic-tomography/source.json',
+        'utf8',
+      ),
+    ).native_profiles;
+    const branches = ['Center (15, 15)', 'Edge x (0, 15)', 'Edge y (15, 0)'];
+    const trace = async (m) => {
+      const svg = scene.locator('svg');
+      assert.equal(await svg.count(), 1);
+      assert.equal(
+        await svg.getAttribute('aria-label'),
+        `Native pressure time trace detector ${branches[m]}; no reconstructed image`,
+      );
+      const poly = svg.locator('polyline');
+      assert.equal(await poly.getAttribute('stroke'), '#57d1cc');
+      const points = (await poly.getAttribute('points'))
+        .split(' ')
+        .map((s) => s.split(',').map(Number));
+      assert.equal(points.length, 1301);
+      points.forEach((p, j) => {
+        assert.ok(Math.abs(p[0] - (14 + (j * 244) / 1300)) < 1e-9);
+        assert.ok(Math.abs(p[1] - (78 - source.values[m][j] * 650)) < 1e-9);
+      });
+      const line = svg.locator('line');
+      assert.equal(await line.getAttribute('stroke'), '#b2c2ce');
+      assert.equal(Number(await line.getAttribute('y1')), 78);
+      assert.deepEqual(
+        (await svg.locator('text').allTextContents()).map((x) => x.trim()),
+        ['signed pressure (a.u.)', 'time 0–65 µs →'],
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /Teal: all\s*1,?301 source samples; gray: zero.*Detector/s,
+      );
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await image();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /961 detectors.*20 MHz.*65\s*µs.*Native signed signals from four simulated spheres.*no tissue scan or calibrated pressure/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const steps = ['Geometry + time', 'Native traces', 'Backprojection rules'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branches[m], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[m]);
+        await trace(m);
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[m] : [168, 0, 504][i],
+        );
+        assert.equal(
+          await scene.getAttribute('data-imaging-photoacoustic-operation-step'),
+          String(i),
+        );
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /t\s*=\s*distance\s*\/\s*c.*sample\s*=\s*round\(distance\s*×\s*fs\s*\/\s*c\).*c\s*=\s*1,?484 m\/s.*sampling\s*20 MHz.*detectors z\s*=\s*0.*target plane z\s*=\s*15 mm.*Coordinates metres.*time seconds.*Authored distance\s*15 mm\s*→\s*10\.108\s*µs\s*→\s*index\s*202.*Units fixture only.*no reconstructed pixel or native target claim/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        } else if (i === 1) {
+          await trace(m);
+        } else {
+          assert.match(
+            text,
+            /b\s*=\s*2p\s*−\s*2tc\s*IFFT\(−ik FFT\(p\)\).*k\s*=\s*2πf\s*\/\s*c.*Nearest arrival sample.*solid-angle weights.*weight-sum and complex peak normalization.*Grid\s*41\s*×\s*41.*0\.5 mm spacing.*Signed derivative.*no FFT or backprojection run.*No optical fluence model.*iterative solver.*positivity guarantee or calibrated absorption/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await trace(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*41\s*×\s*41 target plane.*Participant image\s*\/\s*score empty.*Saved source artifacts are historical examples.*no tissue finding or recovered pressure here/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await absent();
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-photoacoustic-reference-revealed]').innerText(),
+      /Binary geometric support is solver-visible.*not calibrated pressure.*Source crop:\s*33\s*×\s*33\s*=\s*1,?089 pixels.*generic full image:\s*1,?681 pixels.*Both include\s*101 positive support pixels.*Reference\s*\/\s*reconstruction images and metric absent.*exit\s*\/\s*backward\s*\/\s*reset covers rules/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /No reconstructed finding.*fluence\s*\/\s*absorption inference or numerical performance/is,
     );
     await capture('limits-contract');
     await absent();
@@ -10102,6 +10316,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-photoacoustic-tomography-v1',
       'imaging101-pet-mlem-v1',
       'imaging101-varnet-v1',
       'imaging101-t2-mapping-v1',

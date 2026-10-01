@@ -1,3 +1,4 @@
+import { imagingPhotoacousticPack } from './imaging101-photoacoustic-tomography';
 import { imagingPetMlemPack } from './imaging101-pet-mlem';
 import { imagingVarNetPack } from './imaging101-mri-varnet';
 import { imagingT2MappingPack } from './imaging101-mri-t2-mapping';
@@ -138,6 +139,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-photoacoustic-tomography-v1',
     'imaging101-pet-mlem-v1',
     'imaging101-varnet-v1',
     'imaging101-t2-mapping-v1',
@@ -1317,6 +1319,18 @@ export function storyPresentation(plan: StoryPlan): {
           ['#ffffff', 'White: y=220 scaled counts'],
           ['#57d1cc', 'Teal line: native y profile'],
           ['#b2c2ce', 'Gray line: additive background'],
+        ],
+      };
+    case 'imaging101-photoacoustic-tomography-v1':
+      return {
+        heading: 'Acoustic pressure, time of flight and backprojection rules',
+        corner: 'Synthetic pressure; no reconstructed image',
+        warning: imagingPhotoacousticPack.source.notice,
+        legend: [
+          ['#0000ff', 'Negative relative pressure; fixed −0.1 a.u. endpoint'],
+          ['#ff0000', 'Positive relative pressure; fixed +0.1 a.u. endpoint'],
+          ['#57d1cc', 'Native detector time trace'],
+          ['#b2c2ce', 'Trace zero-pressure guide'],
         ],
       };
     case 'bcer-brain-full-v1':

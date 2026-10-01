@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "imaging101-photoacoustic-tomography-v1",
             "imaging101-pet-mlem-v1",
             "imaging101-varnet-v1",
             "imaging101-t2-mapping-v1",

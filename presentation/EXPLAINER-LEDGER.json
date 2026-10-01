@@ -15503,36 +15503,126 @@
       }
     },
     {
-      "entry_id": "imaging101-photoacoustic-tomography",
-      "title": "Reconstruct a photoacoustic pressure image",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-photoacoustic-tomography/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/photoacoustic_tomography",
+      "actual_data_gap": "Native four-sphere simulated pressure signals retained. No patient or tissue scan, optical fluence/absorption calibration, fresh reconstructed pressure image or matched generic-score outcome. Source cropped binary-target metrics differ from generic full-image comparison; exact runtime and pgmax tie handling unverified.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-photoacoustic-tomography.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Detector geometry, time sampling and acoustic propagation parameters. The assistance level can add an approach and software design.",
+        "output": "An image of initial acoustic pressure in the target region.",
+        "raw": "Time-domain acoustic signals recorded at detector positions.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/photoacoustic_tomography/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-photoacoustic-tomography.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: An image of initial acoustic pressure in the target region.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-photoacoustic-tomography",
+      "illustration_basis": "mixed",
+      "illustration_kind": "photoacoustic",
       "modalities": [
         "photoacoustic"
       ],
-      "illustration_kind": "photoacoustic",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-other",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-photoacoustic-tomography.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: An image of initial acoustic pressure in the target region.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Time-domain acoustic signals recorded at detector positions.",
-        "helpers": "Detector geometry, time sampling and acoustic propagation parameters. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "An image of initial acoustic pressure in the target region.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native synthetic signed-pressure detector slice/time traces with symbolic time-of-flight, signed filtering and geometric backprojection contracts after main16-pin/40-image source/visual/export/mobile/no-GPU/reference review. Binary support truth solver-visible; cropped/full scoring and coordinate-shape/runtime/normalization lineage qualified; participant reconstruction and score absent. No tissue/absorption/calibrated pressure outcome.",
+      "source_brief_sha256": "6817279944d0b98d04c19203f078ffa8c5501e5245cf75b6b71f42aff075d0ee",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-photoacoustic-tomography-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-photoacoustic-tomography-resolution.json",
+        "receipt_sha256": "5e5e82ad9022b9811a5b1e655c30087423505c4307b4e3f99b2a4adc91a65beb",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T15:15:50.286195+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-photoacoustic-tomography/source-audit-final-01.json",
+        "audit_sha256": "7518c81d561da86bd8d8c6239171fddca6e41634abbcdf1e801ddc97d54f7a8f",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-photoacoustic-tomography",
+      "subject": null,
+      "title": "Reconstruct a photoacoustic pressure image",
+      "warning_text": "Synthetic pressure signals only; no tissue scan, participant reconstruction or score.",
+      "acceptance_scope": "Native synthetic signed pressure signals and time traces with symbolic time-of-flight/Fourier/backprojection contracts; binary source truth solver-visible, saved reconstruction historical. No tissue scan, participant pressure image, calibrated absorption or numerical outcome; no source simulation/operator/solver/scorer/task/model execution.",
+      "completion_review": {
+        "date": "2026-10-01T15:27:33.288619+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "29bb5abf8d3e7830d097048e2ec272e8909acf0b7eac32ca1e83649b8e0ec484"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace photoacoustic time of flight without inventing a reconstructed image",
+        "goal": "Native synthetic acoustic input and authored geometric mechanics; no reconstruction or metric execution.",
+        "value": "Not yet specified.",
+        "raw": "One four-sphere synthetic condition. Native signals float64 (1, 1301, 31, 31): batch, time, detector x, detector y. 1,301 time samples \u00d7 961 detectors = 1,250,261 signed pressure samples. Time 0\u201365 microseconds inclusive, spacing 50 ns, sampling frequency 20 MHz. Detector centres span \u221210 to +10 mm in both planar axes, pitch 2/3 mm; z=0. Sound speed 1,484 m/s, target plane z=15 mm. Coordinates metres and time seconds in native data. No patient, tissue specimen or vessel observation.\n\nForward sphere signal H(radius\u2212|R\u2212ct|) \u00d7 (R\u2212ct)/(2R), H at zero=.5. It is bipolar signed relative amplitude, not photon counts or calibrated Pa. Finite 2 mm square aperture averages 25 sub-elements, 5\u00d75 offsets \u2212.8, \u2212.4, 0, .4, .8 mm; pitch 2/3 mm means nominal square apertures overlap. Four sphere contributions add linearly. No fluence, optical absorption, wavelength, Gruneisen coefficient, tissue attenuation, detector impulse response, additive noise or stochastic seed in generator. Do not infer absorption, oxygenation or clinical uptake from initial-pressure language.",
+        "helpers": "Detector x/y coordinates, time vector and metadata sound speed/geometry/depth. Generator defines three 0.75 mm-radius spheres and one 2.5 mm-radius sphere at z=15 mm. Native ground truth is binary projected support, not physically calibrated initial pressure or optical absorption. No modelled laser-energy/fluence variation or conversion between initial pressure and absorbed-energy density. Binary support and peak-normalized reconstruction cannot establish that physical relationship.",
+        "tools": "Pinned source universal_back_projection. Native measurement visualization alone here: center detector-y index15 slice, every time sample and all 31 detector-x indices. PNG 1301 columns \u00d731 rows, no interpolation or decimation. Signed amplitude p mapped u=min(|p|/.1,1); RGB floors255\u00d7(1\u2212u) for neutral channels, positive red=(255,neutral,neutral), negative blue=(neutral,neutral,255); zero white. Fixed \u00b1.1 arbitrary-unit range covers native data. Three full 1,301-cell traces at detector indices (15,15),(0,15),(15,0), teal p, gray zero, x time0\u201365\u00b5s. Selected traces follow pinned source plot_signals choices. No FFT, signal filtering, solver or evaluator called.",
+        "reference": "Source ground_truth_image float64 (1,41,41), image_x/y (1,41); generic ndim>2 rule reduces the image to (41,41) but leaves the coordinate arrays ndim2 at (1,41). Matching array shape is not reference identity. grid \u221210..10 mm, .5mm spacing, 1,681 pixels and 101 positive binary support pixels. Runner stages all data, so synthetic truth is solver-visible; no separate private target established. Source saved reconstruction.npz retained for provenance only; image not bundled. Later reader card exposes rules only and covers synchronously on backward, exit and reset.",
+        "spec": "Source main uses universal backprojection, resolution 500 \u00b5m, nfft 2048, detector area (2 mm)\u00b2 and z=15 mm. Output grid 41 \u00d7 41 with x first/y second, plotted transpose only in source visualization. Frequency vector is signed f, k=2\u03c0f/c; pf=IFFT(\u2212i k FFT(p,nfft)). This is a signed derivative filter, not simply an absolute-frequency ramp. b=2p\u22122tc pf; time-of-flight index round(distance\u00d7fs/c), nearest sample with NumPy rounding, no fractional-delay interpolation or t0 correction. Native time starts0; indexing formula assumes that origin. No FFT/filter/backprojection computed here.\n\nWeight omega=(detector_area/distance\u00b2)\u00d7z/distance; sum omega\u00d7sample divided by sum omega. Then pgmax selects all complex pg entries attaining maximum absolute magnitude, pg/pgmax followed by real(). This removes absolute amplitude and can retain signed values; not abs-image/positivity/fluence normalization. No zero-max or tie-shape guard: multiple equal maxima may yield a vector/broadcast mismatch. No iterative algorithm, regularization, OSEM/MLEM/FBP or learned reconstruction variant in this main. Exact dependency/runtime and tie handling not verified by saved artifacts.\n\nAuthored geometric distance 15 mm / 1,484 m/s \u2248 10.108 \u00b5s, sample index 202 at 20 MHz; it is a units/time-of-flight fixture, not a native target or reconstructed pixel. Geometry public rules separate from later source truth. Maximum native grid-to-detector distance gives rounded index 431, within 1,301 samples; this is bounds inspection only, no reconstruction.",
+        "output": "Generic participant output/reconstruction.npy, intended 41 \u00d7 41 initial-pressure image at z=15 mm. Source main saves evaluation/reference_outputs/reconstruction.npz: reconstruction(1,41,41), image_x/y(1,41), plus signals.npz and figures; never substitute a saved source result. Participant image, calibrated pressure, tissue finding, metric and outcome remain absent.",
+        "score": "Source metrics operate on real signed arrays (no magnitude transform): NCC returns0 for exactly zero norm product, range NRMSE returns infinity for exactly constant reference. Generic filesystem transforms complex arrays to magnitude, adds1e-30 to NCC denominator and uses full-array/global SSIM without scale normalization. The no-filesystem backend instead requires strict2D NPY truth, flux-normalizes output and uses relativeL2 NRMSE. No scorer/helper invoked.\n\n\nSource evaluates centre_crop(fraction=.8): int(41\u00d7.1)=4 each side =>33\u00d733=1,089 pixels, not32\u00d732 or80% of pixels. All101 positive support pixels remain, but background denominator differs from full41 \u00d7 41 = 1,681. Binary truth range1. Source NCC is cosine, not centered Pearson; NRMSE RMS error divided by reference range. Source thresholds 0.9 \u00d7 NCC / 1.1 \u00d7 NRMSE from cropped normalized baseline. Generic shape selector chooses sole matching2D ground_truth_image (coordinate arrays stay (1,41) and do not match the intended (41,41) image); compares full image, no crop, positivity or scale normalization. Generic squeezes/float64 and complex-to-magnitude if applicable; source real signed reconstruction differs from its dB abs display. Generic metrics include MSE/PSNR/globalSSIM; installed thresholds/reference lineage not a retained current verdict. Cropped baseline does not silently qualify full-image comparison. No score computed or clinical/model performance inferred.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native signed-pressure slice with persistent synthetic/no-result warning and official route.",
+          "Canonical geometry, three exact native traces, source filter/weight/normalization rules.",
+          "Empty participant image; late binary-support/evaluator-rule reveal, covered before paint on reset/backward/exit."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -15552,34 +15642,47 @@
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned README",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/photoacoustic_tomography/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned physics",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/photoacoustic_tomography/src/physics_model.py"
+          ],
+          [
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/photoacoustic_tomography/src/solvers.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/photoacoustic_tomography"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-photoacoustic-tomography-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "8a6c76c094362effe46189cb8c3161ac076210948d130223be75bc94ec33976e",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-photoacoustic-tomography.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: An image of initial acoustic pressure in the target region.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Native synthetic acoustic input and authored geometric mechanics; no reconstruction or metric execution.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>One four-sphere synthetic condition. Native signals float64 (1, 1301, 31, 31): batch, time, detector x, detector y. 1,301 time samples \u00d7 961 detectors = 1,250,261 signed pressure samples. Time 0\u201365 microseconds inclusive, spacing 50 ns, sampling frequency 20 MHz. Detector centres span \u221210 to +10 mm in both planar axes, pitch 2/3 mm; z=0. Sound speed 1,484 m/s, target plane z=15 mm. Coordinates metres and time seconds in native data. No patient, tissue specimen or vessel observation.</p>\n<p>Forward sphere signal H(radius\u2212|R\u2212ct|) \u00d7 (R\u2212ct)/(2R), H at zero=.5. It is bipolar signed relative amplitude, not photon counts or calibrated Pa. Finite 2 mm square aperture averages 25 sub-elements, 5\u00d75 offsets \u2212.8, \u2212.4, 0, .4, .8 mm; pitch 2/3 mm means nominal square apertures overlap. Four sphere contributions add linearly. No fluence, optical absorption, wavelength, Gruneisen coefficient, tissue attenuation, detector impulse response, additive noise or stochastic seed in generator. Do not infer absorption, oxygenation or clinical uptake from initial-pressure language.</p>",
+          "helpers": "<p>Detector x/y coordinates, time vector and metadata sound speed/geometry/depth. Generator defines three 0.75 mm-radius spheres and one 2.5 mm-radius sphere at z=15 mm. Native ground truth is binary projected support, not physically calibrated initial pressure or optical absorption. No modelled laser-energy/fluence variation or conversion between initial pressure and absorbed-energy density. Binary support and peak-normalized reconstruction cannot establish that physical relationship.</p>",
+          "tools": "<p>Pinned source universal_back_projection. Native measurement visualization alone here: center detector-y index15 slice, every time sample and all 31 detector-x indices. PNG 1301 columns \u00d731 rows, no interpolation or decimation. Signed amplitude p mapped u=min(|p|/.1,1); RGB floors255\u00d7(1\u2212u) for neutral channels, positive red=(255,neutral,neutral), negative blue=(neutral,neutral,255); zero white. Fixed \u00b1.1 arbitrary-unit range covers native data. Three full 1,301-cell traces at detector indices (15,15),(0,15),(15,0), teal p, gray zero, x time0\u201365\u00b5s. Selected traces follow pinned source plot_signals choices. No FFT, signal filtering, solver or evaluator called.</p>",
+          "reference": "<p>Source ground_truth_image float64 (1,41,41), image_x/y (1,41); generic ndim&gt;2 rule reduces the image to (41,41) but leaves the coordinate arrays ndim2 at (1,41). Matching array shape is not reference identity. grid \u221210..10 mm, .5mm spacing, 1,681 pixels and 101 positive binary support pixels. Runner stages all data, so synthetic truth is solver-visible; no separate private target established. Source saved reconstruction.npz retained for provenance only; image not bundled. Later reader card exposes rules only and covers synchronously on backward, exit and reset.</p>",
+          "spec": "<p>Source main uses universal backprojection, resolution 500 \u00b5m, nfft 2048, detector area (2 mm)\u00b2 and z=15 mm. Output grid 41 \u00d7 41 with x first/y second, plotted transpose only in source visualization. Frequency vector is signed f, k=2\u03c0f/c; pf=IFFT(\u2212i k FFT(p,nfft)). This is a signed derivative filter, not simply an absolute-frequency ramp. b=2p\u22122tc pf; time-of-flight index round(distance\u00d7fs/c), nearest sample with NumPy rounding, no fractional-delay interpolation or t0 correction. Native time starts0; indexing formula assumes that origin. No FFT/filter/backprojection computed here.</p>\n<p>Weight omega=(detector_area/distance\u00b2)\u00d7z/distance; sum omega\u00d7sample divided by sum omega. Then pgmax selects all complex pg entries attaining maximum absolute magnitude, pg/pgmax followed by real(). This removes absolute amplitude and can retain signed values; not abs-image/positivity/fluence normalization. No zero-max or tie-shape guard: multiple equal maxima may yield a vector/broadcast mismatch. No iterative algorithm, regularization, OSEM/MLEM/FBP or learned reconstruction variant in this main. Exact dependency/runtime and tie handling not verified by saved artifacts.</p>\n<p>Authored geometric distance 15 mm / 1,484 m/s \u2248 10.108 \u00b5s, sample index 202 at 20 MHz; it is a units/time-of-flight fixture, not a native target or reconstructed pixel. Geometry public rules separate from later source truth. Maximum native grid-to-detector distance gives rounded index 431, within 1,301 samples; this is bounds inspection only, no reconstruction.</p>",
+          "output": "<p>Generic participant output/reconstruction.npy, intended 41 \u00d7 41 initial-pressure image at z=15 mm. Source main saves evaluation/reference_outputs/reconstruction.npz: reconstruction(1,41,41), image_x/y(1,41), plus signals.npz and figures; never substitute a saved source result. Participant image, calibrated pressure, tissue finding, metric and outcome remain absent.</p>",
+          "score": "<p>Source metrics operate on real signed arrays (no magnitude transform): NCC returns0 for exactly zero norm product, range NRMSE returns infinity for exactly constant reference. Generic filesystem transforms complex arrays to magnitude, adds1e-30 to NCC denominator and uses full-array/global SSIM without scale normalization. The no-filesystem backend instead requires strict2D NPY truth, flux-normalizes output and uses relativeL2 NRMSE. No scorer/helper invoked.</p>\n<p>Source evaluates centre_crop(fraction=.8): int(41\u00d7.1)=4 each side =&gt;33\u00d733=1,089 pixels, not32\u00d732 or80% of pixels. All101 positive support pixels remain, but background denominator differs from full41 \u00d7 41 = 1,681. Binary truth range1. Source NCC is cosine, not centered Pearson; NRMSE RMS error divided by reference range. Source thresholds 0.9 \u00d7 NCC / 1.1 \u00d7 NRMSE from cropped normalized baseline. Generic shape selector chooses sole matching2D ground_truth_image (coordinate arrays stay (1,41) and do not match the intended (41,41) image); compares full image, no crop, positivity or scale normalization. Generic squeezes/float64 and complex-to-magnitude if applicable; source real signed reconstruction differs from its dB abs display. Generic metrics include MSE/PSNR/globalSSIM; installed thresholds/reference lineage not a retained current verdict. Cropped baseline does not silently qualify full-image comparison. No score computed or clinical/model performance inferred.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26562,9 +26665,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 131,
+    "reviewed-scripted-planar": 132,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 47,
+    "blocked-source-contract": 46,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },
