@@ -24764,15 +24764,15 @@
       ],
       "illustration_kind": "vqa",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "automedbench-full-vqa-omnimedvqa-task",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reporting-data",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-vqa-omnimedvqa-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted task-specific symbolic explanation after main source/visual/export/mobile/no-GPU/reference review: actual public README QA and four options, missing-image socket, authored parser/schema controls and later explicit public answer reveal. Matching image, per-source rights, Full selection/IDs/private gold and actual model results remain unresolved.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/omnimedvqa/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "question.json containing the question, referenced image paths and, for multiple-choice tasks, answer options. Dataset: OmniMedVQA.",
         "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names microsoft/llava-med-v1.5-mistral-7b. Standard supplies candidates to investigate; model files may still need provisioning.",
@@ -24805,7 +24805,7 @@
         ],
         "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. The source has not frozen all evaluation/sample identifiers."
       },
-      "source_brief_sha256": "bdfbca6fb88697859e77eef1f4bdb7ef8e028f0325c604aa2a139e409540d2e8",
+      "source_brief_sha256": "2e670d5c629d7ec92daf11c27a93c4befd61f8f52387f24aeb441ca8f3d5b3d5",
       "dependency_deferral": {
         "actor": "user",
         "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
@@ -24814,14 +24814,111 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "input-not-packaged",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Public README QA only; matching image/per-source authorization, Full IDs/private gold/submissions/scores absent.",
+      "acquisition_route": "https://huggingface.co/datasets/foreverbeliever/OmniMedVQA",
+      "warning_text": "Matching image and Full selection/private gold absent; per-source rights unresolved.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-vqa-omnimedvqa-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-vqa-omnimedvqa-task-resolution.json",
+        "receipt_sha256": "b40c3cd4b2becfc0b93d5947648db866e1db2ae6521015b8ec0f35095b10a12b",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T02:48:00.042079+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "One public OmniMedVQA README QA item and task-specific four-option binding/parser/schema/scoring explanation. Matching image, per-source authorization, exact Full membership, private gold and actual outputs remain absent.",
+      "completion_review": {
+        "date": "2026-10-01T03:03:13.365081+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "18e201eaeca1781ec5ccdce1f6ea6219a3ce3f1d76d29881fed31c057c44aa8b"
+      },
+      "reviewed_contract_projection": {
+        "title": "Bind four-option medical image questions to exact answer labels",
+        "goal": "Explain source row \u2192 staged question/options \u2192 real decode \u2192 label extraction \u2192 exact option text and answer JSON. Public README QA is source material; the missing image socket is symbolic, not reconstructed patient evidence.",
+        "value": "Not yet specified.",
+        "raw": "Full unit **question**; task plan normalizes authorized rows to question_id/question/image_paths/options/valid_labels. Modalities vary by source, never infer one common image convention. Pinned README public example **Covid CT_0082**, modality CT, question \u201cWhat anatomical area is shown in this picture?\u201d, options A:Upper arm region;B:Chest region.;C:Leg region;D:Shoulder and upper back region. Source path **Images/Covid CT/CT_COVID/bmj.m606.full-p4-22%3.png** is a locator, not an acquired image or mounted Full path. **0 matching images,1 public README QA item,0 Full cases/submissions**. No anatomy classification or image interpretation is performed. View is an explicit missing-image socket and real source options.\n\nOfficial card claims73datasets/118,010images/127,995QAitems/12modalities/>20anatomicalregions; these are published coverage counts, not Full evaluation denominators or locally verified asset counts. Some source images are split from3D, with dimension/slice naming; for this example exact clinical geometry/stack/window/rescale unspecified. Retained tree exposes one10,698,178,715B ZIP; bounded viewer row returns29B error, pinned README recovered7,677B. No small matching image/authorized pair resolved in this pass; broad ZIP acquisition omitted.",
+        "helpers": "Lite fixed microsoft/llava-med-v1.5-mistral-7b, Standard picks task-compatible image model. Task-specific LiteS3/StandardS3 require1\u201310smoke records, extract one standalone uppercase label **in per-question valid_labels A\u2013D**, copy options[label] exactly and reject parser misses instead of guessing. No task-specific15publicgold calibration requirement; effective generic composite prompt unresolved. Standard S1 compares all six model_info candidates for modality coverage, MCQ behavior, access, memory and reproducibility. These source prescriptions are not current backend availability or model results. Source dataset/options/gt_answer are public source information, not private test helper authorization. Model/weights/setup/smoke/calibration/inference absent.",
+        "tools": "Image/model/postprocess/submission guidance only. No model/judge/clinical/evaluator trial or installation.",
+        "reference": "Public README gt_answer \u201cChest region.\u201d maps to source option B; separate reference.json later reader reveal only. Not private Full gold, actual prediction or clinical adjudication. Source input omits gt_answer/answer_label. Private evaluator ground_truth.csv or per-questionanswerJSON absent. Educational reveal/exit/reset preserves distinction; display hiding is not security.",
+        "spec": "Per-source authorized image + question + exact A\u2013D option texts \u2192 actual decode \u2192 deterministic standalone label in allowed set \u2192 copy exact option text \u2192 six-key answer.json. Actual example image and Full normalizer/stager/mount isolation unverified. Config answer_mode multiple_choice, A\u2013D; generic helper/checker accepts A\u2013E and prose labels, a material discrepancy. Package47 internal pins/archivef894057807cc334421784e702ead2c1883583e1b verified; declaredrelease-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78 not independently acquiredGitproof.",
+        "output": "**<question_id>/answer.json**, submission root`.`; six required keys question_id/predicted_label/predicted_answer/raw_model_output/model_name/runtime_s. Task guidance requires exactID, actual rawdecode, one validA\u2013D label, exact options[label] string, nonempty model and nonnegative runtime. Generic checker weaker: accepts A\u2013E; empty predicted_answer permitted inMCQ and option mismatch only checked conditionally. Scorer can parse label without fullschema. All actual fields null; illustrative parser strings A/E/unparsed are authored controls, not model output or a solved source question.",
+        "score": "Normalize label via generic A\u2013E uppercase/extracted-letter helper, compare directly against private answer_label without normalizing gold. Default primary **correct parsed labels/all evaluator-supplied question IDs (default discovered split IDs)**, including missing/invalid/placeholder outputs; per-modality/type aggregates have their own counts. No open-ended EM/token-F1 or answer-judge primary promotion in this multiple-choice branch. Scorer marks A\u2013E label parsed even without complete fields/option text; checker is stricter for six fields but fails to enforce task A\u2013D and only compares option text if label exists in options and answer is nonempty. Pure synthetic controls show E+empty answer passes generic checker, incomplete B can score yet fail schema, lower-case gold does not match uppercase predicted B. This is a source mismatch, not a benchmark result. Actual staging/parser/schema enforcement must separately reject E, absent labels, ambiguous decodes and option-copy errors.\n\nFile completion, parse rate and full-format validity differ. Graded submission\u226550%valid predictions vs output_format_valid all-files; missing outputs stay in allIDs denominator; empty IDs vacuous all-format-valid but gradedfalse. Private CSV preferred then question-owned answer.json; no private references retained. Workflow weights .25/.15/.35/.15/.10 active-renormalized, overall task/workflow50/50, default medal settings .40/.25 and guards are settings, not performance. Public README gt_answer is source text, requiring exact mapping to B; actual Full stager/private label conversion unverified.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Public source README question/A\u2013D options with explicit missing image socket; answer covered.",
+          "Canonical controls show label extraction, allowed-set rejection and option-copy/schema-scoring boundaries with authored raw strings.",
+          "Explicit reader reveal shows public source text/mapped letter, exit/reset covers it; participant output empty."
+        ],
+        "variants": [
+          {
+            "name": "Full \u00b7 Lite",
+            "helper": "Task-specific Lite guidance: microsoft/llava-med-v1.5-mistral-7b.",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "name": "Full \u00b7 Standard",
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "name": "Related source listing",
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned Full harness",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz"
+          ],
+          [
+            "Official pinned dataset card",
+            "https://huggingface.co/datasets/foreverbeliever/OmniMedVQA/blob/1ba51c28fc0773bdf7efb8396e5bcfd4227e22da/README.md"
+          ],
+          [
+            "Original paper",
+            "https://arxiv.org/abs/2402.09181"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-vqa-omnimedvqa-task-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Explain source row \u2192 staged question/options \u2192 real decode \u2192 label extraction \u2192 exact option text and answer JSON. Public README QA is source material; the missing image socket is symbolic, not reconstructed patient evidence.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full unit <strong>question</strong>; task plan normalizes authorized rows to question_id/question/image_paths/options/valid_labels. Modalities vary by source, never infer one common image convention. Pinned README public example <strong>Covid CT_0082</strong>, modality CT, question \u201cWhat anatomical area is shown in this picture?\u201d, options A:Upper arm region;B:Chest region.;C:Leg region;D:Shoulder and upper back region. Source path <strong>Images/Covid CT/CT_COVID/bmj.m606.full-p4-22%3.png</strong> is a locator, not an acquired image or mounted Full path. <strong>0 matching images,1 public README QA item,0 Full cases/submissions</strong>. No anatomy classification or image interpretation is performed. View is an explicit missing-image socket and real source options.</p>\n<p>Official card claims73datasets/118,010images/127,995QAitems/12modalities/&gt;20anatomicalregions; these are published coverage counts, not Full evaluation denominators or locally verified asset counts. Some source images are split from3D, with dimension/slice naming; for this example exact clinical geometry/stack/window/rescale unspecified. Retained tree exposes one10,698,178,715B ZIP; bounded viewer row returns29B error, pinned README recovered7,677B. No small matching image/authorized pair resolved in this pass; broad ZIP acquisition omitted.</p>",
+          "helpers": "<p>Lite fixed microsoft/llava-med-v1.5-mistral-7b, Standard picks task-compatible image model. Task-specific LiteS3/StandardS3 require1\u201310smoke records, extract one standalone uppercase label <strong>in per-question valid_labels A\u2013D</strong>, copy options[label] exactly and reject parser misses instead of guessing. No task-specific15publicgold calibration requirement; effective generic composite prompt unresolved. Standard S1 compares all six model_info candidates for modality coverage, MCQ behavior, access, memory and reproducibility. These source prescriptions are not current backend availability or model results. Source dataset/options/gt_answer are public source information, not private test helper authorization. Model/weights/setup/smoke/calibration/inference absent.</p>",
+          "tools": "<p>Image/model/postprocess/submission guidance only. No model/judge/clinical/evaluator trial or installation.</p>",
+          "reference": "<p>Public README gt_answer \u201cChest region.\u201d maps to source option B; separate reference.json later reader reveal only. Not private Full gold, actual prediction or clinical adjudication. Source input omits gt_answer/answer_label. Private evaluator ground_truth.csv or per-questionanswerJSON absent. Educational reveal/exit/reset preserves distinction; display hiding is not security.</p>",
+          "spec": "<p>Per-source authorized image + question + exact A\u2013D option texts \u2192 actual decode \u2192 deterministic standalone label in allowed set \u2192 copy exact option text \u2192 six-key answer.json. Actual example image and Full normalizer/stager/mount isolation unverified. Config answer_mode multiple_choice, A\u2013D; generic helper/checker accepts A\u2013E and prose labels, a material discrepancy. Package47 internal pins/archivef894057807cc334421784e702ead2c1883583e1b verified; declaredrelease-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78 not independently acquiredGitproof.</p>",
+          "output": "<p><strong>&lt;question_id&gt;/answer.json</strong>, submission root<code>.</code>; six required keys question_id/predicted_label/predicted_answer/raw_model_output/model_name/runtime_s. Task guidance requires exactID, actual rawdecode, one validA\u2013D label, exact options[label] string, nonempty model and nonnegative runtime. Generic checker weaker: accepts A\u2013E; empty predicted_answer permitted inMCQ and option mismatch only checked conditionally. Scorer can parse label without fullschema. All actual fields null; illustrative parser strings A/E/unparsed are authored controls, not model output or a solved source question.</p>",
+          "score": "<p>Normalize label via generic A\u2013E uppercase/extracted-letter helper, compare directly against private answer_label without normalizing gold. Default primary <strong>correct parsed labels/all evaluator-supplied question IDs (default discovered split IDs)</strong>, including missing/invalid/placeholder outputs; per-modality/type aggregates have their own counts. No open-ended EM/token-F1 or answer-judge primary promotion in this multiple-choice branch. Scorer marks A\u2013E label parsed even without complete fields/option text; checker is stricter for six fields but fails to enforce task A\u2013D and only compares option text if label exists in options and answer is nonempty. Pure synthetic controls show E+empty answer passes generic checker, incomplete B can score yet fail schema, lower-case gold does not match uppercase predicted B. This is a source mismatch, not a benchmark result. Actual staging/parser/schema enforcement must separately reject E, absent labels, ambiguous decodes and option-copy errors.</p>\n<p>File completion, parse rate and full-format validity differ. Graded submission\u226550%valid predictions vs output_format_valid all-files; missing outputs stay in allIDs denominator; empty IDs vacuous all-format-valid but gradedfalse. Private CSV preferred then question-owned answer.json; no private references retained. Workflow weights .25/.15/.35/.15/.10 active-renormalized, overall task/workflow50/50, default medal settings .40/.25 and guards are settings, not performance. Public README gt_answer is source text, requiring exact mapping to B; actual Full stager/private label conversion unverified.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -24959,10 +25056,10 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 115,
+    "reviewed-scripted-planar": 116,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 60,
-    "blocked-source-input": 16,
+    "blocked-source-input": 15,
     "pending-operation-review": 1
   },
   "completion_program": {

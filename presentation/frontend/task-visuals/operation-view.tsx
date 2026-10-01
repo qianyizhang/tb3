@@ -1,4 +1,8 @@
 import {
+  AutomedOmniScene,
+  AutomedOmniOutput,
+} from './automedbench-full-vqa-omnimedvqa-task-panels';
+import {
   AutomedKvasirScene,
   AutomedKvasirOutput,
 } from './automedbench-full-vqa-kvasir-task-panels';
@@ -363,6 +367,8 @@ export function OperationScene({
     return (
       <AutomedKvasirScene key={state.beatId} plan={plan} state={state} onSeekFrame={onSeekFrame} />
     );
+  if (state.recipe === 'automed-omni-v1')
+    return <AutomedOmniScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -698,6 +704,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'automed-pathvqa-v1') return <AutomedPathvqaOutput state={state} />;
   if (state.recipe === 'automed-slake-v1') return <AutomedSlakeOutput state={state} />;
   if (state.recipe === 'automed-kvasir-v1') return <AutomedKvasirOutput state={state} />;
+  if (state.recipe === 'automed-omni-v1') return <AutomedOmniOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

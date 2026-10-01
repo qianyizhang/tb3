@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "automed-omni-v1",
             "automed-kvasir-v1",
             "automed-pathvqa-v1",
             "automed-medxpert-mm-v1",

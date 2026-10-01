@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-omni-v1": "retained-automed-omni-source-v1",
     "automed-kvasir-v1": "retained-automed-kvasir-source-v1",
     "automed-slake-v1": "retained-automed-slake-v1",
     "automed-pathvqa-v1": "retained-automed-pathvqa-source-v1",
@@ -783,6 +784,19 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automed-omni-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+        },
+    ),
     "retained-automed-kvasir-source-v1": (
         "source-records",
         "reference.json",
@@ -2204,6 +2218,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedOmniChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4137,6 +4157,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedOmniBeat(ExpansionBeat[AutomedOmniChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AutomedOmniStory(Story[AutomedOmniChannels]):
+    recipe: Literal["automed-omni-v1"]
+    beats: tuple[AutomedOmniBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AutomedKvasirBeat(ExpansionBeat[AutomedKvasirChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -4776,6 +4817,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedOmniStory
     | AutomedKvasirStory
     | AutomedSlakeStory
     | AutomedPathvqaStory
@@ -4903,6 +4945,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedOmniStory
     | AutomedKvasirStory
     | AutomedSlakeStory
     | AutomedPathvqaStory
@@ -5190,6 +5233,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedOmniStory
     | AutomedKvasirStory
     | AutomedSlakeStory
     | AutomedPathvqaStory
@@ -5496,6 +5540,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-automed-omni-source-v1": (
+                "symbolic-unit-grid",
+                "LicenseRef-OmniMedVQA-per-source-symbolic-teaching",
+                None,
+            ),
             "retained-automed-kvasir-source-v1": (
                 "symbolic-unit-grid",
                 "CC-BY-NC-4.0",
@@ -5747,6 +5796,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
                 else "unitless"
+                if pack_id == "retained-automed-omni-source-v1"
+                else "unitless"
                 if pack_id == "retained-automed-kvasir-source-v1"
                 else "px"
                 if pack_id == "retained-automed-slake-v1"
@@ -5868,6 +5919,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automed-omni-source-v1"
             or pack_id == "retained-automed-kvasir-source-v1"
             or pack_id == "retained-automed-slake-v1"
             or pack_id == "retained-automed-pathvqa-source-v1"
@@ -5972,6 +6024,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     if pack_id == "retained-automed-pathvqa-source-v1" and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-automed-kvasir-source-v1" and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-automed-omni-source-v1" and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"

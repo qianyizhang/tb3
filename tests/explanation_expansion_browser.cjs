@@ -27,6 +27,7 @@ const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const cardiacRecipes = new Set([
   'automed-slake-v1',
   'automed-pathvqa-v1',
+  'automed-omni-v1',
   'automed-kvasir-v1',
   'automed-medxpert-mm-v1',
   'automed-medframeqa-v1',
@@ -124,6 +125,15 @@ function cardiacSelectors(plan) {
       readerControlled: true,
       output: '[data-pathvqa-scene="output"] pre',
       aside: '[data-pathvqa-output]',
+    };
+  if (plan.recipe === 'automed-omni-v1')
+    return {
+      scene: 'data-omni-scene',
+      reference: '[data-omni-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-omni-scene="output"] pre',
+      aside: '[data-omni-output]',
     };
   if (plan.recipe === 'automed-kvasir-v1')
     return {
@@ -680,6 +690,12 @@ async function checkSourceWarning(page, plan) {
       /Public PathVQA train example only.*Full split\/private answer absent/s,
       'https://huggingface.co/datasets/flaviagiammarino/path-vqa',
       'data-pathvqa-scene',
+      false,
+    ],
+    'automed-omni-v1': [
+      /Matching image and Full selection\/private gold absent.*per-source rights unresolved/s,
+      'https://huggingface.co/datasets/foreverbeliever/OmniMedVQA',
+      'data-omni-scene',
       false,
     ],
     'automed-kvasir-v1': [
@@ -1467,6 +1483,135 @@ async function reviewCardiacInteractions(page, plan, output, label) {
       /in the canals of hering.*Not model evidence.*independent clinical/s,
     );
     await capture('reference-revealed');
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await reveal.click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+  }
+  if (plan.recipe === 'automed-omni-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name);
+    const scene = page.locator('[data-omni-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-omni-reference-revealed]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await scene.locator('img').count(), 0, 'no invented patient image');
+    assert.match(
+      await scene.innerText(),
+      /Referenced CT image unavailable.*no recovered patient pixels.*What anatomical area.*Upper arm region.*Chest region.*Leg region.*Shoulder and upper back region.*Covid CT_0082/s,
+    );
+    await absent();
+    const expected = (j, o = 0) => {
+      const b = plan.beats.find(
+        (b) => b.scene === 'operation' && Math.abs(b.channels.progress[0] - j / 2) < 1e-6,
+      );
+      if (j !== 1) return b.startFrame;
+      let best = 0,
+        d = Infinity;
+      for (let k = 0; k < b.frames; k++) {
+        const u = k / Math.max(1, b.frames - 1),
+          z = u * u * (3 - 2 * u),
+          v = Math.abs(z - o / 2);
+        if (v < d) {
+          d = v;
+          best = k;
+        }
+      }
+      return b.startFrame + best;
+    };
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    for (let j = 0; j < 3; j++) {
+      await page.locator(`[data-omni-operation-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        expected(j),
+      );
+      assert.equal(
+        await page.locator(`[data-omni-operation-step="${j}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await page.locator('[data-omni-operation-step="0"]').click();
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-omni-tier]').innerText(),
+      /all six.*modality\/access\/memory\/reproducibility.*no observed comparison/s,
+    );
+    await capture('tier-standard');
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('bind')}"]`).click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('[data-omni-operation-step="1"]').click();
+    const names = ['Standalone A', 'Reject E', 'Reject miss'];
+    const patterns = [
+      /Authored control.*Answer: A.*A.*parser control.*never a real decode/s,
+      /Authored control.*E.*reject.*outside task A–D.*Generic schema\/scorer A–E/s,
+      /Authored control.*unparsed response.*reject.*do not guess/s,
+    ];
+    for (let o = 0; o < 3; o++) {
+      await scene.getByRole('button', { name: names[o], exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        expected(1, o),
+      );
+      assert.equal(
+        await scene
+          .getByRole('button', { name: names[o], exact: true })
+          .getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(await scene.innerText(), patterns[o]);
+      await capture(`branch-${o}`);
+      await absent();
+    }
+    await page.locator('[data-omni-operation-step="2"]').click();
+    assert.equal(await page.locator('[data-omni-format]').count(), 0);
+    await scene
+      .getByRole('button', { name: 'Inspect task versus generic checks', exact: true })
+      .click();
+    assert.match(
+      await page.locator('[data-omni-format]').innerText(),
+      /Task A–D.*generic A–E.*conditional.*Private gold is exact, unnormalized.*no score/s,
+    );
+    await capture('format-revealed');
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-omni-format]').count(), 0);
+    assert.match(await scene.innerText(), /No authored control or public source answer copied/s);
+    await page.locator(`[data-story-step="${beat('reference')}"]`).click();
+    await absent();
+    const reveal = scene.getByRole('button', {
+      name: 'Reveal public README annotation',
+      exact: true,
+    });
+    await reveal.click();
+    assert.match(
+      await page.locator('[data-omni-reference-revealed]').innerText(),
+      /Chest region.*option B.*not private gold.*all evaluator-supplied IDs.*missing\/invalid.*No open-ended token-F1 or judge promotion/s,
+    );
+    await capture('reference-revealed');
+    await reveal.click();
+    await absent();
+    await reveal.click();
     await page.locator(`[data-story-step="${beat('limits')}"]`).click();
     await absent();
     await page.locator(`[data-story-step="${beat('reference')}"]`).click();
@@ -6903,6 +7048,7 @@ withBrowser(async (browser) => {
     const planar = [
       'automed-slake-v1',
       'automed-pathvqa-v1',
+      'automed-omni-v1',
       'automed-kvasir-v1',
       'automed-medxpert-mm-v1',
       'automed-medframeqa-v1',

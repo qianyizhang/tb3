@@ -1,0 +1,717 @@
+{
+  "schema": 1,
+  "kind": "explainer-source-resolution",
+  "entry_id": "automedbench-full-vqa-omnimedvqa-task",
+  "source_files": [
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/aggregate.py",
+      "sha256": "bb05e48a19abf4fc6952334288944733a303874ec95c3eb4fd3a21d6d63c203d",
+      "bytes": 11632
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/answer_judge.py",
+      "sha256": "4716ff98f187e233b61d1413a0b3ce271cff3df12013f294581093d70f223d23",
+      "bytes": 17052
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/answer_metrics.py",
+      "sha256": "066e36474b5a05a3622d7eeef64bdb822eafb541927e7102bc0758d1163cfdd2",
+      "bytes": 9821
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/answer_normalizer.py",
+      "sha256": "b866af1cc46deb802f024d90d51a60d566a924ffe4f22294dc8f08d70be164bd",
+      "bytes": 2838
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/answer_utils.py",
+      "sha256": "cb39d4ea80202932d4f865c2c25bacd0f6aae50501b35d19bb61496092a25af7",
+      "bytes": 2298
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/detail_report.py",
+      "sha256": "74c4deee402f9ddeea118dc7219cab8d2ce9f9e2ebd2a304a51672f666c123d6",
+      "bytes": 3980
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/failure_classifier.py",
+      "sha256": "7a0967b4752e0e57e75ab1100061478310f822a37a12ff6bdc7feebc9d288034",
+      "bytes": 6561
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/format_checker.py",
+      "sha256": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6",
+      "bytes": 7329
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/inference_verifier.py",
+      "sha256": "b959d630dd65034720851bb4ac5f388a23fb4288d414f7bd7cbba3867ea21ad0",
+      "bytes": 13110
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/llm_judge.py",
+      "sha256": "8b3c014f3fb05cfdfabe705431eb36acf9bacb935a8998ccd7378bf246ea9202",
+      "bytes": 9007
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/medal_tier.py",
+      "sha256": "c8a75561b4f0c8654e1c4819ac8e7a1ff5c22b3cc442545f41c8793834ac6caa",
+      "bytes": 496
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/medbench_vqa/__init__.py",
+      "sha256": "279098f491e60c7e5e338dddf471c1d031a2f74367041c2bc40b23c8d41d19b4",
+      "bytes": 743
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/medbench_vqa/_logger.py",
+      "sha256": "836b256702395cdc53cecb94c222b7caed4f8c08608bf5c615fce316fc38eacb",
+      "bytes": 1146
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/medbench_vqa/image_inspection.py",
+      "sha256": "48b813360080b238e3460f3d425209965a15d1b70d1a2444effca6003c2cb0a9",
+      "bytes": 5956
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/medbench_vqa/medical_search.py",
+      "sha256": "3ac18152355097b14c515ea31d98ff8fe0fb9bccfdfe87bbf9306d2e424409e9",
+      "bytes": 5271
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/medbench_vqa/submit.py",
+      "sha256": "f4737b7309fd8230a13ed1c806ea5f75f4e0aafdf694a6829ca8d4fd0eabfd7d",
+      "bytes": 3559
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/modality_typing.py",
+      "sha256": "a69bf0456c1f61ea6cdc193f4b7be8723e96f822228d95a0e8a760bb886d3350",
+      "bytes": 6500
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/critical_model_use.md",
+      "sha256": "34cba193cabcac0d950bec71ab68b102301937f32f8b9c3cf903984575e7376c",
+      "bytes": 2073
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "5a168771ef684ce3ce27ca352034e7e07fd5b8e4cab0e914da0d6576744aba35",
+      "bytes": 717
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "ad1eb5d5ab2aa695ba52aaf768f5cfa0838e4c039b566416150cb24f9d2b8bad",
+      "bytes": 605
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "e5799f05530c2a5f2e8922c441ffa970f9c05bec16aba9b0993bcad5314b7919",
+      "bytes": 1475
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "9f1db901e5cfad470fa85ef4da538bffb19123ab559ee7ff25c47a35d064abe0",
+      "bytes": 1446
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "cb1b39eaedd2cc074682f64ed36e09a344af7c0b409ad1c695e67fcf158492d8",
+      "bytes": 145
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/llava_med_skill.md",
+      "sha256": "b9caf72a1e4c9ef12f5356ad68f0eddac727141422b0be82ecc0d6cac773a4f4",
+      "bytes": 5503
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/open_ended_contract.md",
+      "sha256": "8841e1ad8bf06b378684e4af119c80210ac5bd73737b95d90de2c242fc6218ce",
+      "bytes": 722
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "df50039aa1d3949b7bb1220b6216fcc00f3c01c6979531ef9fdbdc880da584cf",
+      "bytes": 4085
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "5518dfb4476a869fcaade8df71babbeb019ff94c609224c95f1b47d74fb451a0",
+      "bytes": 1577
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "6988dc1d8aca9d518d1b58a21ccae7a1883a4be002346d805c665a2f5fd1c461",
+      "bytes": 2014
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "92668a180a129c327798e91424568388c1d1c685d59ad68044bc03fb285c0006",
+      "bytes": 3823
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/s2_setup/standard.md",
+      "sha256": "36d9dc875a97271d0f5331895bb76a9bee4ea8ff26495c307bef985289f4997c",
+      "bytes": 2526
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "e961374b90358a8b8bba9dc3d0bc58cd181722141dcef5b3f70402cafa9342be",
+      "bytes": 6348
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/s4_inference/all.md",
+      "sha256": "f1158d73bc5a328e048dff63c729c5c1e83174d874d48bd34be694672b8cb657",
+      "bytes": 5897
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "9f1d27cc977462bc81028395a589686473f7a607a3c522ea1180ba9d57a5c566",
+      "bytes": 1468
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/run_eval.py",
+      "sha256": "0998fb2a6eb18d3c2d7b0e0797c74f6d98a35b419012dc4fe63d75fdc38703bd",
+      "bytes": 9465
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/task_loader.py",
+      "sha256": "aa7ef5146845a1565623ceb3b05523484920951f92290d8338d562455e35e953",
+      "bytes": 6115
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/config.yaml",
+      "sha256": "ee2829772b30f42afe86a5e59c0359bd7909d2db11b6f5cbd726249a8f866809",
+      "bytes": 1400
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/lite_s1.md",
+      "sha256": "3fe8dd4e5854dee316796d93db3b7230e1fe33b1f9fe89ffe1dc01f45e498751",
+      "bytes": 670
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/lite_s2.md",
+      "sha256": "5429dd7a34ff14d389e317bd2c7d19a2b496c35a7db777580e81784d2e3a065b",
+      "bytes": 459
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/lite_s3.md",
+      "sha256": "c0e44349ecd117754eab5f4dc7165a06d32c34895a68bdd135df678b960f136f",
+      "bytes": 464
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/model_info.yaml",
+      "sha256": "3bd8f3b5863b95282031a96199406fdfc00b95ccb64ee820e8f0d28540e3178e",
+      "bytes": 1964
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/requirements.txt",
+      "sha256": "199ef92e211665d65e280e28cd5c523e395dfe5309576187c980c3988d212fd5",
+      "bytes": 250
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/standard_s1.md",
+      "sha256": "dc070a3922f2e7cb2fb473c0b77feda3573484ee6c5581f9018d8948138e696d",
+      "bytes": 470
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/standard_s3.md",
+      "sha256": "c390909913d6a33653ff1575df7ebcdbe3027e291a9a16d5c6480a623e2aba5a",
+      "bytes": 285
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tier_config.py",
+      "sha256": "0137a0e045a9ce1dfc626241170a3d819e30616a97c400c9c17316bc57360a8c",
+      "bytes": 2610
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tool_usage.py",
+      "sha256": "126117ee8908f23246e9e84b853ff8d55ab31b8a35c250d094edc7418e095455",
+      "bytes": 3125
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/vqa_scorer.py",
+      "sha256": "4a128cbe9668f08a7341da4c23b90b649c3a9168294f45a058ef710d99e37a14",
+      "bytes": 10606
+    },
+    {
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/task.json",
+      "sha256": "d15d3efbacec8ef00422bfbe4a0f4095d756b484269bce24bb17d7451d4282a4",
+      "bytes": 1391
+    }
+  ],
+  "retained_source_pins": [
+    {
+      "bytes": 57574,
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task.tar.gz",
+      "role": "pinned-Full-harness-archive",
+      "sha256": "4d9cca93e67a99d5854763379b30fc07c73f0acad6352acebe6f4107dbac986c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz"
+    },
+    {
+      "bytes": 1391,
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/task.json",
+      "role": "task-envelope",
+      "sha256": "d15d3efbacec8ef00422bfbe4a0f4095d756b484269bce24bb17d7451d4282a4",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz"
+    },
+    {
+      "bytes": 1400,
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/tasks/vqa-omnimedvqa-task/config.yaml",
+      "role": "task-config",
+      "sha256": "ee2829772b30f42afe86a5e59c0359bd7909d2db11b6f5cbd726249a8f866809",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz"
+    },
+    {
+      "bytes": 10606,
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/vqa_scorer.py",
+      "role": "executable-scorer",
+      "sha256": "4a128cbe9668f08a7341da4c23b90b649c3a9168294f45a058ef710d99e37a14",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz"
+    },
+    {
+      "bytes": 7329,
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/source/format_checker.py",
+      "role": "format-checker",
+      "sha256": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz"
+    },
+    {
+      "bytes": 4651,
+      "path": ".local/explainers/core-20260929/interpretation-h-source/packages/vqa-omnimedvqa-task/automedbench-task/MANIFEST.sha256",
+      "role": "package-manifest",
+      "sha256": "53f9a596969138d3e7a36b22622c4c4e9ca9c8882f395d8d6926dfad0e49c970",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz"
+    },
+    {
+      "bytes": 501,
+      "path": ".local/explainers/core-20260929/interpretation-h-source/upstream/omni-tree.json",
+      "role": "upstream-revision-tree",
+      "sha256": "fbf807755c5867a340297df993e23cc7186e57733e248fe6c5195a8e0b613a7a",
+      "url": "https://huggingface.co/datasets/foreverbeliever/OmniMedVQA"
+    }
+  ],
+  "brief_sha256": "2e670d5c629d7ec92daf11c27a93c4befd61f8f52387f24aeb441ca8f3d5b3d5",
+  "source_revision": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+  "source_url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz",
+  "upstream_revision": "1ba51c28fc0773bdf7efb8396e5bcfd4227e22da",
+  "actual_data_gap": "Public README QA only; matching image/per-source authorization, Full IDs/private gold/submissions/scores absent.",
+  "warning_text": "Matching image and Full selection/private gold absent; per-source rights unresolved.",
+  "acquisition_route": "https://huggingface.co/datasets/foreverbeliever/OmniMedVQA",
+  "task_contract": {
+    "answer_mode": "multiple_choice",
+    "dataset": "OmniMedVQA",
+    "dataset_included": false,
+    "format_caveat": "generic checker permits A-E, but task config declares only A-D",
+    "full_case_membership_verified": false,
+    "input_filename": "question.json",
+    "metric": "four-option letter accuracy",
+    "output_path": "{question_id}/answer.json",
+    "required_output_keys": [
+      "question_id",
+      "predicted_label",
+      "predicted_answer",
+      "raw_model_output",
+      "model_name",
+      "runtime_s"
+    ],
+    "source_ref": "release-owned-v1@1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "source_sample_id": null,
+    "source_sample_split": null,
+    "task_id": "vqa-omnimedvqa-task",
+    "valid_labels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "denominator": "all evaluator-supplied question IDs (default discovered split IDs), including missing/invalid/placeholder predictions",
+    "tiers": {
+      "lite_fixed": "microsoft/llava-med-v1.5-mistral-7b / llava_med_conv",
+      "standard": "compare all six exact model_info candidates; access/modality/memory/reproducibility unverified",
+      "lite_and_standard_smoke": [
+        1,
+        10
+      ],
+      "private_answers_not_for_validation": true,
+      "not_lite15_public_gold_calibration": true,
+      "standard_exact_candidates": [
+        "UCSC-VLAA/MedVLThinker-3B-RL_m23k",
+        "MedVLSynther/MedVLSynther-3B-RL_13K",
+        "Qwen/Qwen2.5-VL-3B-Instruct",
+        "google/gemma-4-E2B-it",
+        "google/gemma-4-E4B-it",
+        "microsoft/llava-med-v1.5-mistral-7b"
+      ]
+    },
+    "generic_disagreements": [
+      "Task A-D and exactly one allowed standalone label versus generic A-E/extracted prose label normalization.",
+      "Generic MCQ checker compares nonempty answer only when label exists in options; E+empty text can pass, contrary to task instruction.",
+      "Scorer validates fewer schema/provenance fields than checker and compares normalized prediction to exact unnormalized private gold; missing/invalid retained in all supplied IDs."
+    ]
+  },
+  "source_roles": {
+    "input": "Public README QA/options; matching image socket explicitly missing",
+    "helper": "Task tier/model/smoke/parser guidance; no execution",
+    "reference": "Public README answer text mapped to B reader reveal only; private Full gold absent",
+    "output": "Actual six values null; authored illustrative parser controls separate",
+    "scorer": "MCQ correct normalizedlabel/allIDs, taskAD vs genericAE discrepancy"
+  },
+  "source_question": {
+    "dataset": "Covid CT",
+    "question_id": "Covid CT_0082",
+    "question_type": "Anatomy Identification",
+    "question": "What anatomical area is shown in this picture?",
+    "image_path": "Images/Covid CT/CT_COVID/bmj.m606.full-p4-22%3.png",
+    "option_A": "Upper arm region",
+    "option_B": "Chest region.",
+    "option_C": "Leg region",
+    "option_D": "Shoulder and upper back region",
+    "modality_type": "CT(Computed Tomography)"
+  },
+  "public_reference": {
+    "answer": "Chest region.",
+    "label": "B",
+    "role": "Public README example answer only; not private gold, model output or clinical finding"
+  },
+  "source_geometry": {
+    "image": null,
+    "modality_declared": "CT(Computed Tomography)",
+    "geometry": "missing-image socket; no patient pixels",
+    "native_dimensions": null
+  },
+  "source_transport": [
+    {
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/automedbench-full-vqa-omnimedvqa-task/official-card.md",
+      "sha256": "f6ab4c363298083f34a22415ebf8cc9d9c8c8ad099a84c2abc391206d884d347",
+      "bytes": 7677
+    },
+    {
+      "path": "/Users/zhangqy/pkgs/tb3/.local/explainers/goal-20260930/workers/automedbench-full-vqa-omnimedvqa-task/official-row-attempt.json",
+      "sha256": "b858dcadeb37aa87e47175192abda1b1de3a63841e349179593a98403fe62cf4",
+      "bytes": 29
+    }
+  ],
+  "attempts": [
+    {
+      "action": "Revalidate retained exact Full OmniMedVQA package and official README/failed viewer receipts, without new acquisition",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/vqa/vqa-omnimedvqa-task.tar.gz; https://huggingface.co/datasets/foreverbeliever/OmniMedVQA",
+      "outcome": "47 Full source files and7 unchanged retained pins,47 MANIFEST entries and48 regular archive member bytes verified. Official README question/options only, matching image and authorized Full selection remain absent; viewer error is not access denial. No GET/model/source scorer/tool/evaluator execution.",
+      "attempted_at": "2026-10-01T01:57:58.926849+00:00"
+    }
+  ],
+  "fixture": {
+    "role": "Authored nonclinical parser controls only, not source answer, actual model decode or submitted output",
+    "raw_examples": [
+      "Answer: A",
+      "E",
+      "unparsed response"
+    ],
+    "parsed_examples": [
+      "A",
+      null,
+      null
+    ],
+    "symbolic_output": {
+      "predicted_label": "A",
+      "predicted_answer": "Upper arm region"
+    },
+    "actual_prediction": null,
+    "actual_reference": null
+  },
+  "model_run": false,
+  "task_run": false,
+  "browser_review": false,
+  "reference_policy": "reader-reference-reveal",
+  "baseline_commit": "aa1016a32638081fc87e970c649328e7a58f3ca7",
+  "license_context": {
+    "image_license": "per-source terms,no global grant",
+    "image_acquired": false,
+    "local_use": "noncommercial symbolic/source-contract interpretation",
+    "publication": false
+  },
+  "archive_members": [
+    {
+      "member": "automedbench-task/task.json",
+      "sha256": "d15d3efbacec8ef00422bfbe4a0f4095d756b484269bce24bb17d7451d4282a4",
+      "bytes": 1391
+    },
+    {
+      "member": "automedbench-task/source/aggregate.py",
+      "sha256": "bb05e48a19abf4fc6952334288944733a303874ec95c3eb4fd3a21d6d63c203d",
+      "bytes": 11632
+    },
+    {
+      "member": "automedbench-task/source/answer_judge.py",
+      "sha256": "4716ff98f187e233b61d1413a0b3ce271cff3df12013f294581093d70f223d23",
+      "bytes": 17052
+    },
+    {
+      "member": "automedbench-task/source/answer_metrics.py",
+      "sha256": "066e36474b5a05a3622d7eeef64bdb822eafb541927e7102bc0758d1163cfdd2",
+      "bytes": 9821
+    },
+    {
+      "member": "automedbench-task/source/answer_normalizer.py",
+      "sha256": "b866af1cc46deb802f024d90d51a60d566a924ffe4f22294dc8f08d70be164bd",
+      "bytes": 2838
+    },
+    {
+      "member": "automedbench-task/source/answer_utils.py",
+      "sha256": "cb39d4ea80202932d4f865c2c25bacd0f6aae50501b35d19bb61496092a25af7",
+      "bytes": 2298
+    },
+    {
+      "member": "automedbench-task/source/detail_report.py",
+      "sha256": "74c4deee402f9ddeea118dc7219cab8d2ce9f9e2ebd2a304a51672f666c123d6",
+      "bytes": 3980
+    },
+    {
+      "member": "automedbench-task/source/failure_classifier.py",
+      "sha256": "7a0967b4752e0e57e75ab1100061478310f822a37a12ff6bdc7feebc9d288034",
+      "bytes": 6561
+    },
+    {
+      "member": "automedbench-task/source/format_checker.py",
+      "sha256": "9dfc427849b5265827d54b369b973957b54672bb303ceca42ca875f3be6631a6",
+      "bytes": 7329
+    },
+    {
+      "member": "automedbench-task/source/inference_verifier.py",
+      "sha256": "b959d630dd65034720851bb4ac5f388a23fb4288d414f7bd7cbba3867ea21ad0",
+      "bytes": 13110
+    },
+    {
+      "member": "automedbench-task/source/llm_judge.py",
+      "sha256": "8b3c014f3fb05cfdfabe705431eb36acf9bacb935a8998ccd7378bf246ea9202",
+      "bytes": 9007
+    },
+    {
+      "member": "automedbench-task/source/medal_tier.py",
+      "sha256": "c8a75561b4f0c8654e1c4819ac8e7a1ff5c22b3cc442545f41c8793834ac6caa",
+      "bytes": 496
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/__init__.py",
+      "sha256": "279098f491e60c7e5e338dddf471c1d031a2f74367041c2bc40b23c8d41d19b4",
+      "bytes": 743
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/_logger.py",
+      "sha256": "836b256702395cdc53cecb94c222b7caed4f8c08608bf5c615fce316fc38eacb",
+      "bytes": 1146
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/image_inspection.py",
+      "sha256": "48b813360080b238e3460f3d425209965a15d1b70d1a2444effca6003c2cb0a9",
+      "bytes": 5956
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/medical_search.py",
+      "sha256": "3ac18152355097b14c515ea31d98ff8fe0fb9bccfdfe87bbf9306d2e424409e9",
+      "bytes": 5271
+    },
+    {
+      "member": "automedbench-task/source/medbench_vqa/submit.py",
+      "sha256": "f4737b7309fd8230a13ed1c806ea5f75f4e0aafdf694a6829ca8d4fd0eabfd7d",
+      "bytes": 3559
+    },
+    {
+      "member": "automedbench-task/source/modality_typing.py",
+      "sha256": "a69bf0456c1f61ea6cdc193f4b7be8723e96f822228d95a0e8a760bb886d3350",
+      "bytes": 6500
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/critical_model_use.md",
+      "sha256": "34cba193cabcac0d950bec71ab68b102301937f32f8b9c3cf903984575e7376c",
+      "bytes": 2073
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "5a168771ef684ce3ce27ca352034e7e07fd5b8e4cab0e914da0d6576744aba35",
+      "bytes": 717
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "ad1eb5d5ab2aa695ba52aaf768f5cfa0838e4c039b566416150cb24f9d2b8bad",
+      "bytes": 605
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "e5799f05530c2a5f2e8922c441ffa970f9c05bec16aba9b0993bcad5314b7919",
+      "bytes": 1475
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "9f1db901e5cfad470fa85ef4da538bffb19123ab559ee7ff25c47a35d064abe0",
+      "bytes": 1446
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "cb1b39eaedd2cc074682f64ed36e09a344af7c0b409ad1c695e67fcf158492d8",
+      "bytes": 145
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/llava_med_skill.md",
+      "sha256": "b9caf72a1e4c9ef12f5356ad68f0eddac727141422b0be82ecc0d6cac773a4f4",
+      "bytes": 5503
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/open_ended_contract.md",
+      "sha256": "8841e1ad8bf06b378684e4af119c80210ac5bd73737b95d90de2c242fc6218ce",
+      "bytes": 722
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "df50039aa1d3949b7bb1220b6216fcc00f3c01c6979531ef9fdbdc880da584cf",
+      "bytes": 4085
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "5518dfb4476a869fcaade8df71babbeb019ff94c609224c95f1b47d74fb451a0",
+      "bytes": 1577
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "6988dc1d8aca9d518d1b58a21ccae7a1883a4be002346d805c665a2f5fd1c461",
+      "bytes": 2014
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "92668a180a129c327798e91424568388c1d1c685d59ad68044bc03fb285c0006",
+      "bytes": 3823
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/standard.md",
+      "sha256": "36d9dc875a97271d0f5331895bb76a9bee4ea8ff26495c307bef985289f4997c",
+      "bytes": 2526
+    },
+    {
+      "member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "e961374b90358a8b8bba9dc3d0bc58cd181722141dcef5b3f70402cafa9342be",
+      "bytes": 6348
+    },
+    {
+      "member": "automedbench-task/source/prompts/s4_inference/all.md",
+      "sha256": "f1158d73bc5a328e048dff63c729c5c1e83174d874d48bd34be694672b8cb657",
+      "bytes": 5897
+    },
+    {
+      "member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "9f1d27cc977462bc81028395a589686473f7a607a3c522ea1180ba9d57a5c566",
+      "bytes": 1468
+    },
+    {
+      "member": "automedbench-task/source/run_eval.py",
+      "sha256": "0998fb2a6eb18d3c2d7b0e0797c74f6d98a35b419012dc4fe63d75fdc38703bd",
+      "bytes": 9465
+    },
+    {
+      "member": "automedbench-task/source/task_loader.py",
+      "sha256": "aa7ef5146845a1565623ceb3b05523484920951f92290d8338d562455e35e953",
+      "bytes": 6115
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/config.yaml",
+      "sha256": "ee2829772b30f42afe86a5e59c0359bd7909d2db11b6f5cbd726249a8f866809",
+      "bytes": 1400
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/lite_s1.md",
+      "sha256": "3fe8dd4e5854dee316796d93db3b7230e1fe33b1f9fe89ffe1dc01f45e498751",
+      "bytes": 670
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/lite_s2.md",
+      "sha256": "5429dd7a34ff14d389e317bd2c7d19a2b496c35a7db777580e81784d2e3a065b",
+      "bytes": 459
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/lite_s3.md",
+      "sha256": "c0e44349ecd117754eab5f4dc7165a06d32c34895a68bdd135df678b960f136f",
+      "bytes": 464
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/model_info.yaml",
+      "sha256": "3bd8f3b5863b95282031a96199406fdfc00b95ccb64ee820e8f0d28540e3178e",
+      "bytes": 1964
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/requirements.txt",
+      "sha256": "199ef92e211665d65e280e28cd5c523e395dfe5309576187c980c3988d212fd5",
+      "bytes": 250
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/standard_s1.md",
+      "sha256": "dc070a3922f2e7cb2fb473c0b77feda3573484ee6c5581f9018d8948138e696d",
+      "bytes": 470
+    },
+    {
+      "member": "automedbench-task/source/tasks/vqa-omnimedvqa-task/standard_s3.md",
+      "sha256": "c390909913d6a33653ff1575df7ebcdbe3027e291a9a16d5c6480a623e2aba5a",
+      "bytes": 285
+    },
+    {
+      "member": "automedbench-task/source/tier_config.py",
+      "sha256": "0137a0e045a9ce1dfc626241170a3d819e30616a97c400c9c17316bc57360a8c",
+      "bytes": 2610
+    },
+    {
+      "member": "automedbench-task/source/tool_usage.py",
+      "sha256": "126117ee8908f23246e9e84b853ff8d55ab31b8a35c250d094edc7418e095455",
+      "bytes": 3125
+    },
+    {
+      "member": "automedbench-task/source/vqa_scorer.py",
+      "sha256": "4a128cbe9668f08a7341da4c23b90b649c3a9168294f45a058ef710d99e37a14",
+      "bytes": 10606
+    },
+    {
+      "member": "automedbench-task/MANIFEST.sha256",
+      "sha256": "53f9a596969138d3e7a36b22622c4c4e9ca9c8882f395d8d6926dfad0e49c970",
+      "bytes": 4651
+    }
+  ],
+  "historical_acquisition_attempts": [
+    {
+      "date": "2026-09-30",
+      "route": "pinned officialREADME",
+      "outcome": "HTTP200,7677B; public QA acquired,no matchingimage",
+      "bounded_file_bytes": 65536
+    },
+    {
+      "date": "2026-09-30",
+      "route": "official viewer one-rowrequest",
+      "outcome": "29BUnexpectederror; cardviewerfalse; not accessdenial"
+    }
+  ],
+  "source_class": "source-derived-teaching",
+  "illustration_basis": "mixed",
+  "refresh_provenance": {
+    "original_receipt_sha256": "88ec27809da8ef2c0ac3ad6a91227869d91cfd31dc6595367cf94288a582892c",
+    "original_report_sha256": "c79e09a13e8d444afbd0ae38d380c4ad15c43057bfe95e50c1299717750ce199",
+    "final_baseline": "aa1016a32638081fc87e970c649328e7a58f3ca7",
+    "historical_objects_preserved_exactly": true
+  },
+  "original_conditions": {
+    "section_sha256": "c1ce791ed22dede570add560a140916d7dae0c8c67c70f816130d386a61d18a9",
+    "rows": [
+      {
+        "name": "Full \u00b7 Lite",
+        "helper": "Task-specific Lite guidance: microsoft/llava-med-v1.5-mistral-7b.",
+        "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+      },
+      {
+        "name": "Full \u00b7 Standard",
+        "helper": "Candidate methods and task-specific comparison requirements.",
+        "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+      },
+      {
+        "name": "Related source listing",
+        "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+        "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+      }
+    ],
+    "baseline": "aa1016a32638081fc87e970c649328e7a58f3ca7"
+  },
+  "official_transport_pins_checked": true
+}

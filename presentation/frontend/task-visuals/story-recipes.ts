@@ -1,3 +1,4 @@
+import { automedOmniPack } from './automedbench-full-vqa-omnimedvqa-task';
 import { automedKvasirPack } from './automedbench-full-vqa-kvasir-task';
 import { automedSlakePack } from './automed-slake';
 import { automedPathvqaPack } from './automedbench-full-pathvqa-task';
@@ -122,6 +123,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-omni-v1',
     'automed-kvasir-v1',
     'automed-slake-v1',
     'automed-pathvqa-v1',
@@ -1128,6 +1130,13 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Public raw example; Full split absent',
         warning: automedKvasirPack.source.notice,
         legend: [],
+      };
+    case 'automed-omni-v1':
+      return {
+        heading: 'Four options; task/parser/schema boundaries',
+        corner: 'Source QA; image and Full IDs absent',
+        warning: automedOmniPack.source.notice,
+        legend: [['#e8bd6d', 'Dashed amber box: reader-only public README annotation']],
       };
     case 'bcer-brain-full-v1':
       return {
