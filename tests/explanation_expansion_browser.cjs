@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-varnet-v1',
   'imaging101-t2-mapping-v1',
   'imaging101-sense-v1',
   'imaging101-pnp-admm-v1',
@@ -121,6 +122,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-varnet-v1')
+    return {
+      scene: 'data-imaging-varnet-scene',
+      reference: '[data-imaging-varnet-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-varnet-scene="output"] code',
+      aside: '[data-imaging-varnet-output]',
+    };
   if (plan.recipe === 'imaging101-t2-mapping-v1')
     return {
       scene: 'data-imaging-t2-mapping-scene',
@@ -816,6 +826,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-varnet-v1': [
+      /Actual fastMRI-derived k-space; promised checkpoint absent, no participant reconstruction.*Local research use only/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet',
+      'data-imaging-varnet-scene',
+      false,
+    ],
     'imaging101-t2-mapping-v1': [
       /Synthetic echoes only; generic reference may select M0 rather than T2.*No participant fit or clinical result/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping',
@@ -1715,6 +1731,195 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page.locator('[data-story-step="0"]').click();
     await absent();
   }
+  if (plan.recipe === 'imaging101-varnet-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-varnet-scene]');
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-varnet-reference-revealed]').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async (m) => {
+      const img = scene.locator('img');
+      assert.equal(await img.count(), 1);
+      const d = await img.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(d.w, 92);
+      assert.equal(d.h, 160);
+      assert.match(
+        d.alt,
+        new RegExp(
+          `Native k-space magnitude samples, Coil ${[0, 7, 14][m]}; no spatial reconstruction`,
+        ),
+      );
+      assert.ok(d.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(d.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            `presentation/task-explorer/imaging101-mri-varnet/kspace-${[0, 7, 14][m]}.png`,
+          ),
+        ),
+      );
+      assert.match(
+        await scene.locator('figcaption').first().innerText(),
+        /Gray: log-display \|k\|.*fixed\s*\.006 ceiling; phase lost.*Every fourth row\/column.*160\s*×\s*92\s*cells/s,
+      );
+    };
+    const mask = async () => {
+      const rows = await scene
+        .locator('svg rect')
+        .evaluateAll((es) =>
+          es.map((e) => ({
+            x: Number(e.getAttribute('x')),
+            w: Number(e.getAttribute('width')),
+            h: Number(e.getAttribute('height')),
+            fill: e.getAttribute('fill'),
+          })),
+        );
+      assert.equal(rows.length, 368);
+      rows.forEach((v, j) =>
+        assert.deepEqual(v, {
+          x: j,
+          w: 1,
+          h: 8,
+          fill: j % 4 === 2 || (j >= 170 && j < 199) ? '#57d1cc' : '#122939',
+        }),
+      );
+      assert.match(
+        await scene.locator('figcaption').last().innerText(),
+        /Teal: saved sampled columns; dark: missing.*113\s*\/\s*368; ACS\s*29/s,
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await image(0);
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /1\s*slice.*15\s*coils.*640\s*×\s*368 complex grid.*fastMRI-derived source.*CORPD_FBK.*Frequency-array indices.*no anatomical or clinical image.*Promised checkpoint absent.*local research only.*No FFT.*model forward or reconstruction/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const steps = ['Complex encoding', 'Native samples + mask', 'Model boundary'],
+      branches = ['Coil 0', 'Coil 7', 'Coil 14'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branches[m], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[m]);
+        await image(m);
+        await mask();
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-varnet-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /y_c=M F\(S_c x\).*centered orthonormal FFT.*Complex-pair model input.*1\s*×\s*15\s*×\s*640\s*×\s*368\s*×\s*2.*Sensitivity maps estimated by external model.*not supplied or computed here.*Authored hard-consistency example\s*\[3,4\]→\[2,4\].*teaching arithmetic.*not VarNet's learned\/soft update/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        } else if (i === 1) {
+          await image(m);
+          await mask();
+          assert.match(
+            text,
+            /Equispaced columns with random offset.*Saved offset\s*2.*nominal R4 plus\s*29\s*ACS lines.*effective\s*368\s*\/\s*113≈3\.257.*not a Bernoulli mask or a fresh model tensor/is,
+          );
+        } else {
+          assert.match(
+            text,
+            /12-cascade constructor; checkpoint absent.*Regularizer pools\s*4\s*\/\s*channels\s*18.*sensitivity pools\s*4\s*\/\s*channels\s*8.*External fastMRI lower bound.*not pin exact blocks or calibration schedule.*CPU\s*\/\s*eval\s*\/\s*no_grad.*no forward.*320\s*×\s*320.*\(160,24\).*no resize or image computed/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await image(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*320\s*×\s*320 magnitude.*Participant image\s*\/\s*score empty.*Saved source VarNet output.*no recovered checkpoint or new execution lineage/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await absent();
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-varnet-reference-revealed]').innerText(),
+      /Source RSS image is solver-visible.*no private clinical truth.*No source or participant image shown.*Generic magnitude comparison.*102,?400\s*pixels.*no scale normalization.*Phase information is lost.*NCC differs from range error.*windowed SSIM differs from generic global SSIM.*source averages lack pass boundary fields.*Saved metrics are not current model evidence/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /Pinned data tree lacks varnet_knee_state_dict\.pt.*Saved source output cannot establish checkpoint replay or participant\/model outcome.*Exact external fastMRI runtime implementation and source-case identity not established.*retain local-use rights boundary.*Native k-space previews are input evidence only.*No reconstructed finding.*learned outcome.*performance or clinical inference/is,
+    );
+    await capture('limits-contract');
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
   if (plan.recipe === 'imaging101-t2-mapping-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
       await page.locator('.scene-play').click();
@@ -9693,6 +9898,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-varnet-v1',
       'imaging101-t2-mapping-v1',
       'imaging101-sense-v1',
       'imaging101-pnp-admm-v1',

@@ -1,0 +1,521 @@
+{
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet",
+  "actual_data_gap": "Pinned data tree lacks varnet_knee_state_dict.pt. Saved source output cannot establish checkpoint replay or participant/model outcome. Exact external fastMRI runtime implementation and source-case identity not established; retain local-use rights boundary.",
+  "attempts": [
+    {
+      "action": "retained-validation",
+      "attempted_at": "2026-10-01T07:57:37.880950+00:00",
+      "outcome": "Validated primary source/Git/native headers and saved source mask; original acquisition objects preserved; no repeated data request/model load/Fourier/task/scorer execution.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet"
+    },
+    {
+      "action": "bounded-approved-public-HTTPS-read-and-retained-validation",
+      "attempted_at": "2026-10-01T07:57:37.880950+00:00",
+      "bytes": 2790,
+      "git_blob": "688d0ed40bc5cf474e53c5ed616475c9e2f8360e",
+      "outcome": "Approved bounded20s/64KiB public HTTPS read acquired2790bytes, curl exit0. UTC records post-request retained byte-validation, not reconstructed request start. Complete pinned primary Git tree blob matches. One-command proxy bypass only; no proxy configuration changes. No helper import/model/operator/scorer execution.",
+      "sha256": "cdeb0470ab64061237b5a6d70b6027eca390686bf50d71a8b91ced177408e685",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/visualization.py"
+    }
+  ],
+  "brief_sha256": "72eb7b22ac58125906a15566a62c542aca2ced235ba4057825fb4cc7f3af2c2d",
+  "display_warning": "Actual fastMRI-derived k-space; promised checkpoint absent, no participant reconstruction. Local research use only.",
+  "distribution": "local-only; do not publish fastMRI-derived pack",
+  "entry_id": "imaging101-mri-varnet",
+  "evaluator_run": false,
+  "fixture": {
+    "actual_output": null,
+    "branches": [
+      0,
+      7,
+      14
+    ],
+    "clean_reference": null,
+    "toy_consistent": [
+      2,
+      4
+    ],
+    "toy_prediction": [
+      3,
+      4
+    ],
+    "toy_reference": [
+      2,
+      0
+    ],
+    "toy_sampled_mask": [
+      1,
+      0
+    ]
+  },
+  "ground_truth_solver_visible": true,
+  "historical_attempts": [
+    {
+      "action": "fetch assets/mri_varnet/data/raw_data.npz",
+      "attempted_at": "2026-09-29T07:28:55.687154+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "e28844a85e5ec5a71a9e404c12a7f136697a7528cee76c5f0113fc934d2933ca",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/raw_data.npz"
+    },
+    {
+      "action": "fetch assets/mri_varnet/data/meta_data.json",
+      "attempted_at": "2026-09-29T07:28:58.716312+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "059f92a610fb45df62171cf289c108cff04bfe8f27b2d2814e85eaae7c5b1417",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/meta_data.json"
+    },
+    {
+      "action": "fetch assets/mri_varnet/data/ground_truth.npz",
+      "attempted_at": "2026-09-29T07:29:03.651198+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "20bef5575f959a05557189a45819078aa709c55a8b84728bee2b9e1baaf21cf3",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/ground_truth.npz"
+    },
+    {
+      "action": "fetch assets/mri_varnet/evaluation/reference_outputs/varnet_reconstruction.npz",
+      "attempted_at": "2026-09-29T07:29:06.019874+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "e05101673fa6fbe9526a08ae36de4f3ab3c5e2e1531e9a9cdf982379a218be1b",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/evaluation/reference_outputs/varnet_reconstruction.npz"
+    },
+    {
+      "action": "fetch tasks/mri_varnet/README.md",
+      "attempted_at": "2026-09-29T07:29:07.830150+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "7f401a90955da1d53f3921ee562a7add1d90a47f9b3f1d7163a5cf5e42e6e945",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/README.md"
+    },
+    {
+      "action": "fetch tasks/mri_varnet/main.py",
+      "attempted_at": "2026-09-29T07:29:08.955396+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "0b1ba05df55ba5816ea9109a965be1287dbaeac80fdaafec7f575ff2fb388844",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/main.py"
+    },
+    {
+      "action": "fetch tasks/mri_varnet/src/physics_model.py",
+      "attempted_at": "2026-09-29T07:29:09.639450+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "774075b5d353e1b0720e3ae8ce7a8d969daadac016a0226fb00426efcd9e1908",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/physics_model.py"
+    },
+    {
+      "action": "fetch tasks/mri_varnet/src/preprocessing.py",
+      "attempted_at": "2026-09-29T07:29:10.448962+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "dd8b0b509eab4c0eb9012d790462d3517c04fd5d9af873c977ebd2f66b02da9b",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/preprocessing.py"
+    },
+    {
+      "action": "fetch tasks/mri_varnet/src/solvers.py",
+      "attempted_at": "2026-09-29T07:29:11.087651+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "7d79621e4ffe8a46d4a2cada07105a4587c560e3956f9893cf2de514821227ec",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/solvers.py"
+    },
+    {
+      "action": "fetch tasks/mri_varnet/src/generate_data.py",
+      "attempted_at": "2026-09-29T07:29:11.798008+00:00",
+      "outcome": "HTTPError: HTTP Error 404: Not Found",
+      "sha256": null,
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/generate_data.py"
+    },
+    {
+      "action": "fetch assets/mri_varnet/evaluation/reference_outputs/mask.npy",
+      "attempted_at": "2026-09-29T07:34:37.276439+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "5d911cc97cfb7343b008c94821cdba551bb77767e8de26a20045c224e5bef936",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/evaluation/reference_outputs/mask.npy"
+    },
+    {
+      "action": "inspect pinned data tree for README-promised varnet_knee_state_dict.pt",
+      "attempted_at": "2026-09-29T07:34:37.305386+00:00",
+      "outcome": "Absent from pinned HF data tree; no checkpoint download attempted.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data"
+    },
+    {
+      "action": "verify task code bytes against pinned Git tree blob SHAs",
+      "attempted_at": "2026-09-29T07:41:42.403988+00:00",
+      "outcome": "5 task source files verified; tree not truncated.",
+      "source": "https://api.github.com/repos/AI4ImagingLab/imaging-101-release/git/trees/dc2f668939b21e8312e22529615def610f8611df?recursive=1"
+    },
+    {
+      "action": "Verify retained native arrays/code Git pins and fetch bounded pinned official data listing and requirements",
+      "attempted_at": "2026-09-30T19:13:51.734076+00:00",
+      "outcome": "944-byte data listing confirms required checkpoint absent;153-byte requirements Git blob verified. Actual k-space/mask previews only; no FFT, model, reconstruction or evaluator executed.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet"
+    }
+  ],
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "label_license": "LicenseRef-fastMRI-internal-research",
+  "model_run": false,
+  "preparer_run": false,
+  "public_reference": {
+    "clean_image": null,
+    "criteria": [
+      "Source RSS image is solver-visible, not private clinical truth",
+      "Magnitude comparisons discard phase; no scale normalization",
+      "320x320=102400 comparison pixels versus1084800 sampled complex coil values",
+      "Saved source output never participant image or model result"
+    ],
+    "role": "Solver-visible RSS and generic scoring rules only"
+  },
+  "reference_boundary": "Pinned local runner copies entire data/ including ground_truth.npz. Source-saved output is a later teaching reveal, not private GT.",
+  "reference_initially_visible": false,
+  "reopening_condition": "Pinned source tree lacks promised checkpoint; source-saved reconstruction cannot be replayed. fastMRI data are internal research/education only and derived data redistribution requires separate rights review.",
+  "resolved_at": "2026-09-29T07:34:37.305393+00:00",
+  "saved_output_is_participant_result": false,
+  "schema": 1,
+  "solver_run": false,
+  "source_condition": {
+    "available_truth_keys": [
+      "image"
+    ],
+    "central_columns": 29,
+    "central_start": 170,
+    "checkpoint_present": false,
+    "display_shape": [
+      160,
+      92
+    ],
+    "full_complex_values": 3532800,
+    "image_crop_start": [
+      160,
+      24
+    ],
+    "mask_shape": [
+      1,
+      368,
+      1
+    ],
+    "nominal_R": 4,
+    "output_shape": [
+      320,
+      320
+    ],
+    "physical_geometry": "not calibrated from this array",
+    "sampled_columns": 113,
+    "sampled_complex_values": 1084800,
+    "saved_mask_offset": 2,
+    "selected_coils": [
+      0,
+      7,
+      14
+    ],
+    "shape": [
+      1,
+      15,
+      640,
+      368
+    ],
+    "source_acquisition_name": "CORPD_FBK",
+    "stride": 4
+  },
+  "source_files": [
+    {
+      "bytes": 3914,
+      "git_blob": "5c44d0e105079768f8d58f8aeaa09bb38d0719e0",
+      "git_path": "tasks/mri_varnet/README.md",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/README.md",
+      "role": "pinned-task-source",
+      "sha256": "7f401a90955da1d53f3921ee562a7add1d90a47f9b3f1d7163a5cf5e42e6e945",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/README.md"
+    },
+    {
+      "bytes": 3456,
+      "git_blob": "38918dac1e3fba0db3678d237b4108ea14d36cf1",
+      "git_path": "tasks/mri_varnet/main.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/main.py",
+      "role": "pinned-task-source",
+      "sha256": "0b1ba05df55ba5816ea9109a965be1287dbaeac80fdaafec7f575ff2fb388844",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/main.py"
+    },
+    {
+      "bytes": 4771,
+      "git_blob": "e239a33c7c571161a2a431f55f9deab8b1271779",
+      "git_path": "tasks/mri_varnet/src/physics_model.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "774075b5d353e1b0720e3ae8ce7a8d969daadac016a0226fb00426efcd9e1908",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/physics_model.py"
+    },
+    {
+      "bytes": 6277,
+      "git_blob": "082a1db8f2a84c07d119cc52c1fca6ef86fc0ea2",
+      "git_path": "tasks/mri_varnet/src/preprocessing.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "dd8b0b509eab4c0eb9012d790462d3517c04fd5d9af873c977ebd2f66b02da9b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/preprocessing.py"
+    },
+    {
+      "bytes": 3513,
+      "git_blob": "f5c496775b123a9965816534c4ea9611b70026be",
+      "git_path": "tasks/mri_varnet/src/solvers.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "7d79621e4ffe8a46d4a2cada07105a4587c560e3956f9893cf2de514821227ec",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/solvers.py"
+    },
+    {
+      "bytes": 365557,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/data/ground_truth.npz",
+      "role": "solver-visible-data",
+      "sha256": "20bef5575f959a05557189a45819078aa709c55a8b84728bee2b9e1baaf21cf3",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/ground_truth.npz"
+    },
+    {
+      "bytes": 205,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/data/meta_data.json",
+      "role": "solver-visible-data",
+      "sha256": "059f92a610fb45df62171cf289c108cff04bfe8f27b2d2814e85eaae7c5b1417",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/meta_data.json"
+    },
+    {
+      "bytes": 17905737,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/data/raw_data.npz",
+      "role": "solver-visible-data",
+      "sha256": "e28844a85e5ec5a71a9e404c12a7f136697a7528cee76c5f0113fc934d2933ca",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/raw_data.npz"
+    },
+    {
+      "bytes": 1600,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/evaluation/reference_outputs/mask.npy",
+      "role": "source-saved-helper",
+      "sha256": "5d911cc97cfb7343b008c94821cdba551bb77767e8de26a20045c224e5bef936",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/evaluation/reference_outputs/mask.npy"
+    },
+    {
+      "bytes": 365010,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/evaluation/reference_outputs/varnet_reconstruction.npz",
+      "role": "source-saved-output",
+      "sha256": "e05101673fa6fbe9526a08ae36de4f3ab3c5e2e1531e9a9cdf982379a218be1b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/evaluation/reference_outputs/varnet_reconstruction.npz"
+    },
+    {
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "git_path": "LICENSE",
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "role": "source-code-license",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "git_path": "evaluation_harness/local_runner.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "role": "source-staging",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "git_path": "evaluation_harness/scorer.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/scorer.py",
+      "role": "generic-dispatch",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "git_path": "evaluation_harness/reference_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/reference_scoring.py",
+      "role": "generic-reference-scoring",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 153,
+      "git_blob": "e14037cc9ae854de4fb1267390929346472dd540",
+      "git_path": "tasks/mri_varnet/requirements.txt",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-varnet/requirements.txt",
+      "role": "declared-runtime",
+      "sha256": "efe506842fa73c9d4c155aae5aae1ce2fdd7768baa2229b9242f771d396e4aea",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/requirements.txt"
+    },
+    {
+      "bytes": 2790,
+      "git_blob": "688d0ed40bc5cf474e53c5ed616475c9e2f8360e",
+      "git_path": "tasks/mri_varnet/src/visualization.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-varnet/refresh-t2/visualization-primary-01.py",
+      "role": "task-local-metric-source-not-executed",
+      "sha256": "cdeb0470ab64061237b5a6d70b6027eca390686bf50d71a8b91ced177408e685",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/visualization.py"
+    }
+  ],
+  "source_license": "LicenseRef-fastMRI-internal-research",
+  "source_pins": [
+    {
+      "bytes": 3914,
+      "git_blob": "5c44d0e105079768f8d58f8aeaa09bb38d0719e0",
+      "git_path": "tasks/mri_varnet/README.md",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/README.md",
+      "role": "pinned-task-source",
+      "sha256": "7f401a90955da1d53f3921ee562a7add1d90a47f9b3f1d7163a5cf5e42e6e945",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/README.md"
+    },
+    {
+      "bytes": 3456,
+      "git_blob": "38918dac1e3fba0db3678d237b4108ea14d36cf1",
+      "git_path": "tasks/mri_varnet/main.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/main.py",
+      "role": "pinned-task-source",
+      "sha256": "0b1ba05df55ba5816ea9109a965be1287dbaeac80fdaafec7f575ff2fb388844",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/main.py"
+    },
+    {
+      "bytes": 4771,
+      "git_blob": "e239a33c7c571161a2a431f55f9deab8b1271779",
+      "git_path": "tasks/mri_varnet/src/physics_model.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "774075b5d353e1b0720e3ae8ce7a8d969daadac016a0226fb00426efcd9e1908",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/physics_model.py"
+    },
+    {
+      "bytes": 6277,
+      "git_blob": "082a1db8f2a84c07d119cc52c1fca6ef86fc0ea2",
+      "git_path": "tasks/mri_varnet/src/preprocessing.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "dd8b0b509eab4c0eb9012d790462d3517c04fd5d9af873c977ebd2f66b02da9b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/preprocessing.py"
+    },
+    {
+      "bytes": 3513,
+      "git_blob": "f5c496775b123a9965816534c4ea9611b70026be",
+      "git_path": "tasks/mri_varnet/src/solvers.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_varnet/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "7d79621e4ffe8a46d4a2cada07105a4587c560e3956f9893cf2de514821227ec",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/solvers.py"
+    },
+    {
+      "bytes": 365557,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/data/ground_truth.npz",
+      "role": "solver-visible-data",
+      "sha256": "20bef5575f959a05557189a45819078aa709c55a8b84728bee2b9e1baaf21cf3",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/ground_truth.npz"
+    },
+    {
+      "bytes": 205,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/data/meta_data.json",
+      "role": "solver-visible-data",
+      "sha256": "059f92a610fb45df62171cf289c108cff04bfe8f27b2d2814e85eaae7c5b1417",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/meta_data.json"
+    },
+    {
+      "bytes": 17905737,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/data/raw_data.npz",
+      "role": "solver-visible-data",
+      "sha256": "e28844a85e5ec5a71a9e404c12a7f136697a7528cee76c5f0113fc934d2933ca",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/data/raw_data.npz"
+    },
+    {
+      "bytes": 1600,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/evaluation/reference_outputs/mask.npy",
+      "role": "source-saved-helper",
+      "sha256": "5d911cc97cfb7343b008c94821cdba551bb77767e8de26a20045c224e5bef936",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/evaluation/reference_outputs/mask.npy"
+    },
+    {
+      "bytes": 365010,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_varnet/evaluation/reference_outputs/varnet_reconstruction.npz",
+      "role": "source-saved-output",
+      "sha256": "e05101673fa6fbe9526a08ae36de4f3ab3c5e2e1531e9a9cdf982379a218be1b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet/evaluation/reference_outputs/varnet_reconstruction.npz"
+    },
+    {
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "git_path": "LICENSE",
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "role": "source-code-license",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "git_path": "evaluation_harness/local_runner.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "role": "source-staging",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "git_path": "evaluation_harness/scorer.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/scorer.py",
+      "role": "generic-dispatch",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "git_path": "evaluation_harness/reference_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/reference_scoring.py",
+      "role": "generic-reference-scoring",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 153,
+      "git_blob": "e14037cc9ae854de4fb1267390929346472dd540",
+      "git_path": "tasks/mri_varnet/requirements.txt",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-varnet/requirements.txt",
+      "role": "declared-runtime",
+      "sha256": "efe506842fa73c9d4c155aae5aae1ce2fdd7768baa2229b9242f771d396e4aea",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/requirements.txt"
+    },
+    {
+      "bytes": 2790,
+      "git_blob": "688d0ed40bc5cf474e53c5ed616475c9e2f8360e",
+      "git_path": "tasks/mri_varnet/src/visualization.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-varnet/refresh-t2/visualization-primary-01.py",
+      "role": "task-local-metric-source-not-executed",
+      "sha256": "cdeb0470ab64061237b5a6d70b6027eca390686bf50d71a8b91ced177408e685",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_varnet/src/visualization.py"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "output/reconstruction.npy intended 320x320 magnitude; participant image and score absent",
+    "helper": "Metadata and mask code; saved source mask is an illustrative source condition, not a fresh task tensor",
+    "input": "Native full complex k-space split real/imag, one source-derived fastMRI knee slice; no model output",
+    "private_reference": "No separate held-out private target established",
+    "solver_visible_ground_truth": "data/ground_truth.npz:image RSS magnitude, visible through directory staging; no clinical finding",
+    "source_saved_output": "Old VarNet reconstruction and mask retained in source audit; no new outcome or checkpoint lineage"
+  },
+  "source_transport": {
+    "bytes": 944,
+    "path": ".local/explainers/goal-20260930/workers/imaging101-mri-varnet/official-data-tree.json",
+    "sha256": "7e04eb041a70146258be24e8123097e6924b3b223900f4fade5be041f0ce5215"
+  },
+  "status": "worker-frozen-source-resolution",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "checkpoint": "Source load_varnet constructs 12 cascades, pools4/chans18, sensitivity pools4/chans8; torch.load weights_only=True, strict state_dict, eval. Required checkpoint absent. No weights loaded or model forward.",
+    "helpers": "preprocessing creates mask; (1,320,320) RSS truth solver-visible; README promises ~120 MB pretrained checkpoint absent from pinned data",
+    "live_generic_output": "output/reconstruction.npy",
+    "metric_rules": "Task-local magnitude float64/range NRMSE (constant ref infinity), cosine NCC eps1e-12, skimage windowedSSIM ref range/no zero-range guard. Filesystem NCCeps1e-30 and globalSSIM, noflux; no-filesystem strict2D flux-relativeL2 distinct.",
+    "operator": "Centered orthonormal spatial FFT on complex-pair tensors; 15 coils, H640 W368. Source applies equispaced R4 plus round(368*.08)=29 central columns, seed42 each slice. No supplied maps: sensitivity estimation delegated to external fastmri VarNet, num_low_frequencies=None.",
+    "output": "(1,320,320) magnitude image; source-saved VarNet reconstruction",
+    "raw": "(1,15,640,368) full complex k-space split real/imag, source fastMRI CORPD_FBK knee slice",
+    "runtime": "fastmri>=0.3.0 and torch>=2.0.0 lower bounds do not pin exact learned-block or sensitivity-calibration runtime; no cascade execution or per-cascade schedule inferred.",
+    "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+    "source_identity": "README declares fastMRI multicoil knee validation file1001077.h5; exact slice index/HDF5-to-native byte lineage not established",
+    "source_main_output": "evaluation/reference_outputs varnet_reconstruction.npz/zerofill.npz:reconstruction and metrics.json; no generic reconstruction.npy"
+  },
+  "task_source_git_blobs_verified": 5,
+  "terms_note": "NYU fastMRI Dataset Sharing Agreement limits dataset and derivatives to internal research or education and restricts distribution; source code MIT does not override data terms.",
+  "terms_source": "https://fastmri.med.nyu.edu/",
+  "top_warning": "Actual fastMRI-derived k-space; promised checkpoint absent, no participant reconstruction. Local research use only.",
+  "warning_text": "Actual fastMRI-derived k-space; promised checkpoint absent, no participant reconstruction. Local research use only."
+}

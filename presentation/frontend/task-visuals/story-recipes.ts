@@ -1,3 +1,4 @@
+import { imagingVarNetPack } from './imaging101-mri-varnet';
 import { imagingT2MappingPack } from './imaging101-mri-t2-mapping';
 import { imagingSensePack } from './imaging101-mri-sense';
 import { imagingPnpAdmmPack } from './imaging101-mri-pnp-admm';
@@ -136,6 +137,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-varnet-v1',
     'imaging101-t2-mapping-v1',
     'imaging101-sense-v1',
     'imaging101-pnp-admm-v1',
@@ -1290,6 +1292,17 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#000000', 'Black: magnitude 0 a.u.; fixed display scale'],
           ['#ffffff', 'White: magnitude 1 a.u.; display clipping only'],
+        ],
+      };
+    case 'imaging101-varnet-v1':
+      return {
+        heading: 'K-space, calibration mask and VarNet input contracts',
+        corner: 'Checkpoint absent; no model output',
+        warning: imagingVarNetPack.source.notice,
+        legend: [
+          ['#b8b8b8', 'Grayscale native k-space log magnitude; phase hidden'],
+          ['#57d1cc', 'Teal: saved sampled columns'],
+          ['#122939', 'Dark: unsampled columns'],
         ],
       };
     case 'bcer-brain-full-v1':
