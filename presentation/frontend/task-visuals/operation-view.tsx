@@ -1,3 +1,4 @@
+import { AutomedMriSrScene, AutomedMriSrOutput } from './automed-mri-sr-panels';
 import {
   AutomedLidcDenoiseScene,
   AutomedLidcDenoiseOutput,
@@ -498,6 +499,10 @@ export function OperationScene({
     );
   if (state.recipe === 'automedbench-full-lidc-idri-denoising-task-v1')
     return <AutomedLidcDenoiseScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'automed-mri-sr-v1')
+    return (
+      <AutomedMriSrScene key={state.beatId} state={state} plan={plan} onSeekFrame={onSeekFrame} />
+    );
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -872,6 +877,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <AutomedLdctDenoisingOutput state={state} />;
   if (state.recipe === 'automedbench-full-lidc-idri-denoising-task-v1')
     return <AutomedLidcDenoiseOutput state={state} />;
+  if (state.recipe === 'automed-mri-sr-v1') return <AutomedMriSrOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

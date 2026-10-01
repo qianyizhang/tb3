@@ -1,0 +1,9 @@
+{
+  "initially_visible": false,
+  "lite": "Swin2SR caidas/swin2SR-classical-sr-x2-64; GPU inference-only, no training. Normalize grayscale\u2192uint8\u2192RGB, output channel mean, resize to HR. No immutable checkpoint revision/hash or execution.",
+  "reference": null,
+  "source_claims": "Retained baseline table/100 count and performance/clinical-transfer assertions are source claims, not newly measured results.",
+  "standard": "Compare at least 3 inference-only methods including at least 2 DNNs. Bicubic/Lanczos/SwinIR/Restormer are named source guidance, not recommendations. S1 example 2 classical + 1 DNN conflicts; no benchmark training.",
+  "weights": null,
+  "window": "Input 360\u00d7256 \u2192 target 720\u00d7512. RGB replication, uint8 quantization, channel reduction and final resize are adaptation choices, not anatomical recovery. Generic S3 same-shape/direct-difference prompt conflicts with this x2 grid."
+}

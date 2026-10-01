@@ -22669,36 +22669,121 @@
       }
     },
     {
-      "entry_id": "automedbench-full-mri-sr-task",
-      "title": "Double the resolution of an MRI slice",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/automedbench-full-mri-sr-task/acceptance-01.json",
+      "acquisition_route": "https://fastmri.med.nyu.edu/",
+      "actual_data_gap": "Exact Full fastMRI-derived LR/HR pair, selected slice/case/split mapping, downsampling kernel and native acquisition geometry absent. No participant output, private HR or measured metric.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/automedbench-full-mri-sr-task.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "automedbench",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-restoration",
+      "contract_projection": {
+        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.",
+        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Swin2SR (HuggingFace `caidas/swin2SR-classical-sr-x2-64`). Standard supplies candidates to investigate; model files may still need provisioning.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 720 \u00d7 512.",
+        "raw": "MRI input, stored as `input.npy` per case. Shape: 360 \u00d7 256.",
+        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+        "sources": [
+          [
+            "Pinned Full-release task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/mri-sr-task.tar.gz"
+          ]
+        ],
+        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: mri-sr-task.",
+        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
+        "variants": [
+          {
+            "helper": "Task-specific Lite guidance: Swin2SR (HuggingFace `caidas/swin2SR-classical-sr-x2-64`).",
+            "name": "Full \u00b7 Lite",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "name": "Full \u00b7 Standard",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "name": "Related source listing",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-mri-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "category": "input-not-packaged",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "automedbench-full-mri-sr-task",
+      "illustration_basis": "symbolic",
+      "illustration_kind": "superres",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "superres",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-mri-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "MRI input, stored as `input.npy` per case. Shape: 360 \u00d7 256.",
-        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Swin2SR (HuggingFace `caidas/swin2SR-classical-sr-x2-64`). Standard supplies candidates to investigate; model files may still need provisioning.",
-        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
-        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: mri-sr-task.",
-        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 720 \u00d7 512.",
-        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "automedbench",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted MRI Full x2 normalized-grid symbolic protocol after main29pin/54image review. Exact LR/HR selected pair,degradation/normalization/physical geometry/joins,private HR,checkpoint/LPIPS/runtime absent. Own v3 bands and source-policy conflicts retained;16 shared files byte-equal fully main-read LDCT. Four operation/both format/five metric controls and60s export verified;actual narrow viewports separately inspect element-capture artifact. No source task/model/checker/scorer executed.",
+      "source_brief_sha256": "65f25afdf9ae6d478b3bdd0160ed96d22aeb5a9d762ccdcabc64ea4a157d620c",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-mri-sr-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-mri-sr-task-resolution.json",
+        "receipt_sha256": "a46a807c60da272004e1ed75eb7fc41024450e5dcf85eccbad8184f28ffd143e",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T22:15:24.619538+00:00",
+        "audit": ".local/explainers/goal-20260930/automedbench-full-mri-sr-task/source-audit-final-01.json",
+        "audit_sha256": "3ebd4640385415400f6825fccfd00114bac716d194004ccd037d9cdb926d6992",
+        "no_visual_acceptance": true
+      },
+      "story_id": "automedbench-full-mri-sr-task",
+      "subject": null,
+      "title": "Double the resolution of an MRI slice",
+      "warning_text": "Full MRI LR/HR pair absent; symbolic x2 grid and output contract.",
+      "acceptance_scope": "MRI Full x2 normalized-grid symbolic protocol and public inference/format/scoring rules; no matching LR/HR,pixels,private targets,reconstructed result or metrics. No source task execution.",
+      "completion_review": {
+        "date": "2026-10-01T22:53:21.748179+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "6f633d01d860e00192a0ba17d81a46ae3abf1a2d0547082e655ea44e661640ef"
+      },
+      "reviewed_contract_projection": {
+        "title": "Double MRI slice resolution",
+        "goal": "Explain the pinned AutoMedBench Full restoration contract using source records and symbolic geometry. No case or participant result is available.",
+        "value": "Super-resolution aims to map a lower-resolution slice to a denser grid while preserving anatomy. More samples, format validity or image-proxy agreement do not establish recovered detail or clinical accuracy.",
+        "raw": "Config declares MRI input.npy 360\u00d7256 float32, roughly normalized [0,1], target 720\u00d7512: twofold per axis, fourfold sample count. These are grid sizes, not measured spatial resolution, spacing or recovered frequencies. No actual magnitude/k-space conversion, normalization, contrast, anatomical region, selected slice, coil combination, patient/volume join, FOV, orientation or HR/LR alignment is recovered. task.json unit is case; config/evaluator say patient without a patient join or independence proof. dataset.included=false.\n\nOfficial fastMRI provides raw k-space in several anatomical/contrast groups and requires application and agreement; that upstream description does not identify this Full image-space subset. No raw k-space/mask/ACS/coil data or exact degraded slice is acquired. Any upstream authorized helper would need an independently verified join and LR-generation recipe; it cannot become a private Full HR reference.",
+        "helpers": "Lite names Swin2SR caidas/swin2SR-classical-sr-x2-64, GPU inference-only, no training. It prescribes normalized grayscale\u2192uint8\u2192PIL RGB, mean across output channels, then resize to expected 720\u00d7512. Quantization, RGB replication/channel reduction and final grid adjustment are adaptations, not proven anatomical reconstruction. Checkpoint name is source guidance, without immutable weight revision/hash or acquisition. Bicubic fallback allowed. Standard compares at least 3 inference-only candidates, at least 2 DNNs; bicubic/Lanczos/SwinIR/Restormer named. S1 example 2 classical + 1 DNN conflicts with that method requirement. Source performance/clinical-transfer assertions and retained baseline claims are unverified, not recommendations or measured results. No benchmark training/fine-tuning. Standard labels SwinIR but gives a Swin2SR checkpoint example; these architecture names are not interchangeable evidence. Lite says bicubic falls below a DNN baseline, while retained bands show the named DNN baseline weaker than classical bicubic; this source disagreement is not resolved by performing a trial.",
+        "tools": "A terminal and task-specific libraries/model loaders are available in the task setting; none are executed here.",
+        "reference": "Private `reference.npy` under `/data/private/{case_id}` and any private case scoring data are evaluator-only and absent from this explainer.",
+        "spec": "Produce the task-specific x2 HR grid, while selecting/preparing/inferencing/submitting a method under the tier conditions. Exact Full LR-generation kernel, antialiasing, spatial-frequency sampling and seed are not pinned. The generic S3 prompt demands the input shape and direct input-output difference, conflicting with config/liteS3 x2 output; this is a source contract conflict, not an observed runtime failure. Lite S3 demonstrates bicubic 2x with align_corners=False and clipping to [0,1]; Standard S3 uses x2 output and relaxed range [-0.1,1.1]. These are method-validation examples, not a recovered LR-generation operator. No interpolation, degradation or model was executed. Private HR stays evaluator-only. No diagram depicts anatomy, acquired pixels or method performance.",
+        "output": "Submit agents_outputs/<case_id>/enhanced.npy; evaluator mount /agent_outputs/<pid>/enhanced.npy. Declared 720\u00d7512 float32 normalized roughly [0,1]. Actual checker accepts any finite floating 2D array matching private reference shape; it does not enforce float32 width, [0,1] or agreement with input shape. Missing/unreadable/nonfloat/nonfinite/wrongshape fail. Output and measured shape remain unset.",
+        "score": "Private reference.npy is required and absent. Aligned scoring is by evaluator-supplied PATIENT_IDS (including repeated IDs if supplied); no recovered count or patient split. PSNR (dB) and SSIM use per-ID data_range from private ground_truth.csv else reference max\u2212min, with no positive/finite range guard. Both arrays cast float32; MSE \u2264 1e\u221212 yields PSNR 99. SSIM uses Gaussian weights=True and use_sample_covariance=False (population covariance); values can be negative. LPIPS AlexNet independently min-max maps each array to [-1,1], constant arrays to 0, repeats grayscale into 3 channels. This hides absolute offsets/scales from LPIPS and is not clinical calibration. No LPIPS model loaded.\n\nMeans omit NaN separately per metric, retain infinities; missing predictions have NaNs and remain in n_patients. n_valid means non-NaN PSNR. Wrong-shape predictions may pass to scorer when some files valid because wrapper proceeds despite global format failure; runtime/broadcast error remains possible, not a demonstrated result. All-format-valid is required for a non-F rating; completion < .5/aborted/no PSNR also fail. Empty case list produces no valid output and F.\n\nPresent baseline_bands.json supplies v3 thresholds: A PSNR \u2265 25.599 dB AND SSIM \u2265 .6332; B 23.599/.5932; C 21.599/.5632, else F. LPIPS is reported, not gated here. There is no finite-score guard: NaN less-than-threshold comparisons are false and can bypass v3 checks. Nonpositive/nonfinite data_range, constant references and metric errors require independent validation; threshold passage alone is not qualified quality. These are source-prescribed thresholds and retained baseline claims, not newly measured method performance. Older fallback v2 AND includes LPIPS, but is not effective with bands present. Normalized source field named clinical uses clipped (PSNR\u221220)/15, clipped SSIM and clipped (1\u2212LPIPS/.50), average rounded 4 decimals, 0\u20131; its name does not establish clinical accuracy. Pass fraction uses SSIM \u2265 .6131783537940364\u2212.02 over all per-ID records, including missing predictions, not only valid metrics. Shuffled control rotates reference IDs by one, including corresponding range; with one ID it equals aligned mapping. No grader/control/metric result was executed. The bands path is task-ID-dependent: these effective v3 statements require TASK=mri-sr-task and matching /eval deployment; the absent launcher/environment is not recovered. Source threshold values are not independently validated measurements.",
+        "challenge": "The missing degradation and geometry mapping limit any claim of recovery. Source model adaptation and generic same-shape conflict require explicit validation. Metrics and increased sample count do not establish preserved pathology.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Distinct 360\u00d7256 LR and 720\u00d7512 HR sockets, no medical pixels.",
+          "Canonical input/model-channel/x2-grid/submission controls.",
+          "Empty output, later declared-vs-checker and metric-rule reveal; private HR remains absent and controls reset before paint/backward/exit."
+        ],
         "variants": [
           {
             "name": "Full \u00b7 Lite",
@@ -22718,29 +22803,35 @@
         ],
         "sources": [
           [
-            "Pinned Full-release task package",
+            "Pinned Full harness",
             "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/mri-sr-task.tar.gz"
+          ],
+          [
+            "Official fastMRI route",
+            "https://fastmri.med.nyu.edu/"
           ]
         ],
-        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights."
-      },
-      "source_brief_sha256": "77241d6f3e75cb0b7e06fee7229d02b4f6e45acf9b355a1fb958331f55fcc51a",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-mri-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Explain the pinned AutoMedBench Full restoration contract using source records and symbolic geometry. No case or participant result is available.</p>",
+          "value": "<p>Super-resolution aims to map a lower-resolution slice to a denser grid while preserving anatomy. More samples, format validity or image-proxy agreement do not establish recovered detail or clinical accuracy.</p>",
+          "raw": "<p>Config declares MRI input.npy 360\u00d7256 float32, roughly normalized [0,1], target 720\u00d7512: twofold per axis, fourfold sample count. These are grid sizes, not measured spatial resolution, spacing or recovered frequencies. No actual magnitude/k-space conversion, normalization, contrast, anatomical region, selected slice, coil combination, patient/volume join, FOV, orientation or HR/LR alignment is recovered. task.json unit is case; config/evaluator say patient without a patient join or independence proof. dataset.included=false.</p>\n<p>Official fastMRI provides raw k-space in several anatomical/contrast groups and requires application and agreement; that upstream description does not identify this Full image-space subset. No raw k-space/mask/ACS/coil data or exact degraded slice is acquired. Any upstream authorized helper would need an independently verified join and LR-generation recipe; it cannot become a private Full HR reference.</p>",
+          "helpers": "<p>Lite names Swin2SR caidas/swin2SR-classical-sr-x2-64, GPU inference-only, no training. It prescribes normalized grayscale\u2192uint8\u2192PIL RGB, mean across output channels, then resize to expected 720\u00d7512. Quantization, RGB replication/channel reduction and final grid adjustment are adaptations, not proven anatomical reconstruction. Checkpoint name is source guidance, without immutable weight revision/hash or acquisition. Bicubic fallback allowed. Standard compares at least 3 inference-only candidates, at least 2 DNNs; bicubic/Lanczos/SwinIR/Restormer named. S1 example 2 classical + 1 DNN conflicts with that method requirement. Source performance/clinical-transfer assertions and retained baseline claims are unverified, not recommendations or measured results. No benchmark training/fine-tuning. Standard labels SwinIR but gives a Swin2SR checkpoint example; these architecture names are not interchangeable evidence. Lite says bicubic falls below a DNN baseline, while retained bands show the named DNN baseline weaker than classical bicubic; this source disagreement is not resolved by performing a trial.</p>",
+          "tools": "<p>A terminal and task-specific libraries/model loaders are available in the task setting; none are executed here.</p>",
+          "reference": "<p>Private <code>reference.npy</code> under <code>/data/private/{case_id}</code> and any private case scoring data are evaluator-only and absent from this explainer.</p>",
+          "spec": "<p>Produce the task-specific x2 HR grid, while selecting/preparing/inferencing/submitting a method under the tier conditions. Exact Full LR-generation kernel, antialiasing, spatial-frequency sampling and seed are not pinned. The generic S3 prompt demands the input shape and direct input-output difference, conflicting with config/liteS3 x2 output; this is a source contract conflict, not an observed runtime failure. Lite S3 demonstrates bicubic 2x with align_corners=False and clipping to [0,1]; Standard S3 uses x2 output and relaxed range [-0.1,1.1]. These are method-validation examples, not a recovered LR-generation operator. No interpolation, degradation or model was executed. Private HR stays evaluator-only. No diagram depicts anatomy, acquired pixels or method performance.</p>",
+          "output": "<p>Submit agents_outputs/&lt;case_id&gt;/enhanced.npy; evaluator mount /agent_outputs/&lt;pid&gt;/enhanced.npy. Declared 720\u00d7512 float32 normalized roughly [0,1]. Actual checker accepts any finite floating 2D array matching private reference shape; it does not enforce float32 width, [0,1] or agreement with input shape. Missing/unreadable/nonfloat/nonfinite/wrongshape fail. Output and measured shape remain unset.</p>",
+          "score": "<p>Private reference.npy is required and absent. Aligned scoring is by evaluator-supplied PATIENT_IDS (including repeated IDs if supplied); no recovered count or patient split. PSNR (dB) and SSIM use per-ID data_range from private ground_truth.csv else reference max\u2212min, with no positive/finite range guard. Both arrays cast float32; MSE \u2264 1e\u221212 yields PSNR 99. SSIM uses Gaussian weights=True and use_sample_covariance=False (population covariance); values can be negative. LPIPS AlexNet independently min-max maps each array to [-1,1], constant arrays to 0, repeats grayscale into 3 channels. This hides absolute offsets/scales from LPIPS and is not clinical calibration. No LPIPS model loaded.</p>\n<p>Means omit NaN separately per metric, retain infinities; missing predictions have NaNs and remain in n_patients. n_valid means non-NaN PSNR. Wrong-shape predictions may pass to scorer when some files valid because wrapper proceeds despite global format failure; runtime/broadcast error remains possible, not a demonstrated result. All-format-valid is required for a non-F rating; completion &lt; .5/aborted/no PSNR also fail. Empty case list produces no valid output and F.</p>\n<p>Present baseline_bands.json supplies v3 thresholds: A PSNR \u2265 25.599 dB AND SSIM \u2265 .6332; B 23.599/.5932; C 21.599/.5632, else F. LPIPS is reported, not gated here. There is no finite-score guard: NaN less-than-threshold comparisons are false and can bypass v3 checks. Nonpositive/nonfinite data_range, constant references and metric errors require independent validation; threshold passage alone is not qualified quality. These are source-prescribed thresholds and retained baseline claims, not newly measured method performance. Older fallback v2 AND includes LPIPS, but is not effective with bands present. Normalized source field named clinical uses clipped (PSNR\u221220)/15, clipped SSIM and clipped (1\u2212LPIPS/.50), average rounded 4 decimals, 0\u20131; its name does not establish clinical accuracy. Pass fraction uses SSIM \u2265 .6131783537940364\u2212.02 over all per-ID records, including missing predictions, not only valid metrics. Shuffled control rotates reference IDs by one, including corresponding range; with one ID it equals aligned mapping. No grader/control/metric result was executed. The bands path is task-ID-dependent: these effective v3 statements require TASK=mri-sr-task and matching /eval deployment; the absent launcher/environment is not recovered. Source threshold values are not independently validated measurements.</p>",
+          "challenge": "<p>The missing degradation and geometry mapping limit any claim of recovery. Source model adaptation and generic same-shape conflict require explicit validation. Metrics and increased sample count do not establish preserved pathology.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -27720,11 +27811,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 143,
+    "reviewed-scripted-planar": 144,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 40,
     "pending-operation-review": 1,
-    "blocked-source-input": 8
+    "blocked-source-input": 7
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

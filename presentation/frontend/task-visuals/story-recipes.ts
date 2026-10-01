@@ -1,3 +1,4 @@
+import { automedMriSrPack } from './automed-mri-sr';
 import { automedLidcDenoisePack } from './automedbench-full-lidc-idri-denoising-task';
 import { automedLdctDenoisingPack } from './automed-ldct-denoising';
 import { automedIxiT1SrPack } from './automedbench-full-ixi-t1-sr-task';
@@ -150,6 +151,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-mri-sr-v1',
     'automedbench-full-lidc-idri-denoising-task-v1',
     'automed-ldct-denoising-v1',
     'automedbench-full-ixi-t1-sr-task-v1',
@@ -1474,6 +1476,13 @@ export function storyPresentation(plan: StoryPlan): {
           ['#000000', 'Black: late upstream display minimum'],
           ['#ffffff', 'White: late upstream display maximum'],
         ],
+      };
+    case 'automed-mri-sr-v1':
+      return {
+        heading: 'Map an MRI slice to the required x2 grid',
+        corner: 'Full MRI LR/HR absent · symbolic protocol',
+        warning: automedMriSrPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

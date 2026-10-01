@@ -1,0 +1,17 @@
+{
+  "boundary": "Private HR reference.npy/ground_truth.csv absent. No actual normalized output, measured PSNR/SSIM/LPIPS or recovered anatomical detail.",
+  "coverage": "All evaluator-supplied PATIENT_IDS (not independently verified unique patients); valid-count/all-ID completion, every format valid for non-F. Means omit NaNs per metric, retain infinities; n_valid=non-NaN PSNR. No recovered denominator.",
+  "format": "Declared 720\u00d7512 float32 roughly [0,1]; actual checker accepts finite floating 2D matching private reference shape, no dtype-width/intensity range guard. Generic input-shape prompt conflicts.",
+  "path": "agents_outputs/<case_id>/enhanced.npy",
+  "prediction": null,
+  "reference": null,
+  "rules": {
+    "lpips": "LPIPS AlexNet independently min-max maps each array to [-1,1], constant\u21920, grayscale repeated 3 channels. Absolute intensity/scale shifts can disappear from this metric; not clinical calibration.",
+    "normalization": "Clipped(PSNR\u221220)/15, clipped SSIM, clipped(1\u2212LPIPS/.50), mean rounded 4 decimals, 0\u20131. Field named clinical does not establish clinical accuracy.",
+    "pass": "SSIM\u2265.6131783537940364\u2212.02; fraction over all per-ID records including missing. Shuffle rotates reference IDs by 1; one-ID rotation unchanged.",
+    "rating": "Present v3 A 25.599 dB / .6332 SSIM; B 23.599 / .5932; C 21.599 / .5632 AND gates, no LPIPS gate. Invalid/aborted/no PSNR or completion<.5\u2192F. No finite-score guard; NaN less-than comparisons can bypass v3 thresholds. For TASK=mri-sr-task and corresponding /eval deployment; launcher environment absent. Older v2 LPIPS gates differ.",
+    "raw": "PSNR dB uses private per-ID data_range CSV else ref extrema; MSE\u22641e\u221212\u219299. SSIM Gaussian/population covariance can be negative. No positive/finite range guard."
+  },
+  "score": null,
+  "shape": null
+}
