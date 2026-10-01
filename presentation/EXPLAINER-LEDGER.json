@@ -22499,36 +22499,121 @@
       }
     },
     {
-      "entry_id": "automedbench-full-lidc-idri-denoising-task",
-      "title": "Denoise LIDC-IDRI lung CT slices",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/automedbench-full-lidc-idri-denoising-task/acceptance-01.json",
+      "acquisition_route": "https://www.cancerimagingarchive.net/collection/lidc-idri/",
+      "actual_data_gap": "Retained upstream LIDC-IDRI-0003 CT DICOM is available, but Full selected case/lesion/patient partition, normalized512\u00b2 noisy-clean pair, HU normalization/window, noise seed/mean/correlation/clipping and private target mapping absent. Full data not included, split unresolved; model/LPIPS/baseline bands absent. No noised native CT, denoised output or metric. Public source helper is not matched Full input or clean ground truth.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/automedbench-full-lidc-idri-denoising-task.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "automedbench",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-restoration",
+      "contract_projection": {
+        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. Required metric assets or baseline bands remain unresolved in the source package.",
+        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names DRUNet pretrained denoiser. Standard supplies candidates to investigate; model files may still need provisioning.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 512 \u00d7 512.",
+        "raw": "CT input, stored as `input.npy` per case. Shape: 512 \u00d7 512.",
+        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+        "sources": [
+          [
+            "Pinned Full-release task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/lidc-idri-denoising-task.tar.gz"
+          ]
+        ],
+        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: lidc-idri-denoising-task.",
+        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
+        "variants": [
+          {
+            "helper": "Task-specific Lite guidance: DRUNet pretrained denoiser.",
+            "name": "Full \u00b7 Lite",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "name": "Full \u00b7 Standard",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "name": "Related source listing",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-lidc-idri-denoising-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "category": "input-not-packaged",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "automedbench-full-lidc-idri-denoising-task",
+      "illustration_basis": "mixed",
+      "illustration_kind": "denoise",
       "modalities": [
         "ct"
       ],
-      "illustration_kind": "denoise",
-      "subject": "chest-ct",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-lidc-idri-denoising-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "CT input, stored as `input.npy` per case. Shape: 512 \u00d7 512.",
-        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names DRUNet pretrained denoiser. Standard supplies candidates to investigate; model files may still need provisioning.",
-        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
-        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: lidc-idri-denoising-task.",
-        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 512 \u00d7 512.",
-        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "automedbench",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted LIDC Full normalized denoising symbolic protocol plus reader-only native CT helper after main36pin/43image review. Full512\u00b2 noisy/clean selection,normalization/noise seed/mean/clipping/partition,private clean/reference mapping,checkpoint/LPIPS/bands/runtime absent. Native141ZIPCRCs/140DICOM one series/header-LPS geometry and16384PNGcells verified;no RescaleType/Full-unit inference. All controls/replay/Reset and49s export passed. No source task/model/checker/scorer executed.",
+      "source_brief_sha256": "ace6a652aa8aac9dfde72fe005cd6bd10c60542f4fd437d1b8f82e8277dfdaab",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-lidc-idri-denoising-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-lidc-idri-denoising-task-resolution.json",
+        "receipt_sha256": "fa76edc32315e656cf4aabdd8d0a672e82e467498b91d334bf42b9baa8371420",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T21:41:23.520393+00:00",
+        "audit": ".local/explainers/goal-20260930/automedbench-full-lidc-idri-denoising-task/source-audit-final-01.json",
+        "audit_sha256": "2e60c2ba9c3eb8cd71b3bebff0e8b9e7cc994464fd4fc64c302430bbe565db32",
+        "no_visual_acceptance": true
+      },
+      "story_id": "automedbench-full-lidc-idri-denoising-task",
+      "subject": "chest-ct",
+      "title": "Denoise LIDC-IDRI lung CT slices",
+      "warning_text": "Matching Full noisy / clean pair absent; upstream LIDC CT is reader-only.",
+      "acceptance_scope": "LIDC Full normalized-noise symbolic task protocol,reader-controlled distinct native upstream CT and public evaluator rules. No matching noisy/clean pair,private target,denoised result or metric; no source task/model execution.",
+      "completion_review": {
+        "date": "2026-10-01T22:02:06.712437+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "b2c8e4dbf5af60aa41c9ad7835c0eedadff42699e9dd99c67a4a73b9e1c02d52"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace normalized CT noise without inventing a clean lesion image",
+        "goal": "Source-pinned Full denoising contract; authored noisy cells and unknown clean/output values, not patient CT or denoising evidence.",
+        "value": "Not yet specified.",
+        "raw": "Full package lidc-idri-denoising-task, LIDC-IDRI CT. Declared public input.npy per case, normalized float32 (512, 512), 262,144 pixels. Same output geometry. Full harness declares data not included and split unresolved. Bounded official TCIA collection returned HTTP 200 partial HTML, capped 64KiB/curl 63; no selected Full noisy-clean pair or exact degradation lineage. Retained upstream DICOM exists separately, reader-only. Case folders called patient IDs by prompts; unique-patient/slice mapping and number of cases unknown. No matched Full CT array, HU normalization, dose/noise calibration or findings. Upstream DICOM geometry/rescale exists separately from unspecified Full preprocessing.",
+        "helpers": "Task/model config and five-stage guidance. Full Lite prescribes public pretrained DRUNet, checkpoint source chosen/documented by operator. Standard \u22653 inference-only methods including \u22652 public pretrained neural; BM3D one possible classical baseline, DnCNN/Restormer/SwinIR candidates. Public-input pilot, no training/finetuning/optimizer/backward/private reference. Requirements and GPU-eval instructions do not establish installed runtime/checkpoint/domain suitability. No weights/runtime assets bundled; LPIPS not requirements despite evaluator dependency. Related Lite/gallery equivalence not assumed; original Conditions preserved.",
+        "tools": "No task, model, scorer/checker or evaluator executed/installed. Author SVG noisy 2 \u00d7 2 values [.25,.5;.6,.8] beside 2 \u00d7 2 unknown clean/output sockets, same geometry. Teal authored normalized observations; outline unknown values. These are not CT, private targets, actual Gaussian draws, denoised results or submitted arrays. Exact 512\u00b2 counts separately shown. Separate late upstream display has exact native cell/pixel parity; default normalized cells remain symbolic, not a Full pair.",
+        "reference": "/data/private/<case_id>/reference.npy and private ground_truth.csv:data_range evaluator-only; never acquired/displayed. Public model/checkpoint names are helper context, not clean targets. Late reader reveal covers only code/reference/metric rules, never private target pixels. Backward/exit/reset cover before paint; all target/output/score fields remain null.",
+        "spec": "Declared degradation additive_gaussian sigma 0.05 in normalized_intensity, variance 0.0025. This is not 0.05 HU, dose fraction, photon count or real clinical low-dose CT noise. No actual degradation implementation, normalization/minmax/window/HU conversion, random seed, zero-mean declaration, spatial independence/correlation, clipping/quantization/order or split/case mapping recovered. Do not infer a physical Poisson transmission pipeline. Default Gaussian symmetry/zero mean is conventional illustration only, not native condition proof. Gaussian support unbounded: authored normalized 0.98 +0.05=1.03; source [0,1] requirement does not establish clipping rule, and clipping would change distribution.\n\nAuthored y = .45 can be formed by (x, \u03b5) = (.40, .05), (.45, 0), or (.50, \u2212.05). Multiple clean/noise pairs teach uncertainty; none is a denoised result or patient truth. No random generator draws, synthetic native CT creation, denoiser execution or reconstructed lesion detail. Same 512\u00d7512 output preserves geometry, not image information or lesion boundaries. The later public source helper is not used as a Full noisy-clean pair.\n\nFull Lite DRUNet checkpoint/noise conditioning/preprocessing remains to provision; published sigma .05 is normalized domain, not assumed DRUNet argument convention or estimator. Standard comparisons are assistance, not evidence that candidate methods execute or preserve anatomy. Prompt validation forbids exact copy/constant, asks finite float32 normalized moderate change and absence of severe over-smoothing; these checks are not diagnostic performance evidence. S4 forbids heuristic histogram/tone postprocessing and mandates DNN GPU/no_grad/eval, no weight updates.",
+        "output": "{output_dir}/agents_outputs/<case_id>/enhanced.npy, normalized finite float32 (512, 512), 262,144 values per case. Optional agents_decision.csv not scored. Task.json/S5 plural agents_outputs conflicts singular agent_outputs in task Lite validation, preserve discrepancy. Actual array empty. Checker expected shape from private reference, floating dtype+finite 2D only; accepts float64, lacks [0,1], constant, exact copy/moderate difference and quality checks. Format-valid is not protocol/medical success. No source checker execution; pure authored predicates only.",
+        "score": "Config mean_ssim diagnostics PSNR/LPIPS, but runner requires all 3 aligned and cyclic shuffled. Private CSV data_range or reference max\u2212min; invalid/zero range guard absent. PSNR float32 MSE\u22641e\u221212\u219299, else 10log10(range\u00b2/MSE). SSIM skimage Gaussian weights=True and use_sample_covariance=False (population covariance); actual installed defaults/runtime not pinned. LPIPS Alex model independently minmax each input[-1,1], constant span < 1e\u22129\u2192zeros, repeats gray 3 channels/no_grad; offset/scale differences can disappear. Package/weights absent/unverified, no metric computed.\n\nDeclared TASK lidc-idri-denoising-task absent TASK_NORM/RATING_THRESHOLDS; do not inherit ldct-denoising-task PSNR 30\u201345 /LPIPS max .30 or its A/B bands. Without dataset bands, generic named clinical equal one-third clip((PSNR\u221220)/30), clip SSIM, clip(1\u2212LPIPS); unknown-task rating C for otherwise valid versus hard fail F invalid/abort/no PSNR/completion<.5. This \u201cclinical\u201d field is a code composite, not clinical validation. Missing baseline bands => pass rate not emitted, configured blocked_metric_assets unresolved. No outcome/rating/pass rate claimed.\n\nScorer non-NaN means independently per metric; score n_valid checks PSNR only, differs format n_valid. Missing preds append NaNs but total requested IDs retained. Runner if any format-valid scores all IDs unfiltered; bad shape/nonfinite can raise/propagate rather than clean penalty. Completion valid/max(1,total). If bands known, pass rate denominator all per_patient rows includes missing outputs. One case cyclic shuffle maps itself, not independent negative control. Case count/valid denominators unknown, no metrics evaluated.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Persistent missing matching Full input/target warning and official acquisition route.",
+          "Canonical normalized noise, Full Lite/Standard/format selectors, same geometry unknown clean/output values.",
+          "Empty enhanced.npy, late evaluator/private-reference rules, reset/exit/backward covers."
+        ],
         "variants": [
           {
             "name": "Full \u00b7 Lite",
@@ -22548,29 +22633,39 @@
         ],
         "sources": [
           [
-            "Pinned Full-release task package",
+            "Pinned Full harness",
             "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/lidc-idri-denoising-task.tar.gz"
+          ],
+          [
+            "Official LIDC-IDRI acquisition",
+            "https://nihcc.app.box.com/v/LIDC-IDRI"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-lidc-idri-denoising-task-resolution.json"
           ]
         ],
-        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. Required metric assets or baseline bands remain unresolved in the source package."
-      },
-      "source_brief_sha256": "32fef8b65ec55f6013b7812c1afe71f89fb0a703b6235855539e8b7e751107a9",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-lidc-idri-denoising-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Source-pinned Full denoising contract; authored noisy cells and unknown clean/output values, not patient CT or denoising evidence.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full package lidc-idri-denoising-task, LIDC-IDRI CT. Declared public input.npy per case, normalized float32 (512, 512), 262,144 pixels. Same output geometry. Full harness declares data not included and split unresolved. Bounded official TCIA collection returned HTTP 200 partial HTML, capped 64KiB/curl 63; no selected Full noisy-clean pair or exact degradation lineage. Retained upstream DICOM exists separately, reader-only. Case folders called patient IDs by prompts; unique-patient/slice mapping and number of cases unknown. No matched Full CT array, HU normalization, dose/noise calibration or findings. Upstream DICOM geometry/rescale exists separately from unspecified Full preprocessing.</p>",
+          "helpers": "<p>Task/model config and five-stage guidance. Full Lite prescribes public pretrained DRUNet, checkpoint source chosen/documented by operator. Standard \u22653 inference-only methods including \u22652 public pretrained neural; BM3D one possible classical baseline, DnCNN/Restormer/SwinIR candidates. Public-input pilot, no training/finetuning/optimizer/backward/private reference. Requirements and GPU-eval instructions do not establish installed runtime/checkpoint/domain suitability. No weights/runtime assets bundled; LPIPS not requirements despite evaluator dependency. Related Lite/gallery equivalence not assumed; original Conditions preserved.</p>",
+          "tools": "<p>No task, model, scorer/checker or evaluator executed/installed. Author SVG noisy 2 \u00d7 2 values [.25,.5;.6,.8] beside 2 \u00d7 2 unknown clean/output sockets, same geometry. Teal authored normalized observations; outline unknown values. These are not CT, private targets, actual Gaussian draws, denoised results or submitted arrays. Exact 512\u00b2 counts separately shown. Separate late upstream display has exact native cell/pixel parity; default normalized cells remain symbolic, not a Full pair.</p>",
+          "reference": "<p>/data/private/&lt;case_id&gt;/reference.npy and private ground_truth.csv:data_range evaluator-only; never acquired/displayed. Public model/checkpoint names are helper context, not clean targets. Late reader reveal covers only code/reference/metric rules, never private target pixels. Backward/exit/reset cover before paint; all target/output/score fields remain null.</p>",
+          "spec": "<p>Declared degradation additive_gaussian sigma 0.05 in normalized_intensity, variance 0.0025. This is not 0.05 HU, dose fraction, photon count or real clinical low-dose CT noise. No actual degradation implementation, normalization/minmax/window/HU conversion, random seed, zero-mean declaration, spatial independence/correlation, clipping/quantization/order or split/case mapping recovered. Do not infer a physical Poisson transmission pipeline. Default Gaussian symmetry/zero mean is conventional illustration only, not native condition proof. Gaussian support unbounded: authored normalized 0.98 +0.05=1.03; source [0,1] requirement does not establish clipping rule, and clipping would change distribution.</p>\n<p>Authored y = .45 can be formed by (x, \u03b5) = (.40, .05), (.45, 0), or (.50, \u2212.05). Multiple clean/noise pairs teach uncertainty; none is a denoised result or patient truth. No random generator draws, synthetic native CT creation, denoiser execution or reconstructed lesion detail. Same 512\u00d7512 output preserves geometry, not image information or lesion boundaries. The later public source helper is not used as a Full noisy-clean pair.</p>\n<p>Full Lite DRUNet checkpoint/noise conditioning/preprocessing remains to provision; published sigma .05 is normalized domain, not assumed DRUNet argument convention or estimator. Standard comparisons are assistance, not evidence that candidate methods execute or preserve anatomy. Prompt validation forbids exact copy/constant, asks finite float32 normalized moderate change and absence of severe over-smoothing; these checks are not diagnostic performance evidence. S4 forbids heuristic histogram/tone postprocessing and mandates DNN GPU/no_grad/eval, no weight updates.</p>",
+          "output": "<p>{output_dir}/agents_outputs/&lt;case_id&gt;/enhanced.npy, normalized finite float32 (512, 512), 262,144 values per case. Optional agents_decision.csv not scored. Task.json/S5 plural agents_outputs conflicts singular agent_outputs in task Lite validation, preserve discrepancy. Actual array empty. Checker expected shape from private reference, floating dtype+finite 2D only; accepts float64, lacks [0,1], constant, exact copy/moderate difference and quality checks. Format-valid is not protocol/medical success. No source checker execution; pure authored predicates only.</p>",
+          "score": "<p>Config mean_ssim diagnostics PSNR/LPIPS, but runner requires all 3 aligned and cyclic shuffled. Private CSV data_range or reference max\u2212min; invalid/zero range guard absent. PSNR float32 MSE\u22641e\u221212\u219299, else 10log10(range\u00b2/MSE). SSIM skimage Gaussian weights=True and use_sample_covariance=False (population covariance); actual installed defaults/runtime not pinned. LPIPS Alex model independently minmax each input[-1,1], constant span &lt; 1e\u22129\u2192zeros, repeats gray 3 channels/no_grad; offset/scale differences can disappear. Package/weights absent/unverified, no metric computed.</p>\n<p>Declared TASK lidc-idri-denoising-task absent TASK_NORM/RATING_THRESHOLDS; do not inherit ldct-denoising-task PSNR 30\u201345 /LPIPS max .30 or its A/B bands. Without dataset bands, generic named clinical equal one-third clip((PSNR\u221220)/30), clip SSIM, clip(1\u2212LPIPS); unknown-task rating C for otherwise valid versus hard fail F invalid/abort/no PSNR/completion&lt;.5. This \u201cclinical\u201d field is a code composite, not clinical validation. Missing baseline bands =&gt; pass rate not emitted, configured blocked_metric_assets unresolved. No outcome/rating/pass rate claimed.</p>\n<p>Scorer non-NaN means independently per metric; score n_valid checks PSNR only, differs format n_valid. Missing preds append NaNs but total requested IDs retained. Runner if any format-valid scores all IDs unfiltered; bad shape/nonfinite can raise/propagate rather than clean penalty. Completion valid/max(1,total). If bands known, pass rate denominator all per_patient rows includes missing outputs. One case cyclic shuffle maps itself, not independent negative control. Case count/valid denominators unknown, no metrics evaluated.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -27625,11 +27720,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 142,
+    "reviewed-scripted-planar": 143,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 40,
     "pending-operation-review": 1,
-    "blocked-source-input": 9
+    "blocked-source-input": 8
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

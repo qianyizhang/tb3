@@ -1,0 +1,888 @@
+{
+  "acquisition_route": "https://www.cancerimagingarchive.net/collection/lidc-idri/",
+  "actual_data_gap": "Retained upstream LIDC-IDRI-0003 CT DICOM is available, but Full selected case/lesion/patient partition, normalized512\u00b2 noisy-clean pair, HU normalization/window, noise seed/mean/correlation/clipping and private target mapping absent. Full data not included, split unresolved; model/LPIPS/baseline bands absent. No noised native CT, denoised output or metric. Public source helper is not matched Full input or clean ground truth.",
+  "archive_members": [
+    {
+      "bytes": 1404,
+      "member": "automedbench-task/task.json",
+      "sha256": "0bc984cc762b9e1a932272a422242040fe2fb9ad1a606a87c9b0f77d298a50b7"
+    },
+    {
+      "bytes": 365,
+      "member": "automedbench-task/source/__init__.py",
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "bytes": 5127,
+      "member": "automedbench-task/source/docker/eval/run_eval.py",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "bytes": 11295,
+      "member": "automedbench-task/source/enhancement_scorer.py",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "bytes": 2188,
+      "member": "automedbench-task/source/format_checker.py",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "bytes": 989,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/config.yaml",
+      "sha256": "e7176ab85a6907fee1e7578da040cb8ba626f761016d12b0c27b7ff6eeed624e"
+    },
+    {
+      "bytes": 392,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/lite_s1.md",
+      "sha256": "5888052fe97f16050a2b3a6535313a8f613880fe2a14700e71d6c2f1e772b0f5"
+    },
+    {
+      "bytes": 327,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/lite_s2.md",
+      "sha256": "15e1f63a076854a38d23344903ce8cccd8d64916756a1c7531d143153e03ad9b"
+    },
+    {
+      "bytes": 345,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/lite_s3.md",
+      "sha256": "d8be26fdd25c6d387e846fa43d972eb959021e6b7db34612774e22b0e4c7317a"
+    },
+    {
+      "bytes": 780,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/model_info.yaml",
+      "sha256": "57384e587ce052da9095afdf0985baf37338ce288f534b2b22330b12ee320c7f"
+    },
+    {
+      "bytes": 81,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/requirements.txt",
+      "sha256": "f386de70b85c0d302ce746ad9f94174158d9c4c935f5cb9784ed5ff794b9a681"
+    },
+    {
+      "bytes": 394,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/standard_s1.md",
+      "sha256": "62d249736b4e57d9cd9a96d8232d88b74d026bb630bb8aa5635bd466844d2db4"
+    },
+    {
+      "bytes": 302,
+      "member": "automedbench-task/source/lidc-idri-denoising-task/standard_s3.md",
+      "sha256": "edd957775615a1f749210759b4ef8bd6f3e873f9b656dd34f4ee87be2975bd60"
+    },
+    {
+      "bytes": 493,
+      "member": "automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "bytes": 397,
+      "member": "automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "bytes": 923,
+      "member": "automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "bytes": 1105,
+      "member": "automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "bytes": 196,
+      "member": "automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "bytes": 3455,
+      "member": "automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "bytes": 956,
+      "member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "bytes": 2141,
+      "member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "bytes": 1723,
+      "member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "bytes": 841,
+      "member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "bytes": 1321,
+      "member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "bytes": 813,
+      "member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "bytes": 509,
+      "member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "bytes": 2676,
+      "member": "automedbench-task/MANIFEST.sha256",
+      "sha256": "6f072fc1d5bbb850518a39177cd0811e91f92a4007933548d28d41e119a3923c"
+    }
+  ],
+  "attempts": [
+    {
+      "action": "download exact pinned Full harness",
+      "attempted_at": "2026-09-29T08:04:18.722730+00:00",
+      "outcome": "HTTP 200, 15849 bytes, SHA-256 514df0777da80a853227f283dc248c0be71964cc3719c526feb56889febde85d; 26 internal MANIFEST entries verified; dataset.included=false.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/lidc-idri-denoising-task.tar.gz"
+    },
+    {
+      "action": "official upstream availability probe",
+      "attempted_at": "2026-09-29T08:04:18.722730+00:00",
+      "outcome": "HTTP 200 landing route; no task-matched Full input.npy, clean reference, case list or small paired sample recovered from the route.",
+      "source": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "action": "Bounded official collection request and verified reuse of retained upstream single-series DICOM",
+      "attempted_at": "2026-09-30T22:20:46.519545+00:00",
+      "outcome": "HTTP200 response capped65536B, curl63 stopped; public collection page does not establish selected Full pairs or noise/partition lineage. Retained36,104,899B ct.zip passes all141 member CRCs; selected00000001.dcm exact hash/UID/rescale/spacing verified, source helper only. No patient noisy array, privateclean, model or evaluator recovered/executed.",
+      "source": "https://www.cancerimagingarchive.net/collection/lidc-idri/"
+    },
+    {
+      "action": "UTC retained-validation of exact Full archive/pins and already acquired upstream LIDC series, geometry and display parity; no new GET",
+      "attempted_at": "2026-10-01T09:31:34.518661+00:00",
+      "outcome": "check_source.py verifies 36 SHA pins, 27 Full members /26 MANIFEST checks, ZIP CRC/native DICOM geometry and native display. Existing upstream helper is not a matching Full input/private target; no task/model/scorer processing.",
+      "source": "retained Full f894057807cc334421784e702ead2c1883583e1b / official retained TCIA/ABRA receipt"
+    }
+  ],
+  "brief_sha256": "ace6a652aa8aac9dfde72fe005cd6bd10c60542f4fd437d1b8f82e8277dfdaab",
+  "display_warning": "Matching Full noisy / clean pair absent; upstream LIDC CT is reader-only.",
+  "entry_id": "automedbench-full-lidc-idri-denoising-task",
+  "evaluator_run": false,
+  "fixture": {
+    "actual_output": null,
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "clean_reference": null,
+    "clean_values": null,
+    "input_shape": [
+      2,
+      2
+    ],
+    "noise_realization": null,
+    "observed_grid": [
+      [
+        0.25,
+        0.5
+      ],
+      [
+        0.6,
+        0.8
+      ]
+    ],
+    "output_shape": [
+      2,
+      2
+    ],
+    "patient_image": null,
+    "toy_clean_candidates": [
+      0.4,
+      0.45,
+      0.5
+    ],
+    "toy_noise_candidates": [
+      0.05,
+      0,
+      -0.05
+    ],
+    "toy_y": 0.45
+  },
+  "full_dataset_included": false,
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "label_license": null,
+  "manifest_binding": {
+    "Git_identity": "authority ref declared, not per-file upstream Git proof",
+    "archive_members_verified": 27,
+    "declared_staging_manifest_sha256": "5efea89cfdc27606f6e327186fc710ddba0df819b26cd6717e7f44de92125091",
+    "original_staging_manifest": "unrecovered distinct locator, no same-outer-manifest claim",
+    "outer_manifest_files_verified": 26,
+    "outer_manifest_sha256": "6f072fc1d5bbb850518a39177cd0811e91f92a4007933548d28d41e119a3923c"
+  },
+  "model_run": false,
+  "native_source_example": {
+    "DICOM_members": 140,
+    "archive_all_members_CRC_verified": true,
+    "archive_bytes": 36104899,
+    "archive_members": 141,
+    "archive_path": "runs/task-brief-samples/abra/ct.zip",
+    "archive_sha256": "a780bd9438313d98e1b86302c6ed64a9c7d9941f6c418ac93054ec2628b9bb3b",
+    "dataset_case": "LIDC-IDRI-0003",
+    "display": {
+      "Full_normalization": null,
+      "column_indices": "0,4,...508",
+      "formula": "HU=stored*1-1024; byte=floor(255*(clip(HU,-160,240)+160)/400), exact integer mapping, no clinical DICOM VOI convention",
+      "image_orientation_patient_lps": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "image_position_patient_lps_mm": [
+        -228.800003,
+        -210.0,
+        -229.0
+      ],
+      "native_shape": [
+        512,
+        512
+      ],
+      "no_noise_or_denoising": true,
+      "orientation": "DICOM native row/column, no flip/registration/resampling",
+      "physical_spacing_mm": [
+        0.820312,
+        0.820312
+      ],
+      "rescale_unit_qualification": "Selected source header has no RescaleType tag; numerical rescale/window display only, not Full normalized units or noise calibration.",
+      "row_column_stride": 4,
+      "row_indices": "0,4,...508",
+      "sampled_voxel_centers_lps_mm": {
+        "row=0,column=0": [
+          -228.800003,
+          -210.0,
+          -229.0
+        ],
+        "row=0,column=508": [
+          187.918493,
+          -210.0,
+          -229.0
+        ],
+        "row=508,column=0": [
+          -228.800003,
+          206.71849600000002,
+          -229.0
+        ],
+        "row=508,column=508": [
+          187.918493,
+          206.71849600000002,
+          -229.0
+        ]
+      },
+      "shape": [
+        128,
+        128
+      ],
+      "window_center_hu": 40,
+      "window_width_hu": 400
+    },
+    "embedded_license_sha256": "549adb2471a8adc13da32860115c5559971b06097bba2922634a5e49f1800e0b",
+    "full_attribution_sha256": "689acd9f5ef5cd4b8fa48cc4e7436dad8ebbb78b86f3a6a320bb7b66f5767620",
+    "license": "CC-BY-3.0",
+    "member": "00000001.dcm",
+    "raw": {
+      "bits_allocated": 16,
+      "columns": 512,
+      "header_sha256": "d91848798312423186d4cc17e991ff16fe1fc9fe0283b1c41b16fd08c70fb6bb",
+      "image_position": "-228.800003\\-210.000000\\-229.000000",
+      "instance_number": "80",
+      "intercept": "-1024",
+      "modality": "CT",
+      "orientation": "1.000000\\0.000000\\0.000000\\0.000000\\1.000000\\0.000000",
+      "photometric": "MONOCHROME2",
+      "pixel_padding_value": -2000,
+      "pixel_representation": 1,
+      "pixel_sha256": "70eb36e52b50ebb98d6f56c0b79da8fe7cb644730ed536aef0108e05cfd72006",
+      "raw_member_bytes": 526458,
+      "raw_member_crc32": "0e51ae51",
+      "raw_member_sha256": "54894c22dae09ae8cc99fea77a01c7a64db0b3da9ed22492d9de86317caa2c8c",
+      "rescale_type": null,
+      "rows": 512,
+      "samples_per_pixel": 1,
+      "series_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.170706757615202213033480003264",
+      "slope": "1",
+      "sop_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.271927030502687715770902524627",
+      "spacing": "0.820312\\0.820312",
+      "study_uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.101370605276577556143013894866",
+      "transfer_syntax": "1.2.840.10008.1.2.1",
+      "window_center": "-600",
+      "window_width": "1600"
+    },
+    "role": "late upstream source-example only, not Full noisy input, clean pair or target"
+  },
+  "preparer_run": false,
+  "private_reference_available": false,
+  "public_reference": {
+    "clean_image": null,
+    "criteria": [
+      "Private cleanCT unavailable",
+      "Genericclinical code composite not medicalvalidation",
+      "Metric means/format validity/totalcase denominators distinct"
+    ],
+    "role": "Reader-only upstream LIDC CT plus evaluator rules; no matched noisy-clean pair or private target",
+    "upstream_image": "upstream-ct.png"
+  },
+  "reference_initially_visible": false,
+  "reference_policy": "reader-reference-reveal",
+  "reopening_condition": "Recover exact Full case/lesion/patient partition, normalized noisy-clean pair lineage and seed/normalization; acquire authorized evaluator/model/bands. Upstream helper alone insufficient.",
+  "resolved_at": "2026-09-30T22:20:46.519757+00:00",
+  "reviewed_at": "2026-10-01T09:31:34.518661+00:00",
+  "schema": 1,
+  "source_class": "source-derived-teaching",
+  "source_condition": {
+    "HU_conversion": null,
+    "authority_ref": "1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "case_mapping": null,
+    "clipping": null,
+    "correlation_specification": null,
+    "degradation": "additive_gaussian",
+    "dtype_expected": "float32",
+    "input_pixels": 262144,
+    "input_shape": [
+      512,
+      512
+    ],
+    "intensity_expected": [
+      0,
+      1
+    ],
+    "intensity_units": "normalized",
+    "inventory_conditions": [
+      "Full \u00b7 Lite",
+      "Full \u00b7 Standard",
+      "Related source listing"
+    ],
+    "lesion_partition": null,
+    "mean_specification": null,
+    "n_cases": null,
+    "normalization_definition": null,
+    "output_pixels": 262144,
+    "output_shape": [
+      512,
+      512
+    ],
+    "patient_partition": null,
+    "private_target_available": false,
+    "reference_initially_visible": false,
+    "release_revision": "f894057807cc334421784e702ead2c1883583e1b",
+    "seed": null,
+    "sigma": 0.05,
+    "sigma_domain": "normalized_intensity",
+    "source_slice_selection": null,
+    "task_id": "lidc-idri-denoising-task",
+    "variance": 0.0025,
+    "voxel_spacing": null
+  },
+  "source_files": [
+    {
+      "bytes": 15849,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "514df0777da80a853227f283dc248c0be71964cc3719c526feb56889febde85d"
+    },
+    {
+      "bytes": 1404,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/task.json",
+      "role": "task-contract",
+      "sha256": "0bc984cc762b9e1a932272a422242040fe2fb9ad1a606a87c9b0f77d298a50b7"
+    },
+    {
+      "bytes": 989,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/config.yaml",
+      "role": "pinned-config",
+      "sha256": "e7176ab85a6907fee1e7578da040cb8ba626f761016d12b0c27b7ff6eeed624e"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "private-scorer-contract",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/format_checker.py",
+      "role": "format-checker",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "bytes": 5127,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/docker/eval/run_eval.py",
+      "role": "evaluator-wrapper",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "bytes": 2676,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/MANIFEST.sha256",
+      "role": "archive-manifest",
+      "sha256": "6f072fc1d5bbb850518a39177cd0811e91f92a4007933548d28d41e119a3923c"
+    },
+    {
+      "archive_member": "automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/__init__.py",
+      "role": "pinned-full-task-member",
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/lite_s1.md",
+      "bytes": 392,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/lite_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "5888052fe97f16050a2b3a6535313a8f613880fe2a14700e71d6c2f1e772b0f5"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/lite_s2.md",
+      "bytes": 327,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/lite_s2.md",
+      "role": "pinned-full-task-member",
+      "sha256": "15e1f63a076854a38d23344903ce8cccd8d64916756a1c7531d143153e03ad9b"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/lite_s3.md",
+      "bytes": 345,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/lite_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "d8be26fdd25c6d387e846fa43d972eb959021e6b7db34612774e22b0e4c7317a"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/model_info.yaml",
+      "bytes": 780,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/model_info.yaml",
+      "role": "pinned-full-task-member",
+      "sha256": "57384e587ce052da9095afdf0985baf37338ce288f534b2b22330b12ee320c7f"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/requirements.txt",
+      "bytes": 81,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/requirements.txt",
+      "role": "pinned-full-task-member",
+      "sha256": "f386de70b85c0d302ce746ad9f94174158d9c4c935f5cb9784ed5ff794b9a681"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/standard_s1.md",
+      "bytes": 394,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/standard_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "62d249736b4e57d9cd9a96d8232d88b74d026bb630bb8aa5635bd466844d2db4"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/standard_s3.md",
+      "bytes": 302,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/standard_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "edd957775615a1f749210759b4ef8bd6f3e873f9b656dd34f4ee87be2975bd60"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/env_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/env_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/important_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/important_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/kickoff.md",
+      "role": "pinned-full-task-member",
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/preamble.md",
+      "role": "pinned-full-task-member",
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "role": "pinned-full-task-member",
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "role": "pinned-full-task-member",
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "bytes": 36104899,
+      "path": "runs/task-brief-samples/abra/ct.zip",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "a780bd9438313d98e1b86302c6ed64a9c7d9941f6c418ac93054ec2628b9bb3b"
+    },
+    {
+      "bytes": 11205,
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/proposal-v3/payload/scripts/build_abra_vision_probe_assets.py",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "d2eebe705af597ee64337378876195973e3d3535c70f0d4255aec8b73c5efe24"
+    },
+    {
+      "bytes": 526458,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/native-member.dcm",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "54894c22dae09ae8cc99fea77a01c7a64db0b3da9ed22492d9de86317caa2c8c"
+    },
+    {
+      "bytes": 2788,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/native-license.txt",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "549adb2471a8adc13da32860115c5559971b06097bba2922634a5e49f1800e0b"
+    },
+    {
+      "bytes": 4676,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/full-attribution.txt",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "689acd9f5ef5cd4b8fa48cc4e7436dad8ebbb78b86f3a6a320bb7b66f5767620"
+    },
+    {
+      "bytes": 297,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/official-response.headers",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "263958d3a69cfcd00fa79c8fbfc69018b44ad6119c41936e6a577780e9e00242"
+    },
+    {
+      "bytes": 65536,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/official-response.html",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "701240f14611b86b82914343dac496c76dfd8359270fcbfd7e430275742b1972"
+    },
+    {
+      "bytes": 16231,
+      "path": "presentation/external-tasks/sources/abra-viewer-control-resolution.json",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "a6423fac69d914a7606898934f59dda2999e2d2fbaa908743fb93fa9bf81984e"
+    }
+  ],
+  "source_license": "CC BY 3.0",
+  "source_license_context": "Full task.json and retained TCIA source/license say CC BY3.0. Pack includes upstream reader-only display with full TCIA/LIDC citation; not Full pairs/private targets.",
+  "source_pins": [
+    {
+      "bytes": 15849,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "514df0777da80a853227f283dc248c0be71964cc3719c526feb56889febde85d"
+    },
+    {
+      "bytes": 1404,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/task.json",
+      "role": "task-contract",
+      "sha256": "0bc984cc762b9e1a932272a422242040fe2fb9ad1a606a87c9b0f77d298a50b7"
+    },
+    {
+      "bytes": 989,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/config.yaml",
+      "role": "pinned-config",
+      "sha256": "e7176ab85a6907fee1e7578da040cb8ba626f761016d12b0c27b7ff6eeed624e"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "private-scorer-contract",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/format_checker.py",
+      "role": "format-checker",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "bytes": 5127,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/docker/eval/run_eval.py",
+      "role": "evaluator-wrapper",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "bytes": 2676,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/MANIFEST.sha256",
+      "role": "archive-manifest",
+      "sha256": "6f072fc1d5bbb850518a39177cd0811e91f92a4007933548d28d41e119a3923c"
+    },
+    {
+      "archive_member": "automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/__init__.py",
+      "role": "pinned-full-task-member",
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/lite_s1.md",
+      "bytes": 392,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/lite_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "5888052fe97f16050a2b3a6535313a8f613880fe2a14700e71d6c2f1e772b0f5"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/lite_s2.md",
+      "bytes": 327,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/lite_s2.md",
+      "role": "pinned-full-task-member",
+      "sha256": "15e1f63a076854a38d23344903ce8cccd8d64916756a1c7531d143153e03ad9b"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/lite_s3.md",
+      "bytes": 345,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/lite_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "d8be26fdd25c6d387e846fa43d972eb959021e6b7db34612774e22b0e4c7317a"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/model_info.yaml",
+      "bytes": 780,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/model_info.yaml",
+      "role": "pinned-full-task-member",
+      "sha256": "57384e587ce052da9095afdf0985baf37338ce288f534b2b22330b12ee320c7f"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/requirements.txt",
+      "bytes": 81,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/requirements.txt",
+      "role": "pinned-full-task-member",
+      "sha256": "f386de70b85c0d302ce746ad9f94174158d9c4c935f5cb9784ed5ff794b9a681"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/standard_s1.md",
+      "bytes": 394,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/standard_s1.md",
+      "role": "pinned-full-task-member",
+      "sha256": "62d249736b4e57d9cd9a96d8232d88b74d026bb630bb8aa5635bd466844d2db4"
+    },
+    {
+      "archive_member": "automedbench-task/source/lidc-idri-denoising-task/standard_s3.md",
+      "bytes": 302,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/lidc-idri-denoising-task/standard_s3.md",
+      "role": "pinned-full-task-member",
+      "sha256": "edd957775615a1f749210759b4ef8bd6f3e873f9b656dd34f4ee87be2975bd60"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/env_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/env_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/important_lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/important_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/kickoff.md",
+      "role": "pinned-full-task-member",
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/common/preamble.md",
+      "role": "pinned-full-task-member",
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "role": "pinned-full-task-member",
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "role": "pinned-full-task-member",
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "role": "pinned-full-task-member",
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "path": ".local/explainers/core-20260929/formation-g-source/full/lidc-idri-denoising-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "role": "pinned-full-task-member",
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "bytes": 36104899,
+      "path": "runs/task-brief-samples/abra/ct.zip",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "a780bd9438313d98e1b86302c6ed64a9c7d9941f6c418ac93054ec2628b9bb3b"
+    },
+    {
+      "bytes": 11205,
+      "path": ".local/explainers/goal-20260930/workers/abra-vision-probe/proposal-v3/payload/scripts/build_abra_vision_probe_assets.py",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "d2eebe705af597ee64337378876195973e3d3535c70f0d4255aec8b73c5efe24"
+    },
+    {
+      "bytes": 526458,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/native-member.dcm",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "54894c22dae09ae8cc99fea77a01c7a64db0b3da9ed22492d9de86317caa2c8c"
+    },
+    {
+      "bytes": 2788,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/native-license.txt",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "549adb2471a8adc13da32860115c5559971b06097bba2922634a5e49f1800e0b"
+    },
+    {
+      "bytes": 4676,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/full-attribution.txt",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "689acd9f5ef5cd4b8fa48cc4e7436dad8ebbb78b86f3a6a320bb7b66f5767620"
+    },
+    {
+      "bytes": 297,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/official-response.headers",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "263958d3a69cfcd00fa79c8fbfc69018b44ad6119c41936e6a577780e9e00242"
+    },
+    {
+      "bytes": 65536,
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-lidc-idri-denoising-task/official-response.html",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "701240f14611b86b82914343dac496c76dfd8359270fcbfd7e430275742b1972"
+    },
+    {
+      "bytes": 16231,
+      "path": "presentation/external-tasks/sources/abra-viewer-control-resolution.json",
+      "role": "upstream-reader-helper-or-transport-not-Full-pair",
+      "sha256": "a6423fac69d914a7606898934f59dda2999e2d2fbaa908743fb93fa9bf81984e"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "{output_dir}/agents_outputs/<case_id>/enhanced.npy intendedfloat32 finite normalized512\u00d7512, actual output absent.",
+    "helper": "FullLite DRUNet public pretrained denoiser; Standard compares\u22653 inference-only candidates incl\u22652 neural. Source requirements/prompts, no model files. Upstream LIDC-IDRI-0003 DICOM, a different public source role than the missing Full pair. No lesion annotation shown, no lesion truth or private clean reference.",
+    "input": "Declaredpublic per-case input.npy512\u00d7512 normalized CT; no native case or noise realization recovered. No HU/dose/calibrated low-dose claim.",
+    "private_reference": "/data/private/<case_id>/reference.npy and ground_truth.csv:data_range evaluator-only; never acquired/displayed.",
+    "source_saved_output": "No native enhanced output or score in harness."
+  },
+  "status": "worker-frozen-source-resolution",
+  "task_contract": {
+    "assistance": "FullLite DRUNet public checkpoint unspecified; FullStandard\u22653 denoisers\u22652 public pretrained neural; BM3D classical may beonebaseline. Inference-only/no training/private target. Related Lite/gallery equivalence unestablished.",
+    "denominators": "Casecount unknown; scoremeans dropNaN independently, n_valid checksPSNR only vs formatvalid shape/finite. MissingoutputNaNs/totalrequested preserved; runner scoresallIDs ifanyformatvalid, notfilteredbadshape/nonfinite. Completionvalid/max(1,total); optionalpassrate allrows denominator; onecase shuffleidentity.",
+    "effective": "Declaredlidc-idri-denoising-task absent TASK_NORM/RATING_THRESHOLDS; do not inherit ldct-denoising-task windows. Genericnamedclinical equal-third clip((PSNR\u221220)/30),SSIM,1\u2212LPIPS; unknown-task ratingC ifotherwisevalid, hardfailF invalid/abort/noPSNR/completion<.5. Missingbaselinebands => passrate omitted, blocked_metric_assets remains. Namedclinical not medicalvalidation.",
+    "format": "Same512\u00d7512 geometry for both input/output, float32finite[0,1] nonconstant and moderatechange in validation. Checkeranyfloating finite2D/private-reference shape acceptsfloat64 and copy/constant/out-of-range; no quality or lesion boundary check. Taskjson/S5 pluralagents_outputs vs tier singularagent_outputs discrepancy.",
+    "metrics": "ConfigmeanSSIM diagnosticsPSNR/LPIPS; runner all3 aligned+cyclicshuffle. SSIM Gaussian/population, rangeprivateCSV orrefmax\u2212min; PSNRfloat32MSE\u22641e\u221212\u219299; LPIPS Alex independentlyminmax[-1,1],gray3channels,constant\u21920; no metric/model execution.",
+    "operator": "DeclaredadditiveGaussian sigma.05 normalized domain. No degradation implementation/seed/mean/correlation/clipping/normalization/HUconversion/spatial calibration. Author scalar y=.45 with unknownclean/noise; multiple clean/noise pairs, no native draw or denoising.",
+    "reference_policy": "Late reader-only upstream CT display and evaluator rules; no Full clean target"
+  },
+  "top_warning": "Matching Full noisy / clean pair absent; upstream LIDC CT is reader-only.",
+  "warning_text": "Matching Full noisy / clean pair absent; upstream LIDC CT is reader-only."
+}

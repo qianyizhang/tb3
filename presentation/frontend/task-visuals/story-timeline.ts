@@ -1337,6 +1337,17 @@ export function sampleStory(plan: StoryPlan, requested: number) {
         reference: channel(b.channels.reference),
       });
     }
+    case 'automedbench-full-lidc-idri-denoising-task-v1': {
+      const b = plan.beats[index];
+      return Object.freeze({
+        ...common,
+        recipe: plan.recipe,
+        scene: b.scene,
+        progress: channel(b.channels.progress),
+        detail: channel(b.channels.detail),
+        reference: channel(b.channels.reference),
+      });
+    }
     case 'bcer-brain-grade-v1':
     case 'bcer-cardiac-full-v1':
     case 'bcer-brain-full-v1': {

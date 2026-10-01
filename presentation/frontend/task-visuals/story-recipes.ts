@@ -1,3 +1,4 @@
+import { automedLidcDenoisePack } from './automedbench-full-lidc-idri-denoising-task';
 import { automedLdctDenoisingPack } from './automed-ldct-denoising';
 import { automedIxiT1SrPack } from './automedbench-full-ixi-t1-sr-task';
 import { automedDeeplesionDenoisePack } from './automedbench-full-deeplesion-denoising-task';
@@ -149,6 +150,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automedbench-full-lidc-idri-denoising-task-v1',
     'automed-ldct-denoising-v1',
     'automedbench-full-ixi-t1-sr-task-v1',
     'automedbench-full-deeplesion-denoising-task-v1',
@@ -1460,6 +1462,18 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Full CT pair absent · symbolic protocol',
         warning: automedLdctDenoisingPack.source.notice,
         legend: [],
+      };
+    case 'automedbench-full-lidc-idri-denoising-task-v1':
+      return {
+        heading: 'LIDC-IDRI normalized noise, assistance and private evaluation',
+        corner: 'Matching Full input, private target and participant output absent',
+        warning: automedLidcDenoisePack.source.notice,
+        legend: [
+          ['#148ca0', 'Teal shades: authored noisy cells, not native CT'],
+          ['#b1bccc', 'Gray outlines: unknown clean/output values'],
+          ['#000000', 'Black: late upstream display minimum'],
+          ['#ffffff', 'White: late upstream display maximum'],
+        ],
       };
     case 'bcer-brain-full-v1':
       return {
