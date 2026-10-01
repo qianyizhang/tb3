@@ -1,3 +1,7 @@
+import {
+  AutomedBratsT1cSrScene,
+  AutomedBratsT1cSrOutput,
+} from './automedbench-full-brats-t1c-sr-task-panels';
 import { RexUsenhanceScene, RexUsenhanceOutput } from './rex-usenhance-panels';
 import {
   ImagingToothGridrecScene,
@@ -461,6 +465,8 @@ export function OperationScene({
     return <ImagingToothGridrecScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'rex-usenhance-v1')
     return <RexUsenhanceScene state={state} plan={plan} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'automedbench-full-brats-t1c-sr-task-v1')
+    return <AutomedBratsT1cSrScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -825,6 +831,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'imaging101-xray-tooth-gridrec-v1')
     return <ImagingToothGridrecOutput state={state} />;
   if (state.recipe === 'rex-usenhance-v1') return <RexUsenhanceOutput state={state} />;
+  if (state.recipe === 'automedbench-full-brats-t1c-sr-task-v1')
+    return <AutomedBratsT1cSrOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

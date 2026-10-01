@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "automedbench-full-brats-t1c-sr-task-v1",
             "imaging101-xray-tooth-gridrec-v1",
             "imaging101-usct-fwi-v1",
             "imaging101-pnp-mri-reconstruction-v1",

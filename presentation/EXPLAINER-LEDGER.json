@@ -21823,36 +21823,121 @@
       }
     },
     {
-      "entry_id": "automedbench-full-brats-t1c-sr-task",
-      "title": "Super-resolve contrast-enhanced brain-tumor MRI",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/automedbench-full-brats-t1c-sr-task/acceptance-01.json",
+      "acquisition_route": "https://www.synapse.org/Synapse:syn51156910/wiki/",
+      "actual_data_gap": "Full harness declares data not included and split unresolved; bounded Synapse metadata returned project, no matching input.npy/reference.npy or exact case mapping. Bicubic library/coordinate/antialias/normalization/physical grid unspecified; baseline bands and runtime metric/model assets missing. No patient MRI, enhanced result, target or metric.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/automedbench-full-brats-t1c-sr-task.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "automedbench",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-restoration",
+      "contract_projection": {
+        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. Required metric assets or baseline bands remain unresolved in the source package.",
+        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Swin2SR x2 public pretrained checkpoint. Standard supplies candidates to investigate; model files may still need provisioning.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 256 \u00d7 256.",
+        "raw": "MRI_T1c input, stored as `input.npy` per case. Shape: 128 \u00d7 128.",
+        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+        "sources": [
+          [
+            "Pinned Full-release task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/brats-t1c-sr-task.tar.gz"
+          ]
+        ],
+        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: brats-t1c-sr-task.",
+        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
+        "variants": [
+          {
+            "helper": "Task-specific Lite guidance: Swin2SR x2 public pretrained checkpoint.",
+            "name": "Full \u00b7 Lite",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "name": "Full \u00b7 Standard",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "name": "Related source listing",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-brats-t1c-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "category": "input-not-packaged",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "automedbench-full-brats-t1c-sr-task",
+      "illustration_basis": "symbolic",
+      "illustration_kind": "superres",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "superres",
-      "subject": "brain",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-brats-t1c-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "MRI_T1c input, stored as `input.npy` per case. Shape: 128 \u00d7 128.",
-        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Swin2SR x2 public pretrained checkpoint. Standard supplies candidates to investigate; model files may still need provisioning.",
-        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
-        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: brats-t1c-sr-task.",
-        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 256 \u00d7 256.",
-        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "automedbench",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted task-specific symbolic Full BraTS T1c geometry after main30-pin/41-image source,visual,export,mobile,no-GPU review. Matching128x128 input/256x256 target,case mapping,exact bicubic/normalization,physical voxels and model/LPIPS/bands remain unresolved. Empty official direct-file child page is not upstream absence. Public evaluator rules require reader reveal; native target,participant array and score absent. No task,model,checker or scorer executed.",
+      "source_brief_sha256": "34059df66f85123e68155b61581747624a2d59121432a9b9b9f925871a1a5e46",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-brats-t1c-sr-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-brats-t1c-sr-task-resolution.json",
+        "receipt_sha256": "3c6d5a1091019dca7d94494ec15167103b4688d76ad014a7d6d52f90bf7c06b9",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T19:32:11.419498+00:00",
+        "audit": ".local/explainers/goal-20260930/automedbench-full-brats-t1c-sr-task/source-audit-final-01.json",
+        "audit_sha256": "ea7b8294efd4f740b8066eadf458b279e0d38eda868a77b2b04fd9c8c1f1aa16",
+        "no_visual_acceptance": true
+      },
+      "story_id": "automedbench-full-brats-t1c-sr-task",
+      "subject": "brain",
+      "title": "Super-resolve contrast-enhanced brain-tumor MRI",
+      "warning_text": "Matching Full BraTS T1c input and private target unavailable; symbolic geometry only.",
+      "acceptance_scope": "Symbolic Full BraTS T1c super-resolution geometry,assistance/output contract and late public evaluator rules. Matching Full MRI pair,private target,model/native reconstruction and score absent; no task/model/checker/scorer execution.",
+      "completion_review": {
+        "date": "2026-10-01T19:41:19.115429+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "707617d3fc66fa62012cf7e46278e7cd60fa3e4e250e296c269d8b12b3474f4a"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace T1c 2\u00d7 geometry without inventing a high-resolution MRI",
+        "goal": "Source-pinned Full contract, symbolic pixel mechanics and private-evaluator boundaries. No patient input, reconstruction or clinical outcome.",
+        "value": "Not yet specified.",
+        "raw": "Full package brats-t1c-sr-task, MRI_T1c / BraTS 2023 GLI. Per-case public input.npy, declared normalized float32 (128, 128), 16,384 pixels; target (256, 256), 65,536 pixels, 2\u00d7 length / 4\u00d7 cells. Harness dataset.included=false /data_status not_included /split unresolved. Retained official Synapse entity request returned PROJECT metadata, 317 bytes, not a matching case. A fresh bounded unauthenticated file-child listing returned HTTP 200 and an empty page (11 bytes), not a native file. This covers direct file children only, not nested folders, controlled contents or all BraTS availability. Exact Full case membership and LR/HR mapping remain unrecovered; no account, access terms or credentials used. Case folders called patient IDs by common prompts; whole-patient versus 2D slice multiplicity unknown. No contrast dose, scanner sequence, voxel spacing, FOV, anatomical findings or private target established.",
+        "helpers": "Configuration, task/model info and planning/setup/validation/inference/submission prompts. Full Lite prescribes public caidas/swin2SR-classical-sr-x2-64; grayscale\u2192model-compatible channels\u2192grayscale mapping remains operator responsibility, not a supplied exact preprocessing. Standard compares at least 3 inference-only methods including at least 2 pretrained neural, one bicubic/Lanczos baseline allowed. Public pilot case required but not bundled. No model files/runtime assets. Requirements NumPy/SciPy/skimage/torch/Pillow/transformers minimum versions; LPIPS package absent although scorer requires it. GPU/DNN evaluation mode mandated, no weight updates/train/optimizer/backward or private reference access. These are task instructions, not runtime verification here.",
+        "tools": "No task/model/tool/evaluator executed or installed. Authoring SVG shows symbolic 2 \u00d7 2 normalized cells [.1,.4;.3,.8] beside 4 \u00d7 4 unknown output sockets; these are NOT MRI, real voxels, bicubic outputs, reference or submitted arrays. Shapes reduced for illustration only; exact declared 128\u00b2\u2192256\u00b2 counts separately shown. Pixel color legend: teal authored low-resolution values; outlined high-resolution cells unknown. No MRI derivative/native pixel parity claim; deterministic pack/fixture byte equality only.",
+        "reference": "/data/private/<case_id>/reference.npy and private ground_truth.csv:data_range belong to evaluation, never participants or the explainer. No private file acquired or displayed. Public pretrained checkpoint and source contract are helpers, not target evidence. Late reader reveal teaches private reference/metric rules; exit/backward/reset covers before paint. Actual target, enhanced.npy and metrics always absent.",
+        "spec": "Declared normalized 128\u00d7128 T1c input from bicubic downsampling with scale 2; output 256\u00d7256 [0,1]. Harness includes NO degradation/preprocessing implementation, source slice selection, normalization min/max or clipping, cubic kernel parameter, coordinate convention, antialias setting, border mode, downsample library/version, voxel geometry or exact data split. Do not infer nearest/bilinear, z-axis super-resolution, synthesized noise, retained high-res texture or restored clinical edges. Mathematical 2\u00d7 shape expansion changes cell counts, not known information; high-resolution values remain unknown. No resized clinical image or method outcome.\n\nFull Lite and Standard are assistance tiers of this harness. Related gallery/branch/Lite package conditions preserved below but equivalence not established. Named Swin2SR baseline is a public model selection, not evidence that it loads, fits T1c domain or preserves pathology. No inference/training/performance. Prompt same shape as input in common preamble conflicts task-specific 128\u2192256 config and tier validation; task-specific geometry explains intended output, generic checker derives shape from private reference. Task-specific Lite validation uses agent_outputs singular while task.json/S5 establish agents_outputs plural; retain discrepancy, intended declared output root plural.",
+        "output": "{output_dir}/agents_outputs/<case_id>/enhanced.npy, one 2D normalized float32 finite 256\u00d7256 per case. Optional agents_decision.csv not scored. Actual output empty. Formatchecker checks 2D, expected private-reference shape, floating dtype and finite values; accepts float64, does NOT enforce float32, [0,1], nonconstant or quality. A format-valid fixture would not be a conformant medical result. No new sourcechecker/evaluator execution; pure authored predicates only.",
+        "score": "Config primary mean_ssim, diagnostic PSNR/LPIPS; runner always computes all 3 aligned and cyclic shuffled, requires LPIPS even if diagnostic. Source SSIM skimage structural_similarity(data_range,Gaussian weights=True,use_sample_covariance=False), default sigma/window depend on installed skimage and are not pinned. PSNR float32 squared-error mean, if MSE<=1e\u221212 return 99.0; otherwise 10 log10(range\u00b2/MSE). Data_range from private CSV per case, fallback reference max\u2212min, no protection from invalid/zero CSV range. LPIPS Alex weights/runtime absent: each input independently minmax normalizes to [-1,1], constant span<1e\u22129\u2192zeros, grayscale repeats 3channels, no_grad; this loses absolute offset/scale differences and is not MRI/clinical validation. No metric computed.\n\nEffective TASK brats-t1c-sr-task absent TASK_NORM and RATING_THRESHOLDS. Without unresolved baseline_bands, code uses generic named clinical composite: equal one-third weights for clipped(PSNR\u221220)/30, SSIM,1\u2212LPIPS. No BraTS-specific PSNR 20\u201335 or LPIPS max .5 windows/rating imported from mri-sr-task. Valid unknown-task rating C vs hard fail F (invalid/abort/no PSNR/completion<.5); no outcome/rating asserted. Datasetbands missing => pass_rate omitted, cannot infer classical SSIM threshold or pass rate. Config evaluator_status blocked_metric_assets remains unresolved. Named clinical is code field, not clinical validation.\n\nNumber of cases and unique patients unknown. Scorer means independently drop NaN metrics, n_valid based only non-NaN PSNR; differs format n_valid. Missing predictions append NaNs; total n_patients counts all evaluator-supplied PATIENT_IDS rows, including missing predictions; that variable name does not establish unique-patient versus slice/case multiplicity. Runner if any format-valid scores all IDs without filtering invalid, so malformed/nonfinite cases may raise/propagate instead of clean partial penalty. Completion format-valid /max(1,total). If baseline bands available pass rate denominator all per_patient rows, missing outputs retained. Shuffle maps next ID modulo N; with N=1 unchanged reference, no independent negative control. No case/pixel metric/clinical performance.",
+        "challenge": "Reconcile the model\u2019s preprocessing with the source image scale and required output. An apparently reasonable image or text can still violate the task contract.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Missing exact native Full input/target warning and official acquisition route.",
+          "Canonical 128\u2192256 geometry, Lite/Standard/format selectors and unknown output cells.",
+          "Empty participant array, late evaluator/private-reference rules, backward/exit/reset covers."
+        ],
         "variants": [
           {
             "name": "Full \u00b7 Lite",
@@ -21872,29 +21957,39 @@
         ],
         "sources": [
           [
-            "Pinned Full-release task package",
+            "Pinned Full harness",
             "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/brats-t1c-sr-task.tar.gz"
+          ],
+          [
+            "Official BraTS acquisition",
+            "https://www.synapse.org/Synapse:syn51156910/wiki/"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-brats-t1c-sr-task-resolution.json"
           ]
         ],
-        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. Required metric assets or baseline bands remain unresolved in the source package."
-      },
-      "source_brief_sha256": "f80668876b6a5c1450d4e32b5e74dec95e9151a55a76779f33220ce55841699b",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-brats-t1c-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Source-pinned Full contract, symbolic pixel mechanics and private-evaluator boundaries. No patient input, reconstruction or clinical outcome.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full package brats-t1c-sr-task, MRI_T1c / BraTS 2023 GLI. Per-case public input.npy, declared normalized float32 (128, 128), 16,384 pixels; target (256, 256), 65,536 pixels, 2\u00d7 length / 4\u00d7 cells. Harness dataset.included=false /data_status not_included /split unresolved. Retained official Synapse entity request returned PROJECT metadata, 317 bytes, not a matching case. A fresh bounded unauthenticated file-child listing returned HTTP 200 and an empty page (11 bytes), not a native file. This covers direct file children only, not nested folders, controlled contents or all BraTS availability. Exact Full case membership and LR/HR mapping remain unrecovered; no account, access terms or credentials used. Case folders called patient IDs by common prompts; whole-patient versus 2D slice multiplicity unknown. No contrast dose, scanner sequence, voxel spacing, FOV, anatomical findings or private target established.</p>",
+          "helpers": "<p>Configuration, task/model info and planning/setup/validation/inference/submission prompts. Full Lite prescribes public caidas/swin2SR-classical-sr-x2-64; grayscale\u2192model-compatible channels\u2192grayscale mapping remains operator responsibility, not a supplied exact preprocessing. Standard compares at least 3 inference-only methods including at least 2 pretrained neural, one bicubic/Lanczos baseline allowed. Public pilot case required but not bundled. No model files/runtime assets. Requirements NumPy/SciPy/skimage/torch/Pillow/transformers minimum versions; LPIPS package absent although scorer requires it. GPU/DNN evaluation mode mandated, no weight updates/train/optimizer/backward or private reference access. These are task instructions, not runtime verification here.</p>",
+          "tools": "<p>No task/model/tool/evaluator executed or installed. Authoring SVG shows symbolic 2 \u00d7 2 normalized cells [.1,.4;.3,.8] beside 4 \u00d7 4 unknown output sockets; these are NOT MRI, real voxels, bicubic outputs, reference or submitted arrays. Shapes reduced for illustration only; exact declared 128\u00b2\u2192256\u00b2 counts separately shown. Pixel color legend: teal authored low-resolution values; outlined high-resolution cells unknown. No MRI derivative/native pixel parity claim; deterministic pack/fixture byte equality only.</p>",
+          "reference": "<p>/data/private/&lt;case_id&gt;/reference.npy and private ground_truth.csv:data_range belong to evaluation, never participants or the explainer. No private file acquired or displayed. Public pretrained checkpoint and source contract are helpers, not target evidence. Late reader reveal teaches private reference/metric rules; exit/backward/reset covers before paint. Actual target, enhanced.npy and metrics always absent.</p>",
+          "spec": "<p>Declared normalized 128\u00d7128 T1c input from bicubic downsampling with scale 2; output 256\u00d7256 [0,1]. Harness includes NO degradation/preprocessing implementation, source slice selection, normalization min/max or clipping, cubic kernel parameter, coordinate convention, antialias setting, border mode, downsample library/version, voxel geometry or exact data split. Do not infer nearest/bilinear, z-axis super-resolution, synthesized noise, retained high-res texture or restored clinical edges. Mathematical 2\u00d7 shape expansion changes cell counts, not known information; high-resolution values remain unknown. No resized clinical image or method outcome.</p>\n<p>Full Lite and Standard are assistance tiers of this harness. Related gallery/branch/Lite package conditions preserved below but equivalence not established. Named Swin2SR baseline is a public model selection, not evidence that it loads, fits T1c domain or preserves pathology. No inference/training/performance. Prompt same shape as input in common preamble conflicts task-specific 128\u2192256 config and tier validation; task-specific geometry explains intended output, generic checker derives shape from private reference. Task-specific Lite validation uses agent_outputs singular while task.json/S5 establish agents_outputs plural; retain discrepancy, intended declared output root plural.</p>",
+          "output": "<p>{output_dir}/agents_outputs/&lt;case_id&gt;/enhanced.npy, one 2D normalized float32 finite 256\u00d7256 per case. Optional agents_decision.csv not scored. Actual output empty. Formatchecker checks 2D, expected private-reference shape, floating dtype and finite values; accepts float64, does NOT enforce float32, [0,1], nonconstant or quality. A format-valid fixture would not be a conformant medical result. No new sourcechecker/evaluator execution; pure authored predicates only.</p>",
+          "score": "<p>Config primary mean_ssim, diagnostic PSNR/LPIPS; runner always computes all 3 aligned and cyclic shuffled, requires LPIPS even if diagnostic. Source SSIM skimage structural_similarity(data_range,Gaussian weights=True,use_sample_covariance=False), default sigma/window depend on installed skimage and are not pinned. PSNR float32 squared-error mean, if MSE&lt;=1e\u221212 return 99.0; otherwise 10 log10(range\u00b2/MSE). Data_range from private CSV per case, fallback reference max\u2212min, no protection from invalid/zero CSV range. LPIPS Alex weights/runtime absent: each input independently minmax normalizes to [-1,1], constant span&lt;1e\u22129\u2192zeros, grayscale repeats 3channels, no_grad; this loses absolute offset/scale differences and is not MRI/clinical validation. No metric computed.</p>\n<p>Effective TASK brats-t1c-sr-task absent TASK_NORM and RATING_THRESHOLDS. Without unresolved baseline_bands, code uses generic named clinical composite: equal one-third weights for clipped(PSNR\u221220)/30, SSIM,1\u2212LPIPS. No BraTS-specific PSNR 20\u201335 or LPIPS max .5 windows/rating imported from mri-sr-task. Valid unknown-task rating C vs hard fail F (invalid/abort/no PSNR/completion&lt;.5); no outcome/rating asserted. Datasetbands missing =&gt; pass_rate omitted, cannot infer classical SSIM threshold or pass rate. Config evaluator_status blocked_metric_assets remains unresolved. Named clinical is code field, not clinical validation.</p>\n<p>Number of cases and unique patients unknown. Scorer means independently drop NaN metrics, n_valid based only non-NaN PSNR; differs format n_valid. Missing predictions append NaNs; total n_patients counts all evaluator-supplied PATIENT_IDS rows, including missing predictions; that variable name does not establish unique-patient versus slice/case multiplicity. Runner if any format-valid scores all IDs without filtering invalid, so malformed/nonfinite cases may raise/propagate instead of clean partial penalty. Completion format-valid /max(1,total). If baseline bands available pass rate denominator all per_patient rows, missing outputs retained. Shuffle maps next ID modulo N; with N=1 unchanged reference, no independent negative control. No case/pixel metric/clinical performance.</p>",
+          "challenge": "<p>Reconcile the model\u2019s preprocessing with the source image scale and required output. An apparently reasonable image or text can still violate the task contract.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -27249,11 +27344,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 138,
+    "reviewed-scripted-planar": 139,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 40,
     "pending-operation-review": 1,
-    "blocked-source-input": 13
+    "blocked-source-input": 12
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

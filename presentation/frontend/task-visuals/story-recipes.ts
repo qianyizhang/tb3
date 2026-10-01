@@ -1,3 +1,4 @@
+import { automedBratsT1cSrPack } from './automedbench-full-brats-t1c-sr-task';
 import { rexUsenhancePack } from './rex-usenhance';
 import { imagingToothGridrecPack } from './imaging101-xray-tooth-gridrec';
 import { imagingUsctFwiPack } from './imaging101-usct-fwi';
@@ -145,6 +146,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automedbench-full-brats-t1c-sr-task-v1',
     'rex-usenhance-v1',
     'imaging101-xray-tooth-gridrec-v1',
     'imaging101-usct-fwi-v1',
@@ -1412,6 +1414,16 @@ export function storyPresentation(plan: StoryPlan): {
           ['#91a6ae', 'Required low-quality PNG sockets', true],
           ['#18c6d4', 'Unsubmitted enhanced-image schema', true],
           ['#7ba4b8', 'Private targets absent', true],
+        ],
+      };
+    case 'automedbench-full-brats-t1c-sr-task-v1':
+      return {
+        heading: 'BraTS T1c 2× geometry, assistance and private evaluation',
+        corner: 'Matching Full input, private target and participant output absent',
+        warning: automedBratsT1cSrPack.source.notice,
+        legend: [
+          ['#148096', 'Teal shades: authored normalized cells, not MRI'],
+          ['#b1bccc', 'Gray outlines: unknown high-resolution values'],
         ],
       };
     case 'bcer-brain-full-v1':
