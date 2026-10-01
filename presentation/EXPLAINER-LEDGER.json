@@ -16808,36 +16808,126 @@
       "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval."
     },
     {
-      "entry_id": "imaging101-ultrasound-sos-tomography",
-      "title": "Map sound speed from ultrasound travel times",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-ultrasound-sos-tomography/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography",
+      "actual_data_gap": "Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-ultrasound-sos-tomography.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Transducer-ring geometry and transmission paths/angles. The assistance level can add an approach and software design.",
+        "output": "A 2D map of sound speed.",
+        "raw": "Ultrasound travel-time measurements around a breast phantom.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-ultrasound-sos-tomography.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D map of sound speed.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-ultrasound-sos-tomography",
+      "illustration_basis": "mixed",
+      "illustration_kind": "soundmap",
       "modalities": [
         "ultrasound"
       ],
-      "illustration_kind": "soundmap",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-other",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-ultrasound-sos-tomography.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D map of sound speed.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Ultrasound travel-time measurements around a breast phantom.",
-        "helpers": "Transducer-ring geometry and transmission paths/angles. The assistance level can add an approach and software design.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted exact native synthetic detector-by-angle samples and explicit late solver-visible center/clean helper, with task-specific symbolic signed slowness, source inverse/adjoint and speed-versus-cropped-slowness metric contracts after main17-pin/39-image source/visual/export/mobile/no-GPU review. Pixel-length/time/ring calibration remains unestablished. No private reference, participant reconstruction or score; no operator/solver/task/evaluator execution. Effective reference route and convergence remain qualified.",
+      "source_brief_sha256": "a42169c67564feb271e3a4d53d6a2babce3c20dcea29340a4cf165796a89c22e",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-ultrasound-sos-tomography-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-ultrasound-sos-tomography-resolution.json",
+        "receipt_sha256": "1543766a6caca331a0f308a7204ecfeb8a8a290563241ca6dd77c7530cc594b0",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T17:07:40.622462+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-ultrasound-sos-tomography/source-audit-final-01.json",
+        "audit_sha256": "54aaf2f70bb0d43b29f4aa9494ca73a7fc0e5bfb31d43023a9699c8c178d6684",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-ultrasound-sos-tomography",
+      "subject": null,
+      "title": "Map sound speed from ultrasound travel times",
+      "warning_text": "Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score.",
+      "acceptance_scope": "Native synthetic detector-by-angle samples and late solver-visible center/clean helper; task-specific symbolic signed slowness, source inverse/adjoint and speed-versus-crop metric contracts. No calibrated travel time, acquired ring paths, patient data, participant reconstruction or score; no source operator/solver/task/evaluator execution.",
+      "completion_review": {
+        "date": "2026-10-01T17:24:52.633434+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "02e89d21d9b9a7fd5486ffd5ec033de441b0de22060fe13b9c1666d485363a51"
+      },
+      "reviewed_contract_projection": {
+        "title": "Map sound speed from ultrasound travel times",
+        "goal": "Implement a computational method to map sound speed from ultrasound travel times.\n\n> **Actual gap:** Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score. [Official pinned acquisition](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography).",
+        "value": "This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.",
+        "raw": "Synthetic parallel-beam noisy projection sums: 1\u00d7128\u00d760 float64, with angles 0\u2013177\u00b0 in 3\u00b0 steps. Source Radon omits physical pixel length; these values are not calibrated seconds or acquired ring-transducer data.",
+        "helpers": "128-pixel detector grid and 60 angles are actual operator inputs. Nominal 0.5 mm pixels / 50 mm ring are metadata, not implemented physical ray geometry. Clean/full projections and speed/slowness truth are solver-visible; approach/design depend on assistance.",
         "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "reference": "data/ground_truth.npz contains solver-visible synthetic speed and slowness arrays; raw_data also includes clean/full projections. Source reconstructions are retained provenance, not participant output. Educational reveal does not establish blind evaluation.",
         "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A 2D map of sound speed.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "output": "Generic output/reconstruction.npy is a real 128\u00d7128 speed map (m/s). Main instead saves reconstructions.npz with several speed/slowness keys. No participant map is shown.",
+        "score": "Generic same-shape NPZ ranking selects sos_phantom, full 16384 speed entries; NRMSE is range-normalized RMSE and NCC uncentered cosine without flux scaling for this task. Main instead scores 0.8 centre-cropped slowness; the exact source helper crops [13:115,13:115], 102\u00d7102 = 10,404 entries. Its range NRMSE returns 0 for an exactly constant reference, whereas generic NRMSE returns infinity. Source NCC returns 0 for an exactly zero norm; generic uses epsilon 1e-30. Source SSIM is local skimage with reference range, unlike the generic global-moment surrogate; source constant-range SSIM has no explicit guard. Main computes top-level thresholds from best cropped-slowness source results; generic can attach them to full-speed scores when that metrics file is present. This file is not retained and no effective threshold/verdict is established. Nothing was scored.",
+        "challenge": "Sparse parallel-beam inversion has 7680 samples for 16384 pixels. Actual geometry, missing pixel-length scaling, signed slowness and reference units must be resolved; no refraction operator is implemented.",
+        "families": "One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.",
+        "gap": "Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score. Pin physical path/pixel-length scaling and operator/adjoint convention; choose blind inversion or method reproduction; isolate synthetic truth for blind work; reconcile speed versus cropped slowness reference and effective evaluator before scoring.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native synthetic parallel-beam projection samples, with physical seconds uncalibrated",
+          "Map sound speed from ultrasound travel times",
+          "A 2D map of sound speed"
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -16865,26 +16955,27 @@
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "35feb1e39e02acb7143ca59b0179b68dad9a8f90129caccb161bc55c891bde33",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-ultrasound-sos-tomography.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D map of sound speed.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Implement a computational method to map sound speed from ultrasound travel times.</p>\n<p>&gt; <strong>Actual gap:</strong> Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score. <a href=\"https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography\">Official pinned acquisition</a>.</p>",
+          "value": "<p>This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.</p>",
+          "raw": "<p>Synthetic parallel-beam noisy projection sums: 1\u00d7128\u00d760 float64, with angles 0\u2013177\u00b0 in 3\u00b0 steps. Source Radon omits physical pixel length; these values are not calibrated seconds or acquired ring-transducer data.</p>",
+          "helpers": "<p>128-pixel detector grid and 60 angles are actual operator inputs. Nominal 0.5 mm pixels / 50 mm ring are metadata, not implemented physical ray geometry. Clean/full projections and speed/slowness truth are solver-visible; approach/design depend on assistance.</p>",
+          "tools": "<p>Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.</p>",
+          "reference": "<p>data/ground_truth.npz contains solver-visible synthetic speed and slowness arrays; raw_data also includes clean/full projections. Source reconstructions are retained provenance, not participant output. Educational reveal does not establish blind evaluation.</p>",
+          "spec": "<p>Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.</p>",
+          "output": "<p>Generic output/reconstruction.npy is a real 128\u00d7128 speed map (m/s). Main instead saves reconstructions.npz with several speed/slowness keys. No participant map is shown.</p>",
+          "score": "<p>Generic same-shape NPZ ranking selects sos_phantom, full 16384 speed entries; NRMSE is range-normalized RMSE and NCC uncentered cosine without flux scaling for this task. Main instead scores 0.8 centre-cropped slowness; the exact source helper crops [13:115,13:115], 102\u00d7102 = 10,404 entries. Its range NRMSE returns 0 for an exactly constant reference, whereas generic NRMSE returns infinity. Source NCC returns 0 for an exactly zero norm; generic uses epsilon 1e-30. Source SSIM is local skimage with reference range, unlike the generic global-moment surrogate; source constant-range SSIM has no explicit guard. Main computes top-level thresholds from best cropped-slowness source results; generic can attach them to full-speed scores when that metrics file is present. This file is not retained and no effective threshold/verdict is established. Nothing was scored.</p>",
+          "challenge": "<p>Sparse parallel-beam inversion has 7680 samples for 16384 pixels. Actual geometry, missing pixel-length scaling, signed slowness and reference units must be resolved; no refraction operator is implemented.</p>",
+          "families": "<p>One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.</p>",
+          "gap": "<p>Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score. Pin physical path/pixel-length scaling and operator/adjoint convention; choose blind inversion or method reproduction; isolate synthetic truth for blind work; reconcile speed versus cropped slowness reference and effective evaluator before scoring.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Exact indexed native source values; no reconstruction.</strong> Synthetic parallel-beam noisy projection sums: 1\u00d7128\u00d760 float64, with angles 0\u2013177\u00b0 in 3\u00b0 steps. Source Radon omits physical pixel length; these values are not calibrated seconds or acquired ring-transducer data.</p>",
+          "helpers": "<p><strong>Given material, not an answer reveal.</strong> 128-pixel detector grid and 60 angles are actual operator inputs. Nominal 0.5 mm pixels / 50 mm ring are metadata, not implemented physical ray geometry. Clean/full projections and speed/slowness truth are solver-visible; approach/design depend on assistance.</p>",
+          "answer": "<p><strong>Expected artifact, not an actual prediction.</strong> Generic output/reconstruction.npy is a real 128\u00d7128 speed map (m/s). Main instead saves reconstructions.npz with several speed/slowness keys. No participant map is shown.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26871,9 +26962,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 134,
+    "reviewed-scripted-planar": 135,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 44,
+    "blocked-source-contract": 43,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

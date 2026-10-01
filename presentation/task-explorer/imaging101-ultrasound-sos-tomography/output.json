@@ -1,0 +1,17 @@
+{
+  "format": "Generic one real speed NPY, m/s; main reconstructions.npz has multiple delta_s and sos method keys. Saved source results are not participant outputs.",
+  "limits": "Pin physical path/pixel-length scaling and operator/adjoint convention; choose blind inversion or method reproduction; isolate synthetic truth for blind work; reconcile speed versus cropped slowness reference and effective evaluator before scoring.",
+  "map": null,
+  "metric": "Generic range-normalized RMSE and uncentered cosine over 16384 speed entries; no flux rescaling in the effective implementation. Generic global SSIM differs from source local skimage SSIM; generic constant-range NRMSE returns infinity.",
+  "path": "output/reconstruction.npy",
+  "prediction": null,
+  "reference": null,
+  "reference_selection": "Generic discovers data/ground_truth.npz before reconstructions.npz. Shape-matched key ranking gives sos_phantom before slowness_perturbation; full speed m/s reference differs cropped delta_s s/m.",
+  "score": null,
+  "shape": [
+    128,
+    128
+  ],
+  "task_metric": "Main scores delta-slowness crop [13:115,13:115], 102x102=10404 entries. Source NRMSE returns 0.0 for exact zero reference range (generic returns infinity). Source cosine NCC returns 0 for either exact zero norm; source local skimage SSIM uses reference range without a zero-range guard. No score computed.",
+  "threshold": "Main writes top-level ncc_boundary=0.9*best NCC and nrmse_boundary=1.1*best NRMSE from cropped slowness, plus nested baseline results. Generic attaches these when metrics file is present, even though it scores full speed. No metrics file retained here; no effective threshold or score."
+}

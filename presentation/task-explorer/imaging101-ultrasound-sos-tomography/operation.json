@@ -1,0 +1,23 @@
+{
+  "adjoint": "physics adjoint=unfiltered iradon*pi/(2*n_angles); TV updates use unfiltered iradon without this factor. Exact discrete adjoint and step scaling unverified.",
+  "baseline": 1500,
+  "executed": false,
+  "formula": "delta_s=1/c-1/1500; c=1/max(delta_s+1/1500,1e-8). Illustrative algebra only, no map estimate.",
+  "methods": {
+    "fbp": "Source ramp-filtered iradon; discrete parallel-beam geometry, not refracted ring paths. No FBP executed.",
+    "sart": "Main 30 iterations,relaxation0.15. Named SART uses full-sinogram residual backprojection; normalized row-action textbook equivalence is not verified.",
+    "tv": "Main lambda 1e-6, 300 iterations, positivity=False; function default lambda 1e-7 / positivity=True differs. Approximate norm/adjoint steps are not a convergence proof."
+  },
+  "sign": "1450 gives positive delta_s; 2500 gives negative. Main fat-negative comment is inconsistent with formula. Signed perturbation is distinct from positive absolute slowness.",
+  "steps": [
+    "Keep native detector-by-angle ordering",
+    "Audit physical pixel length and signed baseline",
+    "Select a source inverse method without running it",
+    "Convert delta slowness to speed and specify output reference"
+  ],
+  "symbolic_speeds": [
+    1450,
+    1500,
+    2500
+  ]
+}

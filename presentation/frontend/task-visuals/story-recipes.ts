@@ -1,3 +1,4 @@
+import { imagingUltrasoundSosPack } from './imaging-ultrasound-sos';
 import { imagingPnpMriPack } from './imaging101-pnp-mri-reconstruction';
 import { imagingPlaneWavePack } from './imaging101-plane-wave-ultrasound';
 import { imagingPhotoacousticPack } from './imaging101-photoacoustic-tomography';
@@ -141,6 +142,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging-ultrasound-sos-v1',
     'imaging101-pnp-mri-reconstruction-v1',
     'imaging101-plane-wave-ultrasound-v1',
     'imaging101-photoacoustic-tomography-v1',
@@ -1358,6 +1360,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#ffffff', 'Sampled mask cells / high normalized image intensity'],
           ['#000000', 'Omitted mask cells / low normalized image intensity'],
           ['#808080', 'Intermediate normalized source intensity; late reader-only'],
+        ],
+      };
+    case 'imaging-ultrasound-sos-v1':
+      return {
+        heading: 'Separate ultrasound speed and slowness conventions',
+        corner: 'Native synthetic sums · symbolic inverse',
+        warning: imagingUltrasoundSosPack.source.notice,
+        legend: [
+          ['#73c7e6', 'Native noisy source sample'],
+          ['#eeb989', 'Source baseline rule'],
+          ['#92d9ae', 'Selected native sample'],
         ],
       };
     case 'bcer-brain-full-v1':

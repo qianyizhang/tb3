@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging-ultrasound-sos-v1": "retained-imaging-ultrasound-sos-v1",
     "imaging101-pnp-mri-reconstruction-v1": "retained-imaging101-pnp-mri-reconstruction-source-v1",
     "imaging101-plane-wave-ultrasound-v1": "retained-imaging101-plane-wave-ultrasound-source-v1",
     "imaging101-photoacoustic-tomography-v1": "retained-imaging101-photoacoustic-tomography-source-v1",
@@ -190,6 +191,19 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-imaging-ultrasound-sos-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+            "measurement.json",
+        },
+    ),
     "retained-imaging-grappa-v1": (
         "source-records",
         None,
@@ -2512,6 +2526,12 @@ class InterpretationBBcerLongBrainFullChannels(Closed):
     reference: Pair
 
 
+class ImagingUltrasoundSosChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class ImagingPnpMriChannels(Closed):
     progress: Pair
     detail: Pair
@@ -4554,6 +4574,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class ImagingUltrasoundSosBeat(ExpansionBeat[ImagingUltrasoundSosChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class ImagingUltrasoundSosStory(Story[ImagingUltrasoundSosChannels]):
+    recipe: Literal["imaging-ultrasound-sos-v1"]
+    beats: tuple[ImagingUltrasoundSosBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("ultrasound SoS has no private reference assets or reveal")
+        return self
+
+
 class ImagingPnpMriBeat(ExpansionBeat[ImagingPnpMriChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5580,6 +5618,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingUltrasoundSosStory
     | ImagingPnpMriStory
     | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
@@ -5726,6 +5765,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingUltrasoundSosStory
     | ImagingPnpMriStory
     | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
@@ -6032,6 +6072,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingUltrasoundSosStory
     | ImagingPnpMriStory
     | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
@@ -6355,6 +6396,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-imaging-ultrasound-sos-v1": (
+                "Ultrasound-native-sinogram-plus-symbolic-slowness-inverse",
+                "MIT",
                 None,
             ),
             "retained-imaging101-pnp-mri-reconstruction-source-v1": (
@@ -6702,6 +6748,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "pixel-grid, degrees; uncalibrated projection units"
+                if pack_id == "retained-imaging-ultrasound-sos-v1"
                 else "native-image-index, normalized-intensity, mask-bit; physical calibration absent"
                 if pack_id == "retained-imaging101-pnp-mri-reconstruction-source-v1"
                 else "ADC-code, seconds, element-index, angle-degrees"
@@ -6862,6 +6910,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-imaging-ultrasound-sos-v1"
             or pack_id == "retained-imaging101-pnp-mri-reconstruction-source-v1"
             or pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
             or pack_id == "retained-imaging101-photoacoustic-tomography-source-v1"

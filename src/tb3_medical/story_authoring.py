@@ -329,6 +329,7 @@ def new(
             "imaging-eit-v1",
             "imaging-dynamic-mri-v1",
             "imaging-grappa-v1",
+            "imaging-ultrasound-sos-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

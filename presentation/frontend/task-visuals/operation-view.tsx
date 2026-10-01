@@ -1,4 +1,8 @@
 import {
+  ImagingUltrasoundSosScene,
+  ImagingUltrasoundSosOutput,
+} from './imaging-ultrasound-sos-panels';
+import {
   ImagingPnpMriScene,
   ImagingPnpMriOutput,
 } from './imaging101-pnp-mri-reconstruction-panels';
@@ -443,6 +447,8 @@ export function OperationScene({
     return <ImagingPlaneWaveScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'imaging101-pnp-mri-reconstruction-v1')
     return <ImagingPnpMriScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'imaging-ultrasound-sos-v1')
+    return <ImagingUltrasoundSosScene state={state} plan={plan} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -801,6 +807,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <ImagingPlaneWaveOutput state={state} />;
   if (state.recipe === 'imaging101-pnp-mri-reconstruction-v1')
     return <ImagingPnpMriOutput state={state} />;
+  if (state.recipe === 'imaging-ultrasound-sos-v1')
+    return <ImagingUltrasoundSosOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

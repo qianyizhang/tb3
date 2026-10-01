@@ -18,6 +18,11 @@ class ExpansionTests(unittest.TestCase):
         ]:
             plan = stories.compile_story(ROOT, path)
             self.assertEqual(plan["beats"][-1]["endFrame"], plan["durationFrames"])
+            if plan["recipe"] == "imaging-ultrasound-sos-v1":
+                self.assertEqual(plan["reference_policy"], "no-reference-assets")
+                self.assertTrue(
+                    all(b["channels"]["reference"] == [0.0, 0.0] for b in plan["beats"])
+                )
             self.assertEqual(
                 plan["reference_policy"],
                 "reader-reference-reveal"

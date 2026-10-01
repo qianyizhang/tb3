@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging-ultrasound-sos-v1',
   'imaging101-pnp-mri-reconstruction-v1',
   'imaging101-plane-wave-ultrasound-v1',
   'imaging101-photoacoustic-tomography-v1',
@@ -126,6 +127,16 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging-ultrasound-sos-v1')
+    return {
+      scene: 'data-sos-scene',
+      reference: '[data-sos-source-truth], [data-sos-metric-boundary], [data-sos-format]',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-sos-output-schema]',
+      aside: '[data-sos-output]',
+    };
   if (plan.recipe === 'imaging101-pnp-mri-reconstruction-v1')
     return {
       scene: 'data-imaging-pnp-mri-scene',
@@ -866,6 +877,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging-ultrasound-sos-v1': [
+      /Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score./s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography',
+      'data-sos-scene',
+      false,
+    ],
     'imaging101-pnp-mri-reconstruction-v1': [
       /Source image equals visible truth; acquired k-space and participant PnP result absent./s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pnp_mri_reconstruction',
@@ -2570,6 +2587,257 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     );
     await capture('limits-contract');
     await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
+  if (plan.recipe === 'imaging-ultrasound-sos-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-sos-scene]');
+    const absent = async () =>
+      assert.equal(
+        await scene
+          .locator('[data-sos-source-truth], [data-sos-metric-boundary], [data-sos-format]')
+          .count(),
+        0,
+      );
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    assert.equal(plan.reference_policy, 'no-reference-assets');
+    assert.ok(plan.beats.every((b) => b.channels.reference.every((x) => x === 0)));
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    const native = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/imaging101-ultrasound-sos-tomography/measurement.json',
+        'utf8',
+      ),
+    );
+    const points = (await scene.locator('polyline').getAttribute('points'))
+      .split(' ')
+      .map((x) => x.split(',').map(Number));
+    const scale = Math.max(...native.native_detector_trace.map(Math.abs));
+    assert.equal(points.length, 60);
+    for (let i = 0; i < 60; i++) {
+      assert.equal(points[i][0], 15 + i * 4);
+      assert.ok(
+        Math.abs(points[i][1] - (85 - (65 * native.native_detector_trace[i]) / scale)) < 1e-11,
+      );
+    }
+    assert.equal(await scene.locator('polyline').getAttribute('stroke'), '#73c7e6');
+    assert.equal(await scene.locator('line').getAttribute('stroke'), '#eeb989');
+    assert.equal(await scene.locator('line').getAttribute('stroke-dasharray'), '4 4');
+    assert.equal(await scene.locator('circle').getAttribute('fill'), '#92d9ae');
+    assert.match(
+      await scene.innerText(),
+      /Native detector 64.*angle index 0–59.*noisy source trace.*zero baseline.*selected native sample.*No physical time calibration.*parallel-beam radon.*50 mm.*0\.5 mm.*not an implemented physical ring-ray table.*not calibrated seconds/is,
+    );
+    const slider = scene.locator('#sos-native-angle');
+    assert.equal(await slider.getAttribute('max'), '59');
+    await slider.fill('59');
+    assert.match(await scene.locator('[data-sos-sample]').innerText(), /angle 177°/);
+    assert.equal(Number(await scene.locator('circle').getAttribute('cx')), 251);
+    await slider.fill('0');
+    await capture('native-input');
+    await advance(0);
+    await slider.fill('59');
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await slider.inputValue(), '0');
+    const steps = ['1. Signed slowness', '2. Inverse conventions', '3. Adjoint normalization'],
+      methods = ['FBP', 'SART', 'TV'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let j = 0; j < 3; j++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: methods[j], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[j]);
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[j] : [168, 0, 504][i],
+        );
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /Symbolic baseline algebra.*not a native finding.*delta_s=1\/c-1\/1500.*1e-8.*Main fat-negative comment is inconsistent with formula/is,
+          );
+          for (const c of [1450, 1500, 2500]) {
+            await scene.getByRole('button', { name: `${c} m/s`, exact: true }).click();
+            assert.match(
+              await scene.locator('[data-sos-sign]').innerText(),
+              new RegExp(c < 1500 ? 'positive' : c > 1500 ? 'negative' : 'zero'),
+            );
+            assert.ok(
+              (await scene.locator('[data-sos-sign]').innerText()).includes(
+                (1 / c - 1 / 1500).toPrecision(7),
+              ),
+            );
+          }
+        } else if (i === 1) {
+          assert.equal(
+            await scene
+              .getByRole('button', { name: methods[j], exact: true })
+              .getAttribute('aria-pressed'),
+            'true',
+          );
+          const patterns = [
+            /ramp-filtered iradon.*not refracted ring paths.*No FBP executed/is,
+            /30 iterations.*relaxation0\.15.*full-sinogram residual backprojection.*textbook equivalence is not verified/is,
+            /lambda 1e-6.*300 iterations.*positivity=False.*default lambda 1e-7.*positivity=True.*not a convergence proof/is,
+          ];
+          assert.match(await scene.locator('[data-sos-method]').innerText(), patterns[j]);
+        } else
+          assert.match(
+            text,
+            /unfiltered iradon\*pi\/\(2\*n_angles\).*TV updates use unfiltered iradon without this factor.*Exact discrete adjoint and step scaling unverified.*No forward operator, inverse, reconstruction or convergence trial/is,
+          );
+        assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        await absent();
+        await capture(`contract-${i}-${j}`);
+      }
+    await page.locator('[data-story-step="1"]').click();
+    await advance(168);
+    await scene.getByRole('button', { name: '2500 m/s', exact: true }).click();
+    await page.locator('[data-story-step="1"]').click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: '1500 m/s', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /128×128 real speed map.*m\/s.*UNSUBMITTED.*mathematical ceiling 1e8 m\/s.*not a clinically validated range.*not patient acquisition or tissue diagnosis/is,
+    );
+    await scene.getByRole('button', { name: 'Inspect artifact format', exact: true }).click();
+    assert.match(
+      await scene.locator('[data-sos-format]').innerText(),
+      /Generic one real speed NPY.*main reconstructions\.npz.*multiple delta_s and sos.*not participant outputs/is,
+    );
+    await capture('empty-output');
+    await advance(plan.beats[oi].startFrame);
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    const hi = plan.beats.findIndex((b) => b.scene === 'helper');
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /Clean\/full projections and phantom truth.*already in supplied data.*does not establish private evaluation/is,
+    );
+    for (const t of ['L1', 'L2', 'L3']) {
+      await scene.getByRole('button', { name: t, exact: true }).click();
+      assert.equal(
+        await scene.getByRole('button', { name: t, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.locator('[data-sos-tier]').innerText(),
+        t === 'L1'
+          ? /noisy\/clean\/full raw arrays and phantom truth/
+          : t === 'L2'
+            ? /plus approach/
+            : /plus software design/,
+      );
+    }
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source truth', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source truth', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-sos-source-truth]').innerText(),
+      /Exact source synthetic center.*not a participant reconstruction or private evaluator target.*1540\.000.*-0\.00001731602.*-0\.001195999/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('source-revealed');
+    await scene.getByRole('button', { name: 'Hide source truth', exact: true }).click();
+    await absent();
+    await advance(plan.beats[hi].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    assert.equal(
+      await scene.getByRole('button', { name: 'L1', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    const rules = ['metric', 'reference selection', 'threshold'];
+    const patterns = [
+      /16384 speed entries.*No flux.*global SSIM.*constant-range NRMSE returns infinity/is,
+      /ground_truth\.npz before reconstructions\.npz.*sos_phantom before slowness_perturbation.*full speed.*differs cropped delta_s/is,
+      /ncc_boundary=0\.9\*best NCC.*nrmse_boundary=1\.1\*best NRMSE.*No metrics file retained.*no effective threshold or score/is,
+    ];
+    for (let i = 0; i < 3; i++) {
+      await scene.getByRole('button', { name: rules[i], exact: true }).click();
+      assert.match(await scene.locator('[data-sos-rule]').innerText(), patterns[i]);
+    }
+    const boundary = () =>
+      scene.getByRole('button', { name: 'Reveal source metric boundary', exact: true });
+    await boundary().click();
+    assert.match(
+      await scene.locator('[data-sos-metric-boundary]').innerText(),
+      /13:115.*102x102=10404.*0\.0.*infinity.*zero norm.*local skimage.*zero-range guard.*No score computed/is,
+    );
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source metric boundary', exact: true }).click();
+    await absent();
+    await advance(plan.beats[li].startFrame);
+    await boundary().click();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'reference selection', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await boundary().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await boundary().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    await capture('limits-contract');
     await page.locator('.scene-reset').click();
     await absent();
   }
@@ -10746,6 +11014,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging-ultrasound-sos-v1',
       'imaging101-pnp-mri-reconstruction-v1',
       'imaging101-plane-wave-ultrasound-v1',
       'imaging101-photoacoustic-tomography-v1',

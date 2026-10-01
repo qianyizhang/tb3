@@ -1,0 +1,308 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography",
+  "actual_data_gap": "Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score.",
+  "attempts": [
+    {
+      "action": "download selected pinned official source/native arrays/source-saved examples; verify Git blob or HF LFS identity",
+      "attempted_at": "2026-09-29T07:44:20.810788+00:00",
+      "outcome": "41/41 combined requested task files verified across four entries; no task method executed",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography ; https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET, maximum 1MB, timeout 15s",
+      "attempted_at": "2026-09-30T21:03:55.465901+00:00",
+      "outcome": "URLError: <urlopen error [Errno 1] Operation not permitted>",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography/data/raw_data.npz"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET, maximum 1MB, timeout 15s",
+      "attempted_at": "2026-09-30T21:03:55.476072+00:00",
+      "outcome": "URLError: <urlopen error [Errno 1] Operation not permitted>",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography/src/visualization.py"
+    },
+    {
+      "action": "bounded anonymous pinned read-only GET, maximum 1MB, timeout 15s",
+      "attempted_at": "2026-09-30T21:03:55.476177+00:00",
+      "outcome": "URLError: <urlopen error [Errno 1] Operation not permitted>",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "action": "bounded official source read via web.open",
+      "attempted_at": "2026-09-30T21:05:57.792658+00:00",
+      "outcome": "Failed to fetch: Cache miss; source metric helper implementation not acquired; no access barrier inferred.",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography/src/visualization.py"
+    },
+    {
+      "action": "read-only validation of retained pinned native arrays and common MIT licence",
+      "attempted_at": "2026-09-30T21:05:57.792918+00:00",
+      "outcome": "All 15 retained SHA/length pins verified; native raw/GT match official HF LFS identities; exact array indexing only, no forward/inverse/evaluator executed.",
+      "source": "retained formation-e source / pinned imaging-101 dc2f668939b21e8312e22529615def610f8611df"
+    },
+    {
+      "action": "bounded approved public HTTPS GET of exact pinned primary metric helper; read only, not imported",
+      "attempted_at": "2026-10-01T08:49:09.132862+00:00",
+      "outcome": "curl exited 0, 6517 bytes; SHA256 a7d13b5a89e8e93744e1d2f9e322e634fd35c440de3ce6b224db4c0c14d1fb77; Git blob 855485fce4c35902e2bdda2de1245fd32cdd53d2 matches complete primary tree. Timestamp is post-acquisition validation; earlier sandbox/cache failures retained unchanged.",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography/src/visualization.py"
+    },
+    {
+      "action": "retained-validation: rehash original pins and inspect native headers/CRC/indexed values without source imports",
+      "attempted_at": "2026-10-01T08:49:09.132862+00:00",
+      "outcome": "Original source pins preserved, fresh numeric/header validation in source-audit.json; no new native GET, operator, solver or scorer run.",
+      "source": "retained pinned imaging-101 primary/HF objects"
+    }
+  ],
+  "brief_sha256": "a42169c67564feb271e3a4d53d6a2babce3c20dcea29340a4cf165796a89c22e",
+  "display_warning": "Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score.",
+  "entry_id": "imaging101-ultrasound-sos-tomography",
+  "evaluator_run": false,
+  "generic_evaluator_contract": {
+    "boundary": "Main writes top-level bounds from cropped slowness results; effective generic full-speed application requires actual metrics.json, absent from retained source.",
+    "metrics": "range-normalized NRMSE, cosine NCC, MSE, PSNR, global SSIM if an actual output and usable reference exist",
+    "normalization": "squeeze dimensions >2 and reduce complex arrays to magnitude; no flux rescaling",
+    "output": "one real numeric output/reconstruction.npy",
+    "run": false,
+    "selection": "Generic scorer selects data/ground_truth.npz:sos_phantom by matching shape and canonical phantom key; the synthetic phantom is solver-visible."
+  },
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "native_arrays": {
+    "data/ground_truth.npz": {
+      "slowness_perturbation": {
+        "dtype": "float64",
+        "shape": [
+          1,
+          128,
+          128
+        ]
+      },
+      "sos_phantom": {
+        "dtype": "float64",
+        "shape": [
+          1,
+          128,
+          128
+        ]
+      }
+    },
+    "data/raw_data.npz": {
+      "angles": {
+        "dtype": "float64",
+        "shape": [
+          1,
+          60
+        ]
+      },
+      "angles_full": {
+        "dtype": "float64",
+        "shape": [
+          1,
+          180
+        ]
+      },
+      "sinogram": {
+        "dtype": "float64",
+        "shape": [
+          1,
+          128,
+          60
+        ]
+      },
+      "sinogram_clean": {
+        "dtype": "float64",
+        "shape": [
+          1,
+          128,
+          60
+        ]
+      },
+      "sinogram_full": {
+        "dtype": "float64",
+        "shape": [
+          1,
+          128,
+          180
+        ]
+      }
+    }
+  },
+  "native_checks": {
+    "native": "Noisy and clean (128,60) source sinograms; full (128,180); source Radon receives s/m but omits 0.5mm pixel-length factor.",
+    "reference": "Generic scorer selects data/ground_truth.npz:sos_phantom by matching shape and canonical phantom key; the synthetic phantom is solver-visible.",
+    "score_boundary": "Output map is m/s; input sinogram values are uncalibrated pixel-step sums and should not be called measured seconds."
+  },
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Pin physical path/pixel-length scaling and operator/adjoint convention; choose blind inversion or method reproduction; isolate synthetic truth for blind work; reconcile speed versus cropped slowness reference and effective evaluator before scoring.",
+  "resolved_at": "2026-10-01T08:49:09.132862+00:00",
+  "reviewed_at": "2026-10-01T08:49:09.132862+00:00",
+  "schema": 1,
+  "scientific_gaps": [
+    "README ring radius50mm and pixel0.5mm are metadata; source radon(circle=True) supplies parallel beams in pixels/degrees without pixel-length multiplication. Source projection values are not calibrated seconds.",
+    "Delta slowness1/c-1/1500 s/m is positive for slower1450 and negative for faster2500; main comment about fat negative is wrong. Main positivity=False; function defaultTrue differs.",
+    "Main SART label denotes full-sinogram residual/backprojection update, not verified row-normalized textbook SART. Ramp FBP, named SART30x0.15, TV300/lambda1e-6 are source settings, not measured outcomes.",
+    "Adjoint helper uses unfiltered iradon*pi/(2*n_angles); TV uses a different unfiltered backprojection and approximate norm/step convention. Exact adjoint/convergence not verified.",
+    "Generic reference_scoring header says flux-normalized, but implementation performs no flux rescale despite header prose. NRMSE=sqrt(mean squared error)/(max GT-min GT), NCC uncentered cosine. Scalar score wrapper/thresholds stay source-specific; no score executed.",
+    "Main writes nested baseline results plus top-level ncc_boundary=0.9*best source NCC and nrmse_boundary=1.1*best source NRMSE. Generic can apply these cropped-slowness-derived thresholds to full speed metrics when evaluation/metrics.json is present; no such metrics file is retained here, so effective thresholds/verdict remain unset."
+  ],
+  "solver_run": false,
+  "source_license": "Pinned Imaging101 dataset card declares MIT. Released arrays are author-generated synthetic breast-mimicking phantom data; no patient rights inferred.",
+  "source_pins": [
+    {
+      "bytes": 262694,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/ultrasound_sos_tomography/data/ground_truth.npz",
+      "role": "solver-visible-reference",
+      "sha256": "44eb129d9a729f0200c86741b36578d01b03985fb627d5245865e8ecea916fb2",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 236,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/ultrasound_sos_tomography/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "907f724773f097e025eb7e8828777b7fc873f976ce3c213979848f356268f0e5",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 310406,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/ultrasound_sos_tomography/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "4081273d92a86f375690f446ac7f3bd81be59fa603df76542803be4230bdc325",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 791122,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/ultrasound_sos_tomography/evaluation/reference_outputs/reconstructions.npz",
+      "role": "source-saved-output",
+      "sha256": "414f5b35412e13349089904deafb211c219f6a7e650a9f16942fb916a06ee3e8",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-e-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 6128,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/ultrasound_sos_tomography/README.md",
+      "role": "pinned-task-source",
+      "sha256": "4d6c9379d4a1b21189c14bd3e8b98eb2abd396947268bc91faa870f5a4eeebff",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 7251,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/ultrasound_sos_tomography/main.py",
+      "role": "pinned-task-source",
+      "sha256": "5cf3b993ebc3828a696f15d769a3b62684bed352302403e7d4e2e2c045f165d6",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 6490,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/ultrasound_sos_tomography/src/generate_data.py",
+      "role": "pinned-task-source",
+      "sha256": "61ebd6ab288d55a8276036b0a3ddd87b721e64cc20016822ccf790cbe2e0f71a",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 3970,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/ultrasound_sos_tomography/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "4b2622daf6160e02a46f9694ac3a1869e495daf6daacc4bea4219fccdf60bb2c",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 2177,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/ultrasound_sos_tomography/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "22ff16560028fb42336fd0ac3a4ab8c10657854ccca56f6eb37f3d6fd405ada6",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 7162,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/ultrasound_sos_tomography/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "0ac716238aa203db80b82228758fd4e88b1460b1af0c4e35354a7c6ba07b0982",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 4013,
+      "path": ".local/explainers/core-20260929/formation-e-source/trees/ultrasound_sos_tomography.json",
+      "role": "source-tree-or-helper",
+      "sha256": "bd625d890fdddb46c0dc3bc1e1255f59d6cc7b7b12894a1f1f70e82db2517391",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+    },
+    {
+      "bytes": 1076,
+      "path": ".local/explainers/goal-20260930/workers/imaging101-ultrasound-sos-tomography/source-evidence/LICENSE",
+      "role": "retained-pinned-common-software-license",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "bytes": 6517,
+      "git_blob": "855485fce4c35902e2bdda2de1245fd32cdd53d2",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-ultrasound-sos-tomography/refresh-pnp-mri/visualization-primary-01.py",
+      "role": "pinned-task-source",
+      "sha256": "a7d13b5a89e8e93744e1d2f9e322e634fd35c440de3ce6b224db4c0c14d1fb77",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/ultrasound_sos_tomography/src/visualization.py"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "Generic output/reconstruction.npy real128x128 speed map, not main source reconstructions.npz containing multiple slowness and speed maps.",
+    "helper": "Clean sparse/full180-angle sums and speed/slowness phantom are already solver-visible; reader reveal is educational. L1 README/data, L2 approach, L3 design.",
+    "input": "Noisy native synthetic parallel-beam sinogram1x128x60; angles1x60 in degrees. No ring Tx/Rx ray table or calibrated seconds.",
+    "private_reference": "No sequestered clinical reference established. Generic reference discovers data/ground_truth.npz before source-saved reconstructions.",
+    "source_saved_output": "Retained source reconstructions are provenance only, not shown as participant estimates/results."
+  },
+  "status": "local-source-preparation",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "Map \u0394s=1/c\u22121/c\u2080 through a straight-ray Radon projection and regularized inverse; convert reconstructed \u0394s back to speed c=1/(\u0394s+1/c\u2080). The source radon call sums slowness per pixel without multiplying by 0.5 mm, so numerical sinogram units are not calibrated seconds.",
+    "reference_policy": "no-reference-assets",
+    "task_id": "ultrasound_sos_tomography"
+  },
+  "task_metric_contract": {
+    "domain": "Main delta-slowness centre_crop(0.8): [13:115,13:115], 102x102=10404 entries; not full-speed target",
+    "ncc": "Uncentered cosine of float64 flattened arrays; either exact zero norm returns 0.0; no epsilon",
+    "nrmse": "RMSE / reference range; exact zero range returns 0.0, distinct from generic infinity",
+    "source": "visualization.py primary exact Git blob 855485fce4c35902e2bdda2de1245fd32cdd53d2",
+    "ssim": "skimage local structural_similarity with reference range; no zero-range guard or pinned skimage version",
+    "threshold": "Main best NCC and best NRMSE may select different methods; top-level 0.9/1.1 bounds derive from cropped slowness, not generic full-speed domain; metrics.json absent."
+  },
+  "top_warning": {
+    "label": "Native synthetic sums \u00b7 time calibration unresolved",
+    "link_label": "Pinned ultrasound acquisition",
+    "text": "Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score.",
+    "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography"
+  }
+}
