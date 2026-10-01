@@ -1,0 +1,549 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound",
+  "actual_data_gap": "Native physical-phantom RF retained, not a patient scan. No fresh participant B-mode, beamforming or metric; data baselines differ from saved outputs and task-specific threshold names do not bind generic pass/fail. Selected phantom/time origin must remain explicit; original acquisition reuse rights not independently established.",
+  "attempts": [
+    {
+      "action": "Revalidate retained ultrasound RF/baseline/saved arrays, code Git-tree identities and asset LFS identities; reread physics, staging and scorer contracts without execution",
+      "source": "Code dc2f668939b21e8312e22529615def610f8611df; assets a9de559b54849a25988a8a0d8a5e869063a5a7a3; retained source packet",
+      "outcome": "18 SHA/size pins,11 Git-tree blob/path matches,5 native LFS identities verified. Source RF supports native indexing/display only; baseline is solver-visible and differs from saved B-mode. Original acquisitions preserved, no new GET/operator/migration/Hilbert/scorer/model/task run.",
+      "attempted_at": "2026-10-01T08:21:32.492743+00:00"
+    }
+  ],
+  "display_warning": "Phantom RF only; no participant B-mode. Baseline and generic binding unresolved.",
+  "entry_id": "imaging101-plane-wave-ultrasound",
+  "evaluator_run": false,
+  "generic_evaluator_contract": {
+    "metrics": "range-normalized NRMSE, cosine NCC, MSE, PSNR, global SSIM if an actual output and usable reference exist",
+    "normalization": "squeeze dimensions >2 and reduce complex arrays to magnitude; no flux rescaling",
+    "output": "one real numeric output/reconstruction.npy",
+    "run": false,
+    "selection": "Generic scorer selects data/baseline_reference.npz by matching output shape; evaluation/reference_outputs/bmode_fibers/cysts.npy have other names and differ from data baselines, max absolute differences 24.57279 and 5.12926 arbitrary display units."
+  },
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "native_arrays": {
+    "data/baseline_reference.npz": {
+      "bmode_cysts": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          1536,
+          128
+        ]
+      },
+      "bmode_fibers": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          2688,
+          128
+        ]
+      }
+    },
+    "data/raw_data.npz": {
+      "RF_cysts": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          1536,
+          128,
+          7
+        ]
+      },
+      "RF_fibers": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          2688,
+          128,
+          7
+        ]
+      }
+    }
+  },
+  "native_checks": {
+    "native": "Real RF ADC arrays (2688,128,7) fibers and (1536,128,7) cysts; separate t0=0/50us.",
+    "reference": "Generic scorer selects data/baseline_reference.npz by matching output shape; evaluation/reference_outputs/bmode_fibers/cysts.npy have other names and differ from data baselines, max absolute differences 24.57279 and 5.12926 arbitrary display units.",
+    "score_boundary": "One generic output file picks one phantom by shape; no FWHM or CNR conclusion from full-array score."
+  },
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Specify which phantom and source/reference image the live condition scores; resolve baseline-versus-saved difference before matched image/metric claims.",
+  "resolved_at": "2026-09-29T07:48:45.499549+00:00",
+  "reviewed_at": "2026-09-29T07:54:16.053413+00:00",
+  "schema": 1,
+  "solver_run": false,
+  "source_license": "Pinned Imaging101 dataset card declares MIT. PICMUS/Garcia source phantom acquisition reuse rights were not independently verified; local teaching only.",
+  "source_pins": [
+    {
+      "bytes": 2163220,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/data/baseline_reference.npz",
+      "role": "solver-visible-reference",
+      "sha256": "74f35f1af2febbee8a152cef9b8ccaecf00b93a0bc84fa08780886d8b621356c",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 1243,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "d72a1ab7cce193f0639d9822169e33834a48d35324433f471ad2905a1521a0fd",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 3151555,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "8655073bb5bd50a5513e55d3114939795115a24d5aedd74d406110d216d7e2ef",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 1572992,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/evaluation/reference_outputs/bmode_cysts.npy",
+      "role": "source-saved-output",
+      "sha256": "e23b19a59106d11ed69e51986aa9bfbdc3563e3460dd04ecbec2f85aa1d602e9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 2752640,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/evaluation/reference_outputs/bmode_fibers.npy",
+      "role": "source-saved-output",
+      "sha256": "3f8c55bb1f85b9f9e1014448c75b1811c3ec35b92ae324195c7f6b592c9fa70a",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-e-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound",
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound",
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound",
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04"
+    },
+    {
+      "bytes": 6373,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/README.md",
+      "role": "pinned-task-source",
+      "sha256": "66bd361a4803072b21c9ae44adf6f82124ebb8836f4c8bd643e0848addbf9cb2",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "c215fe1edbe1b632387235731aff15503bd56a12"
+    },
+    {
+      "bytes": 7525,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/main.py",
+      "role": "pinned-task-source",
+      "sha256": "38654562fe89bcc00a64fc2fe9ee128640f993b7eb86fff7344e863e56bd6e56",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "e8c00325381c86a29ca71a9a467828f9ace85ebc"
+    },
+    {
+      "bytes": 2751,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "79fa7e6203b6a9c828829d5b02f546e962b036c326516a1242d704121ea34849",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "f2b4788ec0033f1a946e7b4101e48ba5569ed382"
+    },
+    {
+      "bytes": 1758,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "0ae99ac83e95878546aa90de7deea5791a7ca9d0db40b03f6f2edc03b9d3b3ee",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "0b645459d531cda8a74495fc8a10a83595486b8b"
+    },
+    {
+      "bytes": 6168,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "dcc2fc5ca6fff0b1fa5336b10b23f504ddf26432c82cd6dcaa4816c25053bc8c",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "a8e3a0ed1638d299bfbb9c639e7935b998ab8968"
+    },
+    {
+      "bytes": 12269,
+      "path": ".local/explainers/core-20260929/formation-e-source/trees/plane_wave_ultrasound.json",
+      "role": "source-tree-or-helper",
+      "sha256": "493a4a86284ed326145e430d2e5ce278c32487d202dccd282defa22d61073063",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-plane-wave-ultrasound/visualization.py",
+      "sha256": "4d0c7223b76a3e25e2503ae170388729c57f2593552ee72ef638dce8e82bf365",
+      "bytes": 4506,
+      "git_blob": "650fb95dbc447ea6c19b471e509ab60de9899cb1",
+      "role": "source-envelope-metrics",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "bytes": 13941,
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "one real output/reconstruction.npy in live generic end-to-end mode; absent here",
+    "helper": "Source metadata gives c=1540 m/s, time origin and angles; preprocessing removes RF DC. The data/ baseline B-mode arrays for both phantoms are solver-visible. There is no ground_truth.npz or patient scan.",
+    "input": "Two real acquisitions of physical phantoms: nylon fibers (1\u00d72688 time samples\u00d7128 receive elements\u00d77 steering angles) and cyst targets (1\u00d71536\u00d7128\u00d77). Both store 8-bit RF counts at 20 MHz; pitch is 298 \u00b5m, steering angles \u22121.5\u00b0 to +1.5\u00b0, and cyst t\u2080 is 50 \u00b5s while fibers t\u2080 is zero.",
+    "reference": "source-visible ground_truth or baseline where supplied; no separate hidden target established",
+    "source_saved_output": "Live generic output/reconstruction.npy is one real B-mode array matching either 2688\u00d7128 fibers or 1536\u00d7128 cysts. The pinned data/ baseline image is a source-visible example, not a participant result. Source evaluation/reference_outputs B-mode arrays differ numerically from data/ baselines.",
+    "private_reference": "No separate hidden target; baseline_reference.npz is staged in data"
+  },
+  "status": "worker-frozen-source-resolution",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "Correct t\u2080 and steering delays, transform receive-time RF into frequency/wavenumber space, interpolate the Stolt dispersion mapping and compound seven migrated angles into B-mode. The two phantoms have distinct time windows and output shapes.",
+    "reference_policy": "Source-visible baseline; explanation rules later only",
+    "task_id": "plane_wave_ultrasound",
+    "units": "Raw unsigned 8-bit ADC codes stored float32; not calibrated pressure or IQ. Time seconds, angles radians in solver (degrees in display), pitch metres, c1540m/s. No carrier/wavelength/attenuation/TGC or clinical interpretation verified.",
+    "algorithm": "Float64 global DC subtraction per whole phantom; per-angle Stolt migration: signed steering delay, positive frequency FFT, evanescent removal, linear Stolt interpolation, obliquity, conjugate frequency reconstruction, lateral steering phase and IFFT. Complex angle images averaged BEFORE abs(Hilbert(real(compound)))**gamma; gamma fibers .7/cysts .5. No max normalization/log B-mode. No method executed.",
+    "geometry": "t0 fibers0/cysts50us; even ntshift=0/1000; ntFFT=10752/7144, nxFFT192. x=(element\u221263.5)*298um; z=n*c/(2fs), relative to acquisition origin despite t0 compensation. Code ERM v(theta0)=c/sqrt2, not README narrative c/2; beta=sqrt2 at0.",
+    "metrics": "Source centered Pearson NCC; generic cosine NCC. Source range NRMSE with1e-12 versus generic full reference range. Native data baseline shapes344064/196608 pixels; saved evaluation arrays differ. Generic sole output selects one shape. Task names ncc_fibers_boundary,nrmse_fibers_boundary,ncc_cysts_boundary,nrmse_cysts_boundary are not generic ncc_boundary/nrmse_boundary => absent generic verdict under this metrics schema.",
+    "source_quality": "FWHM on power-compressed fibers gamma .7 at8 approximate depths10..80mm: nearest depth row, first argmax, discrete half-maximum crossings, no subpixel fit. CNR on linear envelope (not gamma B-mode):2mm disk,3\u20135mm shell, |mean_in\u2212mean_out|/population_std_outside. Two scripted phantom ROIs, no patient or generic full-array metric equivalent.",
+    "scorer_route": "Filesystem generic reference discovery uses data/baseline_reference.npz, whose two (1,Nt,128) arrays squeeze only because ndim>2. Output (2688,128) selects fibers and (1536,128) selects cysts; neither is private anatomical truth. Saved bmode_*.npy filenames lack accepted ground_truth/reference/reconstruction/recon/gt tokens and do not replace that baseline. No-filesystem scorer instead requires generic ground_truth.npy, absent in the pinned tree. Installed phantom-specific metrics keys are not generic ncc_boundary/nrmse_boundary; without both generic keys, passed=None, not a success or failure.",
+    "steering_sign_limit": "The source declares positive angle means element0 fires first, while the steering-delay expression sin(theta)*(reference-e)*pitch/c+t0 numerically decreases with element for positive theta. This expression is used for phase compensation; mapping to measured hardware emission times is not independently established. Preserve expression and declared convention without inferring calibration."
+  },
+  "top_warning": "Phantom RF only; no participant B-mode. Baseline and generic binding unresolved.",
+  "source_files": [
+    {
+      "bytes": 2163220,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/data/baseline_reference.npz",
+      "role": "solver-visible-reference",
+      "sha256": "74f35f1af2febbee8a152cef9b8ccaecf00b93a0bc84fa08780886d8b621356c",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 1243,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "d72a1ab7cce193f0639d9822169e33834a48d35324433f471ad2905a1521a0fd",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 3151555,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "8655073bb5bd50a5513e55d3114939795115a24d5aedd74d406110d216d7e2ef",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 1572992,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/evaluation/reference_outputs/bmode_cysts.npy",
+      "role": "source-saved-output",
+      "sha256": "e23b19a59106d11ed69e51986aa9bfbdc3563e3460dd04ecbec2f85aa1d602e9",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 2752640,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/plane_wave_ultrasound/evaluation/reference_outputs/bmode_fibers.npy",
+      "role": "source-saved-output",
+      "sha256": "3f8c55bb1f85b9f9e1014448c75b1811c3ec35b92ae324195c7f6b592c9fa70a",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-e-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound",
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound",
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound",
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04"
+    },
+    {
+      "bytes": 6373,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/README.md",
+      "role": "pinned-task-source",
+      "sha256": "66bd361a4803072b21c9ae44adf6f82124ebb8836f4c8bd643e0848addbf9cb2",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "c215fe1edbe1b632387235731aff15503bd56a12"
+    },
+    {
+      "bytes": 7525,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/main.py",
+      "role": "pinned-task-source",
+      "sha256": "38654562fe89bcc00a64fc2fe9ee128640f993b7eb86fff7344e863e56bd6e56",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "e8c00325381c86a29ca71a9a467828f9ace85ebc"
+    },
+    {
+      "bytes": 2751,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "79fa7e6203b6a9c828829d5b02f546e962b036c326516a1242d704121ea34849",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "f2b4788ec0033f1a946e7b4101e48ba5569ed382"
+    },
+    {
+      "bytes": 1758,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "0ae99ac83e95878546aa90de7deea5791a7ca9d0db40b03f6f2edc03b9d3b3ee",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "0b645459d531cda8a74495fc8a10a83595486b8b"
+    },
+    {
+      "bytes": 6168,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/plane_wave_ultrasound/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "dcc2fc5ca6fff0b1fa5336b10b23f504ddf26432c82cd6dcaa4816c25053bc8c",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound",
+      "git_blob": "a8e3a0ed1638d299bfbb9c639e7935b998ab8968"
+    },
+    {
+      "bytes": 12269,
+      "path": ".local/explainers/core-20260929/formation-e-source/trees/plane_wave_ultrasound.json",
+      "role": "source-tree-or-helper",
+      "sha256": "493a4a86284ed326145e430d2e5ce278c32487d202dccd282defa22d61073063",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-plane-wave-ultrasound/visualization.py",
+      "sha256": "4d0c7223b76a3e25e2503ae170388729c57f2593552ee72ef638dce8e82bf365",
+      "bytes": 4506,
+      "git_blob": "650fb95dbc447ea6c19b471e509ab60de9899cb1",
+      "role": "source-envelope-metrics",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "bytes": 13941,
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging"
+    }
+  ],
+  "warning_text": "Phantom RF only; no participant B-mode. Baseline and generic binding unresolved.",
+  "source_condition": {
+    "raw_shapes": [
+      [
+        1,
+        2688,
+        128,
+        7
+      ],
+      [
+        1,
+        1536,
+        128,
+        7
+      ]
+    ],
+    "dtype": "float32 integer ADC values",
+    "ADC_range": [
+      0,
+      255
+    ],
+    "n_angles": 7,
+    "angles_deg": [
+      -1.5,
+      -1,
+      -0.5,
+      0,
+      0.5,
+      1,
+      1.5
+    ],
+    "c_m_per_s": 1540,
+    "fs_hz": 20000000.0,
+    "pitch_m": 0.000298,
+    "dt_seconds": 5e-08,
+    "t0_seconds": [
+      0,
+      5e-05
+    ],
+    "last_absolute_time_us": [
+      134.35,
+      126.75
+    ],
+    "image_shapes": [
+      [
+        2688,
+        128
+      ],
+      [
+        1536,
+        128
+      ]
+    ],
+    "pixel_denominators": [
+      344064,
+      196608
+    ],
+    "measurement_cells": [
+      2408448,
+      1376256
+    ],
+    "depth_spacing_m": 3.85e-05,
+    "depth_axis_relative_m_max": [
+      0.1034495,
+      0.0590975
+    ],
+    "available_truth_keys": [
+      "bmode_fibers",
+      "bmode_cysts"
+    ],
+    "reference_patient_truth": false,
+    "IQ_input": false,
+    "global_DC_means": [
+      127.5505213315795,
+      121.45401364281064
+    ],
+    "preview_time_stride": 8,
+    "native_profile_selection": [
+      [
+        "fibers",
+        63,
+        0
+      ],
+      [
+        "fibers",
+        63,
+        3
+      ],
+      [
+        "cysts",
+        63,
+        3
+      ]
+    ],
+    "no_beamforming_or_envelope": true
+  },
+  "fixture": {
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "toy_coherent_average": [
+      1,
+      -1,
+      0
+    ],
+    "toy_mean_envelopes": 1,
+    "actual_output": null,
+    "clean_reference": null
+  },
+  "public_reference": {
+    "role": "Later solver-visible baseline and scorer binding rules only",
+    "clean_image": null,
+    "criteria": [
+      "Baseline reference is source-visible reconstruction, not anatomical ground truth",
+      "One output shape selects fibers or cysts; no aggregate two-phantom verdict",
+      "Source centered NCC differs from generic cosine; threshold keys incompatible",
+      "No B-mode image, source score or clinical result bundled"
+    ]
+  },
+  "brief_sha256": "b8dce6e2368a81cce6ee51ddc95f9ba0a67c9bdbd76ce1c64f0935f2ac5ba857",
+  "reference_policy": "reader-reference-reveal",
+  "historical_acquisition_attempts": [
+    {
+      "action": "download selected pinned official source/native arrays/source-saved examples; verify Git blob or HF LFS identity",
+      "attempted_at": "2026-09-29T07:44:08.877264+00:00",
+      "outcome": "41/41 combined requested task files verified across four entries; no task method executed",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound ; https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound"
+    },
+    {
+      "action": "Reverify retained native/code/Git/LFS pins; fetch bounded pinned envelope/quality metric module",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/plane_wave_ultrasound/src/visualization.py",
+      "outcome": "Fetched4506 bytes with verified Git blob. Native RF cells and baseline versus saved-output mismatch inspected; no source module import, DC transform, FFT, Hilbert, migration, quality or evaluator execution.",
+      "attempted_at": "2026-09-30T20:25:30.255024+00:00"
+    }
+  ],
+  "refresh_provenance": {
+    "baseline": "await exact137 PhotoAcoustic clean commit",
+    "old_receipt_sha256": "3801482b9375b8761fd6099ad74cf34e6e07efdc0d2502a3334465108530a0a5",
+    "historical_acquisition_objects_preserved_exactly": true,
+    "no_fresh_GET": true
+  },
+  "original_conditions": {
+    "draft_basis": "exact127; final137 recheck pending",
+    "section_sha256": "8869ba41c824f53d9817e05024aa25f01cde9672c948ed0688af400ff2990959",
+    "rows": [
+      {
+        "name": "L1 \u00b7 README",
+        "helper": "README, data description and method hints.",
+        "remaining": "Choose and implement a workable algorithm."
+      },
+      {
+        "name": "L2 \u00b7 + approach",
+        "helper": "A proposed algorithmic approach is added.",
+        "remaining": "Design the software and implement the method."
+      },
+      {
+        "name": "L3 \u00b7 + design",
+        "helper": "Approach and software design are added.",
+        "remaining": "Implement the specified design and numerical details."
+      }
+    ]
+  }
+}

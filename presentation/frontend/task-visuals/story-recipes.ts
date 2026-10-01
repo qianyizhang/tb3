@@ -1,3 +1,4 @@
+import { imagingPlaneWavePack } from './imaging101-plane-wave-ultrasound';
 import { imagingPhotoacousticPack } from './imaging101-photoacoustic-tomography';
 import { imagingPetMlemPack } from './imaging101-pet-mlem';
 import { imagingVarNetPack } from './imaging101-mri-varnet';
@@ -139,6 +140,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-plane-wave-ultrasound-v1',
     'imaging101-photoacoustic-tomography-v1',
     'imaging101-pet-mlem-v1',
     'imaging101-varnet-v1',
@@ -1331,6 +1333,18 @@ export function storyPresentation(plan: StoryPlan): {
           ['#ff0000', 'Positive relative pressure; fixed +0.1 a.u. endpoint'],
           ['#57d1cc', 'Native detector time trace'],
           ['#b2c2ce', 'Trace zero-pressure guide'],
+        ],
+      };
+    case 'imaging101-plane-wave-ultrasound-v1':
+      return {
+        heading: 'RF channels, steering and coherent compounding',
+        corner: 'Physical phantom RF; no B-mode outcome',
+        warning: imagingPlaneWavePack.source.notice,
+        legend: [
+          ['#000000', 'Black: ADC code 0'],
+          ['#ffffff', 'White: ADC code 255'],
+          ['#57d1cc', 'Teal line: raw ADC trace'],
+          ['#b2c2ce', 'Gray line: global source mean'],
         ],
       };
     case 'bcer-brain-full-v1':

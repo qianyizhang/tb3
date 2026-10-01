@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-plane-wave-ultrasound-v1": "retained-imaging101-plane-wave-ultrasound-source-v1",
     "imaging101-photoacoustic-tomography-v1": "retained-imaging101-photoacoustic-tomography-source-v1",
     "imaging101-pet-mlem-v1": "retained-imaging101-pet-mlem-source-v1",
     "imaging101-varnet-v1": "retained-imaging101-varnet-source-v1",
@@ -852,6 +853,22 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-plane-wave-ultrasound-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "SOURCE-LICENSE.txt",
+            "rf-fibers.png",
+            "rf-cysts.png",
+        },
+    ),
     "retained-imaging101-photoacoustic-tomography-source-v1": (
         "source-records",
         "reference.json",
@@ -2472,6 +2489,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class ImagingPlaneWaveChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4507,6 +4530,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class ImagingPlaneWaveBeat(ExpansionBeat[ImagingPlaneWaveChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingPlaneWaveStory(Story[ImagingPlaneWaveChannels]):
+    recipe: Literal["imaging101-plane-wave-ultrasound-v1"]
+    beats: tuple[ImagingPlaneWaveBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class ImagingPhotoacousticBeat(ExpansionBeat[ImagingPhotoacousticChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5491,6 +5535,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
     | ImagingPetMlemStory
     | ImagingVarNetStory
@@ -5635,6 +5680,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
     | ImagingPetMlemStory
     | ImagingVarNetStory
@@ -5939,6 +5985,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPlaneWaveStory
     | ImagingPhotoacousticStory
     | ImagingPetMlemStory
     | ImagingVarNetStory
@@ -6260,6 +6307,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-imaging101-plane-wave-ultrasound-source-v1": (
+                "Plane-wave-native-ADC-sheet-plus-symbolic-compounding",
+                "LicenseRef-Ultrasound-phantom-local-teaching",
                 None,
             ),
             "retained-imaging101-photoacoustic-tomography-source-v1": (
@@ -6597,6 +6649,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "ADC-code, seconds, element-index, angle-degrees"
+                if pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
                 else "seconds, metres; signed relative pressure"
                 if pack_id == "retained-imaging101-photoacoustic-tomography-source-v1"
                 else "radial-index, angle-degrees, counts/1000; relative activity"
@@ -6753,6 +6807,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
             or pack_id == "retained-imaging101-photoacoustic-tomography-source-v1"
             or pack_id == "retained-imaging101-pet-mlem-source-v1"
             or pack_id == "retained-imaging101-varnet-source-v1"
@@ -6859,6 +6914,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "input-preview"
                 if pack_id == "retained-imaging101-photoacoustic-tomography-source-v1"
                 and name in ("signals.png",)
+                else "input-preview"
+                if pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
+                and name in ("rf-fibers.png", "rf-cysts.png")
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -6930,6 +6988,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-imaging101-photoacoustic-tomography-source-v1"
+                    and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-imaging101-plane-wave-ultrasound-source-v1"
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS

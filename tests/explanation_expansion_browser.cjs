@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-plane-wave-ultrasound-v1',
   'imaging101-photoacoustic-tomography-v1',
   'imaging101-pet-mlem-v1',
   'imaging101-varnet-v1',
@@ -124,6 +125,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-plane-wave-ultrasound-v1')
+    return {
+      scene: 'data-imaging-plane-wave-scene',
+      reference: '[data-imaging-plane-wave-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-plane-wave-scene="output"] code',
+      aside: '[data-imaging-plane-wave-output]',
+    };
   if (plan.recipe === 'imaging101-photoacoustic-tomography-v1')
     return {
       scene: 'data-imaging-photoacoustic-scene',
@@ -846,6 +856,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-plane-wave-ultrasound-v1': [
+      /Phantom RF only; no participant B-mode. Baseline and generic binding unresolved./s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/plane_wave_ultrasound',
+      'data-imaging-plane-wave-scene',
+      false,
+    ],
     'imaging101-photoacoustic-tomography-v1': [
       /Synthetic pressure signals only; no tissue scan, participant reconstruction or score./s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/photoacoustic_tomography',
@@ -2331,6 +2347,210 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     assert.match(
       await scene.innerText(),
       /No reconstructed finding.*fluence\s*\/\s*absorption inference or numerical performance/is,
+    );
+    await capture('limits-contract');
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
+  if (plan.recipe === 'imaging101-plane-wave-ultrasound-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-plane-wave-scene]');
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-plane-wave-reference-revealed]').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const images = async () => {
+      const imgs = scene.locator('img');
+      assert.equal(await imgs.count(), 2);
+      for (let i = 0; i < 2; i++) {
+        const phantom = ['fibers', 'cysts'][i];
+        const d = await imgs
+          .nth(i)
+          .evaluate((e) => ({ src: e.src, w: e.naturalWidth, h: e.naturalHeight, alt: e.alt }));
+        assert.equal(d.w, 128);
+        assert.equal(d.h, [336, 192][i]);
+        assert.match(d.alt, /raw ADC time\/element sheet, not B-mode/);
+        assert.ok(d.src.startsWith('data:image/png;base64,'));
+        assert.equal(
+          sha(Buffer.from(d.src.split(',')[1], 'base64')),
+          sha(
+            fs.readFileSync(
+              `presentation/task-explorer/imaging101-plane-wave-ultrasound/rf-${phantom}.png`,
+            ),
+          ),
+        );
+        const caption = await scene.locator('figcaption').nth(i).innerText();
+        assert.match(
+          caption,
+          /128 element columns, 0°; every eighth native time sample.*Black 0 → white\s*255: raw ADC code/s,
+        );
+        assert.match(
+          caption,
+          i === 0
+            ? /Fibers:\s*336 time rows, t₀\s*=\s*0\s*µs/
+            : /Cysts:\s*192 time rows, t₀\s*=\s*50\s*µs/,
+        );
+      }
+    };
+    const source = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/imaging101-plane-wave-ultrasound/source.json',
+        'utf8',
+      ),
+    ).native_profiles;
+    const branches = ['Fibers −1.5°', 'Fibers 0°', 'Cysts 0°'];
+    const trace = async (m) => {
+      const p = source.profiles[m],
+        n = p.values.length,
+        svg = scene.locator('svg');
+      assert.equal(await svg.count(), 1);
+      assert.equal(
+        await svg.getAttribute('aria-label'),
+        `Native raw ADC trace ${branches[m]}; no envelope or B-mode`,
+      );
+      const poly = svg.locator('polyline');
+      assert.equal(await poly.getAttribute('stroke'), '#57d1cc');
+      const points = (await poly.getAttribute('points'))
+        .split(' ')
+        .map((s) => s.split(',').map(Number));
+      assert.equal(points.length, n);
+      points.forEach((v, j) => {
+        assert.ok(Math.abs(v[0] - (14 + (j * 244) / (n - 1))) < 1e-9);
+        assert.ok(Math.abs(v[1] - (148 - (p.values[j] * 140) / 255)) < 1e-9);
+      });
+      const line = svg.locator('line');
+      assert.equal(await line.getAttribute('stroke'), '#b2c2ce');
+      assert.ok(
+        Math.abs(Number(await line.getAttribute('y1')) - (148 - (p.global_mean * 140) / 255)) <
+          1e-9,
+      );
+      assert.equal(await line.getAttribute('y1'), await line.getAttribute('y2'));
+      const last = (p.t0_seconds + (n - 1) * source.dt_seconds) * 1e6;
+      assert.deepEqual(
+        (await svg.locator('text').allTextContents()).map((x) => x.trim()),
+        ['ADC 0–255', `${(p.t0_seconds * 1e6).toFixed(0)}–${last.toFixed(2)} µs →`],
+      );
+      const caption = await scene.locator('figcaption').innerText();
+      assert.ok(caption.includes(n.toLocaleString('en-US')));
+      assert.ok(caption.includes(branches[m]));
+      assert.ok(caption.includes(p.global_mean.toFixed(3)));
+      assert.match(caption, /untouched samples, element 63.*Gray: global\s*mean/s);
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await images();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /128 elements.*7 angles.*20 MHz.*Display stride only.*no DC subtraction, envelope or\s*beamforming/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const steps = ['RF + steering', 'Native traces', 'Compound + envelope'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branches[m], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[m]);
+        await trace(m);
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-plane-wave-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /Real ADC\s*→\s*global DC removal\s*→\s*per-angle migration.*c\s*=\s*1,?540 m\/s.*298\s*µm pitch.*angles\s*−1\.5°…\+1\.5°.*Fibers t₀\s*=\s*0.*cysts t₀\s*=\s*50\s*µs.*Raw RF is not IQ.*Source depth grid uses c\s*\/\s*\(2fs\).*38\.5\s*µm steps.*relative to acquisition start.*compensation does not add an absolute depth label/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        } else if (i === 1) {
+          await trace(m);
+        } else {
+          assert.match(
+            text,
+            /mean\(complex migrated angles\)\s*→\s*envelope\s*→\s*power gamma.*ERM at\s*0° uses\s*c\/√2.*README says\s*c\/2.*Signed steering and linear Stolt\s*interpolation precede compounding.*Hilbert\(real\(compound\)\).*gamma\s*0\.7 fibers\s*\/\s*0\.5\s*cysts.*Authored\s*\+1 and\s*−1 average to\s*0.*mean magnitudes\s*=\s*1.*Phase fixture only.*No FFT, Hilbert, migration or result computed/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await trace(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*one phantom shape.*Fibers\s*2,?688\s*×\s*128 or cysts\s*1,?536\s*×\s*128.*No participant B-mode.*aggregate verdict.*FWHM\s*or CNR/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await absent();
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-plane-wave-reference-revealed]').innerText(),
+      /Baselines are solver-visible source arrays.*differ from saved B-mode.*not\s*anatomical truth.*Pixel denominators:\s*344,?064 fibers\s*\/\s*196,?608 cysts.*Source centered NCC differs from generic cosine.*per-phantom threshold names do not\s*bind generic keys.*Baseline\s*\/\s*output images and scores absent.*Exit\s*\/\s*backward\s*\/\s*reset covers rules/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /Physical phantoms are not patients.*no focused tissue finding or numerical performance/is,
     );
     await capture('limits-contract');
     await absent();
@@ -10316,6 +10536,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-plane-wave-ultrasound-v1',
       'imaging101-photoacoustic-tomography-v1',
       'imaging101-pet-mlem-v1',
       'imaging101-varnet-v1',

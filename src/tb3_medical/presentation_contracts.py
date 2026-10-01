@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class ImagingPlaneWaveChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class ImagingPlaneWaveBeat(ExpansionBeat):
+    channels: ImagingPlaneWaveChannels
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingPlaneWavePlan(ExpansionPlan):
+    recipe: Literal["imaging101-plane-wave-ultrasound-v1"]
+    beats: list[ImagingPlaneWaveBeat]
+
+
 class ImagingPhotoacousticChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2771,6 +2787,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | ImagingPlaneWavePlan
     | ImagingPhotoacousticPlan
     | ImagingPetMlemPlan
     | ImagingVarNetPlan

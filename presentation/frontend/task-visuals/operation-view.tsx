@@ -1,4 +1,8 @@
 import {
+  ImagingPlaneWaveScene,
+  ImagingPlaneWaveOutput,
+} from './imaging101-plane-wave-ultrasound-panels';
+import {
   ImagingPhotoacousticScene,
   ImagingPhotoacousticOutput,
 } from './imaging101-photoacoustic-tomography-panels';
@@ -431,6 +435,8 @@ export function OperationScene({
     return <ImagingPetMlemScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'imaging101-photoacoustic-tomography-v1')
     return <ImagingPhotoacousticScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'imaging101-plane-wave-ultrasound-v1')
+    return <ImagingPlaneWaveScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -785,6 +791,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'imaging101-pet-mlem-v1') return <ImagingPetMlemOutput state={state} />;
   if (state.recipe === 'imaging101-photoacoustic-tomography-v1')
     return <ImagingPhotoacousticOutput state={state} />;
+  if (state.recipe === 'imaging101-plane-wave-ultrasound-v1')
+    return <ImagingPlaneWaveOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

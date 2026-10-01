@@ -32,6 +32,7 @@ class ExpansionTests(unittest.TestCase):
                     "imaging101-pnp-admm-v1",
                     "imaging101-t2-mapping-v1",
                     "imaging101-pet-mlem-v1",
+                    "imaging101-plane-wave-ultrasound-v1",
                     "imaging101-wavelet-v1",
                     "bcer-superres-v1",
                     "automed-kvasir-v1",
