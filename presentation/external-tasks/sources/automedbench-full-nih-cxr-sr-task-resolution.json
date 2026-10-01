@@ -1,0 +1,735 @@
+{
+  "acquisition_route": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+  "actual_data_gap": "Official Box GET now HTTP 200 public partial file listing, capped 65536B/curl56; earlier 404 retained as historical. No matching Full 128\u00b2 input, private 256\u00b2 target, selected-case/patient split, exact native image/registration/intensity/bicubic lineage. Full data not included, unresolved split; model/LPIPS assets and baseline bands absent. NIH Kaggle CC0 distribution label in task metadata does not prove rights for an unacquired native sample. No X-ray image, SR output or metric.",
+  "attempts": [
+    {
+      "action": "download pinned Full harness",
+      "attempted_at": "2026-09-29T08:01:42.947433+00:00",
+      "outcome": "HTTP 200; 15792 bytes; SHA-256 02d693ae642d3c18cd751c4051e0e09ae2de313cc10ba21316141b2e09e644d2; all MANIFEST entries verified; no dataset.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "action": "bounded official upstream source route check",
+      "attempted_at": "2026-09-29T08:02:41.526765+00:00",
+      "outcome": "HEAD status sequence ['HTTP/1.1 200 Connection established', 'HTTP/2 404']; no small Full-matched image/target pair recovered.",
+      "source": "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+    },
+    {
+      "action": "Bounded official NIH Box GET plus retained Full archive/member/config/evaluator binding audit",
+      "source": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+      "outcome": "HTTP200 partial65,536B HTML, requestedrange0\u201316383/cap64KiB/30s, curl56 capstop. Eleven complete public file metadata records (README/FAQ/splits/labels/PDFs), no acquired native image or Full pair/selection/normalization/bicubic mapping. Historical404 notcurrent source unavailability proof. No model/scorer/evaluator run or native imaging calculation.",
+      "attempted_at": "2026-09-30T22:36:53.170909+00:00"
+    },
+    {
+      "action": "Retained official transport, exact Full archive/MANIFEST and source contract validation for source-only refresh",
+      "source": "Pinned retained NIH-CXR-SR Full harness plus historical official NIH Box capped HTML and metadata",
+      "outcome": "No new GET. Exact retained bytes and prior bounded attempt reused; no matching Full LR/HR pair, original-image mapping, private target or model/scorer processing. Historical HTTP404/partial200 remain distinct actual records.",
+      "attempted_at": "2026-10-01T09:44:24.850897+00:00"
+    }
+  ],
+  "brief_sha256": "e818e3334c1c7b49a6fc802cc23fad71f12489aba03d1ac87e772d1283084d6a",
+  "display_warning": "Matching Full NIH CXR input / private target absent; symbolic 2\u00d7 geometry only.",
+  "entry_id": "automedbench-full-nih-cxr-sr-task",
+  "evaluator_run": false,
+  "full_dataset_included": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "label_license": null,
+  "model_run": false,
+  "preparer_run": false,
+  "private_reference_available": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Recover exact selected Full input/target lineage, image/patient split, intensity/degradation/physical coordinates and applicable image rights, evaluator TASK environment, private metrics/model/bands assets.",
+  "resolved_at": "2026-09-30T22:36:53.171019+00:00",
+  "schema": 1,
+  "source_license": "LicenseRef-NIH-CXR-CC0-distribution",
+  "source_pins": [
+    {
+      "bytes": 15792,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "02d693ae642d3c18cd751c4051e0e09ae2de313cc10ba21316141b2e09e644d2",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 2604,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/MANIFEST.sha256",
+      "role": "pinned-harness-manifest",
+      "sha256": "390457f82b7f06347fdba1b81400856803ccc14b68dcdba9a42cfc8e288ff173",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 1359,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/task.json",
+      "role": "pinned-task-json",
+      "sha256": "7ad417ab2b7e26c24681b30fc3fba35a250c1db4ee8d84e5f1f2b5781a61059e",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 945,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/config.yaml",
+      "role": "pinned-config",
+      "sha256": "6304ab106be286c3daddc1484ed2256e677409e09265a56b15cc3b3a82605a1b",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/format_checker.py",
+      "role": "pinned-format-checker",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "pinned-scorer",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 774,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/model_info.yaml",
+      "role": "pinned-model-info",
+      "sha256": "e36caa20749c7b25ac1e79212e6d0a1ae39c5ac6e9c3ad00af417c6f671fe38c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 324,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/lite_s1.md",
+      "role": "pinned-lite-task-guidance",
+      "sha256": "38ca4a449cf7496109f46eb5e89d911913968abcd5d544c5caa421f909d23249",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 340,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/standard_s1.md",
+      "role": "pinned-standard-task-guidance",
+      "sha256": "db680c7ad77b3ca7bf7cbeff0db4e45a9f3f2d95f6f97fc89113d190f3403b35",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/__init__.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/docker/eval/run_eval.py",
+      "bytes": 5127,
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/docker/eval/run_eval.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/lite_s2.md",
+      "bytes": 298,
+      "sha256": "3c938f7cbda9ffce35d2093811dab8233362633528ad739f483989d9bb777d17",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/lite_s2.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/lite_s3.md",
+      "bytes": 344,
+      "sha256": "1c3a1e56315d591d3fe3b948c13ac93dd7619e4872033235f04c705edd29e983",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/lite_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/requirements.txt",
+      "bytes": 86,
+      "sha256": "e573954502657a2e70e1c022551735daea6add56da5a7dd2b46e53913d1e978e",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/requirements.txt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/standard_s3.md",
+      "bytes": 253,
+      "sha256": "6de239567a4077afa0d605c42fa6f8ad6f367af99c300e81ca10c4b3d0f9f2ef",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/standard_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-nih-cxr-sr-task/official-response.headers",
+      "bytes": 1333,
+      "sha256": "0b0b0b8865afa421036047ac2c7ba018707dd5ec22c0b9839f14425d256afe9a",
+      "role": "bounded-partial-official-response-or-file-list-not-native-image"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-nih-cxr-sr-task/official-response.html",
+      "bytes": 65536,
+      "sha256": "4fd4ce55cb2979591f2adb578f107621b6ca0de202f548bc4458f6a378f579f7",
+      "role": "bounded-partial-official-response-or-file-list-not-native-image"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-nih-cxr-sr-task/official-file-metadata.json",
+      "bytes": 7109,
+      "sha256": "a5773da7b6f8485cfb2bb27ebc0d65e890188c160a314787e25bfe5408d2db13",
+      "role": "bounded-partial-official-response-or-file-list-not-native-image"
+    }
+  ],
+  "task_contract": {
+    "degradation": "bicubic downsample x2",
+    "input": "input.npy 128x128 normalized",
+    "metric": "mean SSIM; PSNR/LPIPS diagnostics; baseline_bands missing; evaluator blocked_metric_assets",
+    "modality": "chest_xray",
+    "output": "agents_outputs/{case_id}/enhanced.npy 256x256 float finite",
+    "reference": "private /data/private/{case_id}/reference.npy; no cases in package",
+    "task_id": "nih-cxr-sr-task",
+    "tiers": "Lite Swin2SR x2",
+    "operator": "Declared2\u00d7 bicubic downsample128\u00b2\u2192256\u00b2 target; no degradation implementation, bicubic coefficients/library/antialias/alignment, axis/FOV/physical pixel spacing, original image selection or normalization pipeline supplied. SVG authored2\u00b2\u21924\u00b2 geometry-only cells, high-resolution values unknown; no resized chest X-ray/result.",
+    "assistance": "Full Lite Swin2SR x2 caidas/swin2SR-classical-sr-x2-64, grayscale/model/grayscale conversion unspecified. Full Standard at least3 methods, at least2 public pretrained neural; training/finetuning/private access forbidden. Related Lite/gallery not equivalent.",
+    "format": "Task-specific256\u00d7256 conflicts generic preamble same shape as input. Format checker shape from private reference,2D floating finite; acceptsfloat64, no[0,1]/nonconstant check despite promptfloat32normalized requirement. Output root agents_outputs plural versus some task prompt agent_outputs singular; task.json/all.md establishplural.",
+    "metrics": "Config mean_ssim, diagnosticsPSNR/LPIPS; runner computesall3 and aligned+cyclicshuffle. SSIM skimage Gaussian true/population covariance, data_range privateCSV or refmax\u2212min; PSNRfloat32MSE<=1e\u221212\u219299; LPIPS Alex per-image independentminmax[-1,1], grayscale3channels, constant\u21920; checkpoint/package absent. No metrics computed.",
+    "effective": "Declared NIH evaluator_task_id and website_task_id nih-cxr-sr-task; runner consumes TASK environment (default empty), binding not executed. NIH literal absent v2 TASK_NORM/RATING_THRESHOLDS; code genericv1 namedclinical=(clip((PSNR\u221220)/30)+clip(SSIM)+clip(1\u2212LPIPS))/3, independent of v3 bands. assign_rating hardfails invalid/aborted/noPSNR/completion<.5; if bands exist v3 A/B/C gates rawPSNR+SSIM only, LPIPS notgated. No bands supplied => v2 unknown_task C for otherwise valid NIH, not MRI-SR/LDCT thresholds. Passrate wrapper independently loads /eval/<TASK>/baseline_bands.json classicalSSIM\u2212.02; path differs scorer _load_bands auto-task suffix. NIH already ends-task => same task folder whenenvironmentcorrect. Missing assets/runtime and bands; namedclinical is code composite, no clinical validation.",
+    "denominators": "Declaredcase count unknown. score_all averages nonNaN per metric, n_valid checksPSNR only; format n_valid countsfinitefloating shape. Missingoutput contributesNaNs and totalcase denominator retained; runner scoresallIDs ifanyvalid, notfilteredinvalid =>badshape/nonfinite mayraise/propagate. Pass rate ifbands known usesallper-patient rows denominator. Onecase cyclicshuffle unchanged identity, not independentnegativecontrol.",
+    "reference_policy": "Late reader-only evaluator/format rules, never private target/answer reveal"
+  },
+  "source_files": [
+    {
+      "bytes": 15792,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "02d693ae642d3c18cd751c4051e0e09ae2de313cc10ba21316141b2e09e644d2",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 2604,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/MANIFEST.sha256",
+      "role": "pinned-harness-manifest",
+      "sha256": "390457f82b7f06347fdba1b81400856803ccc14b68dcdba9a42cfc8e288ff173",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 1359,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/task.json",
+      "role": "pinned-task-json",
+      "sha256": "7ad417ab2b7e26c24681b30fc3fba35a250c1db4ee8d84e5f1f2b5781a61059e",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 945,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/config.yaml",
+      "role": "pinned-config",
+      "sha256": "6304ab106be286c3daddc1484ed2256e677409e09265a56b15cc3b3a82605a1b",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/format_checker.py",
+      "role": "pinned-format-checker",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "pinned-scorer",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 774,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/model_info.yaml",
+      "role": "pinned-model-info",
+      "sha256": "e36caa20749c7b25ac1e79212e6d0a1ae39c5ac6e9c3ad00af417c6f671fe38c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 324,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/lite_s1.md",
+      "role": "pinned-lite-task-guidance",
+      "sha256": "38ca4a449cf7496109f46eb5e89d911913968abcd5d544c5caa421f909d23249",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "bytes": 340,
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/standard_s1.md",
+      "role": "pinned-standard-task-guidance",
+      "sha256": "db680c7ad77b3ca7bf7cbeff0db4e45a9f3f2d95f6f97fc89113d190f3403b35",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/__init__.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/docker/eval/run_eval.py",
+      "bytes": 5127,
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/docker/eval/run_eval.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/lite_s2.md",
+      "bytes": 298,
+      "sha256": "3c938f7cbda9ffce35d2093811dab8233362633528ad739f483989d9bb777d17",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/lite_s2.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/lite_s3.md",
+      "bytes": 344,
+      "sha256": "1c3a1e56315d591d3fe3b948c13ac93dd7619e4872033235f04c705edd29e983",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/lite_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/requirements.txt",
+      "bytes": 86,
+      "sha256": "e573954502657a2e70e1c022551735daea6add56da5a7dd2b46e53913d1e978e",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/requirements.txt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/nih-cxr-sr-task/standard_s3.md",
+      "bytes": 253,
+      "sha256": "6de239567a4077afa0d605c42fa6f8ad6f367af99c300e81ca10c4b3d0f9f2ef",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/nih-cxr-sr-task/standard_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/nih-cxr-sr-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-nih-cxr-sr-task/official-response.headers",
+      "bytes": 1333,
+      "sha256": "0b0b0b8865afa421036047ac2c7ba018707dd5ec22c0b9839f14425d256afe9a",
+      "role": "bounded-partial-official-response-or-file-list-not-native-image"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-nih-cxr-sr-task/official-response.html",
+      "bytes": 65536,
+      "sha256": "4fd4ce55cb2979591f2adb578f107621b6ca0de202f548bc4458f6a378f579f7",
+      "role": "bounded-partial-official-response-or-file-list-not-native-image"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-nih-cxr-sr-task/official-file-metadata.json",
+      "bytes": 7109,
+      "sha256": "a5773da7b6f8485cfb2bb27ebc0d65e890188c160a314787e25bfe5408d2db13",
+      "role": "bounded-partial-official-response-or-file-list-not-native-image"
+    }
+  ],
+  "archive_members": [
+    {
+      "member": "automedbench-task/task.json",
+      "bytes": 1359,
+      "sha256": "7ad417ab2b7e26c24681b30fc3fba35a250c1db4ee8d84e5f1f2b5781a61059e"
+    },
+    {
+      "member": "automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "member": "automedbench-task/source/docker/eval/run_eval.py",
+      "bytes": 5127,
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "member": "automedbench-task/source/enhancement_scorer.py",
+      "bytes": 11295,
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "member": "automedbench-task/source/format_checker.py",
+      "bytes": 2188,
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/config.yaml",
+      "bytes": 945,
+      "sha256": "6304ab106be286c3daddc1484ed2256e677409e09265a56b15cc3b3a82605a1b"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/lite_s1.md",
+      "bytes": 324,
+      "sha256": "38ca4a449cf7496109f46eb5e89d911913968abcd5d544c5caa421f909d23249"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/lite_s2.md",
+      "bytes": 298,
+      "sha256": "3c938f7cbda9ffce35d2093811dab8233362633528ad739f483989d9bb777d17"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/lite_s3.md",
+      "bytes": 344,
+      "sha256": "1c3a1e56315d591d3fe3b948c13ac93dd7619e4872033235f04c705edd29e983"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/model_info.yaml",
+      "bytes": 774,
+      "sha256": "e36caa20749c7b25ac1e79212e6d0a1ae39c5ac6e9c3ad00af417c6f671fe38c"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/requirements.txt",
+      "bytes": 86,
+      "sha256": "e573954502657a2e70e1c022551735daea6add56da5a7dd2b46e53913d1e978e"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/standard_s1.md",
+      "bytes": 340,
+      "sha256": "db680c7ad77b3ca7bf7cbeff0db4e45a9f3f2d95f6f97fc89113d190f3403b35"
+    },
+    {
+      "member": "automedbench-task/source/nih-cxr-sr-task/standard_s3.md",
+      "bytes": 253,
+      "sha256": "6de239567a4077afa0d605c42fa6f8ad6f367af99c300e81ca10c4b3d0f9f2ef"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "member": "automedbench-task/MANIFEST.sha256",
+      "bytes": 2604,
+      "sha256": "390457f82b7f06347fdba1b81400856803ccc14b68dcdba9a42cfc8e288ff173"
+    }
+  ],
+  "status": "worker-frozen-source-resolution",
+  "warning_text": "Matching Full NIH CXR input / private target absent; symbolic 2\u00d7 geometry only.",
+  "top_warning": "Matching Full NIH CXR input / private target absent; symbolic 2\u00d7 geometry only.",
+  "reference_policy": "reader-reference-reveal",
+  "source_class": "source-derived-teaching",
+  "source_condition": {
+    "task_id": "nih-cxr-sr-task",
+    "release_revision": "f894057807cc334421784e702ead2c1883583e1b",
+    "authority_ref": "1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "input_shape": [
+      128,
+      128
+    ],
+    "output_shape": [
+      256,
+      256
+    ],
+    "scale": 2,
+    "input_pixels": 16384,
+    "output_pixels": 65536,
+    "input_format": ".npy",
+    "dtype_expected": "float32",
+    "intensity_expected": [
+      0,
+      1
+    ],
+    "intensity_units": "normalized",
+    "degradation": "bicubic_downsample",
+    "bicubic_library": null,
+    "coordinate_alignment": null,
+    "antialias": null,
+    "normalization_definition": null,
+    "case_mapping": null,
+    "n_cases": null,
+    "private_target_available": false,
+    "reference_initially_visible": false,
+    "inventory_conditions": [
+      "Full \u00b7 Lite",
+      "Full \u00b7 Standard",
+      "Related source listing"
+    ],
+    "original_image_format": null,
+    "original_image_shape": null,
+    "patient_image_partition": null,
+    "physical_pixel_spacing": null,
+    "image_selection": null
+  },
+  "source_roles": {
+    "input": "Declared per-case normalized128\u00b2 grayscale chest X-ray input.npy; no native pair/case included or acquired. Folder patient versus image count unknown; no acquisition/calibration/physical pixel-spacing proof.",
+    "helper": "Full Lite prescribes Swin2SR x2; Standard compares at least3 candidates/at least2 pretrained neural. Public weights/requirements not private targets; no checkpoint/assets bundled.",
+    "private_reference": "/data/private/<case_id>/reference.npy and ground_truth.csv:data_range evaluator-only; private truth never acquired/displayed.",
+    "source_saved_output": "No saved native enhanced output or score in harness.",
+    "answer_owned_output": "{output_dir}/agents_outputs/<case_id>/enhanced.npy intended float32 finite normalized256\u00d7256, participant output absent."
+  },
+  "fixture": {
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "low_grid": [
+      [
+        0.1,
+        0.4
+      ],
+      [
+        0.3,
+        0.8
+      ]
+    ],
+    "low_shape": [
+      2,
+      2
+    ],
+    "high_shape": [
+      4,
+      4
+    ],
+    "high_values": null,
+    "patient_image": null,
+    "actual_output": null,
+    "clean_reference": null
+  },
+  "public_reference": {
+    "role": "Reader-only private-reference and metric rules; no patient target or output",
+    "clean_image": null,
+    "criteria": [
+      "Private reference shape/range unavailable",
+      "Named clinical code composite is not clinical validation",
+      "Case/valid metric denominators and missing baseline bands explicit"
+    ]
+  },
+  "manifest_binding": {
+    "outer_manifest_sha256": "390457f82b7f06347fdba1b81400856803ccc14b68dcdba9a42cfc8e288ff173",
+    "declared_staging_manifest_sha256": "5efea89cfdc27606f6e327186fc710ddba0df819b26cd6717e7f44de92125091",
+    "outer_manifest_files_verified": 26,
+    "archive_members_verified": 27,
+    "original_staging_manifest": "unrecovered distinct locator, not same-outer-manifest claim",
+    "upstream_Git_identity": "authority ref declared, not per-file upstream Git proof"
+  },
+  "reviewed_at": "2026-09-30T22:36:53.171019+00:00",
+  "source_license_context": "Task.json claims CC0 in NIH Kaggle distribution, policy redistributable; official partial Box metadata grants download but exact distribution rights/pixel assets not verified here. No image/label redistribution; authored symbolic mechanics separately licensed.",
+  "refresh_limits": "Source-only unaccepted; final shared guards/compiler/types/full205/pending CLI await exact149. No source processing or runtime execution."
+}

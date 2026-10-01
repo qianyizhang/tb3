@@ -22835,36 +22835,121 @@
       }
     },
     {
-      "entry_id": "automedbench-full-nih-cxr-sr-task",
-      "title": "Super-resolve a chest X-ray image",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/automedbench-full-nih-cxr-sr-task/acceptance-01.json",
+      "acquisition_route": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+      "actual_data_gap": "Official Box GET now HTTP 200 public partial file listing, capped 65536B/curl56; earlier 404 retained as historical. No matching Full 128\u00b2 input, private 256\u00b2 target, selected-case/patient split, exact native image/registration/intensity/bicubic lineage. Full data not included, unresolved split; model/LPIPS assets and baseline bands absent. NIH Kaggle CC0 distribution label in task metadata does not prove rights for an unacquired native sample. No X-ray image, SR output or metric.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/automedbench-full-nih-cxr-sr-task.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "automedbench",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-restoration",
+      "contract_projection": {
+        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. Required metric assets or baseline bands remain unresolved in the source package.",
+        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Swin2SR x2 public pretrained checkpoint. Standard supplies candidates to investigate; model files may still need provisioning.",
+        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 256 \u00d7 256.",
+        "raw": "chest_xray input, stored as `input.npy` per case. Shape: 128 \u00d7 128.",
+        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+        "sources": [
+          [
+            "Pinned Full-release task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+          ]
+        ],
+        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: nih-cxr-sr-task.",
+        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
+        "variants": [
+          {
+            "helper": "Task-specific Lite guidance: Swin2SR x2 public pretrained checkpoint.",
+            "name": "Full \u00b7 Lite",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "name": "Full \u00b7 Standard",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "name": "Related source listing",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-nih-cxr-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "category": "input-not-packaged",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "automedbench-full-nih-cxr-sr-task",
+      "illustration_basis": "symbolic",
+      "illustration_kind": "superres",
       "modalities": [
         "x-ray"
       ],
-      "illustration_kind": "superres",
-      "subject": "chest",
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-nih-cxr-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "chest_xray input, stored as `input.npy` per case. Shape: 128 \u00d7 128.",
-        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names Swin2SR x2 public pretrained checkpoint. Standard supplies candidates to investigate; model files may still need provisioning.",
-        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
-        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: nih-cxr-sr-task.",
-        "output": "Write `agents_outputs/{case_id}/enhanced.npy`. Output shape: 256 \u00d7 256.",
-        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "automedbench",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted NIH CXR Full2x symbolic-grid protocol after main31pin/50image review. Exact128\u00b2LR/256\u00b2HR pair,lineage/bicubic implementation/normalization/physical geometry/patient-image joins,private HR,checkpoint/LPIPS/bands/runtime absent. Generic scoring fallback qualified;16 sharedfiles main-read LDCT parity;11partial official metadata notimages. Canonical branches/reveal-Cover/advance-backward/exit/Reset/fullmatrix and49s export passed. Own legend expectation corrected with failed attempt retained;natural narrow captures verify offscreen screenshot artifact. No source task/model/checker/scorer executed.",
+      "source_brief_sha256": "e818e3334c1c7b49a6fc802cc23fad71f12489aba03d1ac87e772d1283084d6a",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-nih-cxr-sr-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-nih-cxr-sr-task-resolution.json",
+        "receipt_sha256": "5f9b9b1d15520588242e4c051c438f416b5c4961e8c24493f747a57aca3e5414",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T23:03:08.537996+00:00",
+        "audit": ".local/explainers/goal-20260930/automedbench-full-nih-cxr-sr-task/source-audit-final-01.json",
+        "audit_sha256": "3553dc6afb4dae90d50f151fc77ebeb17c28f71f962110d0f40caa7ab519169e",
+        "no_visual_acceptance": true
+      },
+      "story_id": "automedbench-full-nih-cxr-sr-task",
+      "subject": "chest",
+      "title": "Super-resolve a chest X-ray image",
+      "warning_text": "Matching Full NIH CXR input / private target absent; symbolic 2\u00d7 geometry only.",
+      "acceptance_scope": "NIH CXR Full symbolic2xgrid and inference/format/private-evaluator rules. No matching chest X-ray pair,private HR,participant reconstruction or metric. No source task execution.",
+      "completion_review": {
+        "date": "2026-10-01T23:20:16.673357+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "64d091d6ff74114ebccfd5ba335923672b85ebe0ba7923afad9b13bff0e7fbcb"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace chest X-ray 2\u00d7 geometry without inventing a high-resolution chest X-ray",
+        "goal": "Source-pinned Full contract, symbolic pixel mechanics and private-evaluator boundaries. No patient input, reconstruction or clinical outcome.",
+        "value": "Not yet specified.",
+        "raw": "Full package nih-cxr-sr-task, chest_xray / NIH ChestXray14. Per-case public input.npy, declared normalized float32 (128, 128), 16,384 pixels; target (256, 256), 65,536 pixels, 2\u00d7 length / 4\u00d7 cells. Harness dataset.included=false /data_status not_included /split unresolved. Bounded official Box GET returns HTTP 200 partial file listing capped 64KiB/curl 56; prior retained HEAD 404 is historical, not current access proof. No native image, Full input/target pair or selected-case mapping. Case folders called patient IDs by common prompts; folder ID versus original image / patient association unknown. Original image/physical pixel geometry, image-versus-patient split, normalization and private target remain unknown; no clinical findings.",
+        "helpers": "Configuration, task/model info and planning/setup/validation/inference/submission prompts. Full Lite prescribes public caidas/swin2SR-classical-sr-x2-64; grayscale\u2192model-compatible channels\u2192grayscale mapping remains operator responsibility, not a supplied exact preprocessing. Standard compares at least 3 inference-only methods including at least 2 pretrained neural, one bicubic/Lanczos baseline allowed. Public pilot case required but not bundled. No model files/runtime assets. Requirements NumPy/SciPy/skimage/torch/Pillow/transformers minimum versions; LPIPS package absent although scorer requires it. GPU/DNN evaluation mode mandated, no weight updates/train/optimizer/backward or private reference access. These are task instructions, not runtime verification here.",
+        "tools": "No task/model/tool/evaluator executed or installed. Authoring SVG shows symbolic 2 \u00d7 2 normalized cells [.1,.4;.3,.8] beside 4 \u00d7 4 unknown output sockets; these are NOT chest X-ray, real voxels, bicubic outputs, reference or submitted arrays. Shapes reduced for illustration only; exact declared 128\u00b2\u2192256\u00b2 counts separately shown. Pixel color legend: teal authored low-resolution values; outlined high-resolution cells unknown. No chest X-ray derivative/native pixel parity claim; deterministic pack/fixture byte equality only.",
+        "reference": "/data/private/<case_id>/reference.npy and private ground_truth.csv:data_range belong to evaluation, never participants or the explainer. No private file acquired or displayed. Public pretrained checkpoint and source contract are helpers, not target evidence. Explicit later reader reveal teaches public source rules about private references/metrics, never the private target; exit/backward/reset covers before paint. Actual target, enhanced.npy and metrics always absent.",
+        "spec": "Declared normalized 128\u00d7128 chest X-ray input from bicubic downsampling with scale 2; output 256\u00d7256 [0,1]. Harness includes NO degradation/preprocessing implementation, source image selection, normalization min/max or clipping, cubic kernel parameter, coordinate convention, antialias setting, border mode, downsample library/version, physical pixel geometry or exact data split. Do not infer nearest/bilinear, through-plane super-resolution, synthesized noise, retained high-res texture or restored clinical edges. Mathematical 2\u00d7 shape expansion changes cell counts, not known information; high-resolution values remain unknown. No resized clinical image or method outcome.\n\nFull Lite and Standard are assistance tiers of this harness. Related gallery/branch/Lite package conditions preserved below but equivalence not established. Named Swin2SR baseline is a public model selection, not evidence that it loads, fits chest X-ray domain or preserves pathology. No inference/training/performance. Prompt same shape as input in common preamble conflicts task-specific 128\u2192256 config and tier validation; task-specific geometry explains intended output, generic checker derives shape from private reference. Task-specific Lite validation uses agent_outputs singular while task.json/S5 establish agents_outputs plural; retain discrepancy, intended declared output root plural.",
+        "output": "{output_dir}/agents_outputs/<case_id>/enhanced.npy, one 2D normalized float32 finite 256\u00d7256 per case. Optional agents_decision.csv not scored. Actual output empty. Format checker checks 2D, expected private-reference shape, floating dtype and finite values; accepts float64, does NOT enforce float32, [0,1], nonconstant or quality. A format-valid fixture would not be a conformant medical result. No new source checker/evaluator execution; pure authored predicates only.",
+        "score": "Config primary mean_ssim, diagnostic PSNR/LPIPS; runner always computes all 3 aligned and cyclic shuffled, requires LPIPS even if diagnostic. Source SSIM skimage structural_similarity(data_range,Gaussian weights=True,use_sample_covariance=False), default sigma/window depend on installed skimage and are not pinned. PSNR float32 squared-error mean, if MSE<=1e\u221212 return 99.0; otherwise 10log10(range\u00b2/MSE). Data_range from private CSV per case, fallback reference max\u2212min, no protection from invalid/zero CSV range. LPIPS Alex weights/runtime absent: each input independently minmax normalizes[-1,1], constant span<1e\u22129\u2192zeros, grayscale repeats 3 channels, no_grad; this loses absolute offset/scale differences and is not chest X-ray/clinical validation. No metric computed.\n\nEffective TASK nih-cxr-sr-task absent TASK_NORM and RATING_THRESHOLDS. Independently of v3 rating bands, code uses generic named clinical composite: equal one-third weights for clipped(PSNR\u221220)/30, SSIM,1\u2212LPIPS. No NIH-specific PSNR 20\u201335 or LPIPS max .5 windows/rating imported from mri-sr-task. Valid unknown-task rating C vs hard fail F (invalid/abort/noPSNR/completion<.5); no outcome/rating asserted. Dataset bands missing => pass_rate omitted, cannot infer classical SSIM threshold or pass rate. Config evaluator_status blocked_metric_assets remains unresolved. Named clinical is code field, not clinical validation.\n\nNumber of cases and unique patients unknown. Denominators count evaluator-supplied PATIENT_IDS rows, including repeated IDs if supplied; no verified unique patient or image denominator. Scorer means independently drop NaN metrics, n_valid based only non-NaN PSNR; differs format n_valid. Missing predictions append NaNs; total n_patients still requested IDs. Runner if any format-valid scores all IDs without filtering invalid, so malformed/nonfinite cases may raise/propagate instead of clean partial penalty. Completion format-valid /max(1,total). If baseline bands available pass rate denominator all per_patient rows, missing outputs retained. Shuffle maps next ID modulo N; with N=1 unchanged reference, no independent negative control. No case/pixel metric/clinical performance.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Missing exact native Full input/target warning and official acquisition route.",
+          "Canonical 128\u2192256 geometry, Lite/Standard/format selectors and unknown output cells.",
+          "Empty participant array, late evaluator/private-reference rules, backward/exit/reset covers."
+        ],
         "variants": [
           {
             "name": "Full \u00b7 Lite",
@@ -22884,29 +22969,39 @@
         ],
         "sources": [
           [
-            "Pinned Full-release task package",
+            "Pinned Full harness",
             "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/nih-cxr-sr-task.tar.gz"
+          ],
+          [
+            "Official NIH CXR acquisition",
+            "https://nihcc.app.box.com/v/ChestXray-NIHCC"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-nih-cxr-sr-task-resolution.json"
           ]
         ],
-        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights. Required metric assets or baseline bands remain unresolved in the source package."
-      },
-      "source_brief_sha256": "dc1cbc2a2db6ab8f2efb66432b326041173bb3b400546416ae415b8f0ea868a1",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-nih-cxr-sr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Source-pinned Full contract, symbolic pixel mechanics and private-evaluator boundaries. No patient input, reconstruction or clinical outcome.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Full package nih-cxr-sr-task, chest_xray / NIH ChestXray14. Per-case public input.npy, declared normalized float32 (128, 128), 16,384 pixels; target (256, 256), 65,536 pixels, 2\u00d7 length / 4\u00d7 cells. Harness dataset.included=false /data_status not_included /split unresolved. Bounded official Box GET returns HTTP 200 partial file listing capped 64KiB/curl 56; prior retained HEAD 404 is historical, not current access proof. No native image, Full input/target pair or selected-case mapping. Case folders called patient IDs by common prompts; folder ID versus original image / patient association unknown. Original image/physical pixel geometry, image-versus-patient split, normalization and private target remain unknown; no clinical findings.</p>",
+          "helpers": "<p>Configuration, task/model info and planning/setup/validation/inference/submission prompts. Full Lite prescribes public caidas/swin2SR-classical-sr-x2-64; grayscale\u2192model-compatible channels\u2192grayscale mapping remains operator responsibility, not a supplied exact preprocessing. Standard compares at least 3 inference-only methods including at least 2 pretrained neural, one bicubic/Lanczos baseline allowed. Public pilot case required but not bundled. No model files/runtime assets. Requirements NumPy/SciPy/skimage/torch/Pillow/transformers minimum versions; LPIPS package absent although scorer requires it. GPU/DNN evaluation mode mandated, no weight updates/train/optimizer/backward or private reference access. These are task instructions, not runtime verification here.</p>",
+          "tools": "<p>No task/model/tool/evaluator executed or installed. Authoring SVG shows symbolic 2 \u00d7 2 normalized cells [.1,.4;.3,.8] beside 4 \u00d7 4 unknown output sockets; these are NOT chest X-ray, real voxels, bicubic outputs, reference or submitted arrays. Shapes reduced for illustration only; exact declared 128\u00b2\u2192256\u00b2 counts separately shown. Pixel color legend: teal authored low-resolution values; outlined high-resolution cells unknown. No chest X-ray derivative/native pixel parity claim; deterministic pack/fixture byte equality only.</p>",
+          "reference": "<p>/data/private/&lt;case_id&gt;/reference.npy and private ground_truth.csv:data_range belong to evaluation, never participants or the explainer. No private file acquired or displayed. Public pretrained checkpoint and source contract are helpers, not target evidence. Explicit later reader reveal teaches public source rules about private references/metrics, never the private target; exit/backward/reset covers before paint. Actual target, enhanced.npy and metrics always absent.</p>",
+          "spec": "<p>Declared normalized 128\u00d7128 chest X-ray input from bicubic downsampling with scale 2; output 256\u00d7256 [0,1]. Harness includes NO degradation/preprocessing implementation, source image selection, normalization min/max or clipping, cubic kernel parameter, coordinate convention, antialias setting, border mode, downsample library/version, physical pixel geometry or exact data split. Do not infer nearest/bilinear, through-plane super-resolution, synthesized noise, retained high-res texture or restored clinical edges. Mathematical 2\u00d7 shape expansion changes cell counts, not known information; high-resolution values remain unknown. No resized clinical image or method outcome.</p>\n<p>Full Lite and Standard are assistance tiers of this harness. Related gallery/branch/Lite package conditions preserved below but equivalence not established. Named Swin2SR baseline is a public model selection, not evidence that it loads, fits chest X-ray domain or preserves pathology. No inference/training/performance. Prompt same shape as input in common preamble conflicts task-specific 128\u2192256 config and tier validation; task-specific geometry explains intended output, generic checker derives shape from private reference. Task-specific Lite validation uses agent_outputs singular while task.json/S5 establish agents_outputs plural; retain discrepancy, intended declared output root plural.</p>",
+          "output": "<p>{output_dir}/agents_outputs/&lt;case_id&gt;/enhanced.npy, one 2D normalized float32 finite 256\u00d7256 per case. Optional agents_decision.csv not scored. Actual output empty. Format checker checks 2D, expected private-reference shape, floating dtype and finite values; accepts float64, does NOT enforce float32, [0,1], nonconstant or quality. A format-valid fixture would not be a conformant medical result. No new source checker/evaluator execution; pure authored predicates only.</p>",
+          "score": "<p>Config primary mean_ssim, diagnostic PSNR/LPIPS; runner always computes all 3 aligned and cyclic shuffled, requires LPIPS even if diagnostic. Source SSIM skimage structural_similarity(data_range,Gaussian weights=True,use_sample_covariance=False), default sigma/window depend on installed skimage and are not pinned. PSNR float32 squared-error mean, if MSE&lt;=1e\u221212 return 99.0; otherwise 10log10(range\u00b2/MSE). Data_range from private CSV per case, fallback reference max\u2212min, no protection from invalid/zero CSV range. LPIPS Alex weights/runtime absent: each input independently minmax normalizes[-1,1], constant span&lt;1e\u22129\u2192zeros, grayscale repeats 3 channels, no_grad; this loses absolute offset/scale differences and is not chest X-ray/clinical validation. No metric computed.</p>\n<p>Effective TASK nih-cxr-sr-task absent TASK_NORM and RATING_THRESHOLDS. Independently of v3 rating bands, code uses generic named clinical composite: equal one-third weights for clipped(PSNR\u221220)/30, SSIM,1\u2212LPIPS. No NIH-specific PSNR 20\u201335 or LPIPS max .5 windows/rating imported from mri-sr-task. Valid unknown-task rating C vs hard fail F (invalid/abort/noPSNR/completion&lt;.5); no outcome/rating asserted. Dataset bands missing =&gt; pass_rate omitted, cannot infer classical SSIM threshold or pass rate. Config evaluator_status blocked_metric_assets remains unresolved. Named clinical is code field, not clinical validation.</p>\n<p>Number of cases and unique patients unknown. Denominators count evaluator-supplied PATIENT_IDS rows, including repeated IDs if supplied; no verified unique patient or image denominator. Scorer means independently drop NaN metrics, n_valid based only non-NaN PSNR; differs format n_valid. Missing predictions append NaNs; total n_patients still requested IDs. Runner if any format-valid scores all IDs without filtering invalid, so malformed/nonfinite cases may raise/propagate instead of clean partial penalty. Completion format-valid /max(1,total). If baseline bands available pass rate denominator all per_patient rows, missing outputs retained. Shuffle maps next ID modulo N; with N=1 unchanged reference, no independent negative control. No case/pixel metric/clinical performance.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -27811,11 +27906,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 144,
+    "reviewed-scripted-planar": 145,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 40,
     "pending-operation-review": 1,
-    "blocked-source-input": 7
+    "blocked-source-input": 6
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

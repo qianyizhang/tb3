@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automedbench-full-nih-cxr-sr-task-v1',
   'automed-mri-sr-v1',
   'automedbench-full-lidc-idri-denoising-task-v1',
   'automed-ldct-denoising-v1',
@@ -136,6 +137,7 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automedbench-full-nih-cxr-sr-task-v1') return {scene:'data-automed-nih-cxr-sr-scene',reference:'[data-automed-nih-cxr-sr-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-nih-cxr-sr-scene="output"] code',aside:'[data-automed-nih-cxr-sr-output]'};
   if (plan.recipe === 'automed-mri-sr-v1') return {scene:'data-mrisr-stage',reference:'#mrisr-format-rules,#mrisr-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-mrisr-stage="output"] code[class*="path"]',aside:'[data-mrisr-output]'};
   if (plan.recipe === 'automedbench-full-lidc-idri-denoising-task-v1') return {scene:'data-automed-lidc-denoise-scene',reference:'[data-automed-lidc-denoise-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-lidc-denoise-scene="output"] code',aside:'[data-automed-lidc-denoise-output]'};
   if (plan.recipe === 'automed-ldct-denoising-v1') return {scene:'data-ldct-stage',reference:'#ldct-format-rules,#ldct-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-ldct-stage="output"] code[class*="path"]',aside:'[data-ldct-output]'};
@@ -895,6 +897,7 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automedbench-full-nih-cxr-sr-task-v1': [/Matching Full NIH CXR input .* private target absent; symbolic 2.*geometry only./s,'https://nihcc.app.box.com/v/ChestXray-NIHCC','data-automed-nih-cxr-sr-scene',false],
     'automed-mri-sr-v1': [/Full MRI LR\/HR pair absent; symbolic x2 grid and output contract./s,'https://fastmri.med.nyu.edu/','data-mrisr-stage',false],
     'automedbench-full-lidc-idri-denoising-task-v1': [/Matching Full noisy .* clean pair absent; upstream LIDC CT is reader-only./s,'https://www.cancerimagingarchive.net/collection/lidc-idri/','data-automed-lidc-denoise-scene',false],
     'automed-ldct-denoising-v1': [/Full noisy-clean CT pair absent; symbolic HU and submission protocol./s,'https://www.aapm.org/grandchallenge/lowdosect/','data-ldct-stage',false],
@@ -2926,6 +2929,21 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal source metric rules',exact:true});await reveal().click();assert.equal(await reveal().getAttribute('aria-expanded'),'true');const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/automedbench-full-mri-sr-task/output.json','utf8')).rules;
     for(const rule of ['raw','lpips','rating','normalization','pass']){const button=scene.getByRole('button',{name:rule,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('#mrisr-metric-rules > p').innerText(),rules[rule]);await capture(`metric-${rule}`);}
     assert.match(await scene.innerText(),/Private HR reference.npy.*ground_truth.csv absent.*No actual normalized output.*measured PSNR.*recovered anatomical detail/is);await reveal().click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'raw',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+  }
+
+  if (plan.recipe === 'automedbench-full-nih-cxr-sr-task-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
+    const scene=page.locator('[data-automed-nih-cxr-sr-scene]');
+    const absent=async()=>{assert.equal(await page.locator('[data-automed-nih-cxr-sr-reference-revealed]').count(),0);assert.equal(await scene.locator('img,canvas,image').count(),0);};
+    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
+    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();};
+    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
+    assert.deepEqual(await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>{const c=getComputedStyle(e);return[c.borderTopColor,c.backgroundColor]})),[['rgb(20, 128, 150)','rgba(0, 0, 0, 0)'],['rgb(177, 188, 204)','rgba(0, 0, 0, 0)']]);
+    await chapter(0);assert.match(await scene.innerText(),/Matching Full chest X-ray.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*No clinical image/is);assert.equal(await scene.locator('svg rect[fill="none"]').count(),16);assert.equal(await scene.locator('svg rect:not([fill="none"])').count(),4);await capture('symbolic-input');
+    for(let i=0;i<3;i++){await chapter(1);const name=['Public input / private target','Help + format','2× geometry'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-automed-nih-cxr-sr-operation-step')),i);if(i===0)assert.match(await scene.innerText(),/Public input.npy.*private reference.npy.*case.*mapping unknown.*Bicubic downsample.*kernel.*antialias.*physical spacing.*No degradation/is);if(i===2)assert.match(await scene.innerText(),/authored 2.*2.*unknown values.*More cells do not.*clinical edge preservation/is);await capture(`operation-${i}`);}
+    for(let i=0;i<3;i++){await chapter(2);const name=['Full Lite','Full Standard','Format boundary'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[336,419,503][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),[/Full Lite.*Swin2SR x2.*inference only.*Checkpoint.*not bundled/is,/Full Standard.*≥ 3 methods.*≥ 2 neural.*No private target/is,/float32.*256.*256.*Checker.*floating.*Range and constant-image checks absent.*plural agents_outputs/is][i]);await capture(`branch-${i}`);}
+    await chapter(4);assert.match(await scene.innerText(),/Actual enhanced.npy absent.*agents_outputs.*case_id.*256.*256.*No submitted array.*metric or rating/is);await capture('empty-output');
+    await chapter(5);const reveal=()=>scene.getByRole('button',{name:'Reveal public evaluator rules',exact:true});assert.equal(await reveal().getAttribute('aria-expanded'),'false');await reveal().click();assert.equal(await scene.locator('[data-automed-nih-cxr-sr-reference-revealed]').count(),1);assert.equal(await scene.locator('img,canvas,image').count(),0);assert.match(await scene.innerText(),/Reader-only.*no patient target or output.*mean SSIM.*PSNR.*LPIPS.*drop NaNs.*Case count unknown.*no v2 normalization.*v3 bands absent.*not medical validation/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Cover public evaluator rules',exact:true}).click();await absent();await advance(840);await reveal().click();await chapter(5);await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(5);await reveal().click();await chapter(6);await chapter(5);await absent();await page.locator('.scene-reset').click();await absent();
   }
 
   if (plan.recipe === 'automed-ldct-denoising-v1') {
@@ -11208,6 +11226,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automedbench-full-nih-cxr-sr-task-v1',
       'automed-mri-sr-v1',
       'automedbench-full-lidc-idri-denoising-task-v1',
       'automed-ldct-denoising-v1',

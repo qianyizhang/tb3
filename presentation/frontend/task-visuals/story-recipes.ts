@@ -1,3 +1,4 @@
+import { automedNihCxrSrPack } from './automedbench-full-nih-cxr-sr-task';
 import { automedMriSrPack } from './automed-mri-sr';
 import { automedLidcDenoisePack } from './automedbench-full-lidc-idri-denoising-task';
 import { automedLdctDenoisingPack } from './automed-ldct-denoising';
@@ -151,6 +152,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automedbench-full-nih-cxr-sr-task-v1',
     'automed-mri-sr-v1',
     'automedbench-full-lidc-idri-denoising-task-v1',
     'automed-ldct-denoising-v1',
@@ -1483,6 +1485,16 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Full MRI LR/HR absent · symbolic protocol',
         warning: automedMriSrPack.source.notice,
         legend: [],
+      };
+    case 'automedbench-full-nih-cxr-sr-task-v1':
+      return {
+        heading: 'NIH CXR twofold grid, assistance and private evaluation',
+        corner: 'Matching Full input, private target and participant output absent',
+        warning: automedNihCxrSrPack.source.notice,
+        legend: [
+          ['#148096', 'Teal shades: authored normalized cells, not native X-ray'],
+          ['#b1bccc', 'Gray outlines: unknown high-resolution values'],
+        ],
       };
     case 'bcer-brain-full-v1':
       return {

@@ -39,6 +39,7 @@ class ExpansionTests(unittest.TestCase):
                     "imaging101-pet-mlem-v1",
                     "imaging101-plane-wave-ultrasound-v1",
                     "imaging101-pnp-mri-reconstruction-v1",
+                    "automedbench-full-nih-cxr-sr-task-v1",
                     "automedbench-full-lidc-idri-denoising-task-v1",
                     "automedbench-full-ixi-t1-sr-task-v1",
                     "automedbench-full-deeplesion-denoising-task-v1",

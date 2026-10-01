@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automedbench-full-nih-cxr-sr-task-v1": "retained-automedbench-full-nih-cxr-sr-task-source-v1",
     "automed-mri-sr-v1": "symbolic-automed-mri-sr-v1",
     "automedbench-full-lidc-idri-denoising-task-v1": "retained-automedbench-full-lidc-idri-denoising-task-source-v1",
     "automed-ldct-denoising-v1": "symbolic-automed-ldct-denoising-v1",
@@ -919,6 +920,20 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-automedbench-full-nih-cxr-sr-task-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "SOURCE-LICENSE.txt",
+        },
+    ),
     "retained-automedbench-full-lidc-idri-denoising-task-source-v1": (
         "source-records",
         "reference.json",
@@ -2662,6 +2677,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedNihCxrSrChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4769,6 +4790,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedNihCxrSrBeat(ExpansionBeat[AutomedNihCxrSrChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class AutomedNihCxrSrStory(Story[AutomedNihCxrSrChannels]):
+    recipe: Literal["automedbench-full-nih-cxr-sr-task-v1"]
+    beats: tuple[AutomedNihCxrSrBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AutomedMriSrBeat(ExpansionBeat[AutomedMriSrChannels]):
     scene: Literal["input", "helper", "operation", "output", "limits"]
 
@@ -5993,6 +6035,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedNihCxrSrStory
     | AutomedMriSrStory
     | AutomedLidcDenoiseStory
     | AutomedLdctDenoisingStory
@@ -6149,6 +6192,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedNihCxrSrStory
     | AutomedMriSrStory
     | AutomedLidcDenoiseStory
     | AutomedLdctDenoisingStory
@@ -6465,6 +6509,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedNihCxrSrStory
     | AutomedMriSrStory
     | AutomedLidcDenoiseStory
     | AutomedLdctDenoisingStory
@@ -6798,6 +6843,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-automedbench-full-nih-cxr-sr-task-source-v1": (
+                "NIH-CXR-declared-twofold-grid-symbolic-only",
+                "LicenseRef-AutoMedBench-NIH-CXR-symbolic-teaching",
                 None,
             ),
             "symbolic-automed-mri-sr-v1": (
@@ -7195,6 +7245,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "illustrative-normalized-cells; physical calibration absent"
+                if pack_id == "retained-automedbench-full-nih-cxr-sr-task-source-v1"
                 else "declared-normalized-image-grid; physical scale absent"
                 if pack_id == "symbolic-automed-mri-sr-v1"
                 else "unitless"
@@ -7375,6 +7427,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-automedbench-full-nih-cxr-sr-task-source-v1"
             or pack_id == "symbolic-automed-mri-sr-v1"
             or pack_id == "retained-automedbench-full-lidc-idri-denoising-task-source-v1"
             or pack_id == "symbolic-automed-ldct-denoising-v1"
@@ -7600,6 +7653,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-automedbench-full-lidc-idri-denoising-task-source-v1"
+                    and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-automedbench-full-nih-cxr-sr-task-source-v1"
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
