@@ -1,3 +1,4 @@
+import { automedCtorgCtsrPack } from './automed-ctorg-ctsr';
 import { automedNihCxrSrPack } from './automedbench-full-nih-cxr-sr-task';
 import { automedMriSrPack } from './automed-mri-sr';
 import { automedLidcDenoisePack } from './automedbench-full-lidc-idri-denoising-task';
@@ -152,6 +153,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-ctorg-ctsr-v1',
     'automedbench-full-nih-cxr-sr-task-v1',
     'automed-mri-sr-v1',
     'automedbench-full-lidc-idri-denoising-task-v1',
@@ -1494,6 +1496,16 @@ export function storyPresentation(plan: StoryPlan): {
         legend: [
           ['#148096', 'Teal shades: authored normalized cells, not native X-ray'],
           ['#b1bccc', 'Gray outlines: unknown high-resolution values'],
+        ],
+      };
+    case 'automed-ctorg-ctsr-v1':
+      return {
+        heading: 'Restore z-axis detail on the same CT grid',
+        corner: 'Full CT-ORG pair absent · symbolic protocol',
+        warning: automedCtorgCtsrPack.source.notice,
+        legend: [
+          ['#ef9c90', 'Dashed salmon sockets: absent CT input/output', true],
+          ['#728e98', 'Blue-gray outline: public protocol card'],
         ],
       };
     case 'bcer-brain-full-v1':

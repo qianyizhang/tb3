@@ -1,0 +1,302 @@
+{
+  "acquisition_route": "https://www.cancerimagingarchive.net/collection/ct-org/",
+  "actual_data_gap": "Exact Full degraded same-grid CT volume, private HR target, case/patient/split/geometry mapping and executed z-degradation recipe absent. No participant output or measured score.",
+  "attempts": [
+    {
+      "action": "download pinned Full harness",
+      "attempted_at": "2026-09-29T08:01:47.935923+00:00",
+      "outcome": "HTTP 200; 18746 bytes; SHA-256 c207c38322a5dee01dc41b03d9903f7a4ee881796e1171b8cc6054ac2b718b75; all MANIFEST entries verified; no dataset.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/synthetic/ctorg-ctsr-task.tar.gz"
+    },
+    {
+      "action": "bounded official upstream source route check",
+      "attempted_at": "2026-09-29T08:02:42.704587+00:00",
+      "outcome": "HEAD status sequence ['HTTP/1.1 200 Connection established', 'HTTP/1.1 200 OK']; no small Full-matched image/target pair recovered.",
+      "source": "https://www.cancerimagingarchive.net/collection/ct-org/"
+    },
+    {
+      "action": "bounded official primary route/metadata/model-repository read and exact retained Full validation",
+      "attempted_at": "2026-09-30T22:37:13.417682+00:00",
+      "source": "https://www.cancerimagingarchive.net/collection/ct-org/ ; https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=64684824 ; https://github.com/Roldbach/autoencoder_ct_3d_super_resolution",
+      "outcome": "TCIA collection fetch500; official search metadata and historical Wiki v9 readable. Wiki lists multi-GBvolume bundles and nativeHU/CCBY3/orientation warning; no bounded task-matched Full pair or selection acquired. Model repository readable, weights not fetched/executed. Full archive and all manifest members verified; no source task execution or access denial inferred."
+    },
+    {
+      "action": "Retained source archive, MANIFEST and official-acquisition audit validation for source-only refresh",
+      "source": "Retained pinned AutoMedBench Full ctorg-ctsr-task archive and previous TCIA CT-ORG metadata/model-repository attempt records",
+      "outcome": "Reused exact retained source and historical bounded official attempt; no new GET or source processing. Exact Full noisy-clean pair, case IDs and private references remain absent.",
+      "attempted_at": "2026-10-01T09:52:00.498875+00:00"
+    }
+  ],
+  "brief_sha256": "fc6f95e594a19d36cd426b3a1e2140e245973a1dffc3bc34620eea01a1fb605f",
+  "display_warning": "Full CT-ORG volumes are absent; only same-grid z-axis restoration geometry is diagrammed.",
+  "entry_id": "automedbench-full-ctorg-ctsr-task",
+  "evaluator_run": false,
+  "full_dataset_included": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "label_license": null,
+  "model_run": false,
+  "preparer_run": false,
+  "private_reference_available": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "CT-ORG landing is reachable, but no bounded task-matched public degraded volume or Full membership was recovered.",
+  "resolved_at": "2026-09-29T08:09:51.486645+00:00",
+  "schema": 1,
+  "source_license": "CC-BY-3.0",
+  "source_pins": [
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/aggregate.py",
+      "sha256": "c202dbd59d0900abd9b36897d837107837992c8149e2c5b6eaba4c12e28dcbdb",
+      "bytes": 4563,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/config.yaml",
+      "sha256": "cdbdc925eb98f61e724ac7fbc8f558e6e7229951bf7382064bce8928bf7f0dee",
+      "bytes": 971,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/lite_s1.md",
+      "sha256": "d0e3622299b3fc4e547c5fee0fe4a7cc53476ac683d05f7ce60c940707802c48",
+      "bytes": 422,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/lite_s2.md",
+      "sha256": "6a310130f6ff68deee9cbef359de1d840f6581ccbcf491f5d06a2262f5262b9e",
+      "bytes": 393,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/lite_s3.md",
+      "sha256": "9e0735c9ecf9ef67a7132ed05661a39c049f9e7fdcb27603cc2a8fb9beae57b4",
+      "bytes": 622,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/model_info.yaml",
+      "sha256": "23f406d9a190786f52318734609ab323fe5b47744c750cf3532a63d07725a0d6",
+      "bytes": 1532,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/requirements.txt",
+      "sha256": "3075244965ff0b35efecb2684f604aa24a37dabea05a99f82a81a78d39826c31",
+      "bytes": 49,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/standard_s1.md",
+      "sha256": "2a581848ee40e693528f99b40c280438aed432d47f0a63fb93545a9d779dde42",
+      "bytes": 574,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/ctorg-ctsr-task/standard_s3.md",
+      "sha256": "c3c612d95e2ce4518b8e65e4a6c2944a4c55ede6798c82b1dfe0d94461dc3d3f",
+      "bytes": 433,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/failure_classifier.py",
+      "sha256": "ebdfcaf2d797038e8c55648f7843fb08115dca733b9851e43d758f92ba01ed55",
+      "bytes": 2141,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/format_checker.py",
+      "sha256": "4430212b1600b5c75e9fdd14c8f0beec18039e9867e50d4498fe7561acfb244c",
+      "bytes": 3600,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/medal_tier.py",
+      "sha256": "05394851d91eeb7a7541d697b6873b5bdf6ea6b7be4dbd8a1287283403da32ab",
+      "bytes": 818,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/common/env_lite.md",
+      "sha256": "dc534fd7b5da6773c06dc119e7c76288b7460a4e8fafbd18476b84107c1e13b8",
+      "bytes": 511,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/common/env_standard.md",
+      "sha256": "7736c34b214a317515d3908c71e54df257c58a4b1938748142513bb4e88901d7",
+      "bytes": 438,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/common/important_lite.md",
+      "sha256": "644c615371688760e2997ecc6724cf9b493babf3d5011cccf2311476123e0d57",
+      "bytes": 511,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/common/important_standard.md",
+      "sha256": "d1a00ff6eaa6b0d80fde6b374fc52a8c6cfb8d6ca4d01c06b510c9cfafce0e37",
+      "bytes": 702,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/common/kickoff.md",
+      "sha256": "fc7a51e81d1877620d48e23958df99f9e47a8e7836504ffecf9f788892be2779",
+      "bytes": 193,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/common/preamble.md",
+      "sha256": "e126095f5a69615fdc7d4459b3bf41fa835b3b04207ed3d0cdd0b967593445f5",
+      "bytes": 3375,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "sha256": "9045408499023fbf71796d6909ad902cf66b990e4a28a9f1cd3d371f2ee1926f",
+      "bytes": 583,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "sha256": "e80aea50bc786938c7621372c49675bb5a2fab8f7254464a69998ab91e43d0d4",
+      "bytes": 2412,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "sha256": "02f0ea5e74544efbd1565130c602c88d005334f934784fb1e026b843ddc85968",
+      "bytes": 1356,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "sha256": "8b7a737228cb2b2670bd6ead70f5b9e2df081ac8c96fbfd2420df18cb1c6f35f",
+      "bytes": 569,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "sha256": "eb9a2db4ea56fec8f2bdd1ab3dbf652f59748f35e9d332dc25545936a5f0f78d",
+      "bytes": 1348,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "sha256": "9365e6e5e512e19c2bd023e6be547611f13fcce50867b2970fcc22c04f725609",
+      "bytes": 666,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "sha256": "23856e06a487e044a479f40d4e60be5dbbc42ce3350ad39309965429ebd0c39c",
+      "bytes": 586,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/run_eval.py",
+      "sha256": "635da44fa1a0f17d1b93c6cf58573c6f4bf7f3e1450f42febb5530c3bc731b2d",
+      "bytes": 6754,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/synth_scorer.py",
+      "sha256": "62b4867c3b86cec24781457d27d6307905e4313c36843a02f903b63c42b1ce70",
+      "bytes": 5697,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/task_loader.py",
+      "sha256": "d46db7b6143810e5004cd9dcacdce5c69a2d3f37b5ab0d7a965ab2017602d9f5",
+      "bytes": 5586,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/source/tier_config.py",
+      "sha256": "9b4487aabb93b002a05e933075ce67b2d24eb23ddd43dc680788278ced998b2c",
+      "bytes": 1339,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/task.json",
+      "sha256": "e6c108786854f05881738d54e7b65d33e12077952a2cacafa8f192e37d2f7d7c",
+      "bytes": 1313,
+      "role": "pinned-Full-member"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task/automedbench-task/MANIFEST.sha256",
+      "sha256": "627076d171c34a220f6991c673be3c227b3e093cc32e0506117a12c4192281e0",
+      "bytes": 2945,
+      "role": "manifest"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-h-source/full/ctorg-ctsr-task.tar.gz",
+      "sha256": "c207c38322a5dee01dc41b03d9903f7a4ee881796e1171b8cc6054ac2b718b75",
+      "bytes": 18746,
+      "role": "archive"
+    }
+  ],
+  "task_contract": {
+    "config_text": "# CT-ORG CT-to-CT super-resolution task configuration\ntask_id: ctorg-ctsr-task\norgan: ct_super_resolution\ntask_name: CT-ORG CT x4 Super-Resolution\nmodality: CT\ninput_role: low-resolution CT volume\ntarget_role: super-resolved high-resolution CT volume\ninput_filename: ct.nii.gz\noutput_filename: sct.nii.gz\ngt_filename: ct.nii.gz\noutput_shape_reference: gt\noutput_shape_description: \"same shape as the hidden high-resolution target; for this synthetic x4 task it also matches the public ct.nii.gz shape\"\nvalidation_reference: public ct.nii.gz\ntask_type: ct_super_resolution\ntask_description: \"Restore high-resolution CT volumes from synthetically x4 degraded low-resolution CT volumes derived from CT-ORG.\"\ndata_dir_name: CTORG_CT_SR20\ntime_limit_s: 3600\nscale_factor: 4\ndegradation: z_axis_x4_trilinear\ngood_ssim: 0.98\nbaseline_ssim: 0.95\nmodel_selection_hint: \"Prefer x4 z-axis CT super-resolution checkpoints that accept same-grid degraded CT and preserve HU/geometry.\"\n",
+    "task_json": {
+      "dataset": {
+        "access": "public",
+        "data_dir_name": "CTORG_CT_SR20",
+        "included": false,
+        "license": "CC BY 3.0",
+        "policy": "redistributable",
+        "private_mount": "/data/private",
+        "public_mount": "/data/public",
+        "release_gate": "Include attribution and freeze source revision",
+        "upstream": "CT-ORG",
+        "upstream_url": "https://www.cancerimagingarchive.net/collection/ct-org/"
+      },
+      "evaluator": {
+        "adapter": "synthetic",
+        "entrypoint": "source/run_eval.py",
+        "network_required": false
+      },
+      "evaluator_task_id": "ctorg-ctsr-task",
+      "input_contract": {
+        "filename": "ct.nii.gz",
+        "unit": "case"
+      },
+      "output_contract": {
+        "paths": [
+          "{case_id}/sct.nii.gz"
+        ],
+        "root": "agents_outputs",
+        "type": "all_paths"
+      },
+      "package_type": "automedbench_task_harness",
+      "runtime_assets": [],
+      "schema_version": 2,
+      "source": {
+        "config_path": "source/ctorg-ctsr-task/config.yaml",
+        "config_sha256": "cdbdc925eb98f61e724ac7fbc8f558e6e7229951bf7382064bce8928bf7f0dee",
+        "ref": "b4fe0cb69257c4111408c0327c9353cd85b34ba3",
+        "staging_manifest_sha256": "651f056cfe62cd89827fa35eebfe5638bcdf172b207a68d8de663251235f1de2"
+      },
+      "tiers": [
+        "lite",
+        "standard"
+      ],
+      "track": "synthetic",
+      "website_task_id": "synthetic-ctorg-ctsr"
+    },
+    "effective": "Synthetic backend: same-grid finite3DNIfTI, SSIM config thresholds .98/.95, clipped finite meanSSIM\u00d7completion. No LPIPS/baseline_bands/enhancement norm."
+  },
+  "source_class": "symbolic-protocol",
+  "baseline_commit": "0ad0600af861332d2b117182b5787fbdc8420328",
+  "status": "local-source-preparation",
+  "warning_text": "Full CT-ORG volume/target absent; symbolic same-grid z-axis restoration.",
+  "top_warning": {
+    "label": "Full CT-ORG pair absent \u00b7 symbolic protocol",
+    "text": "Full CT-ORG volume/target absent; symbolic same-grid z-axis restoration.",
+    "url": "https://www.cancerimagingarchive.net/collection/ct-org/",
+    "link_label": "Official CT-ORG acquisition"
+  },
+  "historical_attempts_preserved": true,
+  "refresh_limits": "Source-only unaccepted; final shared guards await exact150. No source operator/model/checker/scorer/task or browser/render execution."
+}
