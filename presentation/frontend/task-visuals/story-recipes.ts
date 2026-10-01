@@ -1,3 +1,4 @@
+import { imagingEitPack } from './imaging-eit';
 import { imagingPoissonPack } from './imaging101-ct-poisson-lowdose';
 import { bcerGrappaPack } from './bcer-short-recon-grappa';
 import { bcerSuperresPack } from './bcer-short-superres';
@@ -128,6 +129,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging-eit-v1',
     'imaging101-poisson-v1',
     'bcer-grappa-v1',
     'bcer-superres-v1',
@@ -1190,6 +1192,17 @@ export function storyPresentation(plan: StoryPlan): {
         corner: '300-photon noisy input unmatched',
         warning: imagingPoissonPack.source.notice,
         legend: [],
+      };
+    case 'imaging-eit-v1':
+      return {
+        heading: 'Pair EIT boundary voltages and conductivity domains',
+        corner: 'Native synthetic voltages · symbolic inverse',
+        warning: imagingEitPack.source.notice,
+        legend: [
+          ['#456477', 'Native synthetic FEM mesh'],
+          ['#f5b75b', 'Injected electrode'],
+          ['#73c7e6', 'Measured voltage pair'],
+        ],
       };
     case 'bcer-brain-full-v1':
       return {

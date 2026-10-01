@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging-eit-v1',
   'imaging101-poisson-v1',
   'bcer-grappa-v1',
   'bcer-superres-v1',
@@ -113,6 +114,16 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging-eit-v1')
+    return {
+      scene: 'data-eit-scene',
+      reference: '[data-eit-source-truth], [data-eit-task-metric]',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-eit-output-schema]',
+      aside: '[data-eit-output]',
+    };
   if (plan.recipe === 'imaging101-poisson-v1')
     return {
       scene: 'data-imaging-poisson-scene',
@@ -731,6 +742,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging-eit-v1': [
+      /Native synthetic input; source truth is solver-visible and output\/reference scale unresolved.*No participant reconstruction/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/eit_conductivity_reconstruction',
+      'data-eit-scene',
+      false,
+    ],
     'imaging101-poisson-v1': [
       /Matching 300-photon noisy input\/truth missing; retained raw data uses 1000.*Symbolic counts.*expectation only/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ct_poisson_lowdose/data',
@@ -1581,6 +1598,271 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await absent();
     await page.locator('[data-story-step="0"]').click();
     await absent();
+  }
+  if (plan.recipe === 'imaging-eit-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-eit-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(
+        await page.locator('[data-eit-source-truth], [data-eit-task-metric]').count(),
+        0,
+      );
+    const advance = async (frame) => {
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+        frame + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    const native = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/imaging101-eit-conductivity-reconstruction/measurement.json',
+        'utf8',
+      ),
+    );
+    assert.equal(await scene.locator('svg polygon').count(), 686);
+    assert.equal(await scene.locator('svg [data-electrode]').count(), 16);
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    assert.deepEqual(
+      await scene
+        .locator('svg polygon')
+        .evaluateAll((els) => els.map((e) => e.getAttribute('points'))),
+      native.element.map((tri) =>
+        tri
+          .map((i) => `${160 + native.node[i][0] * 132},${154 - native.node[i][1] * 132}`)
+          .join(' '),
+      ),
+    );
+    assert.ok(
+      await scene.locator('svg').evaluate((svg) =>
+        Array.from(svg.querySelectorAll('text')).every((t) => {
+          const b = t.getBBox(),
+            v = svg.viewBox.baseVal;
+          return (
+            b.x >= v.x &&
+            b.y >= v.y &&
+            b.x + b.width <= v.x + v.width &&
+            b.y + b.height <= v.y + v.height
+          );
+        }),
+      ),
+    );
+    assert.match(
+      await scene.innerText(),
+      /376 nodes.*686 triangles.*16 electrodes.*x right\/y up.*Point electrode nodes.*no finite contact/is,
+    );
+    const slider = scene.locator('input[type="range"]');
+    for (const [index, key] of [
+      [0, 'Home'],
+      [1, 'ArrowRight'],
+      [207, 'End'],
+    ]) {
+      await slider.focus();
+      await slider.press(key);
+      const row = native.meas_mat[index],
+        drive = native.ex_mat[row[2]];
+      assert.equal(await slider.inputValue(), String(index));
+      const text = await scene.innerText();
+      assert.ok(
+        text.includes(`Row ${index}: drive ${drive.join('→')}; measure ${row[0]}−${row[1]}`),
+      );
+      assert.ok(text.includes(`${native.v0[index].toPrecision(7)} V*`));
+      assert.ok(text.includes(`${native.v1[index].toPrecision(7)} V*`));
+      const roles = Array.from({ length: 16 }, (_, e) =>
+        e === drive[0]
+          ? 'inject'
+          : e === drive[1]
+            ? 'return'
+            : e === row[0] || e === row[1]
+              ? 'measure'
+              : 'idle',
+      );
+      assert.deepEqual(
+        await scene
+          .locator('[data-electrode]')
+          .evaluateAll((els) => els.map((e) => e.getAttribute('data-role'))),
+        roles,
+      );
+      const colors = { inject: '#f5b75b', return: '#e087ac', measure: '#73c7e6', idle: '#abbec7' };
+      assert.deepEqual(
+        await scene
+          .locator('[data-electrode] circle')
+          .evaluateAll((els) => els.map((e) => e.getAttribute('fill'))),
+        roles.map((r) => colors[r]),
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /376 nodes.*686 triangles.*16 electrodes/,
+      );
+      await capture(`row-${index}`);
+      await absent();
+    }
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    assert.equal(await slider.inputValue(), '0');
+    const hi = plan.beats.findIndex((b) => b.scene === 'helper');
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    const truth = () =>
+      scene.getByRole('button', { name: 'Reveal source conductivity truth', exact: true });
+    await truth().click();
+    assert.match(
+      await page.locator('[data-eit-source-truth]').innerText(),
+      /already solver-visible.*not prediction or private.*8\/686 elements.*678.*12 elements.*16 elements.*658.*8 elements.*1000/is,
+    );
+    await capture('source-truth');
+    for (const tier of ['L1', 'L2', 'L3']) {
+      await scene.getByRole('button', { name: tier, exact: true }).click();
+      assert.equal(
+        await scene.getByRole('button', { name: tier, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.locator('[data-eit-tier]').innerText(),
+        {
+          L1: /README.*data.*source anomaly/i,
+          L2: /L1.*plan\/approach/,
+          L3: /L1.*complete plan.*software design/,
+        }[tier],
+      );
+    }
+    await scene
+      .getByRole('button', { name: 'Hide source conductivity truth', exact: true })
+      .click();
+    await absent();
+    await advance(plan.beats[hi].startFrame);
+    await truth().click();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    assert.equal(
+      await scene.getByRole('button', { name: 'L1', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await truth().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    await truth().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${hi}"]`).click();
+    await absent();
+    const ops = plan.beats.filter((b) => b.scene === 'operation');
+    assert.equal(ops.length, 4);
+    await page.locator(`[data-story-step="${plan.beats.indexOf(ops[0])}"]`).click();
+    for (let step = 0; step < 4; step++)
+      for (let method = 0; method < 3; method++) {
+        await scene.locator(`[data-eit-operation-step="${step}"]`).click();
+        await scene.locator(`[data-eit-method-branch="${method}"]`).click();
+        const local = [0, Math.floor((ops[step].frames - 1) / 2), ops[step].frames - 1][method];
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          ops[step].startFrame + local,
+        );
+        assert.equal(
+          await scene.locator(`[data-eit-operation-step="${step}"]`).getAttribute('aria-pressed'),
+          'true',
+        );
+        assert.equal(
+          await scene.locator(`[data-eit-method-branch="${method}"]`).getAttribute('aria-pressed'),
+          'true',
+        );
+        assert.match(
+          await scene.locator('[data-eit-method]').innerText(),
+          [/BP.*376 mesh nodes/, /JAC.*686 mesh elements/, /GREIT.*32x32 grid/][method],
+        );
+        const text = await scene.innerText();
+        assert.match(
+          text,
+          [
+            /\(v1-v0\)\/sign\(v0.real\).*main multiplies 192/is,
+            /\(v1-v0\)\/abs\(v0\).*Kotre.*0\.5.*0\.01/is,
+            /\(v1-v0\)\/abs\(v0\).*sigmoid.*0\.5.*0\.01/is,
+          ][method],
+        );
+        if (step === 1) assert.match(text, /3−1 = 2.*13−11 = 2.*Neither.*native patient/is);
+        if (step === 2)
+          assert.match(text, /δV ≈ J δσ.*local approximation.*not a demonstrated guarantee/is);
+        await capture(`contract-${step}-${method}`);
+        await absent();
+      }
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /output\/reconstruction\.npy.*UNSUBMITTED.*376 node.*686 element.*32×32.*not this participant/is,
+    );
+    assert.equal(await scene.locator('[data-eit-format]').count(), 0);
+    await scene
+      .getByRole('button', { name: 'Inspect generic output contract', exact: true })
+      .click();
+    assert.match(
+      await scene.locator('[data-eit-format]').innerText(),
+      /One real numeric array.*shape\/key-ranked.*squeeze dimensions>2/is,
+    );
+    await capture('output-contract');
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    for (const rule of ['metric', 'reference selection', 'threshold']) {
+      await scene.getByRole('button', { name: rule, exact: true }).click();
+      assert.equal(
+        await scene.getByRole('button', { name: rule, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.locator('[data-eit-rule]').innerText(),
+        {
+          metric: /NRMSE.*zero range.*infinity.*uncentered cosine.*1e-30.*No flux normalization/is,
+          'reference selection':
+            /\(1,686\).*bp_perm_anomaly.*\(376,\).*ground_truth_bp.*\(686,\).*mismatch/is,
+          threshold:
+            /nested bp\/jac_dynamic.*no top-level ncc_boundary or nrmse_boundary.*passed=None/is,
+        }[rule],
+      );
+      await capture(`rule-${rule.replaceAll(' ', '-')}`);
+    }
+    const metric = () =>
+      scene.getByRole('button', { name: 'Reveal source method metric rule', exact: true });
+    await metric().click();
+    assert.match(
+      await scene.locator('[data-eit-task-metric]').innerText(),
+      /sum\(abs\(gt\)\).*L2 error.*NCC centers.*BP compares node.*JAC element.*GREIT metrics skipped/is,
+    );
+    await capture('metric-revealed');
+    await scene
+      .getByRole('button', { name: 'Hide source method metric rule', exact: true })
+      .click();
+    await absent();
+    await advance(plan.beats[li].startFrame);
+    await metric().click();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.equal(
+      await scene.getByRole('button', { name: 'metric', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await metric().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    await metric().click();
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.equal(await scene.locator('[data-eit-format]').count(), 0);
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    await page.locator('.scene-reset').click();
   }
   if (plan.recipe === 'imaging101-poisson-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -7925,6 +8207,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging-eit-v1',
       'imaging101-poisson-v1',
       'bcer-grappa-v1',
       'bcer-superres-v1',

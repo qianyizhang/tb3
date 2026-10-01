@@ -316,6 +316,7 @@ def new(
             "automed-medframeqa-v1",
             "automed-slake-v1",
             "automed-vqa-rad-v1",
+            "imaging-eit-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

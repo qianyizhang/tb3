@@ -12866,15 +12866,15 @@
       ],
       "illustration_kind": "conductivity",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "imaging101-eit-conductivity-reconstruction",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "reconstruction-other",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-eit-conductivity-reconstruction.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D electrical-conductivity map.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted native synthetic voltages/mesh and task-specific BP/JAC/GREIT contract explanation after main21-pin/45-image visual/export/mobile/no-GPU/reader-boundary review. Source truth is solver-visible; generic reference shape/domain/scale remain qualified; no participant reconstruction or metric.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-eit-conductivity-reconstruction/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Electrical voltages measured at boundary electrodes.",
         "helpers": "Electrode layout, excitation patterns and a conductivity forward model. The assistance level can add an approach and software design.",
@@ -12911,7 +12911,7 @@
         ],
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
-      "source_brief_sha256": "34c5267bffddf9875fca4c733d4863551c0f5001a79301f947346baba8d01418",
+      "source_brief_sha256": "1321195dfa8b8cec80a50e642b7d249bb5cce40b244fce9b49971cc33d893051",
       "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
       "dependency_deferral": {
         "actor": "user",
@@ -12921,14 +12921,104 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Native synthetic voltages are available; anomaly conductivities are solver-visible, README batch axes differ, and generic reference/output scaling is unresolved. No participant reconstruction or metric is shown.",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/eit_conductivity_reconstruction",
+      "warning_text": "Native synthetic input; source truth is solver-visible and output/reference scale unresolved. No participant reconstruction.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-eit-conductivity-reconstruction-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-eit-conductivity-reconstruction-resolution.json",
+        "receipt_sha256": "ef3e7dfc99a457d5b30c6b658169d5b198dc7711646894da136ef865babac23a",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T07:04:34.898493+00:00",
+        "no_visual_acceptance": true,
+        "main_audit": ".local/explainers/goal-20260930/imaging101-eit-conductivity-reconstruction/source-audit-preliminary-01.json"
+      },
+      "acceptance_scope": "Pinned native synthetic EIT boundary voltages and mesh; symbolic inverse contracts, source-visible truth and qualified generic reference selection. No participant reconstruction or performance claim.",
+      "completion_review": {
+        "date": "2026-10-01T07:34:35.795461+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "696e3100c1270ddaf1b8e99952a46fa4094337caf819c0f57cf4f69b99164be1"
+      },
+      "reviewed_contract_projection": {
+        "title": "Reconstruct conductivity from boundary voltages",
+        "goal": "Implement a computational method to reconstruct conductivity from boundary voltages.\n\n> **Actual gap:** Native synthetic input; source truth is solver-visible and output/reference scale unresolved. No participant reconstruction. [Official pinned acquisition](https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/eit_conductivity_reconstruction).",
+        "value": "This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.",
+        "raw": "Matching **native synthetic** voltages are retained, not patient measurements: the 119,474-byte `raw_data.npz` is byte-matched to the pinned HF LFS object. BP/GREIT adjacent-drive protocols contain **208 ordered pairs**; opposite-drive JAC has **192**, not an interchangeable denominator. Native geometry is **376 nodes \u00d7 3 coordinates, 686 triangular elements \u00d7 3 indices and 16 point electrodes**. Raw arrays omit the README leading batch axis. No participant reconstruction is retained.",
+        "helpers": "Source point-electrode layout, excitation patterns and a conductivity forward model. L1 includes README/data/requirements; L2 adds approach; L3 adds software design. README units are **m, V and S/m**, but point-node \u00b11 FEM right-hand sides do not establish finite contact impedance, electrode area, AC frequency or calibrated injected current.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "reference": "Native raw_data.npz contains anomaly conductivities; data/ground_truth.npz is also copied with the visible data directory. This is not an established blind inversion condition. Reader reveal hides the source truth only from the teaching view.",
+        "spec": "Preserve each ordered row `[N,M,excitation]`: voltage is potential(N) minus potential(M) for that excitation. **Ground node 16 fixes additive potential gauge**, separate from the homogeneous baseline `v0`; it is not a conductivity reference. Independent authored arithmetic illustrates gauge cancellation only; no FEM/forward/inverse computation runs.\n\nCanonical controls inspect pairing, sign/gauge, inverse assumptions and spatial domain. BP uses `(v1-v0)/sign(v0.real)` and source main multiplies 192; JAC/GREIT use absolute baseline normalization. Source JAC/GREIT use p 0.5/lambda 0.01. `\u03b4V \u2248 J \u03b4\u03c3` is a local linearization, not a verified guarantee for the source high-contrast anomalies. **376-node BP, 686-element JAC and 32\u00d7 32 GREIT grid** are distinct domains; voltage row index never selects a reconstructed pixel. Difference estimates are not automatically calibrated absolute S/m conductivity.",
+        "output": "Generic output/reconstruction.npy is one real numeric array. Task main instead saves BP 376-node and JAC 686-element difference arrays plus GREIT 32\u00d7 32 grid NPZ; output domain and absolute versus difference scale must be chosen explicitly.",
+        "score": "Generic scorer compares same-shape arrays over **all numeric array entries**: range-normalized RMSE (infinite for zero truth range) and uncentered cosine NCC with 1e-30 denominator epsilon. This differs from source flux-normalized relative L2 error and centered NCC; GREIT source metrics are skipped. Native ground_truth.npz has six float64 arrays shaped (1,686). Generic preparation squeezes only ndim > 2, preserving this leading singleton. Output (1,686) lexically selects bp_perm_anomaly absolute conductivity; output (686,) matches none of the six arrays. For the incomplete retained tree only, discovery could fall through to saved reconstruction_bp.npy (376,) then shape mismatch; Output (376,) can match saved BP reconstruction, not conductivity truth. The full official tree lists ground_truth_bp.npy, ground_truth_greit.npy and ground_truth_jac_dynamic.npy before saved reconstructions. Newly acquired official NPY bytes match revision-pinned LFS SHA/size: float64/C-order BP delta (376,), GREIT element delta (686,) and JAC element delta (686,). NPY loading returns its array unconditionally: after the NPZ nonmatch, complete-tree discovery takes ground_truth_bp.npy first even for (686,), then shape-mismatch rather than search later shape-compatible files. Output (376,) instead resolves BP delta truth when these full-tree files are staged. No-filesystem scorer instead requires ground_truth.npy under reference_outputs or data; the pinned tree lists neither. Actual reference behavior depends on staged files and filesystem route, not a guaranteed truth or privacy contract. Source task NCC centers arrays; nested saved source metrics are not generic pass/fail thresholds. No scorer or solver was executed.",
+        "challenge": "Small voltage errors can create large interior changes; boundary geometry and regularization matter.",
+        "families": "One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.",
+        "gap": "Native synthetic voltages are available; anomaly conductivities are solver-visible, README batch axes differ, and generic reference/output scaling is unresolved. No participant reconstruction or metric is shown. Choose blind inversion or method reproduction; sequester anomaly truth for blind condition; pin reference key, absolute versus delta conductivity, domain and scale before scoring.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Electrical voltages measured at boundary electrodes",
+          "Reconstruct conductivity from boundary voltages",
+          "A 2D electrical-conductivity map"
+        ],
+        "variants": [
+          {
+            "name": "L1 \u00b7 README",
+            "helper": "README, data description and method hints.",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "name": "L2 \u00b7 + approach",
+            "helper": "A proposed algorithmic approach is added.",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "name": "L3 \u00b7 + design",
+            "helper": "Approach and software design are added.",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/eit_conductivity_reconstruction/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "html": {
+          "goal": "<p>Implement a computational method to reconstruct conductivity from boundary voltages.</p>\n<p>&gt; <strong>Actual gap:</strong> Native synthetic input; source truth is solver-visible and output/reference scale unresolved. No participant reconstruction. <a href=\"https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/eit_conductivity_reconstruction\">Official pinned acquisition</a>.</p>",
+          "value": "<p>This imaging problem tests the computational step between acquired measurements and an interpretable image or physical-property map.</p>",
+          "raw": "<p>Matching <strong>native synthetic</strong> voltages are retained, not patient measurements: the 119,474-byte <code>raw_data.npz</code> is byte-matched to the pinned HF LFS object. BP/GREIT adjacent-drive protocols contain <strong>208 ordered pairs</strong>; opposite-drive JAC has <strong>192</strong>, not an interchangeable denominator. Native geometry is <strong>376 nodes \u00d7 3 coordinates, 686 triangular elements \u00d7 3 indices and 16 point electrodes</strong>. Raw arrays omit the README leading batch axis. No participant reconstruction is retained.</p>",
+          "helpers": "<p>Source point-electrode layout, excitation patterns and a conductivity forward model. L1 includes README/data/requirements; L2 adds approach; L3 adds software design. README units are <strong>m, V and S/m</strong>, but point-node \u00b11 FEM right-hand sides do not establish finite contact impedance, electrode area, AC frequency or calibrated injected current.</p>",
+          "tools": "<p>Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.</p>",
+          "reference": "<p>Native raw_data.npz contains anomaly conductivities; data/ground_truth.npz is also copied with the visible data directory. This is not an established blind inversion condition. Reader reveal hides the source truth only from the teaching view.</p>",
+          "spec": "<p>Preserve each ordered row <code>[N,M,excitation]</code>: voltage is potential(N) minus potential(M) for that excitation. <strong>Ground node 16 fixes additive potential gauge</strong>, separate from the homogeneous baseline <code>v0</code>; it is not a conductivity reference. Independent authored arithmetic illustrates gauge cancellation only; no FEM/forward/inverse computation runs.</p>\n<p>Canonical controls inspect pairing, sign/gauge, inverse assumptions and spatial domain. BP uses <code>(v1-v0)/sign(v0.real)</code> and source main multiplies 192; JAC/GREIT use absolute baseline normalization. Source JAC/GREIT use p 0.5/lambda 0.01. <code>\u03b4V \u2248 J \u03b4\u03c3</code> is a local linearization, not a verified guarantee for the source high-contrast anomalies. <strong>376-node BP, 686-element JAC and 32\u00d7 32 GREIT grid</strong> are distinct domains; voltage row index never selects a reconstructed pixel. Difference estimates are not automatically calibrated absolute S/m conductivity.</p>",
+          "output": "<p>Generic output/reconstruction.npy is one real numeric array. Task main instead saves BP 376-node and JAC 686-element difference arrays plus GREIT 32\u00d7 32 grid NPZ; output domain and absolute versus difference scale must be chosen explicitly.</p>",
+          "score": "<p>Generic scorer compares same-shape arrays over <strong>all numeric array entries</strong>: range-normalized RMSE (infinite for zero truth range) and uncentered cosine NCC with 1e-30 denominator epsilon. This differs from source flux-normalized relative L2 error and centered NCC; GREIT source metrics are skipped. Native ground_truth.npz has six float64 arrays shaped (1,686). Generic preparation squeezes only ndim &gt; 2, preserving this leading singleton. Output (1,686) lexically selects bp_perm_anomaly absolute conductivity; output (686,) matches none of the six arrays. For the incomplete retained tree only, discovery could fall through to saved reconstruction_bp.npy (376,) then shape mismatch; Output (376,) can match saved BP reconstruction, not conductivity truth. The full official tree lists ground_truth_bp.npy, ground_truth_greit.npy and ground_truth_jac_dynamic.npy before saved reconstructions. Newly acquired official NPY bytes match revision-pinned LFS SHA/size: float64/C-order BP delta (376,), GREIT element delta (686,) and JAC element delta (686,). NPY loading returns its array unconditionally: after the NPZ nonmatch, complete-tree discovery takes ground_truth_bp.npy first even for (686,), then shape-mismatch rather than search later shape-compatible files. Output (376,) instead resolves BP delta truth when these full-tree files are staged. No-filesystem scorer instead requires ground_truth.npy under reference_outputs or data; the pinned tree lists neither. Actual reference behavior depends on staged files and filesystem route, not a guaranteed truth or privacy contract. Source task NCC centers arrays; nested saved source metrics are not generic pass/fail thresholds. No scorer or solver was executed.</p>",
+          "challenge": "<p>Small voltage errors can create large interior changes; boundary geometry and regularization matter.</p>",
+          "families": "<p>One scientific task definition across L1/L2/L3 assistance. This collection includes non-medical astronomy, optics and Earth-science tasks as well as medical imaging.</p>",
+          "gap": "<p>Native synthetic voltages are available; anomaly conductivities are solver-visible, README batch axes differ, and generic reference/output scaling is unresolved. No participant reconstruction or metric is shown. Choose blind inversion or method reproduction; sequester anomaly truth for blind condition; pin reference key, absolute versus delta conductivity, domain and scale before scoring.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Native synthetic source input.</strong> BP circular FEM mesh: 376 nodes, 686 triangles, 16 point electrodes, 208 ordered background/anomaly voltage pairs. Opposite-drive JAC has 192 measurements. Actual raw arrays omit README leading batch dimensions.</p>",
+          "helpers": "<p><strong>Given material, not an answer reveal.</strong> Electrode layout, excitation patterns and a conductivity forward model. The assistance level can add an approach and software design.</p>",
+          "answer": "<p><strong>Expected artifact, not an actual prediction.</strong> Generic output/reconstruction.npy is one real numeric array. Task main instead saves BP 376-node and JAC 686-element difference arrays plus GREIT 32\u00d7 32 grid NPZ; output domain and absolute versus difference scale must be chosen explicitly.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25531,9 +25621,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 121,
+    "reviewed-scripted-planar": 122,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 57,
+    "blocked-source-contract": 56,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging-eit-v1": "retained-imaging-eit-v1",
     "imaging101-poisson-v1": "retained-imaging101-poisson-source-v1",
     "bcer-grappa-v1": "retained-bcer-grappa-source-v1",
     "bcer-superres-v1": "retained-bcer-superres-source-v1",
@@ -177,6 +178,19 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "retained-imaging-eit-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+            "measurement.json",
+        },
+    ),
     "retained-automed-vqa-rad-v1": (
         "source-records",
         None,
@@ -2297,6 +2311,12 @@ class InterpretationBBcerLongBrainFullChannels(Closed):
     reference: Pair
 
 
+class ImagingEitChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
 class ImagingPoissonChannels(Closed):
     progress: Pair
     detail: Pair
@@ -4261,6 +4281,24 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class ImagingEitBeat(ExpansionBeat[ImagingEitChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class ImagingEitStory(Story[ImagingEitChannels]):
+    recipe: Literal["imaging-eit-v1"]
+    beats: tuple[ImagingEitBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError("EIT has no private reference assets or reveal")
+        return self
+
+
 class ImagingPoissonBeat(ExpansionBeat[ImagingPoissonChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5023,6 +5061,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingEitStory
     | ImagingPoissonStory
     | BcerGrappaStory
     | BcerSuperresStory
@@ -5156,6 +5195,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingEitStory
     | ImagingPoissonStory
     | BcerGrappaStory
     | BcerSuperresStory
@@ -5449,6 +5489,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingEitStory
     | ImagingPoissonStory
     | BcerGrappaStory
     | BcerSuperresStory
@@ -5761,6 +5802,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-imaging-eit-v1": (
+                "EIT-native-boundary-voltage-plus-symbolic-inverse",
+                "MIT",
+                None,
+            ),
             "retained-imaging101-poisson-source-v1": (
                 "symbolic-unit-grid",
                 "MIT",
@@ -6041,6 +6087,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "m, V; normalized change"
+                if pack_id == "retained-imaging-eit-v1"
                 else "unitless"
                 if pack_id == "retained-imaging101-poisson-source-v1"
                 else "unitless"
@@ -6175,6 +6223,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-imaging-eit-v1"
             or pack_id == "retained-imaging101-poisson-source-v1"
             or pack_id == "retained-bcer-grappa-source-v1"
             or pack_id == "retained-bcer-superres-source-v1"
