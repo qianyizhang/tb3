@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "imaging101-usct-fwi-v1",
             "imaging101-pnp-mri-reconstruction-v1",
             "imaging101-plane-wave-ultrasound-v1",
             "imaging101-photoacoustic-tomography-v1",

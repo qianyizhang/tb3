@@ -1,0 +1,689 @@
+{
+  "acceptance_run": false,
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+  "actual_data_gap": "Native numerical phantom complex observations retained; no separate phantom truth, calibrated pressure, time waveform or participant reconstruction. Metadata 24 cm conflicts with 480 cells at 50 micrometres = 2.4 cm. Source baseline and generic first reference are different saved reconstructions, not true material maps. CUDA runtime and gradient/operator consistency not executed or certified.",
+  "attempts": [
+    {
+      "action": "download selected pinned official source/native arrays/source-saved examples; verify Git blob or HF LFS identity",
+      "attempted_at": "2026-09-29T07:44:34.446579+00:00",
+      "outcome": "41/41 combined requested task files verified across four entries; no task method executed",
+      "source": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI ; https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "action": "read primary human breast full-wave inverse-scattering article for modality context only",
+      "attempted_at": "2026-09-29T07:58:15.133326+00:00",
+      "outcome": "Paper reports human volunteer breast USCT images; released Imaging101 sample remains explicitly numerical phantom, not identified with paper subjects.",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3356315/"
+    },
+    {
+      "action": "Reverify retained pinned native complex observations, metadata, source-saved references and source/Git/LFS contracts; derive selected real-component display cells only",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "outcome": "Matching native input already retained; no redundant acquisition needed. Three128×128 direct stride-two real-component displays and three256-cell source-zero complex profiles; no wave solve, FFT, inversion, gradient or metric. Native baseline identity/mismatch retained for reference audit only.",
+      "attempted_at": "2026-09-30T21:06:16.738297+00:00"
+    },
+    {
+      "action": "Fetch missing pinned native metric/display definition and verify Git blob",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI/src/visualization.py",
+      "outcome": "3759 bytes Git verified. Source NRMSE uses RMSE/reference range, same formula as generic, correcting retained norm-relative assumption. Source baseline and generic reference identities still differ; no metric/display function executed.",
+      "attempted_at": "2026-09-30T21:11:47.164871+00:00"
+    },
+    {
+      "action": "Validate retained USCT source/Git/native archive and exact display/header/reference identities without source imports",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "outcome": "No new native GET; retained complex observations and profiles, native source-baseline and saved reference differences rechecked. Filesystem versus missing-ground_truth no-filesystem routes and exact source field/scaling/muting conventions reread. No wave forward, adjoint, inversion, gradient, scorer or model executed.",
+      "attempted_at": "2026-10-01T08:44:57.788787+00:00"
+    },
+    {
+      "action": "Acquire missing official revision-pinned 85-byte metric metadata",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI/evaluation/reference_outputs/metrics.json",
+      "attempted_at": "2026-10-01T08:45:51.058239+00:00",
+      "status": 200,
+      "bytes": 85,
+      "sha256": "f5be1d289ad44bf413e4d56c11e3aeb640a0073fb063081f0fcb1da3ab801b12",
+      "git_blob": "05afc900bd31104ca5c9934db24afd95a6f233dc",
+      "outcome": "HTTP200;85-byte JSON matched exact HF revision Git blob. No metric/solver executed."
+    }
+  ],
+  "biomedical_modality_primary_source": {
+    "relationship": "Supports human breast USCT modality connection; not evidence that this released numeric phantom is a patient sample.",
+    "title": "Non-linear inverse scattering: High resolution quantitative breast tissue tomography",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3356315/"
+  },
+  "display_warning": "Numerical phantom observations; true speed, calibrated pressure and participant output absent.",
+  "entry_id": "imaging101-usct-fwi",
+  "evaluator_run": false,
+  "generic_evaluator_contract": {
+    "metrics": "range-normalized NRMSE, cosine NCC, MSE, PSNR, global SSIM if an actual output and usable reference exist",
+    "normalization": "squeeze dimensions >2 and reduce complex arrays to magnitude; no flux rescaling",
+    "output": "one real numeric output/reconstruction.npy",
+    "run": false,
+    "selection": "Generic scorer selects evaluation/reference_outputs/reconstruction.npy before data/baseline_reference.npz. Task-native source reports versus the separate baseline. Data baseline equals evaluation/reference_outputs/baseline_reference.npy exactly; source reconstruction differs by max 131.6034 m/s.",
+    "no_filesystem": "Requires ground_truth.npy in evaluation/reference_outputs or data; both absent official pinned listing. It errors rather than selecting saved reconstruction or baseline NPZ. If separately supplied, fallback strictly2D/flux-normalized norm-relative formula differs filesystem range/no-rescale; not assumed.",
+    "filesystem": "First existing saved evaluation/reference_outputs/reconstruction.npy, selected before any target shape check, not baseline truth; 480x480. Shape mismatch is not automatic fallback. No participant output or metric here.",
+    "thresholds": "Pinned 85-byte metrics.json uses ncc_vs_ref/nrmse_vs_ref/mode/freq, no flat ncc_boundary/nrmse_boundary; filesystem _apply_boundaries sets boundaries None and passed=None. Historical saved values, not current metrics."
+  },
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "model_run": false,
+  "native_arrays": {
+    "data/baseline_reference.npz": {
+      "vp_reconstructed": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          480,
+          480
+        ]
+      }
+    },
+    "data/raw_data.npz": {
+      "dobs_0.3": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.35": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.4": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.45": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.5": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.55": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.6": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.65": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.7": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.75": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.8": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.85": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.9": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_0.95": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_1": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_1.05": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_1.1": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_1.15": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_1.2": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "dobs_1.25": {
+        "dtype": "complex64",
+        "shape": [
+          1,
+          256,
+          256
+        ]
+      },
+      "receiver_ix": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          256
+        ]
+      },
+      "receiver_iy": {
+        "dtype": "float32",
+        "shape": [
+          1,
+          256
+        ]
+      }
+    }
+  },
+  "native_checks": {
+    "native": "20 complex (256,256) receiver-by-source matrices; 1-indexed ring coordinates; 480×50um=24mm, inconsistent with metadata 24cm.",
+    "reference": "Generic scorer selects evaluation/reference_outputs/reconstruction.npy before data/baseline_reference.npz. Task-native source reports versus the separate baseline. Data baseline equals evaluation/reference_outputs/baseline_reference.npy exactly; source reconstruction differs by max 131.6034 m/s.",
+    "score_boundary": "Both targets are source reconstructions, not distributed phantom truth; no patient reference exists."
+  },
+  "preparer_run": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Reconcile physical domain extent, baseline/reference role and source acquisition provenance before quantitative spatial or clinical claims.",
+  "resolved_at": "2026-09-29T07:48:45.499549+00:00",
+  "reviewed_at": "2026-09-29T07:54:16.053413+00:00",
+  "schema": 1,
+  "solver_run": false,
+  "source_license": "Pinned Imaging101 dataset card declares MIT. Released numerical breast-phantom wavefields are not volunteer/patient data from cited primary modality studies.",
+  "source_pins": [
+    {
+      "bytes": 697963,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/data/baseline_reference.npz",
+      "role": "solver-visible-reference",
+      "sha256": "8a57e0677f64372afd65e72c55c945a311ce8c080252f2fadfd5d7744c3e4d9b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 571,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "9700da4fbdb8bb668115bb23ab0eb0e912f0719a042fb0e7e5525b0c398853cb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 7724709,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "e09b8e7398bd658103bde740fe9b2fd768c033f65f0c9098cc8295c34862f469",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 921728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/evaluation/reference_outputs/baseline_reference.npy",
+      "role": "source-saved-output",
+      "sha256": "12ea7bd91f0a9cfc8080244fe8d75d307497a0796b34bda8c5662fd34217fc1f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 921728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/evaluation/reference_outputs/reconstruction.npy",
+      "role": "source-saved-output",
+      "sha256": "8bf3979d172ea083c6494085185079551bd9614b509f560b4138e5f829b98beb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-e-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04"
+    },
+    {
+      "bytes": 4825,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/README.md",
+      "role": "pinned-task-source",
+      "sha256": "2b47a8725f4b6e91e49fc7c1cb19ac998e71c6a6eacaafe89e414c165d3152a2",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "13f72f095409d9b7059020c4a11ef6089e3184ca"
+    },
+    {
+      "bytes": 6615,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/main.py",
+      "role": "pinned-task-source",
+      "sha256": "d1c43fad402129efe93b29e985ef105c52e42235a69be1b44f3209411d2021e8",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "07712c28a1fa2d0489bdfe8ea70a521ba6ae25ac"
+    },
+    {
+      "bytes": 14181,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "390e58cd1af5bc024fdde66866e2b4e37a9fdb3c929fd22b51fe388c0088ee92",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "d1222464a420d73f0e83aa38ddf73c8c7fe98319"
+    },
+    {
+      "bytes": 4216,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "4e975232386015a36e810e55e2fbec0e1df1a1711b25021eafc6d61808fc1876",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "2cbee2a32ba6952bcb0f4af910be0be048cc3018"
+    },
+    {
+      "bytes": 16834,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "0b94b5d0d2cafeeaf658f17265fd7c45fbf6eb13ed409a969c4afce3d61e0ebf",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "25c66b31942d66ad5ebae188e0428f20e3b01a18"
+    },
+    {
+      "bytes": 13389,
+      "path": ".local/explainers/core-20260929/formation-e-source/trees/usct_FWI.json",
+      "role": "source-tree-or-helper",
+      "sha256": "450ba595eb5f0e345cdad62dd46409a1f68da5699e34fc4203aa42d8de496e89",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-usct-fwi/visualization.py",
+      "bytes": 3759,
+      "sha256": "a544a39632adaeceb742222df4b860ba22df6165cc4df1db7a2e93323a918795",
+      "git_blob": "71e5099b5d8fb2d06bcebbe6771de4bdad56a39a",
+      "role": "source-native-metric-definition",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-usct-fwi/refresh-ultrasound-sos/source-evidence/metrics.json",
+      "bytes": 85,
+      "sha256": "f5be1d289ad44bf413e4d56c11e3aeb640a0073fb063081f0fcb1da3ab801b12",
+      "hf_git_blob": "05afc900bd31104ca5c9934db24afd95a6f233dc",
+      "role": "historical-source-metric-metadata-not-current-score",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI/evaluation/reference_outputs/metrics.json"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "output/reconstruction.npy intended real 480×480 speed in m/s; actual output/metric absent",
+    "helper": "Metadata and source-visible saved baseline speed reconstruction; 1-indexed grid positions shared by transmitters/receivers. No truth material map.",
+    "input": "Numerically generated complex frequency observations; native receiver/source cells, not patient recordings or time RF.",
+    "reference": "source-visible ground_truth or baseline where supplied; no separate hidden target established",
+    "source_saved_output": "Saved source speed maps audit-only, not participant output or clean phantom truth.",
+    "private_reference": "No independent phantom truth distributed; generic first reference is saved reconstruction.npy, different from source baseline."
+  },
+  "status": "worker-frozen-source-resolution",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "code_revision": "dc2f668939b21e8312e22529615def610f8611df",
+    "levels": [
+      "L1 README",
+      "L2 + approach",
+      "L3 + design"
+    ],
+    "live_output_path": "output/reconstruction.npy",
+    "operator": "Constant-density frequency-domain Helmholtz slowness model. rho in README is source term, not mass-density map. Source field returned -conj(E).T/dh²×2.5e10; receiver restriction MATLAB linear indices. No physical pressure amplitude calibration, attenuation, variable density or time grid established.",
+    "reference_policy": "Late reader-only reference-selection and metric rules; saved speed maps never displayed",
+    "task_id": "usct_FWI",
+    "algorithm": "Fit complex amplitude per source after near-source muting; mask zero observations in misfit; sum squared complex residual. Source gradient uses forward-field contractions, transpose and1e10 scale, Gaussian9×9 smoothing; no independent adjoint/finite-difference certification. NCG Polak-Ribiere nonnegative beta, More-Thuente max5, max3 iterations/frequency; 20 low-high frequencies. CBS convergence claim not current proof.",
+    "runtime": "CUDA set_device(cuda:{args.device}) unconditional, device default0; torch/SymPy/NumPy runtime versions and CBS convergence unverified. No import, wave simulation, inversion or evaluator.",
+    "metrics": "Source NCC/NRMSE against baseline_reference.npz speed; generic first reconstruction.npy differs from baseline by max131.6034m/s. All230400 cells; same RMSE/reference-range denominator but different reference identities, cosine NCC. main saved metrics no ncc_boundary/nrmse_boundary, so generic threshold result absent under this source schema. No current score.",
+    "staging": "README.md/data/requirements.txt end-to-end visible paths; full data includes baseline_reference.npz, not withheld truth. Evaluation/source trees not in default list."
+  },
+  "top_warning": "Numerical phantom observations; true speed, calibrated pressure and participant output absent.",
+  "source_files": [
+    {
+      "bytes": 697963,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/data/baseline_reference.npz",
+      "role": "solver-visible-reference",
+      "sha256": "8a57e0677f64372afd65e72c55c945a311ce8c080252f2fadfd5d7744c3e4d9b",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 571,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/data/meta_data.json",
+      "role": "source-metadata",
+      "sha256": "9700da4fbdb8bb668115bb23ab0eb0e912f0719a042fb0e7e5525b0c398853cb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 7724709,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/data/raw_data.npz",
+      "role": "native-raw-input",
+      "sha256": "e09b8e7398bd658103bde740fe9b2fd768c033f65f0c9098cc8295c34862f469",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 921728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/evaluation/reference_outputs/baseline_reference.npy",
+      "role": "source-saved-output",
+      "sha256": "12ea7bd91f0a9cfc8080244fe8d75d307497a0796b34bda8c5662fd34217fc1f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 921728,
+      "path": ".local/explainers/core-20260929/formation-e-source/assets/usct_FWI/evaluation/reference_outputs/reconstruction.npy",
+      "role": "source-saved-output",
+      "sha256": "8bf3979d172ea083c6494085185079551bd9614b509f560b4138e5f829b98beb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-e-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "bytes": 9172,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/reference_scoring.py",
+      "role": "pinned-generic-harness",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42"
+    },
+    {
+      "bytes": 15186,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/runner.py",
+      "role": "pinned-generic-harness",
+      "sha256": "023e64ebb351df44b999a4d33857549dc1694f26f1ba2c5ab807814481fbdfcb",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "git_blob": "7bfa1b9a808a6b958c3f0c30df9c7e208d862eab"
+    },
+    {
+      "bytes": 23821,
+      "path": ".local/explainers/core-20260929/formation-e-source/harness/scorer.py",
+      "role": "pinned-generic-harness",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04"
+    },
+    {
+      "bytes": 4825,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/README.md",
+      "role": "pinned-task-source",
+      "sha256": "2b47a8725f4b6e91e49fc7c1cb19ac998e71c6a6eacaafe89e414c165d3152a2",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "13f72f095409d9b7059020c4a11ef6089e3184ca"
+    },
+    {
+      "bytes": 6615,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/main.py",
+      "role": "pinned-task-source",
+      "sha256": "d1c43fad402129efe93b29e985ef105c52e42235a69be1b44f3209411d2021e8",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "07712c28a1fa2d0489bdfe8ea70a521ba6ae25ac"
+    },
+    {
+      "bytes": 14181,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "390e58cd1af5bc024fdde66866e2b4e37a9fdb3c929fd22b51fe388c0088ee92",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "d1222464a420d73f0e83aa38ddf73c8c7fe98319"
+    },
+    {
+      "bytes": 4216,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "4e975232386015a36e810e55e2fbec0e1df1a1711b25021eafc6d61808fc1876",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "2cbee2a32ba6952bcb0f4af910be0be048cc3018"
+    },
+    {
+      "bytes": 16834,
+      "path": ".local/explainers/core-20260929/formation-e-source/tasks/usct_FWI/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "0b94b5d0d2cafeeaf658f17265fd7c45fbf6eb13ed409a969c4afce3d61e0ebf",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/tree/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI",
+      "git_blob": "25c66b31942d66ad5ebae188e0428f20e3b01a18"
+    },
+    {
+      "bytes": 13389,
+      "path": ".local/explainers/core-20260929/formation-e-source/trees/usct_FWI.json",
+      "role": "source-tree-or-helper",
+      "sha256": "450ba595eb5f0e345cdad62dd46409a1f68da5699e34fc4203aa42d8de496e89",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "role": "source-code-license",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "role": "source-staging",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-usct-fwi/visualization.py",
+      "bytes": 3759,
+      "sha256": "a544a39632adaeceb742222df4b860ba22df6165cc4df1db7a2e93323a918795",
+      "git_blob": "71e5099b5d8fb2d06bcebbe6771de4bdad56a39a",
+      "role": "source-native-metric-definition",
+      "url": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI/src/visualization.py"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/imaging101-usct-fwi/refresh-ultrasound-sos/source-evidence/metrics.json",
+      "bytes": 85,
+      "sha256": "f5be1d289ad44bf413e4d56c11e3aeb640a0073fb063081f0fcb1da3ab801b12",
+      "hf_git_blob": "05afc900bd31104ca5c9934db24afd95a6f233dc",
+      "role": "historical-source-metric-metadata-not-current-score",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI/evaluation/reference_outputs/metrics.json"
+    }
+  ],
+  "warning_text": "Numerical phantom observations; true speed, calibrated pressure and participant output absent.",
+  "reference_policy": "reader-reference-reveal",
+  "source_condition": {
+    "frequencies_MHz": [
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0,
+      1.05,
+      1.1,
+      1.15,
+      1.2,
+      1.25
+    ],
+    "native_shape": [
+      1,
+      256,
+      256
+    ],
+    "dtype": "complex64",
+    "axes": [
+      "batch",
+      "receiver",
+      "source"
+    ],
+    "pairs_per_frequency": 65536,
+    "complex_cells": 1310720,
+    "grid": [
+      480,
+      480
+    ],
+    "grid_cells": 230400,
+    "spacing_um": 50,
+    "nominal_width_mm": 24,
+    "metadata_width_cm": 24,
+    "center_span_mm": 23.95,
+    "background_mps": 1480,
+    "speed_bounds_mps": [
+      1300,
+      1700
+    ],
+    "mute_um": 7500,
+    "selected_frequencies_MHz": [
+      0.3,
+      0.8,
+      1.25
+    ],
+    "time_samples": null,
+    "pressure_calibration": null,
+    "density_map": null,
+    "phantom_truth": null,
+    "available_truth_keys": [],
+    "reference_initially_visible": false,
+    "inventory_conditions": [
+      "L1 · README",
+      "L2 · + approach",
+      "L3 · + design"
+    ]
+  },
+  "fixture": {
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "toy_forward": [
+      1,
+      2
+    ],
+    "toy_observed": [
+      2,
+      4
+    ],
+    "toy_alpha": 2,
+    "actual_output": null,
+    "clean_reference": null
+  },
+  "public_reference": {
+    "role": "Public solver-visible source baseline; generic reference is another saved reconstruction, neither is phantom truth",
+    "clean_image": null,
+    "criteria": [
+      "No separate phantom truth distributed",
+      "Source baseline differs from first generic reconstruction reference",
+      "All230400 cells, same range denominator but different speed references; no metric computed"
+    ]
+  },
+  "brief_sha256": "8f2ea47719b64aaf4d8894f5e24e055cef7ce1ccb4ea7c3239bfc6577982f37a",
+  "historical_acquisition_objects_preserved": true
+}

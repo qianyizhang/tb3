@@ -1,0 +1,2 @@
+Numerical phantom observations; true speed, calibrated pressure and participant output absent. https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI
+Native complex observation real component: black negative / midgray zero / white positive, separate per-frequency max-absolute scales; receiver/source stride2. No wave simulation, inversion, speed map or metric.

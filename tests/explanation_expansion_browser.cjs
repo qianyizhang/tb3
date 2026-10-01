@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-usct-fwi-v1',
   'imaging-ultrasound-sos-v1',
   'imaging101-pnp-mri-reconstruction-v1',
   'imaging101-plane-wave-ultrasound-v1',
@@ -127,6 +128,7 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-usct-fwi-v1') return {scene:'data-imaging-usct-fwi-scene',reference:'[data-imaging-usct-fwi-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-imaging-usct-fwi-output-schema]',aside:'[data-imaging-usct-fwi-output]'};
   if (plan.recipe === 'imaging-ultrasound-sos-v1')
     return {
       scene: 'data-sos-scene',
@@ -877,6 +879,7 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-usct-fwi-v1': [/Numerical phantom observations; true speed, calibrated pressure and participant output absent./s,'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI','data-imaging-usct-fwi-scene',false],
     'imaging-ultrasound-sos-v1': [
       /Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score./s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography',
@@ -2840,6 +2843,29 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await capture('limits-contract');
     await page.locator('.scene-reset').click();
     await absent();
+  }
+
+  if (plan.recipe === 'imaging101-usct-fwi-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
+    const scene=page.locator('[data-imaging-usct-fwi-scene]');
+    const absent=async()=>assert.equal(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').count(),0);
+    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
+    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
+    const image=async i=>{const imgs=scene.locator('img');assert.equal(await imgs.count(),1);const d=await imgs.evaluate(e=>({src:e.src,w:e.naturalWidth,h:e.naturalHeight,alt:e.alt}));assert.equal(d.w,128);assert.equal(d.h,128);assert.ok(d.src.startsWith('data:image/png;base64,'));assert.equal(sha(Buffer.from(d.src.split(',')[1],'base64')),sha(fs.readFileSync(`presentation/task-explorer/imaging101-usct-fwi/${['observations-03','observations-08','observations-125'][i]}.png`)));assert.match(d.alt,/Native numerical phantom complex observations.*real component, receiver rows and source columns, stride two/);assert.match(await scene.locator('figcaption').innerText(),/receiver rows.*source columns.*every second cell.*Black −.*gray 0.*white \+.*uncalibrated amplitude/is);};
+    await page.locator('[data-story-step="0"]').click();await image(0);await absent();assert.match(await scene.innerText(),/20 frequencies.*256 receivers.*256 sources.*1,310,720 complex cells.*No time waveform, calibrated Pa or patient recordings.*No wave simulation, speed reconstruction or metric/is);await capture('native-input');await advance(0);await page.locator('[data-story-step="0"]').click();
+    const steps=['Units + muting','Native frequencies','Fit + update rules'],branches=['0.3 MHz','0.8 MHz','1.25 MHz'],bf=[336,419,503];
+    for(let i=0;i<3;i++)for(let m=0;m<3;m++){
+      await page.locator('[data-story-step="2"]').click();await scene.getByRole('button',{name:branches[m],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),bf[m]);await scene.getByRole('button',{name:steps[i],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),i===1?bf[m]:[168,0,504][i]);assert.equal(await scene.getAttribute('data-imaging-usct-fwi-operation-step'),String(i));assert.equal(await scene.getByRole('button',{name:steps[i],exact:true}).getAttribute('aria-pressed'),'true');const text=await scene.innerText();
+      if(i===0){assert.match(text,/480 × 480 cells.*50 µm.*256 ring positions.*24 mm.*2\.4 cm.*metadata says 24 cm.*7,500 µm muted.*zero observations additionally excluded.*No time sampling or density map/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
+      else if(i===1){assert.equal(await scene.getByRole('button',{name:branches[m],exact:true}).getAttribute('aria-pressed'),'true');await image(m);assert.match(text,/128 × 128 direct stride-two receiver\/source cells.*signed real amplitude.*complex profiles retained.*No wave solve, interpolation, amplitude calibration or reconstructed speed/is);await capture(`native-frequency-${m}`);}
+      else{assert.match(text,/α = Σ\(conj\(dsrc\) y\) \/ Σ\|dsrc\|².*Authored dsrc = \[1, 2\], y = \[2, 4\] gives α = 2.*Native fitted α and update remain unknown.*1480 m\/s.*max 3 NCG steps per frequency.*9 × 9 gradient smoothing.*No gradient\/adjoint certification or current convergence/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
+      await absent();await capture(`contract-${i}-${m}`);
+    }
+    await page.locator('[data-story-step="2"]').click();await advance(336);await page.locator('[data-story-step="2"]').click();await image(0);await absent();
+    const oi=plan.beats.findIndex(b=>b.scene==='output');await page.locator(`[data-story-step="${oi}"]`).click();assert.match(await scene.innerText(),/Participant speed map absent.*output\/reconstruction\.npy.*480 × 480.*m\/s.*Source main saves to evaluation\/reference_outputs instead.*never participant output or phantom truth/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await absent();await capture('empty-output');
+    const ri=plan.beats.findIndex(b=>b.scene==='reference');await page.locator(`[data-story-step="${ri}"]`).click();await absent();const reveal=()=>scene.getByRole('button',{name:'Reveal public reference rules',exact:true});await reveal().click();assert.equal(await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').innerText(),/neither is phantom truth.*Filesystem selects a saved reconstruction, not true speed.*source uses the visible baseline.*230,400 cells.*No-filesystem scorer requires absent ground_truth\.npy.*No participant map, score or private truth/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('rules-revealed');await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).click();await absent();
+    await advance(plan.beats[ri].startFrame);await reveal().click();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('[data-story-step="1"]').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();
+    const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();assert.match(await scene.innerText(),/No clinical property, reconstruction quality, current CUDA success or convergence claim/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('limits-contract');await absent();await page.locator('.scene-reset').click();await absent();
   }
 
   if (plan.recipe === 'imaging101-pnp-mri-reconstruction-v1') {
@@ -11014,6 +11040,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-usct-fwi-v1',
       'imaging-ultrasound-sos-v1',
       'imaging101-pnp-mri-reconstruction-v1',
       'imaging101-plane-wave-ultrasound-v1',

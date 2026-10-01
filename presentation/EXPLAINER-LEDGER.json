@@ -16979,36 +16979,126 @@
       }
     },
     {
-      "entry_id": "imaging101-usct-fwi",
-      "title": "Recover sound speed from full ultrasound wavefields",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-usct-fwi/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI",
+      "actual_data_gap": "Native numerical phantom complex observations retained; no separate phantom truth, calibrated pressure, time waveform or participant reconstruction. Metadata 24 cm conflicts with 480 cells at 50 micrometres = 2.4 cm. Source baseline and generic first reference are different saved reconstructions, not true material maps. CUDA runtime and gradient/operator consistency not executed or certified.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-usct-fwi.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Acquisition geometry, frequency values and a wave-equation model. The assistance level can add an approach and software design.",
+        "output": "A sound-speed or slowness image on the task\u2019s reconstruction grid.",
+        "raw": "Multi-source, multi-receiver complex ultrasound measurements at several frequencies.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-usct-fwi.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A sound-speed or slowness image on the task\u2019s reconstruction grid.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-usct-fwi",
+      "illustration_basis": "mixed",
+      "illustration_kind": "soundmap",
       "modalities": [
         "ultrasound"
       ],
-      "illustration_kind": "soundmap",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-other",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-usct-fwi.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A sound-speed or slowness image on the task\u2019s reconstruction grid.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Multi-source, multi-receiver complex ultrasound measurements at several frequencies.",
-        "helpers": "Acquisition geometry, frequency values and a wave-equation model. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A sound-speed or slowness image on the task\u2019s reconstruction grid.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted exact native numerical-phantom complex observations, three signed-real stride-two frequency displays and task-specific authored amplitude/geometry/muting/update explanation after main19-pin/42-image source/visual/export/mobile/no-GPU review. No independent true speed, pressure calibration, patient waveform, participant speed map or score. Metadata24cm versus grid2.4cm, gradient/adjoint/runtime and source-versus-generic saved-reference identities remain qualified. Late rules require explicit reader reveal; no source routine or model executed.",
+      "source_brief_sha256": "8f2ea47719b64aaf4d8894f5e24e055cef7ce1ccb4ea7c3239bfc6577982f37a",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-usct-fwi-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-usct-fwi-resolution.json",
+        "receipt_sha256": "631194cd6fcc8ac76b9cd81e33510e5e21e2f04dd64675f462030284d89f13e1",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T17:49:37.810387+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-usct-fwi/source-audit-final-01.json",
+        "audit_sha256": "b51f69aca606f465e4c381b6f70df3ccace224da675da00de9d340d99fe3cbc7",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-usct-fwi",
+      "subject": null,
+      "title": "Recover sound speed from full ultrasound wavefields",
+      "warning_text": "Numerical phantom observations; true speed, calibrated pressure and participant output absent.",
+      "acceptance_scope": "Native numerical-phantom complex receiver/source cells and authored amplitude fit, geometry/muting/update rules; late explicit reader-only source versus generic saved-reference rules. No true speed, calibrated pressure, patient waveforms, participant reconstruction or score. No source operator/solver/task/evaluator execution.",
+      "completion_review": {
+        "date": "2026-10-01T18:02:39.327221+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "7e42af010f60c252ff2b05461bc1c20f8fcfbc8d4dc13addc19241fb07567c63"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace frequency-domain USCT without inventing a speed reconstruction",
+        "goal": "Native numerical phantom observations and source-pinned inversion rules; participant outcome empty.",
+        "value": "Not yet specified.",
+        "raw": "Pinned task usct_FWI, numerical breast phantom, not patient or paper volunteer data. raw_data.npz: twenty complex64 dobs_0.3 through dobs_1.25 MHz arrays, each (1, 256, 256): batch, receiver, source. 65,536 receiver\u2013source pairs per frequency; 1,310,720 complex cells. receiver_ix / receiver_iy float32 (1, 256), 1-indexed grid positions, also used as transmitters. Values are complex frequency observations, not measured time RF, calibrated Pa, clinical tissue maps or scanner acquisition evidence. No sample interval, pulse waveform, noise distribution or time window defined.",
+        "helpers": "Metadata grid 480 \u00d7 480, spacing 50 \u00b5m, background 1480 m/s, bounds 1300\u20131700 m/s, 256 active of 512 ring transducers, subsample factor 2. Twenty frequencies 0.3\u20131.25 MHz in 0.05 steps. Metadata domain_size_cm=[24,24] conflicts with 480 \u00d7 50 \u00b5m = 24 mm = 2.4 cm; centre span 479 \u00d7 50 \u00b5m = 23.95 mm. Preserve conflict, do not claim patient FOV. baseline_reference.npz:vp_reconstructed float32 (1,480,480) is a prior 20-frequency reconstruction in m/s, not phantom truth. All three original inventory Conditions retained.",
+        "tools": "No source imports: main unconditionally selects a CUDA device (default 0). Native displays select receiver/source indices 0,2,\u2026254 for dobs_0.3 /0.8 /1.25 real component (128 \u00d7 128). Each grayscale uses its own maximum absolute native real component: floor(255 \u00d7 (real / max_abs + 1)/2), float64, no resize, interpolation, FFT, wave solve or inversion. Black negative, midgray zero, white positive; scales are arbitrary observation amplitude, different across frequencies. Three source-zero profiles retain all 256 receiver real/imaginary cells exactly in JSON. Native values are synthetic observations, not toy measurements or outputs.",
+        "reference": "No ground_truth.npz. End-to-end visible paths README.md/data/requirements.txt stage the entire data directory, including baseline_reference.npz; the baseline is solver-visible. Evaluation and source trees are not default-staged. Generic first candidate evaluation/reference_outputs/reconstruction.npy is a different saved reconstruction, not raw phantom truth. Saved baseline_reference.npy equals data baseline cells exactly; saved reconstruction differs by maximum 131.6034 m/s. Saved speed maps remain audit only, never image/display/outcome. Reader-only late reveal teaches selection and denominators; covered on backward/exit/reset before paint.",
+        "spec": "README Helmholtz (\u2207\u00b2 + \u03c9\u00b2s\u00b2)u = \u2212rho, s=1/c. rho denotes source term, not density. No independent mass-density map, attenuation, optical fluence or clinical property inference. Constant-density slowness forward model. Frequency passed as MHz \u00d7 10 in internal 100 kHz units; grid dh in \u00b5m. setup pixel_size=lamb/ppw=1/8, scale=dh/pixel_size; lamb_val=mean(speed)/(freq\u00d7scale), k0=2\u03c0/lamb_val. Dimension conventions are code-pinned, not independently calibrated SI pressure. Boundary argument 20 is multiplied by ppw 8 to 160 padded cells. CBS max iterations loop uses born_max 500; computed max_iterations is unused. Stop checks incremental-field energy/init energy <1e\u22125 or iteration>=500 only at phase-cycle boundary; no current residual/convergence certificate. Final native field = \u2212conj(E).T/dh\u00b2 \u00d7 2.5e10, not an unscaled textbook field.\n\nReceiver restriction index (iy\u22121)\u00d7ny+ix\u22121; forward returns transpose/conjugate. Keep these exact axes, not a guessed C-order receiver orientation. Authored asymmetric-grid test distinguishes swapped indices; no native forward/adjoint evaluated. 7500 \u00b5m muting uses Euclidean grid distance \u00d750\u00b5m, keep distance>=7500. mask_esi excludes near/self pairs; mask_misfit also excludes exactly zero observations. No physical attenuation correction or new noise draw.\n\nSource amplitude alpha = sum(conj(dsrc)\u00d7dobs)/sum(abs(dsrc)\u00b2), per source after muting. Denominator has no zero guard. Authored real vectors dsrc=[1,2], dobs=[2,4] give alpha=2; this is mathematics, not a fitted native result. Cost sums squared complex residual across sources/receivers, not average or half-cost. Gradient contracts forward fields with conjugate residual, \u2212real(u\u00d7q)\u00d72\u03c9\u00b2/vp, transposes and divides 1e10. No independent adjoint or finite-difference verification; gradient smoothing 9 \u00d7 9 Gaussian sigma 5 at \u22640.3 MHz, sigma 2 at <0.8, sigma 1 thereafter, zero-pad 4. It is optimization smoothing in grid cells, not measurement noise or image truth.\n\nInitial homogeneous speed 1480 m/s. NCG slowness bounds 1/1700 to 1/1300; Polak\u2013Ribiere beta clamped nonnegative, More\u2013Thuente line search max 5 evaluations, max 3 iterations per frequency. Multi mode bootstraps low to high over 20 frequencies; single mode uses selected frequency. Initial objective/gradient scaling lacks zero guards; line-search warning can continue. Runtime CUDA/PyTorch/SymPy versions, physical unit consistency and end-to-end success unverified. No CBS/NCG/wave inversion/metric executed; no model or learned denoiser in this task.",
+        "output": "Generic participant output/reconstruction.npy intended real 480\u00d7480 sound speed m/s (230,400 cells). Source main instead writes evaluation/reference_outputs/reconstruction.npy in multi mode, reconstruction_{freq:g}.npy single mode, per-frequency maps and metrics.json. This path mismatch is not resolved by showing source files as participant outputs. Actual output, reconstruction, clean truth and metrics empty.",
+        "score": "Source NCC cosine and NRMSE RMSE/reference range against baseline_reference.npz, no mean-centering. Filesystem generic first existing reference is saved reconstruction.npy, returned regardless of output target shape before a later shape check; full 230,400 pixels; squeeze, complex\u2192magnitude, float64; NRMSE=RMSE/reference range, the same range-normalized formula as source, with a DIFFERENT reference array. Retained audit\u2019s norm-relative source NRMSE assumption is corrected by the newly pinned visualization.py. Filesystem has no output flux/max normalization. The no-filesystem route instead requires evaluation/reference_outputs/ground_truth.npy or data/ground_truth.npy, both absent in the official pinned USCT listing; it errors before the comparison. Its generic fallback snippet would require strictly 2D output and apply flux rescaling/norm-relative NRMSE if that missing file were supplied, unlike the filesystem contract. No fallback reference is automatically invented; speed offset/background affects cosine correlation. Generic additional MSE/PSNR/global SSIM are not clinical tissue validation. main metrics keys ncc_vs_ref/nrmse_vs_ref/mode/freq lack generic ncc_boundary/nrmse_boundary, so no pass/fail threshold under this source boundary schema; no score computed. Generic reference is another reconstruction, not independent speed truth. Do not claim recovered anatomy, diagnosis or convergence/performance.",
+        "challenge": "A wave solver must explain diffraction and refraction; local minima can survive a low residual.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native complex observation real-component cells, persistent phantom/truth/output gap and official route.",
+          "Canonical unit/muting, three native frequency, amplitude-fit/NCG rules; authored alpha only.",
+          "Empty participant output; later source/generic reference and metric rules, reset/exit/backward cover."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -17032,30 +17122,43 @@
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned physics",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI/src/physics_model.py"
+          ],
+          [
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/usct_FWI/src/solvers.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-usct-fwi-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "d527f8160e8cd5bfe5dbf7f804795b847f1dcbe1dd5ae916a23a84afa76bc5b3",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-usct-fwi.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A sound-speed or slowness image on the task\u2019s reconstruction grid.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Native numerical phantom observations and source-pinned inversion rules; participant outcome empty.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Pinned task usct_FWI, numerical breast phantom, not patient or paper volunteer data. raw_data.npz: twenty complex64 dobs_0.3 through dobs_1.25 MHz arrays, each (1, 256, 256): batch, receiver, source. 65,536 receiver\u2013source pairs per frequency; 1,310,720 complex cells. receiver_ix / receiver_iy float32 (1, 256), 1-indexed grid positions, also used as transmitters. Values are complex frequency observations, not measured time RF, calibrated Pa, clinical tissue maps or scanner acquisition evidence. No sample interval, pulse waveform, noise distribution or time window defined.</p>",
+          "helpers": "<p>Metadata grid 480 \u00d7 480, spacing 50 \u00b5m, background 1480 m/s, bounds 1300\u20131700 m/s, 256 active of 512 ring transducers, subsample factor 2. Twenty frequencies 0.3\u20131.25 MHz in 0.05 steps. Metadata domain_size_cm=[24,24] conflicts with 480 \u00d7 50 \u00b5m = 24 mm = 2.4 cm; centre span 479 \u00d7 50 \u00b5m = 23.95 mm. Preserve conflict, do not claim patient FOV. baseline_reference.npz:vp_reconstructed float32 (1,480,480) is a prior 20-frequency reconstruction in m/s, not phantom truth. All three original inventory Conditions retained.</p>",
+          "tools": "<p>No source imports: main unconditionally selects a CUDA device (default 0). Native displays select receiver/source indices 0,2,\u2026254 for dobs_0.3 /0.8 /1.25 real component (128 \u00d7 128). Each grayscale uses its own maximum absolute native real component: floor(255 \u00d7 (real / max_abs + 1)/2), float64, no resize, interpolation, FFT, wave solve or inversion. Black negative, midgray zero, white positive; scales are arbitrary observation amplitude, different across frequencies. Three source-zero profiles retain all 256 receiver real/imaginary cells exactly in JSON. Native values are synthetic observations, not toy measurements or outputs.</p>",
+          "reference": "<p>No ground_truth.npz. End-to-end visible paths README.md/data/requirements.txt stage the entire data directory, including baseline_reference.npz; the baseline is solver-visible. Evaluation and source trees are not default-staged. Generic first candidate evaluation/reference_outputs/reconstruction.npy is a different saved reconstruction, not raw phantom truth. Saved baseline_reference.npy equals data baseline cells exactly; saved reconstruction differs by maximum 131.6034 m/s. Saved speed maps remain audit only, never image/display/outcome. Reader-only late reveal teaches selection and denominators; covered on backward/exit/reset before paint.</p>",
+          "spec": "<p>README Helmholtz (\u2207\u00b2 + \u03c9\u00b2s\u00b2)u = \u2212rho, s=1/c. rho denotes source term, not density. No independent mass-density map, attenuation, optical fluence or clinical property inference. Constant-density slowness forward model. Frequency passed as MHz \u00d7 10 in internal 100 kHz units; grid dh in \u00b5m. setup pixel_size=lamb/ppw=1/8, scale=dh/pixel_size; lamb_val=mean(speed)/(freq\u00d7scale), k0=2\u03c0/lamb_val. Dimension conventions are code-pinned, not independently calibrated SI pressure. Boundary argument 20 is multiplied by ppw 8 to 160 padded cells. CBS max iterations loop uses born_max 500; computed max_iterations is unused. Stop checks incremental-field energy/init energy &lt;1e\u22125 or iteration&gt;=500 only at phase-cycle boundary; no current residual/convergence certificate. Final native field = \u2212conj(E).T/dh\u00b2 \u00d7 2.5e10, not an unscaled textbook field.</p>\n<p>Receiver restriction index (iy\u22121)\u00d7ny+ix\u22121; forward returns transpose/conjugate. Keep these exact axes, not a guessed C-order receiver orientation. Authored asymmetric-grid test distinguishes swapped indices; no native forward/adjoint evaluated. 7500 \u00b5m muting uses Euclidean grid distance \u00d750\u00b5m, keep distance&gt;=7500. mask_esi excludes near/self pairs; mask_misfit also excludes exactly zero observations. No physical attenuation correction or new noise draw.</p>\n<p>Source amplitude alpha = sum(conj(dsrc)\u00d7dobs)/sum(abs(dsrc)\u00b2), per source after muting. Denominator has no zero guard. Authored real vectors dsrc=[1,2], dobs=[2,4] give alpha=2; this is mathematics, not a fitted native result. Cost sums squared complex residual across sources/receivers, not average or half-cost. Gradient contracts forward fields with conjugate residual, \u2212real(u\u00d7q)\u00d72\u03c9\u00b2/vp, transposes and divides 1e10. No independent adjoint or finite-difference verification; gradient smoothing 9 \u00d7 9 Gaussian sigma 5 at \u22640.3 MHz, sigma 2 at &lt;0.8, sigma 1 thereafter, zero-pad 4. It is optimization smoothing in grid cells, not measurement noise or image truth.</p>\n<p>Initial homogeneous speed 1480 m/s. NCG slowness bounds 1/1700 to 1/1300; Polak\u2013Ribiere beta clamped nonnegative, More\u2013Thuente line search max 5 evaluations, max 3 iterations per frequency. Multi mode bootstraps low to high over 20 frequencies; single mode uses selected frequency. Initial objective/gradient scaling lacks zero guards; line-search warning can continue. Runtime CUDA/PyTorch/SymPy versions, physical unit consistency and end-to-end success unverified. No CBS/NCG/wave inversion/metric executed; no model or learned denoiser in this task.</p>",
+          "output": "<p>Generic participant output/reconstruction.npy intended real 480\u00d7480 sound speed m/s (230,400 cells). Source main instead writes evaluation/reference_outputs/reconstruction.npy in multi mode, reconstruction_{freq:g}.npy single mode, per-frequency maps and metrics.json. This path mismatch is not resolved by showing source files as participant outputs. Actual output, reconstruction, clean truth and metrics empty.</p>",
+          "score": "<p>Source NCC cosine and NRMSE RMSE/reference range against baseline_reference.npz, no mean-centering. Filesystem generic first existing reference is saved reconstruction.npy, returned regardless of output target shape before a later shape check; full 230,400 pixels; squeeze, complex\u2192magnitude, float64; NRMSE=RMSE/reference range, the same range-normalized formula as source, with a DIFFERENT reference array. Retained audit\u2019s norm-relative source NRMSE assumption is corrected by the newly pinned visualization.py. Filesystem has no output flux/max normalization. The no-filesystem route instead requires evaluation/reference_outputs/ground_truth.npy or data/ground_truth.npy, both absent in the official pinned USCT listing; it errors before the comparison. Its generic fallback snippet would require strictly 2D output and apply flux rescaling/norm-relative NRMSE if that missing file were supplied, unlike the filesystem contract. No fallback reference is automatically invented; speed offset/background affects cosine correlation. Generic additional MSE/PSNR/global SSIM are not clinical tissue validation. main metrics keys ncc_vs_ref/nrmse_vs_ref/mode/freq lack generic ncc_boundary/nrmse_boundary, so no pass/fail threshold under this source boundary schema; no score computed. Generic reference is another reconstruction, not independent speed truth. Do not claim recovered anatomy, diagnosis or convergence/performance.</p>",
+          "challenge": "<p>A wave solver must explain diffraction and refraction; local minima can survive a low residual.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26962,9 +27065,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 135,
+    "reviewed-scripted-planar": 136,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 43,
+    "blocked-source-contract": 42,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

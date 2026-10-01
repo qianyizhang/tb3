@@ -1,3 +1,4 @@
+import { imagingUsctFwiPack } from './imaging101-usct-fwi';
 import { imagingUltrasoundSosPack } from './imaging-ultrasound-sos';
 import { imagingPnpMriPack } from './imaging101-pnp-mri-reconstruction';
 import { imagingPlaneWavePack } from './imaging101-plane-wave-ultrasound';
@@ -142,6 +143,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-usct-fwi-v1',
     'imaging-ultrasound-sos-v1',
     'imaging101-pnp-mri-reconstruction-v1',
     'imaging101-plane-wave-ultrasound-v1',
@@ -1371,6 +1373,17 @@ export function storyPresentation(plan: StoryPlan): {
           ['#73c7e6', 'Native noisy source sample'],
           ['#eeb989', 'Source baseline rule'],
           ['#92d9ae', 'Selected native sample'],
+        ],
+      };
+    case 'imaging101-usct-fwi-v1':
+      return {
+        heading: 'Native complex observations and acoustic inversion boundaries',
+        corner: 'Numerical phantom signals; truth and participant map absent',
+        warning: imagingUsctFwiPack.source.notice,
+        legend: [
+          ['#000000', 'Negative real observation endpoint; per-frequency scale'],
+          ['#808080', 'Zero real observation component; no calibrated pressure'],
+          ['#ffffff', 'Positive real observation endpoint; per-frequency scale'],
         ],
       };
     case 'bcer-brain-full-v1':
