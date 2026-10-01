@@ -1,3 +1,4 @@
+import { automedVqaRadPack } from './automed-vqa-rad';
 import { automedOmniPack } from './automedbench-full-vqa-omnimedvqa-task';
 import { automedKvasirPack } from './automedbench-full-vqa-kvasir-task';
 import { automedSlakePack } from './automed-slake';
@@ -123,6 +124,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-vqa-rad-v1',
     'automed-omni-v1',
     'automed-kvasir-v1',
     'automed-slake-v1',
@@ -1137,6 +1139,13 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Source QA; image and Full IDs absent',
         warning: automedOmniPack.source.notice,
         legend: [['#e8bd6d', 'Dashed amber box: reader-only public README annotation']],
+      };
+    case 'automed-vqa-rad-v1':
+      return {
+        heading: 'Link VQA-RAD image and short-answer contract',
+        corner: 'Native train question · symbolic Full contract',
+        warning: automedVqaRadPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

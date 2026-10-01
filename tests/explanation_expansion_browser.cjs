@@ -27,6 +27,7 @@ const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 const cardiacRecipes = new Set([
   'automed-slake-v1',
   'automed-pathvqa-v1',
+  'automed-vqa-rad-v1',
   'automed-omni-v1',
   'automed-kvasir-v1',
   'automed-medxpert-mm-v1',
@@ -125,6 +126,16 @@ function cardiacSelectors(plan) {
       readerControlled: true,
       output: '[data-pathvqa-scene="output"] pre',
       aside: '[data-pathvqa-output]',
+    };
+  if (plan.recipe === 'automed-vqa-rad-v1')
+    return {
+      scene: 'data-vqa-rad-scene',
+      reference: '[data-vqa-rad-public-annotation]',
+      referenceChannel: null,
+      readerControlled: true,
+      referencePolicy: 'no-reference-assets',
+      output: '[data-vqa-rad-output-schema]',
+      aside: '[data-vqa-rad-output]',
     };
   if (plan.recipe === 'automed-omni-v1')
     return {
@@ -690,6 +701,12 @@ async function checkSourceWarning(page, plan) {
       /Public PathVQA train example only.*Full split\/private answer absent/s,
       'https://huggingface.co/datasets/flaviagiammarino/path-vqa',
       'data-pathvqa-scene',
+      false,
+    ],
+    'automed-vqa-rad-v1': [
+      /Public train example only.*exact Full case and private answer absent/s,
+      'https://osf.io/89kps/',
+      'data-vqa-rad-scene',
       false,
     ],
     'automed-omni-v1': [
@@ -1497,6 +1514,165 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await absent();
     await page.locator(`[data-story-step="${beat('reference')}"]`).click();
     await absent();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+  }
+  if (plan.recipe === 'automed-vqa-rad-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const beat = (name) => plan.beats.findIndex((b) => b.id === name),
+      scene = page.locator('[data-vqa-rad-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-vqa-rad-public-annotation]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    const native = await scene
+      .locator('img')
+      .evaluate((img) => ({ src: img.currentSrc, w: img.naturalWidth, h: img.naturalHeight }));
+    assert.deepEqual([native.w, native.h], [566, 555]);
+    assert.equal(
+      require('node:crypto')
+        .createHash('sha256')
+        .update(Buffer.from(native.src.split(',')[1], 'base64'))
+        .digest('hex'),
+      '379dff334415856e4ee966f9abfcba8d50f2a2a3534d4965bbd6c462baeaada2',
+    );
+    assert.match(
+      await scene.innerText(),
+      /are regions of the brain infarcted\?.*no native question ID.*No source answer.*no DICOM geometry/s,
+    );
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public training annotation', exact: true });
+    await reveal().click();
+    assert.match(
+      await page.locator('[data-vqa-rad-public-annotation]').innerText(),
+      /^yes.*Public train annotation.*not Full gold, diagnosis or model output/s,
+    );
+    await capture('public-annotation-revealed');
+    await scene
+      .getByRole('button', { name: 'Hide public training annotation', exact: true })
+      .click();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+      plan.beats[beat('helper')].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await reveal().click();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    await reveal().click();
+
+    await scene
+      .getByRole('button', { name: 'Hide public training annotation', exact: true })
+      .click();
+    await absent();
+    await reveal().click();
+    await page.locator(`[data-story-step="${beat('operation')}"]`).click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('helper')}"]`).click();
+    await absent();
+    await page.locator(`[data-story-step="${beat('operation')}"]`).click();
+    const op = plan.beats.find((b) => b.scene === 'operation');
+    for (let j = 0; j < 4; j++) {
+      let best = 0,
+        d = Infinity;
+      for (let k = 0; k < op.frames; k++) {
+        const u = k / op.frames,
+          z = u * u * (3 - 2 * u),
+          v = Math.abs(z - j / 3);
+        if (v < d) {
+          d = v;
+          best = k;
+        }
+      }
+      await page.locator(`[data-vqa-rad-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        op.startFrame + best,
+      );
+      assert.equal(
+        await page.locator('[data-vqa-rad-currentstep]').getAttribute('data-vqa-rad-currentstep'),
+        String(j),
+      );
+      assert.equal(
+        await page.locator(`[data-vqa-rad-step="${j}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    assert.match(
+      await page.locator('[data-vqa-rad-tier]').innerText(),
+      /six candidates.*five.*wrongly says multiple-choice.*open-ended.*unverified/s,
+    );
+    await capture('tier-standard');
+    await scene.getByRole('button', { name: 'Inspect calibration rule', exact: true }).click();
+    assert.match(
+      await page.locator('[data-vqa-rad-calibration]').innerText(),
+      /first15.*missing gold dropped.*lacks top-up.*>=10.*optional gold.*smoke1-10.*unaudited/s,
+    );
+    await capture('calibration-revealed');
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('operation')}"]`).click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.equal(await page.locator('[data-vqa-rad-calibration]').count(), 0);
+    await page.locator(`[data-story-step="${beat('output')}"]`).click();
+    assert.equal(await page.locator('[data-vqa-rad-format]').count(), 0);
+    await scene.getByRole('button', { name: 'Inspect format checks', exact: true }).click();
+    assert.match(
+      await page.locator('[data-vqa-rad-format]').innerText(),
+      /Six keys.*label ignored.*No five-word.*bool\/nonfinite/s,
+    );
+    await capture('format-revealed');
+    await absent();
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    assert.equal(await page.locator('[data-vqa-rad-format]').count(), 0);
+    const branches = [
+      [
+        'accuracy',
+        /strict normalized yes\/no.*0.5EM\+0.5tokenF1.*all discovered.*Missing\/invalid\/placeholder/s,
+      ],
+      [
+        'judge',
+        /replaces primary accuracy.*all evaluator-supplied question IDs.*Only parsed records.*fallback/s,
+      ],
+      ['format gate', /Every file strict-valid.*fraction>=0.5.*max\(expected,1\)/s],
+    ];
+    for (let j = 0; j < branches.length; j++) {
+      const [n, re] = branches[j];
+      await scene.getByRole('button', { name: n, exact: true }).click();
+      assert.match(await page.locator('[data-vqa-rad-metric]').innerText(), re);
+      await capture(`metric-${j}`);
+      await absent();
+    }
+    await page.locator('.scene-reset').click();
+    await page.locator(`[data-story-step="${beat('limits')}"]`).click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'accuracy', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
     await page.locator('[data-story-step="0"]').click();
     await absent();
   }
@@ -3936,7 +4112,8 @@ async function reviewCardiacInteractions(page, plan, output, label) {
   if (selectors.referenceChannel === null) {
     assert.equal(
       plan.reference_policy,
-      selectors.readerControlled ? 'reader-reference-reveal' : 'no-reference-assets',
+      selectors.referencePolicy ||
+        (selectors.readerControlled ? 'reader-reference-reveal' : 'no-reference-assets'),
     );
     await page.locator('.scene-reset').click();
     await page.waitForFunction(
@@ -7048,6 +7225,7 @@ withBrowser(async (browser) => {
     const planar = [
       'automed-slake-v1',
       'automed-pathvqa-v1',
+      'automed-vqa-rad-v1',
       'automed-omni-v1',
       'automed-kvasir-v1',
       'automed-medxpert-mm-v1',

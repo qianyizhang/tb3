@@ -1,0 +1,16 @@
+{
+  "calibration": "Task S3 first15 with public gold; missing gold dropped, checklist requires >=15 but example lacks top-up. Generic verifier >=10 with optional gold; smoke1-10 separate. Calibration/private separation unaudited.",
+  "initially_visible": false,
+  "public_answer": "yes",
+  "public_answer_role": "Public train annotation \u00b7 educational reveal only; not Full gold, diagnosis or model output",
+  "reset": "Scene exit and backward replay; explicit hide",
+  "tiers": {
+    "lite": "Fixed microsoft/llava-med-v1.5-mistral-7b via LLaVA-Med loader/conversation prompt. No inference used.",
+    "standard": "Standard S1 compares six candidates incl LLaVA; model_info lists five and wrongly says multiple-choice. Config/S1 open-ended; availability/performance unverified."
+  },
+  "tools": [
+    "inspect_image: dimensions/intent/log, not diagnosis",
+    "public_medical_search: whitelist/sanitization, not proof of isolation",
+    "submit_answer: WORKSPACE_DIR/<question_id>/answer.json"
+  ]
+}
