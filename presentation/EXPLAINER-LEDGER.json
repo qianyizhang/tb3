@@ -15320,36 +15320,126 @@
       }
     },
     {
-      "entry_id": "imaging101-pet-mlem",
-      "title": "Reconstruct tracer activity from PET counts",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-pet-mlem/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pet_mlem",
+      "actual_data_gap": "Native synthetic sinogram/background retained; no participant reconstruction or calibrated patient uptake. Simplified Radon model lacks attenuation, detector normalization, separate scatter, timing and scanner-unit calibration; exact discrete adjoint/runtime not established.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-pet-mlem.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-reconstruction",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Projection geometry and the maximum-likelihood expectation-maximization update model. The assistance level can add an approach and software design.",
+        "output": "A 2D tracer-activity image.",
+        "raw": "Poisson-distributed PET projection counts.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pet_mlem/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-pet-mlem.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D tracer-activity image.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-pet-mlem",
+      "illustration_basis": "mixed",
+      "illustration_kind": "pet",
       "modalities": [
         "pet"
       ],
-      "illustration_kind": "pet",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "reconstruction-ct-mri",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-pet-mlem.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D tracer-activity image.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "Poisson-distributed PET projection counts.",
-        "helpers": "Projection geometry and the maximum-likelihood expectation-maximization update model. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A 2D tracer-activity image.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native synthetic scaled-count sinogram/profiles with symbolic Poisson/background/MLEM/OSEM contracts after main16-pin/40-image source/visual/export/mobile/no-GPU/reference review. Source activity truth solver-visible; masked/full/evaluator lineage qualified, current reconstruction/score absent; no patient uptake or exact-adjoint/convergence claim.",
+      "source_brief_sha256": "08d660829cdc8c8334f31d26654cc2819aa12467950741dfab17a552937b10be",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-pet-mlem-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-pet-mlem-resolution.json",
+        "receipt_sha256": "0263b7132f8c552807c441c21ccc747bd0073bb3579e10c197e7d1011e7f77d3",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T14:12:31.621548+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-pet-mlem/source-audit-final-01.json",
+        "audit_sha256": "f603aad58e844cb51b61ebb4a5f212b5d8119fa5fe9f9bdc18e64eb3ce49b083",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-pet-mlem",
+      "subject": null,
+      "title": "Reconstruct tracer activity from PET counts",
+      "warning_text": "Synthetic scaled-count sinogram only; no patient study, participant activity image or score.",
+      "acceptance_scope": "Native synthetic PET scaled-count sinogram and background profiles with symbolic Poisson/MLEM/OSEM contracts; source activity truth solver-visible, saved reconstruction historical. No patient scan, participant image, projection/backprojection/reconstruction, likelihood/metric verdict or clinical uptake; no source operator/solver/scorer/task/model execution.",
+      "completion_review": {
+        "date": "2026-10-01T14:30:03.671343+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "cb72c954e79018816e52fd0877e1d4a910d7c148dc1b4fd8eb320bf15470236c"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace PET counts and multiplicative updates without inventing an activity image",
+        "goal": "Show native measurement bins and background; use authored scalar mechanics to explain source MLEM and OSEM.",
+        "value": "Not yet specified.",
+        "raw": "One modified Shepp-Logan synthetic condition, not a patient PET study. sinogram/background float32 (1, 128, 120), batch then radial bin then angle; theta float32 (1, 120), degrees 0, 1.5, \u2026178.5. There are 15,360 measurement bins and 16,384 intended image pixels. Radial indices are not calibrated detector positions or millimetres; no 3D, time-of-flight or motion axis. Synthetic assigned activity is relative units, not SUV, Bq/mL, dose or clinical uptake.\n\nGenerator forms clean Radon projection, adds uniform background, draws C ~ Poisson(1000 \u00d7 (A x + r)), then stores y=C/1000 as float32. Native y is not integer photon counts. Background r\u224810.928186 relative projection units, same scale as y; C and expected count level would require multiplication by 1000. Metadata count_level is a scaling factor, not total events per image/bin or scan duration. randoms_fraction .1 multiplies the mean of positive clean bins, not 10% of all measured coincidences; separate scatter/attenuation/normalization arrays absent. Seed 42 is a declared generator default, not a new sampling or reconstruction run.",
+        "helpers": "Uniform background estimate, projection angles, metadata image size 128, count scale 1000 and source code. Background additive in expected Ax+r; source main does not pre-subtract randoms. Some observed bins are below background, so clipping a subtracted sinogram would change the likelihood/data. No separately measured randoms/scatter uncertainty, detector efficiency, attenuation map, scatter model or absolute activity calibration established.",
+        "tools": "Pinned scikit-image Radon(circle=True) and unfiltered iradon(filter_name=None, output_size 128,circle=True) scaffold. Source calls backprojector adjoint, but interpolation and normalization do not establish an exact discrete Euclidean transpose; exact runtime/kernel/version not pinned here. Denote it B in code mechanics. No Radon, backprojection, FBP, reconstruction or evaluator executed.\n\nNative sinogram PNG maps every 128\u00d7120 cell directly: grayscale floor 255*clip(float64(y)/220,0,1). Same relative-unit scale; columns are angle indices, rows radial indices, no resize/interpolation/log transform. Interactive profiles expose source columns 0/60/119 (0\u00b0/90\u00b0/178.5\u00b0), 128 radial values each. Teal observed y, gray uniform r, x radial index, y counts/1000. These are input profiles, not reconstructed activity, line-of-response calibration or fitted noise.",
+        "reference": "Source-visible ground_truth.npz:activity_map float32 (1,128,128), assigned phantom values. Local runner stages entire data directory. Synthetic truth is not clinical uptake or held-out private data. Source saved recon_mlem.npz and likelihood are historical source results; no output or reference image bundled. Later reader card reveals rules only, synchronously covered on exit/backward/reset before paint.",
+        "spec": "Poisson count model includes background in mean, positivity floors 1e\u221210 and uniform initial x=1 unless custom x_init. Sensitivity=max(B1,1e\u221210), expected=max(Ax+r,1e\u221210), ratio=y/expected, x\u2190max(x/sensitivity \u00d7 B(ratio),1e\u221210). Source MLEM 50 updates; no explicit penalty, prior, stopping criterion or uptake normalization.\n\nOSEM 10 full cycles, 6 interleaved angle subsets [s,s+6,\u2026] of 20 angles each: 60 subset updates, not 10 or 50 MLEM-equivalent iterations. Recomputes subset sensitivity, uses matching subset background/measurements; order retained. Source main runs MLEM/OSEM only, no FBP variant. iradon with filter_name=None is unfiltered backprojection, not ramp-filtered FBP. No monotonicity, convergence or performance inferred from source inspection.\n\nSource MLEM history stores \u03a3(y log(expected)\u2212expected) using expected before update; OSEM recomputes expected after each full cycle. Uses scaled y rather than raw C, omits exposure 1000 and log-factorial constants. Exposure factor does not affect the ideal optimizer at fixed scale, but changes likelihood magnitude; histories/timing are not directly equivalent iteration evidence. No history generated or compared here.\n\nAuthored scalar A=3, x=2, r=2, y=8 gives x_new=2 through multiplicative correction. Omitting background gives 8/3 instead; illustrates role only, not native reconstruction. Uniform backprojector scaling would cancel in numerator/sensitivity for a fixed ideal operator; does not repair interpolation/mismatched adjoints or prove likelihood increase.",
+        "output": "Generic participant output/reconstruction.npy, comparable 128\u00d7128 relative activity image. Source main instead writes evaluation/reference_outputs/recon_mlem.npz and recon_osem.npz with batch-first reconstruction and log_likelihood arrays; output directory contains figures. Actual participant image/score empty, saved source output never substituted.",
+        "score": "Source main evaluates activity>0 mask: 7,379 pixels, reference range .5..6 (5.5 relative units). Full image has 16,384 pixels and 0..6 range; source masked metrics differ from generic full-image comparison. Generic selector can choose sole activity_map by shape/key, squeezes, converts complex to magnitude, float64 with no scale/flux normalization or activity mask. NCC is cosine, not mean-centered Pearson; range NRMSE/MSE/PSNR/globalSSIM. No numerical score computed.\n\nFilesystem generic scorer selects activity_map from data/ground_truth.npz and squeezes its (1,128,128) shape to (128,128); scaled y is not a raw integer count array. No-filesystem scoring instead requires generic ground_truth.npy, absent from both data and reference_outputs in the pinned tree. No metrics.json boundary file is listed; main.py derived masked-baseline thresholds are a source recipe, not a retained generic verdict.\n\nSource main boundaries .9*max(NCC_MLEM,NCC_OSEM),1.1*min(NRMSE_MLEM,NRMSE_OSEM) may take best values from different methods; comment says best OSEM but code selects independently. Both installed generic thresholds required for pass. Threshold values/selected live reference not retained as current verdict here; masked baseline cannot silently qualify an unmasked comparison. No clinical or model performance.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native scaled-count sinogram with explicit synthetic/input-only gap and acquisition route.",
+          "Canonical Poisson/background, three native angle profiles, source MLEM/OSEM rules.",
+          "Empty participant activity output; later source-truth/evaluator denominators with reset/exit/backward cover."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -15369,34 +15459,47 @@
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned README",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pet_mlem/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned generator",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pet_mlem/src/generate_data.py"
+          ],
+          [
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/pet_mlem/src/solvers.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pet_mlem"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-pet-mlem-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "ee7cb8f8ffd74d580f55cf2d0ddb48b1c5d07c9a37bd9e4bd03ee0718ecdd462",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-pet-mlem.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A 2D tracer-activity image.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Show native measurement bins and background; use authored scalar mechanics to explain source MLEM and OSEM.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>One modified Shepp-Logan synthetic condition, not a patient PET study. sinogram/background float32 (1, 128, 120), batch then radial bin then angle; theta float32 (1, 120), degrees 0, 1.5, \u2026178.5. There are 15,360 measurement bins and 16,384 intended image pixels. Radial indices are not calibrated detector positions or millimetres; no 3D, time-of-flight or motion axis. Synthetic assigned activity is relative units, not SUV, Bq/mL, dose or clinical uptake.</p>\n<p>Generator forms clean Radon projection, adds uniform background, draws C ~ Poisson(1000 \u00d7 (A x + r)), then stores y=C/1000 as float32. Native y is not integer photon counts. Background r\u224810.928186 relative projection units, same scale as y; C and expected count level would require multiplication by 1000. Metadata count_level is a scaling factor, not total events per image/bin or scan duration. randoms_fraction .1 multiplies the mean of positive clean bins, not 10% of all measured coincidences; separate scatter/attenuation/normalization arrays absent. Seed 42 is a declared generator default, not a new sampling or reconstruction run.</p>",
+          "helpers": "<p>Uniform background estimate, projection angles, metadata image size 128, count scale 1000 and source code. Background additive in expected Ax+r; source main does not pre-subtract randoms. Some observed bins are below background, so clipping a subtracted sinogram would change the likelihood/data. No separately measured randoms/scatter uncertainty, detector efficiency, attenuation map, scatter model or absolute activity calibration established.</p>",
+          "tools": "<p>Pinned scikit-image Radon(circle=True) and unfiltered iradon(filter_name=None, output_size 128,circle=True) scaffold. Source calls backprojector adjoint, but interpolation and normalization do not establish an exact discrete Euclidean transpose; exact runtime/kernel/version not pinned here. Denote it B in code mechanics. No Radon, backprojection, FBP, reconstruction or evaluator executed.</p>\n<p>Native sinogram PNG maps every 128\u00d7120 cell directly: grayscale floor 255*clip(float64(y)/220,0,1). Same relative-unit scale; columns are angle indices, rows radial indices, no resize/interpolation/log transform. Interactive profiles expose source columns 0/60/119 (0\u00b0/90\u00b0/178.5\u00b0), 128 radial values each. Teal observed y, gray uniform r, x radial index, y counts/1000. These are input profiles, not reconstructed activity, line-of-response calibration or fitted noise.</p>",
+          "reference": "<p>Source-visible ground_truth.npz:activity_map float32 (1,128,128), assigned phantom values. Local runner stages entire data directory. Synthetic truth is not clinical uptake or held-out private data. Source saved recon_mlem.npz and likelihood are historical source results; no output or reference image bundled. Later reader card reveals rules only, synchronously covered on exit/backward/reset before paint.</p>",
+          "spec": "<p>Poisson count model includes background in mean, positivity floors 1e\u221210 and uniform initial x=1 unless custom x_init. Sensitivity=max(B1,1e\u221210), expected=max(Ax+r,1e\u221210), ratio=y/expected, x\u2190max(x/sensitivity \u00d7 B(ratio),1e\u221210). Source MLEM 50 updates; no explicit penalty, prior, stopping criterion or uptake normalization.</p>\n<p>OSEM 10 full cycles, 6 interleaved angle subsets [s,s+6,\u2026] of 20 angles each: 60 subset updates, not 10 or 50 MLEM-equivalent iterations. Recomputes subset sensitivity, uses matching subset background/measurements; order retained. Source main runs MLEM/OSEM only, no FBP variant. iradon with filter_name=None is unfiltered backprojection, not ramp-filtered FBP. No monotonicity, convergence or performance inferred from source inspection.</p>\n<p>Source MLEM history stores \u03a3(y log(expected)\u2212expected) using expected before update; OSEM recomputes expected after each full cycle. Uses scaled y rather than raw C, omits exposure 1000 and log-factorial constants. Exposure factor does not affect the ideal optimizer at fixed scale, but changes likelihood magnitude; histories/timing are not directly equivalent iteration evidence. No history generated or compared here.</p>\n<p>Authored scalar A=3, x=2, r=2, y=8 gives x_new=2 through multiplicative correction. Omitting background gives 8/3 instead; illustrates role only, not native reconstruction. Uniform backprojector scaling would cancel in numerator/sensitivity for a fixed ideal operator; does not repair interpolation/mismatched adjoints or prove likelihood increase.</p>",
+          "output": "<p>Generic participant output/reconstruction.npy, comparable 128\u00d7128 relative activity image. Source main instead writes evaluation/reference_outputs/recon_mlem.npz and recon_osem.npz with batch-first reconstruction and log_likelihood arrays; output directory contains figures. Actual participant image/score empty, saved source output never substituted.</p>",
+          "score": "<p>Source main evaluates activity&gt;0 mask: 7,379 pixels, reference range .5..6 (5.5 relative units). Full image has 16,384 pixels and 0..6 range; source masked metrics differ from generic full-image comparison. Generic selector can choose sole activity_map by shape/key, squeezes, converts complex to magnitude, float64 with no scale/flux normalization or activity mask. NCC is cosine, not mean-centered Pearson; range NRMSE/MSE/PSNR/globalSSIM. No numerical score computed.</p>\n<p>Filesystem generic scorer selects activity_map from data/ground_truth.npz and squeezes its (1,128,128) shape to (128,128); scaled y is not a raw integer count array. No-filesystem scoring instead requires generic ground_truth.npy, absent from both data and reference_outputs in the pinned tree. No metrics.json boundary file is listed; main.py derived masked-baseline thresholds are a source recipe, not a retained generic verdict.</p>\n<p>Source main boundaries .9<em>max(NCC_MLEM,NCC_OSEM),1.1</em>min(NRMSE_MLEM,NRMSE_OSEM) may take best values from different methods; comment says best OSEM but code selects independently. Both installed generic thresholds required for pass. Threshold values/selected live reference not retained as current verdict here; masked baseline cannot silently qualify an unmasked comparison. No clinical or model performance.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26459,9 +26562,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 130,
+    "reviewed-scripted-planar": 131,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 48,
+    "blocked-source-contract": 47,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

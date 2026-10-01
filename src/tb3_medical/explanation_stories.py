@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "imaging101-pet-mlem-v1": "retained-imaging101-pet-mlem-source-v1",
     "imaging101-varnet-v1": "retained-imaging101-varnet-source-v1",
     "imaging101-t2-mapping-v1": "retained-imaging101-t2-mapping-source-v1",
     "imaging101-sense-v1": "retained-imaging101-sense-source-v1",
@@ -850,6 +851,21 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-imaging101-pet-mlem-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "SOURCE-LICENSE.txt",
+            "sinogram.png",
+        },
+    ),
     "retained-imaging101-varnet-source-v1": (
         "source-records",
         "reference.json",
@@ -2440,6 +2456,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class ImagingPetMlemChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4463,6 +4485,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class ImagingPetMlemBeat(ExpansionBeat[ImagingPetMlemChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingPetMlemStory(Story[ImagingPetMlemChannels]):
+    recipe: Literal["imaging101-pet-mlem-v1"]
+    beats: tuple[ImagingPetMlemBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class ImagingVarNetBeat(ExpansionBeat[ImagingVarNetChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -5405,6 +5448,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPetMlemStory
     | ImagingVarNetStory
     | ImagingT2MappingStory
     | ImagingSenseStory
@@ -5547,6 +5591,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPetMlemStory
     | ImagingVarNetStory
     | ImagingT2MappingStory
     | ImagingSenseStory
@@ -5849,6 +5894,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | ImagingPetMlemStory
     | ImagingVarNetStory
     | ImagingT2MappingStory
     | ImagingSenseStory
@@ -6168,6 +6214,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "retained-imaging101-pet-mlem-source-v1": (
+                "PET-native-scaled-count-sinogram-plus-symbolic-update",
+                "MIT",
                 None,
             ),
             "retained-imaging101-varnet-source-v1": (
@@ -6495,6 +6546,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "radial-index, angle-degrees, counts/1000; relative activity"
+                if pack_id == "retained-imaging101-pet-mlem-source-v1"
                 else "unitless"
                 if pack_id == "retained-imaging101-varnet-source-v1"
                 else "unitless"
@@ -6647,6 +6700,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-imaging101-pet-mlem-source-v1"
             or pack_id == "retained-imaging101-varnet-source-v1"
             or pack_id == "retained-imaging101-t2-mapping-source-v1"
             or pack_id == "retained-imaging101-sense-source-v1"
@@ -6746,6 +6800,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 else "input-preview"
                 if pack_id == "retained-imaging101-varnet-source-v1"
                 and name in ("kspace-0.png", "kspace-7.png", "kspace-14.png")
+                else "input-preview"
+                if pack_id == "retained-imaging101-pet-mlem-source-v1" and name in ("sinogram.png",)
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -6812,6 +6868,9 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-imaging101-varnet-source-v1" and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-imaging101-pet-mlem-source-v1"
+                    and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"

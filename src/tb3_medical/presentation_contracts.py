@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class ImagingPetMlemChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class ImagingPetMlemBeat(ExpansionBeat):
+    channels: ImagingPetMlemChannels
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class ImagingPetMlemPlan(ExpansionPlan):
+    recipe: Literal["imaging101-pet-mlem-v1"]
+    beats: list[ImagingPetMlemBeat]
+
+
 class ImagingVarNetChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2739,6 +2755,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | ImagingPetMlemPlan
     | ImagingVarNetPlan
     | ImagingT2MappingPlan
     | ImagingSensePlan

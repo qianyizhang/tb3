@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-pet-mlem-v1',
   'imaging101-varnet-v1',
   'imaging101-t2-mapping-v1',
   'imaging101-sense-v1',
@@ -122,6 +123,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-pet-mlem-v1')
+    return {
+      scene: 'data-imaging-pet-mlem-scene',
+      reference: '[data-imaging-pet-mlem-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-pet-mlem-scene="output"] code',
+      aside: '[data-imaging-pet-mlem-output]',
+    };
   if (plan.recipe === 'imaging101-varnet-v1')
     return {
       scene: 'data-imaging-varnet-scene',
@@ -826,6 +836,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-pet-mlem-v1': [
+      /Synthetic scaled-count sinogram only; no patient study, participant activity image or score./s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pet_mlem',
+      'data-imaging-pet-mlem-scene',
+      false,
+    ],
     'imaging101-varnet-v1': [
       /Actual fastMRI-derived k-space; promised checkpoint absent, no participant reconstruction.*Local research use only/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_varnet',
@@ -1781,16 +1797,14 @@ async function reviewCardiacInteractions(page, plan, output, label) {
       );
     };
     const mask = async () => {
-      const rows = await scene
-        .locator('svg rect')
-        .evaluateAll((es) =>
-          es.map((e) => ({
-            x: Number(e.getAttribute('x')),
-            w: Number(e.getAttribute('width')),
-            h: Number(e.getAttribute('height')),
-            fill: e.getAttribute('fill'),
-          })),
-        );
+      const rows = await scene.locator('svg rect').evaluateAll((es) =>
+        es.map((e) => ({
+          x: Number(e.getAttribute('x')),
+          w: Number(e.getAttribute('width')),
+          h: Number(e.getAttribute('height')),
+          fill: e.getAttribute('fill'),
+        })),
+      );
       assert.equal(rows.length, 368);
       rows.forEach((v, j) =>
         assert.deepEqual(v, {
@@ -1913,6 +1927,196 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     assert.match(
       await scene.innerText(),
       /Pinned data tree lacks varnet_knee_state_dict\.pt.*Saved source output cannot establish checkpoint replay or participant\/model outcome.*Exact external fastMRI runtime implementation and source-case identity not established.*retain local-use rights boundary.*Native k-space previews are input evidence only.*No reconstructed finding.*learned outcome.*performance or clinical inference/is,
+    );
+    await capture('limits-contract');
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
+  if (plan.recipe === 'imaging101-pet-mlem-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-pet-mlem-scene]');
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-pet-mlem-reference-revealed]').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async () => {
+      const img = scene.locator('img');
+      assert.equal(await img.count(), 1);
+      const d = await img.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(d.w, 120);
+      assert.equal(d.h, 128);
+      assert.match(
+        d.alt,
+        /Native synthetic sinogram: radial rows, angle columns; grayscale scaled counts, no activity reconstruction/,
+      );
+      assert.ok(d.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(d.src.split(',')[1], 'base64')),
+        sha(fs.readFileSync('presentation/task-explorer/imaging101-pet-mlem/sinogram.png')),
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /Black\s*0\s*→\s*white\s*220.*y=C\s*\/\s*1000.*128 radial rows\s*×\s*120 angle columns.*0°…178\.5°/s,
+      );
+    };
+    const source = JSON.parse(
+      fs.readFileSync('presentation/task-explorer/imaging101-pet-mlem/source.json', 'utf8'),
+    ).native_profiles;
+    const profile = async (m) => {
+      const svg = scene.locator('svg');
+      assert.equal(await svg.count(), 1);
+      assert.match(
+        await svg.getAttribute('aria-label'),
+        new RegExp(
+          `Native scaled-count radial profile at ${[0, 90, 178.5][m]} degrees; no reconstructed activity`,
+        ),
+      );
+      const poly = svg.locator('polyline');
+      assert.equal(await poly.getAttribute('stroke'), '#57d1cc');
+      const points = (await poly.getAttribute('points'))
+        .split(' ')
+        .map((s) => s.split(',').map(Number));
+      assert.equal(points.length, 128);
+      points.forEach((p, j) => {
+        assert.ok(Math.abs(p[0] - (14 + (j * 244) / 127)) < 1e-9);
+        assert.ok(Math.abs(p[1] - (148 - (source.values[m][j] * 140) / 220)) < 1e-9);
+      });
+      const line = svg.locator('line');
+      assert.equal(await line.getAttribute('stroke'), '#b2c2ce');
+      assert.ok(
+        Math.abs(Number(await line.getAttribute('y1')) - (148 - (source.background * 140) / 220)) <
+          1e-9,
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /Teal: native observed y; gray: r=10\.928.*128 radial bins/s,
+      );
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await image();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /15,?360 measurement bins.*relative units.*Poisson draws divided by\s*1,?000.*Background is additive in the mean.*no patient scan or calibrated uptake.*No projection.*backprojection.*reconstruction or score computed/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const steps = ['Poisson + background', 'Native profiles', 'MLEM + OSEM'],
+      branches = ['Angle 0°', 'Angle 90°', 'Angle 178.5°'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branches[m], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[m]);
+        await profile(m);
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-pet-mlem-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /C\s*~\s*Poisson\(1000\s*×\s*\(A x\s*\+\s*r\)\).*y=C\s*\/\s*1000.*Uniform source background.*10\.928.*not subtracted before the fit.*No attenuation.*separate scatter or detector normalization.*Authored A=3.*x=2.*r=2.*y=8.*x_new=2.*scalar rule only.*no native activity image/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        } else if (i === 1) {
+          await profile(m);
+          assert.match(
+            text,
+            /Background and observations share one scale.*Angles\s*0°\s*\/\s*90°\s*\/\s*178\.5°.*native values only.*Some bins can be below background.*no clipping\/subtraction here.*Display choice never changes acquisition.*draws noise or runs a solver.*Radial index is not mm/is,
+          );
+        } else {
+          assert.match(
+            text,
+            /x←x\s*\/\s*\(B1\)\s*×\s*B\(y\s*\/\s*\(Ax\+r\)\).*MLEM:\s*50 updates.*OSEM:\s*10 cycles\s*×\s*6 interleaved subsets\s*=\s*60 updates.*20 angles per subset.*B is unfiltered iradon.*not verified exact transpose or FBP.*Floors\s*1e−10.*no explicit prior.*MLEM history is pre-update.*OSEM post-cycle.*no convergence claim/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await profile(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*128\s*×\s*128 relative activity.*Participant image\s*\/\s*score empty.*Saved source MLEM\/OSEM artifacts are separate from fresh execution or clinical uptake/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await absent();
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-pet-mlem-reference-revealed]').innerText(),
+      /Source mask:\s*7,?379 positive pixels.*range\s*5\.5.*Generic:\s*16,?384 pixels.*range\s*6.*no source mask or scale normalization.*Source baseline thresholds select best NCC and NRMSE independently.*matched live comparison unverified.*No activity or truth image.*likelihood run.*uptake value or score displayed.*Exit\s*\/\s*backward\s*\/\s*reset covers rules/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /Native synthetic sinogram\/background retained.*no participant reconstruction or calibrated patient uptake.*Simplified Radon model lacks attenuation.*detector normalization.*separate scatter.*timing and scanner-unit calibration.*exact discrete adjoint\/runtime not established.*Native measurements are input evidence only.*No reconstructed finding.*likelihood monotonicity.*clinical uptake or numerical performance/is,
     );
     await capture('limits-contract');
     await absent();
@@ -9898,6 +10102,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-pet-mlem-v1',
       'imaging101-varnet-v1',
       'imaging101-t2-mapping-v1',
       'imaging101-sense-v1',

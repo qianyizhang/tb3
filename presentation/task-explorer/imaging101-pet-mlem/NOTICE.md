@@ -1,0 +1,2 @@
+Synthetic scaled-count sinogram only; no patient study, participant activity image or score. https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/pet_mlem
+Gray native scaled counts on fixed 0..220 scale; teal observed profile and gray background. Angles 0/90/178.5 degrees, radial indices. No projection, reconstruction, uptake or metric execution.

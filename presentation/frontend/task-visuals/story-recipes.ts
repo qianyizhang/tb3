@@ -1,3 +1,4 @@
+import { imagingPetMlemPack } from './imaging101-pet-mlem';
 import { imagingVarNetPack } from './imaging101-mri-varnet';
 import { imagingT2MappingPack } from './imaging101-mri-t2-mapping';
 import { imagingSensePack } from './imaging101-mri-sense';
@@ -137,6 +138,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-pet-mlem-v1',
     'imaging101-varnet-v1',
     'imaging101-t2-mapping-v1',
     'imaging101-sense-v1',
@@ -1303,6 +1305,18 @@ export function storyPresentation(plan: StoryPlan): {
           ['#b8b8b8', 'Grayscale native k-space log magnitude; phase hidden'],
           ['#57d1cc', 'Teal: saved sampled columns'],
           ['#122939', 'Dark: unsampled columns'],
+        ],
+      };
+    case 'imaging101-pet-mlem-v1':
+      return {
+        heading: 'Scaled PET counts, background and multiplicative updates',
+        corner: 'Synthetic measurements; no reconstructed activity',
+        warning: imagingPetMlemPack.source.notice,
+        legend: [
+          ['#000000', 'Black: y=0'],
+          ['#ffffff', 'White: y=220 scaled counts'],
+          ['#57d1cc', 'Teal line: native y profile'],
+          ['#b2c2ce', 'Gray line: additive background'],
         ],
       };
     case 'bcer-brain-full-v1':
