@@ -1,0 +1,729 @@
+{
+  "acquisition_route": "https://nihcc.app.box.com/v/DeepLesion",
+  "actual_data_gap": "No matching Full512×512 input, exact split/case mapping or private clean target. Bounded official Box page exceeded64KiB; partial public HTML, no native case. Sigma0.05 is normalized intensity, not HU or clinical low-dose noise. Normalization, seed, spatial/correlation/mean assumptions and clipping unspecified; weights, LPIPS runtime and baseline bands unresolved. No denoised CT or metric.",
+  "attempts": [
+    {
+      "action": "download pinned Full task harness",
+      "attempted_at": "2026-09-29T07:53:36.670845+00:00",
+      "outcome": "HTTP 200; archive SHA-256 matched linked etag; 26 MANIFEST entries verified; contains no image cases or model files.",
+      "source": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "action": "bounded official upstream source metadata/access attempt",
+      "attempted_at": "2026-09-29T07:53:36.670845+00:00",
+      "outcome": "NIH Box source landing page HTTP 200; Images_png folder advertises 57 files/238 GB, no bounded Full-matched case or degradation provenance.",
+      "source": "https://nihcc.app.box.com/v/DeepLesion"
+    },
+    {
+      "action": "Bounded official DeepLesion Box acquisition, retain headers/partialpublicpage and verify Fullarchive/members/sourcecontracts",
+      "source": "https://nihcc.app.box.com/v/DeepLesion",
+      "outcome": "Requestedrange0–16383,max65536bytes,30s. HTTP200 page exceededcap,curl56 stopped at65536bytes. No matchingFull input/privateclean/degradationlineage recovered. Retainedarchive has no image/model/bands. Symbolic authorednoise mechanics only; no noisednativeCT, denoising/inference/metrics/evaluator.",
+      "attempted_at": "2026-09-30T21:52:32.834254+00:00"
+    },
+    {
+      "action": "Validate retained Full archive/MANIFEST, original bounded Box acquisition response and exact source/prompt/scorer contract without runtime imports",
+      "source": "https://nihcc.app.box.com/v/DeepLesion",
+      "outcome": "No repeated GET: original HTTP200 64KiB partial page/curl56 cap and all retained bytes verified; cap is not official absence/access-denial evidence. No matching Full noisy-clean case/degradation mapping in retained package. Source AST/text and authored normalized-noise geometry only; no source processing/model/checker/scorer/task run.",
+      "attempted_at": "2026-10-01T09:19:01.200308+00:00"
+    }
+  ],
+  "brief_sha256": "04a95b5c7006c98301819859eccd42fba34c76494372e67c7a9fc7b7486256e8",
+  "display_warning": "Matching Full DeepLesion input / private target absent; symbolic normalized-noise rules only.",
+  "entry_id": "automedbench-full-deeplesion-denoising-task",
+  "evaluator_run": false,
+  "full_dataset_included": false,
+  "illustration_basis": "symbolic",
+  "kind": "explainer-source-resolution",
+  "label_license": "LicenseRef-DeepLesion-terms-unverified",
+  "model_run": false,
+  "preparer_run": false,
+  "private_reference_available": false,
+  "reference_initially_visible": false,
+  "reopening_condition": "Official DeepLesion Box offers large upstream archives, but exact Full 512×512 cases, degradation seed and private targets are absent; data redistribution rights unresolved.",
+  "resolved_at": "2026-09-29T07:53:36.670845+00:00",
+  "schema": 1,
+  "source_license": "LicenseRef-DeepLesion-terms-unverified",
+  "source_pins": [
+    {
+      "bytes": 15910,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "d7787abb175cffaabf2dced77457d3914deb831e18cbf8f2de5fb02af8d0f823",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 1404,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/task.json",
+      "role": "pinned-harness-contract",
+      "sha256": "95f1482eba3ff1f6c2d96df7639f8906050a0db4b78fcd1b4fd5a7f8b14540dc",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 991,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/config.yaml",
+      "role": "pinned-harness-contract",
+      "sha256": "96cc419129a3be8cf589a7dc865400d6d8baf25a38d5141f9258e36ae6f3a34f",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/format_checker.py",
+      "role": "pinned-harness-contract",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "pinned-harness-contract",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 5127,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/docker/eval/run_eval.py",
+      "role": "pinned-harness-contract",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 2684,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/MANIFEST.sha256",
+      "role": "pinned-harness-contract",
+      "sha256": "9d307703ff534bc4684d2d142fdf5e296addfa7bb3e58b1452af57f3a1ca5f00",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/__init__.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/lite_s1.md",
+      "bytes": 339,
+      "sha256": "22a2bfca2ead5ba79af960af96f9726a16047edff9ec21b9694ae129f9e232c6",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/lite_s1.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/lite_s2.md",
+      "bytes": 327,
+      "sha256": "15e1f63a076854a38d23344903ce8cccd8d64916756a1c7531d143153e03ad9b",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/lite_s2.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/lite_s3.md",
+      "bytes": 333,
+      "sha256": "4a7db6ef13fe91785d7711ee9d010a49ec87f24e8b64a9d30fed1f18fdac33a7",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/lite_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/model_info.yaml",
+      "bytes": 780,
+      "sha256": "57384e587ce052da9095afdf0985baf37338ce288f534b2b22330b12ee320c7f",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/model_info.yaml"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/requirements.txt",
+      "bytes": 81,
+      "sha256": "f386de70b85c0d302ce746ad9f94174158d9c4c935f5cb9784ed5ff794b9a681",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/requirements.txt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/standard_s1.md",
+      "bytes": 378,
+      "sha256": "ae152c8c0a686651eceb3d487cfa8cf350924327240af7ac4269377e7c9ab4b6",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/standard_s1.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/standard_s3.md",
+      "bytes": 317,
+      "sha256": "84bd0efc5005f6b9400bc744d1e182034d679d22300db99bb2c7ba936edaa6d7",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/standard_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-deeplesion-denoising-task/official-response.headers",
+      "bytes": 1357,
+      "sha256": "12cc4af0f292831a350e0d061dc2fdcdfdb372e980207557a863f68c315ae0a9",
+      "role": "bounded-partial-official-response-not-native-image",
+      "url": "https://nihcc.app.box.com/v/DeepLesion"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-deeplesion-denoising-task/official-response.html",
+      "bytes": 65536,
+      "sha256": "c816796b04d1da90e10d923aa61027a3863ddb9bc2376de4c3e2f3b00d1a8f6e",
+      "role": "bounded-partial-official-response-not-native-image",
+      "url": "https://nihcc.app.box.com/v/DeepLesion"
+    }
+  ],
+  "source_saved_output_is_participant_result": false,
+  "task_contract": {
+    "operator": "DeclaredadditiveGaussian sigma.05 normalized domain. No degradation implementation/seed/mean/correlation/clipping/normalization/HUconversion/spatial calibration. Author scalar y=.45 with unknownclean/noise; multiple clean/noise pairs, no native draw or denoising.",
+    "assistance": "FullLite DRUNet public checkpoint unspecified; FullStandard≥3 denoisers≥2 public pretrained neural; BM3D classical may beonebaseline. Inference-only/no training/private target. Related Lite/gallery equivalence unestablished.",
+    "format": "Same512×512 geometry for both input/output, float32finite[0,1] nonconstant and moderatechange in validation. Checkeranyfloating finite2D/private-reference shape acceptsfloat64 and copy/constant/out-of-range; no quality or lesion boundary check. Taskjson/S5 pluralagents_outputs vs tier singularagent_outputs discrepancy.",
+    "metrics": "ConfigmeanSSIM diagnosticsPSNR/LPIPS; runner all3 aligned+cyclicshuffle. SSIM Gaussian/population, rangeprivateCSV orrefmax−min; PSNRfloat32MSE≤1e−12→99; LPIPS Alex independentlyminmax[-1,1],gray3channels,constant→0; no metric/model execution.",
+    "effective": "Declareddeeplesion-denoising-task absent TASK_NORM/RATING_THRESHOLDS; do not inherit ldct-denoising-task windows. Genericnamedclinical equal-third clip((PSNR−20)/30),SSIM,1−LPIPS; unknown-task ratingC ifotherwisevalid, hardfailF invalid/abort/noPSNR/completion<.5. Missingbaselinebands => passrate omitted, blocked_metric_assets remains. Namedclinical not medicalvalidation.",
+    "denominators": "All evaluator-supplied PATIENT_IDS rows, unique patient/slice mapping unknown; metric means independently omit NaNs; score valid PSNR differs checker valid count. Missing predictions remain rows.",
+    "reference_policy": "Late reader-only evaluator/format/noise rules, no private clean target.",
+    "source_access_limit": "Historical Box partial page at64KiB cap/curl56; not complete metadata, no exact Full pair, no evidence of dataset absence or license grant. No new GET, credentials, account or terms acceptance."
+  },
+  "source_files": [
+    {
+      "bytes": 15910,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task.tar.gz",
+      "role": "pinned-full-harness",
+      "sha256": "d7787abb175cffaabf2dced77457d3914deb831e18cbf8f2de5fb02af8d0f823",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 1404,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/task.json",
+      "role": "pinned-harness-contract",
+      "sha256": "95f1482eba3ff1f6c2d96df7639f8906050a0db4b78fcd1b4fd5a7f8b14540dc",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 991,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/config.yaml",
+      "role": "pinned-harness-contract",
+      "sha256": "96cc419129a3be8cf589a7dc865400d6d8baf25a38d5141f9258e36ae6f3a34f",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 2188,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/format_checker.py",
+      "role": "pinned-harness-contract",
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 11295,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/enhancement_scorer.py",
+      "role": "pinned-harness-contract",
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 5127,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/docker/eval/run_eval.py",
+      "role": "pinned-harness-contract",
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "bytes": 2684,
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/MANIFEST.sha256",
+      "role": "pinned-harness-contract",
+      "sha256": "9d307703ff534bc4684d2d142fdf5e296addfa7bb3e58b1452af57f3a1ca5f00",
+      "url": "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/tree/f894057807cc334421784e702ead2c1883583e1b/tasks/enhancement/deeplesion-denoising-task.tar.gz"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/__init__.py"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/lite_s1.md",
+      "bytes": 339,
+      "sha256": "22a2bfca2ead5ba79af960af96f9726a16047edff9ec21b9694ae129f9e232c6",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/lite_s1.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/lite_s2.md",
+      "bytes": 327,
+      "sha256": "15e1f63a076854a38d23344903ce8cccd8d64916756a1c7531d143153e03ad9b",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/lite_s2.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/lite_s3.md",
+      "bytes": 333,
+      "sha256": "4a7db6ef13fe91785d7711ee9d010a49ec87f24e8b64a9d30fed1f18fdac33a7",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/lite_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/model_info.yaml",
+      "bytes": 780,
+      "sha256": "57384e587ce052da9095afdf0985baf37338ce288f534b2b22330b12ee320c7f",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/model_info.yaml"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/requirements.txt",
+      "bytes": 81,
+      "sha256": "f386de70b85c0d302ce746ad9f94174158d9c4c935f5cb9784ed5ff794b9a681",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/requirements.txt"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/standard_s1.md",
+      "bytes": 378,
+      "sha256": "ae152c8c0a686651eceb3d487cfa8cf350924327240af7ac4269377e7c9ab4b6",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/standard_s1.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/deeplesion-denoising-task/standard_s3.md",
+      "bytes": 317,
+      "sha256": "84bd0efc5005f6b9400bc744d1e182034d679d22300db99bb2c7ba936edaa6d7",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/deeplesion-denoising-task/standard_s3.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/env_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/important_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/kickoff.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/common/preamble.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s1_plan/standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/lite.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s2_setup/standard_pro.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s3_validate/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s4_inference/lite_standard.md"
+    },
+    {
+      "path": ".local/explainers/core-20260929/formation-f-source/full/deeplesion-denoising-task/automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5",
+      "role": "pinned-full-task-member",
+      "archive_member": "automedbench-task/source/prompts/s5_submit/all.md"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-deeplesion-denoising-task/official-response.headers",
+      "bytes": 1357,
+      "sha256": "12cc4af0f292831a350e0d061dc2fdcdfdb372e980207557a863f68c315ae0a9",
+      "role": "bounded-partial-official-response-not-native-image",
+      "url": "https://nihcc.app.box.com/v/DeepLesion"
+    },
+    {
+      "path": ".local/explainers/goal-20260930/workers/automedbench-full-deeplesion-denoising-task/official-response.html",
+      "bytes": 65536,
+      "sha256": "c816796b04d1da90e10d923aa61027a3863ddb9bc2376de4c3e2f3b00d1a8f6e",
+      "role": "bounded-partial-official-response-not-native-image",
+      "url": "https://nihcc.app.box.com/v/DeepLesion"
+    }
+  ],
+  "archive_members": [
+    {
+      "member": "automedbench-task/task.json",
+      "bytes": 1404,
+      "sha256": "95f1482eba3ff1f6c2d96df7639f8906050a0db4b78fcd1b4fd5a7f8b14540dc"
+    },
+    {
+      "member": "automedbench-task/source/__init__.py",
+      "bytes": 365,
+      "sha256": "8c899e75b7b9f3924f3bad5f10fba23c56137e5864ee5d95f884a0b5d52eaacb"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/config.yaml",
+      "bytes": 991,
+      "sha256": "96cc419129a3be8cf589a7dc865400d6d8baf25a38d5141f9258e36ae6f3a34f"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/lite_s1.md",
+      "bytes": 339,
+      "sha256": "22a2bfca2ead5ba79af960af96f9726a16047edff9ec21b9694ae129f9e232c6"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/lite_s2.md",
+      "bytes": 327,
+      "sha256": "15e1f63a076854a38d23344903ce8cccd8d64916756a1c7531d143153e03ad9b"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/lite_s3.md",
+      "bytes": 333,
+      "sha256": "4a7db6ef13fe91785d7711ee9d010a49ec87f24e8b64a9d30fed1f18fdac33a7"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/model_info.yaml",
+      "bytes": 780,
+      "sha256": "57384e587ce052da9095afdf0985baf37338ce288f534b2b22330b12ee320c7f"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/requirements.txt",
+      "bytes": 81,
+      "sha256": "f386de70b85c0d302ce746ad9f94174158d9c4c935f5cb9784ed5ff794b9a681"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/standard_s1.md",
+      "bytes": 378,
+      "sha256": "ae152c8c0a686651eceb3d487cfa8cf350924327240af7ac4269377e7c9ab4b6"
+    },
+    {
+      "member": "automedbench-task/source/deeplesion-denoising-task/standard_s3.md",
+      "bytes": 317,
+      "sha256": "84bd0efc5005f6b9400bc744d1e182034d679d22300db99bb2c7ba936edaa6d7"
+    },
+    {
+      "member": "automedbench-task/source/docker/eval/run_eval.py",
+      "bytes": 5127,
+      "sha256": "0733c140a09b84907a1bf99cb41ca3f10ffebcd328c5ffe3f42ffa04dbde574c"
+    },
+    {
+      "member": "automedbench-task/source/enhancement_scorer.py",
+      "bytes": 11295,
+      "sha256": "105dca7da2f01ce213a87f2abfafdbf89a2cbb888fee82808eb3b257e26edbbd"
+    },
+    {
+      "member": "automedbench-task/source/format_checker.py",
+      "bytes": 2188,
+      "sha256": "9424f464a8678e69fbd3b410518a4256b0f34b6b90f604fe3ad9e28189a9b0de"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_lite.md",
+      "bytes": 493,
+      "sha256": "54bd313e0e814bb887ae3ca91ead247b9a95815ce34e37225da343959ae4fe97"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/env_standard.md",
+      "bytes": 397,
+      "sha256": "97234a6827ce976104d781e1afbb8b865e304a4ffb738633d9c8489f732de1fe"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_lite.md",
+      "bytes": 923,
+      "sha256": "6ee77295eb86fc438b18cc8f47127e3fe59607f18e14083bb2424240308a7b94"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/important_standard.md",
+      "bytes": 1105,
+      "sha256": "2629eec73f9fc7c22817cdabd602c6526721b15aef8cfb51d8374e8b8e2b0795"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/kickoff.md",
+      "bytes": 196,
+      "sha256": "12e28a0a2fc859a4b7046704b69416d80d2d35ab93072277cffd50ae5677d921"
+    },
+    {
+      "member": "automedbench-task/source/prompts/common/preamble.md",
+      "bytes": 3455,
+      "sha256": "ec15f361ea77c6fc3c029e08ce728307a8cacc800946b77f93909d4e71658960"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/lite.md",
+      "bytes": 956,
+      "sha256": "2b7c0a00a86b51d3a9a82e86fa5fe9c5628ed48953e063140eacf38231f15917"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s1_plan/standard.md",
+      "bytes": 2141,
+      "sha256": "163277940e5583a72b4029948011ad0b11f629ff396bc93c3fba4c23051577d4"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/lite.md",
+      "bytes": 1723,
+      "sha256": "2e8a9e23de687245ed6c427c02eacc50c5b0790f83fff3b229609310bcad248a"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s2_setup/standard_pro.md",
+      "bytes": 841,
+      "sha256": "9946a0aff861676bf252cefbfefc51151363d2716234fdcde8b5e6a47d1b8ccb"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s3_validate/lite_standard.md",
+      "bytes": 1321,
+      "sha256": "8327f4a9a136d1a77e91cf41208f2d60f5d569c46d42e62f85b2f4ca84f9e91e"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s4_inference/lite_standard.md",
+      "bytes": 813,
+      "sha256": "fc0f830ee3ee2e5519ac553e3da5e25020fa393b010ec7528224697e9e05a9bd"
+    },
+    {
+      "member": "automedbench-task/source/prompts/s5_submit/all.md",
+      "bytes": 509,
+      "sha256": "a20d501b81f36d785c84a8edf9567e3a6a2bbf365b2b58b411a4187b8f3558f5"
+    },
+    {
+      "member": "automedbench-task/MANIFEST.sha256",
+      "bytes": 2684,
+      "sha256": "9d307703ff534bc4684d2d142fdf5e296addfa7bb3e58b1452af57f3a1ca5f00"
+    }
+  ],
+  "status": "worker-frozen-source-resolution",
+  "warning_text": "Matching Full DeepLesion input / private target absent; symbolic normalized-noise rules only.",
+  "top_warning": "Matching Full DeepLesion input / private target absent; symbolic normalized-noise rules only.",
+  "reference_policy": "reader-reference-reveal",
+  "source_condition": {
+    "task_id": "deeplesion-denoising-task",
+    "release_revision": "f894057807cc334421784e702ead2c1883583e1b",
+    "authority_ref": "1e6471746c94adfd53f552a7bc0b81386f5a5f78",
+    "input_shape": [
+      512,
+      512
+    ],
+    "output_shape": [
+      512,
+      512
+    ],
+    "input_pixels": 262144,
+    "output_pixels": 262144,
+    "dtype_expected": "float32",
+    "intensity_expected": [
+      0,
+      1
+    ],
+    "intensity_units": "normalized",
+    "degradation": "additive_gaussian",
+    "sigma": 0.05,
+    "sigma_domain": "normalized_intensity",
+    "variance": 0.0025,
+    "seed": null,
+    "mean_specification": null,
+    "correlation_specification": null,
+    "clipping": null,
+    "normalization_definition": null,
+    "HU_conversion": null,
+    "voxel_spacing": null,
+    "case_mapping": null,
+    "n_cases": null,
+    "private_target_available": false,
+    "reference_initially_visible": false,
+    "inventory_conditions": [
+      "Full · Lite",
+      "Full · Standard",
+      "Related source listing"
+    ]
+  },
+  "source_roles": {
+    "input": "Declaredpublic per-case input.npy512×512 normalized CT; no native case or noise realization recovered. No HU/dose/calibrated low-dose claim.",
+    "helper": "FullLite DRUNet public pretrained denoiser; Standard compares≥3 inference-only candidates incl≥2 neural. Source requirements/prompts, no model files.",
+    "private_reference": "/data/private/<case_id>/reference.npy and ground_truth.csv:data_range evaluator-only; never acquired/displayed.",
+    "source_saved_output": "No native enhanced output or score in harness.",
+    "answer_owned_output": "{output_dir}/agents_outputs/<case_id>/enhanced.npy intendedfloat32 finite normalized512×512, actual output absent."
+  },
+  "fixture": {
+    "branches": [
+      0,
+      1,
+      2
+    ],
+    "observed_grid": [
+      [
+        0.25,
+        0.5
+      ],
+      [
+        0.6,
+        0.8
+      ]
+    ],
+    "input_shape": [
+      2,
+      2
+    ],
+    "output_shape": [
+      2,
+      2
+    ],
+    "clean_values": null,
+    "noise_realization": null,
+    "toy_y": 0.45,
+    "toy_clean_candidates": [
+      0.4,
+      0.45,
+      0.5
+    ],
+    "toy_noise_candidates": [
+      0.05,
+      0,
+      -0.05
+    ],
+    "patient_image": null,
+    "actual_output": null,
+    "clean_reference": null
+  },
+  "public_reference": {
+    "role": "Reader-only private clean-reference and effective metric rules; no target or output",
+    "clean_image": null,
+    "criteria": [
+      "Private cleanCT unavailable",
+      "Genericclinical code composite not medicalvalidation",
+      "Metric means/format validity/totalcase denominators distinct"
+    ]
+  },
+  "manifest_binding": {
+    "outer_manifest_sha256": "9d307703ff534bc4684d2d142fdf5e296addfa7bb3e58b1452af57f3a1ca5f00",
+    "declared_staging_manifest_sha256": "5efea89cfdc27606f6e327186fc710ddba0df819b26cd6717e7f44de92125091",
+    "original_staging_manifest": "unrecovered distinct locator, not claimed same as outer archive manifest",
+    "outer_manifest_files_verified": 26,
+    "archive_members_verified": 27,
+    "upstream_Git_identity": "authority ref declared; archive identity verified, no per-file Git proof"
+  },
+  "historical_acquisition_objects_preserved": true
+}
