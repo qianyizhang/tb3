@@ -8331,15 +8331,15 @@
       ],
       "illustration_kind": "denoise",
       "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "story_id": "bcer-short-denoise",
+      "observed_binding_state": "bound-story-reviewed",
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Resolve source/evaluator visibility and provide a reference-free worked record for bcer-short-denoise. The brief explicitly leaves local filesystem visibility unaudited; no such record is supplied in the expansion kit.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "source_asset_readiness": "Accepted representative upstream native MRI helper and task-specific symbolic BM3D normalization/sigma/geometry explanation after main source/visual/export/mobile/no-GPU/public-rule boundary review. Exact native/helper display parity retained; matching BM3D input/output, measured noise, clean/private target, quality and clinical results remain absent.",
+      "rendered_mode": "planar",
+      "acceptance_receipt": ".local/explainers/goal-20260930/bcer-short-denoise/acceptance-01.json",
+      "blocking_dependency": null,
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
       "contract_projection": {
         "raw": "Required source modalities \u2014 prostate: one or more of T2w, ADC, DWI_highb; brain: one or more of T1, T1c, T2, FLAIR.",
         "helpers": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
@@ -8362,7 +8362,7 @@
         ],
         "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
       },
-      "source_brief_sha256": "da4371d43afe8a680de0f7268093103bc6154295fd399c3afb20af4aad8c108d",
+      "source_brief_sha256": "664eabae6905c136a064ea4dbbc78c3ebe89c84a060b5fbbe35f93996cd283ef",
       "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
       "dependency_deferral": {
         "actor": "user",
@@ -8372,14 +8372,105 @@
         "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
         "status": "deferred-follow-up"
       },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+      "dependency_resolution_history": [
+        {
+          "state": "needs-resolution",
+          "category": "contract-audit",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        }
+      ],
+      "illustration_basis": "mixed",
+      "actual_data_gap": "Representative PI-CAI T2w input is retained with native geometry, but no BCER short-task case ID, execution, answer-owned output, clean/noise ground truth or private reference is retained.",
+      "acquisition_route": "https://zenodo.org/records/6624726",
+      "warning_text": "Representative PI-CAI helper only; matched BM3D input/output and clean GT absent.",
+      "source_resolution_receipt": "presentation/external-tasks/sources/bcer-short-denoise-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/bcer-short-denoise-resolution.json",
+        "receipt_sha256": "686f3ec36face1e1cbdfe2bac5b49fa5c3fcbd55b56594b09d11938534c3d71d",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T04:02:44.536204+00:00",
+        "no_visual_acceptance": true
+      },
+      "acceptance_scope": "Pinned BCER short_denoise tool/registry/evaluator mechanics with an unchanged-source PI-CAI representative T2w helper display and independent normalized-intensity toy. No matched BM3D input, output, measured noise or clean/private target.",
+      "completion_review": {
+        "date": "2026-10-01T05:16:06.286550+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "5e8fa39ef3c25b5b47d8322042a62edcb7de96ee384386341111ad3db747bb01"
+      },
+      "reviewed_contract_projection": {
+        "title": "Denoise an MRI volume while preserving its physical geometry",
+        "goal": "The task resolves a NIfTI path, calls `denoise_image_bm3d` and retains `denoised_nifti`. This explanation shows source-defined mechanics without running the operator or inventing an output. The retained representative MRI is an upstream helper, not an established BM3D input or noise-free target.",
+        "value": "Not yet specified.",
+        "raw": "Registry prostate cases require any T2w/ADC/DWI_highb; brain cases require any T1/T1c/T2/FLAIR. The public representative PI-CAI `10001_1000001` T2w volume has **640\u00d7640\u00d721 uint16 voxels** and **0.300\u00d70.300\u00d73.600 mm** spacing. Original MHA geometry is LPS with an oblique direction matrix; prepared NIfTI qform/sform use RAS x/y sign conversion and retain identical voxel bytes. No canonical reorientation, patient-axis overlay or BM3D input match is established.\n\nThe native array slice **k=10, zero-based among 21 slices**, uses a whole-volume 1st/99.5th percentile display window **15\u2013829 arbitrary intensity units**. Its 640\u00b2 grayscale PNG pixels are verified. The compact 320\u00b2 JPEG is bilinear/quality70 display conditioning, not a denoised or resampled participant volume; JPEG appearance does not measure patient noise. **One upstream volume/slice; zero matching BCER inputs or task outputs.**",
+        "helpers": "Case manifest/runtime state, typed artifact references and the registered specialist tool are source workflow helpers. Fault/recovery variants can change paths/tokens, omit input_nifti, remove modalities or violate scope; those faults do not define image-quality ground truth. Preserve input/output path bindings. No clean target, measured noise distribution or injected-noise realization is specified.",
+        "tools": "`denoise_image_bm3d` requires `input_nifti`. `sigma_psd` defaults to **0.08 estimated standard deviation in normalized [0,1] units**, guidance 0.03\u20130.15, and must be positive. It is not injected or measured noise. Optional output_nifti selects an explicit path; output_subdir defaults to denoise. The default path is artifacts_dir/denoise/denoised_<input_stem>.nii.gz. NumPy, SimpleITK and BM3D dependencies are source requirements, not installed or invoked here.",
+        "reference": "No pristine/private image or clean/noisy ground truth is retained for this short task. The later explicit reader reveal shows only public validator criteria, never a pristine or denoised comparison. The representative MRI is not noise-free truth. Noise distribution and seed are unspecified; sigma does not establish Gaussian patient noise.",
+        "spec": "The pinned implementation casts working values to float32, computes finite min/max over the whole volume and normalizes/clips to [0,1]; nonfinite entries become zero. All-nonfinite arrays return zeros with range 0\u20131. A range \u22641e-12 normalizes to zeros; the complete tool skips BM3D for constant range and retains its original float32 values.\n\nLast two array dimensions define independent 2-D slices, with leading dimensions flattened. BM3D profile=np is requested; filtered values are clipped to [0,1], and the \u22653-D branch checks returned slice shape. Intensities are restored to the original range. Floating input dtype is retained where possible; otherwise float32. Input spacing/origin/direction and metadata are copied. No source operator, normalization function, denoising or output writer is executed in this preparation.\n\nIndependent authored toy values [10,20,30,50] map to [0,.25,.5,1]. Sigma estimates .03/.08/.15 correspond to 1.2/3.2/6.0 units of that toy range40; these are parameter-unit mechanics, not MRI noise estimates or results.",
+        "output": "The tool response includes denoised_nifti, input_nifti, sigma_psd, original_min, original_max and elapsed_seconds, plus a generated NIfTI artifact reference. The registry consumes **denoised_nifti**. Actual path/image/elapsed/quality remain null here. No answer JSON, prediction label or clinical finding is provided.",
+        "score": "The short registry requires stage/tool success, path_exists, nifti_nonempty and nifti_affine_match. Runner nonempty checks **nonzero voxel count** (`np.count_nonzero(arr) > 0`); on image-read failure a positive file-size fallback may pass, which does not prove a readable NIfTI. Geometry compares exact size plus spacing/origin/direction with **1e-3 floating tolerance**; it is not anatomical registration or quality measurement. No PSNR, SSIM, clean target, measured noise variance or image-quality denominator is specified. Artifact validity cannot establish noise suppression, detail preservation or clinical performance.",
+        "challenge": "Noise suppression can also erase real detail; the contract checks file/geometry validity, not that trade-off.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Inspect the labelled representative upstream helper and native/display geometry boundaries.",
+          "Select canonical normalization, estimated sigma units and slice/geometry mechanics using authored toy values.",
+          "Keep actual output empty; explicitly reveal public validator criteria later, with backward/exit/reset coverage and no clean image."
+        ],
+        "variants": [
+          {
+            "name": "Source condition",
+            "helper": "A case manifest, runtime state, typed artifact references and registered specialist tools. Fault/recovery variants may alter paths, arguments or available modalities.",
+            "remaining": "Noise suppression can also erase real detail; the contract checks file/geometry validity, not that trade-off."
+          }
+        ],
+        "sources": [
+          [
+            "Pinned BM3D tool",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/tools/bm3d_denoising.py"
+          ],
+          [
+            "Pinned registry",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/configs/tasks_registry.json"
+          ],
+          [
+            "Pinned evaluator",
+            "https://github.com/Albertlongzi/BCER/blob/d10816712793a9e27f2e70640f9afc06f08a0c5c/benchmark/benchmark_runner.py"
+          ],
+          [
+            "Official PI-CAI acquisition",
+            "https://zenodo.org/records/6624726"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/bcer-short-denoise-resolution.json"
+          ]
+        ],
+        "html": {
+          "goal": "<p>The task resolves a NIfTI path, calls <code>denoise_image_bm3d</code> and retains <code>denoised_nifti</code>. This explanation shows source-defined mechanics without running the operator or inventing an output. The retained representative MRI is an upstream helper, not an established BM3D input or noise-free target.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>Registry prostate cases require any T2w/ADC/DWI_highb; brain cases require any T1/T1c/T2/FLAIR. The public representative PI-CAI <code>10001_1000001</code> T2w volume has <strong>640\u00d7640\u00d721 uint16 voxels</strong> and <strong>0.300\u00d70.300\u00d73.600 mm</strong> spacing. Original MHA geometry is LPS with an oblique direction matrix; prepared NIfTI qform/sform use RAS x/y sign conversion and retain identical voxel bytes. No canonical reorientation, patient-axis overlay or BM3D input match is established.</p>\n<p>The native array slice <strong>k=10, zero-based among 21 slices</strong>, uses a whole-volume 1st/99.5th percentile display window <strong>15\u2013829 arbitrary intensity units</strong>. Its 640\u00b2 grayscale PNG pixels are verified. The compact 320\u00b2 JPEG is bilinear/quality70 display conditioning, not a denoised or resampled participant volume; JPEG appearance does not measure patient noise. <strong>One upstream volume/slice; zero matching BCER inputs or task outputs.</strong></p>",
+          "helpers": "<p>Case manifest/runtime state, typed artifact references and the registered specialist tool are source workflow helpers. Fault/recovery variants can change paths/tokens, omit input_nifti, remove modalities or violate scope; those faults do not define image-quality ground truth. Preserve input/output path bindings. No clean target, measured noise distribution or injected-noise realization is specified.</p>",
+          "tools": "<p><code>denoise_image_bm3d</code> requires <code>input_nifti</code>. <code>sigma_psd</code> defaults to <strong>0.08 estimated standard deviation in normalized [0,1] units</strong>, guidance 0.03\u20130.15, and must be positive. It is not injected or measured noise. Optional output_nifti selects an explicit path; output_subdir defaults to denoise. The default path is artifacts_dir/denoise/denoised_&lt;input_stem&gt;.nii.gz. NumPy, SimpleITK and BM3D dependencies are source requirements, not installed or invoked here.</p>",
+          "reference": "<p>No pristine/private image or clean/noisy ground truth is retained for this short task. The later explicit reader reveal shows only public validator criteria, never a pristine or denoised comparison. The representative MRI is not noise-free truth. Noise distribution and seed are unspecified; sigma does not establish Gaussian patient noise.</p>",
+          "spec": "<p>The pinned implementation casts working values to float32, computes finite min/max over the whole volume and normalizes/clips to [0,1]; nonfinite entries become zero. All-nonfinite arrays return zeros with range 0\u20131. A range \u22641e-12 normalizes to zeros; the complete tool skips BM3D for constant range and retains its original float32 values.</p>\n<p>Last two array dimensions define independent 2-D slices, with leading dimensions flattened. BM3D profile=np is requested; filtered values are clipped to [0,1], and the \u22653-D branch checks returned slice shape. Intensities are restored to the original range. Floating input dtype is retained where possible; otherwise float32. Input spacing/origin/direction and metadata are copied. No source operator, normalization function, denoising or output writer is executed in this preparation.</p>\n<p>Independent authored toy values [10,20,30,50] map to [0,.25,.5,1]. Sigma estimates .03/.08/.15 correspond to 1.2/3.2/6.0 units of that toy range40; these are parameter-unit mechanics, not MRI noise estimates or results.</p>",
+          "output": "<p>The tool response includes denoised_nifti, input_nifti, sigma_psd, original_min, original_max and elapsed_seconds, plus a generated NIfTI artifact reference. The registry consumes <strong>denoised_nifti</strong>. Actual path/image/elapsed/quality remain null here. No answer JSON, prediction label or clinical finding is provided.</p>",
+          "score": "<p>The short registry requires stage/tool success, path_exists, nifti_nonempty and nifti_affine_match. Runner nonempty checks <strong>nonzero voxel count</strong> (<code>np.count_nonzero(arr) &gt; 0</code>); on image-read failure a positive file-size fallback may pass, which does not prove a readable NIfTI. Geometry compares exact size plus spacing/origin/direction with <strong>1e-3 floating tolerance</strong>; it is not anatomical registration or quality measurement. No PSNR, SSIM, clean target, measured noise variance or image-quality denominator is specified. Artifact validity cannot establish noise suppression, detail preservation or clinical performance.</p>",
+          "challenge": "<p>Noise suppression can also erase real detail; the contract checks file/geometry validity, not that trade-off.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -25158,9 +25249,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 117,
+    "reviewed-scripted-planar": 118,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 60,
+    "blocked-source-contract": 59,
     "blocked-source-input": 14,
     "pending-operation-review": 1
   },

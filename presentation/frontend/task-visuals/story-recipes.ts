@@ -1,3 +1,4 @@
+import { bcerDenoisePack } from './bcer-short-denoise';
 import { automedVqaRadPack } from './automed-vqa-rad';
 import { automedOmniPack } from './automedbench-full-vqa-omnimedvqa-task';
 import { automedKvasirPack } from './automedbench-full-vqa-kvasir-task';
@@ -124,6 +125,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'bcer-denoise-v1',
     'automed-vqa-rad-v1',
     'automed-omni-v1',
     'automed-kvasir-v1',
@@ -1146,6 +1148,17 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Native train question · symbolic Full contract',
         warning: automedVqaRadPack.source.notice,
         legend: [],
+      };
+    case 'bcer-denoise-v1':
+      return {
+        heading: 'Normalize, filter slices, preserve geometry',
+        corner: 'Representative input; matched output absent',
+        warning: bcerDenoisePack.source.notice,
+        legend: [
+          ['#91a6ae', 'PI-CAI input teaching; task output absent'],
+          ['#18c6d4', 'BM3D parameter/geometry contract'],
+          ['#7ba4b8', 'Validator boundary; no clean target'],
+        ],
       };
     case 'bcer-brain-full-v1':
       return {

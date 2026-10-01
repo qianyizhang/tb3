@@ -27,6 +27,7 @@ class ExpansionTests(unittest.TestCase):
                     "automed-kvasir-v1",
                     "automed-pathvqa-v1",
                     "automed-omni-v1",
+                    "bcer-denoise-v1",
                     "automed-slake-v1",
                     "mixed-tissue-v1",
                     "prototype-identity-v1",

@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'bcer-denoise-v1',
   'automed-slake-v1',
   'automed-pathvqa-v1',
   'automed-vqa-rad-v1',
@@ -109,6 +110,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'bcer-denoise-v1')
+    return {
+      scene: 'data-bcer-denoise-scene',
+      reference: '[data-bcer-denoise-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-bcer-denoise-output-schema]',
+      aside: '[data-bcer-denoise-output]',
+    };
   if (plan.recipe === 'automed-slake-v1')
     return {
       scene: 'data-slake-scene',
@@ -691,6 +701,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'bcer-denoise-v1': [
+      /Representative PI-CAI helper only; matched BM3D input\/output and clean GT absent/s,
+      'https://zenodo.org/records/6624726',
+      'data-bcer-denoise-scene',
+      false,
+    ],
     'automed-slake-v1': [
       /Public train example only; Full test selection\/private gold absent/s,
       'https://huggingface.co/datasets/BoKelvin/SLAKE',
@@ -1238,6 +1254,7 @@ async function checkCardiacFrame(page, plan, frame) {
 }
 async function reviewCardiacInteractions(page, plan, output, label) {
   if (!cardiacRecipes.has(plan.recipe)) return;
+  await page.bringToFront();
   await checkSourceWarning(page, plan);
   const selectors = cardiacSelectors(plan);
   for (const [index, beat] of plan.beats.entries()) {
@@ -1516,6 +1533,138 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await absent();
     await page.locator('[data-story-step="0"]').click();
     await absent();
+  }
+  if (plan.recipe === 'bcer-denoise-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-bcer-denoise-scene]');
+    const capture = async (name) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${name}.png`) });
+    const absent = async () =>
+      assert.equal(await page.locator('[data-bcer-denoise-reference-revealed]').count(), 0);
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    const native = await scene
+      .locator('img')
+      .evaluate((img) => ({ src: img.currentSrc, w: img.naturalWidth, h: img.naturalHeight }));
+    assert.deepEqual([native.w, native.h], [320, 320]);
+    assert.equal(
+      sha(Buffer.from(native.src.split(',')[1], 'base64')),
+      'cb76d37da6a4b70a77f865887ab0d44581dbfd5db595ad1e7800a268c295f5c8',
+    );
+    assert.match(
+      await scene.innerText(),
+      /representative MRI helper.*k = 10.*640².*320².*15–829.*oblique LPS.*No clean target/is,
+    );
+    const ops = plan.beats.filter((b) => b.scene === 'operation');
+    assert.equal(ops.length, 3);
+    await page.locator(`[data-story-step="${plan.beats.indexOf(ops[0])}"]`).click();
+    for (let j = 0; j < 3; j++) {
+      await scene.locator(`[data-bcer-denoise-operation-step="${j}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[j].startFrame,
+      );
+      assert.equal(
+        await scene
+          .locator(`[data-bcer-denoise-operation-step="${j}"]`)
+          .getAttribute('aria-pressed'),
+        'true',
+      );
+      const re = [
+        /10 \/ 20 \/ 30 \/ 50.*0 \/ 0.25 \/ 0.5 \/ 1.*Nonfinite.*constant range/s,
+        /Estimated σ=0.03 normalized units.*Toy range 40.*1.2.*not.*measured MRI noise/s,
+        /Independent 2-D BM3D profile=np.*restore range.*floating input dtype.*No BM3D output/s,
+      ][j];
+      assert.match(await scene.innerText(), re);
+      await capture(`contract-${j}`);
+      await absent();
+    }
+    await scene.locator('[data-bcer-denoise-operation-step="1"]').click();
+    for (let j = 0; j < 3; j++) {
+      await scene
+        .getByRole('button', { name: ['0.03', '0.08 default', '0.15'][j], exact: true })
+        .click();
+      let best = 0,
+        d = Infinity;
+      for (let k = 0; k < ops[1].frames; k++) {
+        const u = k / (ops[1].frames - 1),
+          z = u * u * (3 - 2 * u),
+          v = Math.abs(z - j / 2);
+        if (v < d) {
+          d = v;
+          best = k;
+        }
+      }
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        ops[1].startFrame + best,
+      );
+      assert.match(
+        await scene.innerText(),
+        new RegExp(
+          `Estimated σ=${[0.03, 0.08, 0.15][j]} normalized units.*Toy range 40.*${[1.2, 3.2, 6][j]}`,
+          's',
+        ),
+      );
+      assert.equal(
+        await scene
+          .getByRole('button', { name: ['0.03', '0.08 default', '0.15'][j], exact: true })
+          .getAttribute('aria-pressed'),
+        'true',
+      );
+      await capture(`sigma-${j}`);
+      await absent();
+    }
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await page.locator('[data-bcer-denoise-output-schema]').innerText(),
+      /artifacts\/denoise\/denoised_<input_stem>\.nii\.gz/,
+    );
+    assert.match(await scene.innerText(), /actual path\/image\/elapsed\/quality remain null/i);
+    await absent();
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public validator rule', exact: true });
+    await reveal().click();
+    assert.match(
+      await page.locator('[data-bcer-denoise-reference-revealed]').innerText(),
+      /Stage\/path\/nonempty\/geometry.*file size.*size is exact.*1e-3.*No PSNR\/SSIM\/clean target/s,
+    );
+    await capture('validator-revealed');
+    await scene.getByRole('button', { name: 'Cover validator rule', exact: true }).click();
+    await absent();
+    await page.locator('.scene-play').click();
+    await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+    await page.waitForFunction(
+      (f) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > f,
+      plan.beats[ri].startFrame + 4,
+    );
+    await page.locator('.scene-play').click();
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page
+      .locator(`[data-story-step="${plan.beats.findIndex((b) => b.scene === 'limits')}"]`)
+      .click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await page.locator('.scene-reset').click();
   }
   if (plan.recipe === 'automed-vqa-rad-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
@@ -7223,6 +7372,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'bcer-denoise-v1',
       'automed-slake-v1',
       'automed-pathvqa-v1',
       'automed-vqa-rad-v1',

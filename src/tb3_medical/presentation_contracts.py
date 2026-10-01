@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class BcerDenoiseChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class BcerDenoiseBeat(ExpansionBeat):
+    channels: BcerDenoiseChannels
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class BcerDenoisePlan(ExpansionPlan):
+    recipe: Literal["bcer-denoise-v1"]
+    beats: list[BcerDenoiseBeat]
+
+
 class AutomedVqaRadChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2531,6 +2547,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | BcerDenoisePlan
     | AutomedVqaRadPlan
     | AutomedOmniPlan
     | AutomedKvasirPlan

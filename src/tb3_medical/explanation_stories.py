@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "bcer-denoise-v1": "retained-bcer-denoise-source-v1",
     "automed-vqa-rad-v1": "retained-automed-vqa-rad-v1",
     "automed-omni-v1": "retained-automed-omni-source-v1",
     "automed-kvasir-v1": "retained-automed-kvasir-source-v1",
@@ -798,6 +799,20 @@ SOURCE_EXTRA_REFERENCE_FILES = {
 }
 
 SOURCE_REFERENCE_PACKS = {
+    "retained-bcer-denoise-source-v1": (
+        "source-records",
+        "reference.json",
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "source.json",
+            "operation.json",
+            "output.json",
+            "fixture.json",
+            "reference.json",
+            "source-preview.jpeg",
+        },
+    ),
     "retained-automed-omni-source-v1": (
         "source-records",
         "reference.json",
@@ -2232,6 +2247,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class BcerDenoiseChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4177,6 +4198,27 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class BcerDenoiseBeat(ExpansionBeat[BcerDenoiseChannels]):
+    scene: Literal["input", "reference", "operation", "output", "limits"]
+
+
+class BcerDenoiseStory(Story[BcerDenoiseChannels]):
+    recipe: Literal["bcer-denoise-v1"]
+    beats: tuple[BcerDenoiseBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(
+            beat.scene != "reference" and beat.channels.reference != (0.0, 0.0)
+            for beat in self.beats
+        ):
+            raise ValueError("Probe evaluator reveal is limited to the reference scene")
+        return self
+
+
 class AutomedVqaRadBeat(ExpansionBeat[AutomedVqaRadChannels]):
     scene: Literal["input", "helper", "operation", "output", "limits"]
 
@@ -4855,6 +4897,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | BcerDenoiseStory
     | AutomedVqaRadStory
     | AutomedOmniStory
     | AutomedKvasirStory
@@ -4984,6 +5027,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | BcerDenoiseStory
     | AutomedVqaRadStory
     | AutomedOmniStory
     | AutomedKvasirStory
@@ -5273,6 +5317,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | BcerDenoiseStory
     | AutomedVqaRadStory
     | AutomedOmniStory
     | AutomedKvasirStory
@@ -5581,6 +5626,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 "LicenseRef-BCER-MIT-symbolic-teaching",
                 None,
             ),
+            "retained-bcer-denoise-source-v1": (
+                "native-k10-display-and-symbolic-contract",
+                "CC-BY-NC-4.0",
+                None,
+            ),
             "retained-automed-vqa-rad-v1": (
                 "VQA-RAD-native-train-question-plus-Full-contract",
                 "CC0-1.0",
@@ -5841,6 +5891,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "arbitrary-MRI-intensity-and-normalized-sigma"
+                if pack_id == "retained-bcer-denoise-source-v1"
                 else "px"
                 if pack_id == "retained-automed-vqa-rad-v1"
                 else "unitless"
@@ -5967,6 +6019,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "retained-bcer-denoise-source-v1"
             or pack_id == "retained-automed-vqa-rad-v1"
             or pack_id == "retained-automed-omni-source-v1"
             or pack_id == "retained-automed-kvasir-source-v1"
@@ -6032,6 +6085,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-automed-slake-v1" and name == "image.jpg"
                 else "input-preview"
                 if pack_id == "retained-automed-kvasir-source-v1" and name == "source-preview.jpeg"
+                else "input-preview"
+                if pack_id == "retained-bcer-denoise-source-v1" and name == "source-preview.jpeg"
                 else "reader-reference-reveal"
                 if name in reference_files
                 else "illustration"
@@ -6075,6 +6130,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                     if pack_id == "retained-automed-kvasir-source-v1" and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id == "retained-automed-omni-source-v1" and name == "fixture.json"
+                    else "symbolic-protocol"
+                    if pack_id == "retained-bcer-denoise-source-v1" and name == "fixture.json"
                     else "symbolic-protocol"
                     if pack_id in SYMBOLIC_SOURCE_PACKS
                     else "source-derived-teaching"
