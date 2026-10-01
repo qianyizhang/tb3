@@ -14890,36 +14890,126 @@
       }
     },
     {
-      "entry_id": "imaging101-mri-t2-mapping",
-      "title": "Estimate a quantitative T2 relaxation map",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/imaging101-mri-t2-mapping/acceptance-01.json",
+      "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping",
+      "actual_data_gap": "Matching synthetic magnitude echoes retained, no patient acquisition or participant fit. Native ground_truth has T2_map and M0_map with equal shapes; generic fallback alphabetical ranking selects M0_map, conflicting with T2 task semantics. Live target/threshold lineage unverified.",
+      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/imaging101-mri-t2-mapping.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "imaging101",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "quantification",
+      "contract_projection": {
+        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched.",
+        "helpers": "Echo times and an exponential signal-decay model. The assistance level can add an approach and software design.",
+        "output": "A per-pixel T2 relaxation-time map in the source\u2019s time units.",
+        "raw": "MRI magnitude images acquired at multiple echo times.",
+        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+        "sources": [
+          [
+            "Pinned task README",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/README.md"
+          ],
+          [
+            "Evaluation modes and assistance",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+          ]
+        ],
+        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
+        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
+        "variants": [
+          {
+            "helper": "README, data description and method hints.",
+            "name": "L1 \u00b7 README",
+            "remaining": "Choose and implement a workable algorithm."
+          },
+          {
+            "helper": "A proposed algorithmic approach is added.",
+            "name": "L2 \u00b7 + approach",
+            "remaining": "Design the software and implement the method."
+          },
+          {
+            "helper": "Approach and software design are added.",
+            "name": "L3 \u00b7 + design",
+            "remaining": "Implement the specified design and numerical details."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-t2-mapping.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A per-pixel T2 relaxation-time map in the source\u2019s time units.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "task-specific-audit-not-established-by-ledger",
+          "category": "contract-audit",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "imaging101-mri-t2-mapping",
+      "illustration_basis": "mixed",
+      "illustration_kind": "t2",
       "modalities": [
         "mri"
       ],
-      "illustration_kind": "t2",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "quantification",
-      "reviewed_disposition": "blocked-source-contract",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-t2-mapping.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A per-pixel T2 relaxation-time map in the source\u2019s time units.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "MRI magnitude images acquired at multiple echo times.",
-        "helpers": "Echo times and an exponential signal-decay model. The assistance level can add an approach and software design.",
-        "tools": "Python and the task\u2019s numerical/model dependencies. End-to-end, function-level and planning modes assess different work.",
-        "spec": "Implement the linked README\u2019s forward/inverse problem with its array conventions and units. The expected artifact below describes the scientific result; the selected harness mode owns exact filenames and callable signatures.",
-        "output": "A per-pixel T2 relaxation-time map in the source\u2019s time units.",
-        "reference": "Reference arrays or published outputs, when listed by the README, support evaluation. Some tasks package ground truth alongside raw data; solver-visible staging has not been audited.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "imaging101",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted native synthetic magnitude echoes with symbolic exponential/noise/log-OLS/LM contracts after main 16-pin/42-image source/visual/export/mobile/no-GPU/reference review. Static possible M0-versus-T2 selection and source masked versus generic full scoring remain explicit; source phantom parameters solver-visible, participant fit/map/score absent.",
+      "source_brief_sha256": "5b5cfbf1192f6e612d53977f1eb8b640e3563a34495f389ac5f1b893d0da7470",
+      "source_resolution_receipt": "presentation/external-tasks/sources/imaging101-mri-t2-mapping-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/imaging101-mri-t2-mapping-resolution.json",
+        "receipt_sha256": "10934cbe1286725f784f34bb107a4c0b2614a71e1afef25673964c7c442d50ec",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-01T12:46:07.346247+00:00",
+        "audit": ".local/explainers/goal-20260930/imaging101-mri-t2-mapping/source-audit-final-01.json",
+        "audit_sha256": "7096aa89138a8157f48e4c7503ba1386ba3165d2bed567f4310c9aeb5ba7c958",
+        "no_visual_acceptance": true
+      },
+      "story_id": "imaging101-mri-t2-mapping",
+      "subject": null,
+      "title": "Estimate a quantitative T2 relaxation map",
+      "warning_text": "Synthetic echoes only; generic reference may select M0 rather than T2. No participant fit or clinical result.",
+      "acceptance_scope": "Actual synthetic magnitude echo input previews and symbolic signal/noise/log/LM fitting contracts. Static possible M0-versus-T2 target conflict, solver-visible phantom parameters and masked-versus-full scoring boundaries. No fitted map, participant result, score or clinical finding; no source generator/operator/solver/scorer/task/model execution.",
+      "completion_review": {
+        "date": "2026-10-01T12:59:51.739497+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "b1dbf71994ab7ed4b38ec3b499a326c7c155de92f2e2bed94c2fd328928a8bed"
+      },
+      "reviewed_contract_projection": {
+        "title": "Trace echo decay without inventing a fitted T2 map",
+        "goal": "Actual native echo images illustrate magnitude inputs; symbolic equations explain fitting and source/evaluator boundaries.",
+        "value": "Not yet specified.",
+        "raw": "One modified Shepp-Logan synthetic condition. multi_echo_signal float32 (1,256,256,10), batch then row/column then echo. Ten TE values 10,20,\u2026100 ms, not a time-series frame interval. Exactly 655360 magnitude samples across 65536 pixels. No complex phase or coil axis. Native signal nonnegative, range \u2248.00003931\u20131.004664 a.u. Metadata declares synthetic FOV 220 mm, pixel .859375 mm; no scanner orientation, actual acquisition or patient interpretation.",
+        "helpers": "Metadata and source code; ground_truth.npz:T2_map/M0_map float32 (1,256,256), tissue_mask bool same shape. Source main reads truth-derived mask and uses it for fitting and scoring; 27817 included pixels, 37719 background. Truth parameters solver-visible, not private held-out clinical labels. Generator assigns hypothetical phantom regions, not measured tissue properties. Source seed 42/default parameters are declared; no generator rerun or exact noise draw provenance newly established.",
+        "tools": "Pinned NumPy/source LM scaffold, never executed here. S(TE)=M0 exp(\u2212TE/T2), TE/T2 in matching ms; M0 and signal arbitrary units. Source noise independently draws real/imag Gaussian \u03c3=.02 per channel then sqrt((S+nr)\u00b2+ni\u00b2), not additive zero-mean Gaussian magnitude noise. E|\u03b7|\u00b2=2\u03c3\u00b2=.0008, differs from doc CN(0,\u03c3\u00b2) shorthand. Magnitude floor includes nonzero background; no Gaussian/Rician likelihood fit or measured bias claimed.\n\nPreprocess casts float64, removes batch and clips signal at zero; native already nonnegative. Three input previews use echo indices 0/4/9 (TE 10/50/100 ms), same native 256\u00b2 array cells. Fixed grayscale floor255*clip(signal,0,1), no per-echo normalization/interpolation/log/fitting; native values above1 clip for display only. Gray brightness is a.u., not T2 ms. Image-derived contrast cannot establish a fitted T2 or patient finding.",
+        "reference": "Local runner stages whole data directory, including T2/M0/tissue mask. Saved source T2_map_nonlinear.npz is an old fit, not participant output. No truth or fitted map bundled. Later reader card reveals source-visible truth/evaluator rules only; exits/backward/reset cover synchronously before paint.",
+        "spec": "Log-linear doc says weighted regression, implementation calls unweighted np.linalg.lstsq on A=[1,TE], log(max(S,1e\u221210)). Slope=\u22121/T2, intercept=logM0; T2 clip 0..5000 ms, nonfinite\u21920; M0 exp intercept, nonfinite\u21920. No echo weights or Rician-noise correction. Flat/increasing log signals can yield invalid/clamped maps, no measured outcome asserted.\n\nNonlinear source minimizes unweighted signal-domain \u03a3(S\u2212M0 exp(\u2212TE/T2))\u00b2, not Rician likelihood. Per-pixel LM up to 50 iterations, log-linear initialization (T2\u22651 ms,M0\u22651e\u22126); gradient/step eps1=eps2= 1e\u22128, tau 1e\u22123. Jacobian columns exp(\u2212TE/T2), M0 TE/T2\u00b2 exp(\u2212TE/T2). Diagonal damping, gain-ratio accept/reject; trial positivity M0\u22651e\u221210,T2\u2265.1 ms. Final T2 clip 0..5000, failure falls back to initial maps. Background outside mask stays 0. Source doc calls nonlinear unbiased; this objective/source inspection does not establish statistical unbiasedness, accuracy or convergence.\n\nAuthored M0=.8 a.u.,T2=80 ms at TE 10/50/100 illustrates expected exponential signal only, not native truth/fit/noise realization. No solver, least squares, model inference or native metric executed.",
+        "output": "Generic participant output/reconstruction.npy intended T2 map comparable 256\u00d7256 in ms. Source main writes T2_map_loglinear.npz and T2_map_nonlinear.npz under evaluation/reference_outputs, each T2_map/M0_map float32 (1,256,256); creates output directory for figures, not generic reconstruction.npy. Actual participant map/score absent; saved source fit never substituted.",
+        "score": "Task-local NCC returns 0.0 when either norm is below 1e-12; its range NRMSE returns infinity when reference range is below 1e-12. Generic filesystem range NRMSE only tests range >0 and NCC adds epsilon 1e-30. These near-zero guards differ. The no-filesystem backend instead requires a strict 2D NPY reference, flux-normalizes output and uses relative L2 NRMSE; it is a distinct route. No scorer run.\n\nSource main masked cosine NCC and range NRMSE compare T2 on 27817 pixels, range 40..150 ms (110 ms denominator). Full T2 including background has 0..150 ms range and 65536 pixels; masked/full metrics are different. Generic dispatch uses reference_scoring, squeezes, reduces complex to magnitude, float64, no intensity normalization and no source tissue mask. Two numeric same-shaped arrays in native ground_truth have no canonical key match: fallback alphabetical M0_map precedes T2_map; bool tissue_mask is rejected. Both float32 maps have stored shape (1,256,256), reduced to (256,256) only because ndim>2; shape compatibility does not establish target identity. Static ranking proof identifies a possible M0 target conflict; no live evaluator/reference selection run. Preserve/reconcile selected target and units before score interpretation.\n\nGeneric cosine NCC (not Pearson), range NRMSE, MSE, PSNR/global SSIM, 65536 pixels. Source main creates evaluation/metrics.json boundaries .9*NCC_nls and1.1*NRMSE_nls from masked T2 baseline. Both thresholds required by generic pass predicate; native source installed thresholds absent/unverified here. Do not transfer masked baseline to unmasked M0 comparison. Scale-invariant NCC differs from scale-sensitive error; ms\u2194seconds changes numeric scale if reference not converted.",
+        "challenge": "Not yet specified.",
+        "families": "Not yet specified.",
+        "gap": "Not yet specified.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Native magnitude echo preview with ms versus a.u. legend and persistent synthetic/evaluator gap.",
+          "Canonical signal/noise, three echo displays, log/LM contract rules.",
+          "Participant map empty; late source-truth/evaluator mismatch rules cover on exit/backward/reset."
+        ],
         "variants": [
           {
             "name": "L1 \u00b7 README",
@@ -14939,34 +15029,47 @@
         ],
         "sources": [
           [
-            "Pinned task README",
+            "Pinned README",
             "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/README.md"
           ],
           [
-            "Evaluation modes and assistance",
-            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/README.md"
+            "Pinned solver",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/solvers.py"
+          ],
+          [
+            "Pinned native metrics",
+            "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/visualization.py"
+          ],
+          [
+            "Official acquisition",
+            "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/imaging101-mri-t2-mapping-resolution.json"
           ]
         ],
-        "gap": "Native input/helper/reference views are still missing for this definition. The contract was read from source; no external model or benchmark run was launched."
-      },
-      "source_brief_sha256": "28149d7336c93c6d775ca158cda97b632b1539d2da000007550446563a089c84",
-      "blocker_resolution": "Author/source review dependency; not an instruction to execute the external task or a request for user approval.",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "Solver-visible reference staging is unresolved in presentation/external-tasks/briefs/imaging101-mri-t2-mapping.md. The supplied Radon/FFT fixtures do not establish the operator, array conventions or reference boundary for this task: A per-pixel T2 relaxation-time map in the source\u2019s time units.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "contract-audit",
-        "attempt_status": "task-specific-audit-not-established-by-ledger",
-        "next_action": "Inspect the exact pinned prompt, staging and evaluator; establish input/helper/reference separation, output semantics and units. Inspect or acquire a small matching example when feasible. If actual data remains unavailable, use a task-specific symbolic illustration; label unresolved conventions rather than inventing them, and show the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Actual native echo images illustrate magnitude inputs; symbolic equations explain fitting and source/evaluator boundaries.</p>",
+          "value": "<p>Not yet specified.</p>",
+          "raw": "<p>One modified Shepp-Logan synthetic condition. multi_echo_signal float32 (1,256,256,10), batch then row/column then echo. Ten TE values 10,20,\u2026100 ms, not a time-series frame interval. Exactly 655360 magnitude samples across 65536 pixels. No complex phase or coil axis. Native signal nonnegative, range \u2248.00003931\u20131.004664 a.u. Metadata declares synthetic FOV 220 mm, pixel .859375 mm; no scanner orientation, actual acquisition or patient interpretation.</p>",
+          "helpers": "<p>Metadata and source code; ground_truth.npz:T2_map/M0_map float32 (1,256,256), tissue_mask bool same shape. Source main reads truth-derived mask and uses it for fitting and scoring; 27817 included pixels, 37719 background. Truth parameters solver-visible, not private held-out clinical labels. Generator assigns hypothetical phantom regions, not measured tissue properties. Source seed 42/default parameters are declared; no generator rerun or exact noise draw provenance newly established.</p>",
+          "tools": "<p>Pinned NumPy/source LM scaffold, never executed here. S(TE)=M0 exp(\u2212TE/T2), TE/T2 in matching ms; M0 and signal arbitrary units. Source noise independently draws real/imag Gaussian \u03c3=.02 per channel then sqrt((S+nr)\u00b2+ni\u00b2), not additive zero-mean Gaussian magnitude noise. E|\u03b7|\u00b2=2\u03c3\u00b2=.0008, differs from doc CN(0,\u03c3\u00b2) shorthand. Magnitude floor includes nonzero background; no Gaussian/Rician likelihood fit or measured bias claimed.</p>\n<p>Preprocess casts float64, removes batch and clips signal at zero; native already nonnegative. Three input previews use echo indices 0/4/9 (TE 10/50/100 ms), same native 256\u00b2 array cells. Fixed grayscale floor255*clip(signal,0,1), no per-echo normalization/interpolation/log/fitting; native values above1 clip for display only. Gray brightness is a.u., not T2 ms. Image-derived contrast cannot establish a fitted T2 or patient finding.</p>",
+          "reference": "<p>Local runner stages whole data directory, including T2/M0/tissue mask. Saved source T2_map_nonlinear.npz is an old fit, not participant output. No truth or fitted map bundled. Later reader card reveals source-visible truth/evaluator rules only; exits/backward/reset cover synchronously before paint.</p>",
+          "spec": "<p>Log-linear doc says weighted regression, implementation calls unweighted np.linalg.lstsq on A=[1,TE], log(max(S,1e\u221210)). Slope=\u22121/T2, intercept=logM0; T2 clip 0..5000 ms, nonfinite\u21920; M0 exp intercept, nonfinite\u21920. No echo weights or Rician-noise correction. Flat/increasing log signals can yield invalid/clamped maps, no measured outcome asserted.</p>\n<p>Nonlinear source minimizes unweighted signal-domain \u03a3(S\u2212M0 exp(\u2212TE/T2))\u00b2, not Rician likelihood. Per-pixel LM up to 50 iterations, log-linear initialization (T2\u22651 ms,M0\u22651e\u22126); gradient/step eps1=eps2= 1e\u22128, tau 1e\u22123. Jacobian columns exp(\u2212TE/T2), M0 TE/T2\u00b2 exp(\u2212TE/T2). Diagonal damping, gain-ratio accept/reject; trial positivity M0\u22651e\u221210,T2\u2265.1 ms. Final T2 clip 0..5000, failure falls back to initial maps. Background outside mask stays 0. Source doc calls nonlinear unbiased; this objective/source inspection does not establish statistical unbiasedness, accuracy or convergence.</p>\n<p>Authored M0=.8 a.u.,T2=80 ms at TE 10/50/100 illustrates expected exponential signal only, not native truth/fit/noise realization. No solver, least squares, model inference or native metric executed.</p>",
+          "output": "<p>Generic participant output/reconstruction.npy intended T2 map comparable 256\u00d7256 in ms. Source main writes T2_map_loglinear.npz and T2_map_nonlinear.npz under evaluation/reference_outputs, each T2_map/M0_map float32 (1,256,256); creates output directory for figures, not generic reconstruction.npy. Actual participant map/score absent; saved source fit never substituted.</p>",
+          "score": "<p>Task-local NCC returns 0.0 when either norm is below 1e-12; its range NRMSE returns infinity when reference range is below 1e-12. Generic filesystem range NRMSE only tests range &gt;0 and NCC adds epsilon 1e-30. These near-zero guards differ. The no-filesystem backend instead requires a strict 2D NPY reference, flux-normalizes output and uses relative L2 NRMSE; it is a distinct route. No scorer run.</p>\n<p>Source main masked cosine NCC and range NRMSE compare T2 on 27817 pixels, range 40..150 ms (110 ms denominator). Full T2 including background has 0..150 ms range and 65536 pixels; masked/full metrics are different. Generic dispatch uses reference_scoring, squeezes, reduces complex to magnitude, float64, no intensity normalization and no source tissue mask. Two numeric same-shaped arrays in native ground_truth have no canonical key match: fallback alphabetical M0_map precedes T2_map; bool tissue_mask is rejected. Both float32 maps have stored shape (1,256,256), reduced to (256,256) only because ndim&gt;2; shape compatibility does not establish target identity. Static ranking proof identifies a possible M0 target conflict; no live evaluator/reference selection run. Preserve/reconcile selected target and units before score interpretation.</p>\n<p>Generic cosine NCC (not Pearson), range NRMSE, MSE, PSNR/global SSIM, 65536 pixels. Source main creates evaluation/metrics.json boundaries .9<em>NCC_nls and1.1</em>NRMSE_nls from masked T2 baseline. Both thresholds required by generic pass predicate; native source installed thresholds absent/unverified here. Do not transfer masked baseline to unmasked M0 comparison. Scale-invariant NCC differs from scale-sensitive error; ms\u2194seconds changes numeric scale if reference not converted.</p>",
+          "challenge": "<p>Not yet specified.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>Not yet specified.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>No source-derived view curated yet.</p>",
+          "helpers": "<p>No source-derived view curated yet.</p>",
+          "answer": "<p>No source-derived view curated yet.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -26253,9 +26356,9 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 128,
+    "reviewed-scripted-planar": 129,
     "reviewed-scripted-spatial": 13,
-    "blocked-source-contract": 50,
+    "blocked-source-contract": 49,
     "pending-operation-review": 1,
     "blocked-source-input": 13
   },

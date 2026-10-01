@@ -1,0 +1,486 @@
+{
+  "acquisition_route": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping",
+  "actual_data_gap": "Matching synthetic magnitude echoes retained, no patient acquisition or participant fit. Native ground_truth has T2_map and M0_map with equal shapes; generic fallback alphabetical ranking selects M0_map, conflicting with T2 task semantics. Live target/threshold lineage unverified.",
+  "attempts": [
+    {
+      "action": "retained-validation",
+      "attempted_at": "2026-10-01T07:47:34.639148+00:00",
+      "outcome": "Validated retained primary Git tree/source hashes and native headers/display parity; no GET, source fitting, model, operator or scorer execution. Original transport objects preserved unchanged in historical_attempts.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping"
+    }
+  ],
+  "brief_sha256": "5b5cfbf1192f6e612d53977f1eb8b640e3563a34495f389ac5f1b893d0da7470",
+  "display_warning": "Synthetic echoes only; generic reference may select M0 rather than T2. No participant fit or clinical result.",
+  "distribution": "local research teaching",
+  "entry_id": "imaging101-mri-t2-mapping",
+  "evaluator_run": false,
+  "fixture": {
+    "actual_output": null,
+    "branches": [
+      10,
+      50,
+      100
+    ],
+    "clean_reference": null,
+    "toy_M0": 0.8,
+    "toy_T2_ms": 80,
+    "toy_TE_ms": [
+      10,
+      50,
+      100
+    ],
+    "toy_signal": [
+      0.7059975220676764,
+      0.42820914281519223,
+      0.2292038374881521
+    ]
+  },
+  "ground_truth_solver_visible": true,
+  "historical_attempts": [
+    {
+      "action": "fetch assets/mri_t2_mapping/data/raw_data.npz",
+      "attempted_at": "2026-09-29T07:28:39.415584+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "319aa541a1f4537b038980efb53f77a52d43d7cdb3b534e827e28d68832bf7bf",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/raw_data.npz"
+    },
+    {
+      "action": "fetch assets/mri_t2_mapping/data/meta_data.json",
+      "attempted_at": "2026-09-29T07:28:41.687218+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "15e461b35b8d0d1df5aa725a52ce803c1f76380ef8c3f8dca21a605f6f5690b4",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/meta_data.json"
+    },
+    {
+      "action": "fetch assets/mri_t2_mapping/data/ground_truth.npz",
+      "attempted_at": "2026-09-29T07:28:43.565851+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "b1e05fb80999751a86357e21634532c8a51d1c37451f0d7b33350e2d4be1fc03",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/ground_truth.npz"
+    },
+    {
+      "action": "fetch assets/mri_t2_mapping/evaluation/reference_outputs/T2_map_nonlinear.npz",
+      "attempted_at": "2026-09-29T07:28:45.782812+00:00",
+      "outcome": "verified HF LFS SHA-256 and size",
+      "sha256": "2123648aff179c0e99e831dbf6243c0e31fe526edada6d05892706be28e385c3",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/resolve/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/evaluation/reference_outputs/T2_map_nonlinear.npz"
+    },
+    {
+      "action": "fetch tasks/mri_t2_mapping/README.md",
+      "attempted_at": "2026-09-29T07:28:50.458446+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "6302cb0e22f6e246f287e5589481223c21d025886b38f64c2097584a6afa0195",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/README.md"
+    },
+    {
+      "action": "fetch tasks/mri_t2_mapping/main.py",
+      "attempted_at": "2026-09-29T07:28:51.173535+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "83616f8454b16348ee4635fae1adc2ffa9bf2fa38cb7c83f4f993bcf048e1b01",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/main.py"
+    },
+    {
+      "action": "fetch tasks/mri_t2_mapping/src/physics_model.py",
+      "attempted_at": "2026-09-29T07:28:52.200363+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "147c2f33cbc587867ccec3903c15673038180dba9bd004b7cdfe440d8bbe5cd3",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/physics_model.py"
+    },
+    {
+      "action": "fetch tasks/mri_t2_mapping/src/preprocessing.py",
+      "attempted_at": "2026-09-29T07:28:52.955130+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "af8ea334f67b72a6501dec8b7338afbf057f40ac76947c1dd717efdac8c9eed4",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/preprocessing.py"
+    },
+    {
+      "action": "fetch tasks/mri_t2_mapping/src/solvers.py",
+      "attempted_at": "2026-09-29T07:28:54.262042+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "fdc824d21ad536bf25c0cacde1178ec2cd50ddc97d3f749c74ed58e115cadbca",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/solvers.py"
+    },
+    {
+      "action": "fetch tasks/mri_t2_mapping/src/generate_data.py",
+      "attempted_at": "2026-09-29T07:28:54.975435+00:00",
+      "outcome": "HTTP 200; Git blob digest computed",
+      "sha256": "0e6212edea13560956761c2c2cf1ed17e29f34804f9783749fc5a45577b8bbba",
+      "source": "https://raw.githubusercontent.com/AI4ImagingLab/imaging-101-release/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/generate_data.py"
+    },
+    {
+      "action": "verify task code bytes against pinned Git tree blob SHAs",
+      "attempted_at": "2026-09-29T07:41:42.403374+00:00",
+      "outcome": "6 task source files verified; tree not truncated.",
+      "source": "https://api.github.com/repos/AI4ImagingLab/imaging-101-release/git/trees/dc2f668939b21e8312e22529615def610f8611df?recursive=1"
+    },
+    {
+      "action": "Verify retained arrays/source Git pins; fetch bounded official data listing and native metric source",
+      "attempted_at": "2026-09-30T18:54:22.752396+00:00",
+      "outcome": "950-byte official listing and5108-byte visualization source verified; native echoes match units/keys. Generic M0/T2 fallback conflict and weighted-doc versus unweighted code discrepancy recorded. No fitting/model/evaluator execution.",
+      "source": "https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping"
+    }
+  ],
+  "illustration_basis": "mixed",
+  "kind": "explainer-source-resolution",
+  "label_license": "MIT",
+  "model_run": false,
+  "preparer_run": false,
+  "public_reference": {
+    "clean_image": null,
+    "criteria": [
+      "Source tissue mask is solver-visible and used by main fits/metrics",
+      "Source mask27817 pixels; generic full image65536 pixels",
+      "Generic alphabetical fallback M0_map ranks before T2_map",
+      "No patient truth or participant T2/score"
+    ],
+    "role": "Solver-visible phantom parameters and evaluator target rules only"
+  },
+  "reference_boundary": "Pinned local runner copies entire data/ including ground_truth.npz. Source-saved output is a later teaching reveal, not private GT.",
+  "reference_initially_visible": false,
+  "reopening_condition": "Synthetic modified Shepp-Logan only; late-echo Rician floor biases fits; saved map is source output, not participant result.",
+  "resolved_at": "2026-09-29T07:34:37.296687+00:00",
+  "saved_output_is_participant_result": false,
+  "schema": 1,
+  "solver_run": false,
+  "source_condition": {
+    "all_pixels": 65536,
+    "available_truth_keys": [
+      "T2_map",
+      "M0_map",
+      "tissue_mask"
+    ],
+    "echo_times_ms": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100
+    ],
+    "field_of_view_mm": 220,
+    "generic_fallback_key": "M0_map",
+    "pixel_size_mm": 0.859375,
+    "selected_echo_indices": [
+      0,
+      4,
+      9
+    ],
+    "shape": [
+      1,
+      256,
+      256,
+      10
+    ],
+    "source_metric_mask": "source-visible tissue_mask",
+    "tissue_pixels": 27817,
+    "units": "synthetic declared geometry, no scanner orientation"
+  },
+  "source_files": [
+    {
+      "bytes": 4831,
+      "git_blob": "2255e397f14b149365922ae87a23128fa405c35c",
+      "git_path": "tasks/mri_t2_mapping/README.md",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/README.md",
+      "role": "pinned-task-source",
+      "sha256": "6302cb0e22f6e246f287e5589481223c21d025886b38f64c2097584a6afa0195",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/README.md"
+    },
+    {
+      "bytes": 5438,
+      "git_blob": "19560f062c1e133f2b0e675fa2d9e9cb7b9666df",
+      "git_path": "tasks/mri_t2_mapping/main.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/main.py",
+      "role": "pinned-task-source",
+      "sha256": "83616f8454b16348ee4635fae1adc2ffa9bf2fa38cb7c83f4f993bcf048e1b01",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/main.py"
+    },
+    {
+      "bytes": 5266,
+      "git_blob": "d91b8d3fc1cec6b954ee8cb9e5641a5cf1edaada",
+      "git_path": "tasks/mri_t2_mapping/src/generate_data.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/generate_data.py",
+      "role": "pinned-task-source",
+      "sha256": "0e6212edea13560956761c2c2cf1ed17e29f34804f9783749fc5a45577b8bbba",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/generate_data.py"
+    },
+    {
+      "bytes": 2713,
+      "git_blob": "fb6651327bb3db70306565807eb2d7fb4dec6d4d",
+      "git_path": "tasks/mri_t2_mapping/src/physics_model.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "147c2f33cbc587867ccec3903c15673038180dba9bd004b7cdfe440d8bbe5cd3",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/physics_model.py"
+    },
+    {
+      "bytes": 2343,
+      "git_blob": "2646c13698d29d6487c7e53e492f9345ef8313d2",
+      "git_path": "tasks/mri_t2_mapping/src/preprocessing.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "af8ea334f67b72a6501dec8b7338afbf057f40ac76947c1dd717efdac8c9eed4",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/preprocessing.py"
+    },
+    {
+      "bytes": 9409,
+      "git_blob": "3411e69fe7e002e04cbddb0515fc8f0264a905d7",
+      "git_path": "tasks/mri_t2_mapping/src/solvers.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "fdc824d21ad536bf25c0cacde1178ec2cd50ddc97d3f749c74ed58e115cadbca",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/solvers.py"
+    },
+    {
+      "bytes": 7989,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/data/ground_truth.npz",
+      "role": "solver-visible-data",
+      "sha256": "b1e05fb80999751a86357e21634532c8a51d1c37451f0d7b33350e2d4be1fc03",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/ground_truth.npz"
+    },
+    {
+      "bytes": 328,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/data/meta_data.json",
+      "role": "solver-visible-data",
+      "sha256": "15e461b35b8d0d1df5aa725a52ce803c1f76380ef8c3f8dca21a605f6f5690b4",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/meta_data.json"
+    },
+    {
+      "bytes": 2385545,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/data/raw_data.npz",
+      "role": "solver-visible-data",
+      "sha256": "319aa541a1f4537b038980efb53f77a52d43d7cdb3b534e827e28d68832bf7bf",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/raw_data.npz"
+    },
+    {
+      "bytes": 189347,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/evaluation/reference_outputs/T2_map_nonlinear.npz",
+      "role": "source-saved-output",
+      "sha256": "2123648aff179c0e99e831dbf6243c0e31fe526edada6d05892706be28e385c3",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/evaluation/reference_outputs/T2_map_nonlinear.npz"
+    },
+    {
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "git_path": "LICENSE",
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "role": "source-license",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "git_path": "evaluation_harness/local_runner.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "role": "source-staging",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "git_path": "evaluation_harness/scorer.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/scorer.py",
+      "role": "generic-dispatch",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "git_path": "evaluation_harness/reference_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/reference_scoring.py",
+      "role": "generic-reference-scoring",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 5108,
+      "git_blob": "5223f4885d2d2f91638e4218ad0504f9264e3dfb",
+      "git_path": "tasks/mri_t2_mapping/src/visualization.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-t2-mapping/visualization.py",
+      "role": "source-native-metrics",
+      "sha256": "300c5829aee7aab6a2731e2a7e0905863ba702f647e3e9ee7b119b6f56e0fc50",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/visualization.py"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-c-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/README.md"
+    }
+  ],
+  "source_license": "MIT",
+  "source_pins": [
+    {
+      "bytes": 4831,
+      "git_blob": "2255e397f14b149365922ae87a23128fa405c35c",
+      "git_path": "tasks/mri_t2_mapping/README.md",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/README.md",
+      "role": "pinned-task-source",
+      "sha256": "6302cb0e22f6e246f287e5589481223c21d025886b38f64c2097584a6afa0195",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/README.md"
+    },
+    {
+      "bytes": 5438,
+      "git_blob": "19560f062c1e133f2b0e675fa2d9e9cb7b9666df",
+      "git_path": "tasks/mri_t2_mapping/main.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/main.py",
+      "role": "pinned-task-source",
+      "sha256": "83616f8454b16348ee4635fae1adc2ffa9bf2fa38cb7c83f4f993bcf048e1b01",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/main.py"
+    },
+    {
+      "bytes": 5266,
+      "git_blob": "d91b8d3fc1cec6b954ee8cb9e5641a5cf1edaada",
+      "git_path": "tasks/mri_t2_mapping/src/generate_data.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/generate_data.py",
+      "role": "pinned-task-source",
+      "sha256": "0e6212edea13560956761c2c2cf1ed17e29f34804f9783749fc5a45577b8bbba",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/generate_data.py"
+    },
+    {
+      "bytes": 2713,
+      "git_blob": "fb6651327bb3db70306565807eb2d7fb4dec6d4d",
+      "git_path": "tasks/mri_t2_mapping/src/physics_model.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/physics_model.py",
+      "role": "pinned-task-source",
+      "sha256": "147c2f33cbc587867ccec3903c15673038180dba9bd004b7cdfe440d8bbe5cd3",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/physics_model.py"
+    },
+    {
+      "bytes": 2343,
+      "git_blob": "2646c13698d29d6487c7e53e492f9345ef8313d2",
+      "git_path": "tasks/mri_t2_mapping/src/preprocessing.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/preprocessing.py",
+      "role": "pinned-task-source",
+      "sha256": "af8ea334f67b72a6501dec8b7338afbf057f40ac76947c1dd717efdac8c9eed4",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/preprocessing.py"
+    },
+    {
+      "bytes": 9409,
+      "git_blob": "3411e69fe7e002e04cbddb0515fc8f0264a905d7",
+      "git_path": "tasks/mri_t2_mapping/src/solvers.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/tasks/mri_t2_mapping/src/solvers.py",
+      "role": "pinned-task-source",
+      "sha256": "fdc824d21ad536bf25c0cacde1178ec2cd50ddc97d3f749c74ed58e115cadbca",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/solvers.py"
+    },
+    {
+      "bytes": 7989,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/data/ground_truth.npz",
+      "role": "solver-visible-data",
+      "sha256": "b1e05fb80999751a86357e21634532c8a51d1c37451f0d7b33350e2d4be1fc03",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/ground_truth.npz"
+    },
+    {
+      "bytes": 328,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/data/meta_data.json",
+      "role": "solver-visible-data",
+      "sha256": "15e461b35b8d0d1df5aa725a52ce803c1f76380ef8c3f8dca21a605f6f5690b4",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/meta_data.json"
+    },
+    {
+      "bytes": 2385545,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/data/raw_data.npz",
+      "role": "solver-visible-data",
+      "sha256": "319aa541a1f4537b038980efb53f77a52d43d7cdb3b534e827e28d68832bf7bf",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/data/raw_data.npz"
+    },
+    {
+      "bytes": 189347,
+      "path": ".local/explainers/core-20260929/formation-d-source/assets/mri_t2_mapping/evaluation/reference_outputs/T2_map_nonlinear.npz",
+      "role": "source-saved-output",
+      "sha256": "2123648aff179c0e99e831dbf6243c0e31fe526edada6d05892706be28e385c3",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping/evaluation/reference_outputs/T2_map_nonlinear.npz"
+    },
+    {
+      "bytes": 1076,
+      "git_blob": "1cc17cc1aad0fb0a7ae4bc9ebc10627980256215",
+      "git_path": "LICENSE",
+      "path": ".local/explainers/core-20260929/formation-d-source/LICENSE",
+      "role": "source-license",
+      "sha256": "7ed8ba5c7d34d383f933d6d5cfdffc3722fd410a2a6729000ca1689810f85f09",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/LICENSE"
+    },
+    {
+      "bytes": 13941,
+      "git_blob": "6091549a8a97225b9cc9708074067757720a3d9e",
+      "git_path": "evaluation_harness/local_runner.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/local_runner.py",
+      "role": "source-staging",
+      "sha256": "b4ec259859921dae6c3e0e91aae488f149028a983d55c73e498c7414380da46b",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/local_runner.py"
+    },
+    {
+      "bytes": 23821,
+      "git_blob": "07125c06b504291288ab8b3d04c046b476446e04",
+      "git_path": "evaluation_harness/scorer.py",
+      "path": ".local/explainers/core-20260929/formation-d-source/evaluation_harness/scorer.py",
+      "role": "generic-dispatch",
+      "sha256": "80be1c9590dce8b3420b87a48be9d10535264fbd52c697071e2acc151af778ff",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/scorer.py"
+    },
+    {
+      "bytes": 9172,
+      "git_blob": "87eb882e79a514f2ab1303080c222d5fd7f00b42",
+      "git_path": "evaluation_harness/reference_scoring.py",
+      "path": ".local/explainers/core-20260929/formation-c-source/harness/reference_scoring.py",
+      "role": "generic-reference-scoring",
+      "sha256": "96ef2522cebcd3e09cb7b02c9ad92e6e55932032b61c85e9ae4bdaf625cc37f0",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/evaluation_harness/reference_scoring.py"
+    },
+    {
+      "bytes": 5108,
+      "git_blob": "5223f4885d2d2f91638e4218ad0504f9264e3dfb",
+      "git_path": "tasks/mri_t2_mapping/src/visualization.py",
+      "path": ".local/explainers/goal-20260930/workers/imaging101-mri-t2-mapping/visualization.py",
+      "role": "source-native-metrics",
+      "sha256": "300c5829aee7aab6a2731e2a7e0905863ba702f647e3e9ee7b119b6f56e0fc50",
+      "url": "https://github.com/AI4ImagingLab/imaging-101-release/blob/dc2f668939b21e8312e22529615def610f8611df/tasks/mri_t2_mapping/src/visualization.py"
+    },
+    {
+      "bytes": 4596,
+      "path": ".local/explainers/core-20260929/formation-c-source/dataset-card.md",
+      "role": "dataset-license-declaration",
+      "sha256": "d7e53fb97b1e140635d59b94c3c697dbdb76e12b692cc49da43ee654c83f802f",
+      "url": "https://huggingface.co/datasets/starpacker52/imaging-101/blob/a9de559b54849a25988a8a0d8a5e869063a5a7a3/README.md"
+    }
+  ],
+  "source_roles": {
+    "answer_owned_output": "output/reconstruction.npy intended T2 map in ms; generic source reference ranking may instead compare M0_map",
+    "helper": "Metadata TE ms /sigma per channel and source-visible T2/M0/tissue mask staged with data",
+    "input": "Actual released synthetic Rician magnitude multi_echo_signal; 10 echoes, no phase/coil axis",
+    "private_reference": "No held-out private target established",
+    "solver_visible_ground_truth": "ground_truth.npz:T2_map/M0_map/tissue_mask; phantom parameters, not clinical truth",
+    "source_saved_output": "Saved nonlinear T2/M0 maps retained in audit, never participant result or displayed"
+  },
+  "source_transport": {
+    "bytes": 950,
+    "path": ".local/explainers/goal-20260930/workers/imaging101-mri-t2-mapping/official-data-tree.json",
+    "sha256": "a607cb15fb3b04af3e42ca55c75449b971817db4de94a43898c04e880156c667"
+  },
+  "status": "worker-frozen-source-resolution",
+  "task_contract": {
+    "asset_revision": "a9de559b54849a25988a8a0d8a5e869063a5a7a3",
+    "fitting": "Log-linear code is unweighted OLS, floor signal1e-10, natural log; T2=-1/slope clipped0..5000, nonfinite0, M0 exp(intercept). Nonlinear unweighted signal-domain squared residual LM50, initialized log-linear, positivity bounds; failed convergence falls back to initial maps.",
+    "helpers": "10 TE values 10..100 ms; sigma 0.02; solver-visible tissue mask/T2/M0 truth",
+    "live_generic_output": "output/reconstruction.npy",
+    "metric_guards": "Task-local mask, norm<1e-12\u2192NCC0; range<1e-12\u2192NRMSEinf; filesystem unmasked/no scale normalization/NCCeps1e-30 and range>0; nonfilesystem flux-relativeL2 separate",
+    "noise": "sigma=.02 per independent real/imag Gaussian channel; magnitude hypot(S+nr,ni) is Rician. E|eta|^2=2sigma^2=.0008. Doc CN(sigma^2) shorthand differs; no new noise realization or fitted bias measured.",
+    "operator": "mono-exponential magnitude MRI S(TE)=M0 exp(-TE/T2) plus Rician noise",
+    "output": "(1,256,256) T2 map in ms; source-saved nonlinear T2/M0",
+    "raw": "(1,256,256,10) magnitude, echoes last",
+    "scoring": "Source metrics use tissue mask27817, range40..150 =>110ms. Generic selector can choose native M0_map for matching256\u00b2 output by alphabetical fallback, rejects bool mask, compares65536 pixels unmasked; current installed target/threshold not verified.",
+    "source_commit": "dc2f668939b21e8312e22529615def610f8611df",
+    "source_main_output": "T2/M0 .npz in evaluation/reference_outputs; output directory holds figures, no generic reconstruction.npy"
+  },
+  "task_source_git_blobs_verified": 6,
+  "top_warning": "Synthetic echoes only; generic reference may select M0 rather than T2. No participant fit or clinical result.",
+  "warning_text": "Synthetic echoes only; generic reference may select M0 rather than T2. No participant fit or clinical result."
+}

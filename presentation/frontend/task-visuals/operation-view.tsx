@@ -1,3 +1,4 @@
+import { ImagingT2MappingScene, ImagingT2MappingOutput } from './imaging101-mri-t2-mapping-panels';
 import { ImagingSenseScene, ImagingSenseOutput } from './imaging101-mri-sense-panels';
 import { ImagingPnpAdmmScene, ImagingPnpAdmmOutput } from './imaging101-mri-pnp-admm-panels';
 import {
@@ -416,6 +417,8 @@ export function OperationScene({
     return <ImagingPnpAdmmScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'imaging101-sense-v1')
     return <ImagingSenseScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
+  if (state.recipe === 'imaging101-t2-mapping-v1')
+    return <ImagingT2MappingScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -765,6 +768,7 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
     return <ImagingNoncartesianOutput state={state} />;
   if (state.recipe === 'imaging101-pnp-admm-v1') return <ImagingPnpAdmmOutput state={state} />;
   if (state.recipe === 'imaging101-sense-v1') return <ImagingSenseOutput state={state} />;
+  if (state.recipe === 'imaging101-t2-mapping-v1') return <ImagingT2MappingOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

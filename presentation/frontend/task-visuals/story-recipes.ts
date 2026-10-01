@@ -1,3 +1,4 @@
+import { imagingT2MappingPack } from './imaging101-mri-t2-mapping';
 import { imagingSensePack } from './imaging101-mri-sense';
 import { imagingPnpAdmmPack } from './imaging101-mri-pnp-admm';
 import { imagingNoncartesianPack } from './imaging101-mri-noncartesian-cs';
@@ -135,6 +136,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'imaging101-t2-mapping-v1',
     'imaging101-sense-v1',
     'imaging101-pnp-admm-v1',
     'imaging101-noncartesian-v1',
@@ -1278,6 +1280,16 @@ export function storyPresentation(plan: StoryPlan): {
           ['#b8b8b8', 'Native coil-map magnitude; grayscale 0–0.16'],
           ['#57d1cc', 'Native sampled rows'],
           ['#122939', 'Native missing rows'],
+        ],
+      };
+    case 'imaging101-t2-mapping-v1':
+      return {
+        heading: 'Echo-time decay and T2 fitting rules',
+        corner: 'Synthetic echoes; generic target ambiguity',
+        warning: imagingT2MappingPack.source.notice,
+        legend: [
+          ['#000000', 'Black: magnitude 0 a.u.; fixed display scale'],
+          ['#ffffff', 'White: magnitude 1 a.u.; display clipping only'],
         ],
       };
     case 'bcer-brain-full-v1':

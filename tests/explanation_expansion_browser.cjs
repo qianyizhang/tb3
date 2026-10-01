@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'imaging101-t2-mapping-v1',
   'imaging101-sense-v1',
   'imaging101-pnp-admm-v1',
   'imaging101-noncartesian-v1',
@@ -120,6 +121,15 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'imaging101-t2-mapping-v1')
+    return {
+      scene: 'data-imaging-t2-mapping-scene',
+      reference: '[data-imaging-t2-mapping-reference-revealed]',
+      referenceChannel: null,
+      readerControlled: true,
+      output: '[data-imaging-t2-mapping-scene="output"] code',
+      aside: '[data-imaging-t2-mapping-output]',
+    };
   if (plan.recipe === 'imaging101-sense-v1')
     return {
       scene: 'data-imaging-sense-scene',
@@ -806,6 +816,12 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'imaging101-t2-mapping-v1': [
+      /Synthetic echoes only; generic reference may select M0 rather than T2.*No participant fit or clinical result/s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_t2_mapping',
+      'data-imaging-t2-mapping-scene',
+      false,
+    ],
     'imaging101-sense-v1': [
       /Synthetic source only; loader requires absent full-kspace keys and main R4 differs from native R3.*No participant reconstruction/s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/mri_sense',
@@ -1699,6 +1715,172 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await page.locator('[data-story-step="0"]').click();
     await absent();
   }
+  if (plan.recipe === 'imaging101-t2-mapping-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-t2-mapping-scene]');
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-t2-mapping-reference-revealed]').count(), 0);
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async (m) => {
+      const img = scene.locator('img');
+      assert.equal(await img.count(), 1);
+      const native = await img.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(native.w, 256);
+      assert.equal(native.h, 256);
+      assert.match(
+        native.alt,
+        new RegExp(`Actual synthetic magnitude image, TE ${[10, 50, 100][m]} ms; no fitted T2 map`),
+      );
+      assert.ok(native.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(native.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            `presentation/task-explorer/imaging101-mri-t2-mapping/echo-${[10, 50, 100][m]}.png`,
+          ),
+        ),
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        new RegExp(
+          `Black→white: magnitude signal a\\.u\\..*fixed\\s*0–1\\s*display.*TE ${[10, 50, 100][m]} ms.*Native 256² cells.*no fit`,
+          's',
+        ),
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await absent();
+    await image(0);
+    assert.match(
+      await scene.innerText(),
+      /10\s*echoes.*TE\s*10…100\s*ms.*256×256.*Magnitude signal a\.u\..*no complex\/coil axis.*Synthetic\s*220\s*mm FOV.*no patient acquisition.*target ranking may choose M0.*T2.*Truth mask solver-visible.*no participant result/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const stepNames = ['Signal + noise', 'Native echoes', 'Log + nonlinear fit'],
+      branchNames = ['TE 10 ms', 'TE 50 ms', 'TE 100 ms'],
+      branchFrames = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branchNames[m], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          branchFrames[m],
+        );
+        await image(m);
+        await scene.getByRole('button', { name: stepNames[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? branchFrames[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-t2-mapping-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: stepNames[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /S\(TE\)=M₀ exp\(−TE\/T₂\).*TE and T₂ in ms.*Rician magnitude.*σ\s*=\s*(?:0)?\.02 per Gaussian channel.*not zero-mean magnitude noise.*Authored M₀\s*=\s*(?:0)?\.8.*T₂\s*=\s*80\s*ms.*10\/50\/100\s*ms.*0\.706.*0\.428.*0\.229.*no native fit\/noise draw/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        } else if (i === 1) {
+          await image(m);
+          assert.match(
+            text,
+            /Same grayscale scale across echoes.*Indices\s*0\/4\/9.*TE\s*10\/50\/100\s*ms.*no per-echo normalization.*log.*fitted map.*Signal intensity is a\.u\..*T2 output is ms.*background noise remains visible.*truth mask not applied/is,
+          );
+        } else {
+          assert.match(
+            text,
+            /Log OLS versus signal-domain LM.*log\(max\(S,1e−10\)\).*unweighted OLS.*T₂=−1\/slope.*Unweighted nonlinear LM\s*50.*log fit.*positivity\/clipping.*fallback on failure.*weighted\/unbiased claims not established.*27,?817.*truth-mask pixels.*outside stays\s*0.*No fit\/convergence\/error measured/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await image(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /reconstruction\.npy.*256×256.*intended ms.*Participant map\/score empty.*Saved source T2\/M0 archives.*separate.*generic target ambiguity unresolved/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () => scene.getByRole('button', { name: 'Reveal source rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide source rules', exact: true })
+        .getAttribute('aria-expanded'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-t2-mapping-reference-revealed]').innerText(),
+      /Source main T2.*27,?817.*masked pixels.*110\s*ms range.*Generic.*65,?536.*pixels.*no mask.*alphabetical M0_map before T2_map.*thresholds derive from masked T2 baseline.*unmasked M0.*unresolved.*No truth\/fitted image or verdict.*solver-visible.*never private or patient truth/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide source rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /Matching synthetic magnitude echoes.*no patient acquisition or participant fit.*ground_truth.*T2_map.*M0_map.*Live target\/threshold lineage unverified.*Actual synthetic echo contrast is input evidence only.*No fitted T2.*statistical unbiasedness.*model performance.*clinical finding/is,
+    );
+    await capture('limits-contract');
+    await page.locator('.scene-reset').click();
+    await absent();
+  }
+
   if (plan.recipe === 'imaging101-sense-v1') {
     if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
       await page.locator('.scene-play').click();
@@ -9511,6 +9693,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'imaging101-t2-mapping-v1',
       'imaging101-sense-v1',
       'imaging101-pnp-admm-v1',
       'imaging101-noncartesian-v1',

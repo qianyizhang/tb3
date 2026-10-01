@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                     "imaging101-sense-v1",
                     "imaging101-noncartesian-v1",
                     "imaging101-pnp-admm-v1",
+                    "imaging101-t2-mapping-v1",
                     "imaging101-wavelet-v1",
                     "bcer-superres-v1",
                     "automed-kvasir-v1",
