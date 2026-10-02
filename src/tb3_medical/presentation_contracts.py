@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class AutomedMsdPancreasCtsrChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedMsdPancreasCtsrBeat(ExpansionBeat):
+    channels: AutomedMsdPancreasCtsrChannels
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedMsdPancreasCtsrPlan(ExpansionPlan):
+    recipe: Literal["automed-msd-pancreas-ctsr-v1"]
+    beats: list[AutomedMsdPancreasCtsrBeat]
+
+
 class AutomedCtorgCtsrChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -2995,6 +3011,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | AutomedMsdPancreasCtsrPlan
     | AutomedCtorgCtsrPlan
     | AutomedNihCxrSrPlan
     | AutomedMriSrPlan

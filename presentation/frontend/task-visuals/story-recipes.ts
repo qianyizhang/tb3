@@ -1,3 +1,4 @@
+import { automedMsdPancreasCtsrPack } from './automed-msd-pancreas-ctsr';
 import { automedCtorgCtsrPack } from './automed-ctorg-ctsr';
 import { automedNihCxrSrPack } from './automedbench-full-nih-cxr-sr-task';
 import { automedMriSrPack } from './automed-mri-sr';
@@ -153,6 +154,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-msd-pancreas-ctsr-v1',
     'automed-ctorg-ctsr-v1',
     'automedbench-full-nih-cxr-sr-task-v1',
     'automed-mri-sr-v1',
@@ -1507,6 +1509,13 @@ export function storyPresentation(plan: StoryPlan): {
           ['#ef9c90', 'Dashed salmon sockets: absent CT input/output', true],
           ['#728e98', 'Blue-gray outline: public protocol card'],
         ],
+      };
+    case 'automed-msd-pancreas-ctsr-v1':
+      return {
+        heading: 'Restore z-axis detail on the same CT grid',
+        corner: 'Full MSD Pancreas pair absent · symbolic protocol',
+        warning: automedMsdPancreasCtsrPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

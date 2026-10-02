@@ -341,6 +341,7 @@ def new(
             "automed-ldct-denoising-v1",
             "automed-mri-sr-v1",
             "automed-ctorg-ctsr-v1",
+            "automed-msd-pancreas-ctsr-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

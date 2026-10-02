@@ -1,0 +1,17 @@
+{
+  "boundary": "Private high-resolution ct.nii.gz absent. No predicted volume, medical label, restoration or measured metric. Same array shape/score does not prove anatomical registration or clinical accuracy.",
+  "coverage": "All supplied IDs form completion denominator; valid scored predictions form MAE/RMSE means, SSIM and finite PSNR have separate subsets. No ID deduplication, actual Full count or missing-file format penalty.",
+  "format": "Loadable finite 3D NIfTI; equal private-target shape if reference exists. No on-disk dtype/affine/header/spacing equality guard. HU<-2500 or>5000 and constants warn only; missing predictions leave present-format valid.",
+  "path": "agents_outputs/<case_id>/sct.nii.gz",
+  "prediction": null,
+  "reference": null,
+  "rules": {
+    "completion": "Proxy=finite clipped mean SSIM 0\u20131\u00d7n_predicted/allIDs, rounded 4 decimals. Report empty-ID denominator coerced 1; missing/invalid GT or prediction unscored. No measured proxy.",
+    "rating": "Configured mean SSIM\u2265.98\u2192tier2/A, \u2265.95\u2192tier1/B, else tier0/C if format valid and any score, else F. Finite SSIM guard exists. Partial outputs can retain A/B; no LPIPS or enhancement baseline_bands. Loader failure generic defaults .90/.75 differ.",
+    "raw": "Full-volume HU MAE/RMSE without clipping; PSNR fixed 4095 HU. MSE0\u2192infinity, omitted from finite PSNR mean. No configured mask and no GT finiteness/affine guard.",
+    "ssim": "Clip[-1024,3071]HU, average valid SSIM planes along array axis 2 regardless of affine. Small planes/errors skipped; no skimage\u2192None. No body/organ ROI in configured route.",
+    "workflow": "S4=.5completion+.5format; S5=.5(anyvalid+positiveproxy)+.5format. S1\u2013S3 None count 0 across full weight denominator 1. Optional judge attached afterwards without recomputation. Overall=.5workflow+.5proxy; progress 2 gates completion\u2265.9 and format."
+  },
+  "score": null,
+  "shape": null
+}
