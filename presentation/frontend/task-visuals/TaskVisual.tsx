@@ -59,24 +59,30 @@ function LanguageNote() {
     </p>
   ) : null;
 }
+function LabelSpace({ entry }: { entry: VisualEntry }) {
+  const { t } = useLocale();
+  const labels = entry.illustration.labels;
+  if (!labels?.length) return null;
+  return (
+    <details className="scene-label-space">
+      <summary>
+        {t('Possible class labels')} ({labels.length})
+      </summary>
+      <div lang="en">
+        {labels.map((name) => (
+          <span key={name}>{name}</span>
+        ))}
+      </div>
+    </details>
+  );
+}
 function VisualNotes({ entry }: { entry: VisualEntry }) {
   const { t } = useLocale();
   return (
     <details className="scene-notes">
       <summary>{t('About this illustration')}</summary>
       <p lang="en">{entry.illustration.caption}</p>
-      {!!entry.illustration.labels?.length && (
-        <details className="scene-label-space">
-          <summary>
-            {t('Possible class labels')} ({entry.illustration.labels.length})
-          </summary>
-          <div>
-            {entry.illustration.labels.map((name) => (
-              <span key={name}>{name}</span>
-            ))}
-          </div>
-        </details>
-      )}
+      <LabelSpace entry={entry} />
       {TaskSceneModels.usesAnatomy(entry) && (
         <details className="scene-asset-notice">
           <summary>{t('About the anatomy models')}</summary>
@@ -138,7 +144,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
   const { stage, playing, fallback, actions, pointer } = player;
   const projected = fallback && !!plan && hasInteractiveProjection(plan);
   const steps = plan
-    ? plan.beats.map((beat) => beat.id)
+    ? plan.beats.map((beat) => beat.id.replace(/[-_]+/g, ' '))
     : [t('Input'), t('Action'), t(entry.role && entry.role !== 'task' ? 'Study output' : 'Output')];
   const copy = plan ? plan.beats.map((beat) => beat.caption) : [d.input, story.action, d.output];
   const selected = player.storyState?.index ?? stage;
@@ -188,6 +194,8 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
               data-scene-step={i}
               data-story-step={i}
               aria-pressed={selected === i}
+              aria-label={plan ? `${i + 1}. ${copy[i]}` : undefined}
+              lang={plan ? 'en' : undefined}
               onClick={() =>
                 plan ? actions.current?.selectBeat(i) : actions.current?.select(i as Stage)
               }
@@ -365,6 +373,7 @@ function SpatialVisual({ entry, plan, capture, captureReady }: VisualProps) {
       {plan ? (
         <details className="scene-notes" lang="en">
           <summary>Transcript · English source</summary>
+          <LabelSpace entry={entry} />
           {plan.beats.map((beat) => (
             <section key={beat.id}>
               <strong>{beat.caption}</strong>

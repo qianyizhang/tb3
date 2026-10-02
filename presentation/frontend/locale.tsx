@@ -89,6 +89,7 @@ const zh: Record<string, string> = {
   'Interactive task illustration': '交互式任务示意图',
   'Task illustration': '任务示意图',
   'Illustrative model · not case-specific': '示意模型 · 非本例结果',
+  'Task walkthrough · see stated scope': '任务讲解 · 适用范围见下文',
   'Source-derived example': '来源图像示例',
   'Inspect example →': '查看示例 →',
   'Inspect example and reference →': '查看示例与参考标注 →',

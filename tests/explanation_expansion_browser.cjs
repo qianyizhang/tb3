@@ -141,20 +141,147 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
-  if (plan.recipe === 'automed-totalsegmentator-ctsr-v1') return {scene:'data-totalseg-stage',reference:'#totalseg-format-rules,#totalseg-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-totalseg-stage="output"] code[class*="path"]',aside:'[data-totalseg-output]'};
-  if (plan.recipe === 'automedbench-full-synthrad2025-mrct-task-v1') return {scene:'data-mrct-scene',reference:'[data-mrct-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-mrct-output-schema]',aside:'[data-mrct-output]'};
-  if (plan.recipe === 'automed-msd-pancreas-ctsr-v1') return {scene:'data-msdpancreas-stage',reference:'#msdpancreas-format-rules,#msdpancreas-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-msdpancreas-stage="output"] code[class*="path"]',aside:'[data-msdpancreas-output]'};
-  if (plan.recipe === 'automed-ctorg-ctsr-v1') return {scene:'data-ctorg-stage',reference:'#ctorg-format-rules,#ctorg-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-ctorg-stage="output"] code[class*="path"]',aside:'[data-ctorg-output]'};
-  if (plan.recipe === 'automedbench-full-nih-cxr-sr-task-v1') return {scene:'data-automed-nih-cxr-sr-scene',reference:'[data-automed-nih-cxr-sr-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-nih-cxr-sr-scene="output"] code',aside:'[data-automed-nih-cxr-sr-output]'};
-  if (plan.recipe === 'automed-mri-sr-v1') return {scene:'data-mrisr-stage',reference:'#mrisr-format-rules,#mrisr-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-mrisr-stage="output"] code[class*="path"]',aside:'[data-mrisr-output]'};
-  if (plan.recipe === 'automedbench-full-lidc-idri-denoising-task-v1') return {scene:'data-automed-lidc-denoise-scene',reference:'[data-automed-lidc-denoise-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-lidc-denoise-scene="output"] code',aside:'[data-automed-lidc-denoise-output]'};
-  if (plan.recipe === 'automed-ldct-denoising-v1') return {scene:'data-ldct-stage',reference:'#ldct-format-rules,#ldct-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-ldct-stage="output"] code[class*="path"]',aside:'[data-ldct-output]'};
-  if (plan.recipe === 'automedbench-full-ixi-t1-sr-task-v1') return {scene:'data-automed-ixi-t1-sr-scene',reference:'[data-automed-ixi-t1-sr-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-ixi-t1-sr-scene="output"] code',aside:'[data-automed-ixi-t1-sr-output]'};
-  if (plan.recipe === 'automedbench-full-deeplesion-denoising-task-v1') return {scene:'data-automed-deeplesion-denoise-scene',reference:'[data-automed-deeplesion-denoise-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-deeplesion-denoise-scene="output"] code',aside:'[data-automed-deeplesion-denoise-output]'};
-  if (plan.recipe === 'automedbench-full-brats-t1c-sr-task-v1') return {scene:'data-automed-brats-t1c-sr-scene',reference:'[data-automed-brats-t1c-sr-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-brats-t1c-sr-scene="output"] code',aside:'[data-automed-brats-t1c-sr-output]'};
-  if (plan.recipe === 'rex-usenhance-v1') return {scene:'data-usenhance-scene',reference:'[data-usenhance-training-role], #usenhance-grading-rule, [data-usenhance-method], [data-usenhance-format]',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-usenhance-output-schema]',aside:'[data-usenhance-output]'};
-  if (plan.recipe === 'imaging101-xray-tooth-gridrec-v1') return {scene:'data-imaging-tooth-gridrec-scene',reference:'[data-imaging-tooth-gridrec-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-imaging-tooth-gridrec-output-schema]',aside:'[data-imaging-tooth-gridrec-output]'};
-  if (plan.recipe === 'imaging101-usct-fwi-v1') return {scene:'data-imaging-usct-fwi-scene',reference:'[data-imaging-usct-fwi-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-imaging-usct-fwi-output-schema]',aside:'[data-imaging-usct-fwi-output]'};
+  if (plan.recipe === 'automed-totalsegmentator-ctsr-v1')
+    return {
+      scene: 'data-totalseg-stage',
+      reference: '#totalseg-format-rules,#totalseg-metric-rules',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-totalseg-stage="output"] code[class*="path"]',
+      aside: '[data-totalseg-output]',
+    };
+  if (plan.recipe === 'automedbench-full-synthrad2025-mrct-task-v1')
+    return {
+      scene: 'data-mrct-scene',
+      reference: '[data-mrct-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-mrct-output-schema]',
+      aside: '[data-mrct-output]',
+    };
+  if (plan.recipe === 'automed-msd-pancreas-ctsr-v1')
+    return {
+      scene: 'data-msdpancreas-stage',
+      reference: '#msdpancreas-format-rules,#msdpancreas-metric-rules',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-msdpancreas-stage="output"] code[class*="path"]',
+      aside: '[data-msdpancreas-output]',
+    };
+  if (plan.recipe === 'automed-ctorg-ctsr-v1')
+    return {
+      scene: 'data-ctorg-stage',
+      reference: '#ctorg-format-rules,#ctorg-metric-rules',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-ctorg-stage="output"] code[class*="path"]',
+      aside: '[data-ctorg-output]',
+    };
+  if (plan.recipe === 'automedbench-full-nih-cxr-sr-task-v1')
+    return {
+      scene: 'data-automed-nih-cxr-sr-scene',
+      reference: '[data-automed-nih-cxr-sr-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-automed-nih-cxr-sr-scene="output"] code',
+      aside: '[data-automed-nih-cxr-sr-output]',
+    };
+  if (plan.recipe === 'automed-mri-sr-v1')
+    return {
+      scene: 'data-mrisr-stage',
+      reference: '#mrisr-format-rules,#mrisr-metric-rules',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-mrisr-stage="output"] code[class*="path"]',
+      aside: '[data-mrisr-output]',
+    };
+  if (plan.recipe === 'automedbench-full-lidc-idri-denoising-task-v1')
+    return {
+      scene: 'data-automed-lidc-denoise-scene',
+      reference: '[data-automed-lidc-denoise-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-automed-lidc-denoise-scene="output"] code',
+      aside: '[data-automed-lidc-denoise-output]',
+    };
+  if (plan.recipe === 'automed-ldct-denoising-v1')
+    return {
+      scene: 'data-ldct-stage',
+      reference: '#ldct-format-rules,#ldct-metric-rules',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-ldct-stage="output"] code[class*="path"]',
+      aside: '[data-ldct-output]',
+    };
+  if (plan.recipe === 'automedbench-full-ixi-t1-sr-task-v1')
+    return {
+      scene: 'data-automed-ixi-t1-sr-scene',
+      reference: '[data-automed-ixi-t1-sr-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-automed-ixi-t1-sr-scene="output"] code',
+      aside: '[data-automed-ixi-t1-sr-output]',
+    };
+  if (plan.recipe === 'automedbench-full-deeplesion-denoising-task-v1')
+    return {
+      scene: 'data-automed-deeplesion-denoise-scene',
+      reference: '[data-automed-deeplesion-denoise-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-automed-deeplesion-denoise-scene="output"] code',
+      aside: '[data-automed-deeplesion-denoise-output]',
+    };
+  if (plan.recipe === 'automedbench-full-brats-t1c-sr-task-v1')
+    return {
+      scene: 'data-automed-brats-t1c-sr-scene',
+      reference: '[data-automed-brats-t1c-sr-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-automed-brats-t1c-sr-scene="output"] code',
+      aside: '[data-automed-brats-t1c-sr-output]',
+    };
+  if (plan.recipe === 'rex-usenhance-v1')
+    return {
+      scene: 'data-usenhance-scene',
+      reference:
+        '[data-usenhance-training-role], #usenhance-grading-rule, [data-usenhance-method], [data-usenhance-format]',
+      referenceChannel: null,
+      referencePolicy: 'no-reference-assets',
+      readerControlled: true,
+      output: '[data-usenhance-output-schema]',
+      aside: '[data-usenhance-output]',
+    };
+  if (plan.recipe === 'imaging101-xray-tooth-gridrec-v1')
+    return {
+      scene: 'data-imaging-tooth-gridrec-scene',
+      reference: '[data-imaging-tooth-gridrec-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-imaging-tooth-gridrec-output-schema]',
+      aside: '[data-imaging-tooth-gridrec-output]',
+    };
+  if (plan.recipe === 'imaging101-usct-fwi-v1')
+    return {
+      scene: 'data-imaging-usct-fwi-scene',
+      reference: '[data-imaging-usct-fwi-reference-revealed]',
+      referenceChannel: null,
+      referencePolicy: 'reader-reference-reveal',
+      readerControlled: true,
+      output: '[data-imaging-usct-fwi-output-schema]',
+      aside: '[data-imaging-usct-fwi-output]',
+    };
   if (plan.recipe === 'imaging-ultrasound-sos-v1')
     return {
       scene: 'data-sos-scene',
@@ -905,20 +1032,90 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
-    'automed-totalsegmentator-ctsr-v1': [/Full TotalSegmentator CT pair absent; symbolic same-grid restoration./s,'https://zenodo.org/records/10047292','data-totalseg-stage',false],
-    'automedbench-full-synthrad2025-mrct-task-v1': [/Matching Full MR\/mask\/CT pair absent; symbolic roles only./s,'https://zenodo.org/records/15373853','data-mrct-scene',false],
-    'automed-msd-pancreas-ctsr-v1': [/Full MSD Pancreas pair absent; symbolic same-grid CT restoration./s,'https://medicaldecathlon.com/','data-msdpancreas-stage',false],
-    'automed-ctorg-ctsr-v1': [/Full CT-ORG volume\/target absent; symbolic same-grid z-axis restoration./s,'https://www.cancerimagingarchive.net/collection/ct-org/','data-ctorg-stage',false],
-    'automedbench-full-nih-cxr-sr-task-v1': [/Matching Full NIH CXR input .* private target absent; symbolic 2.*geometry only./s,'https://nihcc.app.box.com/v/ChestXray-NIHCC','data-automed-nih-cxr-sr-scene',false],
-    'automed-mri-sr-v1': [/Full MRI LR\/HR pair absent; symbolic x2 grid and output contract./s,'https://fastmri.med.nyu.edu/','data-mrisr-stage',false],
-    'automedbench-full-lidc-idri-denoising-task-v1': [/Matching Full noisy .* clean pair absent; upstream LIDC CT is reader-only./s,'https://www.cancerimagingarchive.net/collection/lidc-idri/','data-automed-lidc-denoise-scene',false],
-    'automed-ldct-denoising-v1': [/Full noisy-clean CT pair absent; symbolic HU and submission protocol./s,'https://www.aapm.org/grandchallenge/lowdosect/','data-ldct-stage',false],
-    'automedbench-full-ixi-t1-sr-task-v1': [/Matching Full IXI input .* private target absent; upstream T1 example is reader-only./s,'https://brain-development.org/ixi-dataset/','data-automed-ixi-t1-sr-scene',false],
-    'automedbench-full-deeplesion-denoising-task-v1': [/Matching Full DeepLesion input .* private target absent; symbolic normalized-noise rules only./s,'https://nihcc.app.box.com/v/DeepLesion','data-automed-deeplesion-denoise-scene',false],
-    'automedbench-full-brats-t1c-sr-task-v1': [/Matching Full BraTS T1c input and private target unavailable; symbolic geometry only./s,'https://www.synapse.org/Synapse:syn51156910/wiki/','data-automed-brats-t1c-sr-scene',false],
-    'rex-usenhance-v1': [/Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score./s,'https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/','data-usenhance-scene',false],
-    'imaging101-xray-tooth-gridrec-v1': [/Native tooth counts; calibrated attenuation, independent truth and participant output absent./s,'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec','data-imaging-tooth-gridrec-scene',false],
-    'imaging101-usct-fwi-v1': [/Numerical phantom observations; true speed, calibrated pressure and participant output absent./s,'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI','data-imaging-usct-fwi-scene',false],
+    'automed-totalsegmentator-ctsr-v1': [
+      /Full TotalSegmentator CT pair absent; symbolic same-grid restoration./s,
+      'https://zenodo.org/records/10047292',
+      'data-totalseg-stage',
+      false,
+    ],
+    'automedbench-full-synthrad2025-mrct-task-v1': [
+      /Matching Full MR\/mask\/CT pair absent; symbolic roles only./s,
+      'https://zenodo.org/records/15373853',
+      'data-mrct-scene',
+      false,
+    ],
+    'automed-msd-pancreas-ctsr-v1': [
+      /Full MSD Pancreas pair absent; symbolic same-grid CT restoration./s,
+      'https://medicaldecathlon.com/',
+      'data-msdpancreas-stage',
+      false,
+    ],
+    'automed-ctorg-ctsr-v1': [
+      /Full CT-ORG volume\/target absent; symbolic same-grid z-axis restoration./s,
+      'https://www.cancerimagingarchive.net/collection/ct-org/',
+      'data-ctorg-stage',
+      false,
+    ],
+    'automedbench-full-nih-cxr-sr-task-v1': [
+      /Matching Full NIH CXR input .* private target absent; symbolic 2.*geometry only./s,
+      'https://nihcc.app.box.com/v/ChestXray-NIHCC',
+      'data-automed-nih-cxr-sr-scene',
+      false,
+    ],
+    'automed-mri-sr-v1': [
+      /Full MRI LR\/HR pair absent; symbolic x2 grid and output contract./s,
+      'https://fastmri.med.nyu.edu/',
+      'data-mrisr-stage',
+      false,
+    ],
+    'automedbench-full-lidc-idri-denoising-task-v1': [
+      /Matching Full noisy .* clean pair absent; upstream LIDC CT is reader-only./s,
+      'https://www.cancerimagingarchive.net/collection/lidc-idri/',
+      'data-automed-lidc-denoise-scene',
+      false,
+    ],
+    'automed-ldct-denoising-v1': [
+      /Full noisy-clean CT pair absent; symbolic HU and submission protocol./s,
+      'https://www.aapm.org/grandchallenge/lowdosect/',
+      'data-ldct-stage',
+      false,
+    ],
+    'automedbench-full-ixi-t1-sr-task-v1': [
+      /Matching Full IXI input .* private target absent; upstream T1 example is reader-only./s,
+      'https://brain-development.org/ixi-dataset/',
+      'data-automed-ixi-t1-sr-scene',
+      false,
+    ],
+    'automedbench-full-deeplesion-denoising-task-v1': [
+      /Matching Full DeepLesion input .* private target absent; symbolic normalized-noise rules only./s,
+      'https://nihcc.app.box.com/v/DeepLesion',
+      'data-automed-deeplesion-denoise-scene',
+      false,
+    ],
+    'automedbench-full-brats-t1c-sr-task-v1': [
+      /Matching Full BraTS T1c input and private target unavailable; symbolic geometry only./s,
+      'https://www.synapse.org/Synapse:syn51156910/wiki/',
+      'data-automed-brats-t1c-sr-scene',
+      false,
+    ],
+    'rex-usenhance-v1': [
+      /Exact paired PNGs and prepared split IDs are absent; filename pairing does not establish patient isolation or registered frames. Symbolic protocol only; no enhanced image or score./s,
+      'https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/',
+      'data-usenhance-scene',
+      false,
+    ],
+    'imaging101-xray-tooth-gridrec-v1': [
+      /Native tooth counts; calibrated attenuation, independent truth and participant output absent./s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/xray_tooth_gridrec',
+      'data-imaging-tooth-gridrec-scene',
+      false,
+    ],
+    'imaging101-usct-fwi-v1': [
+      /Numerical phantom observations; true speed, calibrated pressure and participant output absent./s,
+      'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/usct_FWI',
+      'data-imaging-usct-fwi-scene',
+      false,
+    ],
     'imaging-ultrasound-sos-v1': [
       /Native synthetic parallel-beam sums omit pixel-length scaling; calibrated seconds and ring paths are unestablished. Source truth is solver-visible; no participant reconstruction or score./s,
       'https://huggingface.co/datasets/starpacker52/imaging-101/tree/a9de559b54849a25988a8a0d8a5e869063a5a7a3/tasks/ultrasound_sos_tomography',
@@ -2885,269 +3082,2133 @@ async function reviewCardiacInteractions(page, plan, output, label) {
   }
 
   if (plan.recipe === 'imaging101-usct-fwi-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-imaging-usct-fwi-scene]');
-    const absent=async()=>assert.equal(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    const image=async i=>{const imgs=scene.locator('img');assert.equal(await imgs.count(),1);const d=await imgs.evaluate(e=>({src:e.src,w:e.naturalWidth,h:e.naturalHeight,alt:e.alt}));assert.equal(d.w,128);assert.equal(d.h,128);assert.ok(d.src.startsWith('data:image/png;base64,'));assert.equal(sha(Buffer.from(d.src.split(',')[1],'base64')),sha(fs.readFileSync(`presentation/task-explorer/imaging101-usct-fwi/${['observations-03','observations-08','observations-125'][i]}.png`)));assert.match(d.alt,/Native numerical phantom complex observations.*real component, receiver rows and source columns, stride two/);assert.match(await scene.locator('figcaption').innerText(),/receiver rows.*source columns.*every second cell.*Black −.*gray 0.*white \+.*uncalibrated amplitude/is);};
-    await page.locator('[data-story-step="0"]').click();await image(0);await absent();assert.match(await scene.innerText(),/20 frequencies.*256 receivers.*256 sources.*1,310,720 complex cells.*No time waveform, calibrated Pa or patient recordings.*No wave simulation, speed reconstruction or metric/is);await capture('native-input');await advance(0);await page.locator('[data-story-step="0"]').click();
-    const steps=['Units + muting','Native frequencies','Fit + update rules'],branches=['0.3 MHz','0.8 MHz','1.25 MHz'],bf=[336,419,503];
-    for(let i=0;i<3;i++)for(let m=0;m<3;m++){
-      await page.locator('[data-story-step="2"]').click();await scene.getByRole('button',{name:branches[m],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),bf[m]);await scene.getByRole('button',{name:steps[i],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),i===1?bf[m]:[168,0,504][i]);assert.equal(await scene.getAttribute('data-imaging-usct-fwi-operation-step'),String(i));assert.equal(await scene.getByRole('button',{name:steps[i],exact:true}).getAttribute('aria-pressed'),'true');const text=await scene.innerText();
-      if(i===0){assert.match(text,/480 × 480 cells.*50 µm.*256 ring positions.*24 mm.*2\.4 cm.*metadata says 24 cm.*7,500 µm muted.*zero observations additionally excluded.*No time sampling or density map/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
-      else if(i===1){assert.equal(await scene.getByRole('button',{name:branches[m],exact:true}).getAttribute('aria-pressed'),'true');await image(m);assert.match(text,/128 × 128 direct stride-two receiver\/source cells.*signed real amplitude.*complex profiles retained.*No wave solve, interpolation, amplitude calibration or reconstructed speed/is);await capture(`native-frequency-${m}`);}
-      else{assert.match(text,/α = Σ\(conj\(dsrc\) y\) \/ Σ\|dsrc\|².*Authored dsrc = \[1, 2\], y = \[2, 4\] gives α = 2.*Native fitted α and update remain unknown.*1480 m\/s.*max 3 NCG steps per frequency.*9 × 9 gradient smoothing.*No gradient\/adjoint certification or current convergence/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
-      await absent();await capture(`contract-${i}-${m}`);
-    }
-    await page.locator('[data-story-step="2"]').click();await advance(336);await page.locator('[data-story-step="2"]').click();await image(0);await absent();
-    const oi=plan.beats.findIndex(b=>b.scene==='output');await page.locator(`[data-story-step="${oi}"]`).click();assert.match(await scene.innerText(),/Participant speed map absent.*output\/reconstruction\.npy.*480 × 480.*m\/s.*Source main saves to evaluation\/reference_outputs instead.*never participant output or phantom truth/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await absent();await capture('empty-output');
-    const ri=plan.beats.findIndex(b=>b.scene==='reference');await page.locator(`[data-story-step="${ri}"]`).click();await absent();const reveal=()=>scene.getByRole('button',{name:'Reveal public reference rules',exact:true});await reveal().click();assert.equal(await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').innerText(),/neither is phantom truth.*Filesystem selects a saved reconstruction, not true speed.*source uses the visible baseline.*230,400 cells.*No-filesystem scorer requires absent ground_truth\.npy.*No participant map, score or private truth/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('rules-revealed');await scene.getByRole('button',{name:'Cover public reference rules',exact:true}).click();await absent();
-    await advance(plan.beats[ri].startFrame);await reveal().click();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('[data-story-step="1"]').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();
-    const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();assert.match(await scene.innerText(),/No clinical property, reconstruction quality, current CUDA success or convergence claim/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('limits-contract');await absent();await page.locator('.scene-reset').click();await absent();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-usct-fwi-scene]');
+    const absent = async () =>
+      assert.equal(await scene.locator('[data-imaging-usct-fwi-reference-revealed]').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async (i) => {
+      const imgs = scene.locator('img');
+      assert.equal(await imgs.count(), 1);
+      const d = await imgs.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(d.w, 128);
+      assert.equal(d.h, 128);
+      assert.ok(d.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(d.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            `presentation/task-explorer/imaging101-usct-fwi/${['observations-03', 'observations-08', 'observations-125'][i]}.png`,
+          ),
+        ),
+      );
+      assert.match(
+        d.alt,
+        /Native numerical phantom complex observations.*real component, receiver rows and source columns, stride two/,
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /receiver rows.*source columns.*every second cell.*Black −.*gray 0.*white \+.*uncalibrated amplitude/is,
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await image(0);
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /20 frequencies.*256 receivers.*256 sources.*1,310,720 complex cells.*No time waveform, calibrated Pa or patient recordings.*No wave simulation, speed reconstruction or metric/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const steps = ['Units + muting', 'Native frequencies', 'Fit + update rules'],
+      branches = ['0.3 MHz', '0.8 MHz', '1.25 MHz'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branches[m], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[m]);
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[m] : [168, 0, 504][i],
+        );
+        assert.equal(await scene.getAttribute('data-imaging-usct-fwi-operation-step'), String(i));
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /480 × 480 cells.*50 µm.*256 ring positions.*24 mm.*2\.4 cm.*metadata says 24 cm.*7,500 µm muted.*zero observations additionally excluded.*No time sampling or density map/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        } else if (i === 1) {
+          assert.equal(
+            await scene
+              .getByRole('button', { name: branches[m], exact: true })
+              .getAttribute('aria-pressed'),
+            'true',
+          );
+          await image(m);
+          assert.match(
+            text,
+            /128 × 128 direct stride-two receiver\/source cells.*signed real amplitude.*complex profiles retained.*No wave solve, interpolation, amplitude calibration or reconstructed speed/is,
+          );
+          await capture(`native-frequency-${m}`);
+        } else {
+          assert.match(
+            text,
+            /α = Σ\(conj\(dsrc\) y\) \/ Σ\|dsrc\|².*Authored dsrc = \[1, 2\], y = \[2, 4\] gives α = 2.*Native fitted α and update remain unknown.*1480 m\/s.*max 3 NCG steps per frequency.*9 × 9 gradient smoothing.*No gradient\/adjoint certification or current convergence/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await image(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /Participant speed map absent.*output\/reconstruction\.npy.*480 × 480.*m\/s.*Source main saves to evaluation\/reference_outputs instead.*never participant output or phantom truth/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await absent();
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public reference rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Cover public reference rules', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-usct-fwi-reference-revealed]').innerText(),
+      /neither is phantom truth.*Filesystem selects a saved reconstruction, not true speed.*source uses the visible baseline.*230,400 cells.*No-filesystem scorer requires absent ground_truth\.npy.*No participant map, score or private truth/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Cover public reference rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /No clinical property, reconstruction quality, current CUDA success or convergence claim/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('limits-contract');
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automedbench-full-lidc-idri-denoising-task-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-automed-lidc-denoise-scene]');
-    const absent=async()=>{assert.equal(await page.locator('[data-automed-lidc-denoise-reference-revealed],[data-automed-lidc-denoise-native]').count(),0);};
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    assert.deepEqual(await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>{const c=getComputedStyle(e);return[c.borderTopColor,c.backgroundColor]})),[['rgb(20, 140, 160)','rgba(0, 0, 0, 0)'],['rgb(177, 188, 204)','rgba(0, 0, 0, 0)'],['rgb(101, 121, 135)','rgb(0, 0, 0)'],['rgb(101, 121, 135)','rgb(255, 255, 255)']]);
-    await chapter(0);assert.match(await scene.innerText(),/Matching Full noisy CT.*private clean target absent.*512.*512.*262,144.*Symbolic.*0.05.*not HU/is);assert.equal(await scene.locator('svg rect[fill="none"]').count(),4);assert.equal(await scene.locator('svg rect:not([fill="none"])').count(),4);await capture('symbolic-input');
-    for(let i=0;i<3;i++){await chapter(1);const name=['Normalized noise','Help + format','Clean / output unknown'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-automed-lidc-denoise-operation-step')),i);if(i===0)assert.match(await scene.innerText(),/Gaussian.*0.0025.*Normalization.*seed.*clipping.*mean specification.*unavailable.*0.98.*1.03/is);if(i===2)assert.match(await scene.innerText(),/0.45.*0.40.*0.05.*0.50.*unknown.*no denoised CT/is);await capture(`operation-${i}`);}
-    for(let i=0;i<3;i++){await chapter(2);const name=['Full Lite','Full Standard','Format boundary'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[336,419,503][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),[/Full Lite.*DRUNet.*inference only.*No checkpoint loaded/is,/Full Standard.*≥ 3 denoisers.*≥ 2 pretrained neural.*No private target/is,/float32.*512.*512.*Checker.*floating.*float64.*constant.*out-of-range.*plural agents_outputs/is][i]);await capture(`branch-${i}`);}
-    await chapter(4);assert.match(await scene.innerText(),/Actual enhanced.npy absent.*agents_outputs.*case_id.*512.*512.*No submitted array.*metric or rating/is);await capture('empty-output');
-    await chapter(5);const reveal=()=>scene.getByRole('button',{name:'Reveal upstream helper / rules',exact:true});assert.equal(await reveal().getAttribute('aria-expanded'),'false');await reveal().click();assert.equal(await scene.locator('[data-automed-lidc-denoise-reference-revealed]').count(),1);const native=scene.locator('[data-automed-lidc-denoise-native]');await native.waitFor({state:'visible'});assert.deepEqual(await native.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[128,128]);assert.match(await scene.innerText(),/LIDC-IDRI-0003.*Instance 80.*Stride 4.*source-rescaled units.*CC BY 3.0.*Native 512.*0.820312.*display sampling.*No noise draw.*drop NaNs independently.*absent named rating.*Missing bands.*not medical validation/is);assert.doesNotMatch(await scene.innerText(),/outputNative|pairNative/);await capture('reference-revealed');await scene.getByRole('button',{name:'Hide upstream helper',exact:true}).click();await absent();await advance(840);await reveal().click();await chapter(5);await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(5);await reveal().click();await chapter(6);await chapter(5);await absent();await page.locator('.scene-reset').click();await absent();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-automed-lidc-denoise-scene]');
+    const absent = async () => {
+      assert.equal(
+        await page
+          .locator(
+            '[data-automed-lidc-denoise-reference-revealed],[data-automed-lidc-denoise-native]',
+          )
+          .count(),
+        0,
+      );
+    };
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    assert.deepEqual(
+      await page.locator('.scene-legend i').evaluateAll((es) =>
+        es.map((e) => {
+          const c = getComputedStyle(e);
+          return [c.borderTopColor, c.backgroundColor];
+        }),
+      ),
+      [
+        ['rgb(20, 140, 160)', 'rgba(0, 0, 0, 0)'],
+        ['rgb(177, 188, 204)', 'rgba(0, 0, 0, 0)'],
+        ['rgb(101, 121, 135)', 'rgb(0, 0, 0)'],
+        ['rgb(101, 121, 135)', 'rgb(255, 255, 255)'],
+      ],
+    );
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /Matching Full noisy CT.*private clean target absent.*512.*512.*262,144.*Symbolic.*0.05.*not HU/is,
+    );
+    assert.equal(await scene.locator('svg rect[fill="none"]').count(), 4);
+    assert.equal(await scene.locator('svg rect:not([fill="none"])').count(), 4);
+    await capture('symbolic-input');
+    for (let i = 0; i < 3; i++) {
+      await chapter(1);
+      const name = ['Normalized noise', 'Help + format', 'Clean / output unknown'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [168, 336, 504][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(Number(await scene.getAttribute('data-automed-lidc-denoise-operation-step')), i);
+      if (i === 0)
+        assert.match(
+          await scene.innerText(),
+          /Gaussian.*0.0025.*Normalization.*seed.*clipping.*mean specification.*unavailable.*0.98.*1.03/is,
+        );
+      if (i === 2)
+        assert.match(await scene.innerText(), /0.45.*0.40.*0.05.*0.50.*unknown.*no denoised CT/is);
+      await capture(`operation-${i}`);
+    }
+    for (let i = 0; i < 3; i++) {
+      await chapter(2);
+      const name = ['Full Lite', 'Full Standard', 'Format boundary'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [336, 419, 503][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /Full Lite.*DRUNet.*inference only.*No checkpoint loaded/is,
+          /Full Standard.*≥ 3 denoisers.*≥ 2 pretrained neural.*No private target/is,
+          /float32.*512.*512.*Checker.*floating.*float64.*constant.*out-of-range.*plural agents_outputs/is,
+        ][i],
+      );
+      await capture(`branch-${i}`);
+    }
+    await chapter(4);
+    assert.match(
+      await scene.innerText(),
+      /Actual enhanced.npy absent.*agents_outputs.*case_id.*512.*512.*No submitted array.*metric or rating/is,
+    );
+    await capture('empty-output');
+    await chapter(5);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal upstream helper / rules', exact: true });
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'false');
+    await reveal().click();
+    assert.equal(await scene.locator('[data-automed-lidc-denoise-reference-revealed]').count(), 1);
+    const native = scene.locator('[data-automed-lidc-denoise-native]');
+    await native.waitFor({ state: 'visible' });
+    assert.deepEqual(await native.evaluate((e) => [e.naturalWidth, e.naturalHeight]), [128, 128]);
+    assert.match(
+      await scene.innerText(),
+      /LIDC-IDRI-0003.*Instance 80.*Stride 4.*source-rescaled units.*CC BY 3.0.*Native 512.*0.820312.*display sampling.*No noise draw.*drop NaNs independently.*absent named rating.*Missing bands.*not medical validation/is,
+    );
+    assert.doesNotMatch(await scene.innerText(), /outputNative|pairNative/);
+    await capture('reference-revealed');
+    await scene.getByRole('button', { name: 'Hide upstream helper', exact: true }).click();
+    await absent();
+    await advance(840);
+    await reveal().click();
+    await chapter(5);
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(5);
+    await reveal().click();
+    await chapter(6);
+    await chapter(5);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automed-mri-sr-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-mrisr-stage]');
-    const absent=async()=>assert.equal(await page.locator('#mrisr-format-rules,#mrisr-metric-rules').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,svg,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    await chapter(0);assert.match(await scene.innerText(),/Normalized MRI without native pixels.*360.*256.*float32.*720.*512.*normalized.*x4 samples.*not recovered detail.*Native upstream raw k-space/is);await capture('symbolic-input');
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-mrisr-stage]');
+    const absent = async () =>
+      assert.equal(await page.locator('#mrisr-format-rules,#mrisr-metric-rules').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,svg,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /Normalized MRI without native pixels.*360.*256.*float32.*720.*512.*normalized.*x4 samples.*not recovered detail.*Native upstream raw k-space/is,
+    );
+    await capture('symbolic-input');
     await chapter(1);
-    for(const tier of ['lite','standard']){const button=scene.getByRole('button',{name:tier,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),tier==='lite'?/Swin2SR.*GPU inference-only.*no training.*No immutable checkpoint revision.*execution/is:/at least 3.*at least 2 DNNs.*2 classical.*1 DNN conflicts/is);await capture(`helper-${tier}`);}
-    await advance(288);await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');await scene.getByRole('button',{name:'standard',exact:true}).click();await page.locator('.scene-reset').click();await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');
-    for(let i=0;i<4;i++){await chapter(2);const button=scene.locator(`[data-mrisr-step="${i}"]`);await button.click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[576,687,752,863][i]);assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-mrisr-currentstep')),i);assert.match(await scene.innerText(),/no anatomy.*reconstructed pixels.*no data acquisition.*scorer.*executed/is);await capture(`operation-${i}`);}
-    await chapter(3);assert.match(await scene.innerText(),/Required artifact.*unsubmitted.*agents_outputs.*case_id.*enhanced.npy.*Prediction = unset.*score = unset/is);await capture('empty-output');
-    const format=()=>scene.getByRole('button',{name:'Inspect format contract',exact:true});await format().click();assert.equal(await format().getAttribute('aria-expanded'),'true');
-    for(const mode of ['declared','checked']){const button=scene.getByRole('button',{name:mode,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),mode==='declared'?/720×512 float32 normalized\[0,1\] requested/:/Finite floating 2D.*no intensity\/dtype-width guard/);assert.match(await scene.innerText(),/not independently verified unique patients.*Means omit NaNs.*retain infinities.*No recovered denominator/is);await capture(`format-${mode}`);}
-    await format().click();await absent();await advance(864);await format().click();await chapter(3);await format().click();assert.equal(await scene.getByRole('button',{name:'declared',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(3);await format().click();await chapter(4);await chapter(3);await absent();
-    await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal source metric rules',exact:true});await reveal().click();assert.equal(await reveal().getAttribute('aria-expanded'),'true');const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/automedbench-full-mri-sr-task/output.json','utf8')).rules;
-    for(const rule of ['raw','lpips','rating','normalization','pass']){const button=scene.getByRole('button',{name:rule,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('#mrisr-metric-rules > p').innerText(),rules[rule]);await capture(`metric-${rule}`);}
-    assert.match(await scene.innerText(),/Private HR reference.npy.*ground_truth.csv absent.*No actual normalized output.*measured PSNR.*recovered anatomical detail/is);await reveal().click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'raw',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+    for (const tier of ['lite', 'standard']) {
+      const button = scene.getByRole('button', { name: tier, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        tier === 'lite'
+          ? /Swin2SR.*GPU inference-only.*no training.*No immutable checkpoint revision.*execution/is
+          : /at least 3.*at least 2 DNNs.*2 classical.*1 DNN conflicts/is,
+      );
+      await capture(`helper-${tier}`);
+    }
+    await advance(288);
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    for (let i = 0; i < 4; i++) {
+      await chapter(2);
+      const button = scene.locator(`[data-mrisr-step="${i}"]`);
+      await button.click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [576, 687, 752, 863][i],
+      );
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(Number(await scene.getAttribute('data-mrisr-currentstep')), i);
+      assert.match(
+        await scene.innerText(),
+        /no anatomy.*reconstructed pixels.*no data acquisition.*scorer.*executed/is,
+      );
+      await capture(`operation-${i}`);
+    }
+    await chapter(3);
+    assert.match(
+      await scene.innerText(),
+      /Required artifact.*unsubmitted.*agents_outputs.*case_id.*enhanced.npy.*Prediction = unset.*score = unset/is,
+    );
+    await capture('empty-output');
+    const format = () =>
+      scene.getByRole('button', { name: 'Inspect format contract', exact: true });
+    await format().click();
+    assert.equal(await format().getAttribute('aria-expanded'), 'true');
+    for (const mode of ['declared', 'checked']) {
+      const button = scene.getByRole('button', { name: mode, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        mode === 'declared'
+          ? /720×512 float32 normalized\[0,1\] requested/
+          : /Finite floating 2D.*no intensity\/dtype-width guard/,
+      );
+      assert.match(
+        await scene.innerText(),
+        /not independently verified unique patients.*Means omit NaNs.*retain infinities.*No recovered denominator/is,
+      );
+      await capture(`format-${mode}`);
+    }
+    await format().click();
+    await absent();
+    await advance(864);
+    await format().click();
+    await chapter(3);
+    await format().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'declared', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(3);
+    await format().click();
+    await chapter(4);
+    await chapter(3);
+    await absent();
+    await chapter(4);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal source metric rules', exact: true });
+    await reveal().click();
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'true');
+    const rules = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/automedbench-full-mri-sr-task/output.json',
+        'utf8',
+      ),
+    ).rules;
+    for (const rule of ['raw', 'lpips', 'rating', 'normalization', 'pass']) {
+      const button = scene.getByRole('button', { name: rule, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await scene.locator('#mrisr-metric-rules > p').innerText(), rules[rule]);
+      await capture(`metric-${rule}`);
+    }
+    assert.match(
+      await scene.innerText(),
+      /Private HR reference.npy.*ground_truth.csv absent.*No actual normalized output.*measured PSNR.*recovered anatomical detail/is,
+    );
+    await reveal().click();
+    await absent();
+    await advance(1152);
+    await reveal().click();
+    await chapter(4);
+    await reveal().click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'raw', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(4);
+    await reveal().click();
+    await chapter(0);
+    await chapter(4);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automedbench-full-nih-cxr-sr-task-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-automed-nih-cxr-sr-scene]');
-    const absent=async()=>{assert.equal(await page.locator('[data-automed-nih-cxr-sr-reference-revealed]').count(),0);assert.equal(await scene.locator('img,canvas,image').count(),0);};
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    assert.deepEqual(await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>{const c=getComputedStyle(e);return[c.borderTopColor,c.backgroundColor]})),[['rgb(20, 128, 150)','rgba(0, 0, 0, 0)'],['rgb(177, 188, 204)','rgba(0, 0, 0, 0)']]);
-    await chapter(0);assert.match(await scene.innerText(),/Matching Full chest X-ray.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*No clinical image/is);assert.equal(await scene.locator('svg rect[fill="none"]').count(),16);assert.equal(await scene.locator('svg rect:not([fill="none"])').count(),4);await capture('symbolic-input');
-    for(let i=0;i<3;i++){await chapter(1);const name=['Public input / private target','Help + format','2× geometry'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-automed-nih-cxr-sr-operation-step')),i);if(i===0)assert.match(await scene.innerText(),/Public input.npy.*private reference.npy.*case.*mapping unknown.*Bicubic downsample.*kernel.*antialias.*physical spacing.*No degradation/is);if(i===2)assert.match(await scene.innerText(),/authored 2.*2.*unknown values.*More cells do not.*clinical edge preservation/is);await capture(`operation-${i}`);}
-    for(let i=0;i<3;i++){await chapter(2);const name=['Full Lite','Full Standard','Format boundary'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[336,419,503][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),[/Full Lite.*Swin2SR x2.*inference only.*Checkpoint.*not bundled/is,/Full Standard.*≥ 3 methods.*≥ 2 neural.*No private target/is,/float32.*256.*256.*Checker.*floating.*Range and constant-image checks absent.*plural agents_outputs/is][i]);await capture(`branch-${i}`);}
-    await chapter(4);assert.match(await scene.innerText(),/Actual enhanced.npy absent.*agents_outputs.*case_id.*256.*256.*No submitted array.*metric or rating/is);await capture('empty-output');
-    await chapter(5);const reveal=()=>scene.getByRole('button',{name:'Reveal public evaluator rules',exact:true});assert.equal(await reveal().getAttribute('aria-expanded'),'false');await reveal().click();assert.equal(await scene.locator('[data-automed-nih-cxr-sr-reference-revealed]').count(),1);assert.equal(await scene.locator('img,canvas,image').count(),0);assert.match(await scene.innerText(),/Reader-only.*no patient target or output.*mean SSIM.*PSNR.*LPIPS.*drop NaNs.*Case count unknown.*no v2 normalization.*v3 bands absent.*not medical validation/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Cover public evaluator rules',exact:true}).click();await absent();await advance(840);await reveal().click();await chapter(5);await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(5);await reveal().click();await chapter(6);await chapter(5);await absent();await page.locator('.scene-reset').click();await absent();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-automed-nih-cxr-sr-scene]');
+    const absent = async () => {
+      assert.equal(await page.locator('[data-automed-nih-cxr-sr-reference-revealed]').count(), 0);
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    assert.deepEqual(
+      await page.locator('.scene-legend i').evaluateAll((es) =>
+        es.map((e) => {
+          const c = getComputedStyle(e);
+          return [c.borderTopColor, c.backgroundColor];
+        }),
+      ),
+      [
+        ['rgb(20, 128, 150)', 'rgba(0, 0, 0, 0)'],
+        ['rgb(177, 188, 204)', 'rgba(0, 0, 0, 0)'],
+      ],
+    );
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /Matching Full chest X-ray.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*No clinical image/is,
+    );
+    assert.equal(await scene.locator('svg rect[fill="none"]').count(), 16);
+    assert.equal(await scene.locator('svg rect:not([fill="none"])').count(), 4);
+    await capture('symbolic-input');
+    for (let i = 0; i < 3; i++) {
+      await chapter(1);
+      const name = ['Public input / private target', 'Help + format', '2× geometry'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [168, 336, 504][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(Number(await scene.getAttribute('data-automed-nih-cxr-sr-operation-step')), i);
+      if (i === 0)
+        assert.match(
+          await scene.innerText(),
+          /Public input.npy.*private reference.npy.*case.*mapping unknown.*Bicubic downsample.*kernel.*antialias.*physical spacing.*No degradation/is,
+        );
+      if (i === 2)
+        assert.match(
+          await scene.innerText(),
+          /authored 2.*2.*unknown values.*More cells do not.*clinical edge preservation/is,
+        );
+      await capture(`operation-${i}`);
+    }
+    for (let i = 0; i < 3; i++) {
+      await chapter(2);
+      const name = ['Full Lite', 'Full Standard', 'Format boundary'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [336, 419, 503][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /Full Lite.*Swin2SR x2.*inference only.*Checkpoint.*not bundled/is,
+          /Full Standard.*≥ 3 methods.*≥ 2 neural.*No private target/is,
+          /float32.*256.*256.*Checker.*floating.*Range and constant-image checks absent.*plural agents_outputs/is,
+        ][i],
+      );
+      await capture(`branch-${i}`);
+    }
+    await chapter(4);
+    assert.match(
+      await scene.innerText(),
+      /Actual enhanced.npy absent.*agents_outputs.*case_id.*256.*256.*No submitted array.*metric or rating/is,
+    );
+    await capture('empty-output');
+    await chapter(5);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public evaluator rules', exact: true });
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'false');
+    await reveal().click();
+    assert.equal(await scene.locator('[data-automed-nih-cxr-sr-reference-revealed]').count(), 1);
+    assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    assert.match(
+      await scene.innerText(),
+      /Reader-only.*no patient target or output.*mean SSIM.*PSNR.*LPIPS.*drop NaNs.*Case count unknown.*no v2 normalization.*v3 bands absent.*not medical validation/is,
+    );
+    await capture('reference-revealed');
+    await scene.getByRole('button', { name: 'Cover public evaluator rules', exact: true }).click();
+    await absent();
+    await advance(840);
+    await reveal().click();
+    await chapter(5);
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(5);
+    await reveal().click();
+    await chapter(6);
+    await chapter(5);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automed-ctorg-ctsr-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-ctorg-stage]');
-    const absent=async()=>assert.equal(await page.locator('#ctorg-format-rules,#ctorg-metric-rules').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,svg,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    await chapter(0);assert.match(await scene.innerText(),/CT-ORG without native pixels.*Required input.*absent.*Required output.*unset.*x4.*z.*HU.*not x4 output enlargement.*Full slice\/patient\/split join absent/is);await capture('symbolic-input');
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-ctorg-stage]');
+    const absent = async () =>
+      assert.equal(await page.locator('#ctorg-format-rules,#ctorg-metric-rules').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,svg,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /CT-ORG without native pixels.*Required input.*absent.*Required output.*unset.*x4.*z.*HU.*not x4 output enlargement.*Full slice\/patient\/split join absent/is,
+    );
+    await capture('symbolic-input');
     await chapter(1);
-    for(const tier of ['lite','standard']){const button=scene.getByRole('button',{name:tier,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),tier==='lite'?/PlainCNN_trilinear_interpolation_x4.pth.*no weights\/revision\/hash.*inference acquired/is:/all 5.*PlainCNN\/AE_Maxpool\/UNet.*same-insertion.*not measured suitability/is);await capture(`helper-${tier}`);}
-    await advance(288);await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');await scene.getByRole('button',{name:'standard',exact:true}).click();await page.locator('.scene-reset').click();await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');
-    for(let i=0;i<4;i++){await chapter(2);const button=scene.locator(`[data-ctorg-step="${i}"]`);await button.click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[576,687,752,863][i]);assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-ctorg-currentstep')),i);assert.match(await scene.innerText(),/Symbolic protocol only.*no resampling.*restoration.*scorer.*clinical result/is);await capture(`operation-${i}`);}
-    await chapter(3);assert.match(await scene.innerText(),/Required artifact.*unsubmitted.*agents_outputs.*case_id.*sct.nii.gz.*Prediction = unset.*score = unset/is);await capture('empty-output');
-    const format=()=>scene.getByRole('button',{name:'Inspect format contract',exact:true});await format().click();assert.equal(await format().getAttribute('aria-expanded'),'true');
-    for(const mode of ['declared','checked']){const button=scene.getByRole('button',{name:mode,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),mode==='declared'?/Same public\/hidden HR grid.*3D NIfTI HU.*affine preservation requested/:/Finite 3D NIfTI.*target shape if present.*missing outputs do not invalidate/);assert.match(await scene.innerText(),/All supplied IDs.*separate subsets.*No ID deduplication/is);await capture(`format-${mode}`);}
-    await format().click();await absent();await advance(864);await format().click();await chapter(3);await format().click();assert.equal(await scene.getByRole('button',{name:'declared',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(3);await format().click();await chapter(4);await chapter(3);await absent();
-    await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal source metric rules',exact:true});await reveal().click();assert.equal(await reveal().getAttribute('aria-expanded'),'true');const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/automedbench-full-ctorg-ctsr-task/output.json','utf8')).rules;
-    for(const rule of ['raw','ssim','rating','completion','workflow']){const button=scene.getByRole('button',{name:rule,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('#ctorg-metric-rules > p').innerText(),rules[rule]);await capture(`metric-${rule}`);}
-    assert.match(await scene.innerText(),/Private high-resolution ct.nii.gz absent.*No predicted volume.*medical label.*measured metric.*not prove anatomical registration.*clinical accuracy/is);await reveal().click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'raw',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+    for (const tier of ['lite', 'standard']) {
+      const button = scene.getByRole('button', { name: tier, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        tier === 'lite'
+          ? /PlainCNN_trilinear_interpolation_x4.pth.*no weights\/revision\/hash.*inference acquired/is
+          : /all 5.*PlainCNN\/AE_Maxpool\/UNet.*same-insertion.*not measured suitability/is,
+      );
+      await capture(`helper-${tier}`);
+    }
+    await advance(288);
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    for (let i = 0; i < 4; i++) {
+      await chapter(2);
+      const button = scene.locator(`[data-ctorg-step="${i}"]`);
+      await button.click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [576, 687, 752, 863][i],
+      );
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(Number(await scene.getAttribute('data-ctorg-currentstep')), i);
+      assert.match(
+        await scene.innerText(),
+        /Symbolic protocol only.*no resampling.*restoration.*scorer.*clinical result/is,
+      );
+      await capture(`operation-${i}`);
+    }
+    await chapter(3);
+    assert.match(
+      await scene.innerText(),
+      /Required artifact.*unsubmitted.*agents_outputs.*case_id.*sct.nii.gz.*Prediction = unset.*score = unset/is,
+    );
+    await capture('empty-output');
+    const format = () =>
+      scene.getByRole('button', { name: 'Inspect format contract', exact: true });
+    await format().click();
+    assert.equal(await format().getAttribute('aria-expanded'), 'true');
+    for (const mode of ['declared', 'checked']) {
+      const button = scene.getByRole('button', { name: mode, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        mode === 'declared'
+          ? /Same public\/hidden HR grid.*3D NIfTI HU.*affine preservation requested/
+          : /Finite 3D NIfTI.*target shape if present.*missing outputs do not invalidate/,
+      );
+      assert.match(
+        await scene.innerText(),
+        /All supplied IDs.*separate subsets.*No ID deduplication/is,
+      );
+      await capture(`format-${mode}`);
+    }
+    await format().click();
+    await absent();
+    await advance(864);
+    await format().click();
+    await chapter(3);
+    await format().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'declared', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(3);
+    await format().click();
+    await chapter(4);
+    await chapter(3);
+    await absent();
+    await chapter(4);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal source metric rules', exact: true });
+    await reveal().click();
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'true');
+    const rules = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/automedbench-full-ctorg-ctsr-task/output.json',
+        'utf8',
+      ),
+    ).rules;
+    for (const rule of ['raw', 'ssim', 'rating', 'completion', 'workflow']) {
+      const button = scene.getByRole('button', { name: rule, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await scene.locator('#ctorg-metric-rules > p').innerText(), rules[rule]);
+      await capture(`metric-${rule}`);
+    }
+    assert.match(
+      await scene.innerText(),
+      /Private high-resolution ct.nii.gz absent.*No predicted volume.*medical label.*measured metric.*not prove anatomical registration.*clinical accuracy/is,
+    );
+    await reveal().click();
+    await absent();
+    await advance(1152);
+    await reveal().click();
+    await chapter(4);
+    await reveal().click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'raw', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(4);
+    await reveal().click();
+    await chapter(0);
+    await chapter(4);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automed-msd-pancreas-ctsr-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-msdpancreas-stage]');
-    const absent=async()=>assert.equal(await page.locator('#msdpancreas-format-rules,#msdpancreas-metric-rules').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,svg,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    await chapter(0);assert.match(await scene.innerText(),/MSD Pancreas without native pixels.*Required input.*absent.*Required output.*unset.*x4.*z.*HU.*not x4 output enlargement.*Full slice\/patient\/split join absent/is);await capture('symbolic-input');
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-msdpancreas-stage]');
+    const absent = async () =>
+      assert.equal(
+        await page.locator('#msdpancreas-format-rules,#msdpancreas-metric-rules').count(),
+        0,
+      );
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,svg,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /MSD Pancreas without native pixels.*Required input.*absent.*Required output.*unset.*x4.*z.*HU.*not x4 output enlargement.*Full slice\/patient\/split join absent/is,
+    );
+    await capture('symbolic-input');
     await chapter(1);
-    for(const tier of ['lite','standard']){const button=scene.getByRole('button',{name:tier,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),tier==='lite'?/PlainCNN_trilinear_interpolation_x4.pth.*no weights\/revision\/hash.*inference acquired/is:/all 5.*PlainCNN\/AE_Maxpool\/UNet.*same-insertion.*not measured suitability/is);await capture(`helper-${tier}`);}
-    await advance(288);await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');await scene.getByRole('button',{name:'standard',exact:true}).click();await page.locator('.scene-reset').click();await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');
-    for(let i=0;i<4;i++){await chapter(2);const button=scene.locator(`[data-msdpancreas-step="${i}"]`);await button.click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[576,687,752,863][i]);assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-msdpancreas-currentstep')),i);assert.match(await scene.innerText(),/Symbolic protocol only.*no resampling.*restoration.*scorer.*clinical result/is);await capture(`operation-${i}`);}
-    await chapter(3);assert.match(await scene.innerText(),/Required artifact.*unsubmitted.*agents_outputs.*case_id.*sct.nii.gz.*Prediction = unset.*score = unset/is);await capture('empty-output');
-    const format=()=>scene.getByRole('button',{name:'Inspect format contract',exact:true});await format().click();assert.equal(await format().getAttribute('aria-expanded'),'true');
-    for(const mode of ['declared','checked']){const button=scene.getByRole('button',{name:mode,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),mode==='declared'?/Same public\/hidden HR grid.*3D NIfTI HU.*affine preservation requested/:/Finite 3D NIfTI.*target shape if present.*missing outputs do not invalidate/);assert.match(await scene.innerText(),/All supplied IDs.*separate subsets.*No ID deduplication/is);await capture(`format-${mode}`);}
-    await format().click();await absent();await advance(864);await format().click();await chapter(3);await format().click();assert.equal(await scene.getByRole('button',{name:'declared',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(3);await format().click();await chapter(4);await chapter(3);await absent();
-    await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal source metric rules',exact:true});await reveal().click();assert.equal(await reveal().getAttribute('aria-expanded'),'true');const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/automedbench-full-msd-pancreas-ctsr-task/output.json','utf8')).rules;
-    for(const rule of ['raw','ssim','rating','completion','workflow']){const button=scene.getByRole('button',{name:rule,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('#msdpancreas-metric-rules > p').innerText(),rules[rule]);await capture(`metric-${rule}`);}
-    assert.match(await scene.innerText(),/Private high-resolution ct.nii.gz absent.*No predicted volume.*medical label.*measured metric.*not prove anatomical registration.*clinical accuracy/is);await reveal().click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'raw',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+    for (const tier of ['lite', 'standard']) {
+      const button = scene.getByRole('button', { name: tier, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        tier === 'lite'
+          ? /PlainCNN_trilinear_interpolation_x4.pth.*no weights\/revision\/hash.*inference acquired/is
+          : /all 5.*PlainCNN\/AE_Maxpool\/UNet.*same-insertion.*not measured suitability/is,
+      );
+      await capture(`helper-${tier}`);
+    }
+    await advance(288);
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    for (let i = 0; i < 4; i++) {
+      await chapter(2);
+      const button = scene.locator(`[data-msdpancreas-step="${i}"]`);
+      await button.click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [576, 687, 752, 863][i],
+      );
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(Number(await scene.getAttribute('data-msdpancreas-currentstep')), i);
+      assert.match(
+        await scene.innerText(),
+        /Symbolic protocol only.*no resampling.*restoration.*scorer.*clinical result/is,
+      );
+      await capture(`operation-${i}`);
+    }
+    await chapter(3);
+    assert.match(
+      await scene.innerText(),
+      /Required artifact.*unsubmitted.*agents_outputs.*case_id.*sct.nii.gz.*Prediction = unset.*score = unset/is,
+    );
+    await capture('empty-output');
+    const format = () =>
+      scene.getByRole('button', { name: 'Inspect format contract', exact: true });
+    await format().click();
+    assert.equal(await format().getAttribute('aria-expanded'), 'true');
+    for (const mode of ['declared', 'checked']) {
+      const button = scene.getByRole('button', { name: mode, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        mode === 'declared'
+          ? /Same public\/hidden HR grid.*3D NIfTI HU.*affine preservation requested/
+          : /Finite 3D NIfTI.*target shape if present.*missing outputs do not invalidate/,
+      );
+      assert.match(
+        await scene.innerText(),
+        /All supplied IDs.*separate subsets.*No ID deduplication/is,
+      );
+      await capture(`format-${mode}`);
+    }
+    await format().click();
+    await absent();
+    await advance(864);
+    await format().click();
+    await chapter(3);
+    await format().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'declared', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(3);
+    await format().click();
+    await chapter(4);
+    await chapter(3);
+    await absent();
+    await chapter(4);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal source metric rules', exact: true });
+    await reveal().click();
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'true');
+    const rules = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/automedbench-full-msd-pancreas-ctsr-task/output.json',
+        'utf8',
+      ),
+    ).rules;
+    for (const rule of ['raw', 'ssim', 'rating', 'completion', 'workflow']) {
+      const button = scene.getByRole('button', { name: rule, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await scene.locator('#msdpancreas-metric-rules > p').innerText(), rules[rule]);
+      await capture(`metric-${rule}`);
+    }
+    assert.match(
+      await scene.innerText(),
+      /Private high-resolution ct.nii.gz absent.*No predicted volume.*medical label.*measured metric.*not prove anatomical registration.*clinical accuracy/is,
+    );
+    await reveal().click();
+    await absent();
+    await advance(1152);
+    await reveal().click();
+    await chapter(4);
+    await reveal().click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'raw', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(4);
+    await reveal().click();
+    await chapter(0);
+    await chapter(4);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automedbench-full-synthrad2025-mrct-task-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-mrct-scene]');
-    const absent=async()=>{assert.equal(await page.locator('[data-mrct-reference-revealed]').count(),0);assert.equal(await scene.locator('img,canvas,image').count(),0);};
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    assert.equal(await scene.locator('[data-mrct-role]').count(),4);
-    assert.deepEqual(await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>{const c=getComputedStyle(e);return [c.backgroundColor,c.borderTopColor,c.borderTopStyle]})),[['rgb(84, 211, 221)','rgb(18, 41, 57)','solid'],['rgba(0, 0, 0, 0)','rgb(174, 196, 206)','solid'],['rgba(0, 0, 0, 0)','rgb(84, 211, 221)','dashed'],['rgba(0, 0, 0, 0)','rgb(145, 160, 178)','dashed'],['rgb(0, 0, 0)','rgb(18, 41, 57)','solid'],['rgb(255, 255, 255)','rgb(18, 41, 57)','solid']]);
-    await chapter(0);assert.match(await scene.innerText(),/MR.*CT.*not super-resolution.*arbitrary intensity.*Outline mask.*helper ROI.*Private paired CT.*absent.*Actual input\/output\/reference voxels: 0.*Full HN20/is);await capture('symbolic-input');
-    for(let i=0;i<4;i++){await chapter(1);const button=scene.locator(`[data-mrct-operation-step="${i}"]`);await button.click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504,672][i]);assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.locator('[data-mrct-currentstage]').getAttribute('data-mrct-currentstage')),i);await capture(`operation-${i}`);}
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-mrct-scene]');
+    const absent = async () => {
+      assert.equal(await page.locator('[data-mrct-reference-revealed]').count(), 0);
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    assert.equal(await scene.locator('[data-mrct-role]').count(), 4);
+    assert.deepEqual(
+      await page.locator('.scene-legend i').evaluateAll((es) =>
+        es.map((e) => {
+          const c = getComputedStyle(e);
+          return [c.backgroundColor, c.borderTopColor, c.borderTopStyle];
+        }),
+      ),
+      [
+        ['rgb(84, 211, 221)', 'rgb(18, 41, 57)', 'solid'],
+        ['rgba(0, 0, 0, 0)', 'rgb(174, 196, 206)', 'solid'],
+        ['rgba(0, 0, 0, 0)', 'rgb(84, 211, 221)', 'dashed'],
+        ['rgba(0, 0, 0, 0)', 'rgb(145, 160, 178)', 'dashed'],
+        ['rgb(0, 0, 0)', 'rgb(18, 41, 57)', 'solid'],
+        ['rgb(255, 255, 255)', 'rgb(18, 41, 57)', 'solid'],
+      ],
+    );
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /MR.*CT.*not super-resolution.*arbitrary intensity.*Outline mask.*helper ROI.*Private paired CT.*absent.*Actual input\/output\/reference voxels: 0.*Full HN20/is,
+    );
+    await capture('symbolic-input');
+    for (let i = 0; i < 4; i++) {
+      await chapter(1);
+      const button = scene.locator(`[data-mrct-operation-step="${i}"]`);
+      await button.click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [168, 336, 504, 672][i],
+      );
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(
+        Number(
+          await scene.locator('[data-mrct-currentstage]').getAttribute('data-mrct-currentstage'),
+        ),
+        i,
+      );
+      await capture(`operation-${i}`);
+    }
     await chapter(3);
-    for(const tier of ['lite','standard']){const button=scene.getByRole('button',{name:tier,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-mrct-tier]').innerText(),tier==='lite'?/VBoussot HN CV_0.*CV_4.*Prediction.yml.*checkpoint absent/is:/Compare HN VBoussot.*aehrc HN.*AB-TH fallback.*inference-only.*no training/is);await capture(`tier-${tier}`);}
-    const format=()=>scene.getByRole('button',{name:'Format boundary',exact:true});await format().click();assert.equal(await format().getAttribute('aria-expanded'),'true');assert.match(await scene.locator('[data-mrct-format]').innerText(),/Finite loadable 3D.*same MR shape if MR exists.*No affine check.*Missing output.*constant or extreme HU can leave format valid/is);await capture('format-open');await format().click();assert.equal(await scene.locator('[data-mrct-format]').count(),0);await advance(504);await format().click();await chapter(3);assert.equal(await scene.locator('[data-mrct-format]').count(),0);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');await format().click();await page.locator('.scene-reset').click();await chapter(3);assert.equal(await scene.locator('[data-mrct-format]').count(),0);
+    for (const tier of ['lite', 'standard']) {
+      const button = scene.getByRole('button', { name: tier, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.locator('[data-mrct-tier]').innerText(),
+        tier === 'lite'
+          ? /VBoussot HN CV_0.*CV_4.*Prediction.yml.*checkpoint absent/is
+          : /Compare HN VBoussot.*aehrc HN.*AB-TH fallback.*inference-only.*no training/is,
+      );
+      await capture(`tier-${tier}`);
+    }
+    const format = () => scene.getByRole('button', { name: 'Format boundary', exact: true });
+    await format().click();
+    assert.equal(await format().getAttribute('aria-expanded'), 'true');
+    assert.match(
+      await scene.locator('[data-mrct-format]').innerText(),
+      /Finite loadable 3D.*same MR shape if MR exists.*No affine check.*Missing output.*constant or extreme HU can leave format valid/is,
+    );
+    await capture('format-open');
+    await format().click();
+    assert.equal(await scene.locator('[data-mrct-format]').count(), 0);
+    await advance(504);
+    await format().click();
+    await chapter(3);
+    assert.equal(await scene.locator('[data-mrct-format]').count(), 0);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await format().click();
+    await page.locator('.scene-reset').click();
+    await chapter(3);
+    assert.equal(await scene.locator('[data-mrct-format]').count(), 0);
     await chapter(4);
-    for(const metric of ['MAE','PSNR','SSIM']){const button=scene.getByRole('button',{name:metric,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-mrct-metric]').innerText(),{MAE:/un-clipped HU.*mask >0.5.*empty ROI.*whole volume.*Valid-case/is,PSNR:/4095 HU.*perfect infinity excluded.*finite-case/is,SSIM:/clipped CT.*full x-y slices.*mask sum<16.*optional backend.*Available-slice.*available-case/is}[metric]);await capture(`metric-${metric}`);}
-    await advance(672);await chapter(4);assert.equal(await scene.getByRole('button',{name:'MAE',exact:true}).getAttribute('aria-pressed'),'true');await scene.getByRole('button',{name:'SSIM',exact:true}).click();await page.locator('.scene-reset').click();await chapter(4);assert.equal(await scene.getByRole('button',{name:'MAE',exact:true}).getAttribute('aria-pressed'),'true');
-    await chapter(5);assert.match(await scene.innerText(),/Participant synthetic CT remains absent.*agents_outputs.*case_id.*sct.nii.gz.*No generated sCT.*private target/is);await capture('empty-output');
-    await chapter(6);const reveal=()=>scene.getByRole('button',{name:'Reveal upstream MR and source rules',exact:true});await reveal().click();assert.equal(await scene.locator('[data-mrct-reference-revealed]').count(),1);assert.equal(await scene.locator('img').count(),1);assert.match(await scene.locator('img').getAttribute('alt'),/upstream.*1HNC117.*not Full MRCT input or synthetic CT/is);assert.match(await scene.innerText(),/k20.*stride 3.*plane-local normalization.*CC BY-NC.*No paired CT or Full membership.*No CT image or private answer revealed.*not medical validation/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Hide upstream MR and rules',exact:true}).click();await absent();await advance(1008);await reveal().click();await chapter(6);await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(6);await reveal().click();await chapter(7);await chapter(6);await absent();await page.locator('.scene-reset').click();await absent();
+    for (const metric of ['MAE', 'PSNR', 'SSIM']) {
+      const button = scene.getByRole('button', { name: metric, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.locator('[data-mrct-metric]').innerText(),
+        {
+          MAE: /un-clipped HU.*mask >0.5.*empty ROI.*whole volume.*Valid-case/is,
+          PSNR: /4095 HU.*perfect infinity excluded.*finite-case/is,
+          SSIM: /clipped CT.*full x-y slices.*mask sum<16.*optional backend.*Available-slice.*available-case/is,
+        }[metric],
+      );
+      await capture(`metric-${metric}`);
+    }
+    await advance(672);
+    await chapter(4);
+    assert.equal(
+      await scene.getByRole('button', { name: 'MAE', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await scene.getByRole('button', { name: 'SSIM', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await chapter(4);
+    assert.equal(
+      await scene.getByRole('button', { name: 'MAE', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await chapter(5);
+    assert.match(
+      await scene.innerText(),
+      /Participant synthetic CT remains absent.*agents_outputs.*case_id.*sct.nii.gz.*No generated sCT.*private target/is,
+    );
+    await capture('empty-output');
+    await chapter(6);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal upstream MR and source rules', exact: true });
+    await reveal().click();
+    assert.equal(await scene.locator('[data-mrct-reference-revealed]').count(), 1);
+    assert.equal(await scene.locator('img').count(), 1);
+    assert.match(
+      await scene.locator('img').getAttribute('alt'),
+      /upstream.*1HNC117.*not Full MRCT input or synthetic CT/is,
+    );
+    assert.match(
+      await scene.innerText(),
+      /k20.*stride 3.*plane-local normalization.*CC BY-NC.*No paired CT or Full membership.*No CT image or private answer revealed.*not medical validation/is,
+    );
+    await capture('reference-revealed');
+    await scene.getByRole('button', { name: 'Hide upstream MR and rules', exact: true }).click();
+    await absent();
+    await advance(1008);
+    await reveal().click();
+    await chapter(6);
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(6);
+    await reveal().click();
+    await chapter(7);
+    await chapter(6);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automed-totalsegmentator-ctsr-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-totalseg-stage]');
-    const absent=async()=>assert.equal(await page.locator('#totalseg-format-rules,#totalseg-metric-rules').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,svg,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    await chapter(0);assert.match(await scene.innerText(),/TotalSegmentator without native pixels.*Required input.*absent.*Required output.*unset.*x4.*z.*HU.*not x4 output enlargement.*Full slice\/patient\/split join absent/is);await capture('symbolic-input');
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-totalseg-stage]');
+    const absent = async () =>
+      assert.equal(await page.locator('#totalseg-format-rules,#totalseg-metric-rules').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,svg,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /TotalSegmentator without native pixels.*Required input.*absent.*Required output.*unset.*x4.*z.*HU.*not x4 output enlargement.*Full slice\/patient\/split join absent/is,
+    );
+    await capture('symbolic-input');
     await chapter(1);
-    for(const tier of ['lite','standard']){const button=scene.getByRole('button',{name:tier,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),tier==='lite'?/PlainCNN_trilinear_interpolation_x4.pth.*no weights\/revision\/hash.*inference acquired/is:/all 5.*PlainCNN\/AE_Maxpool\/UNet.*same-insertion.*not measured suitability/is);await capture(`helper-${tier}`);}
-    await advance(288);await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');await scene.getByRole('button',{name:'standard',exact:true}).click();await page.locator('.scene-reset').click();await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');
-    for(let i=0;i<4;i++){await chapter(2);const button=scene.locator(`[data-totalseg-step="${i}"]`);await button.click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[576,687,752,863][i]);assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-totalseg-currentstep')),i);assert.match(await scene.innerText(),/Symbolic protocol only.*no resampling.*restoration.*scorer.*clinical result/is);await capture(`operation-${i}`);}
-    await chapter(3);assert.match(await scene.innerText(),/Required artifact.*unsubmitted.*agents_outputs.*case_id.*sct.nii.gz.*Prediction = unset.*score = unset/is);await capture('empty-output');
-    const format=()=>scene.getByRole('button',{name:'Inspect format contract',exact:true});await format().click();assert.equal(await format().getAttribute('aria-expanded'),'true');
-    for(const mode of ['declared','checked']){const button=scene.getByRole('button',{name:mode,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),mode==='declared'?/Same public\/hidden HR grid.*3D NIfTI HU.*affine preservation requested/:/Finite 3D NIfTI.*target shape if present.*missing outputs do not invalidate/);assert.match(await scene.innerText(),/All supplied IDs.*separate subsets.*No ID deduplication/is);await capture(`format-${mode}`);}
-    await format().click();await absent();await advance(864);await format().click();await chapter(3);await format().click();assert.equal(await scene.getByRole('button',{name:'declared',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(3);await format().click();await chapter(4);await chapter(3);await absent();
-    await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal source metric rules',exact:true});await reveal().click();assert.equal(await reveal().getAttribute('aria-expanded'),'true');const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/automedbench-full-totalsegmentator-ctsr-task/output.json','utf8')).rules;
-    for(const rule of ['raw','ssim','rating','completion','workflow']){const button=scene.getByRole('button',{name:rule,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('#totalseg-metric-rules > p').innerText(),rules[rule]);await capture(`metric-${rule}`);}
-    assert.match(await scene.innerText(),/Private high-resolution ct.nii.gz absent.*No predicted volume.*medical label.*measured metric.*not prove anatomical registration.*clinical accuracy/is);await reveal().click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'raw',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+    for (const tier of ['lite', 'standard']) {
+      const button = scene.getByRole('button', { name: tier, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        tier === 'lite'
+          ? /PlainCNN_trilinear_interpolation_x4.pth.*no weights\/revision\/hash.*inference acquired/is
+          : /all 5.*PlainCNN\/AE_Maxpool\/UNet.*same-insertion.*not measured suitability/is,
+      );
+      await capture(`helper-${tier}`);
+    }
+    await advance(288);
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    for (let i = 0; i < 4; i++) {
+      await chapter(2);
+      const button = scene.locator(`[data-totalseg-step="${i}"]`);
+      await button.click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [576, 687, 752, 863][i],
+      );
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(Number(await scene.getAttribute('data-totalseg-currentstep')), i);
+      assert.match(
+        await scene.innerText(),
+        /Symbolic protocol only.*no resampling.*restoration.*scorer.*clinical result/is,
+      );
+      await capture(`operation-${i}`);
+    }
+    await chapter(3);
+    assert.match(
+      await scene.innerText(),
+      /Required artifact.*unsubmitted.*agents_outputs.*case_id.*sct.nii.gz.*Prediction = unset.*score = unset/is,
+    );
+    await capture('empty-output');
+    const format = () =>
+      scene.getByRole('button', { name: 'Inspect format contract', exact: true });
+    await format().click();
+    assert.equal(await format().getAttribute('aria-expanded'), 'true');
+    for (const mode of ['declared', 'checked']) {
+      const button = scene.getByRole('button', { name: mode, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        mode === 'declared'
+          ? /Same public\/hidden HR grid.*3D NIfTI HU.*affine preservation requested/
+          : /Finite 3D NIfTI.*target shape if present.*missing outputs do not invalidate/,
+      );
+      assert.match(
+        await scene.innerText(),
+        /All supplied IDs.*separate subsets.*No ID deduplication/is,
+      );
+      await capture(`format-${mode}`);
+    }
+    await format().click();
+    await absent();
+    await advance(864);
+    await format().click();
+    await chapter(3);
+    await format().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'declared', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(3);
+    await format().click();
+    await chapter(4);
+    await chapter(3);
+    await absent();
+    await chapter(4);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal source metric rules', exact: true });
+    await reveal().click();
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'true');
+    const rules = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/automedbench-full-totalsegmentator-ctsr-task/output.json',
+        'utf8',
+      ),
+    ).rules;
+    for (const rule of ['raw', 'ssim', 'rating', 'completion', 'workflow']) {
+      const button = scene.getByRole('button', { name: rule, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await scene.locator('#totalseg-metric-rules > p').innerText(), rules[rule]);
+      await capture(`metric-${rule}`);
+    }
+    assert.match(
+      await scene.innerText(),
+      /Private high-resolution ct.nii.gz absent.*No predicted volume.*medical label.*measured metric.*not prove anatomical registration.*clinical accuracy/is,
+    );
+    await reveal().click();
+    await absent();
+    await advance(1152);
+    await reveal().click();
+    await chapter(4);
+    await reveal().click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'raw', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(4);
+    await reveal().click();
+    await chapter(0);
+    await chapter(4);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automed-ldct-denoising-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-ldct-stage]');
-    const absent=async()=>assert.equal(await page.locator('#ldct-format-rules,#ldct-metric-rules').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,svg,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    await chapter(0);assert.match(await scene.innerText(),/No anatomy.*512.*512.*float32 HU.*−1300.*3200.*−1024.*3000.*Noise realization.*absent.*ReX LDCT-IQA.*not this/is);await capture('symbolic-input');
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-ldct-stage]');
+    const absent = async () =>
+      assert.equal(await page.locator('#ldct-format-rules,#ldct-metric-rules').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,svg,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /No anatomy.*512.*512.*float32 HU.*−1300.*3200.*−1024.*3000.*Noise realization.*absent.*ReX LDCT-IQA.*not this/is,
+    );
+    await capture('symbolic-input');
     await chapter(1);
-    for(const tier of ['lite','standard']){const button=scene.getByRole('button',{name:tier,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),tier==='lite'?/DRUNet.*inference-only.*No checkpoint hash or run.*clipping/is:/at least 3.*at least 2 DNNs.*2 classical.*1 DNN conflicts/is);await capture(`helper-${tier}`);}
-    await advance(288);await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');await scene.getByRole('button',{name:'standard',exact:true}).click();await page.locator('.scene-reset').click();await chapter(1);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');
-    for(let i=0;i<4;i++){await chapter(2);const button=scene.locator(`[data-ldct-step="${i}"]`);await button.click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[576,687,752,863][i]);assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-ldct-currentstep')),i);assert.match(await scene.innerText(),/no pixels.*scorer.*executed/is);await capture(`operation-${i}`);}
-    await chapter(3);assert.match(await scene.innerText(),/Required artifact.*unsubmitted.*agents_outputs.*case_id.*enhanced.npy.*Prediction = unset.*score = unset/is);await capture('empty-output');
-    const format=()=>scene.getByRole('button',{name:'Inspect format contract',exact:true});await format().click();assert.equal(await format().getAttribute('aria-expanded'),'true');
-    for(const mode of ['declared','checked']){const button=scene.getByRole('button',{name:mode,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),mode==='declared'?/512×512 float32 HU requested/:/Finite floating 2D.*no HU-range\/dtype-width guard/);assert.match(await scene.innerText(),/not independently verified unique patients.*Means omit NaNs.*retain infinities.*No actual denominator/is);await capture(`format-${mode}`);}
-    await format().click();await absent();await advance(864);await format().click();await chapter(3);await format().click();assert.equal(await scene.getByRole('button',{name:'declared',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(3);await format().click();await chapter(4);await chapter(3);await absent();
-    await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal source metric rules',exact:true});await reveal().click();assert.equal(await reveal().getAttribute('aria-expanded'),'true');const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/automedbench-full-ldct-denoising-task/output.json','utf8')).rules;
-    for(const rule of ['raw','lpips','rating','normalization','pass']){const button=scene.getByRole('button',{name:rule,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('#ldct-metric-rules > p').innerText(),rules[rule]);await capture(`metric-${rule}`);}
-    assert.match(await scene.innerText(),/Private reference.npy.*ground_truth.csv remain absent.*No model output.*clinical accuracy/is);await reveal().click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'raw',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+    for (const tier of ['lite', 'standard']) {
+      const button = scene.getByRole('button', { name: tier, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        tier === 'lite'
+          ? /DRUNet.*inference-only.*No checkpoint hash or run.*clipping/is
+          : /at least 3.*at least 2 DNNs.*2 classical.*1 DNN conflicts/is,
+      );
+      await capture(`helper-${tier}`);
+    }
+    await advance(288);
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await scene.getByRole('button', { name: 'standard', exact: true }).click();
+    await page.locator('.scene-reset').click();
+    await chapter(1);
+    assert.equal(
+      await scene.getByRole('button', { name: 'lite', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    for (let i = 0; i < 4; i++) {
+      await chapter(2);
+      const button = scene.locator(`[data-ldct-step="${i}"]`);
+      await button.click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [576, 687, 752, 863][i],
+      );
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(Number(await scene.getAttribute('data-ldct-currentstep')), i);
+      assert.match(await scene.innerText(), /no pixels.*scorer.*executed/is);
+      await capture(`operation-${i}`);
+    }
+    await chapter(3);
+    assert.match(
+      await scene.innerText(),
+      /Required artifact.*unsubmitted.*agents_outputs.*case_id.*enhanced.npy.*Prediction = unset.*score = unset/is,
+    );
+    await capture('empty-output');
+    const format = () =>
+      scene.getByRole('button', { name: 'Inspect format contract', exact: true });
+    await format().click();
+    assert.equal(await format().getAttribute('aria-expanded'), 'true');
+    for (const mode of ['declared', 'checked']) {
+      const button = scene.getByRole('button', { name: mode, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.match(
+        await scene.innerText(),
+        mode === 'declared'
+          ? /512×512 float32 HU requested/
+          : /Finite floating 2D.*no HU-range\/dtype-width guard/,
+      );
+      assert.match(
+        await scene.innerText(),
+        /not independently verified unique patients.*Means omit NaNs.*retain infinities.*No actual denominator/is,
+      );
+      await capture(`format-${mode}`);
+    }
+    await format().click();
+    await absent();
+    await advance(864);
+    await format().click();
+    await chapter(3);
+    await format().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'declared', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(3);
+    await format().click();
+    await chapter(4);
+    await chapter(3);
+    await absent();
+    await chapter(4);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal source metric rules', exact: true });
+    await reveal().click();
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'true');
+    const rules = JSON.parse(
+      fs.readFileSync(
+        'presentation/task-explorer/automedbench-full-ldct-denoising-task/output.json',
+        'utf8',
+      ),
+    ).rules;
+    for (const rule of ['raw', 'lpips', 'rating', 'normalization', 'pass']) {
+      const button = scene.getByRole('button', { name: rule, exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await scene.locator('#ldct-metric-rules > p').innerText(), rules[rule]);
+      await capture(`metric-${rule}`);
+    }
+    assert.match(
+      await scene.innerText(),
+      /Private reference.npy.*ground_truth.csv remain absent.*No model output.*clinical accuracy/is,
+    );
+    await reveal().click();
+    await absent();
+    await advance(1152);
+    await reveal().click();
+    await chapter(4);
+    await reveal().click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'raw', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(4);
+    await reveal().click();
+    await chapter(0);
+    await chapter(4);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automedbench-full-ixi-t1-sr-task-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-automed-ixi-t1-sr-scene]');
-    const absent=async()=>{assert.equal(await page.locator('[data-automed-ixi-t1-sr-reference-revealed]').count(),0);assert.equal(await page.locator('[data-automed-ixi-t1-sr-native]').count(),0);};
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    assert.deepEqual(await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>{const c=getComputedStyle(e);return[c.borderTopColor,c.backgroundColor]})),[['rgb(20, 128, 150)','rgba(0, 0, 0, 0)'],['rgb(177, 188, 204)','rgba(0, 0, 0, 0)'],['rgb(101, 121, 135)','rgb(0, 0, 0)'],['rgb(101, 121, 135)','rgb(255, 255, 255)']]);
-    await chapter(0);assert.match(await scene.innerText(),/Matching Full MRI.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*Voxel grid.*normalization unspecified/is);assert.equal(await scene.locator('svg rect[fill="none"]').count(),16);assert.equal(await scene.locator('svg rect:not([fill="none"])').count(),4);await capture('symbolic-input');
-    for(let i=0;i<3;i++){await chapter(1);const name=['Public input / private target','Help + format','2× geometry'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-automed-ixi-t1-sr-operation-step')),i);if(i===0)assert.match(await scene.innerText(),/Public input.npy.*private reference.npy.*mapping unknown.*kernel, antialias.*No degradation/is);if(i===2)assert.match(await scene.innerText(),/Geometry illustration.*unknown high-resolution.*More cells do not establish recovered detail/is);await capture(`operation-${i}`);}
-    for(let i=0;i<3;i++){await chapter(2);const name=['Full Lite','Full Standard','Format boundary'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[336,419,503][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),[/Full Lite.*Swin2SR x2.*caidas.*inference only.*Checkpoint\/runtime not bundled/is,/Full Standard.*≥ 3 methods, ≥ 2 neural.*No private target/is,/float32, finite, normalized 256.*256.*Checker accepts any floating dtype.*Range and constant-image checks absent.*Generic.*same input shape.*conflicts/is][i]);await capture(`branch-${i}`);}
-    await chapter(4);assert.match(await scene.innerText(),/Actual enhanced.npy absent.*agents_outputs.*case_id.*float32.*256.*256.*No submitted array.*metric or rating/is);await capture('empty-output');
-    await chapter(5);const reveal=()=>scene.getByRole('button',{name:'Reveal upstream helper / rules',exact:true});assert.equal(await reveal().getAttribute('aria-expanded'),'false');await reveal().click();assert.equal(await scene.locator('[data-automed-ixi-t1-sr-reference-revealed]').count(),1);assert.doesNotMatch(await scene.innerText(),/outputWhole/);const native=scene.locator('[data-automed-ixi-t1-sr-native]');await native.waitFor({state:'visible'});assert.deepEqual(await native.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[128,128]);assert.match(await scene.innerText(),/IXI002.*k=75.*CC BY-SA\s*3.0.*256.*256.*150.*0.9375.*display sampling.*never.*Full.*No reslicing.*NaNs independently.*Clinical.*code composite/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Hide upstream helper',exact:true}).click();await absent();await advance(840);await reveal().click();await chapter(5);await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(5);await reveal().click();await chapter(6);await chapter(5);await absent();await page.locator('.scene-reset').click();await absent();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-automed-ixi-t1-sr-scene]');
+    const absent = async () => {
+      assert.equal(await page.locator('[data-automed-ixi-t1-sr-reference-revealed]').count(), 0);
+      assert.equal(await page.locator('[data-automed-ixi-t1-sr-native]').count(), 0);
+    };
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    assert.deepEqual(
+      await page.locator('.scene-legend i').evaluateAll((es) =>
+        es.map((e) => {
+          const c = getComputedStyle(e);
+          return [c.borderTopColor, c.backgroundColor];
+        }),
+      ),
+      [
+        ['rgb(20, 128, 150)', 'rgba(0, 0, 0, 0)'],
+        ['rgb(177, 188, 204)', 'rgba(0, 0, 0, 0)'],
+        ['rgb(101, 121, 135)', 'rgb(0, 0, 0)'],
+        ['rgb(101, 121, 135)', 'rgb(255, 255, 255)'],
+      ],
+    );
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /Matching Full MRI.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*Voxel grid.*normalization unspecified/is,
+    );
+    assert.equal(await scene.locator('svg rect[fill="none"]').count(), 16);
+    assert.equal(await scene.locator('svg rect:not([fill="none"])').count(), 4);
+    await capture('symbolic-input');
+    for (let i = 0; i < 3; i++) {
+      await chapter(1);
+      const name = ['Public input / private target', 'Help + format', '2× geometry'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [168, 336, 504][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(Number(await scene.getAttribute('data-automed-ixi-t1-sr-operation-step')), i);
+      if (i === 0)
+        assert.match(
+          await scene.innerText(),
+          /Public input.npy.*private reference.npy.*mapping unknown.*kernel, antialias.*No degradation/is,
+        );
+      if (i === 2)
+        assert.match(
+          await scene.innerText(),
+          /Geometry illustration.*unknown high-resolution.*More cells do not establish recovered detail/is,
+        );
+      await capture(`operation-${i}`);
+    }
+    for (let i = 0; i < 3; i++) {
+      await chapter(2);
+      const name = ['Full Lite', 'Full Standard', 'Format boundary'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [336, 419, 503][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /Full Lite.*Swin2SR x2.*caidas.*inference only.*Checkpoint\/runtime not bundled/is,
+          /Full Standard.*≥ 3 methods, ≥ 2 neural.*No private target/is,
+          /float32, finite, normalized 256.*256.*Checker accepts any floating dtype.*Range and constant-image checks absent.*Generic.*same input shape.*conflicts/is,
+        ][i],
+      );
+      await capture(`branch-${i}`);
+    }
+    await chapter(4);
+    assert.match(
+      await scene.innerText(),
+      /Actual enhanced.npy absent.*agents_outputs.*case_id.*float32.*256.*256.*No submitted array.*metric or rating/is,
+    );
+    await capture('empty-output');
+    await chapter(5);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal upstream helper / rules', exact: true });
+    assert.equal(await reveal().getAttribute('aria-expanded'), 'false');
+    await reveal().click();
+    assert.equal(await scene.locator('[data-automed-ixi-t1-sr-reference-revealed]').count(), 1);
+    assert.doesNotMatch(await scene.innerText(), /outputWhole/);
+    const native = scene.locator('[data-automed-ixi-t1-sr-native]');
+    await native.waitFor({ state: 'visible' });
+    assert.deepEqual(await native.evaluate((e) => [e.naturalWidth, e.naturalHeight]), [128, 128]);
+    assert.match(
+      await scene.innerText(),
+      /IXI002.*k=75.*CC BY-SA\s*3.0.*256.*256.*150.*0.9375.*display sampling.*never.*Full.*No reslicing.*NaNs independently.*Clinical.*code composite/is,
+    );
+    await capture('reference-revealed');
+    await scene.getByRole('button', { name: 'Hide upstream helper', exact: true }).click();
+    await absent();
+    await advance(840);
+    await reveal().click();
+    await chapter(5);
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(5);
+    await reveal().click();
+    await chapter(6);
+    await chapter(5);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automedbench-full-deeplesion-denoising-task-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-automed-deeplesion-denoise-scene]');
-    const absent=async()=>assert.equal(await page.locator('[data-automed-deeplesion-denoise-reference-revealed]').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    await chapter(0);assert.match(await scene.innerText(),/Matching Full noisy CT.*private clean target absent.*512.*512.*262,144.*Symbolic values only.*0.05 normalized intensity.*not HU.*dose fraction/is);assert.equal(await scene.locator('svg rect[fill="none"]').count(),4);assert.equal(await scene.locator('svg rect:not([fill="none"])').count(),4);assert.deepEqual(await scene.locator('svg rect[fill="none"]').evaluateAll(es=>es.map(e=>e.getAttribute('stroke'))),Array(4).fill('#b1bccc'));await capture('symbolic-input');
-    for(let i=0;i<3;i++){await chapter(1);const name=['Normalized noise','Help + format','Clean / output unknown'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-automed-deeplesion-denoise-operation-step')),i);if(i===0)assert.match(await scene.innerText(),/variance = 0.0025.*0.98.*0.05.*1.03.*does not establish a clipping rule/is);if(i===2)assert.match(await scene.innerText(),/y = 0.45.*0.40.*0.05.*0.50.*unknown.*no denoised CT/is);await capture(`operation-${i}`);}
-    for(let i=0;i<3;i++){await chapter(2);const name=['Full Lite','Full Standard','Format boundary'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[336,419,503][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),[/public pretrained DRUNet.*checkpoint.*0.05 mapping.*inference only.*No checkpoint loaded.*lesion-detail preservation unverified/is,/≥ 3 denoisers, ≥ 2 pretrained neural.*BM3D.*DnCNN.*Restormer.*SwinIR.*No private target access, training or benchmark performance/is,/Required float32.*512.*512.*Checker accepts any finite floating 2D.*float64, copy, constant or out-of-range.*plural agents_outputs/is][i]);await capture(`branch-${i}`);}
-    await chapter(4);assert.match(await scene.innerText(),/Actual enhanced\.npy absent.*agents_outputs.*case_id.*512.*512.*float32.*No submitted array.*metric or rating/is);await capture('empty-output');
-    await chapter(5);const reveal=()=>scene.getByRole('button',{name:'Reveal public evaluator rules',exact:true});assert.equal(await reveal().getAttribute('aria-pressed'),'false');await reveal().click();assert.match(await scene.locator('[data-automed-deeplesion-denoise-reference-revealed]').innerText(),/Reader-only.*no target or output.*omit NaNs independently.*No task-specific.*Clinical.*code composite.*not clinical validation/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Cover public evaluator rules',exact:true}).click();await absent();await advance(840);await reveal().click();await chapter(5);await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(5);await reveal().click();await chapter(6);await chapter(5);await absent();await page.locator('.scene-reset').click();await absent();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-automed-deeplesion-denoise-scene]');
+    const absent = async () =>
+      assert.equal(
+        await page.locator('[data-automed-deeplesion-denoise-reference-revealed]').count(),
+        0,
+      );
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /Matching Full noisy CT.*private clean target absent.*512.*512.*262,144.*Symbolic values only.*0.05 normalized intensity.*not HU.*dose fraction/is,
+    );
+    assert.equal(await scene.locator('svg rect[fill="none"]').count(), 4);
+    assert.equal(await scene.locator('svg rect:not([fill="none"])').count(), 4);
+    assert.deepEqual(
+      await scene
+        .locator('svg rect[fill="none"]')
+        .evaluateAll((es) => es.map((e) => e.getAttribute('stroke'))),
+      Array(4).fill('#b1bccc'),
+    );
+    await capture('symbolic-input');
+    for (let i = 0; i < 3; i++) {
+      await chapter(1);
+      const name = ['Normalized noise', 'Help + format', 'Clean / output unknown'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [168, 336, 504][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(
+        Number(await scene.getAttribute('data-automed-deeplesion-denoise-operation-step')),
+        i,
+      );
+      if (i === 0)
+        assert.match(
+          await scene.innerText(),
+          /variance = 0.0025.*0.98.*0.05.*1.03.*does not establish a clipping rule/is,
+        );
+      if (i === 2)
+        assert.match(
+          await scene.innerText(),
+          /y = 0.45.*0.40.*0.05.*0.50.*unknown.*no denoised CT/is,
+        );
+      await capture(`operation-${i}`);
+    }
+    for (let i = 0; i < 3; i++) {
+      await chapter(2);
+      const name = ['Full Lite', 'Full Standard', 'Format boundary'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [336, 419, 503][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /public pretrained DRUNet.*checkpoint.*0.05 mapping.*inference only.*No checkpoint loaded.*lesion-detail preservation unverified/is,
+          /≥ 3 denoisers, ≥ 2 pretrained neural.*BM3D.*DnCNN.*Restormer.*SwinIR.*No private target access, training or benchmark performance/is,
+          /Required float32.*512.*512.*Checker accepts any finite floating 2D.*float64, copy, constant or out-of-range.*plural agents_outputs/is,
+        ][i],
+      );
+      await capture(`branch-${i}`);
+    }
+    await chapter(4);
+    assert.match(
+      await scene.innerText(),
+      /Actual enhanced\.npy absent.*agents_outputs.*case_id.*512.*512.*float32.*No submitted array.*metric or rating/is,
+    );
+    await capture('empty-output');
+    await chapter(5);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public evaluator rules', exact: true });
+    assert.equal(await reveal().getAttribute('aria-pressed'), 'false');
+    await reveal().click();
+    assert.match(
+      await scene.locator('[data-automed-deeplesion-denoise-reference-revealed]').innerText(),
+      /Reader-only.*no target or output.*omit NaNs independently.*No task-specific.*Clinical.*code composite.*not clinical validation/is,
+    );
+    await capture('reference-revealed');
+    await scene.getByRole('button', { name: 'Cover public evaluator rules', exact: true }).click();
+    await absent();
+    await advance(840);
+    await reveal().click();
+    await chapter(5);
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(5);
+    await reveal().click();
+    await chapter(6);
+    await chapter(5);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'automedbench-full-brats-t1c-sr-task-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-automed-brats-t1c-sr-scene]');
-    const absent=async()=>assert.equal(await page.locator('[data-automed-brats-t1c-sr-reference-revealed]').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    await chapter(0);assert.match(await scene.innerText(),/Matching Full MRI.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*no native images.*Voxel grid.*unspecified/is);assert.equal(await scene.locator('svg rect[fill="none"]').count(),16);assert.equal(await scene.locator('svg rect:not([fill="none"])').count(),4);assert.deepEqual(await scene.locator('svg rect[fill="none"]').evaluateAll(es=>es.map(e=>e.getAttribute('stroke'))),Array(16).fill('#b1bccc'));await capture('symbolic-input');
-    for(let i=0;i<3;i++){await chapter(1);const name=['Public input / private target','Help + format','2× geometry'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.getAttribute('data-automed-brats-t1c-sr-operation-step')),i);await capture(`operation-${i}`);}
-    for(let i=0;i<3;i++){await chapter(2);const name=['Full Lite','Full Standard','Format boundary'][i];await scene.getByRole('button',{name,exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[336,419,503][i]);assert.equal(await scene.getByRole('button',{name,exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.innerText(),[/caidas\/swin2SR-classical-sr-x2-64.*inference only.*Checkpoint\/runtime not bundled/is,/compare ≥ 3 methods, ≥ 2 neural.*bicubic.*Lanczos.*No private target access or weight updates/is,/Task requires float32.*Checker accepts any floating dtype.*Range and constant-image checks absent.*same input shape.*plural agents_outputs/is][i]);await capture(`branch-${i}`);}
-    await chapter(4);assert.match(await scene.innerText(),/Actual enhanced\.npy absent.*agents_outputs.*case_id.*float32.*256.*No submitted array.*metric or rating/is);await capture('empty-output');
-    await chapter(5);const reveal=()=>scene.getByRole('button',{name:'Reveal public evaluator rules',exact:true});assert.equal(await reveal().getAttribute('aria-pressed'),'false');await reveal().click();assert.match(await scene.locator('[data-automed-brats-t1c-sr-reference-revealed]').innerText(),/Reader-only.*no patient target.*independent NaN.*No BraTS-specific.*Clinical.*code composite.*not clinical validation/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Hide public evaluator rules',exact:true}).click();await absent();await advance(840);await reveal().click();await chapter(5);await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(5);await reveal().click();await chapter(6);await chapter(5);await absent();await page.locator('.scene-reset').click();await absent();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-automed-brats-t1c-sr-scene]');
+    const absent = async () =>
+      assert.equal(await page.locator('[data-automed-brats-t1c-sr-reference-revealed]').count(), 0);
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /Matching Full MRI.*private target unavailable.*128.*128.*256.*256.*16,384.*65,536.*no native images.*Voxel grid.*unspecified/is,
+    );
+    assert.equal(await scene.locator('svg rect[fill="none"]').count(), 16);
+    assert.equal(await scene.locator('svg rect:not([fill="none"])').count(), 4);
+    assert.deepEqual(
+      await scene
+        .locator('svg rect[fill="none"]')
+        .evaluateAll((es) => es.map((e) => e.getAttribute('stroke'))),
+      Array(16).fill('#b1bccc'),
+    );
+    await capture('symbolic-input');
+    for (let i = 0; i < 3; i++) {
+      await chapter(1);
+      const name = ['Public input / private target', 'Help + format', '2× geometry'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [168, 336, 504][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(Number(await scene.getAttribute('data-automed-brats-t1c-sr-operation-step')), i);
+      await capture(`operation-${i}`);
+    }
+    for (let i = 0; i < 3; i++) {
+      await chapter(2);
+      const name = ['Full Lite', 'Full Standard', 'Format boundary'][i];
+      await scene.getByRole('button', { name, exact: true }).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [336, 419, 503][i],
+      );
+      assert.equal(
+        await scene.getByRole('button', { name, exact: true }).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.match(
+        await scene.innerText(),
+        [
+          /caidas\/swin2SR-classical-sr-x2-64.*inference only.*Checkpoint\/runtime not bundled/is,
+          /compare ≥ 3 methods, ≥ 2 neural.*bicubic.*Lanczos.*No private target access or weight updates/is,
+          /Task requires float32.*Checker accepts any floating dtype.*Range and constant-image checks absent.*same input shape.*plural agents_outputs/is,
+        ][i],
+      );
+      await capture(`branch-${i}`);
+    }
+    await chapter(4);
+    assert.match(
+      await scene.innerText(),
+      /Actual enhanced\.npy absent.*agents_outputs.*case_id.*float32.*256.*No submitted array.*metric or rating/is,
+    );
+    await capture('empty-output');
+    await chapter(5);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public evaluator rules', exact: true });
+    assert.equal(await reveal().getAttribute('aria-pressed'), 'false');
+    await reveal().click();
+    assert.match(
+      await scene.locator('[data-automed-brats-t1c-sr-reference-revealed]').innerText(),
+      /Reader-only.*no patient target.*independent NaN.*No BraTS-specific.*Clinical.*code composite.*not clinical validation/is,
+    );
+    await capture('reference-revealed');
+    await scene.getByRole('button', { name: 'Hide public evaluator rules', exact: true }).click();
+    await absent();
+    await advance(840);
+    await reveal().click();
+    await chapter(5);
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(5);
+    await reveal().click();
+    await chapter(6);
+    await chapter(5);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'rex-usenhance-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-usenhance-scene]');
-    const absent=async()=>assert.equal(await page.locator('[data-usenhance-training-role], #usenhance-grading-rule, [data-usenhance-method], [data-usenhance-format]').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();assert.equal(await scene.locator('img,canvas,svg,image').count(),0);};
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    const keys=await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>({color:getComputedStyle(e).borderTopColor,style:getComputedStyle(e).borderTopStyle})));assert.deepEqual(keys.map(x=>x.color),['rgb(145, 166, 174)','rgb(24, 198, 212)','rgb(123, 164, 184)']);assert.ok(keys.every(x=>x.style==='dashed'));
-    await chapter(0);assert.match(await scene.innerText(),/Empty schematic socket.*no ultrasound pixels or anatomy.*organ.*filename.*grayscale.*float32.*No native shape, spacing, patient join or frame correspondence acquired/is);await capture('symbolic-input');
-    await chapter(1);const helper=()=>scene.getByRole('button',{name:'Reveal public training role',exact:true});await helper().click();assert.match(await scene.locator('[data-usenhance-training-role]').innerText(),/public\/train\/low_quality.*public\/train\/high_quality.*training helpers.*never pixels/is);await capture('helper-revealed');await scene.getByRole('button',{name:'Hide training role',exact:true}).click();await absent();await advance(288);await helper().click();await chapter(1);await helper().click();await page.locator('.scene-reset').click();await absent();await chapter(1);await helper().click();await chapter(2);await chapter(1);await absent();
-    const stages=JSON.parse(fs.readFileSync('presentation/task-explorer/rexmle-usenhance/operation.json','utf8')).steps;
-    for(let i=0;i<4;i++){await chapter(2);await scene.locator(`[data-usenhance-step="${i}"]`).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[576,687,752,863][i]);assert.equal(await scene.locator(`[data-usenhance-step="${i}"]`).getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('[data-usenhance-currentstage]').innerText(),stages[i]);await scene.getByRole('button',{name:'Inspect method/runtime boundary',exact:true}).click();assert.match(await scene.locator('[data-usenhance-method]').innerText(),/No fixed checkpoint\/model.*grade\.py lacks adjacent metric_config\.json\/leaderboard\.csv.*standalone recovery unverified/is);await capture(`contract-${i}`);await page.locator('.scene-reset').click();await absent();}
-    await chapter(2);await advance(576);await scene.getByRole('button',{name:'Inspect method/runtime boundary',exact:true}).click();await chapter(2);await absent();
-    await chapter(3);assert.match(await scene.innerText(),/submission\.csv.*image_id,enhanced_image_path.*No case row.*no enhanced PNG.*Private high-quality reference absent/is);await capture('empty-output');await scene.getByRole('button',{name:'Inspect submission and geometry',exact:true}).click();assert.match(await scene.locator('[data-usenhance-format]').innerText(),/CSV image_id and enhanced_image_path.*no actual case ID.*grayscale float32.*INTER_LINEAR.*does not prove.*registration/is);await capture('output-detail');await advance(864);await chapter(3);await absent();await scene.getByRole('button',{name:'Inspect submission and geometry',exact:true}).click();await page.locator('.scene-reset').click();await absent();
-    await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal grading mechanics',exact:true});await reveal().click();const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/rexmle-usenhance/output.json','utf8')).rules;
-    for(const rule of ['lncc','ssim_psnr','rank','fallback']){const button=scene.getByRole('button',{name:rule.replaceAll('_',' / '),exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('[data-usenhance-rule]').innerText(),rules[rule]);await capture(`rule-${rule}`);}
-    assert.match(await scene.innerText(),/merged-row count equals answer-row count.*Duplicates can offset missing IDs.*not patients.*no hidden Full reference.*actual metric.*clinical accuracy/is);assert.equal(await scene.locator('img,canvas,svg,image').count(),0);await scene.getByRole('button',{name:'Hide grading mechanics',exact:true}).click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'lncc',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-usenhance-scene]');
+    const absent = async () =>
+      assert.equal(
+        await page
+          .locator(
+            '[data-usenhance-training-role], #usenhance-grading-rule, [data-usenhance-method], [data-usenhance-format]',
+          )
+          .count(),
+        0,
+      );
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const chapter = async (i) => {
+      await page.locator(`[data-story-step="${i}"]`).click();
+      await absent();
+      assert.equal(await scene.locator('img,canvas,svg,image').count(), 0);
+    };
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const keys = await page.locator('.scene-legend i').evaluateAll((es) =>
+      es.map((e) => ({
+        color: getComputedStyle(e).borderTopColor,
+        style: getComputedStyle(e).borderTopStyle,
+      })),
+    );
+    assert.deepEqual(
+      keys.map((x) => x.color),
+      ['rgb(145, 166, 174)', 'rgb(24, 198, 212)', 'rgb(123, 164, 184)'],
+    );
+    assert.ok(keys.every((x) => x.style === 'dashed'));
+    await chapter(0);
+    assert.match(
+      await scene.innerText(),
+      /Empty schematic socket.*no ultrasound pixels or anatomy.*organ.*filename.*grayscale.*float32.*No native shape, spacing, patient join or frame correspondence acquired/is,
+    );
+    await capture('symbolic-input');
+    await chapter(1);
+    const helper = () =>
+      scene.getByRole('button', { name: 'Reveal public training role', exact: true });
+    await helper().click();
+    assert.match(
+      await scene.locator('[data-usenhance-training-role]').innerText(),
+      /public\/train\/low_quality.*public\/train\/high_quality.*training helpers.*never pixels/is,
+    );
+    await capture('helper-revealed');
+    await scene.getByRole('button', { name: 'Hide training role', exact: true }).click();
+    await absent();
+    await advance(288);
+    await helper().click();
+    await chapter(1);
+    await helper().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(1);
+    await helper().click();
+    await chapter(2);
+    await chapter(1);
+    await absent();
+    const stages = JSON.parse(
+      fs.readFileSync('presentation/task-explorer/rexmle-usenhance/operation.json', 'utf8'),
+    ).steps;
+    for (let i = 0; i < 4; i++) {
+      await chapter(2);
+      await scene.locator(`[data-usenhance-step="${i}"]`).click();
+      assert.equal(
+        Number(await page.locator('.scene-player').getAttribute('data-frame')),
+        [576, 687, 752, 863][i],
+      );
+      assert.equal(
+        await scene.locator(`[data-usenhance-step="${i}"]`).getAttribute('aria-pressed'),
+        'true',
+      );
+      assert.equal(await scene.locator('[data-usenhance-currentstage]').innerText(), stages[i]);
+      await scene
+        .getByRole('button', { name: 'Inspect method/runtime boundary', exact: true })
+        .click();
+      assert.match(
+        await scene.locator('[data-usenhance-method]').innerText(),
+        /No fixed checkpoint\/model.*grade\.py lacks adjacent metric_config\.json\/leaderboard\.csv.*standalone recovery unverified/is,
+      );
+      await capture(`contract-${i}`);
+      await page.locator('.scene-reset').click();
+      await absent();
+    }
+    await chapter(2);
+    await advance(576);
+    await scene
+      .getByRole('button', { name: 'Inspect method/runtime boundary', exact: true })
+      .click();
+    await chapter(2);
+    await absent();
+    await chapter(3);
+    assert.match(
+      await scene.innerText(),
+      /submission\.csv.*image_id,enhanced_image_path.*No case row.*no enhanced PNG.*Private high-quality reference absent/is,
+    );
+    await capture('empty-output');
+    await scene
+      .getByRole('button', { name: 'Inspect submission and geometry', exact: true })
+      .click();
+    assert.match(
+      await scene.locator('[data-usenhance-format]').innerText(),
+      /CSV image_id and enhanced_image_path.*no actual case ID.*grayscale float32.*INTER_LINEAR.*does not prove.*registration/is,
+    );
+    await capture('output-detail');
+    await advance(864);
+    await chapter(3);
+    await absent();
+    await scene
+      .getByRole('button', { name: 'Inspect submission and geometry', exact: true })
+      .click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(4);
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal grading mechanics', exact: true });
+    await reveal().click();
+    const rules = JSON.parse(
+      fs.readFileSync('presentation/task-explorer/rexmle-usenhance/output.json', 'utf8'),
+    ).rules;
+    for (const rule of ['lncc', 'ssim_psnr', 'rank', 'fallback']) {
+      const button = scene.getByRole('button', { name: rule.replaceAll('_', ' / '), exact: true });
+      await button.click();
+      assert.equal(await button.getAttribute('aria-pressed'), 'true');
+      assert.equal(await scene.locator('[data-usenhance-rule]').innerText(), rules[rule]);
+      await capture(`rule-${rule}`);
+    }
+    assert.match(
+      await scene.innerText(),
+      /merged-row count equals answer-row count.*Duplicates can offset missing IDs.*not patients.*no hidden Full reference.*actual metric.*clinical accuracy/is,
+    );
+    assert.equal(await scene.locator('img,canvas,svg,image').count(), 0);
+    await scene.getByRole('button', { name: 'Hide grading mechanics', exact: true }).click();
+    await absent();
+    await advance(1152);
+    await reveal().click();
+    await chapter(4);
+    await reveal().click();
+    assert.equal(
+      await scene.getByRole('button', { name: 'lncc', exact: true }).getAttribute('aria-pressed'),
+      'true',
+    );
+    await page.locator('.scene-reset').click();
+    await absent();
+    await chapter(4);
+    await reveal().click();
+    await chapter(0);
+    await chapter(4);
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'imaging101-xray-tooth-gridrec-v1') {
-    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
-    const scene=page.locator('[data-imaging-tooth-gridrec-scene]');
-    const keys=await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>({bg:getComputedStyle(e).backgroundColor,line:getComputedStyle(e).borderTopColor,width:getComputedStyle(e).borderTopWidth})));assert.equal(keys.length,5);for(let i=0;i<3;i++)assert.equal(keys[i].bg,['rgb(0, 0, 0)','rgb(128, 128, 128)','rgb(255, 255, 255)'][i]);for(let i=3;i<5;i++){assert.equal(keys[i].line,['rgb(84, 211, 221)','rgb(174, 190, 200)'][i-3]);assert.equal(keys[i].width,'3px');}
-    const absent=async()=>assert.equal(await scene.locator('[data-imaging-tooth-gridrec-reference-revealed]').count(),0);
-    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
-    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
-    const image=async i=>{const imgs=scene.locator('img');assert.equal(await imgs.count(),1);const d=await imgs.evaluate(e=>({src:e.src,w:e.naturalWidth,h:e.naturalHeight,alt:e.alt}));assert.equal(d.w,160);assert.equal(d.h,91);assert.ok(d.src.startsWith('data:image/png;base64,'));assert.equal(sha(Buffer.from(d.src.split(',')[1],'base64')),sha(fs.readFileSync(`presentation/task-explorer/imaging101-xray-tooth-gridrec/counts-row${i}.png`)));assert.match(d.alt,new RegExp(`Native tooth raw detector count matrix, detector row ${i}, angle rows and detector columns; no log or reconstruction`));assert.match(await scene.locator('figcaption').innerText(),/angle rows.*detector columns.*stride 2.*4.*3921\.25.*33891\.5 raw counts.*No calibrated photons/is);};
-    const calibration=async()=>{assert.equal(await scene.locator('img').count(),0);assert.equal(await scene.locator('svg').count(),1);const profiles=JSON.parse(fs.readFileSync('presentation/task-explorer/imaging101-xray-tooth-gridrec/source.json','utf8')).native_display.calibration_profiles;const lines=scene.locator('polyline');assert.equal(await lines.count(),2);for(let k=0;k<2;k++){const pts=(await lines.nth(k).getAttribute('points')).split(' ').map(x=>x.split(',').map(Number));assert.equal(pts.length,640);assert.equal(await lines.nth(k).getAttribute('stroke'),['#54d3dd','#aebec8'][k]);for(let i=0;i<640;i++){assert.ok(Math.abs(pts[i][0]-i/639*320)<1e-11);assert.ok(Math.abs(pts[i][1]-(95-profiles[k].values[i]/35000*85))<1e-11);}}assert.match(await scene.locator('figcaption').innerText(),/Teal flat.*gray dark.*frame 0, row 0.*all 640 detector cells.*0–35,000 counts.*NOT ten-frame means/is);};
-    await page.locator('[data-story-step="0"]').click();await image(0);await absent();assert.match(await scene.innerText(),/181 angles.*2 rows.*640 detectors.*231,680 native count cells.*not an attenuation cross-section.*experimental tooth specimen.*No detector\/voxel spacing, photon calibration, energy, independent truth or participant output/is);await capture('native-input');await advance(0);await page.locator('[data-story-step="0"]').click();
-    const steps=['Counts → transmission','Native inputs','Centre + FBP rules'],branches=['Detector row 0','Detector row 1','Flat / dark frames'],bf=[336,419,503];
-    for(let i=0;i<3;i++)for(let m=0;m<3;m++){
-      await page.locator('[data-story-step="2"]').click();await scene.getByRole('button',{name:branches[m],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),bf[m]);await scene.getByRole('button',{name:steps[i],exact:true}).click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),i===1?bf[m]:[168,0,504][i]);assert.equal(await scene.getAttribute('data-imaging-tooth-gridrec-operation-step'),String(i));assert.equal(await scene.getByRole('button',{name:steps[i],exact:true}).getAttribute('aria-pressed'),'true');const text=await scene.innerText();
-      if(i===0){assert.match(text,/T = \(I − mean\(D\)\) \/ \(mean\(F\) − mean\(D\)\).*Ten flat and ten dark frames.*Zero denominator → 1.*−log clips only below 10⁻¹².*Transmission above 1 stays above 1.*Authored I = 500, F = 1000, D = 100 gives T = 0\.4444.*no native correction\/log or new sinogram computed/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
-      else if(i===1){assert.equal(await scene.getByRole('button',{name:branches[m],exact:true}).getAttribute('aria-pressed'),'true');if(m<2)await image(m);else await calibration();await capture(`native-branch-${m}`);}
-      else{assert.match(text,/Source runs pixel-driven FBP, not a TomoPy gridrec call.*first.*reversed last correlation.*20 variance-based FBP trials.*Init 290 unused.*midpoint 319\.5 detector pixels.*640 detectors.*2048.*ramp.*π\/181.*radius 304 pixels.*no FFT, centre estimate or inverse executed/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);}
-      await absent();await capture(`contract-${i}-${m}`);
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true')
+      await page.locator('.scene-play').click();
+    const scene = page.locator('[data-imaging-tooth-gridrec-scene]');
+    const keys = await page.locator('.scene-legend i').evaluateAll((es) =>
+      es.map((e) => ({
+        bg: getComputedStyle(e).backgroundColor,
+        line: getComputedStyle(e).borderTopColor,
+        width: getComputedStyle(e).borderTopWidth,
+      })),
+    );
+    assert.equal(keys.length, 5);
+    for (let i = 0; i < 3; i++)
+      assert.equal(keys[i].bg, ['rgb(0, 0, 0)', 'rgb(128, 128, 128)', 'rgb(255, 255, 255)'][i]);
+    for (let i = 3; i < 5; i++) {
+      assert.equal(keys[i].line, ['rgb(84, 211, 221)', 'rgb(174, 190, 200)'][i - 3]);
+      assert.equal(keys[i].width, '3px');
     }
-    await page.locator('[data-story-step="2"]').click();await advance(336);await page.locator('[data-story-step="2"]').click();await image(0);await absent();
-    const oi=plan.beats.findIndex(b=>b.scene==='output');await page.locator(`[data-story-step="${oi}"]`).click();assert.match(await scene.innerText(),/Participant reconstruction absent.*output\/reconstruction\.npy.*2, 640, 640.*819,200 pixel-scaled values.*calibrated attenuation units unknown.*Saved baseline, centre and sinogram are prior provenance/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await absent();await capture('empty-output');
-    const ri=plan.beats.findIndex(b=>b.scene==='reference');await page.locator(`[data-story-step="${ri}"]`).click();await absent();const reveal=()=>scene.getByRole('button',{name:'Reveal public reference rules',exact:true});await reveal().click();assert.equal(await scene.getByRole('button',{name:'Hide public reference rules',exact:true}).getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-imaging-tooth-gridrec-reference-revealed]').innerText(),/Saved reference equals solver-visible baseline.*Source metrics use first slice, 409,600 pixels.*filesystem generic uses both slices, 819,200.*Not independent truth.*No-filesystem requires absent ground_truth\.npy.*no listed boundary file.*Actual output and score absent/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('rules-revealed');await scene.getByRole('button',{name:'Hide public reference rules',exact:true}).click();await absent();
-    await advance(plan.beats[ri].startFrame);await reveal().click();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();await reveal().click();await page.locator('[data-story-step="1"]').click();await absent();await page.locator(`[data-story-step="${ri}"]`).click();await absent();
-    const li=plan.beats.findIndex(b=>b.scene==='limits');await page.locator(`[data-story-step="${li}"]`).click();assert.match(await scene.innerText(),/No reconstructed anatomy, resolution, clinical findings or source-gridrec equivalence claim/is);assert.equal(await scene.locator('img,canvas,image,svg').count(),0);await capture('limits-contract');await absent();await page.locator('.scene-reset').click();await absent();
+    const absent = async () =>
+      assert.equal(
+        await scene.locator('[data-imaging-tooth-gridrec-reference-revealed]').count(),
+        0,
+      );
+    const capture = async (n) =>
+      page.locator('.scene-player').screenshot({ path: path.join(output, `${label}-${n}.png`) });
+    const advance = async (f) => {
+      await page.bringToFront();
+      await page.locator('.scene-play').click();
+      await page.locator('.scene-stage').scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (x) => Number(document.querySelector('.scene-player').getAttribute('data-frame')) > x,
+        f + 4,
+      );
+      await page.locator('.scene-play').click();
+    };
+    const image = async (i) => {
+      const imgs = scene.locator('img');
+      assert.equal(await imgs.count(), 1);
+      const d = await imgs.evaluate((e) => ({
+        src: e.src,
+        w: e.naturalWidth,
+        h: e.naturalHeight,
+        alt: e.alt,
+      }));
+      assert.equal(d.w, 160);
+      assert.equal(d.h, 91);
+      assert.ok(d.src.startsWith('data:image/png;base64,'));
+      assert.equal(
+        sha(Buffer.from(d.src.split(',')[1], 'base64')),
+        sha(
+          fs.readFileSync(
+            `presentation/task-explorer/imaging101-xray-tooth-gridrec/counts-row${i}.png`,
+          ),
+        ),
+      );
+      assert.match(
+        d.alt,
+        new RegExp(
+          `Native tooth raw detector count matrix, detector row ${i}, angle rows and detector columns; no log or reconstruction`,
+        ),
+      );
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /angle rows.*detector columns.*stride 2.*4.*3921\.25.*33891\.5 raw counts.*No calibrated photons/is,
+      );
+    };
+    const calibration = async () => {
+      assert.equal(await scene.locator('img').count(), 0);
+      assert.equal(await scene.locator('svg').count(), 1);
+      const profiles = JSON.parse(
+        fs.readFileSync(
+          'presentation/task-explorer/imaging101-xray-tooth-gridrec/source.json',
+          'utf8',
+        ),
+      ).native_display.calibration_profiles;
+      const lines = scene.locator('polyline');
+      assert.equal(await lines.count(), 2);
+      for (let k = 0; k < 2; k++) {
+        const pts = (await lines.nth(k).getAttribute('points'))
+          .split(' ')
+          .map((x) => x.split(',').map(Number));
+        assert.equal(pts.length, 640);
+        assert.equal(await lines.nth(k).getAttribute('stroke'), ['#54d3dd', '#aebec8'][k]);
+        for (let i = 0; i < 640; i++) {
+          assert.ok(Math.abs(pts[i][0] - (i / 639) * 320) < 1e-11);
+          assert.ok(Math.abs(pts[i][1] - (95 - (profiles[k].values[i] / 35000) * 85)) < 1e-11);
+        }
+      }
+      assert.match(
+        await scene.locator('figcaption').innerText(),
+        /Teal flat.*gray dark.*frame 0, row 0.*all 640 detector cells.*0–35,000 counts.*NOT ten-frame means/is,
+      );
+    };
+    await page.locator('[data-story-step="0"]').click();
+    await image(0);
+    await absent();
+    assert.match(
+      await scene.innerText(),
+      /181 angles.*2 rows.*640 detectors.*231,680 native count cells.*not an attenuation cross-section.*experimental tooth specimen.*No detector\/voxel spacing, photon calibration, energy, independent truth or participant output/is,
+    );
+    await capture('native-input');
+    await advance(0);
+    await page.locator('[data-story-step="0"]').click();
+    const steps = ['Counts → transmission', 'Native inputs', 'Centre + FBP rules'],
+      branches = ['Detector row 0', 'Detector row 1', 'Flat / dark frames'],
+      bf = [336, 419, 503];
+    for (let i = 0; i < 3; i++)
+      for (let m = 0; m < 3; m++) {
+        await page.locator('[data-story-step="2"]').click();
+        await scene.getByRole('button', { name: branches[m], exact: true }).click();
+        assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')), bf[m]);
+        await scene.getByRole('button', { name: steps[i], exact: true }).click();
+        assert.equal(
+          Number(await page.locator('.scene-player').getAttribute('data-frame')),
+          i === 1 ? bf[m] : [168, 0, 504][i],
+        );
+        assert.equal(
+          await scene.getAttribute('data-imaging-tooth-gridrec-operation-step'),
+          String(i),
+        );
+        assert.equal(
+          await scene
+            .getByRole('button', { name: steps[i], exact: true })
+            .getAttribute('aria-pressed'),
+          'true',
+        );
+        const text = await scene.innerText();
+        if (i === 0) {
+          assert.match(
+            text,
+            /T = \(I − mean\(D\)\) \/ \(mean\(F\) − mean\(D\)\).*Ten flat and ten dark frames.*Zero denominator → 1.*−log clips only below 10⁻¹².*Transmission above 1 stays above 1.*Authored I = 500, F = 1000, D = 100 gives T = 0\.4444.*no native correction\/log or new sinogram computed/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        } else if (i === 1) {
+          assert.equal(
+            await scene
+              .getByRole('button', { name: branches[m], exact: true })
+              .getAttribute('aria-pressed'),
+            'true',
+          );
+          if (m < 2) await image(m);
+          else await calibration();
+          await capture(`native-branch-${m}`);
+        } else {
+          assert.match(
+            text,
+            /Source runs pixel-driven FBP, not a TomoPy gridrec call.*first.*reversed last correlation.*20 variance-based FBP trials.*Init 290 unused.*midpoint 319\.5 detector pixels.*640 detectors.*2048.*ramp.*π\/181.*radius 304 pixels.*no FFT, centre estimate or inverse executed/is,
+          );
+          assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+        }
+        await absent();
+        await capture(`contract-${i}-${m}`);
+      }
+    await page.locator('[data-story-step="2"]').click();
+    await advance(336);
+    await page.locator('[data-story-step="2"]').click();
+    await image(0);
+    await absent();
+    const oi = plan.beats.findIndex((b) => b.scene === 'output');
+    await page.locator(`[data-story-step="${oi}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /Participant reconstruction absent.*output\/reconstruction\.npy.*2, 640, 640.*819,200 pixel-scaled values.*calibrated attenuation units unknown.*Saved baseline, centre and sinogram are prior provenance/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await absent();
+    await capture('empty-output');
+    const ri = plan.beats.findIndex((b) => b.scene === 'reference');
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const reveal = () =>
+      scene.getByRole('button', { name: 'Reveal public reference rules', exact: true });
+    await reveal().click();
+    assert.equal(
+      await scene
+        .getByRole('button', { name: 'Hide public reference rules', exact: true })
+        .getAttribute('aria-pressed'),
+      'true',
+    );
+    assert.match(
+      await scene.locator('[data-imaging-tooth-gridrec-reference-revealed]').innerText(),
+      /Saved reference equals solver-visible baseline.*Source metrics use first slice, 409,600 pixels.*filesystem generic uses both slices, 819,200.*Not independent truth.*No-filesystem requires absent ground_truth\.npy.*no listed boundary file.*Actual output and score absent/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('rules-revealed');
+    await scene.getByRole('button', { name: 'Hide public reference rules', exact: true }).click();
+    await absent();
+    await advance(plan.beats[ri].startFrame);
+    await reveal().click();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('.scene-reset').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    await reveal().click();
+    await page.locator('[data-story-step="1"]').click();
+    await absent();
+    await page.locator(`[data-story-step="${ri}"]`).click();
+    await absent();
+    const li = plan.beats.findIndex((b) => b.scene === 'limits');
+    await page.locator(`[data-story-step="${li}"]`).click();
+    assert.match(
+      await scene.innerText(),
+      /No reconstructed anatomy, resolution, clinical findings or source-gridrec equivalence claim/is,
+    );
+    assert.equal(await scene.locator('img,canvas,image,svg').count(), 0);
+    await capture('limits-contract');
+    await absent();
+    await page.locator('.scene-reset').click();
+    await absent();
   }
 
   if (plan.recipe === 'imaging101-pnp-mri-reconstruction-v1') {

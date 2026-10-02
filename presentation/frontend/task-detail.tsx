@@ -46,6 +46,9 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
       : undefined;
   const exampleLabel = illustrated ? ' · ' + model.label(illustrated, entry) : '',
     native = /<img\b/.test(entry.visuals.input);
+  const plan = entry.illustration?.story_id
+    ? model.data.explanation_stories?.[entry.illustration.story_id]
+    : undefined;
   const open = () => dispatch({ type: 'tab', tab: 'examples' }, '#tab-examples');
   const notice = <ImageNotice model={model} entry={entry} dispatch={dispatch} />;
   return (
@@ -70,21 +73,20 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
           <figcaption>
             <span className="drawing-label">
               {t(
-                taskSceneMode(entry as VisualEntry) === '3d'
+                plan || taskSceneMode(entry as VisualEntry) === '3d'
                   ? 'Interactive task illustration'
                   : 'Task illustration',
               )}
             </span>
-            <span>{t('Illustrative model · not case-specific')}</span>
+            <span>
+              {t(
+                plan
+                  ? 'Task walkthrough · see stated scope'
+                  : 'Illustrative model · not case-specific',
+              )}
+            </span>
           </figcaption>
-          <TaskScene
-            entry={entry}
-            plan={
-              entry.illustration.story_id
-                ? model.data.explanation_stories?.[entry.illustration.story_id]
-                : undefined
-            }
-          />
+          <TaskScene entry={entry} plan={plan} />
         </figure>
       ) : null}
       {!!entry.missing_media?.length && (

@@ -21,8 +21,10 @@ export async function checkReview(browser: Browser, site: string, reports: strin
       data.explanation_stories?.[entry.illustration.story_id]?.recipe === 'multiscale-v1',
   );
   const spatial = data.entries.find((entry) => entry.id === 'ours');
+  // Reporting entries now have canonical stories; trial matching deliberately
+  // retains the static input/output illustration outside the core scope.
   const staticEntry = data.entries.find(
-    (entry) => entry.illustration?.kind === 'report' && !entry.illustration.story_id,
+    (entry) => entry.illustration?.kind === 'trials' && !entry.illustration.story_id,
   );
   assert.ok(planar && spatial && staticEntry, 'Expected representative production views');
   data.entries = [spatial, planar, staticEntry];

@@ -1,5 +1,18 @@
 # Canonical task explainers
 
+The Task Explorer combines task-specific narratives, source assets and a shared
+interactive player. Scope and acceptance remain explicit in the
+[scope register](EXPLAINER-SCOPE.json) and [review ledger](EXPLAINER-LEDGER.json).
+The [2026-10-02 closeout](EXPLAINER-COMPLETION-20260929.md) records 154/154 accepted
+core entries; the full catalogue retains 205 entries.
+
+Start with [owners](#owners), [build and export](#build-and-export), and
+[review requirements](#checks-and-visual-acceptance). The
+[framework review](../docs/explainer-framework.md) proposes simplification;
+it does not change the current contract.
+
+## Selected source-specific contracts
+
 `imaging101-eht-original-v1` uses all 421 native visibility rows, per-scan closures,
 six UV-matched gain controls and the six saved calibrated/corrupted outputs.
 Its [source notice](task-explorer/imaging101-eht-original/NOTICE.md) records log

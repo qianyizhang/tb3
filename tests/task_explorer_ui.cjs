@@ -133,6 +133,22 @@ async function checkExplorer(browser, input, report) {
             storyPlan?.beats.length || 3,
             'One complete stage selector',
           );
+          if (storyPlan) {
+            assert.deepEqual(
+              await page.locator('.scene-steps button strong').allTextContents(),
+              storyPlan.beats.map((beat) => beat.id.replace(/[-_]+/g, ' ')),
+              'Chapter labels are readable without changing source IDs',
+            );
+            assert.deepEqual(
+              await page
+                .locator('.scene-steps button')
+                .evaluateAll((buttons) =>
+                  buttons.map((button) => button.getAttribute('aria-label')),
+                ),
+              storyPlan.beats.map((beat, i) => `${i + 1}. ${beat.caption}`),
+              'Chapter controls expose complete authored captions to assistive technology',
+            );
+          }
           assert.equal(
             await page.locator('.scene-storyboard svg').count(),
             0,
@@ -181,8 +197,9 @@ async function checkExplorer(browser, input, report) {
         }
         assert.ok(
           (await page.locator('.task-picture.conceptual > figcaption').innerText()).includes(
-            'not case-specific',
+            e.illustration.story_id ? 'see stated scope' : 'not case-specific',
           ),
+          `${e.id}: distinguish a scoped walkthrough from a generic illustration`,
         );
         drawings++;
         diagramTypes.add(e.illustration.kind);
@@ -204,9 +221,14 @@ async function checkExplorer(browser, input, report) {
           );
         await page.locator('.native-preview img').evaluate((e) => e.decode());
         assert.equal(
-          await page.locator('.native-input').innerHTML(),
-          e.visuals.input,
-          'Source preview preserves its authored selection caption',
+          await page.locator('.native-input').evaluate((element, authored) => {
+            // Compare both after HTML parsing (for example, &#x27; becomes an apostrophe).
+            const expected = document.createElement('template');
+            expected.innerHTML = authored;
+            return element.innerHTML === expected.innerHTML;
+          }, e.visuals.input),
+          true,
+          `${e.id}: source preview preserves its authored image and selection caption`,
         );
         sourcePreviews++;
       } else if (e.missing_media.length) {
@@ -263,15 +285,31 @@ async function checkExplorer(browser, input, report) {
       }
       assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
     }
-    await page.goto(pathToFileURL(file).href);
-    // Motion is real, opt-out is respected, and camera controls work without a mouse.
-    const moving = data.entries.find(
+    // The completed catalogue now binds the cardiac and dental entries to stories.
+    // Exercise the retained legacy player in an explicit derived fixture, without
+    // requiring production content to remain unmigrated or weakening these checks.
+    const legacyData = structuredClone(data);
+    const moving = legacyData.entries.find(
       (e) =>
         ['dynamic_mesh', 'cardiac_material'].includes(e.illustration?.kind) &&
-        !e.illustration.story_id &&
         e.illustration.input_form !== 'masks',
     );
-    assert.ok(moving, 'A task with meaningful geometry motion is available');
+    assert.ok(moving, 'A cardiac illustration is available for the legacy motion fixture');
+    delete moving.illustration.story_id;
+    delete legacyData.entries.find((e) => e.id === 'tb3-dental-v3').illustration.story_id;
+    const legacyFile = resolve(dirname(report), 'legacy-scenes.html');
+    fs.writeFileSync(
+      legacyFile,
+      fs
+        .readFileSync(file, 'utf8')
+        .replace(
+          /(<script id="data" type="application\/json">)[\s\S]*?(<\/script>)/,
+          (_, opening, closing) =>
+            opening + JSON.stringify(legacyData).replaceAll('<', '\\u003c') + closing,
+        ),
+    );
+    await page.goto(pathToFileURL(legacyFile).href);
+    // Motion is real, opt-out is respected, and camera controls work without a mouse.
     await go(`${moving.id}/0/overview`, moving.id);
     await page.locator('.scene-canvas').scrollIntoViewIfNeeded();
     const pixels = async () =>
@@ -375,7 +413,7 @@ async function checkExplorer(browser, input, report) {
           return context;
         };
       }, failure);
-      await software.goto(pathToFileURL(file).href + '#tb3-dental-v3/0/overview');
+      await software.goto(pathToFileURL(legacyFile).href + '#tb3-dental-v3/0/overview');
       await software.locator('.scene-player[data-rendered="true"]').waitFor();
       if (failure === 'lost') {
         assert.equal(
@@ -484,12 +522,13 @@ async function checkExplorer(browser, input, report) {
     await fallback.addInitScript(() => {
       HTMLCanvasElement.prototype.getContext = () => null;
     });
-    await fallback.goto(pathToFileURL(file).href + '#tb3-dental-v3/0/overview');
+    await fallback.goto(pathToFileURL(legacyFile).href + '#tb3-dental-v3/0/overview');
     assert.equal(await fallback.locator('.scene-fallback').isVisible(), true);
     assert.equal(await fallback.locator('.scene-fallback svg').count(), 2);
     assert.equal(await fallback.locator('.scene-controls').isVisible(), false);
     await fallback.close();
     await page.bringToFront();
+    await page.goto(pathToFileURL(file).href);
     // Local sources remain inspectable from this single HTML file with exact downloads.
     let localSources = 0;
     const seenSources = new Set();
@@ -513,8 +552,14 @@ async function checkExplorer(browser, input, report) {
         const raw = Buffer.from(download.split(',')[1], 'base64');
         assert.equal(raw.length, source.bytes);
         assert.equal(createHash('sha256').update(raw).digest('hex'), source.sha256);
-        await page.reload();
-        assert.equal(await page.locator('.source-reader pre').textContent(), source.content);
+        // Reload exercises the shared URL/payload loader once. Every source still
+        // gets exact content/download hashes and Back/close focus checks below;
+        // re-parsing the entire offline catalogue for each text file adds no
+        // distinct loader coverage and can stress large-catalogue browser sessions.
+        if (localSources === 0) {
+          await page.reload();
+          assert.equal(await page.locator('.source-reader pre').textContent(), source.content);
+        }
         await page.goBack();
         await page.waitForFunction(() => !document.querySelector('.source-reader'));
         assert.equal(
@@ -530,7 +575,15 @@ async function checkExplorer(browser, input, report) {
         localSources++;
       }
     // Image notices return to their original control when Back restores the preview.
-    await go('abra/0/overview', 'abra');
+    const noticed = data.entries.find(
+      (entry) =>
+        /<img\b/.test(entry.visuals.input) &&
+        entry.sources.some(
+          ([label, path]) => label === 'Preview image notices' && data.local_sources[path]?.sha256,
+        ),
+    );
+    assert.ok(noticed, 'Catalogue retains a native preview with image notices');
+    await go(`${noticed.id}/0/overview`, noticed.id);
     const noticeHash = await page.locator('[data-notice]').getAttribute('data-notice');
     await page.locator('[data-notice]').focus();
     await page.keyboard.press('Enter');
@@ -621,7 +674,8 @@ async function checkExplorer(browser, input, report) {
       'abra',
       'Repository selection retains focus',
     );
-    // Related datasets share a task entry, but switching retains the exact output and tier.
+    // Related datasets share an entry; outputs/labels stay exact and tiers clamp
+    // only when the selected dataset does not provide the previous condition.
     await go(
       'automedbench-full-braintumor-cls-task/1/overview',
       'automedbench-full-braintumor-cls-task',
@@ -636,18 +690,24 @@ async function checkExplorer(browser, input, report) {
     await page
       .locator('#task-variant')
       .selectOption('automedbench-full-chest-xray-pneumonia-cls-task');
-    assert.ok((await page.locator('.deliverable').innerText()).includes('normal, pneumonia'));
+    assert.ok((await page.locator('.deliverable').innerText()).includes('patient_id,label'));
+    assert.deepEqual(await page.locator('.scene-label-space span').allTextContents(), [
+      'normal',
+      'pneumonia',
+    ]);
     assert.ok(!(await page.locator('.deliverable').innerText()).includes('meningioma'));
-    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('[data-condition]').count(), 0);
+    assert.ok(page.url().includes('#automedbench-full-chest-xray-pneumonia-cls-task/0/overview'));
     await page.goBack();
     await page.waitForFunction(
       () =>
         document.querySelector('#task-variant')?.value === 'automedbench-full-braintumor-cls-task',
     );
-    assert.ok((await page.locator('.deliverable').innerText()).includes('meningioma'));
+    assert.ok((await page.locator('.scene-label-space').textContent()).includes('meningioma'));
+    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
     await page.locator('#search').fill('classification');
     assert.equal(
-      await page.locator('[data-definition]').count(),
+      await page.locator('[data-task="automed-classification"]').count(),
       1,
       'Family titles are searchable',
     );
@@ -681,7 +741,7 @@ async function checkExplorer(browser, input, report) {
       await page.locator('.task-detail').getAttribute('data-brief'),
       'automedbench-full-braintumor-cls-task',
     );
-    assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
+    assert.equal(await page.locator('[data-condition="0"]').getAttribute('aria-pressed'), 'true');
     await page.goBack();
     await page.waitForFunction(
       () =>
@@ -726,6 +786,13 @@ async function checkExplorer(browser, input, report) {
     );
     await go('abra/catalogue/oracle_annotation', 'abra');
     assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
+    // Canonical ABRA now teaches its example inside the story. Keep the shared
+    // native-example reveal/reset check on a preview with two declared conditions.
+    const revealEntry = data.entries.find(
+      (entry) => entry.variants.length > 1 && /<img\b/.test(entry.visuals.input),
+    );
+    assert.ok(revealEntry, 'A native example with multiple conditions is available');
+    await go(`${revealEntry.id}/1/overview`, revealEntry.id);
     await page.locator('[data-tab="examples"]').click();
     await page.locator('[data-visual="answer"]').click();
     await page.locator('[data-tab="overview"]').click();
@@ -821,7 +888,12 @@ async function checkExplorer(browser, input, report) {
     await go('tb3-dental-v2/1/overview?view=capability', 'tb3-dental-v2');
     await page.locator('#task-variant').selectOption('tb3-dental-v3');
     assert.equal(await page.locator('[data-condition="1"]').getAttribute('aria-pressed'), 'true');
-    assert.ok((await page.locator('.condition').innerText()).includes('F018'));
+    assert.ok(
+      (await page.locator('.condition').innerText()).includes(
+        data.entries.find((entry) => entry.id === 'tb3-dental-v3').variants[1].helper,
+      ),
+      'Switching datasets displays the selected task condition exactly',
+    );
     await go('tb3-ct-organ-segmentation/0/overview?view=capability', 'tb3-ct-organ-segmentation');
     const study = page.locator('[data-experiment="ct-organ-segmentation-astra-medium-litemedsam"]');
     await study.locator('summary').click();

@@ -1,6 +1,14 @@
 # Explainer scope and priority ledger
 
-**154 core entries: 48 reviewed, 106 unfinished.** Keep 13 related candidates separate; exclude 38 reference, non-imaging, nonmedical and historical entries from automatic completion. All 205 records and prior reviews remain retained.
+**Current closeout, 2026-10-02: 154/154 core entries accepted; 0 remaining.** See
+the [completion record](EXPLAINER-COMPLETION-20260929.md) and refresh the live queue
+with `med explainer queue`. The scope membership below remains applicable.
+
+**Historical snapshot, 2026-09-29: 154 core entries, 48 reviewed, 106 unfinished.**
+Keep 13 related candidates separate; exclude 38 reference, non-imaging, nonmedical
+and historical entries from automatic completion. All 205 records and prior
+reviews remain retained. Progress figures and next-work descriptions below are
+the original scope audit, not the current completion queue.
 
 Audit date: **2026-09-29**. This is a local catalogue/brief scope survey, not a fresh upstream audit, clinical qualification or source-asset verification. Priority is an assistant judgment implementing the user’s request.
 
@@ -30,7 +38,7 @@ Audit date: **2026-09-29**. This is a local catalogue/brief scope survey, not a 
 
 Reviewed means recorded assistant visual/engineering review, not medical validity, task readiness or user acceptance. The full catalogue has 56 reviewed entries: 48 core and 8 outside core. Exclusion does not erase those reviews.
 
-## Next work and limits
+## Historical queue and scope limits
 
 **P0: six internal entries remain.** Resolve the five cardiac source contracts, then the report-backed reading input gap. These are source-resolution priorities, not instructions to launch trials.
 
