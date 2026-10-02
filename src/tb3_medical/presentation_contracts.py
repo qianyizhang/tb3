@@ -1923,6 +1923,22 @@ class InterpretationBBcerLongBrainFullPlan(ExpansionPlan):
     beats: list[InterpretationBBcerLongBrainFullBeat]
 
 
+class AutomedTotalsegmentatorCtsrChannels(TypedDict):
+    progress: tuple[float, float]
+    detail: tuple[float, float]
+    reference: tuple[float, float]
+
+
+class AutomedTotalsegmentatorCtsrBeat(ExpansionBeat):
+    channels: AutomedTotalsegmentatorCtsrChannels
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedTotalsegmentatorCtsrPlan(ExpansionPlan):
+    recipe: Literal["automed-totalsegmentator-ctsr-v1"]
+    beats: list[AutomedTotalsegmentatorCtsrBeat]
+
+
 class AutomedSynthradMrctChannels(TypedDict):
     progress: tuple[float, float]
     detail: tuple[float, float]
@@ -3027,6 +3043,7 @@ StoryPlan = (
     | InterpretationBBcerMediumBrainGradeClassifyPlan
     | InterpretationBBcerLongCardiacFullPlan
     | InterpretationBBcerLongBrainFullPlan
+    | AutomedTotalsegmentatorCtsrPlan
     | AutomedSynthradMrctPlan
     | AutomedMsdPancreasCtsrPlan
     | AutomedCtorgCtsrPlan

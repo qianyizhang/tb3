@@ -44,6 +44,7 @@ def compiler_hashes(root: Path) -> dict[str, str]:
 
 CHANNELS = ("context", "route", "ribbon", "cursor", "unfold", "output")
 RECIPE_PACKS = {
+    "automed-totalsegmentator-ctsr-v1": "symbolic-automed-totalsegmentator-ctsr-v1",
     "automedbench-full-synthrad2025-mrct-task-v1": "retained-automedbench-full-synthrad2025-mrct-task-source-v1",
     "automed-msd-pancreas-ctsr-v1": "symbolic-automed-msd-pancreas-ctsr-v1",
     "automed-ctorg-ctsr-v1": "symbolic-automed-ctorg-ctsr-v1",
@@ -204,6 +205,18 @@ RECIPE_PACKS = {
 }
 # Public input/contract packs carry no hidden reference assets.
 SOURCE_INPUT_PACKS = {
+    "symbolic-automed-totalsegmentator-ctsr-v1": (
+        "source-records",
+        None,
+        {
+            "DATA-LICENSE.txt",
+            "NOTICE.md",
+            "operation.json",
+            "output.json",
+            "source.json",
+            "helper.json",
+        },
+    ),
     "symbolic-automed-msd-pancreas-ctsr-v1": (
         "source-records",
         None,
@@ -860,6 +873,7 @@ SOURCE_INPUT_PACKS = {
 # Explicitly registered input packs with authored symbolic protocol assets.
 SYMBOLIC_SOURCE_PACKS = frozenset(
     {
+        "symbolic-automed-totalsegmentator-ctsr-v1",
         "symbolic-automed-msd-pancreas-ctsr-v1",
         "symbolic-automed-ctorg-ctsr-v1",
         "symbolic-automed-mri-sr-v1",
@@ -2722,6 +2736,12 @@ class InterpretationBBcerLongCardiacFullChannels(Closed):
 
 
 class InterpretationBBcerLongBrainFullChannels(Closed):
+    progress: Pair
+    detail: Pair
+    reference: Pair
+
+
+class AutomedTotalsegmentatorCtsrChannels(Closed):
     progress: Pair
     detail: Pair
     reference: Pair
@@ -4853,6 +4873,26 @@ class InterpretationBBcerLongBrainFullStory(Story[InterpretationBBcerLongBrainFu
         return self
 
 
+class AutomedTotalsegmentatorCtsrBeat(ExpansionBeat[AutomedTotalsegmentatorCtsrChannels]):
+    scene: Literal["input", "helper", "operation", "output", "limits"]
+
+
+class AutomedTotalsegmentatorCtsrStory(Story[AutomedTotalsegmentatorCtsrChannels]):
+    recipe: Literal["automed-totalsegmentator-ctsr-v1"]
+    beats: tuple[AutomedTotalsegmentatorCtsrBeat, ...]
+
+    @model_validator(mode="after")
+    def scene_cuts(self) -> Self:
+        for previous, current in zip(self.beats, self.beats[1:], strict=False):
+            if current.scene != previous.scene and current.cut != "intentional-cut":
+                raise ValueError("Changing source scenes requires an explicit cut")
+        if any(beat.channels.reference != (0.0, 0.0) for beat in self.beats):
+            raise ValueError(
+                "TotalSegmentator restoration has no private reference assets or reveal"
+            )
+        return self
+
+
 class AutomedSynthradMrctBeat(ExpansionBeat[AutomedSynthradMrctChannels]):
     scene: Literal["input", "reference", "operation", "output", "limits"]
 
@@ -6155,6 +6195,7 @@ AnyStory = Annotated[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedTotalsegmentatorCtsrStory
     | AutomedSynthradMrctStory
     | AutomedMsdPancreasCtsrStory
     | AutomedCtorgCtsrStory
@@ -6315,6 +6356,7 @@ ADAPTER: TypeAdapter[
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedTotalsegmentatorCtsrStory
     | AutomedSynthradMrctStory
     | AutomedMsdPancreasCtsrStory
     | AutomedCtorgCtsrStory
@@ -6635,6 +6677,7 @@ def parse_expansion(
     | InterpretationBBcerMediumBrainGradeClassifyStory
     | InterpretationBBcerLongCardiacFullStory
     | InterpretationBBcerLongBrainFullStory
+    | AutomedTotalsegmentatorCtsrStory
     | AutomedSynthradMrctStory
     | AutomedMsdPancreasCtsrStory
     | AutomedCtorgCtsrStory
@@ -6972,6 +7015,11 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
             "retained-bcer-long-brain-full-workflow-v1": (
                 "symbolic-task-workflow",
                 "LicenseRef-BCER-MIT-symbolic-teaching",
+                None,
+            ),
+            "symbolic-automed-totalsegmentator-ctsr-v1": (
+                "TotalSegmentator-same-grid-through-plane-degradation-symbolic-only",
+                "LicenseRef-TB3-symbolic-teaching",
                 None,
             ),
             "retained-automedbench-full-synthrad2025-mrct-task-source-v1": (
@@ -7389,6 +7437,8 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
                 if pack_id == "retained-bcer-long-cardiac-full-workflow-v1"
                 else "none"
                 if pack_id == "retained-bcer-long-brain-full-workflow-v1"
+                else "declared-HU-contract; no observed pixel calibration"
+                if pack_id == "symbolic-automed-totalsegmentator-ctsr-v1"
                 else "upstream MR arbitrary intensity; declared CT HU, no acquired CT"
                 if pack_id == "retained-automedbench-full-synthrad2025-mrct-task-source-v1"
                 else "declared-HU-contract; no observed pixel calibration"
@@ -7577,6 +7627,7 @@ def resolve_assets(root: Path, pack_id: str) -> tuple[str, dict[str, str]]:
         if (
             pack_id in SYMBOLIC_SOURCE_PACKS
             or pack_id == "retained-abra-viewer-control-workflow-v1"
+            or pack_id == "symbolic-automed-totalsegmentator-ctsr-v1"
             or pack_id == "retained-automedbench-full-synthrad2025-mrct-task-source-v1"
             or pack_id == "symbolic-automed-msd-pancreas-ctsr-v1"
             or pack_id == "symbolic-automed-ctorg-ctsr-v1"

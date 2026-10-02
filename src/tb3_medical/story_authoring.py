@@ -343,6 +343,7 @@ def new(
             "automed-mri-sr-v1",
             "automed-ctorg-ctsr-v1",
             "automed-msd-pancreas-ctsr-v1",
+            "automed-totalsegmentator-ctsr-v1",
         }:
             beat["scene"] = "input"
         if recipe == "anatomy-curation-v1":

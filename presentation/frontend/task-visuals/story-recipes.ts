@@ -1,3 +1,4 @@
+import { automedTotalsegmentatorCtsrPack } from './automed-totalsegmentator-ctsr';
 import { automedSynthradMrctPack } from './automedbench-full-synthrad2025-mrct-task';
 import { automedMsdPancreasCtsrPack } from './automed-msd-pancreas-ctsr';
 import { automedCtorgCtsrPack } from './automed-ctorg-ctsr';
@@ -155,6 +156,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automed-totalsegmentator-ctsr-v1',
     'automedbench-full-synthrad2025-mrct-task-v1',
     'automed-msd-pancreas-ctsr-v1',
     'automed-ctorg-ctsr-v1',
@@ -1532,6 +1534,13 @@ export function storyPresentation(plan: StoryPlan): {
           ['#000000', 'Late upstream MR display minimum'],
           ['#ffffff', 'Late upstream MR display maximum; not CT HU'],
         ],
+      };
+    case 'automed-totalsegmentator-ctsr-v1':
+      return {
+        heading: 'Restore z-axis detail on the same CT grid',
+        corner: 'Full TotalSegmentator pair absent · symbolic protocol',
+        warning: automedTotalsegmentatorCtsrPack.source.notice,
+        legend: [],
       };
     case 'bcer-brain-full-v1':
       return {

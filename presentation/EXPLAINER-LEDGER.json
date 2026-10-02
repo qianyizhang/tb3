@@ -26783,36 +26783,121 @@
       }
     },
     {
-      "entry_id": "automedbench-full-totalsegmentator-ctsr-task",
-      "title": "Restore degraded TotalSegmentator CT volumes",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/automedbench-full-totalsegmentator-ctsr-task/acceptance-01.json",
+      "acquisition_route": "https://zenodo.org/records/10047292",
+      "actual_data_gap": "Exact Full same-grid degraded TotalSegmentator CT/private HR pair, selected20 IDs, degradation recipe and native affine/HU/geometry join absent. Official v2.0.1 upstream metadata/rights acquired; no native image, output or metric.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/automedbench-full-totalsegmentator-ctsr-task.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "automedbench",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-restoration",
+      "contract_projection": {
+        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.",
+        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names ISBI 2023 3D CT SISR PlainCNN x4. Standard supplies candidates to investigate; model files may still need provisioning.",
+        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`.",
+        "raw": "A CT NIfTI volume with synthetic fourfold resolution degradation, resampled onto the public image grid.",
+        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+        "sources": [
+          [
+            "Pinned Full-release task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/synthetic/totalsegmentator-ctsr-task.tar.gz"
+          ]
+        ],
+        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: totalsegmentator-ctsr-task.",
+        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
+        "variants": [
+          {
+            "helper": "Task-specific Lite guidance: ISBI 2023 3D CT SISR PlainCNN x4.",
+            "name": "Full \u00b7 Lite",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "name": "Full \u00b7 Standard",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "name": "Related source listing",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-totalsegmentator-ctsr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "category": "input-not-packaged",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "automedbench-full-totalsegmentator-ctsr-task",
+      "illustration_basis": "symbolic",
+      "illustration_kind": "restore3d",
       "modalities": [
         "ct"
       ],
-      "illustration_kind": "restore3d",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-totalsegmentator-ctsr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "A CT NIfTI volume with synthetic fourfold resolution degradation, resampled onto the public image grid.",
-        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names ISBI 2023 3D CT SISR PlainCNN x4. Standard supplies candidates to investigate; model files may still need provisioning.",
-        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
-        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: totalsegmentator-ctsr-task.",
-        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`.",
-        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "automedbench",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted Full TotalSegmentator same-grid x4z symbolic protocol after main35pin/54image review. Exact degradedCT/privateHR,selection/geometry/operator/checkpoint/runtime absent. Configured synthetic .98/.95 versus loader .90/.75,format/metric/ID-denominator gaps and generic segmentation prompt conflict retained. Four operations,two format/five metric controls and60s export verified,including natural narrow viewport diagnostics. No source operator/model/checker/scorer/trial executed.",
+      "source_brief_sha256": "52a7f6c6f950afe7167f6cef6389220e3a783f9de9c1b7371134d40c1717e5f9",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-totalsegmentator-ctsr-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-totalsegmentator-ctsr-task-resolution.json",
+        "receipt_sha256": "ee8ef0d76a4582aedbb70e8bc2b9dc3e1cc75f1382c532488bb9859cb332640f",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-02T01:17:41.669217+00:00",
+        "audit": ".local/explainers/goal-20260930/automedbench-full-totalsegmentator-ctsr-task/source-audit-final-01.json",
+        "audit_sha256": "c8d17aa5854af9dde02a7bce17ccc67b293584da3d42adeeeee8bf8927137c42",
+        "no_visual_acceptance": true
+      },
+      "story_id": "automedbench-full-totalsegmentator-ctsr-task",
+      "subject": null,
+      "title": "Restore degraded TotalSegmentator CT volumes",
+      "warning_text": "Full TotalSegmentator CT pair absent; symbolic same-grid restoration.",
+      "acceptance_scope": "Full TotalSegmentator same-grid x4z symbolic protocol and public helper/format/synthetic scoring mechanics; no Full case,privateHR,pixels,restored output or score.",
+      "completion_review": {
+        "date": "2026-10-02T01:33:20.501577+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "fd5a298eb2a7cebfff281ca629569dafc9339e0ce2a7f1d2de4784ef94a21cbf"
+      },
+      "reviewed_contract_projection": {
+        "title": "Restore TotalSegmentator through-plane detail under the Full contract",
+        "goal": "Explain the pinned Full task contract and its input-to-output operation. This is a symbolic protocol view; no Full case, participant prediction or score is available.",
+        "value": "Through-plane restoration seeks information lost by degradation while retaining the native grid and HU convention. Sharper appearance, identical shape or proxy score does not establish anatomical recovery or clinical accuracy.",
+        "raw": "Config calls the public ct.nii.gz a same-grid x4 z-axis trilinear-degraded CT volume, with public and hidden HR shapes equal. No exact degradation code, interpolation conventions, phase/antialiasing, original voxel dimensions, affine, physical-axis mapping, spacing, orientation or selected case is retained. Same-grid shape does not prove HR signal recovery. Fourfold degradation is through-plane, not x4 enlargement in all dimensions. TotalSegmentator_CT_SR20 and Standard S3 all 20 are declared task intent, not recovered IDs/count. task.json case and evaluator patient naming do not establish a join or patient-independent split.\n\nOfficial Zenodo record 10047292 is v2.0.1 (2023-10-27), open CC BY 4.0. Its metadata describes 1228 upstream CT images/117 segmented structures and links a 102-subject subset; these are source-described upstream counts, not acquired Full 20 IDs, label arrays or independent patient splits. The listed ZIP is 23,581,218,285 B with declared MD5 fe250e5718e0a3b5df4c4ea9d58a62fe. Only 5538 B official metadata were acquired and hashed; archive hash/native geometry/pixels were not verified. No image/helper or upstream segmentation label is embedded. Upstream anatomy, filenames and segmentation train/test roles cannot establish a Full degraded/private HR join. Exact source release equivalence to Full's declared TotalSegmentator v2 is unproven. Software Apache 2.0 licensing is distinct from dataset CC-BY4 rights.",
+        "helpers": "Lite prescribes ISBI 2023 PlainCNN_trilinear_interpolation_x4.pth from Roldbach/autoencoder_ct_3d_super_resolution; same-grid degraded CT, inverse normalization and preserving shape/affine/header remain task work. Standard S1 asks comparison of all 5 named checkpoint variants: PlainCNN, AE_Maxpool and UNet trilinear x4; PlainCNN/AE_Maxpool same-insertion x4. Lite S1 explicitly says not to use private target or create training pairs. No immutable weight/source revision/hash is pinned or acquired. Named availability/compatibility claims are guidance, not performance or current validated suitability. CUDA 0 setup and GPU guidance are declared; no runtime/model installed or executed. Tier config requires plan.md for both, plan.png only Standard; no postprocessing requirement.",
+        "tools": "The source specifies plan, setup, validation, inference and submission stages with a terminal, task-specific libraries and tier guidance. No tool or model was executed for this explanation.",
+        "reference": "The matching high-resolution or CT target is held under the Full evaluator's private mount. It is absent here and never shown as a solver input.",
+        "spec": "Estimate through-plane detail while preserving x-y placement, native 3D grid and HU scale. The output is not fourfold larger in every dimension. Follow the selected Lite or Standard stage guidance and preserve the Full split. The harness has `dataset.included=false`; an upstream image would not by itself establish Full case membership.",
+        "output": "Write agents_outputs/<case_id>/sct.nii.gz; evaluator --agent-dir receives case directories, without an extra internal root. Required same public/private HR grid and HU scale. Checker loads NIfTI as float32 and requires finite 3D; no strict on-disk floating dtype or affine/header/spacing equality guard. Shape is checked against private target if it exists; absent reference skips shape check. HU min<-2500/max>5000 and constants warn, not fail. Missing predictions do not invalidate present-output format; scorer/aggregate handle incompleteness. No submitted artifact.",
+        "score": "Effective backend is source/run_eval.py synthetic, not LDCT/MRI-SR enhancement v2/v3 bands. Config is loaded by exact task ID/aliases totalseg-ctsr, tsg-ctsr or ctsr; load failure silently falls back to generic MR/mask defaults and .90/.75 thresholds. Correct configured thresholds are mean SSIM\u2265.98 good/tier2, \u2265.95 okay/tier1, else tier0. No baseline_bands, LPIPS, PSNR normalization window or LDCT rating is bound here.\n\nNo mask_filename is configured: HU MAE/RMSE use the full volume without clipping. PSNR uses fixed range 4095 HU (-1024..3071), identical MSE\u2192infinity; only finite PSNR values enter mean, so a perfect case may be omitted from mean PSNR. SSIM clips arrays to[-1024,3071], computes slice means along array axis 2 regardless of physical affine, skips small planes/errors, and is None without scikit-image. When a mask is configured in another route, MAE uses mask>.5 with empty ROI\u2192full volume, while SSIM skips low-mask slices but still scores full retained planes; this is not the configured TotalSegmentator route.\n\nScorer checks equal array shapes and finite prediction; no affine/header/GT finiteness guard or registration proof. Missing prediction/GT/load/shape failures are unscored. Means are over valid scored outputs, with separate SSIM and finite PSNR denominators; evaluator-supplied patient-ID rows remain completion denominator and are not deduplicated in metric lists. Repeated IDs collapse keyed per_patient diagnostics while repeated loop iterations still enter metric/completion counts; no unique patient denominator is proven. Empty IDs yield completion 0; report coerces n_patients to 1. No actual count or score.\n\nClinical-named proxy is finite clipped mean SSIM 0\u20131 multiplied by n_predicted/allIDs, rounded 4 decimals. S4=.5completion+.5format; S5=.5(anyvalid and positiveproxy)+.5format. S1\u2013S3 remain None\u21920 in this entrypoint, even though optional judge is attached afterwards without recomputing steps; weights .25/.15/.35/.15/.10 retain full denominator 1. Overall=.5workflow+.5proxy. Rating is A/B/C from SSIM medal when format valid and n_predicted>0, else F; partial inference can retain A/B while losing proxy credit. Progress rate counts completion\u2265.9 and format over 2 gates. These are source mechanics, not clinical accuracy or observed performance. No evaluator executed.",
+        "challenge": "The spaced axial planes are a sampling schematic, not CT voxels or a restoration result. The task-specific input, geometry and target roles must be retained before any quality claim.",
+        "families": "Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.",
+        "gap": "Original bounded source attempts retained; current primary metadata succeeded after restricted-network failure. No upstream access barrier inferred. The native bulk ZIP and Full degraded/private HR pair were not acquired. No native geometry, voxel equality, selected 20 count, original downsampling implementation or split join is demonstrated. Generic stage prompts describe cyst segmentation/organ masks, contradicting CT-SR config/checker/scorer sct.nii.gz. No model, tool or evaluator run, output or clinical accuracy claim.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
         "variants": [
           {
             "name": "Full \u00b7 Lite",
@@ -26832,29 +26917,43 @@
         ],
         "sources": [
           [
-            "Pinned Full-release task package",
+            "Pinned Full harness",
             "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/synthetic/totalsegmentator-ctsr-task.tar.gz"
+          ],
+          [
+            "Official v2.0.1 CT dataset",
+            "https://zenodo.org/records/10047292"
+          ],
+          [
+            "official repository",
+            "https://github.com/wasserth/TotalSegmentator"
+          ],
+          [
+            "Source resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-totalsegmentator-ctsr-task-resolution.json"
           ]
         ],
-        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights."
-      },
-      "source_brief_sha256": "928dd9ae6fd479feb9f8b7fc0b82fbc1927abe7aad8315761a71294250ca3cfd",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-totalsegmentator-ctsr-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Explain the pinned Full task contract and its input-to-output operation. This is a symbolic protocol view; no Full case, participant prediction or score is available.</p>",
+          "value": "<p>Through-plane restoration seeks information lost by degradation while retaining the native grid and HU convention. Sharper appearance, identical shape or proxy score does not establish anatomical recovery or clinical accuracy.</p>",
+          "raw": "<p>Config calls the public ct.nii.gz a same-grid x4 z-axis trilinear-degraded CT volume, with public and hidden HR shapes equal. No exact degradation code, interpolation conventions, phase/antialiasing, original voxel dimensions, affine, physical-axis mapping, spacing, orientation or selected case is retained. Same-grid shape does not prove HR signal recovery. Fourfold degradation is through-plane, not x4 enlargement in all dimensions. TotalSegmentator_CT_SR20 and Standard S3 all 20 are declared task intent, not recovered IDs/count. task.json case and evaluator patient naming do not establish a join or patient-independent split.</p>\n<p>Official Zenodo record 10047292 is v2.0.1 (2023-10-27), open CC BY 4.0. Its metadata describes 1228 upstream CT images/117 segmented structures and links a 102-subject subset; these are source-described upstream counts, not acquired Full 20 IDs, label arrays or independent patient splits. The listed ZIP is 23,581,218,285 B with declared MD5 fe250e5718e0a3b5df4c4ea9d58a62fe. Only 5538 B official metadata were acquired and hashed; archive hash/native geometry/pixels were not verified. No image/helper or upstream segmentation label is embedded. Upstream anatomy, filenames and segmentation train/test roles cannot establish a Full degraded/private HR join. Exact source release equivalence to Full&#x27;s declared TotalSegmentator v2 is unproven. Software Apache 2.0 licensing is distinct from dataset CC-BY4 rights.</p>",
+          "helpers": "<p>Lite prescribes ISBI 2023 PlainCNN_trilinear_interpolation_x4.pth from Roldbach/autoencoder_ct_3d_super_resolution; same-grid degraded CT, inverse normalization and preserving shape/affine/header remain task work. Standard S1 asks comparison of all 5 named checkpoint variants: PlainCNN, AE_Maxpool and UNet trilinear x4; PlainCNN/AE_Maxpool same-insertion x4. Lite S1 explicitly says not to use private target or create training pairs. No immutable weight/source revision/hash is pinned or acquired. Named availability/compatibility claims are guidance, not performance or current validated suitability. CUDA 0 setup and GPU guidance are declared; no runtime/model installed or executed. Tier config requires plan.md for both, plan.png only Standard; no postprocessing requirement.</p>",
+          "tools": "<p>The source specifies plan, setup, validation, inference and submission stages with a terminal, task-specific libraries and tier guidance. No tool or model was executed for this explanation.</p>",
+          "reference": "<p>The matching high-resolution or CT target is held under the Full evaluator&#x27;s private mount. It is absent here and never shown as a solver input.</p>",
+          "spec": "<p>Estimate through-plane detail while preserving x-y placement, native 3D grid and HU scale. The output is not fourfold larger in every dimension. Follow the selected Lite or Standard stage guidance and preserve the Full split. The harness has <code>dataset.included=false</code>; an upstream image would not by itself establish Full case membership.</p>",
+          "output": "<p>Write agents_outputs/&lt;case_id&gt;/sct.nii.gz; evaluator --agent-dir receives case directories, without an extra internal root. Required same public/private HR grid and HU scale. Checker loads NIfTI as float32 and requires finite 3D; no strict on-disk floating dtype or affine/header/spacing equality guard. Shape is checked against private target if it exists; absent reference skips shape check. HU min&lt;-2500/max&gt;5000 and constants warn, not fail. Missing predictions do not invalidate present-output format; scorer/aggregate handle incompleteness. No submitted artifact.</p>",
+          "score": "<p>Effective backend is source/run_eval.py synthetic, not LDCT/MRI-SR enhancement v2/v3 bands. Config is loaded by exact task ID/aliases totalseg-ctsr, tsg-ctsr or ctsr; load failure silently falls back to generic MR/mask defaults and .90/.75 thresholds. Correct configured thresholds are mean SSIM\u2265.98 good/tier2, \u2265.95 okay/tier1, else tier0. No baseline_bands, LPIPS, PSNR normalization window or LDCT rating is bound here.</p>\n<p>No mask_filename is configured: HU MAE/RMSE use the full volume without clipping. PSNR uses fixed range 4095 HU (-1024..3071), identical MSE\u2192infinity; only finite PSNR values enter mean, so a perfect case may be omitted from mean PSNR. SSIM clips arrays to[-1024,3071], computes slice means along array axis 2 regardless of physical affine, skips small planes/errors, and is None without scikit-image. When a mask is configured in another route, MAE uses mask&gt;.5 with empty ROI\u2192full volume, while SSIM skips low-mask slices but still scores full retained planes; this is not the configured TotalSegmentator route.</p>\n<p>Scorer checks equal array shapes and finite prediction; no affine/header/GT finiteness guard or registration proof. Missing prediction/GT/load/shape failures are unscored. Means are over valid scored outputs, with separate SSIM and finite PSNR denominators; evaluator-supplied patient-ID rows remain completion denominator and are not deduplicated in metric lists. Repeated IDs collapse keyed per_patient diagnostics while repeated loop iterations still enter metric/completion counts; no unique patient denominator is proven. Empty IDs yield completion 0; report coerces n_patients to 1. No actual count or score.</p>\n<p>Clinical-named proxy is finite clipped mean SSIM 0\u20131 multiplied by n_predicted/allIDs, rounded 4 decimals. S4=.5completion+.5format; S5=.5(anyvalid and positiveproxy)+.5format. S1\u2013S3 remain None\u21920 in this entrypoint, even though optional judge is attached afterwards without recomputing steps; weights .25/.15/.35/.15/.10 retain full denominator 1. Overall=.5workflow+.5proxy. Rating is A/B/C from SSIM medal when format valid and n_predicted&gt;0, else F; partial inference can retain A/B while losing proxy credit. Progress rate counts completion\u2265.9 and format over 2 gates. These are source mechanics, not clinical accuracy or observed performance. No evaluator executed.</p>",
+          "challenge": "<p>The spaced axial planes are a sampling schematic, not CT voxels or a restoration result. The task-specific input, geometry and target roles must be retained before any quality claim.</p>",
+          "families": "<p>Full-release definition with Lite and Standard conditions. Related gallery/branch/Lite listings may point here for task meaning, but remain separately identified; their datasets and exact recipes are not claimed identical.</p>",
+          "gap": "<p>Original bounded source attempts retained; current primary metadata succeeded after restricted-network failure. No upstream access barrier inferred. The native bulk ZIP and Full degraded/private HR pair were not acquired. No native geometry, voxel equality, selected 20 count, original downsampling implementation or split join is demonstrated. Generic stage prompts describe cyst segmentation/organ masks, contradicting CT-SR config/checker/scorer sct.nii.gz. No model, tool or evaluator run, output or clinical accuracy claim.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p><strong>Symbolic contract; no native pixels.</strong> Config calls the public ct.nii.gz a same-grid x4 z-axis trilinear-degraded CT volume, with public and hidden HR shapes equal. No exact degradation code, interpolation conventions, phase/antialiasing, original voxel dimensions, affine, physical-axis mapping, spacing, orientation or selected case is retained. Same-grid shape does not prove HR signal recovery. Fourfold degradation is through-plane, not x4 enlargement in all dimensions. TotalSegmentator_CT_SR20 and Standard S3 all 20 are declared task intent, not recovered IDs/count. task.json case and evaluator patient naming do not establish a join or patient-independent split.</p>\n<p>Official Zenodo record 10047292 is v2.0.1 (2023-10-27), open CC BY 4.0. Its metadata describes 1228 upstream CT images/117 segmented structures and links a 102-subject subset; these are source-described upstream counts, not acquired Full 20 IDs, label arrays or independent patient splits. The listed ZIP is 23,581,218,285 B with declared MD5 fe250e5718e0a3b5df4c4ea9d58a62fe. Only 5538 B official metadata were acquired and hashed; archive hash/native geometry/pixels were not verified. No image/helper or upstream segmentation label is embedded. Upstream anatomy, filenames and segmentation train/test roles cannot establish a Full degraded/private HR join. Exact source release equivalence to Full&#x27;s declared TotalSegmentator v2 is unproven. Software Apache 2.0 licensing is distinct from dataset CC-BY4 rights.</p>",
+          "helpers": "<p><strong>Visible task guidance.</strong> Lite prescribes ISBI 2023 PlainCNN_trilinear_interpolation_x4.pth from Roldbach/autoencoder_ct_3d_super_resolution; same-grid degraded CT, inverse normalization and preserving shape/affine/header remain task work. Standard S1 asks comparison of all 5 named checkpoint variants: PlainCNN, AE_Maxpool and UNet trilinear x4; PlainCNN/AE_Maxpool same-insertion x4. Lite S1 explicitly says not to use private target or create training pairs. No immutable weight/source revision/hash is pinned or acquired. Named availability/compatibility claims are guidance, not performance or current validated suitability. CUDA 0 setup and GPU guidance are declared; no runtime/model installed or executed. Tier config requires plan.md for both, plan.png only Standard; no postprocessing requirement.</p>",
+          "answer": "<p><strong>Empty output schema.</strong> <code>agents_outputs/{case_id}/sct.nii.gz</code>, finite 3D NIfTI on the public/target grid, in HU. Private reference remains absent.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -28199,11 +28298,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 148,
+    "reviewed-scripted-planar": 149,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 40,
     "pending-operation-review": 1,
-    "blocked-source-input": 3
+    "blocked-source-input": 2
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",
