@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-02",
+  "authorization": "User requested committing the explainer review, absorbing other worktrees, and keeping only main.",
+  "source": "codex://threads/01a0fa82-af84-78d0-a980-8084b2733954",
+  "main_before": "956fa392f181ef0488074e659218a3babf5fcd9b",
+  "consolidated_main": "2a6cd2206b1897ab0a467b2ae7ac2df608e02929",
+  "commits": {
+    "explainer_review": "cb93cb277b96e134276be5cf39f659aff3fc8b44",
+    "bilingual_merge": "4ed6cfb35a9b49f56c5660fe230a58da8a8ce08b",
+    "incorporated_harbor_history": "2a6cd2206b1897ab0a467b2ae7ac2df608e02929"
+  },
+  "worktrees": [
+    {
+      "worktree": "/Users/zhangqy/.codex/worktrees/23dd/tb3",
+      "head": "0b4445580eb1388a0c382909e77ed5e29b085621",
+      "status": "",
+      "archive": "archive/legacy/worktree-consolidation-20261002/23dd.tar.gz",
+      "sha256": "b43bcd3eeae04f47a83a903c7d2599621fbebb69254f1a59bf30545a528bb315",
+      "bytes": 183053852,
+      "verified_files_and_symlinks": 5809,
+      "contents": "Entire checkout except .git pointer; includes ignored outputs, caches, environments and untracked symlinks.",
+      "removed": true
+    },
+    {
+      "worktree": "/Users/zhangqy/.codex/worktrees/explainer-commits/tb3",
+      "head": "f1c45d9b428f5bf81dfd5fd847674acc039cecaa",
+      "status": "?? .venv\n?? node_modules\n",
+      "archive": "archive/legacy/worktree-consolidation-20261002/explainer-commits.tar.gz",
+      "sha256": "25300b50ee2efad6866ce7b5f53cba53e85efe6cb4225e4537807ff6cf76fbeb",
+      "bytes": 321681025,
+      "verified_files_and_symlinks": 5070,
+      "contents": "Entire checkout except .git pointer; includes ignored outputs, caches, environments and untracked symlinks.",
+      "removed": true
+    },
+    {
+      "worktree": "/Users/zhangqy/.codex/worktrees/typed-harbor-collection/tb3",
+      "head": "35876fbd931b77b3c30465f4edb5522986897229",
+      "status": "",
+      "archive": "archive/legacy/worktree-consolidation-20261002/typed-harbor-collection.tar.gz",
+      "sha256": "d0a029661b69add7f3fbdf434e8d2c696b5a2376f96de8dc4c08dc1f77a74a97",
+      "bytes": 103055973,
+      "verified_files_and_symlinks": 3626,
+      "contents": "Entire checkout except .git pointer; includes ignored outputs, caches, environments and untracked symlinks.",
+      "removed": true
+    }
+  ],
+  "history_bundle": {
+    "path": "archive/legacy/worktree-consolidation-20261002/history.bundle",
+    "sha256": "1d4390674ced93ac640771635c61929335fd285aac1b045cb0d2096069e9c7e5",
+    "bytes": 173912915,
+    "main_commit": "2a6cd2206b1897ab0a467b2ae7ac2df608e02929",
+    "isolated_restore_verified": true,
+    "full_object_check": "pass"
+  },
+  "independent_backup_verified": false,
+  "final_state": {
+    "worktree": "/Users/zhangqy/pkgs/tb3",
+    "local_branches": [
+      "main"
+    ],
+    "extra_worktrees_removed": 3,
+    "redundant_branch_removed": "codex/typed-harbor-collection",
+    "pushed": false
+  },
+  "integration": {
+    "bilingual": "Merged into the maintained React player; retired imperative scenes remain removed.",
+    "english_projection": "All 205 English entry projections equal the pre-merge build.",
+    "translation_coverage": {
+      "datasets": 32,
+      "group_stories": 7,
+      "briefs": 7,
+      "english_source_brief_fallbacks": 198
+    },
+    "updated_translations": [
+      "AFIDs current CC0 license correction",
+      "TopCoW 012 private-reference boundary",
+      "CAMELYON expanded case selection"
+    ],
+    "stale_brief_translations": [
+      "groups/registration/presentation/briefs/tb3-resect-point-pilot.md",
+      "groups/longitudinal-reading/presentation/briefs/tb3-longitudinal-ct-revised.md"
+    ],
+    "stale_translation_treatment": "Keep current English briefs. Older Chinese copies remain in 0b444558 and the verified archive; do not expose them as current translations.",
+    "harbor": "35876fbd was previously incorporated and strengthened by d3c69c7c, as recorded in discussions/records/source-package-quality.json. The ancestry merge has no tree changes.",
+    "explainer_checkpoint": "f1c45d9b was already contained in main."
+  },
+  "verification": {
+    "repository_tests": 480,
+    "make_check": "pass",
+    "javascript_checks": "pass",
+    "frontend_build": "pass",
+    "bilingual_browser": "pass",
+    "full_presentation_browser": "pass",
+    "original_heads_reachable_from_main": true,
+    "archive_readback_and_source_hash_comparison": "pass",
+    "pre_removal_full_source_recheck": "pass",
+    "isolated_bundle_restore_and_full_object_check": "pass",
+    "logs": ".local/worktree-consolidation-20261002/"
+  },
+  "recovery": "Verify the listed archive and bundle SHA-256 values. Restore the bundle into a fresh repository; extract a checkout archive into a fresh directory. Archives omit only the original .git pointer and preserve symlinks without following them. Per-file manifests are beside the archives. These same-disk recovery copies are not independent backups."
+}

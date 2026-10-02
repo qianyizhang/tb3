@@ -54,3 +54,19 @@ repository and compared byte for byte. The [quality record](../discussions/recor
 records that scope. These same-disk bundles are recovery conveniences, not
 independent backups. Raw runs, scans and environments need their own recorded
 recovery sources. See [governance](../docs/governance.md) for retention.
+
+## Consolidated worktrees
+
+The [2026-10-02 recovery record](worktree-consolidation-20261002.json) documents
+the three removed worktrees, their original commits, archive hashes and merge
+dispositions. Only the main checkout and local `main` branch remain. The bilingual
+feature was integrated with current source boundaries; the Harbor implementation
+had already been incorporated. Both original histories are reachable from `main`.
+
+Complete checkout archives, including ignored outputs, environments and untracked
+symlinks, are retained under `archive/legacy/worktree-consolidation-20261002/`.
+Each archive was read back and compared with its source; every source file was
+rechecked before removal. The Git bundle was restored into an empty repository
+and passed a full object check. Verify the recorded hashes and restore only into
+a fresh directory. Two stale Chinese brief translations remain recoverable from
+their original commit and archive; current English briefs remain authoritative.
