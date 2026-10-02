@@ -111,6 +111,29 @@ def build_parser() -> argparse.ArgumentParser:
     e.add_argument("--inspection", type=Path, required=True)
     e.add_argument("--output", type=Path, required=True)
     e.add_argument("--accept", action="store_true", help="Production only: update this ledger row")
+    p = sub.add_parser(
+        "artifacts", help="Plan, deduplicate and restore local artifacts; never delete"
+    )
+    artifact_sub = p.add_subparsers(dest="artifact_command", required=True)
+    a = artifact_sub.add_parser(
+        "init", help="Create a retention job with unclassified active scopes"
+    )
+    a.add_argument("paths", nargs="+")
+    a.add_argument("--id", required=True)
+    a.add_argument("--owner", required=True)
+    a.add_argument("--source-task", required=True)
+    a.add_argument("--output", type=Path, required=True)
+    a = artifact_sub.add_parser(
+        "plan", help="Hash a bounded scope and measure exact duplicate bytes"
+    )
+    a.add_argument("job", type=Path)
+    a.add_argument("--output", type=Path, required=True)
+    for action in ("pack", "verify", "restore"):
+        a = artifact_sub.add_parser(action)
+        a.add_argument("plan", type=Path)
+        a.add_argument("--store", type=Path, required=True)
+        if action != "verify":
+            a.add_argument("--output", type=Path, required=True)
     p = sub.add_parser("list")
     p.add_argument("query", nargs="?", default="")
     p.add_argument("--kind", choices=sorted(c.KINDS))
@@ -243,9 +266,33 @@ def main(argv: Sequence[str] | None = None) -> int:
                 result = packaging.verify(args.destination)
             print(json.dumps(result, indent=2))
             return 0
-        root = c.workspace(args.root)
+        root = (
+            Path.cwd()
+            if args.command == "artifacts"
+            and args.artifact_command in {"init", "verify", "restore"}
+            else c.workspace(args.root)
+        )
         command = args.command
-        if command == "list":
+        if command == "artifacts":
+            from . import artifact_retention
+
+            if args.artifact_command == "init":
+                result = artifact_retention.init_job(
+                    args.paths,
+                    id=args.id,
+                    owner=args.owner,
+                    source_task=args.source_task,
+                    output=args.output,
+                )
+            elif args.artifact_command == "plan":
+                result = artifact_retention.plan(root, args.job, args.output)
+            elif args.artifact_command == "pack":
+                result = artifact_retention.pack(root, args.plan, args.store, args.output)
+            elif args.artifact_command == "verify":
+                result = artifact_retention.verify(args.plan, args.store)
+            else:
+                result = artifact_retention.restore(args.plan, args.store, args.output)
+        elif command == "list":
             rows = [
                 r
                 for r in c.projection(root).values()

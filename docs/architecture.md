@@ -191,3 +191,11 @@ stops on source changes or the first execution failure.
 [skill_checks.py](../src/tb3_medical/skill_checks.py) checks portable skill resources
 and optionally compares installed mirrors. It never installs skills or runs their
 workflows; canonical ownership remains with the repository skill directories.
+
+## Local artifact retention
+
+`artifact_retention.py` owns bounded retention jobs, occurrence manifests, compressed
+objects keyed by SHA-256, integrity verification and fresh restoration. `cli.py`
+exposes this through `med artifacts`. It reuses `storage.py` path and publication
+primitives and never deletes sources or changes acceptance. See
+[artifact retention](artifact-retention.md) for the provenance and recovery contract.

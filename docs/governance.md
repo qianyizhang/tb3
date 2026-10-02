@@ -43,3 +43,11 @@ recovery convenience, not independent backup. No scheduled deletion, history
 rewrite or `git clean -fdx`. CI never starts Docker, inference or authoring scripts
 that overwrite historical evidence. Stage only your owned changes, then run
 Python 3.12 checks and inspect a clean tree before committing.
+
+## Efficient local artifact storage
+
+Use [artifact retention](artifact-retention.md) and `med artifacts` for bounded
+inventory, exact-file deduplication, compressed recovery and fresh restoration.
+Preserve occurrence paths, roles and original evidence hashes while sharing byte
+objects. A verified pack is additive; retiring originals remains an enumerated
+operation under the ownership and recovery rules above.

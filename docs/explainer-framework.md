@@ -343,3 +343,102 @@ and dataset index still contributes roughly **11 MB** of served HTML. Local
 captures, request traces, size manifests and comparison page are retained under
 `.local/explainer-framework-20261002/final/`; catalogue browser reports and gate
 logs live in its parent. The historical accepted-story ledger is unchanged.
+
+
+## Artifact retention review — 2026-10-02
+
+**The main cost is repeated local build payloads and worker snapshots.** Prioritize
+verified retirement of completed snapshots and selected packaging. Videos are a
+small share. This is an assistant proposal following the user's request to review
+artifact growth; no deletion or retention-policy change is authorized by this note.
+
+### Measured inventory
+
+Decimal GB/MB below are sums of regular-file lengths, excluding symlinks. They are
+logical bytes, not a forecast of reclaimed disk space; shared/cloned extents and
+filesystem allocation can differ. The Git tree was clean at review start.
+
+| Scope | Logical size | Interpretation |
+| --- | ---: | --- |
+| `.local/explainers/` | **162.05 GB** | Campaign payloads, exports, source material, review evidence and copied workspaces |
+| Latest campaign `goal-20260930/` | **103.21 GB** | Includes the worker area below |
+| Latest campaign `workers/` | **66.82 GB** | Repeated isolated/frozen workspace copies and 36 `baseline.tar` files totaling **8.97 GB** |
+| Older `core-20260929/` / `completion-20260927/` | **30.23 / 26.54 GB** | Mixed source, build and historical review payloads |
+| Recent review / framework directories | **2.30 / 1.64 GB** | Multiple catalogue builds and browser attempts |
+| HTML inside `.local/explainers/` | **79.11 GB** | Overlaps the campaign and worker rows; do not add these figures |
+| MP4 inside `.local/explainers/` | **0.338 GB** | Video compression is a low-priority cleanup |
+| All currently tracked file contents | **252.04 MB** | Git source is much smaller than local campaign storage; Git history is separate |
+
+The broad explainer-related inventory contained **1,403,311 regular files**, much
+of it copied workspaces. Three recent browser attempts (`browser-final-03/04/05`)
+contain identical `legacy-scenes.html` files and identical `missing-media.html`
+files. SHA-256 comparison confirms **670,216,572 B** of duplicate logical bytes
+beyond one copy of each; this sample does not establish a whole-tree dedup total.
+
+### Preserve the evidence boundary
+
+The retained 154-entry closeout audit lists **6,144 unique direct paths**, including
+106 directories. All still exist; referenced regular files total **13.10 GB**.
+This review checked existence and lengths; it did not repeat the historical
+12.49 GB output hash audit, decode videos or adjudicate visual acceptance.
+Direct closeout paths are a protected minimum, not a complete deletion allowlist.
+No latest-campaign worker paths appear directly in that list, but worker handoffs,
+source acquisitions, failed attempts and reproducibility records can still depend
+on them. Archive/reference analysis must inspect those additional dependencies.
+
+`explainer_reviews.py` pins packets, batches, exact HTML, export receipts, videos,
+collections, browser matrices and inspected screenshots. Rebuilding with the new
+renderer produces new evidence; it does not replace historical accepted bytes.
+Keep source rights/notices, coordinate metadata, helper/output/reference roles and
+original unsuccessful attempts. Existing governance forbids blanket deletion of
+local evidence, scheduled deletion and history rewriting.
+
+### Proposed cleanup order
+
+1. **Archive retired worker snapshots first.** Enumerate each completed worker's
+   owned scope and references, preserve handoff/patch/source receipts and unique
+   acquired data, and create a verified recovery bundle plus manifest. Only retire
+   redundant extracted copies after an independent recovery check and a concrete
+   user-approved scope. The **66.82 GB** area is an audit target, not promised savings.
+2. **Consolidate repeated build inputs.** Start with the **670 MB** verified HTML
+   sample. Preserve each attempt's logs, report and failed-state captures. A future
+   immutable content-addressed store can share exact bytes while materializing
+   historical paths for verification; do not repoint receipts at a newer build or
+   mutate historical files through shared writable hard links.
+3. **Expand selected packaging before more bulk production.** The four migrated
+   restoration exports measure **318,129–319,235 B**, while an observed historical
+   TotalSegmentator export is **114,469,038 B**. Unmigrated exports still use the
+   **114,055,764 B** legacy renderer. Prove one native-image family next, retaining
+   exact asset hashes and reference roles, then spatial/other families. Keep the
+   explicit full offline catalogue option; use served delivery for routine browsing.
+4. **Reuse one catalogue build per identical source/build snapshot.** Per-entry
+   reviews should reference a shared immutable catalogue artifact, with fresh
+   per-entry captures. New source or build hashes require a new build. Avoid copying
+   the whole repository for every unchanged review; retain focused patches and
+   exact dependency closure alongside the baseline commit/recovery record.
+5. **Add a dry-run artifact inventory and growth gate.** Extend the existing
+   `package.json` size/module/hash receipts to aggregate a batch and list protected,
+   archive-candidate and unresolved files. Warn on unrelated assets and unexpectedly
+   growing payloads; calibrate family budgets from measured native-image pilots.
+   Never auto-delete. Hash candidate duplicate groups, not every raw scan on every run.
+
+Keep `runs/`, original freezes, medical inputs, unique source downloads and required
+fixtures outside this cleanup scope. Initial implementation should add inventory
+and retention classification, then present exact archive candidates with recovery
+proof and expected logical savings. Actual reclaimed storage remains unmeasured.
+
+### Review evidence and reopening
+
+Compact local inventories and the duplicate hashes are retained under
+`.local/artifact-review-20261002/` (`inventory.json`, `explainer-detail.json`,
+`worker-summary.json`, `evidence-boundary.json`). Source-task context is
+`codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa`; the retained
+`discussion-frontend-modernization` record links this review.
+Reopen when the user selects an archive scope, another family migrates, a new
+source acquisition changes retention, or storage growth exceeds the measured baseline.
+
+**Implementation follow-up:** the user requested a provenance-preserving governance
+strategy and reusable skill/scaffold, welcoming deduplication. See
+[artifact retention](artifact-retention.md) for the implemented bounded job, plan,
+compressed object store, verification and fresh restoration workflow. Existing
+source retirement remains separately scoped.

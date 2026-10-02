@@ -146,6 +146,12 @@
       "actor": "assistant",
       "source": "codex://threads/01a0fa82-af84-78d0-a980-8084b2733954",
       "decision": "Use guided reading as the default, visible essential caveats and expandable evidence. Compare Guided, Compare and Focus as shell variants over one player and view family. Preserve explicit historical story timing; use compact family presentation definitions."
+    },
+    {
+      "date": "2026-10-02",
+      "actor": "user",
+      "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+      "decision": "Requested an artifact governance strategy and reusable skill/scaffold preserving provenance more efficiently; welcomed deduplication."
     }
   ],
   "implementation": {
@@ -211,5 +217,54 @@
     "limits": "Legacy compiler and old family dispatch remain; unmigrated views still load large legacy chunks. No native-image family packaging claim, medical execution or replacement acceptance receipts.",
     "review": "docs/explainer-framework.md#first-vertical-slice",
     "local_evidence": ".local/explainer-framework-20261002/final/report.json"
+  },
+  "artifact_retention_review_20261002": {
+    "actor": "assistant",
+    "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+    "status": "reviewed; proposals only; no deletion",
+    "measurements": {
+      "unit": "logical regular-file bytes; symlinks excluded",
+      "explainer_root": 162051753834,
+      "latest_campaign_workers": 66819940371,
+      "explainer_html": 79107133550,
+      "explainer_mp4": 338319168,
+      "tracked_contents": 252042471,
+      "sample_duplicate_html": 670216572,
+      "direct_closeout_paths": 6144,
+      "direct_closeout_regular_file_bytes": 13100463477
+    },
+    "recommendation": "Archive verified retired worker snapshots first; consolidate exact duplicate build inputs; migrate selected native-image packaging; share catalogue builds by exact source/build identity; add dry-run growth/retention inventory.",
+    "preservation": "Direct closeout references are a protected minimum, not a deletion allowlist. Retain exact historical accepted bytes, unsuccessful-attempt evidence, source acquisitions, notices and recovery metadata. No raw runs or freezes in scope.",
+    "review": "docs/explainer-framework.md#artifact-retention-review--2026-10-02",
+    "local_evidence": ".local/artifact-review-20261002/",
+    "reopen_when": "User selects an enumerated archive scope, packaging migration changes the asset closure, new data changes dependencies, or measured storage grows."
+  },
+  "artifact_governance_20261002": {
+    "actor": "assistant",
+    "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+    "status": "implemented additive scaffold; no historical source retirement",
+    "guide": "docs/artifact-retention.md",
+    "skill": "skills/govern-artifacts/SKILL.md",
+    "commands": [
+      "med artifacts init",
+      "med artifacts plan",
+      "med artifacts pack",
+      "med artifacts verify",
+      "med artifacts restore"
+    ],
+    "storage_contract": "Original path/task/role/history identify occurrences; exact SHA-256 identifies shared gzip objects. Source and manifest checks, exclusive publication and fresh materialization preserve exact file bytes, basic modes and mtimes. No delete/GC operation.",
+    "pilot": {
+      "id": "browser-html-duplicate-pilot",
+      "files": 6,
+      "objects": 2,
+      "logical_bytes": 1005324858,
+      "unique_bytes": 335108286,
+      "duplicate_logical_bytes": 670216572,
+      "retirement_authorized": false,
+      "plan": "/Users/zhangqy/pkgs/tb3/.local/artifact-governance-20261002/plan.json",
+      "plan_sha256": "ac348445372c442f1f6477c2fa2a4501da95dc776d0921a7bec0b247512c9382"
+    },
+    "limits": "Real HTML pilot is a read-only plan, not reclaimed storage. Recovery tests use temporary fixtures. Independent backup and full dependency closure are separate checks. Symlinks, empty directories, ownership/ACL/xattrs and sparse allocation are not recovered.",
+    "reopen_when": "User selects exact source retirement scope, a reader needs archived path resolution, or evidence justifies shared chunk storage/GC."
   }
 }

@@ -22,6 +22,7 @@
 | Choose types, validation boundaries and shared versus experiment-local code | [Coding style](coding-style.md) |
 | Choose where to put code, experiments, findings, docs or generated files | [Repository layout and file placement](repository-layout.md) |
 | Understand ownership, preserved evidence and what belongs in Git | [Governance](governance.md) |
+| Control local artifact growth, deduplicate payloads and verify recovery | [Artifact retention](artifact-retention.md) |
 | Write concise, structured summaries and reports | [Writing style](writing-style.md) |
 | Design reader-facing presentation and provenance disclosure | [Presentation design](../presentation/DESIGN.md) |
 | Choose and construct concise conceptual, quantitative and source-derived visuals | [Visual explanation rulebook](visual-explanations.md) |
