@@ -290,6 +290,7 @@ def new(
             "bcer-cardiac-full-v1",
             "bcer-brain-full-v1",
             "abra-viewer-control-v1",
+            "automedbench-full-synthrad2025-mrct-task-v1",
             "automedbench-full-nih-cxr-sr-task-v1",
             "automedbench-full-lidc-idri-denoising-task-v1",
             "automedbench-full-ixi-t1-sr-task-v1",

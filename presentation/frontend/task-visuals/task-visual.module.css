@@ -3386,6 +3386,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
     [data-recipe='automed-msd-pancreas-ctsr-v1'],
     [data-recipe='automed-ctorg-ctsr-v1'],
     [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -3495,6 +3496,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
     [data-recipe='automed-msd-pancreas-ctsr-v1'],
     [data-recipe='automed-ctorg-ctsr-v1'],
     [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -3605,6 +3607,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
     [data-recipe='automed-msd-pancreas-ctsr-v1'],
     [data-recipe='automed-ctorg-ctsr-v1'],
     [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -3715,6 +3718,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
     [data-recipe='automed-msd-pancreas-ctsr-v1'],
     [data-recipe='automed-ctorg-ctsr-v1'],
     [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -3826,6 +3830,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
     [data-recipe='automed-msd-pancreas-ctsr-v1'],
     [data-recipe='automed-ctorg-ctsr-v1'],
     [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -3937,6 +3942,7 @@
     [data-recipe='cardiac-anchor-v1'],
     [data-recipe='cardiac-material-v1'],
     [data-recipe='bcer-brain-full-v1'],
+    [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
     [data-recipe='automed-msd-pancreas-ctsr-v1'],
     [data-recipe='automed-ctorg-ctsr-v1'],
     [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -4047,6 +4053,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
       [data-recipe='automed-msd-pancreas-ctsr-v1'],
       [data-recipe='automed-ctorg-ctsr-v1'],
       [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -4156,6 +4163,7 @@
       [data-recipe='cardiac-anchor-v1'],
       [data-recipe='cardiac-material-v1'],
       [data-recipe='bcer-brain-full-v1'],
+      [data-recipe='automedbench-full-synthrad2025-mrct-task-v1'],
       [data-recipe='automed-msd-pancreas-ctsr-v1'],
       [data-recipe='automed-ctorg-ctsr-v1'],
       [data-recipe='automedbench-full-nih-cxr-sr-task-v1'],
@@ -5539,4 +5547,45 @@
 .player[data-recipe='automed-msd-pancreas-ctsr-v1'] :global(.scene-explanation a) {
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+:global([data-explainer-export-frame])
+  .player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1']
+  .storyHeading {
+  height: 140px;
+}
+:global([data-explainer-export-frame])
+  .player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1']
+  .storyOutput {
+  height: 340px;
+}
+
+:global([data-explainer-export-frame])
+  .player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1']
+  :global(.scene-explanation),
+.player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1']
+  :global(.scene-explanation strong),
+.player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1'] :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1'] :global(.scene-legend i) {
+  height: 5px;
+  background: var(--key);
+  border: 1px solid #122939;
+}
+.player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1']
+  :global(.scene-legend > span:nth-child(2) i) {
+  background: transparent;
+  border: 1px solid #aec4ce;
+}
+.player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1']
+  :global(.scene-legend > span:nth-child(3) i) {
+  background: transparent;
+  border: 2px dashed #54d3dd;
+}
+.player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1']
+  :global(.scene-legend > span:nth-child(4) i) {
+  background: transparent;
+  border: 2px dashed #91a0b2;
 }

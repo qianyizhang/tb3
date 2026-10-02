@@ -1,3 +1,4 @@
+import { automedSynthradMrctPack } from './automedbench-full-synthrad2025-mrct-task';
 import { automedMsdPancreasCtsrPack } from './automed-msd-pancreas-ctsr';
 import { automedCtorgCtsrPack } from './automed-ctorg-ctsr';
 import { automedNihCxrSrPack } from './automedbench-full-nih-cxr-sr-task';
@@ -154,6 +155,7 @@ export function isPlanarStory(plan: StoryPlan): boolean {
     'bcer-brain-grade-v1',
     'bcer-cardiac-full-v1',
     'bcer-brain-full-v1',
+    'automedbench-full-synthrad2025-mrct-task-v1',
     'automed-msd-pancreas-ctsr-v1',
     'automed-ctorg-ctsr-v1',
     'automedbench-full-nih-cxr-sr-task-v1',
@@ -1516,6 +1518,20 @@ export function storyPresentation(plan: StoryPlan): {
         corner: 'Full MSD Pancreas pair absent · symbolic protocol',
         warning: automedMsdPancreasCtsrPack.source.notice,
         legend: [],
+      };
+    case 'automedbench-full-synthrad2025-mrct-task-v1':
+      return {
+        heading: 'MR → CT synthesis, mask and private evaluation',
+        corner: 'Matching Full input, private target and participant output absent',
+        warning: automedSynthradMrctPack.source.notice,
+        legend: [
+          ['#54d3dd', 'Teal filled cells: symbolic MR unknowns'],
+          ['#aec4ce', 'Solid blue-gray outline: mask helper'],
+          ['#54d3dd', 'Dashed teal outline: unset sCT', true],
+          ['#91a0b2', 'Dashed gray outline: absent private CT', true],
+          ['#000000', 'Late upstream MR display minimum'],
+          ['#ffffff', 'Late upstream MR display maximum; not CT HU'],
+        ],
       };
     case 'bcer-brain-full-v1':
       return {

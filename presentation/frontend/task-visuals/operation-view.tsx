@@ -1,4 +1,8 @@
 import {
+  AutomedSynthradMrctScene,
+  AutomedSynthradMrctOutput,
+} from './automedbench-full-synthrad2025-mrct-task-panels';
+import {
   AutomedMsdPancreasCtsrScene,
   AutomedMsdPancreasCtsrOutput,
 } from './automed-msd-pancreas-ctsr-panels';
@@ -532,6 +536,8 @@ export function OperationScene({
         onSeekFrame={onSeekFrame}
       />
     );
+  if (state.recipe === 'automedbench-full-synthrad2025-mrct-task-v1')
+    return <AutomedSynthradMrctScene plan={plan} state={state} onSeekFrame={onSeekFrame} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBScene state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialScene state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorScene state={state} />;
@@ -912,6 +918,8 @@ export function OperationOutput({ plan, state }: { plan: StoryPlan; state: Story
   if (state.recipe === 'automed-ctorg-ctsr-v1') return <AutomedCtorgCtsrOutput state={state} />;
   if (state.recipe === 'automed-msd-pancreas-ctsr-v1')
     return <AutomedMsdPancreasCtsrOutput state={state} />;
+  if (state.recipe === 'automedbench-full-synthrad2025-mrct-task-v1')
+    return <AutomedSynthradMrctOutput state={state} />;
   if (state.recipe === 'bcer-brain-full-v1') return <InterpretationBOutput state={state} />;
   if (state.recipe === 'cardiac-material-v1') return <CardiacMaterialOutput state={state} />;
   if (state.recipe === 'cardiac-anchor-v1') return <CardiacAnchorOutput state={state} />;

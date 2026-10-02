@@ -26612,37 +26612,122 @@
       }
     },
     {
-      "entry_id": "automedbench-full-synthrad2025-mrct-task",
-      "title": "Synthesize head-and-neck CT from MRI",
-      "catalogue": "presentation/external-tasks/catalog.json",
+      "acceptance_receipt": ".local/explainers/goal-20260930/automedbench-full-synthrad2025-mrct-task/acceptance-01.json",
+      "acquisition_route": "https://zenodo.org/records/15373853",
+      "actual_data_gap": "Official metadata confirms open CC BY-NC 4.0 training .mha files in 14.85 GB Task1 ZIP; Full HN20 mr/mask/ct.nii.gz selection, preprocessing/conversion, MR intensity normalization, paired affines/registration and model weights are unstaged. Bounded archive tail request did not recover a matching native case. Only upstream training MR 1HNC117 is recovered for late reader display, not Full input or paired CT; no sCT, private reference or metric computed.",
+      "blocking_dependency": null,
       "brief": "presentation/external-tasks/briefs/automedbench-full-synthrad2025-mrct-task.md",
       "brief_exists": true,
-      "owner_group": null,
-      "repository_id": "automedbench",
-      "role": "task",
+      "catalogue": "presentation/external-tasks/catalog.json",
       "category": "image-restoration",
+      "contract_projection": {
+        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights.",
+        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names VBoussot SynthRAD2025 Task 1 HN ensemble. Standard supplies candidates to investigate; model files may still need provisioning.",
+        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`.",
+        "raw": "MRI input, stored as `mr.nii.gz` per case.",
+        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+        "sources": [
+          [
+            "Pinned Full-release task package",
+            "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/synthetic/synthrad2025-mrct-task.tar.gz"
+          ]
+        ],
+        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: synthrad2025-mrct-task.",
+        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
+        "variants": [
+          {
+            "helper": "Task-specific Lite guidance: VBoussot SynthRAD2025 Task 1 HN ensemble.",
+            "name": "Full \u00b7 Lite",
+            "remaining": "Provision the prescribed method, validate its input/output mapping and submit predictions."
+          },
+          {
+            "helper": "Candidate methods and task-specific comparison requirements.",
+            "name": "Full \u00b7 Standard",
+            "remaining": "Research, choose, configure, validate and run a suitable pipeline."
+          },
+          {
+            "helper": "The gallery, branch or Lite-package entry describes the same target family; release equivalence is not established.",
+            "name": "Related source listing",
+            "remaining": "Use this brief to understand the task\u2019s nature; follow that entry\u2019s exact source for its executable conditions."
+          }
+        ]
+      },
+      "dependency_deferral": {
+        "actor": "user",
+        "date": "2026-09-29",
+        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
+        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-synthrad2025-mrct-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
+        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+        "status": "deferred-follow-up"
+      },
+      "dependency_resolution_history": [
+        {
+          "assessed_at": "2026-09-29",
+          "assessor": "assistant",
+          "attempt_status": "acquisition-not-established-by-ledger",
+          "category": "input-not-packaged",
+          "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
+          "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
+          "state": "needs-resolution"
+        }
+      ],
+      "entry_id": "automedbench-full-synthrad2025-mrct-task",
+      "illustration_basis": "mixed",
+      "illustration_kind": "synthesis",
       "modalities": [
         "ct",
         "mri"
       ],
-      "illustration_kind": "synthesis",
-      "subject": null,
-      "story_id": null,
-      "observed_binding_state": "legacy-illustration-unreviewed",
+      "observed_binding_state": "bound-story-reviewed",
+      "owner_group": null,
       "proposed_operation_group": "restoration",
-      "reviewed_disposition": "blocked-source-input",
-      "source_asset_readiness": "not-audited",
-      "rendered_mode": "not-measured",
-      "acceptance_receipt": null,
-      "blocking_dependency": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-synthrad2025-mrct-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-      "remaining_work": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-      "contract_projection": {
-        "raw": "MRI input, stored as `mr.nii.gz` per case.",
-        "helpers": "Task configuration, label/output conventions and stage-specific guidance. Lite names VBoussot SynthRAD2025 Task 1 HN ensemble. Standard supplies candidates to investigate; model files may still need provisioning.",
-        "tools": "A terminal, staged public data and task-specific ML libraries/model loaders; VQA tasks additionally document inspection and answer-submission helpers.",
-        "spec": "Complete the source\u2019s plan, setup, validation, inference and submission stages. Use the selected tier\u2019s task-specific training/model restrictions and preserve the declared data split. Full-release package ID: synthrad2025-mrct-task.",
-        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`.",
-        "reference": "Private labels or reference images belong to evaluation. The manifest declares dataset.included=false; small package download does not establish that the operator has staged any images.",
+      "remaining_work": "No outstanding explainer work within the recorded acceptance scope.",
+      "rendered_mode": "planar",
+      "repository_id": "automedbench",
+      "reviewed_disposition": "reviewed-scripted-planar",
+      "role": "task",
+      "source_asset_readiness": "Accepted Full SynthRAD MRCT symbolic role diagram plus qualified reader-only upstream training MR after main42pin/56image/nativepixel review. Full MR/mask/privateCT,selection/conversion/registration/normalization and weights/runtime absent. Inference-only tiers,format/metric/ID-denominator rules and generic segmentation prompt conflicts qualified. Final B3 56s export/mobile/noGPU/narrow/fullmatrix/normalplayback/wholedecode verified; no synthetic output/score or source operator/model/checker/scorer/trial executed.",
+      "source_brief_sha256": "830f092a3f1dbfff825a069103e35d275f50fdeb6aea3448beb2d372c3b8aa55",
+      "source_resolution_receipt": "presentation/external-tasks/sources/automedbench-full-synthrad2025-mrct-task-resolution.json",
+      "source_review": {
+        "receipt": "presentation/external-tasks/sources/automedbench-full-synthrad2025-mrct-task-resolution.json",
+        "receipt_sha256": "2ce07bd4372357e606fe2f1b8424e75fae5d209fdab6c15f08271a2e11073c97",
+        "actor": "Codex main agent",
+        "reviewed_at": "2026-10-02T00:40:35.376576+00:00",
+        "audit": ".local/explainers/goal-20260930/automedbench-full-synthrad2025-mrct-task/source-audit-final-01.json",
+        "audit_sha256": "d14f309431bdac3fbce77b781f366485e5f13f922a8e629f75d3f8e701a577e4",
+        "no_visual_acceptance": true
+      },
+      "story_id": "automedbench-full-synthrad2025-mrct-task",
+      "subject": null,
+      "title": "Synthesize head-and-neck CT from MRI",
+      "warning_text": "Matching Full MR/mask/CT pair absent; symbolic roles only.",
+      "acceptance_scope": "Full SynthRAD2025 MRCT symbolic roles with independently verified upstream MR reader-only display; no Full pair/private CT/synthetic output/score.",
+      "completion_review": {
+        "date": "2026-10-02T01:08:35.025255+00:00",
+        "reviewer": "Codex main agent",
+        "acceptance_receipt_sha256": "9e400a5f993b93459660b6d9621a4f294fe74d4e4e42e3bb402c5e4ab72ebeae"
+      },
+      "reviewed_contract_projection": {
+        "title": "Synthesize head-and-neck CT from MRI",
+        "goal": "Produce a synthetic CT volume in the declared HU domain from each supplied MRI and outline mask, preserving the source task\u2019s case grid and output contract. Matching Full inputs, private CT and participant output remain absent.",
+        "value": "MR\u2192CT synthesis predicts a different intensity domain; it is not super-resolution. No generated sCT, numerical quality or clinical outcome is shown.",
+        "raw": "Per case, public `mr.nii.gz` is MRI; its exact arbitrary-intensity normalization, shape, affine, orientation, voxel spacing and FOV are unstaged. Task config names `SynthRAD2025_MRCT_HN20`; Standard guidance says 20 patients, but supplied IDs determine evaluator denominators and no 20-count enforcement is found. Official training record provides preprocessed `.mha` MR/CT/mask, not the Full selected NIfTI cases. Conversion, registration and partition mapping remain unverified.",
+        "helpers": "Public `mask.nii.gz` is a binary dilated body-outline ROI, not target CT or segmentation output. Lite prescribes VBoussot SynthRAD2025 Task 1 HN five-fold CV_0\u2013CV_4 plus Prediction.yml, 2.5D U-Net++/ResNet34 KonfAI per source. Standard compares HN VBoussot and aehrc Dataset262 with AB-TH fallback. Source model Apache-2.0 claims are unverified; no checkpoint, runtime or availability proven. Benchmark is inference-only; no training or fine-tuning.",
+        "tools": "The source expects terminal/library/GPU inference and `submit_results`; no task tool/model/solver/evaluator is executed here.",
+        "reference": "Private paired `ct.nii.gz` in HU is evaluation-only and absent. No private CT truth is bundled. A late reader-only upstream training MR 1HNC117 display is included; membership in Full HN20 and paired mask/CT are unverified. Late reader reveal exposes rules only; reset, backward seek and scene exit clear it before paint.",
+        "spec": "Map MR plus outline mask to synthetic CT in HU; preserve source geometry and invert model normalization as applicable. Do not treat MR arbitrary units as HU or invent a 2\u00d7 resize. Source-specific output is `sct.nii.gz`. Generic common/S4/S5 templates name Dice, organ/lesion masks and filenames that conflict with the specific config and model guidance; that conflict is retained, not silently resolved by importing segmentation or SR defaults.",
+        "output": "Write `agents_outputs/{case_id}/sct.nii.gz`. This plural task path is distinct from CLI's arbitrary `--agent-dir`; no mounted execution is established. Checker loads float32, checks 3D/finiteness, compares shape with public MR by default only if it exists; no affine/spacing/orientation equality check. Missing files do not fail format by themselves; extreme HU below \u22122500/above5000 and constant volumes warn, not error. These checks do not prove plausible synthesis, registration or medical utility. Actual output remains empty.",
+        "score": "Task source `run_eval.py` calls `synth_scorer.py`, `medal_tier.py` and `aggregate.py`; no generic SR/LDCT PSNR/LPIPS norms or bands apply. No LPIPS backend appears. Private CT, public mask and output shapes must match; nonfinite prediction fails. Mask >0.5 sets voxel ROI, empty mask falls back to whole volume. MAE/RMSE HU use unclipped differences; PSNR dB uses range4095 HU (3071\u2212(\u22121024)) and perfect infinity is excluded from aggregate finite-PSNR cases. SSIM separately clips both CT arrays to [\u22121024,3071], uses full x-y axial slices along array axis2 (anatomical orientation unverified), skips mask slice sum<16/min plane dimension<7; optional scikit-image import/operation failure yields None. It is not voxel-mask SSIM.\n\nPrediction finiteness is checked; reference CT and mask finiteness are not explicitly checked. Repeated supplied IDs are not deduplicated: per-case dictionaries overwrite the key while metric lists and supplied-ID counts retain repeated entries. Valid cases form MAE/RMSE denominators. Available slices form each SSIM and available cases form mean SSIM; finite PSNR has its own denominator. `n_predicted/n_patients` uses supplied IDs; IDs and private targets absent. Good SSIM\u2265.90/okay\u2265.75 inclusive maps medal2/1 and valid, nonzero-scored results to A/B; C otherwise, F for invalid format/no scored output. Completion\u2265.9 contributes progress, not an A/B rating gate. No rating observed.\n\nOffline workflow weights .25/.15/.35/.15/.10 keep S1\u2013S3 None as zero under all weights. S4=.5completion+.5format; S5=.5has_valid_results+.5format, where has_valid_results needs positive clipped SSIM. Code named clinical_score is clipped meanSSIM times completion, overall half workflow/half clinical; neither term establishes clinical performance. CLI default `synthrad2025_hn_mrct` is not an alias; config-load exception falls back filenames, medal defaults still .90/.75. Exact invocation remains unknown.",
+        "challenge": "Match MR preprocessing, inverse CT normalization and registration without assuming shape means geometric alignment. Missing native pairs and checkpoints limit this packet to task interpretation.",
+        "families": "Not yet specified.",
+        "gap": "No exact Full MR/mask/private CT pair, Full geometry, selected IDs/partition, MHA-to-NIfTI lineage, model weights or metric execution. Upstream MR-only native cell parity is verified separately; it does not close those gaps.",
+        "case_note": "Not yet specified.",
+        "stages": [
+          "Supplied inputs",
+          "Requested action",
+          "Expected deliverable"
+        ],
         "variants": [
           {
             "name": "Full \u00b7 Lite",
@@ -26662,29 +26747,39 @@
         ],
         "sources": [
           [
-            "Pinned Full-release task package",
+            "Pinned Full harness",
             "https://huggingface.co/datasets/MitakaKuma/AutoMedBench-Full-release/resolve/f894057807cc334421784e702ead2c1883583e1b/tasks/synthetic/synthrad2025-mrct-task.tar.gz"
+          ],
+          [
+            "Official training record / CC BY-NC 4.0",
+            "https://zenodo.org/records/15373853"
+          ],
+          [
+            "Resolution receipt",
+            "presentation/external-tasks/sources/automedbench-full-synthrad2025-mrct-task-resolution.json"
           ]
         ],
-        "gap": "Native sample views are not attached to this Full-release definition. The downloaded archive is a task harness, not the image dataset or model weights."
-      },
-      "source_brief_sha256": "df62b9149a7e1a40c6d3b5ed5cb421633971a97f038c6efb2bdf8176fd851785",
-      "dependency_deferral": {
-        "actor": "user",
-        "source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa",
-        "date": "2026-09-29",
-        "reason": "The source manifest declares dataset.included=false. No staged input/helper/reference example for automedbench-full-synthrad2025-mrct-task is established by this package; a task-matched example and coordinate/label contract are needed before a data-derived operation view.",
-        "next_action": "Read the exact source/condition; author and visually review an operation-specific replacement or document a source-first/static disposition.",
-        "status": "deferred-follow-up"
-      },
-      "dependency_resolution": {
-        "state": "needs-resolution",
-        "category": "input-not-packaged",
-        "attempt_status": "acquisition-not-established-by-ledger",
-        "next_action": "Read the pinned task manifest and upstream dataset route; inspect existing local assets, then attempt a small task-matched public sample and label/helper pairing. Record actual access outcomes; if unresolved, author a faithful symbolic operation with the top acquisition warning.",
-        "assessed_at": "2026-09-29",
-        "assessor": "assistant",
-        "decision_source": "codex://threads/01a0e024-3705-7a91-9181-d237131801fa"
+        "html": {
+          "goal": "<p>Produce a synthetic CT volume in the declared HU domain from each supplied MRI and outline mask, preserving the source task\u2019s case grid and output contract. Matching Full inputs, private CT and participant output remain absent.</p>",
+          "value": "<p>MR\u2192CT synthesis predicts a different intensity domain; it is not super-resolution. No generated sCT, numerical quality or clinical outcome is shown.</p>",
+          "raw": "<p>Per case, public <code>mr.nii.gz</code> is MRI; its exact arbitrary-intensity normalization, shape, affine, orientation, voxel spacing and FOV are unstaged. Task config names <code>SynthRAD2025_MRCT_HN20</code>; Standard guidance says 20 patients, but supplied IDs determine evaluator denominators and no 20-count enforcement is found. Official training record provides preprocessed <code>.mha</code> MR/CT/mask, not the Full selected NIfTI cases. Conversion, registration and partition mapping remain unverified.</p>",
+          "helpers": "<p>Public <code>mask.nii.gz</code> is a binary dilated body-outline ROI, not target CT or segmentation output. Lite prescribes VBoussot SynthRAD2025 Task 1 HN five-fold CV_0\u2013CV_4 plus Prediction.yml, 2.5D U-Net++/ResNet34 KonfAI per source. Standard compares HN VBoussot and aehrc Dataset262 with AB-TH fallback. Source model Apache-2.0 claims are unverified; no checkpoint, runtime or availability proven. Benchmark is inference-only; no training or fine-tuning.</p>",
+          "tools": "<p>The source expects terminal/library/GPU inference and <code>submit_results</code>; no task tool/model/solver/evaluator is executed here.</p>",
+          "reference": "<p>Private paired <code>ct.nii.gz</code> in HU is evaluation-only and absent. No private CT truth is bundled. A late reader-only upstream training MR 1HNC117 display is included; membership in Full HN20 and paired mask/CT are unverified. Late reader reveal exposes rules only; reset, backward seek and scene exit clear it before paint.</p>",
+          "spec": "<p>Map MR plus outline mask to synthetic CT in HU; preserve source geometry and invert model normalization as applicable. Do not treat MR arbitrary units as HU or invent a 2\u00d7 resize. Source-specific output is <code>sct.nii.gz</code>. Generic common/S4/S5 templates name Dice, organ/lesion masks and filenames that conflict with the specific config and model guidance; that conflict is retained, not silently resolved by importing segmentation or SR defaults.</p>",
+          "output": "<p>Write <code>agents_outputs/{case_id}/sct.nii.gz</code>. This plural task path is distinct from CLI&#x27;s arbitrary <code>--agent-dir</code>; no mounted execution is established. Checker loads float32, checks 3D/finiteness, compares shape with public MR by default only if it exists; no affine/spacing/orientation equality check. Missing files do not fail format by themselves; extreme HU below \u22122500/above5000 and constant volumes warn, not error. These checks do not prove plausible synthesis, registration or medical utility. Actual output remains empty.</p>",
+          "score": "<p>Task source <code>run_eval.py</code> calls <code>synth_scorer.py</code>, <code>medal_tier.py</code> and <code>aggregate.py</code>; no generic SR/LDCT PSNR/LPIPS norms or bands apply. No LPIPS backend appears. Private CT, public mask and output shapes must match; nonfinite prediction fails. Mask &gt;0.5 sets voxel ROI, empty mask falls back to whole volume. MAE/RMSE HU use unclipped differences; PSNR dB uses range4095 HU (3071\u2212(\u22121024)) and perfect infinity is excluded from aggregate finite-PSNR cases. SSIM separately clips both CT arrays to [\u22121024,3071], uses full x-y axial slices along array axis2 (anatomical orientation unverified), skips mask slice sum&lt;16/min plane dimension&lt;7; optional scikit-image import/operation failure yields None. It is not voxel-mask SSIM.</p>\n<p>Prediction finiteness is checked; reference CT and mask finiteness are not explicitly checked. Repeated supplied IDs are not deduplicated: per-case dictionaries overwrite the key while metric lists and supplied-ID counts retain repeated entries. Valid cases form MAE/RMSE denominators. Available slices form each SSIM and available cases form mean SSIM; finite PSNR has its own denominator. <code>n_predicted/n_patients</code> uses supplied IDs; IDs and private targets absent. Good SSIM\u2265.90/okay\u2265.75 inclusive maps medal2/1 and valid, nonzero-scored results to A/B; C otherwise, F for invalid format/no scored output. Completion\u2265.9 contributes progress, not an A/B rating gate. No rating observed.</p>\n<p>Offline workflow weights .25/.15/.35/.15/.10 keep S1\u2013S3 None as zero under all weights. S4=.5completion+.5format; S5=.5has_valid_results+.5format, where has_valid_results needs positive clipped SSIM. Code named clinical_score is clipped meanSSIM times completion, overall half workflow/half clinical; neither term establishes clinical performance. CLI default <code>synthrad2025_hn_mrct</code> is not an alias; config-load exception falls back filenames, medal defaults still .90/.75. Exact invocation remains unknown.</p>",
+          "challenge": "<p>Match MR preprocessing, inverse CT normalization and registration without assuming shape means geometric alignment. Missing native pairs and checkpoints limit this packet to task interpretation.</p>",
+          "families": "<p>Not yet specified.</p>",
+          "gap": "<p>No exact Full MR/mask/private CT pair, Full geometry, selected IDs/partition, MHA-to-NIfTI lineage, model weights or metric execution. Upstream MR-only native cell parity is verified separately; it does not close those gaps.</p>",
+          "case_note": "<p>Not yet specified.</p>"
+        },
+        "visuals": {
+          "input": "<p>Teal MR-role cells are authored unknowns; no patient intensities. Outline represents output socket, not reconstructed CT; gray private reference remains absent. Physical geometry is unverified.</p>",
+          "helpers": "<p>Tier selector changes source guidance only; format and metric selectors inspect rules, never execute a model or scorer.</p>",
+          "answer": "<p>Later reader-only rules contain no CT truth, performance or private answer. Actual output is always absent.</p>"
+        },
+        "missing_media": []
       }
     },
     {
@@ -28104,11 +28199,11 @@
     }
   ],
   "counts": {
-    "reviewed-scripted-planar": 147,
+    "reviewed-scripted-planar": 148,
     "reviewed-scripted-spatial": 13,
     "blocked-source-contract": 40,
     "pending-operation-review": 1,
-    "blocked-source-input": 4
+    "blocked-source-input": 3
   },
   "completion_program": {
     "plan": "presentation/EXPLAINER-CANDIDATES.md",

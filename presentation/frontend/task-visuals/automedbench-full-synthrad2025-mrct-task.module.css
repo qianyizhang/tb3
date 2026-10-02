@@ -1,0 +1,227 @@
+.scene {
+  background: #122939;
+  color: #deebf4;
+  min-width: 0;
+  padding: 12px;
+}
+.roles {
+  margin: 0 0 10px;
+}
+.roleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.role {
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid #aec4ce;
+  border-radius: 6px;
+}
+.role b {
+  font-size: 11px;
+  min-height: 27px;
+}
+.role code,
+.role small {
+  display: block;
+  font-size: 10px;
+}
+.roleCells {
+  display: grid;
+  grid-template-columns: repeat(2, 18px);
+  gap: 3px;
+  margin: 5px 0;
+}
+.roleCells span {
+  height: 18px;
+  border: 1px solid #aec4ce;
+  text-align: center;
+  line-height: 16px;
+  font-size: 12px;
+}
+.role[data-mrct-role='mr'] .roleCells span {
+  background: #54d3dd;
+  color: #122939;
+  border-color: #54d3dd;
+}
+.role[data-mrct-role='sct'] .roleCells span {
+  border: 2px dashed #54d3dd;
+}
+.role[data-mrct-role='private'] .roleCells span {
+  border: 2px dashed #91a0b2;
+}
+.scene h3 {
+  color: #edf6ff;
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+.scene b,
+.output b {
+  color: #edf6ff;
+}
+.scene p,
+.scene small,
+.scene figcaption,
+.output p,
+.output small {
+  color: #cedeea;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.scene p {
+  font-size: 13px;
+  margin: 7px 0;
+}
+.scene code {
+  color: #93e0e6;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.controls button {
+  background: #203f52;
+  color: #e0f0f7;
+  border: 1px solid #557b92;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 12px;
+  white-space: normal;
+}
+.controls button[aria-pressed='true'] {
+  background: #345b70;
+  border-color: #87d6df;
+}
+.socket {
+  background: #1a3546;
+  border: 1px solid #46677e;
+  padding: 9px;
+  border-radius: 8px;
+  min-width: 0;
+}
+.two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 12px;
+  min-width: 0;
+}
+.scene,
+.socket,
+.two > *,
+.output {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.native {
+  margin: 0;
+  min-width: 0;
+}
+.native img {
+  display: block;
+  height: 124px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  background: #000;
+  image-rendering: pixelated;
+}
+.native svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  background: #122939;
+}
+.scene figcaption {
+  font-size: 11px;
+  line-height: 1.25;
+  margin-top: 4px;
+  color: #c6dae7;
+}
+.output {
+  background: #183342 !important;
+  padding: 16px !important;
+}
+.output p,
+.output small {
+  font-size: 12px;
+  line-height: 1.4;
+}
+@media (max-width: 700px) {
+  .roleGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .scene {
+    max-height: none;
+    padding: 10px;
+  }
+  .two {
+    grid-template-columns: 1fr;
+  }
+  .output {
+    padding: 12px !important;
+  }
+  .controls button {
+    min-height: 40px;
+  }
+}
+
+.native img {
+  height: 88px;
+}
+.scene > button {
+  background: #203f52;
+  color: #e0f0f7;
+  border: 1px solid #557b92;
+  border-radius: 5px;
+  padding: 5px 8px;
+  white-space: normal;
+}
+
+.output h3,
+.output b {
+  color: #eef8fc;
+}
+.output p,
+.output small {
+  color: #c8dfe9;
+  overflow-wrap: anywhere;
+}
+:global(.scene-player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1'])
+  :global(.scene-explanation),
+:global(.scene-player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1'])
+  :global(.scene-explanation strong),
+:global(.scene-player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1'])
+  :global(.scene-explanation a) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.scene button {
+  min-height: 40px;
+  background: #0b3a43;
+  color: #e9ffff;
+  border: 1px solid #8ab9c5;
+}
+.socket b,
+.output b {
+  display: block;
+  margin-bottom: 6px;
+}
+.output {
+  padding: 16px !important;
+}
+.output p,
+.output small {
+  font-size: 12px;
+  line-height: 1.4;
+}
+.scene-player[data-recipe='automedbench-full-synthrad2025-mrct-task-v1'] .scene-legend i {
+  height: 5px;
+  background: var(--key);
+  border: 1px solid #122939;
+}

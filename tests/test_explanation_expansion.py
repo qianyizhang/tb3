@@ -46,6 +46,7 @@ class ExpansionTests(unittest.TestCase):
                     "automedbench-full-brats-t1c-sr-task-v1",
                     "imaging101-xray-tooth-gridrec-v1",
                     "imaging101-usct-fwi-v1",
+                    "automedbench-full-synthrad2025-mrct-task-v1",
                     "imaging101-wavelet-v1",
                     "bcer-superres-v1",
                     "automed-kvasir-v1",

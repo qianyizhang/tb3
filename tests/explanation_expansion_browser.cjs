@@ -25,6 +25,7 @@ const report = {
 const sha = (bytes) => crypto.createHash('sha256').update(bytes).digest('hex');
 
 const cardiacRecipes = new Set([
+  'automedbench-full-synthrad2025-mrct-task-v1',
   'automed-msd-pancreas-ctsr-v1',
   'automed-ctorg-ctsr-v1',
   'automedbench-full-nih-cxr-sr-task-v1',
@@ -139,6 +140,7 @@ if (entryOnly) {
     );
 }
 function cardiacSelectors(plan) {
+  if (plan.recipe === 'automedbench-full-synthrad2025-mrct-task-v1') return {scene:'data-mrct-scene',reference:'[data-mrct-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-mrct-output-schema]',aside:'[data-mrct-output]'};
   if (plan.recipe === 'automed-msd-pancreas-ctsr-v1') return {scene:'data-msdpancreas-stage',reference:'#msdpancreas-format-rules,#msdpancreas-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-msdpancreas-stage="output"] code[class*="path"]',aside:'[data-msdpancreas-output]'};
   if (plan.recipe === 'automed-ctorg-ctsr-v1') return {scene:'data-ctorg-stage',reference:'#ctorg-format-rules,#ctorg-metric-rules',referenceChannel:null,referencePolicy:'no-reference-assets',readerControlled:true,output:'[data-ctorg-stage="output"] code[class*="path"]',aside:'[data-ctorg-output]'};
   if (plan.recipe === 'automedbench-full-nih-cxr-sr-task-v1') return {scene:'data-automed-nih-cxr-sr-scene',reference:'[data-automed-nih-cxr-sr-reference-revealed]',referenceChannel:null,referencePolicy:'reader-reference-reveal',readerControlled:true,output:'[data-automed-nih-cxr-sr-scene="output"] code',aside:'[data-automed-nih-cxr-sr-output]'};
@@ -901,6 +903,7 @@ function cardiacSelectors(plan) {
 }
 async function checkSourceWarning(page, plan) {
   const config = {
+    'automedbench-full-synthrad2025-mrct-task-v1': [/Matching Full MR\/mask\/CT pair absent; symbolic roles only./s,'https://zenodo.org/records/15373853','data-mrct-scene',false],
     'automed-msd-pancreas-ctsr-v1': [/Full MSD Pancreas pair absent; symbolic same-grid CT restoration./s,'https://medicaldecathlon.com/','data-msdpancreas-stage',false],
     'automed-ctorg-ctsr-v1': [/Full CT-ORG volume\/target absent; symbolic same-grid z-axis restoration./s,'https://www.cancerimagingarchive.net/collection/ct-org/','data-ctorg-stage',false],
     'automedbench-full-nih-cxr-sr-task-v1': [/Matching Full NIH CXR input .* private target absent; symbolic 2.*geometry only./s,'https://nihcc.app.box.com/v/ChestXray-NIHCC','data-automed-nih-cxr-sr-scene',false],
@@ -2992,6 +2995,27 @@ async function reviewCardiacInteractions(page, plan, output, label) {
     await chapter(4);const reveal=()=>scene.getByRole('button',{name:'Reveal source metric rules',exact:true});await reveal().click();assert.equal(await reveal().getAttribute('aria-expanded'),'true');const rules=JSON.parse(fs.readFileSync('presentation/task-explorer/automedbench-full-msd-pancreas-ctsr-task/output.json','utf8')).rules;
     for(const rule of ['raw','ssim','rating','completion','workflow']){const button=scene.getByRole('button',{name:rule,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(await scene.locator('#msdpancreas-metric-rules > p').innerText(),rules[rule]);await capture(`metric-${rule}`);}
     assert.match(await scene.innerText(),/Private high-resolution ct.nii.gz absent.*No predicted volume.*medical label.*measured metric.*not prove anatomical registration.*clinical accuracy/is);await reveal().click();await absent();await advance(1152);await reveal().click();await chapter(4);await reveal().click();assert.equal(await scene.getByRole('button',{name:'raw',exact:true}).getAttribute('aria-pressed'),'true');await page.locator('.scene-reset').click();await absent();await chapter(4);await reveal().click();await chapter(0);await chapter(4);await absent();await page.locator('.scene-reset').click();await absent();
+  }
+
+  if (plan.recipe === 'automedbench-full-synthrad2025-mrct-task-v1') {
+    if ((await page.locator('.scene-player').getAttribute('data-playing')) === 'true') await page.locator('.scene-play').click();
+    const scene=page.locator('[data-mrct-scene]');
+    const absent=async()=>{assert.equal(await page.locator('[data-mrct-reference-revealed]').count(),0);assert.equal(await scene.locator('img,canvas,image').count(),0);};
+    const capture=async n=>page.locator('.scene-player').screenshot({path:path.join(output,`${label}-${n}.png`)});
+    const chapter=async i=>{await page.locator(`[data-story-step="${i}"]`).click();await absent();};
+    const advance=async f=>{await page.bringToFront();await page.locator('.scene-play').click();await page.locator('.scene-stage').scrollIntoViewIfNeeded();await page.waitForFunction(x=>Number(document.querySelector('.scene-player').getAttribute('data-frame'))>x,f+4);await page.locator('.scene-play').click();};
+    assert.equal(await scene.locator('[data-mrct-role]').count(),4);
+    assert.deepEqual(await page.locator('.scene-legend i').evaluateAll(es=>es.map(e=>{const c=getComputedStyle(e);return [c.backgroundColor,c.borderTopColor,c.borderTopStyle]})),[['rgb(84, 211, 221)','rgb(18, 41, 57)','solid'],['rgba(0, 0, 0, 0)','rgb(174, 196, 206)','solid'],['rgba(0, 0, 0, 0)','rgb(84, 211, 221)','dashed'],['rgba(0, 0, 0, 0)','rgb(145, 160, 178)','dashed'],['rgb(0, 0, 0)','rgb(18, 41, 57)','solid'],['rgb(255, 255, 255)','rgb(18, 41, 57)','solid']]);
+    await chapter(0);assert.match(await scene.innerText(),/MR.*CT.*not super-resolution.*arbitrary intensity.*Outline mask.*helper ROI.*Private paired CT.*absent.*Actual input\/output\/reference voxels: 0.*Full HN20/is);await capture('symbolic-input');
+    for(let i=0;i<4;i++){await chapter(1);const button=scene.locator(`[data-mrct-operation-step="${i}"]`);await button.click();assert.equal(Number(await page.locator('.scene-player').getAttribute('data-frame')),[168,336,504,672][i]);assert.equal(await button.getAttribute('aria-pressed'),'true');assert.equal(Number(await scene.locator('[data-mrct-currentstage]').getAttribute('data-mrct-currentstage')),i);await capture(`operation-${i}`);}
+    await chapter(3);
+    for(const tier of ['lite','standard']){const button=scene.getByRole('button',{name:tier,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-mrct-tier]').innerText(),tier==='lite'?/VBoussot HN CV_0.*CV_4.*Prediction.yml.*checkpoint absent/is:/Compare HN VBoussot.*aehrc HN.*AB-TH fallback.*inference-only.*no training/is);await capture(`tier-${tier}`);}
+    const format=()=>scene.getByRole('button',{name:'Format boundary',exact:true});await format().click();assert.equal(await format().getAttribute('aria-expanded'),'true');assert.match(await scene.locator('[data-mrct-format]').innerText(),/Finite loadable 3D.*same MR shape if MR exists.*No affine check.*Missing output.*constant or extreme HU can leave format valid/is);await capture('format-open');await format().click();assert.equal(await scene.locator('[data-mrct-format]').count(),0);await advance(504);await format().click();await chapter(3);assert.equal(await scene.locator('[data-mrct-format]').count(),0);assert.equal(await scene.getByRole('button',{name:'lite',exact:true}).getAttribute('aria-pressed'),'true');await format().click();await page.locator('.scene-reset').click();await chapter(3);assert.equal(await scene.locator('[data-mrct-format]').count(),0);
+    await chapter(4);
+    for(const metric of ['MAE','PSNR','SSIM']){const button=scene.getByRole('button',{name:metric,exact:true});await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await scene.locator('[data-mrct-metric]').innerText(),{MAE:/un-clipped HU.*mask >0.5.*empty ROI.*whole volume.*Valid-case/is,PSNR:/4095 HU.*perfect infinity excluded.*finite-case/is,SSIM:/clipped CT.*full x-y slices.*mask sum<16.*optional backend.*Available-slice.*available-case/is}[metric]);await capture(`metric-${metric}`);}
+    await advance(672);await chapter(4);assert.equal(await scene.getByRole('button',{name:'MAE',exact:true}).getAttribute('aria-pressed'),'true');await scene.getByRole('button',{name:'SSIM',exact:true}).click();await page.locator('.scene-reset').click();await chapter(4);assert.equal(await scene.getByRole('button',{name:'MAE',exact:true}).getAttribute('aria-pressed'),'true');
+    await chapter(5);assert.match(await scene.innerText(),/Participant synthetic CT remains absent.*agents_outputs.*case_id.*sct.nii.gz.*No generated sCT.*private target/is);await capture('empty-output');
+    await chapter(6);const reveal=()=>scene.getByRole('button',{name:'Reveal upstream MR and source rules',exact:true});await reveal().click();assert.equal(await scene.locator('[data-mrct-reference-revealed]').count(),1);assert.equal(await scene.locator('img').count(),1);assert.match(await scene.locator('img').getAttribute('alt'),/upstream.*1HNC117.*not Full MRCT input or synthetic CT/is);assert.match(await scene.innerText(),/k20.*stride 3.*plane-local normalization.*CC BY-NC.*No paired CT or Full membership.*No CT image or private answer revealed.*not medical validation/is);await capture('reference-revealed');await scene.getByRole('button',{name:'Hide upstream MR and rules',exact:true}).click();await absent();await advance(1008);await reveal().click();await chapter(6);await absent();await reveal().click();await page.locator('.scene-reset').click();await absent();await chapter(6);await reveal().click();await chapter(7);await chapter(6);await absent();await page.locator('.scene-reset').click();await absent();
   }
 
   if (plan.recipe === 'automed-ldct-denoising-v1') {
@@ -11274,6 +11298,7 @@ withBrowser(async (browser) => {
     await fallback.locator('.scene-player[data-rendered="true"]').waitFor();
     const renderer = await fallback.locator('.scene-player').getAttribute('data-surface-renderer');
     const planar = [
+      'automedbench-full-synthrad2025-mrct-task-v1',
       'automed-msd-pancreas-ctsr-v1',
       'automed-ctorg-ctsr-v1',
       'automedbench-full-nih-cxr-sr-task-v1',
