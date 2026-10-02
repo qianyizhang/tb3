@@ -68,3 +68,22 @@ while preserving explicit user model and effort choices.
 - Resolution: Version `1.2.0` names `gpt-6.1-sol` for delegated workers,
   retains medium effort and preserves explicit user overrides.
 - Validation: Skill metadata and portable resource checks; no model trial implied.
+
+### EXPLAINER-2026-005
+
+- Date: 2026-10-02
+- Invoked version: `1.2.0`.
+- Source: [56-entry core completion](codex://threads/01a0f1f4-4953-7b40-813d-627b0ccbe42d).
+- Observation: Main SynthRAD visual inspection found that claimed symbolic role
+  colors had no rendered role diagram; the next preview exposed a missing fill.
+  Browser assertions and exports alone did not establish visual faithfulness.
+- Resolution: Match every legend key to visible geometry/style, inspect corrected
+  decisive states explicitly, retain rejected previews and freeze a fresh final
+  snapshot before acceptance. For native source displays, independently reproduce
+  sampled pixels and display transforms; keep upstream membership distinct from
+  task membership.
+- Validation: SynthRAD final B3 accepted after42 source pins, exact10201 native MR
+  display pixels and56 inspected images, with full playback/decode and navigation.
+  Final154-entry retained audit streamed all export fingerprints while preserving
+  original98 reviews and51 exclusions. Preserve historical receipt schemas and
+  qualify missing historical hash fields; do not invent retrospective inspection.

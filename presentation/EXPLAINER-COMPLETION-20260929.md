@@ -1,5 +1,13 @@
 # Core explainer completion — 2026-09-29
 
+**Current closeout — 2026-10-02:** **154/154 eligible core explainers accepted; 56 completed in this continuation; 0 remaining.** The original98 reviews and all51 excluded ledger records are unchanged. The56 new explanations comprise38 mixed-source and18 symbolic entries; actual-data gaps and reopening conditions remain qualified in their sources and acceptance scopes. Source-pinned visual acceptance, captions, full decoding/playback, mobile/no-GPU, interaction and reference boundaries were reviewed per entry.
+
+Final entry commit: `b633db241f8ffedb041d97bc096308947da63782`. Staged `make check PYTHON=python3.12` passed477 tests and all required gates. The [main closeout proof](../.local/explainers/goal-20260930/closeout-final-154/main-closeout-proof.json) maps all56 new receipts to their commits. The [retained-output audit](../.local/explainers/goal-20260930/closeout-final-154/retained/report-154.json) verifies154 export receipts and **2,761 output fingerprints**, including154 videos, against the final committed ledger/scope:12,494,948,433 B streamed,0 issues and0 deferred hashes. It preserves legacy receipt forms;157 historical witness paths lack documented hashes and received existence checks. This file audit does not claim new decoding or retrospective visual inspection of the original98.
+
+The [live dependency register](EXPLAINER-DEPENDENCIES.md) has0 ready/resolution/deferred core entries. The [resumable checkpoint](../.local/explainers/goal-20260930/checkpoint.json) retains commits, receipt locations, ownership and final stage. Generated media and failed/draft attempts stay local; no model trials, runtime installation or publication occurred.
+
+## Earlier checkpoints and per-entry evidence
+
 **98 of 154 core entries reviewed; 50 newly accepted, 56 unfinished.** Updated 2026-09-30. The remaining Full segmentation entries are accepted. The scope remains the core selection in [EXPLAINER-SCOPE.md](EXPLAINER-SCOPE.md). The [live ledger](EXPLAINER-LEDGER.json) owns status; the scope document is the earlier audit snapshot.
 
 | Newly accepted entry | Basis | Verified snapshot | Acceptance |
