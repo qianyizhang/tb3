@@ -1,50 +1,49 @@
-# Audit supplied anatomical labels
+# 审查已提供的解剖标签
 
-Audit supplied anatomical labels.
+检查已有解剖标签是否错误，并指出可核查的位置。
 
 ## Value
 
-Tests whether an agent can identify erroneous labels without raising false alarms on clean anatomy.
+检验智能体能否发现错误标签，同时对正常解剖保持克制，不误报缺陷。
 
 ## Given
 
 ### Original data
 
-Patient DICOM / CT and supplied named spatial labels.
+患者 DICOM／CT，以及已提供、带名称的空间标签。
 
 ### Supplied helpers
 
-Existing annotations and focus lists; clean and altered cases remain separate.
+已有标注及检查重点清单；未改动对照与已改动病例是不同条件。
 
 ### Callable tools
 
-Each linked protocol specifies the permitted tools and execution environment.
+各关联协议分别规定允许调用的工具与执行环境。
 
 ### Reference-only material
 
-References and permitted access follow each frozen contract. A reader-facing source or illustration is not automatically solver-visible.
+参考答案及可用范围以各冻结契约为准。供读者查看的来源或示意图不会自动提供给求解器。
 
 ## Task specification
 
-Return affected label identities and spatial witnesses; allow an empty finding list for a clean case. Follow each protocol's coordinate, identifier and access contract.
+报告受影响的标签身份和空间位置证据；正常病例允许返回空发现列表。遵守各协议的坐标、标识符和访问契约。
 
 ## Expected output
 
-Return affected label identities and spatial witnesses; allow an empty finding list for a clean case.
+受影响的标签身份与可核查的空间位置；正常病例可输出空发现列表。
 
 ## Evaluation
 
-Exact label and witness checks; preserve clean-control semantics and case-specific references.
+分别核查标签与位置证据；保留正常对照语义和各病例自己的参考标准。
 
 ## Difficulty
 
-Supplied labels can anchor judgment. Spatial witnesses must support the reported defect, and unchanged cases require restraint.
+提供的标签有助于定位，但报告的缺陷仍需由空间证据支持；未改动病例考验避免误报的能力。
 
 ## Coverage
 
-The experiment index preserves case, contract, assistance and execution boundaries.
-An experiment record is not an execution count; grouping does not pool scores.
+实验索引保留病例、契约、帮助条件和执行边界。实验记录不等于执行次数；分组不会合并分数。
 
 ## Sources
 
-- [BR-004 — DICOM annotation difficulty revisit](../../experiments/br004/protocol.md)
+- [BR-004：DICOM 标注难度复核](../../experiments/br004/protocol.md)

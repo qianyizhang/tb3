@@ -70,5 +70,32 @@
       "path_field": "path",
       "local_root": ""
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "ImageCAS 与 ImageCAS-X 冠脉 CTA",
+      "summary": "冠脉 CT 血管造影配有掩膜及命名中心线参考。",
+      "modality": "CTA",
+      "sample_unit": "一次冠脉 CT 检查",
+      "image_description": "冠状动脉的增强 CT 图像。",
+      "annotation_description": "来源掩膜与命名中心线；需要时明确将 LPS 转为 RAS。",
+      "reference_note": "参考中的身份与标注范围未必无误。几何质量和标签正确性分别评分。病例 1 是已发布的训练病例。",
+      "version_note": "各实验的具体字节和参考版本见来源收据。",
+      "terms_note": "保留收据中记录的具体来源条款；复用或再分发前须重新核查。",
+      "sample_set_labels": [
+        "冠脉开发病例"
+      ],
+      "sample_set_notes": [
+        "BR-030、BR-041、BR-042 复用同一组 CTA；任务修订与模型运行不增加患者数。"
+      ],
+      "snapshot_summary": "原生图像与需主动揭示的来源标注。",
+      "snapshot_reference_note": "金色是原始二值冠脉参考掩膜。命名中心线属于另一层 ImageCAS-X 标注；此快照不为其重新命名或评分。",
+      "snapshot_captions": [
+        "检查来源参考后，在各正交轴上选取参考前景面积最大的切面。规范 RAS 视图保留体素间距；未显示预测。",
+        "相同参考选定切面上的原始二值冠脉掩膜，以金色显示；命名中心线未在本图评分，也没有模型预测。"
+      ],
+      "access_note": "",
+      "documentation_gaps": []
+    }
+  }
 }

@@ -79,5 +79,35 @@
       },
       "path_field": "path"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "AFIDs 通用 MNI 图谱参考",
+      "summary": "BR-040 MRI 标志点试验查阅了通用脑图谱点位和索引元数据。",
+      "modality": "MRI 图谱与标志点表",
+      "sample_unit": "一份通用 MNI 图谱，区别于目标患者",
+      "image_description": "智能体通过 TemplateFlow 获取 MNI152NLin2009cAsym T1 模板，用于仿射配准。保留归档仅有图像指针，此处没有模板图像字节。",
+      "annotation_description": "四位标注者的 FCSV 集及一组通用模板真值点；另一个 AFIDs 索引归档有数据集 URL，但无受检者 FCSV 文件。",
+      "reference_note": "允许使用图谱提出候选，随后还经过人工复核。通用模板点位不是目标患者真值。保留的来源审查未发现获取目标受检者标签。",
+      "version_note": "历史 BR-040 归档以 SHA-256 固定，标识通用 MNI152NLin2009cAsym 模板及 AFIDs 索引；运行时模板图像无保留哈希，仍属明确的恢复缺口。",
+      "terms_note": "保留模板的 LICENSE 要求附带版权声明，索引另有 LICENSE.md。再分发前须检查具体条款；未核查当前上游条款。",
+      "documentation_gaps": [
+        "试验用此 TemplateFlow 图像作仿射配准，但审查工作区未保留图像字节和 SHA-256 收据。归档中的 NIfTI 只是 git-annex 指针（预期 MD5 6c64ebf985fe30d93e49a4baa41b9278，13,685,075 字节）；核实归档不等于核实下载的模板图像。"
+      ],
+      "sample_set_labels": [
+        "作为帮助使用的通用模板与点位",
+        "查阅的来源索引"
+      ],
+      "sample_set_notes": [
+        "mri32-full Sol 试验使用了通用模板参考。tpl_casym.zip 内保留五组 FCSV；模板图像本身未保留。",
+        "同一次试验查阅了数据集索引与协议元数据；归档中没有目标受检者 FCSV 或 C001 记录。"
+      ],
+      "snapshot_summary": "仅保留图谱点位，MRI 模板图像不可用。",
+      "snapshot_reference_note": "仅供参考的快照。这是通用图谱帮助，不是目标患者或其真值。",
+      "snapshot_captions": [
+        "金色编号点是保留的通用模板标注（RAS mm），在没有图像的情况下投影显示；它们不是目标患者的标志点。"
+      ],
+      "access_note": ""
+    }
+  }
 }

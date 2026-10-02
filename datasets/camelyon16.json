@@ -56,7 +56,11 @@
       }
     }
   ],
-  "experiment_ids": ["wsi-camelyon-search-sol6-xhigh", "wsi-camelyon-search-astra-medium", "wsi-camelyon-lesion-v2-sol6-xhigh"],
+  "experiment_ids": [
+    "wsi-camelyon-search-sol6-xhigh",
+    "wsi-camelyon-search-astra-medium",
+    "wsi-camelyon-lesion-v2-sol6-xhigh"
+  ],
   "brief_ids": [
     "wsi-camelyon-search"
   ],
@@ -98,8 +102,13 @@
       "documentation_gaps": [
         "仅教学样本；尚无冻结评分方案、模型试验或留出集泛化结果。"
       ],
+      "sample_set_labels": [
+        "教学选样",
+        "扩展的 Sol 诊断病例"
+      ],
       "sample_set_notes": [
-        "一张完整配对阳性切片与 XML；另外两个 XML 仅供选样，没有对应本地图像。"
+        "一张完整配对阳性切片与 XML；另外两个 XML 仅供选样，没有对应本地图像。",
+        "两张完整标注的阳性切片，以及一张由来源命名为正常的切片；新增 TIFF 已核对发布方的 MD5。"
       ],
       "snapshot_summary": "一张原生全片与配对来源参考。",
       "snapshot_reference_note": "Tumor 与 Exclusion 多边形；多边形数不等于独立病灶数。",

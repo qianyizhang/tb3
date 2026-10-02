@@ -65,5 +65,32 @@
       "path_field": "path",
       "local_root": ""
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "AFIDs MRI 标志点",
+      "summary": "脑部 MRI 与多位人工标注者的重复标志点标注。",
+      "modality": "MRI",
+      "sample_unit": "一例 MRI 与多组标注者点位",
+      "image_description": "T1 加权 MRI，包括原始坐标和任务准备后的坐标。",
+      "annotation_description": "有名称的 AFIDs 点位；所选集与扩展目标集使用同一位受检者。",
+      "reference_note": "标注者间不确定性及 LPS／RAS 转换属于参考契约；点位均值不是精确的解剖真值。",
+      "version_note": "AFIDs SNSX ds004470；来源 Git 53f2c2caecf346b620971a5dd4672ca538441ede。",
+      "terms_note": "CC0 1.0 Universal：2026-09-28 已根据固定来源版本 53f2c2caecf346b620971a5dd4672ca538441ede 的 LICENSE 和 dataset_description.json 核实。早期整理记录写作 CC BY 4.0；其原始字节仍保留。请保留来源署名和派生说明。",
+      "access_note": "",
+      "documentation_gaps": [],
+      "sample_set_notes": [
+        "mri-C001 别名，OpenNeuro ds004470。原始来源与坐标更正收据分别保留。"
+      ],
+      "snapshot_summary": "经过所选参考标志点的来源图像切面。",
+      "snapshot_reference_note": "金色十字是更正后 BR-038 体数据中的 AFIDs 保留目标点。最初的派生图与坐标更正仍是独立的历史产物。",
+      "snapshot_captions": [
+        "三处示例标志点；各图都经过相应点位。以点为中心的规范 RAS 切面是事后供读者查看的选择；参考只在主动揭示后显示。",
+        "相同三处切面上的 AFIDs 参考点，以金色十字标出；不是模型预测。"
+      ],
+      "sample_set_labels": [
+        "所选 MRI"
+      ]
+    }
+  }
 }

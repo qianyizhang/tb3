@@ -91,5 +91,32 @@
       "path_field": "path",
       "local_root": "runs/br029-dynamic-heart/source/patient04_lbbb"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "STRAUS 模拟心脏运动",
+      "summary": "模拟超声与身份持续的材料网格，可用于受控运动检查。",
+      "modality": "模拟超声",
+      "sample_unit": "一段模拟心脏序列",
+      "image_description": "随时间变化的合成超声。",
+      "annotation_description": "具有持续材料身份及方向数据的网格。",
+      "reference_note": "材料运动真值来自模拟器，不是测量的患者应变。腔体形状相似不等于正确追踪材料点。",
+      "version_note": "2026-09-16 的 BR-029 完整性审查核实了 patient01_healthy 图像／网格和 patient04_lbbb 网格清单。BR-035 复用已审查的 30 帧健康模拟；具体任务变换由各实验定义。",
+      "terms_note": "2026 年 9 月来源审查记录可从公开 Girder 下载，但公开下载并未确立再分发许可。来源资产仅留本地；这里不新增当前许可判断。",
+      "access_note": "健康超声／网格及另一段 LBBB 网格序列在 BR-029 保留并以哈希核验。BR-025 仅列清单的笔记早于这些获取，仍作为历史记录。",
+      "sample_set_labels": [
+        "保留的模拟序列"
+      ],
+      "sample_set_notes": [
+        "健康病例的图像与网格，以及 LBBB 网格来源；BR-035 复用健康模拟。"
+      ],
+      "snapshot_summary": "合成心脏超声及持续身份的材料节点真值。",
+      "snapshot_reference_note": "模拟器节点 ID 提供材料点对应；选定节点图不认证患者解剖。来源超声采用强度颜色图（紫色较低、黄色较高），这些颜色不是解剖标签。",
+      "snapshot_captions": [
+        "保留的模拟超声：来源第 1、10、20 帧的一张长轴视图；图像几何来自冻结的公开影片元数据。",
+        "金色为第 0 与 15 时相每隔八个选出的材料节点；相同节点 ID 来自模拟器。这是合成材料真值，不是临床腔体标注。"
+      ],
+      "documentation_gaps": []
+    }
+  }
 }

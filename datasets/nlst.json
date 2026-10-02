@@ -60,5 +60,34 @@
       "path_field": "path",
       "local_root": "runs/br020-registration/source"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "NLST 同次 CT 的两种重建",
+      "summary": "一次胸部 CT 采集的两种重建核，可用于受控的姿态恢复任务。",
+      "modality": "CT",
+      "sample_unit": "一次匹配检查、两套重建",
+      "image_description": "B30f 与 B50f CT 体数据，其几何及采集元数据相匹配。",
+      "annotation_description": "作者依据来源几何选定的切面姿态。",
+      "reference_note": "已知变换用于检验几何恢复，不是临床标志点或跨采集配准参考。",
+      "version_note": "链接的固定收据标识所选发布版本及文件；此处没有实时核验上游可用性。",
+      "terms_note": "来源收据记录 CC BY 4.0。保留 NLST／TCIA 归属；复用前重新核查条款。",
+      "documentation_gaps": [
+        "缺少投影 ID，无法独立证明两套重建来自共同投影采集。"
+      ],
+      "sample_set_labels": [
+        "重建核配对"
+      ],
+      "sample_set_notes": [
+        "139 个相同切面位置；共同投影采集有支持证据，但尚未独立证实。"
+      ],
+      "snapshot_summary": "同一次检查的两种重建核图像。",
+      "snapshot_reference_note": "成对重建的一致性支持几何对应任务；这不是人工解剖标签。",
+      "snapshot_captions": [
+        "B30f／B50f 中相同的原生切面编号与物理网格。配对重建是图像对应参考，不是解剖分割真值；显示沿原生数组轴，LPS 仿射矩阵留在来源信息中。",
+        "相同切面上的配对重建，仅供几何对应参考；不是人工解剖标签或新模型输出。"
+      ],
+      "access_note": ""
+    }
+  }
 }

@@ -49,5 +49,34 @@
       "path_field": "path",
       "local_root": "runs/dental-sts-gt-audit-20260921"
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "STS-3D-Tooth 镜像审查",
+      "summary": "三例已获取牙科样本被保留为来源质量方面的负面发现。",
+      "modality": "CBCT",
+      "sample_unit": "一组 ROI 扫描及配对掩膜",
+      "image_description": "裁剪后的牙科灰度体数据。",
+      "annotation_description": "镜像站点提供的二值标签。",
+      "reference_note": "审查的掩膜不能支持逐牙 FDI 评分；来源审查发现技术与参考问题。这些不是模型失败。",
+      "version_note": "链接的固定收据标识所选发布版本及文件；此处没有实时核验上游可用性。",
+      "terms_note": "镜像声明 CC BY 4.0；复用前须解决来源权威性和标签语义。",
+      "documentation_gaps": [
+        "当前不能直接用于解剖评分。"
+      ],
+      "sample_set_labels": [
+        "已审查镜像病例"
+      ],
+      "sample_set_notes": [
+        "没有模型试验；保留原始字节与拒绝依据。"
+      ],
+      "snapshot_summary": "原生图像及可主动揭示的来源标注。",
+      "snapshot_reference_note": "有争议的镜像掩膜：先前审查发现均匀的已标注切面，且没有逐牙 FDI 真值。金色严格表示保留的非零值，不能当作有效评分真值。",
+      "snapshot_captions": [
+        "检查来源参考后，在各正交轴上选取参考前景面积最大的切面。规范 RAS 视图保留体素间距；未显示预测。",
+        "相同参考选定切面上的有争议镜像掩膜；金色仅表示保留的非零值，不代表有效的逐牙 FDI 真值。"
+      ],
+      "access_note": ""
+    }
+  }
 }

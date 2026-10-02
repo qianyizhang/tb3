@@ -221,5 +221,38 @@
         13
       ]
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "TotalSegmentator CT 与器官掩膜",
+      "summary": "CT 体数据及配套解剖标签，分别用于标签审查、器官分割和几何配准。",
+      "modality": "CT",
+      "sample_unit": "一次来源 CT 检查",
+      "image_description": "具有物理空间坐标的三维 CT 灰度体数据。",
+      "annotation_description": "各器官的独立掩膜；具体任务可能隐藏、合并或重新命名标签。",
+      "reference_note": "来源标签是解剖参考，不是疾病诊断。任务中改动过的掩膜、整器官身份判断与原始来源掩膜须分别看待。",
+      "version_note": "原生 TotalSegmentator v2.0.1，Zenodo 10047263。外部示例采用固定的 AutoMedBench-Lite 发布版本 8928073d5c3f3b842a4a4278d9b44f6e8ceaa9c5。",
+      "terms_note": "原生图像数据为 CC BY 4.0；所选来源收据中标签许可为 Apache-2.0。AutoMedBench 的再打包归属须另行保留。",
+      "access_note": "",
+      "documentation_gaps": [],
+      "sample_set_notes": [
+        "一位来源受检者，衍生任务彼此相关。",
+        "八位来源受检者；实验中的案例编号是别名，不代表新增受检者。",
+        "选取十个器官，也用于工具校准；其中一位受检者与解剖队列重复。",
+        "AutoMedBench 别名；展示更大类别体系中的五个掩膜。这是准备好的训练示例，不是留出集临床结果。"
+      ],
+      "snapshot_summary": "保留的来源衍生示例。",
+      "snapshot_reference_note": "来源 CT 采用规范 RAS 方向；冠状面借助肾脏参考选定。五种器官轮廓有对应颜色；本例仅展示可用类别中的五类。",
+      "snapshot_captions": [
+        "来源 CT 的规范 RAS 冠状面；借助肾脏参考选定切面。图中展示五类器官中的来源图像，切面选择并非盲选。",
+        "相同切面上的五种来源器官轮廓，颜色与图例一致。这是参考视图，不是新智能体的输出。"
+      ],
+      "sample_set_labels": [
+        "胸部原型",
+        "解剖队列",
+        "仅 CT 分割",
+        "外部任务示例"
+      ]
+    }
+  }
 }

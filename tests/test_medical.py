@@ -424,7 +424,7 @@ class MedicalTests(unittest.TestCase):
 
     def test_portable_rebuild_removes_local_media(self):
         (self.root / "presentation/tours/data").mkdir(parents=True)
-        for name in ("index.html", "style.css", "ui.css"):
+        for name in ("index.html", "style.css", "ui.css", "story-language.js"):
             (self.root / "presentation" / name).write_text("fixture")
         install_frontend(self.root)
         (self.root / "presentation/tours/data/native-local.bin").write_bytes(b"local")

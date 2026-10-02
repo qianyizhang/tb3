@@ -32,9 +32,13 @@ meaning of a reference overlay stays beside that reveal.
   must have the same scope. A translation is reviewed as an explanation, not made
   by word substitution.
 - Keep a stable source ID and a locale-specific companion for authored briefs.
-  The current WSI briefs have both languages; the remaining catalogue is the
-  planned full sweep. If a translation is missing, show the source language
-  explicitly instead of silently suggesting that it has been translated.
+  Seven authored briefs, all dataset explanations and all group stories have both
+  languages. The remaining briefs show labeled English source copy in Chinese view.
+  `presentation/i18n-coverage.json` lists every remaining brief, dataset and
+  story that deliberately displays English source text in the Chinese view.
+  The build rejects undeclared or stale fallbacks. Label English paragraphs,
+  scene explanations and research records in that view; do not imply a partial
+  translation covers the full source record.
 - Preserve language when moving between the overview, Explorer, dataset pages and
   local teaching tours. Exported metadata retains the original source language.
 

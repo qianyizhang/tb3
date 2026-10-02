@@ -4,7 +4,8 @@ import { copyText, useLocale, wsiBoundary } from './locale';
 import type { ExplorerModel } from './model';
 import type { DatasetRecord, DatasetSnapshot, SnapshotPanel } from './types';
 function DatasetDiagram({ dataset }: { dataset: DatasetRecord }) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
+  const sourceLanguage = locale === 'zh-CN' && !dataset.locales?.['zh-CN'] ? 'en' : undefined;
   return (
     <figure className="dataset-diagram">
       <figcaption>
@@ -26,7 +27,7 @@ function DatasetDiagram({ dataset }: { dataset: DatasetRecord }) {
             />
           </svg>
           <h3>{t('Original data')}</h3>
-          <p>{dataset.image_description}</p>
+          <p lang={sourceLanguage}>{dataset.image_description}</p>
         </section>
         <div className="dataset-arrow" aria-hidden="true">
           +
@@ -42,17 +43,23 @@ function DatasetDiagram({ dataset }: { dataset: DatasetRecord }) {
             </g>
           </svg>
           <h3>{t('Annotations / reference')}</h3>
-          <p>{dataset.annotation_description}</p>
+          <p lang={sourceLanguage}>{dataset.annotation_description}</p>
         </section>
       </div>
       <p className="dataset-unit">
-        <strong>{t('One sample:')}</strong> {dataset.sample_unit}.{' '}
-        {t('Repeated views and conditions may reuse that sample.')}
+        <strong>{t('One sample:')}</strong> <span lang={sourceLanguage}>{dataset.sample_unit}</span>
+        . {t('Repeated views and conditions may reuse that sample.')}
       </p>
     </figure>
   );
 }
-function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
+function Snapshot({
+  snapshot,
+  sourceLanguage,
+}: {
+  snapshot: DatasetSnapshot | undefined;
+  sourceLanguage?: 'en';
+}) {
   const { t } = useLocale();
   const dialog = useRef<HTMLDialogElement>(null),
     [enlarged, setEnlarged] = useState<SnapshotPanel>(),
@@ -99,7 +106,7 @@ function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
           {t('Recover the pinned snapshot; this is not an empty scan.')}
         </p>
       )}
-      <figcaption>{row.caption}</figcaption>
+      <figcaption lang={sourceLanguage}>{row.caption}</figcaption>
     </figure>
   );
   const status = {
@@ -117,7 +124,7 @@ function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
         </div>
         <span className="snapshot-state">{status}</span>
       </div>
-      <p>{snapshot.summary}</p>
+      <p lang={sourceLanguage}>{snapshot.summary}</p>
       {inputs.length ? (
         inputs.map(panel)
       ) : metadata.length ? (
@@ -130,12 +137,15 @@ function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
       {references.length ? (
         <details className="dataset-reference">
           <summary>{t('Reveal ground truth / source reference')}</summary>
-          <p className="snapshot-reference-note">{snapshot.reference_note}</p>
+          <p className="snapshot-reference-note" lang={sourceLanguage}>
+            {snapshot.reference_note}
+          </p>
           {references.map(panel)}
         </details>
       ) : (
         <p className="snapshot-reference-note">
-          <strong>{t('Ground-truth availability:')}</strong> {snapshot.reference_note}
+          <strong>{t('Ground-truth availability:')}</strong>{' '}
+          <span lang={sourceLanguage}>{snapshot.reference_note}</span>
         </p>
       )}
       <details className="snapshot-provenance">
@@ -188,19 +198,27 @@ function Snapshot({ snapshot }: { snapshot: DatasetSnapshot | undefined }) {
 }
 function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: ExplorerModel }) {
   const { locale, t } = useLocale();
+  const sourceLanguage = locale === 'zh-CN' && !dataset.locales?.['zh-CN'] ? 'en' : undefined;
   const [copyStatus, setCopyStatus] = useState('');
   const tasks = dataset.task_ids
       .map((id) => model.byId.get(id))
       .filter((entry) => entry !== undefined),
     links = (dataset.links || []).filter((link) => /^https?:\/\//.test(link.path));
   const snapshot = model.data.datasets?.previews?.[dataset.id];
+  const sourceDataset =
+    (dataset as DatasetRecord & { source_record?: DatasetRecord }).source_record || dataset;
+  const sourceSnapshot =
+    (snapshot as (DatasetSnapshot & { source_snapshot?: DatasetSnapshot }) | undefined)
+      ?.source_snapshot || snapshot;
   const metadata =
     JSON.stringify(
       {
-        dataset,
-        snapshot: snapshot && {
-          ...snapshot,
-          panels: snapshot.panels.map(({ image_url: _image, ...panel }) => panel),
+        source_language: 'en',
+        display_language: locale,
+        dataset: sourceDataset,
+        snapshot: sourceSnapshot && {
+          ...sourceSnapshot,
+          panels: sourceSnapshot.panels.map(({ image_url: _image, ...panel }) => panel),
         },
       },
       null,
@@ -211,8 +229,10 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
       <div className="eyebrow">
         {t('Dataset')} · {dataset.modality}
       </div>
-      <h1>{dataset.title}</h1>
-      <p className="dataset-lead">{dataset.summary}</p>
+      <h1 lang={sourceLanguage}>{dataset.title}</h1>
+      <p className="dataset-lead" lang={sourceLanguage}>
+        {dataset.summary}
+      </p>
       {wsiBoundary(dataset.task_ids[0] || '', locale) && (
         <aside className="reading-boundary">
           <strong>{t('Page caveat')}</strong>
@@ -224,14 +244,14 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
           {t('English source text')}
         </p>
       )}
-      <Snapshot key={dataset.id} snapshot={snapshot} />
+      <Snapshot key={dataset.id} snapshot={snapshot} sourceLanguage={sourceLanguage} />
       <details className="dataset-structure">
         <summary>{t('Understand the data structure')}</summary>
         <DatasetDiagram dataset={dataset} />
       </details>
       <section className="dataset-reference-scope">
         <h2>{t('What the reference can establish')}</h2>
-        <p>{dataset.reference_note}</p>
+        <p lang={sourceLanguage}>{dataset.reference_note}</p>
       </section>
       <section>
         <h2>{t('Selected samples & their use')}</h2>
@@ -245,7 +265,7 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
         {dataset.sample_sets.map((sample, index) => (
           <section className="dataset-sample" key={index}>
             <div>
-              <h3>{sample.label}</h3>
+              <h3 lang={sourceLanguage}>{sample.label}</h3>
               <span className="dataset-role">{t(sample.role)}</span>
             </div>
             {sample.sample_ids.some((id) => id.length <= 20) && (
@@ -257,7 +277,7 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
                   ))}
               </p>
             )}
-            <p>{sample.note}</p>
+            <p lang={sourceLanguage}>{sample.note}</p>
           </section>
         ))}
       </section>
@@ -289,9 +309,9 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
       </section>
       <details className="dataset-recovery">
         <summary>{t('Release, access & recovery')}</summary>
-        <p>{dataset.version_note}</p>
-        <p>{dataset.terms_note}</p>
-        {dataset.access_note && <p>{dataset.access_note}</p>}
+        <p lang={sourceLanguage}>{dataset.version_note}</p>
+        <p lang={sourceLanguage}>{dataset.terms_note}</p>
+        {dataset.access_note && <p lang={sourceLanguage}>{dataset.access_note}</p>}
         {links.map((link) => (
           <p key={link.path}>
             <SourceLink url={link.path}>{link.label} ↗</SourceLink>
@@ -302,7 +322,9 @@ function DatasetDetail({ dataset, model }: { dataset: DatasetRecord; model: Expl
             <h3>{t('Open documentation or reference gaps')}</h3>
             <ul>
               {dataset.documentation_gaps.map((gap) => (
-                <li key={gap}>{gap}</li>
+                <li key={gap} lang={sourceLanguage}>
+                  {gap}
+                </li>
               ))}
             </ul>
           </>
@@ -426,7 +448,7 @@ export function Datasets({
               </p>
               {locale === 'zh-CN' && (
                 <p className="translation-notice" lang="zh-CN">
-                  目录中尚未翻译的来源条目保留英文原文；四条 WSI 路线已有中英双语。
+                  数据集说明与样本图注可直接以中文阅读；复制的完整来源元数据保留英文原文。
                 </p>
               )}
               <p className="dataset-collection-count">

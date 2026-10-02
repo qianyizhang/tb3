@@ -7,6 +7,7 @@ const { checkCohesion } = require('./frontend_cohesion.cjs');
 const { checkPortability } = require('./frontend_portability.cjs');
 const { checkReview } = require('./tooling_browser.mts');
 const { checkComposedCapture } = require('./composed_capture.cjs');
+const { checkLanguage } = require('./presentation_language.cjs');
 
 const root = path.resolve(process.argv[2] || '.local/presentation-check');
 const reports = path.resolve(process.argv[3] || root + '-qa');
@@ -24,6 +25,7 @@ withBrowser(async (browser) => {
   await checkCohesion(browser, root, reports);
   await checkPortability(browser, root, reports);
   await checkReview(browser, root, reports);
+  await checkLanguage(browser, root);
 }).catch((error) => {
   console.error(error);
   process.exitCode = 1;

@@ -8,7 +8,13 @@ export function Markup({ html, className }: { html: string; className?: string }
   return <div className={className} dangerouslySetInnerHTML={{ __html: html }} />;
 }
 export function Field({ entry, name }: { entry: TaskEntry; name: BriefField }) {
-  return entry.html?.[name] ? <Markup html={entry.html[name]!} /> : <p>{entry[name]}</p>;
+  const { locale } = useLocale();
+  const language = locale === 'zh-CN' && !entry.locales?.['zh-CN'] ? 'en' : locale;
+  return (
+    <div lang={language}>
+      {entry.html?.[name] ? <Markup html={entry.html[name]!} /> : <p>{entry[name]}</p>}
+    </div>
+  );
 }
 export function Box({
   title,

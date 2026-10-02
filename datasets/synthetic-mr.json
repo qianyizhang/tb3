@@ -14,8 +14,8 @@
     {
       "label": "Authored acquisition family",
       "sample_ids": [
-        "12 private acquisitions \u00d7 3 encodings",
-        "2 public acquisitions \u00d7 2 encodings"
+        "12 private acquisitions × 3 encodings",
+        "2 public acquisitions × 2 encodings"
       ],
       "role": "synthetic",
       "note": "Thirty-six private fixtures and four public inputs; generated encodings are correlated.",
@@ -46,5 +46,32 @@
       "path_field": "path",
       "local_root": ""
     }
-  ]
+  ],
+  "locales": {
+    "zh-CN": {
+      "title": "合成 MR 帧关联测试样本",
+      "summary": "用自制元数据和像素数组测试导入器，不涉及患者数据。",
+      "modality": "合成 MR 元数据",
+      "sample_unit": "一次规范采集及其替代编码",
+      "image_description": "非对称生成的 int16 数组及重建元数据。",
+      "annotation_description": "序列化前的规范采集是精确参考。",
+      "reference_note": "这些测试样本实现声明的元数据配置，并不构成完整的临床 Enhanced MR 对象。",
+      "version_note": "链接的固定收据标识所选发布版本及文件；此处没有实时核验上游可用性。",
+      "terms_note": "保留收据中记录的具体来源条款；复用或再分发前须重新核查。",
+      "sample_set_labels": [
+        "自制采集族"
+      ],
+      "sample_set_notes": [
+        "36 个私有测试样本与四个公开输入；生成的编码彼此相关。"
+      ],
+      "snapshot_summary": "实际编码的像素帧及存储的规范参考。",
+      "snapshot_reference_note": "这些是小型非对称导入器测试样本，不是医学图像。根据声明的配置，预期规范采集是精确参考。",
+      "snapshot_captions": [
+        "保留的前三帧，直接显示整数值；灰度窗为 [-3000, 3000]。元数据决定规范顺序；未执行测试样本生成器或作者模块。",
+        "相同前三帧与预期规范顺序的参考；这是声明配置下的导入器样本，而非患者图像。"
+      ],
+      "access_note": "",
+      "documentation_gaps": []
+    }
+  }
 }

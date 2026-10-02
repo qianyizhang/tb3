@@ -164,22 +164,18 @@ function StudyIndex({ model, state, dispatch }: DetailProps) {
   return (
     <section className="study-index">
       <h3>{t('Experiments and conditions')}</h3>
-      {!entry.id.startsWith('wsi-') && (
-        <p className="fine">
-          {t(
-            'Grouped for navigation. Each protocol retains its contract, cases, assistance, model and runtime. Grouping does not pool scores or count an index as an execution.',
-          )}
-        </p>
-      )}
+      <p className="fine">
+        {t(
+          'Grouped for navigation. Each protocol retains its contract, cases, assistance, model and runtime. Grouping does not pool scores or count an index as an execution.',
+        )}
+      </p>
       {entry.studies.map((study) => {
         const source = model.data.local_sources[study.protocol];
         return (
           <details className="study" data-experiment={study.id} key={study.id}>
-            <summary>{study.title}</summary>
-            {locale === 'zh-CN' && entry.id.startsWith('wsi-') && (
-              <p className="translation-notice">{t('English source text')}</p>
-            )}
-            <p>{study.scope}</p>
+            <summary lang={locale === 'zh-CN' ? 'en' : undefined}>{study.title}</summary>
+            {locale === 'zh-CN' && <p className="translation-notice">{t('English source text')}</p>}
+            <p lang={locale === 'zh-CN' ? 'en' : undefined}>{study.scope}</p>
             {!!study.tasks.length && (
               <p className="fine">
                 {t('Recorded task/case IDs:')}{' '}
@@ -299,7 +295,7 @@ function Requirements({ entry }: { entry: TaskEntry }) {
   );
 }
 function Examples({ model, state, dispatch }: DetailProps) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const entry = model.get(state.selected),
     illustrated = model.items(entry).find((item) => item.id === entry.example_case_id);
   const roles: [VisualRole, string][] = [
@@ -313,9 +309,9 @@ function Examples({ model, state, dispatch }: DetailProps) {
         state.selectedItem &&
         state.selectedItem !== entry.example_case_id && (
           <p className="scope-note">
-            Illustrated example:{' '}
-            {illustrated ? model.label(illustrated, entry) : entry.example_case_id}. The selected
-            case has no local image preview.
+            {t('Illustrated example:')}{' '}
+            {illustrated ? model.label(illustrated, entry) : entry.example_case_id}.{' '}
+            {t('The selected case has no local image preview.')}
           </p>
         )}
       <div className="variants" aria-label={t('Visual reveal')}>
@@ -331,7 +327,11 @@ function Examples({ model, state, dispatch }: DetailProps) {
           </button>
         ))}
       </div>
-      <div className="visual-content" data-visible-role={state.visual}>
+      <div
+        className="visual-content"
+        data-visible-role={state.visual}
+        lang={locale === 'zh-CN' && !entry.locales?.['zh-CN'] ? 'en' : undefined}
+      >
         <Markup html={entry.visuals[state.visual]} />
       </div>
       <ImageNotice model={model} entry={entry} dispatch={dispatch} />
@@ -339,9 +339,10 @@ function Examples({ model, state, dispatch }: DetailProps) {
   );
 }
 function Sources({ model, state, dispatch }: DetailProps) {
-  const { t } = useLocale();
+  const { locale, t } = useLocale();
   const [copyStatus, setCopyStatus] = useState('');
   const entry = model.get(state.selected),
+    sourceEntryRecord = (entry as TaskEntry & { source_record?: TaskEntry }).source_record || entry,
     items = model.items(entry),
     active =
       items.find((item) => item.id === state.selectedItem) ||
@@ -464,7 +465,7 @@ function Sources({ model, state, dispatch }: DetailProps) {
         <button
           className="quiet"
           onClick={async () => {
-            const metadata = entry.sources.map(([label, path]) => ({
+            const metadata = sourceEntryRecord.sources.map(([label, path]) => ({
               label,
               path,
               sha256: model.data.local_sources[path]?.sha256,
@@ -476,6 +477,9 @@ function Sources({ model, state, dispatch }: DetailProps) {
                 JSON.stringify(
                   {
                     task_id: entry.id,
+                    source_language: 'en',
+                    display_language: locale,
+                    source_title: sourceEntryRecord.title,
                     owner_group: entry.owner_group,
                     category: entry.category,
                     role: entry.role,
@@ -599,14 +603,14 @@ export function TaskDetail(props: DetailProps) {
       </div>
       {item?.brief_scope_note && (
         <p className="scope-note">
-          Selected source: {model.label(item, entry)}. This overview describes the{' '}
-          {edition(entry) || 'shared task'}; exact data and recipes can differ.{' '}
+          {t('Selected source:')} {model.label(item, entry)}. {t('This overview describes the')}{' '}
+          {edition(entry) || t('shared task')}; {t('exact data and recipes can differ.')}{' '}
           <button
             className="text-button"
             data-tab="sources"
             onClick={() => dispatch({ type: 'tab', tab: 'sources' }, '#tab-sources')}
           >
-            Source details
+            {t('Source details')}
           </button>
         </p>
       )}

@@ -42,6 +42,53 @@ const zh: Record<string, string> = {
   'Derivation and licenses': '来源与许可',
   '3D is unavailable. The task diagram is shown below.': '三维显示不可用，下方为任务示意图。',
 
+  'Observed:': '观察时间：',
+  'Assessed scope:': '评估范围：',
+  'Scorer reward:': '评分器奖励：',
+  'Accepted decision': '已接受的决定',
+  Recommendation: '建议',
+  'Experiment:': '实验：',
+  'Record and evidence locators': '记录与证据位置',
+  experiments: '项实验',
+  ideas: '项想法',
+  'The questions behind the work': '研究背后的问题',
+  'Research areas': '研究领域',
+  'Current findings, open questions and the path between them.':
+    '查看当前发现、待解问题与研究过程。',
+  'Trace a conclusion to its source': '追溯结论的来源',
+  'Evidence & decisions': '证据与决定',
+  'Search the record. Open an entry to inspect the details.': '搜索记录，展开条目查看细节。',
+  'Filter research records': '筛选研究记录',
+  'Search the record': '搜索记录',
+  'Question, model, source…': '问题、模型、来源…',
+  'Research area': '研究领域',
+  'All research areas': '全部研究领域',
+  'Record type': '记录类型',
+  Status: '状态',
+  'All statuses': '全部状态',
+  'Experiments needing action': '需要处理的实验',
+  'Research record unavailable': '研究记录不可用',
+  of: '／',
+  records: '条记录',
+  'Loading the research record…': '正在加载研究记录…',
+  'No matching records': '没有匹配的记录',
+  'Try a broader search, choose another research area or include all record types.':
+    '尝试更宽泛的搜索、其他研究领域，或显示所有记录类型。',
+  'The research record could not be loaded': '无法加载研究记录',
+  'Reload the page to try again.': '重新加载页面后再试。',
+  'Reload workbench': '重新加载工作台',
+  'Ideas, experiments & findings': '想法、实验与发现',
+  Everything: '全部',
+  Ideas: '想法',
+  Decisions: '决定',
+  Experiments: '实验',
+  Attempts: '尝试',
+  Evaluations: '评估',
+  Findings: '发现',
+  Issues: '问题',
+  Reviews: '复核',
+  Exports: '导出',
+  Plans: '计划',
   'Research workbench': '研究工作台',
   'Primary navigation': '主导航',
   Overview: '总览',
@@ -118,6 +165,11 @@ const zh: Record<string, string> = {
   'Understand the data structure': '了解数据结构',
   'What the reference can establish': '参考标注能支持什么',
   'Selected samples & their use': '所选样本及用途',
+  'Selected source:': '所选来源：',
+  'This overview describes the': '本概览说明',
+  'shared task': '共享任务',
+  'exact data and recipes can differ.': '具体数据与执行步骤可能不同。',
+  'Source details': '来源详情',
   'Selection provenance': '选样来源',
   'Tasks using or explaining this source': '使用或说明此来源的任务',
   'Release, access & recovery': '发布、访问与恢复',
@@ -172,6 +224,8 @@ const zh: Record<string, string> = {
   'Image attribution, terms and derivation': '图像归属、许可与生成方式',
   'Image example': '图像示例',
   'Inspect source-derived example': '查看来源图像示例',
+  'Illustrated example:': '示意病例：',
+  'The selected case has no local image preview.': '当前病例没有本地图像预览。',
   'Learn about the data': '了解数据',
   'Learn the data before the task': '先了解数据，再看任务',
   'Matching entries': '匹配的条目',
@@ -362,6 +416,7 @@ export function localizeExplorer(data: ExplorerData, locale: Locale): ExplorerDa
     entries: data.entries.map((entry) => ({
       ...entry,
       ...(entry.locales?.[locale] || {}),
+      source_record: entry,
     })),
     datasets: data.datasets && {
       ...data.datasets,
@@ -370,6 +425,7 @@ export function localizeExplorer(data: ExplorerData, locale: Locale): ExplorerDa
         if (!translated) return record;
         const {
           sample_set_notes,
+          sample_set_labels,
           snapshot_summary: _summary,
           snapshot_reference_note: _reference,
           snapshot_captions: _captions,
@@ -378,9 +434,12 @@ export function localizeExplorer(data: ExplorerData, locale: Locale): ExplorerDa
         return {
           ...record,
           ...fields,
+          source_record: record,
           sample_sets: record.sample_sets.map((sample, index) => ({
             ...sample,
-            label: '教学样本',
+            label:
+              sample_set_labels?.[index] ||
+              (sample.label === 'Teaching selection' ? '教学样本' : sample.label),
             note: sample_set_notes[index] || sample.note,
           })),
         };
@@ -393,6 +452,7 @@ export function localizeExplorer(data: ExplorerData, locale: Locale): ExplorerDa
             translated
               ? {
                   ...snapshot,
+                  source_snapshot: snapshot,
                   summary: translated.snapshot_summary,
                   reference_note: translated.snapshot_reference_note,
                   panels: snapshot.panels.map((panel, index) => ({
