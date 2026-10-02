@@ -158,6 +158,12 @@
       "actor": "user",
       "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
       "decision": "Apply artifact governance and consolidate/migrate current artifacts, preserving provenance and using deduplication."
+    },
+    {
+      "date": "2026-10-02",
+      "actor": "user",
+      "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+      "decision": "Confirmed consolidation of the remaining 47 copied workspaces after the monitored-file count was explained."
     }
   ],
   "implementation": {
@@ -286,5 +292,16 @@
     "independent_backup_verified": false,
     "method": "Exact-file SHA-256 object sharing with separate occurrence manifests; full fresh recovery and source comparison before each scoped retirement. Preserve local evidence and live references through explicit exclusions.",
     "reopen_when": "A retained reference changes, a consumer needs an archived path, independent backup is designated, or new artifact growth justifies a separately scoped migration."
+  },
+  "referenced_workspace_consolidation": {
+    "actor": "assistant",
+    "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+    "status": "complete",
+    "recovery_record": "archive/referenced-workspace-consolidation-20261002.json",
+    "files_before": 272013,
+    "files_kept": 4256,
+    "files_archived": 267757,
+    "net_logical_reduction": 11397524535,
+    "lesson": "A historical target directory is not a requirement to keep every copied repository file hot. Resolve the report-listed files, asset closure and unclassified outputs; archive the surrounding source with exact recovery."
   }
 }

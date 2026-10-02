@@ -2,7 +2,7 @@
 name: govern-artifacts
 description: Govern local TB3 explainer, build and review artifacts through bounded inventories, provenance-preserving deduplication, verified recovery and scoped retirement proposals. Use for artifact growth, storage cleanup, retention plans and campaign closeout.
 metadata:
-  version: 1.1.0
+  version: 1.1.1
 ---
 
 # Govern artifacts
@@ -39,6 +39,13 @@ roles or retention differ. Never mark a scope closed because its folder is dated
   browser/inspection witnesses, plus source pins/notices. For workers, inspect
   handoffs, patches, unique acquisitions and failed attempts. The tool does not
   infer this dependency closure; unknown references remain unresolved.
+- Classify directory references by their actual consumer. Historical target or
+  rebuild locations can use archived source. Keep report-listed files, complete
+  task asset bundles, local evidence and unknown outputs in place. A directory
+  mention alone is a provisional hold, not a permanent whole-tree dependency.
+- Identify copied source through recorded Git paths; retain exact changed bytes.
+  If the original baseline was not recorded, state that gap. A current source-path
+  catalogue is a classification aid, not evidence of the historical Git HEAD.
 - Before packing, classify scopes as closed with a role, retention reason and
   explicit rebuild recipe where applicable. A job describes retention; it does
   not authorize retiring sources. Packing is non-destructive and needs no extra

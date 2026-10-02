@@ -94,3 +94,27 @@ original acquisitions remain in place. Extended filesystem metadata is retained
 in hash-pinned sidecars; automatic restoration covers file bytes, modes and mtimes.
 The source bundle was checked in an empty Git repository. All recovery material
 remains on the same disk; independent backup has not been established.
+
+
+## Referenced workspace follow-up
+
+The [follow-up recovery record](referenced-workspace-consolidation-20261002.json)
+narrows the earlier holds on 47 entire workspace copies. Their historical target
+and rebuild references now retain the report-listed files, complete task asset
+bundles, local/projection evidence, symlinks and unclassified outputs. Copied
+repository source is recoverable from the shared object store.
+
+Those roots went from **272,013 to 4,256 regular files**.
+All **267,757 archived occurrences** passed restoration and source/restore
+comparisons before retirement. Net additional logical reduction, after new store
+objects/manifests and local records, is **11.40 GB**.
+The retained-path check confirmed 41,788 files and
+218 symlinks unchanged. The first migration's records remain intact;
+its 302,541-file preservation count was the checkpoint before this follow-up.
+
+Use `.local/artifact-reference-consolidation-20261002/index.json` and its hash in
+the tracked record to find each source manifest. Its `RECOVERY.md` explains how
+archived source and retained local occurrences form the historical workspace.
+Materialize source before running a historical rebuild command. One RadAgent copy
+did not record its original Git HEAD; that gap remains explicit, with exact bytes
+retained. No independent-backup claim follows from the local recovery chain.

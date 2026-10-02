@@ -196,3 +196,20 @@ selection, source bundle and retained-file comparison. Per-batch metadata and
 full restoration preceded source retirement; raw evidence, acquired inputs,
 environments and accepted/live references remain in place. Historical review and
 additive-scaffold records remain as dated observations.
+
+
+## Directory references and copied workspaces
+
+A directory named as a historical apply target or rebuild working directory
+does not by itself define a live dependency on every file below it. Inspect the
+actual report fields and consumers. Keep explicit receipt/report files, complete
+task asset bundles needed by relative manifest paths, local evidence, environment
+links and unclassified outputs. Use recorded Git trees to identify copied source
+paths; preserve exact bytes through occurrence manifests even when the original
+baseline is unknown. Record that gap instead of inventing a commit.
+
+The [47-workspace follow-up](../archive/referenced-workspace-consolidation-20261002.json)
+applies this rule. Historical receipts remain unchanged; source needed by an old
+rebuild command must first be materialized from its archive. Track only a concise
+recovery record; share metadata sidecars and use incremental Git bundles against
+an already verified base when that avoids redundant provenance copies.

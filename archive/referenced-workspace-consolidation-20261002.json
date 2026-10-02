@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "kind": "referenced-workspace-consolidation",
+  "status": "complete",
+  "completed_at": "2026-10-02T16:35:16.968539+00:00",
+  "source_task": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+  "authorization": {
+    "actor": "user",
+    "request": "sure, do that",
+    "scope": "Consolidate the 47 workspace copies previously held because reports referenced their directory roots."
+  },
+  "execution_actor": "assistant",
+  "source_commit": "f61aa01600cd318d975a314fce0c1e1ce1b3a2e0",
+  "previous_recovery_record": "archive/artifact-migration-20261002.json",
+  "method": "Treat target/rebuild root references as historical execution context. Keep explicitly referenced paths, patch-report files, whole task asset bundles, local/projection evidence, environments and unclassified files. Archive only known repository source paths with exact occurrence recovery.",
+  "reference_audit": {
+    "root_reference_fields": {
+      "/target": 78,
+      "/rebuild_command_argv/3": 4,
+      "/builder_rebuild/3": 1,
+      "/isolated_target": 1,
+      "/isolated": 1
+    },
+    "patch_reports": 78,
+    "dependencies": 1439,
+    "source_files_scanned": 13747,
+    "exclusions": 2077,
+    "original_baseline_gap": {
+      "workspace": ".local/explainers/goal-20260930/workers/radagent-vqa/isolated-final",
+      "observation": "The retained copy script used git ls-files without recording HEAD. Current Git paths were used only for source-path classification; historical HEAD remains unknown. Exact current snapshot bytes are retained."
+    }
+  },
+  "measurements": {
+    "source_files_before": 272013,
+    "source_files_after": 4256,
+    "source_bytes_before": 11840190720,
+    "source_bytes_after": 145061625,
+    "retired_files": 267757,
+    "retired_bytes": 11695129095,
+    "added_compressed_object_bytes": 21244775,
+    "store_growth": {
+      "files": 147,
+      "logical_bytes": 125300060
+    },
+    "local_record_footprint": {
+      "files": 356,
+      "logical_bytes": 172304500
+    },
+    "net_logical_reduction": 11397524535,
+    "net_regular_file_reduction": 267254
+  },
+  "validation": {
+    "all_47_batches_restored_and_checked_before_retirement": true,
+    "content_modes_mtimes_checked": true,
+    "retained_paths": {
+      "counts": {
+        "file": 41788,
+        "symlink": 218
+      },
+      "bytes": 16849419530,
+      "unchanged": true,
+      "differences": [],
+      "before_manifest_sha256": "9c823df68a8466fc8ef71fbcba26683c57d570231fabd62c5c780bc98eff126f"
+    },
+    "earlier_index_unchanged": true,
+    "historical_receipts_unchanged": true,
+    "retained_check": ".local/artifact-reference-consolidation-20261002/retained-after.json",
+    "retained_check_sha256": "d4b9e5977c3dd4f1f3ec5ae36454d6d426ed69a181745c9e7a9da675ad13b274",
+    "scope_note": "The preservation check preceded the intentional final governance/skill/recovery documentation edits captured by this commit.",
+    "post_migration_assets": {
+      "command": "med check --assets",
+      "passed": true,
+      "log": ".local/artifact-reference-consolidation-20261002/post-migration-assets.log",
+      "log_sha256": "e3fdd133d42ea2f02bc57ce13f7d39277c850633ac19a4bf159c72b262d1b7df"
+    }
+  },
+  "recovery": {
+    "store": ".local/artifact-store",
+    "index": ".local/artifact-reference-consolidation-20261002/index.json",
+    "index_sha256": "22376b0978bb8161b6170c6f883222e935571840cfe1ee2b5588f2b9cd142fdc",
+    "selection": ".local/artifact-reference-consolidation-20261002/selection.json",
+    "selection_sha256": "06b8db2e590896047a0ffeac703fb59f0223ce077789ebb55b2f80e834d0e533",
+    "retained_occurrences": ".local/artifact-reference-consolidation-20261002/retained-before.jsonl.gz",
+    "retained_occurrences_sha256": "9c823df68a8466fc8ef71fbcba26683c57d570231fabd62c5c780bc98eff126f",
+    "metadata": ".local/artifact-reference-consolidation-20261002/metadata.json",
+    "metadata_sha256": "eb7a9a6849e0f132d2f3fb9d4cc9c650866e7f1ef719180942fb6037cdae1622",
+    "source_history": ".local/artifact-reference-consolidation-20261002/source-bundle-verification.json",
+    "source_history_sha256": "909311a2b95200badd7421655afd8d06b4e8ddd4cf8f0c900893e73d6857584c",
+    "preflight": ".local/artifact-reference-consolidation-20261002/preflight.json",
+    "preflight_sha256": "5ee285fbf9efa06f3c79f858ec50a034890c7d4f52a3af93be05a1a71334536c",
+    "guide": ".local/artifact-reference-consolidation-20261002/RECOVERY.md",
+    "independent_backup_verified": false
+  },
+  "limits": [
+    "Size reduction is logical bytes, including incremental store and local-record costs at closeout; it is not a physical APFS reclamation measurement.",
+    "Historical rebuild commands require materializing archived source first. Root directories still contain the retained files and symlinks.",
+    "Extended metadata is retained in hash-pinned sidecars; automatic restoration covers regular-file bytes, modes and mtimes.",
+    "The store and recovery chain remain on the same disk. No raw original runs, acquired inputs, accepted evidence, scores or receipts were retired or rewritten."
+  ],
+  "reopen_when": "An actual consumer requires another archived source file, a retained asset dependency changes, or an independent backup destination is designated."
+}
