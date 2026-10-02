@@ -152,6 +152,12 @@
       "actor": "user",
       "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
       "decision": "Requested an artifact governance strategy and reusable skill/scaffold preserving provenance more efficiently; welcomed deduplication."
+    },
+    {
+      "date": "2026-10-02",
+      "actor": "user",
+      "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+      "decision": "Apply artifact governance and consolidate/migrate current artifacts, preserving provenance and using deduplication."
     }
   ],
   "implementation": {
@@ -266,5 +272,19 @@
     },
     "limits": "Real HTML pilot is a read-only plan, not reclaimed storage. Recovery tests use temporary fixtures. Independent backup and full dependency closure are separate checks. Symlinks, empty directories, ownership/ACL/xattrs and sparse allocation are not recovered.",
     "reopen_when": "User selects exact source retirement scope, a reader needs archived path resolution, or evidence justifies shared chunk storage/GC."
+  },
+  "artifact_migration_20261002": {
+    "actor": "assistant",
+    "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+    "status": "complete",
+    "recovery_record": "archive/artifact-migration-20261002.json",
+    "retired_logical_bytes": 123306027675,
+    "net_logical_reduction_including_store_and_records": 78828986775,
+    "preserved_file_count": 302541,
+    "preserved_bytes": 28496837786,
+    "batches": 219,
+    "independent_backup_verified": false,
+    "method": "Exact-file SHA-256 object sharing with separate occurrence manifests; full fresh recovery and source comparison before each scoped retirement. Preserve local evidence and live references through explicit exclusions.",
+    "reopen_when": "A retained reference changes, a consumer needs an archived path, independent backup is designated, or new artifact growth justifies a separately scoped migration."
   }
 }

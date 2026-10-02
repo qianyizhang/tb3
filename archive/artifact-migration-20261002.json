@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "kind": "artifact-migration-recovery-record",
+  "id": "explainer-artifacts-20261002",
+  "date": "2026-10-02",
+  "status": "complete",
+  "authorization": {
+    "actor": "user",
+    "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",
+    "request": "can you apply this and consolidate/migrate current artifacts"
+  },
+  "execution_actor": "assistant",
+  "baseline_commit": "3ddaebfc4ce85b2e8c10a4f54ac3763ff01b4177",
+  "skill": "skills/govern-artifacts/SKILL.md",
+  "skill_version": "1.1.0",
+  "scope": {
+    "baseline_archives": 36,
+    "copied_worker_workspaces": 185,
+    "superseded_generated_html": 814,
+    "batches": 219,
+    "retired_files": 976327,
+    "exclusions": "Retained accepted/live references, complete local evidence/run/input/environment directories inside copied workspaces, original acquisition sources and symlinks. Parent directories remain in place."
+  },
+  "storage": {
+    "retired_logical_bytes": 123306027675,
+    "unique_objects": 10378,
+    "unique_uncompressed_bytes": 68360831106,
+    "measured_source_bytes_before": {
+      ".local/explainers": 162051753834,
+      ".local/explainer-review-20261002": 2297138641,
+      ".local/explainer-framework-20261002": 1636886818
+    },
+    "observed_source_byte_reduction": 123306027675,
+    "reduction_matches_enumerated_retirement": true,
+    "net_logical_reduction_including_store_and_records": 78828986775
+  },
+  "cohorts": {
+    "baseline": {
+      "batches": 1,
+      "files": 36,
+      "logical_bytes": 8967106560,
+      "added_object_bytes": 3175601075
+    },
+    "snapshot": {
+      "batches": 185,
+      "files": 975477,
+      "logical_bytes": 45392259549,
+      "added_object_bytes": 260279870
+    },
+    "html": {
+      "batches": 33,
+      "files": 814,
+      "logical_bytes": 68946661566,
+      "added_object_bytes": 39904562881
+    }
+  },
+  "post_migration_sizes": {
+    ".local/explainers": {
+      "files": 423682,
+      "logical_bytes": 40889547096,
+      "allocated_bytes_sum_not_physical_reclamation": 41879552000
+    },
+    ".local/explainer-review-20261002": {
+      "files": 1706,
+      "logical_bytes": 691217279,
+      "allocated_bytes_sum_not_physical_reclamation": 694804480
+    },
+    ".local/explainer-framework-20261002": {
+      "files": 1534,
+      "logical_bytes": 1098987243,
+      "allocated_bytes_sum_not_physical_reclamation": 1101996032
+    },
+    ".local/artifact-store": {
+      "files": 10598,
+      "logical_bytes": 43704694150,
+      "allocated_bytes_sum_not_physical_reclamation": 43730997248
+    },
+    ".local/artifact-migration-20261002": {
+      "files": 2661,
+      "logical_bytes": 772346750,
+      "allocated_bytes_sum_not_physical_reclamation": 780296192
+    }
+  },
+  "recovery": {
+    "store": ".local/artifact-store",
+    "index": ".local/artifact-migration-20261002/index.json",
+    "index_sha256": "61372afee7d2bf445086266e31f750952e8a2017b9913698099902e5111d1f07",
+    "guide": ".local/artifact-migration-20261002/RECOVERY.md",
+    "selection": ".local/artifact-migration-20261002/migration-selection-final.json",
+    "selection_sha256": "9442061b7fcb377e4016411ad4cb39926feaefaa859ab3516d361f707a4a4893",
+    "source_bundle": ".local/artifact-migration-20261002/source.bundle",
+    "source_bundle_sha256": "ef9f1a61e4277111726fe3a8f63e6672aa1727a6eb849665fa0cdfbcfa6b4ad1",
+    "source_bundle_verified_in_empty_repository": true,
+    "execution_provenance": ".local/artifact-migration-20261002/execution-provenance-final.json",
+    "execution_provenance_sha256": "e74577558eb1e39684ef80887d56572a545c5d8d6907608e7f7b239780c4ebd8",
+    "implementation_patch": ".local/artifact-migration-20261002/tooling-staged.patch",
+    "implementation_patch_sha256": "ee68dfb1f7c681998f1a3253e06e243d8019b419d67230d8a3e8a4570a8b7a91",
+    "restore_command": "uv run --no-sync med artifacts restore .local/artifact-store/manifests/MANIFEST_SHA256.json --store .local/artifact-store --output /tmp/FRESH_RECOVERY_DIRECTORY",
+    "extended_metadata": "Per-batch xattrs.txt.gz and acl-ownership.txt.gz are hash-pinned by metadata.json; inspectable metadata only, no automatic ACL/xattr/ownership restoration.",
+    "independent_backup_verified": false
+  },
+  "validation": {
+    "all_batches_restored_before_retirement": true,
+    "exact_source_and_restored_bytes_modes_mtimes_checked": true,
+    "retained_file_check": {
+      "matches": true,
+      "counts": {
+        "file": 302541,
+        "symlink": 218
+      },
+      "file_bytes": 28496837786,
+      "differences": [],
+      "before_manifest_sha256": "71cb20f6facf9ea8285804cf451b96e83cd969c7b34ce652a23ef2307746565b"
+    },
+    "retained_check_record": ".local/artifact-migration-20261002/protected-after.json",
+    "retained_check_sha256": "fdee3fdba7d76bd9cee65170278bba61a4a460203f22899d456e35f4a6d3718a",
+    "tooling_tests": 505,
+    "tooling_gate": "make check PYTHON=python3.12",
+    "tooling_gate_log": ".local/artifact-migration-20261002/tooling-check-final.log",
+    "post_migration_assets": {
+      "command": "med check --assets",
+      "passed": true,
+      "log": ".local/artifact-migration-20261002/post-migration-assets.log",
+      "log_sha256": "e3fdd133d42ea2f02bc57ce13f7d39277c850633ac19a4bf159c72b262d1b7df"
+    }
+  },
+  "limits": [
+    "Logical byte reduction is not a claim about physical APFS blocks reclaimed. Allocation sums can include shared/cloned extents.",
+    "Historical acceptance, scores and source receipts were not rewritten. Archived superseded paths require exact-byte materialization for old consumers.",
+    "Same-disk store, source bundle and metadata are recovery sources; independent backup remains unverified.",
+    "No raw medical runs, original freezes, acquired inputs, runtime installations or accepted evidence were retired. No age-based purge or automatic object garbage collection."
+  ],
+  "reopen_when": "A retained reference changes, a consumer needs an archived path, independent backup is designated, or new artifact growth justifies a separately scoped migration."
+}

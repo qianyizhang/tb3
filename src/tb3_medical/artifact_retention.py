@@ -1,13 +1,14 @@
 """Bounded artifact inventories and exact-byte, deduplicated recovery stores.
 
 Occurrences keep their paths and provenance; SHA-256 objects share only bytes.
-No command deletes sources, rewrites evidence, or infers retirement permission.
+Retirement requires an explicit authority, pinned plan and verified recovery.
 """
 
 from __future__ import annotations
 
 import gzip
 import hashlib
+import json
 import os
 import stat
 import subprocess
@@ -49,6 +50,15 @@ class Scope(Model):
     reason: str = ""
     references: list[str] = Field(default_factory=list)
     rebuild_recipe: str = ""
+    exclusions: dict[str, Text] = Field(default_factory=dict)
+
+    @model_validator(mode="after")
+    def valid_exclusions(self) -> Scope:
+        for path in self.exclusions:
+            relative_path(path)
+            if path == self.path or not Path(path).is_relative_to(self.path):
+                raise ValueError("Exclusions must be explicit descendants of their scope")
+        return self
 
     _path = field_validator("path")(relative_path)
 
@@ -102,6 +112,10 @@ class Plan(Model):
                 raise ValueError("Duplicate path or invalid scope")
             if not Path(item.path).is_relative_to(self.job.scopes[item.scope].path):
                 raise ValueError("File falls outside its scope")
+            if any(
+                Path(item.path).is_relative_to(p) for p in self.job.scopes[item.scope].exclusions
+            ):
+                raise ValueError("Plan includes an excluded path")
             paths.add(item.path)
             if item.sha256 in sizes and sizes[item.sha256] != item.bytes:
                 raise ValueError("Conflicting lengths for one object")
@@ -140,8 +154,11 @@ def _files(root: Path, job: Job) -> Iterator[tuple[int, Path]]:
     for index, scope in enumerate(job.scopes):
         target = storage.inside(root, scope.path)
         pending = [target]
+        exclusions = [root / p for p in scope.exclusions]
         while pending:
             path = pending.pop()
+            if any(path.is_relative_to(p) for p in exclusions):
+                continue
             info = path.lstat()
             if stat.S_ISDIR(info.st_mode):
                 pending.extend(sorted(path.iterdir(), reverse=True))
@@ -428,3 +445,113 @@ def restore(plan_path: Path, store: Path, output: Path) -> Document:
         os.utime(destination, ns=(item.mtime_ns, item.mtime_ns))
     marker.unlink()
     return {**summary(manifest), "restored": str(output), "manifest_sha256": plan_digest}
+
+
+def retire(
+    root: Path,
+    plan_path: Path,
+    store: Path,
+    recovery: Path,
+    output: Path,
+    *,
+    expected_sha256: str,
+    authorization: str,
+) -> Document:
+    """Retire only enumerated archive files after verifying both stored and restored bytes."""
+    root = root.resolve()
+    manifest, digest = _load(plan_path)
+    if digest != expected_sha256 or not authorization.strip():
+        raise MedicalError("Retirement requires the exact plan hash and authorization source")
+    if any(s.state != "closed" or s.retention != "archive" for s in manifest.job.scopes):
+        raise MedicalError("Retirement requires closed archive scopes")
+    recovery, output, store = _location(recovery), _location(output), _store(store)
+    if output.exists():
+        raise MedicalError("Retirement record needs a fresh directory")
+    if (recovery / ".artifact-restore-incomplete").exists():
+        raise MedicalError("Recovery is incomplete")
+    for scope in manifest.job.scopes:
+        source = storage.inside(root, scope.path)
+        if any(
+            target.is_relative_to(source) or source.is_relative_to(target)
+            for target in (recovery, output, store)
+        ):
+            raise MedicalError("Source, recovery, store and retirement records must be separate")
+    if any(output.is_relative_to(p) or p.is_relative_to(output) for p in (recovery, store)):
+        raise MedicalError("Retirement record must be separate from recovery and store")
+    tracked = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "-z"], capture_output=True, check=True
+    )
+    tracked_paths = set(tracked.stdout.decode().split("\0"))
+    if any(item.path in tracked_paths for item in manifest.files):
+        raise MedicalError("Tracked files cannot be retired by this command")
+    for item in manifest.files:
+        if Path(item.path).parts[0] in {"runs", "jobs", ".cache"} or any(
+            Path(item.path).is_relative_to(p)
+            for p in (".local/freezes", ".local/attempts", ".local/inputs")
+        ):
+            raise MedicalError("Raw runs, inputs and original freezes are outside retirement scope")
+    # Validate the exact stored manifest too, so an object-only cache is not a recovery record.
+    stored_manifest = storage.inside(store, f"manifests/{digest}.json")
+    if storage.sha(stored_manifest) != digest:
+        raise MedicalError("Stored occurrence manifest differs")
+    verify(stored_manifest, store)
+    for item in manifest.files:
+        recovered = storage.inside(recovery, item.path)
+        recovered_digest, info = _read_source(recovered)
+        if (recovered_digest, info.st_size, stat.S_IMODE(info.st_mode), info.st_mtime_ns) != (
+            item.sha256,
+            item.bytes,
+            item.mode,
+            item.mtime_ns,
+        ):
+            raise MedicalError(f"Restored occurrence differs: {item.path}")
+    signatures = _check_sources(root, manifest)
+    output.mkdir(parents=True, exist_ok=False)
+    intent = {
+        "kind": "artifact-retirement-intent",
+        "manifest_sha256": digest,
+        "manifest": str(stored_manifest),
+        "store": str(store),
+        "recovery": str(recovery),
+        "authorization": authorization,
+        "created_at": datetime.now(UTC).isoformat(),
+        "files": len(manifest.files),
+        "logical_bytes": sum(f.bytes for f in manifest.files),
+        "independent_backup_verified": False,
+    }
+    storage.write_new(output / "intent.json", intent)
+    # The intent must reach disk before the first source unlink, including its
+    # directory entry. The shared JSON publisher guarantees atomic visibility,
+    # but does not itself promise durability across a process/system failure.
+    with (output / "intent.json").open("rb") as intent_stream:
+        os.fsync(intent_stream.fileno())
+    directory_fd = os.open(output, os.O_RDONLY)
+    try:
+        os.fsync(directory_fd)
+    finally:
+        os.close(directory_fd)
+    retired = 0
+    with (output / "events.jsonl").open("x") as events:
+        for item in manifest.files:
+            source = storage.inside(root, item.path)
+            if _signature(source.lstat()) != signatures[item.path]:
+                raise MedicalError(f"Source changed before retirement: {item.path}; inspect events")
+            # The durable intent and pinned manifest enumerate the entire operation.
+            # Batch completion events; an interruption is reconciled against source
+            # existence and hashes, never by assuming unflushed events did not occur.
+            source.unlink()
+            events.write(json.dumps({"event": "retired", "path": item.path}) + "\n")
+            retired += 1
+            if retired % 128 == 0:
+                events.flush()
+                os.fsync(events.fileno())
+        events.flush()
+        os.fsync(events.fileno())
+    result = {
+        **intent,
+        "kind": "artifact-retirement-result",
+        "retired_files": retired,
+        "status": "complete",
+    }
+    storage.write_new(output / "result.json", result)
+    return result

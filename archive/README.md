@@ -70,3 +70,27 @@ rechecked before removal. The Git bundle was restored into an empty repository
 and passed a full object check. Verify the recorded hashes and restore only into
 a fresh directory. Two stale Chinese brief translations remain recoverable from
 their original commit and archive; current English briefs remain authoritative.
+
+
+## Consolidated explainer artifacts
+
+The [2026-10-02 recovery record](artifact-migration-20261002.json) covers 36 baseline
+archives, 185 copied worker workspaces and 814 superseded HTML files. All 219
+batches passed fresh restoration and original/restored byte, mode and mtime
+comparisons before retirement. **123.31 GB** of original file occurrences
+were migrated; net logical reduction after the store and local recovery records
+is **78.83 GB**. This is not a physical APFS reclamation claim.
+
+The local `.local/artifact-migration-20261002/index.json` maps original scopes to
+hash-pinned manifests in `.local/artifact-store/manifests/`. Its hash is retained
+in the recovery record. See `.local/artifact-migration-20261002/RECOVERY.md` for
+lookup and [the retention guide](../docs/artifact-retention.md) for CLI details.
+Restore a selected manifest into a fresh directory with `med artifacts restore`;
+do not overwrite the active checkout or regenerate historical evidence.
+
+The final comparison confirmed 302,541 retained files (28.50 GB),
+plus 218 symlinks, unchanged. Accepted/live references, local evidence and
+original acquisitions remain in place. Extended filesystem metadata is retained
+in hash-pinned sidecars; automatic restoration covers file bytes, modes and mtimes.
+The source bundle was checked in an empty Git repository. All recovery material
+remains on the same disk; independent backup has not been established.

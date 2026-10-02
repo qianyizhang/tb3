@@ -4,6 +4,7 @@ import contextlib
 import io
 import json
 import os
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -268,6 +269,67 @@ class ArtifactRetentionTests(unittest.TestCase):
             (target / "evidence/accepted.html").read_bytes(),
             (self.source / "accepted.html").read_bytes(),
         )
+
+    def prepare_retirement(self):
+        subprocess.run(["git", "init", "--quiet", str(self.root)], check=True)
+        self.make_plan()
+        self.pack()
+        recovery = self.root / "recovery"
+        a.restore(self.plan, self.store, recovery)
+        return recovery
+
+    def retire(self, recovery, **kwargs):
+        return a.retire(
+            self.root,
+            self.plan,
+            self.store,
+            recovery,
+            self.root / "retirement",
+            expected_sha256=kwargs.get("digest", storage.sha(self.plan)),
+            authorization=kwargs.get("authorization", "user:test-request"),
+        )
+
+    def test_retirement_keeps_recovery_and_publishes_manifest_mapping(self):
+        recovery = self.prepare_retirement()
+        result = self.retire(recovery)
+        self.assertEqual(result["retired_files"], 3)
+        self.assertEqual(list(self.source.iterdir()), [])
+        self.assertTrue((recovery / "evidence/accepted.html").is_file())
+        self.assertTrue(a.verify(self.plan, self.store)["verified"])
+        self.assertTrue((self.root / "retirement/intent.json").is_file())
+        self.assertEqual(len((self.root / "retirement/events.jsonl").read_text().splitlines()), 3)
+
+    def test_retirement_rejects_missing_authority_wrong_plan_or_changed_recovery(self):
+        recovery = self.prepare_retirement()
+        for kwargs in ({"authorization": ""}, {"digest": "0" * 64}):
+            with self.assertRaises(MedicalError):
+                self.retire(recovery, **kwargs)
+        (recovery / "evidence/accepted.html").write_bytes(b"wrong")
+        with self.assertRaisesRegex(MedicalError, "Restored occurrence differs"):
+            self.retire(recovery)
+        self.assertEqual(len(list(self.source.iterdir())), 3)
+        self.assertFalse((self.root / "retirement").exists())
+
+    def test_retirement_rejects_tracked_files(self):
+        recovery = self.prepare_retirement()
+        subprocess.run(["git", "-C", str(self.root), "add", "evidence/accepted.html"], check=True)
+        with self.assertRaisesRegex(MedicalError, "Tracked files"):
+            self.retire(recovery)
+        self.assertEqual(len(list(self.source.iterdir())), 3)
+
+    def test_explicit_exclusions_preserve_referenced_files_and_symlinks(self):
+        (self.source / "link").symlink_to(self.job)
+        job = json.loads(self.job.read_text())
+        job["scopes"][0]["exclusions"] = {
+            "evidence/link": "External environment remains local",
+            "evidence/accepted.html": "Live evidence reference",
+        }
+        self.job.write_text(json.dumps(job))
+        recovery = self.prepare_retirement()
+        self.assertEqual(storage.read_object(self.plan)["files"][0]["path"], "evidence/empty.json")
+        self.retire(recovery)
+        self.assertTrue((self.source / "accepted.html").is_file())
+        self.assertTrue((self.source / "link").is_symlink())
 
     def test_cli_init_and_plan_are_usable(self):
         (self.root / "workbench.toml").write_text("")

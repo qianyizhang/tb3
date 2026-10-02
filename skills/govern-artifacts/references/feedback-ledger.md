@@ -24,3 +24,16 @@
 - Validation: Behavioral recovery/corruption/concurrency tests and the retained
   real-file plan are recorded by the implementation task. No historical evidence
   deletion or independent-backup claim follows from packaging validation.
+
+
+### ARTIFACT-2026-002
+
+- Date: 2026-10-02
+- Invoked version: `1.0.0`.
+- Source: [authorized consolidation](codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa).
+- Observation: 47 tracked source records reference worker files; whole-folder
+  retirement would break provenance. Snapshot symlinks also cross environment boundaries.
+- Resolution in `1.1.0`: preserve explicit referenced paths and symlinks through
+  reasoned exclusions. Require exact plan, verified stored manifest and complete
+  restore/source comparisons for explicit retirement, with durable intent and
+  completion records. Capture unsupported filesystem metadata separately.

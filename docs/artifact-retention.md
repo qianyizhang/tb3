@@ -108,7 +108,8 @@ scopes, escaping paths, symlinks, special files, unsupported permissions, corrup
 objects or non-fresh outputs. Failed packing can leave verified unreferenced
 objects; it does not publish a successful pack receipt. Failed restoration keeps
 an `.artifact-restore-incomplete` marker and its partial destination for diagnosis.
-The current version has no garbage collection, prune or delete command.
+There is no automatic garbage collection or age-based prune. Explicit retirement
+requires a pinned plan, a verified store and a complete restored copy.
 
 Before retiring an existing live copy:
 
@@ -132,7 +133,8 @@ It does not preserve symlinks, empty directories, hard-link topology, ownership,
 ACLs, extended attributes or sparse-file allocation. Directory permissions are
 created using the current environment. This limits what can be retired from a
 workspace snapshot; preserve unsupported metadata separately or use an appropriate
-verified archive. No source deletion is implemented in this scaffold.
+verified archive. Explicit retirement removes only the enumerated regular files;
+parent directories and excluded paths remain in place.
 
 ## Prevent the next accumulation
 
@@ -154,3 +156,43 @@ Packing is an additive step. The current implementation provides exact-file
 deduplication and gzip compression; it does not deduplicate substrings in changing
 HTML bundles, automatically migrate receipt readers, or reduce existing storage
 until a separately reviewed retirement is performed.
+
+
+## Authorized migration
+
+`med artifacts retire` applies an already authorized, exact archive scope after
+verification. Scope `exclusions` map normalized workspace-relative descendants
+to preservation reasons. They must be enumerated; there are no ignore globs.
+Use exclusions to retain live references and environment symlinks. Excluded paths
+are not archived, so include their separate recovery needs in the record.
+
+```sh
+uv run --no-sync med artifacts retire PLAN.json --store STORE \
+  --recovery FRESH_RESTORED_DIRECTORY --plan-sha256 EXACT_PLAN_SHA256 \
+  --authorization codex://threads/AUTHORIZING_TASK --output NEW_RETIREMENT_RECORD
+```
+
+The command rejects tracked files and raw run/input/freeze roots. It verifies the
+stored occurrence manifest, every stored object, all restored bytes/modes/mtimes,
+and all source fingerprints before proceeding. The recovery, store and record
+must be separate from source scopes. Its durable `intent.json` pins the full
+manifest before removal; `events.jsonl` records progress in batches of 128, and
+`result.json` exists only on completion. After interruption, reconcile the pinned
+manifest against live path existence/hashes; absence of a buffered event does not
+prove that a source still exists. Never rerun a changed or partial plan blindly.
+
+Keep the compact retirement result and manifest/store locator in the archive map.
+Temporary restored copies made solely for verification can be removed after a
+successful retirement, preserving their verification receipt and the object store.
+This does not confer independent-backup status.
+
+
+## Applied migration
+
+The [2026-10-02 recovery record](../archive/artifact-migration-20261002.json)
+documents the first authorized migration: closed baseline archives, copied worker
+source workspaces and superseded HTML. It pins the local occurrence index,
+selection, source bundle and retained-file comparison. Per-batch metadata and
+full restoration preceded source retirement; raw evidence, acquired inputs,
+environments and accepted/live references remain in place. Historical review and
+additive-scaffold records remain as dated observations.

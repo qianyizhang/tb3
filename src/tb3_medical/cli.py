@@ -112,7 +112,7 @@ def build_parser() -> argparse.ArgumentParser:
     e.add_argument("--output", type=Path, required=True)
     e.add_argument("--accept", action="store_true", help="Production only: update this ledger row")
     p = sub.add_parser(
-        "artifacts", help="Plan, deduplicate and restore local artifacts; never delete"
+        "artifacts", help="Plan, deduplicate, recover and explicitly retire local artifacts"
     )
     artifact_sub = p.add_subparsers(dest="artifact_command", required=True)
     a = artifact_sub.add_parser(
@@ -128,12 +128,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     a.add_argument("job", type=Path)
     a.add_argument("--output", type=Path, required=True)
-    for action in ("pack", "verify", "restore"):
+    for action in ("pack", "verify", "restore", "retire"):
         a = artifact_sub.add_parser(action)
         a.add_argument("plan", type=Path)
         a.add_argument("--store", type=Path, required=True)
         if action != "verify":
             a.add_argument("--output", type=Path, required=True)
+        if action == "retire":
+            a.add_argument("--recovery", type=Path, required=True)
+            a.add_argument("--plan-sha256", required=True)
+            a.add_argument("--authorization", required=True)
     p = sub.add_parser("list")
     p.add_argument("query", nargs="?", default="")
     p.add_argument("--kind", choices=sorted(c.KINDS))
@@ -290,6 +294,16 @@ def main(argv: Sequence[str] | None = None) -> int:
                 result = artifact_retention.pack(root, args.plan, args.store, args.output)
             elif args.artifact_command == "verify":
                 result = artifact_retention.verify(args.plan, args.store)
+            elif args.artifact_command == "retire":
+                result = artifact_retention.retire(
+                    root,
+                    args.plan,
+                    args.store,
+                    args.recovery,
+                    args.output,
+                    expected_sha256=args.plan_sha256,
+                    authorization=args.authorization,
+                )
             else:
                 result = artifact_retention.restore(args.plan, args.store, args.output)
         elif command == "list":

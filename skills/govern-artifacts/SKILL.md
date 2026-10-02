@@ -2,7 +2,7 @@
 name: govern-artifacts
 description: Govern local TB3 explainer, build and review artifacts through bounded inventories, provenance-preserving deduplication, verified recovery and scoped retirement proposals. Use for artifact growth, storage cleanup, retention plans and campaign closeout.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Govern artifacts
@@ -61,12 +61,19 @@ reference roles remain distinct even when payload bytes match.
 
 ## Closeout and retirement
 
-The current scaffold has no delete, prune or automatic garbage-collection command.
+The scaffold has explicit verified retirement; no automatic prune or garbage collection.
 First deliver a reviewable scope, manifest hash, verified object store, restore
 result, unresolved references and measured savings. A same-disk pack is a recovery
 copy; independent backup and availability are separate claims. Source mutation,
 symlinks, unknown file types, corrupt objects or capacity limits stop the affected
 operation; diagnose rather than bypass the check.
+
+Use `med artifacts retire PLAN.json --store STORE --recovery VERIFIED_DIRECTORY
+--plan-sha256 EXACT_HASH --authorization USER_SOURCE --output NEW_RECORD` only
+after the authorized scope passes store, restore and source verification. Record
+explicit per-scope exclusions for live references and environment links; the
+excluded bytes remain outside the archive. After interruption inspect the durable
+intent and live files; buffered journal events can lag removals.
 
 Retire existing live copies only when the user's scope already authorizes it and
 recovery/dependency checks are complete. If authorization is absent, ask once for
