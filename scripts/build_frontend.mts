@@ -18,8 +18,17 @@ function inputHashes(validate = false): Record<string, string> {
 await mkdir(pending, { recursive: true });
 try {
   const inputs = inputHashes(true);
-  for (const entry of ['explorer', 'overview', 'explainer-export']) {
-    await build({
+  let servedOutputs: string[] = [];
+  const modules: Record<string, string[]> = {};
+  for (const entry of [
+    'explorer',
+    'overview',
+    'explainer-export',
+    'restoration-export',
+    'explorer-served',
+  ]) {
+    const served = entry === 'explorer-served';
+    const result = await build({
       configFile: false,
       root,
       base: './',
@@ -30,14 +39,26 @@ try {
         target: 'es2022',
         cssCodeSplit: false,
         lib: {
-          entry: path.join(root, `presentation/frontend/${entry}.tsx`),
+          entry: path.join(root, `presentation/frontend/${served ? 'explorer' : entry}.tsx`),
           name: `TB3${entry.replaceAll('-', '')}`,
-          formats: ['iife'],
+          formats: served ? ['es'] : ['iife'],
           fileName: () => entry + '.js',
           cssFileName: entry,
         },
       },
     });
+    const bundles = Array.isArray(result) ? result : [result];
+    const files = bundles.flatMap((bundle) => ('output' in bundle ? bundle.output : []));
+    modules[entry] = [
+      ...new Set(
+        files.flatMap((file) =>
+          file.type === 'chunk'
+            ? Object.keys(file.modules).map((id) => path.relative(root, id))
+            : [],
+        ),
+      ),
+    ].sort();
+    if (served) servedOutputs = files.map((file) => file.fileName);
   }
   if (JSON.stringify(inputs) !== JSON.stringify(inputHashes())) {
     throw Error('Frontend source changed during the build; rebuild the current source.');
@@ -51,7 +72,7 @@ try {
   );
   await writeFile(
     path.join(pending, 'manifest.json'),
-    JSON.stringify({ schema_version: 1, inputs, outputs }, null, 2) + '\n',
+    JSON.stringify({ schema_version: 1, inputs, outputs, servedOutputs, modules }, null, 2) + '\n',
   );
   await rm(output, { recursive: true, force: true });
   await rename(pending, output);

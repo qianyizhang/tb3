@@ -127,3 +127,19 @@ Explicit story bindings extend the existing typed feature with recipe-specific
 native content or planar DOM/SVG and absolute-frame evaluation. The original
 `ours` route binding remains v1. See [the explainer contract](../EXPLAINERS.md)
 for ownership, dependency checks, composed export and the review boundary.
+
+
+## Restoration framework slice
+
+Four restoration explainers use the shared reader under `explainers/`, with
+Python-owned selected views from `src/tb3_medical/explainers/`. Guided is the
+production default; `?review=1` exposes Guided, Compare and Focus over the same
+player for design review. Selected `med story build` exports use a small dedicated
+entry. `med brief build --delivery served` uses relative modules, lazy story JSON
+and content-addressed images; full offline exports remain available.
+
+See [the framework record](../../docs/explainer-framework.md#first-vertical-slice)
+for ownership, comparison comments and the remaining legacy boundaries.
+Run `node tests/explainer_framework.cjs` after a frontend build for the focused
+four-story browser regression and retained screenshots. On macOS use the approved
+browser execution boundary described in the repository instructions.

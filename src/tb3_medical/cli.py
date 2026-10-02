@@ -34,6 +34,7 @@ def build_parser() -> argparse.ArgumentParser:
             b.add_argument("--destination", required=True)
         elif action == "build":
             b.add_argument("--output", type=Path, default=Path("runs/task-explorer/index.html"))
+            b.add_argument("--delivery", choices=["served", "offline"], default="offline")
     p = sub.add_parser(
         "evidence",
         help="Collect and validate model-free evidence inventories for agent-authored explanations",
@@ -294,7 +295,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
             elif args.brief_command == "build":
                 output = args.output if args.output.is_absolute() else root / args.output
-                result = task_briefs.build(root, output, args.catalog)
+                result = task_briefs.build(
+                    root, output, args.catalog, served=args.delivery == "served"
+                )
             else:
                 result = task_briefs.check(root, args.catalog)
         elif command == "evidence":
@@ -486,7 +489,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             from .presentation import present, serve
 
             output = args.output if args.output.is_absolute() else root / args.output
-            result = present(root, output, args.local_media)
+            result = present(root, output, args.local_media, served=args.serve)
             if args.serve:
                 print(f"Open http://127.0.0.1:{args.port}/", flush=True)
                 serve(output, args.port)

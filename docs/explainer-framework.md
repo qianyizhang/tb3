@@ -5,11 +5,14 @@ Simplify their contracts, asset packaging and recipe ownership before changing
 frameworks. The largest observed cost is that every story export embeds the
 whole renderer/asset library.
 
-**Status:** assistant proposal, 2026-10-02; migration is not approved or implemented.
-The [request](codex://threads/01a0fa82-af84-78d0-a980-8084b2733954) authorized review
-and modest fixes. Current runtime ownership remains in [architecture](architecture.md)
-and [canonical explainers](../presentation/EXPLAINERS.md). No new application
-server, database or medical execution is needed for this read-only product.
+**Status:** first vertical slice implemented on 2026-10-02, following the
+[user decisions](codex://threads/01a0fa82-af84-78d0-a980-8084b2733954).
+The user selected framework + packaging + four restoration explainers, served
+loading plus selected offline exports, and a reader redesign. They delegated
+reading/evidence/authoring choices and requested several variants followed by one
+core design. See [the slice and comparison](#first-vertical-slice) below.
+The review measurements remain historical baselines. No application server,
+database or medical execution was introduced.
 
 ## Review findings
 
@@ -237,9 +240,10 @@ reopen their own scientific review independently.
 
 ## Decision and reopening conditions
 
-The assistant recommends **steps 1–2 first**, then the four restoration entries
-as the first reuse pilot. Separate asset delivery before a broad component
-rewrite so the largest measured cost has a direct acceptance gate.
+The user selected the four restoration entries, framework and selected packaging
+as the first release, with a reader redesign. The first slice below implements
+that release boundary. The remaining roadmap covers deeper compiler extraction,
+native-image families and retirement of the legacy dispatch.
 
 Revisit a server only for an authorized requirement such as browser editing,
 remote/private asset access or multiuser state. Revisit family boundaries if a
@@ -247,3 +251,95 @@ second migrated example requires many task-name branches. Revisit the timeline
 design if parity cannot express a scientific operation without opaque hooks.
 No framework/library replacement or wholesale content migration is selected by
 this proposal.
+
+
+## First vertical slice
+
+**Default:** Guided. The assistant selected this after inspecting desktop,
+mobile and canonical capture views. Compare and Focus remain available through
+`?review=1`; they are review layouts over the same content and player, not
+separately maintained products. `?layout=compare` and `?layout=focus` are direct
+comparison links. Capture always selects Guided and resets reader controls.
+
+| Variant | Useful property | Improvement comment / disposition |
+| --- | --- | --- |
+| **Guided** | Named chapters remain visible beside the current explanation | **Carry forward.** Dense metric paragraphs need a dedicated comparison pattern in a later family slice. |
+| **Compare** | Adjacent input/output contracts make the relationship easier to scan | Keep as a review option. Promote its paired-contract arrangement when actual geometry or matched native images support it. |
+| **Focus** | Wide reading column, larger chapter heading and a calm sequence | Keep as a review option. Number-only navigation loses orientation; do not make it the default. |
+
+Essential source absence is visible before the task and beside the visual. Full
+source limitations, units, coordinates, terms, file hashes and the transcript
+live in **Evidence & methods**. The four symbolic stories do not acquire pixels,
+execute restoration or imply that outputs/private references exist.
+
+### Implemented boundaries
+
+- **Definitions:** [restoration.json](../presentation/explainers/restoration.json)
+  owns task-specific display geometry and requested-versus-checked format copy.
+  Existing story Markdown still owns captions, narration and explicit timing.
+  Adding content for this family does not require player, CSS or timeline edits.
+  Automatic beat-duration inference is deferred; it must not silently regenerate
+  accepted historical timing.
+- **Compiler and bundle:** [explainers](../src/tb3_medical/explainers/) validates
+  the selected symbolic closure and projects Python-owned browser types.
+  View compilation leaves canonical plans unchanged. The existing schema-1/2
+  parser and specialized scientific validators remain in `explanation_stories.py`;
+  this slice extracts packaging, not the whole legacy compiler.
+- **View composition:** [registry](../presentation/frontend/explainers/registry.ts)
+  is a closed family map with no asset imports. Four restoration tasks share one
+  reader, protocol controls and operation-frame search. Other recipes retain
+  their compatibility adapter.
+- **Player:** [use-frame-player.ts](../presentation/frontend/explainers/player/use-frame-player.ts)
+  owns the existing clock and lifecycle with injected rendering capabilities.
+  Legacy spatial and modern planar views both use it. Canonical capture resets
+  reader-only state even when seeking to the same frame. The existing capture
+  bridge is shared by both export entries.
+- **Packaging:** `med story build STORY --output NEW_DIRECTORY` chooses the small
+  restoration entry for migrated stories and emits `package.json` with sizes,
+  module closure, selected hashes and dependencies. Legacy selected exports still
+  use their full compatibility bundle; no broader size claim is implied.
+- **Served catalogue:** `med brief build --delivery served --output NEW/index.html`
+  emits relative ESM assets, lazy selected plan/view JSON and deduplicated images.
+  Opening a migrated entry does not fetch the legacy renderer. Opening an
+  unmigrated entry still fetches its large shared legacy chunks. `med present
+  --serve` uses this delivery; ordinary `med present` and `--delivery offline`
+  retain the explicit full offline publication contract.
+
+The full served dataset/source index is still embedded; source downloads retain
+exact bytes. Native-image family migration and finer legacy chunking are the
+next packaging work, rather than a claim that all 154 core views now load cheaply.
+The old four task-specific panel files remain temporary compatibility code for
+legacy callers until the broader recipe-dispatch migration retires them.
+
+### Verification and review
+
+Run `npm run frontend:build`, `node tests/explainer_framework.cjs`, and the normal
+repository/browser gates. The focused browser check builds all four exports and
+a nested served catalogue in an ignored output directory. It exercises all five
+chapters, three layouts, selection/reset, operation seeking, source reveals,
+Chinese source-language disclosure, narrow/no-GPU layout, canonical captures,
+missing-resource handling and the selected network closure. It retains full-size
+screenshots and a size/request report for inspection.
+
+Historical acceptance receipts remain tied to their original source and renderer.
+This is a renderer regression and design comparison, not new scientific
+adjudication or replacement acceptance for 154 entries.
+
+
+**2026-10-02 verification:** `make check PYTHON=python3.12` passed with **484
+Python tests**; frontend build/types and `make js-check` passed. The complete
+catalogue browser suite passed **205 entries, 446 conditions and 288 exact local
+source documents**, with no reported browser errors or remote requests. The
+focused four-story suite passed all three layouts with WebGL explicitly disabled,
+including every chapter's canonical 1280 × 720 capture and nested served loading.
+All **163** canonical JSON projections match the pre-migration baseline when
+compiler dependency identities are excluded.
+
+The four selected HTML files are **318,129–319,235 B** raw and
+**92,994–93,123 B** gzip (`mtime=0`). The selected renderer JS is **286,400 B**;
+served entry JS is **384,870 B** plus the shared player and notice modules. These
+are byte measurements, not measured latency or memory improvements. The source
+and dataset index still contributes roughly **11 MB** of served HTML. Local
+captures, request traces, size manifests and comparison page are retained under
+`.local/explainer-framework-20261002/final/`; catalogue browser reports and gate
+logs live in its parent. The historical accepted-story ledger is unchanged.

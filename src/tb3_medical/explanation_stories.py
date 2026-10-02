@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
-from html import escape
 from pathlib import Path
 from typing import Annotated, Literal, Self, cast
 
@@ -23,12 +22,14 @@ from pydantic import (
 
 from . import storage
 from .errors import MedicalError
+from .explainers.assets import check_dependencies as _check_dependencies
 from .presentation_contracts import StoryBeat, StoryPlan
 from .types import Document
 
 # Explicit compiler identity stays with selected plans, not renderer bundle freshness.
 COMPILER_SOURCES = (
     "src/tb3_medical/explanation_stories.py",
+    "src/tb3_medical/explainers/assets.py",
     "src/tb3_medical/presentation_contracts.py",
     "src/tb3_medical/storage.py",
     "src/tb3_medical/errors.py",
@@ -8111,31 +8112,7 @@ def build_export(root: Path, story_id: str, output: Path) -> StoryPlan:
 
 
 def write_export(root: Path, plan: StoryPlan, output: Path) -> None:
-    """Project an explicitly compiled plan to the shared standalone view."""
-    from . import frontend
+    """Public assembly facade; selected packaging is owned by explainers."""
+    from .explainers.packaging import write_export as package_export
 
-    root = root.resolve()
-    _check_dependencies(root, plan["dependencies"])
-    script, css = frontend.assets(root, "explainer-export")
-    write_projections(plan, output)
-    source = next(name for name in plan["dependencies"] if name.endswith(".story.md"))
-    (output / "canonical.story.md").write_bytes((root / source).read_bytes())
-    common = (root / "presentation/ui.css").read_text()
-    payload = json.dumps(plan).replace("<", "\\u003c").replace("&", "\\u0026")
-    script = re.sub(r"</script", r"<\\/script", script, flags=re.I)
-    (output / "index.html").write_text(
-        '<!doctype html><html lang="en"><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width, initial-scale=1">'
-        f"<title>{escape(plan['title'])}</title>"
-        f'<style>{common}\n{css}\nbody{{margin:0}}</style><div id="root"></div>'
-        f'<script id="story-plan" type="application/json">{payload}</script>'
-        f"<script>{script}</script></html>"
-    )
-    _check_dependencies(root, plan["dependencies"])
-    frontend.assets(root, "explainer-export")
-
-
-def _check_dependencies(root: Path, dependencies: dict[str, str]) -> None:
-    for name, expected in dependencies.items():
-        if storage.sha(storage.inside(root, name)) != expected:
-            raise ValueError(f"Compiled story dependency changed: {name}")
+    package_export(root, plan, output)

@@ -38,6 +38,75 @@ export interface RouteStoryPlan {
   scope: string;
   beats: Array<StoryBeat>;
 }
+export interface ExplainerNotice {
+  label: string;
+  text: string;
+  url: string;
+  link_label: string;
+}
+export interface ExplainerAsset {
+  path: string;
+  sha256: string;
+  bytes: number;
+  role: "input-contract" | "helper-contract" | "operation-contract" | "output-contract" | "license";
+}
+export interface ExplainerBundle {
+  id: string;
+  basis: "symbolic-protocol";
+  reference_policy: "no-reference-assets";
+  units: string;
+  coordinates: string;
+  license: string;
+  notice: string;
+  license_text: string;
+  assets: Array<ExplainerAsset>;
+}
+export interface RestorationSource {
+  notice: ExplainerNotice;
+  input: string;
+  units: string;
+  simulation: string;
+  excluded: string;
+}
+export interface RestorationHelper {
+  lite: string;
+  standard: string;
+  window: string;
+  source_claims: string;
+}
+export interface RestorationOperation {
+  steps: Array<string>;
+  limitations: string;
+}
+export interface RestorationOutput {
+  path: string;
+  format: string;
+  coverage: string;
+  boundary: string;
+  rules: Record<string, string>;
+}
+export interface RestorationGeometry {
+  input: string;
+  output: string;
+  mapping: string;
+  caution: string;
+  files: string;
+  operation_note: string;
+  declared: string;
+  checked: string;
+}
+export interface RestorationView {
+  family: "restoration-protocol";
+  version: 1;
+  label: string;
+  source: RestorationSource;
+  helper: RestorationHelper;
+  operation: RestorationOperation;
+  output: RestorationOutput;
+  geometry: RestorationGeometry;
+  bundle: ExplainerBundle;
+  dependencies: Record<string, string>;
+}
 export interface ExpansionPlan {
   schema: 2;
   id: string;
@@ -5974,6 +6043,8 @@ export interface Inventory {
 }
 export interface ExplorerData {
   explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtOriginalPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | AutomedSegCPancreasPlan | AutomedSegCPantherT1Plan | AutomedSegCPantherT2Plan | AutomedSegCProstatePlan | AutomedSegDSpleenPlan | AutomedSegDTsgMultiorganPlan | InterpretationAHealthagentbenchPlan | InterpretationARadagentPlan | InterpretationAHealthagentbenchTumorTilesPlan | InterpretationAHealthagentbenchCxrCorrectionPlan | InterpretationBBcerMediumBrainGradeClassifyPlan | InterpretationBBcerLongCardiacFullPlan | InterpretationBBcerLongBrainFullPlan | AutomedTotalsegmentatorCtsrPlan | AutomedSynthradMrctPlan | AutomedMsdPancreasCtsrPlan | AutomedCtorgCtsrPlan | AutomedNihCxrSrPlan | AutomedMriSrPlan | AutomedLidcDenoisePlan | AutomedLdctDenoisingPlan | AutomedIxiT1SrPlan | AutomedDeeplesionDenoisePlan | AutomedBratsT1cSrPlan | RexUsenhancePlan | ImagingToothGridrecPlan | ImagingUsctFwiPlan | ImagingUltrasoundSosPlan | ImagingPnpMriPlan | ImagingPlaneWavePlan | ImagingPhotoacousticPlan | ImagingPetMlemPlan | ImagingVarNetPlan | ImagingT2MappingPlan | ImagingSensePlan | ImagingPnpAdmmPlan | ImagingNoncartesianPlan | ImagingWaveletPlan | ImagingGrappaPlan | ImagingDynamicMriPlan | ImagingEitPlan | ImagingPoissonPlan | BcerGrappaPlan | BcerSuperresPlan | BcerDenoisePlan | AutomedVqaRadPlan | AutomedOmniPlan | AutomedKvasirPlan | AutomedSlakePlan | AutomedPathvqaPlan | AutomedMedxpertPlan | AutomedMedframeqaPlan | AutomedPathology500Plan | AutomedPathology100Plan | AutomedMimicReportPlan | AutomedIuReportPlan | AutomedChexpertReportPlan | AutomedSkinLesionPlan | AutomedPcamClsPlan | AutomedCrcClsPlan | AutomedPneumoniaPlan | AutomedBrainClsPlan | RexLdctIqaPlan | RadagentVqaPlan | AbraBiradsPlan | AbraVisionProbePlan | AbraMetadataQaPlan | AbraViewerControlPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
+  explainer_views?: Record<string, RestorationView>;
+  explainer_resources?: Record<string, string>;
   schema_version: 1;
   title?: string;
   entries: Array<TaskEntry>;

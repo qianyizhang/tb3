@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import type { BriefField, TaskEntry, StoryPlan } from './types';
-import { TaskVisual } from './task-visuals/TaskVisual';
+import { Explainer } from './explainer';
+import type { RestorationView } from './contracts.generated';
 import type { VisualEntry } from './task-visuals/types';
 import { useLocale } from './locale';
 /** Only build-authored, escaped Markdown fragments enter this boundary. UI is React-owned. */
@@ -40,12 +41,20 @@ export function SourceLink({ url, children }: { url: string; children: ReactNode
   );
 }
 /** Keyed React ownership resets the player when task or language changes. */
-export function TaskScene({ entry, plan }: { entry: TaskEntry; plan?: StoryPlan }) {
+export function TaskScene({
+  entry,
+  plan,
+  view,
+}: {
+  entry: TaskEntry;
+  plan?: StoryPlan;
+  view?: RestorationView;
+}) {
   const { locale } = useLocale();
   if (!entry.illustration) return null;
   return (
     <div className="task-scene-host">
-      <TaskVisual key={entry.id + locale} entry={entry as VisualEntry} plan={plan} />
+      <Explainer view={view} key={entry.id + locale} entry={entry as VisualEntry} plan={plan} />
     </div>
   );
 }

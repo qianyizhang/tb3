@@ -56,7 +56,13 @@ def input_hashes(root: Path) -> dict[str, str]:
 
 def assets(root: Path, entry: str) -> tuple[str, str]:
     """Return JS/CSS only when source inputs and compiled output match the receipt."""
-    if entry not in {"explorer", "overview", "explainer-export"}:
+    if entry not in {
+        "explorer",
+        "overview",
+        "explainer-export",
+        "restoration-export",
+        "explorer-served",
+    }:
         raise MedicalError("Unknown frontend entry: " + entry)
     folder = root / BUILD_DIR
     try:

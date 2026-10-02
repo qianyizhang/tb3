@@ -126,22 +126,31 @@ async function checkExplorer(browser, input, report) {
             .catch((error) => {
               throw Error(`${e.id}: ${error.message}; page errors: ${errors.join(' | ')}`);
             });
-          assert.equal(await page.locator('.scene-canvas').count(), 1, `${e.id}: 3D scene`);
+          const familyView = data.explainer_views?.[e.illustration.story_id];
+          assert.equal(
+            await page.locator('.scene-canvas').count(),
+            familyView ? 0 : 1,
+            `${e.id}: declared rendering surface`,
+          );
           const storyPlan = data.explanation_stories?.[e.illustration.story_id];
           assert.equal(
-            await page.locator('.scene-steps button').count(),
+            await page.locator('[data-scene-step]').count(),
             storyPlan?.beats.length || 3,
             'One complete stage selector',
           );
           if (storyPlan) {
-            assert.deepEqual(
-              await page.locator('.scene-steps button strong').allTextContents(),
-              storyPlan.beats.map((beat) => beat.id.replace(/[-_]+/g, ' ')),
-              'Chapter labels are readable without changing source IDs',
-            );
+            const chapterLabels = await page.locator('[data-scene-step] strong').allTextContents();
+            if (familyView)
+              assert.ok(chapterLabels.every((label) => label.trim() && !/[-_]/.test(label)));
+            else
+              assert.deepEqual(
+                chapterLabels,
+                storyPlan.beats.map((beat) => beat.id.replace(/[-_]+/g, ' ')),
+                'Chapter labels are readable without changing source IDs',
+              );
             assert.deepEqual(
               await page
-                .locator('.scene-steps button')
+                .locator('[data-scene-step]')
                 .evaluateAll((buttons) =>
                   buttons.map((button) => button.getAttribute('aria-label')),
                 ),
@@ -155,7 +164,7 @@ async function checkExplorer(browser, input, report) {
             'The spatial stage is not duplicated as SVG thumbnails',
           );
           assert.equal(
-            await page.locator('.scene-notes').getAttribute('open'),
+            await page.locator('.scene-notes, [data-reader-evidence]').getAttribute('open'),
             null,
             'Derivation is available on demand',
           );
@@ -523,6 +532,7 @@ async function checkExplorer(browser, input, report) {
       HTMLCanvasElement.prototype.getContext = () => null;
     });
     await fallback.goto(pathToFileURL(legacyFile).href + '#tb3-dental-v3/0/overview');
+    await fallback.locator('.scene-fallback').waitFor({ state: 'visible' });
     assert.equal(await fallback.locator('.scene-fallback').isVisible(), true);
     assert.equal(await fallback.locator('.scene-fallback svg').count(), 2);
     assert.equal(await fallback.locator('.scene-controls').isVisible(), false);

@@ -233,6 +233,9 @@ def load(root: Pathish, catalog: Pathish = DEFAULT_CATALOG) -> Document:
     root = Path(root).resolve()
     data = task_catalog.collection(root, catalog)
     data["explanation_stories"] = explanation_stories.resolve_stories(root, data["entries"])
+    from .explainers.compiler import compile_views
+
+    data["explainer_views"] = compile_views(root, data["explanation_stories"])
     experiment_count = task_catalog.classify(root, data)
     out = []
     ids = set()
@@ -361,6 +364,7 @@ def build(
     catalog: Pathish = DEFAULT_CATALOG,
     *,
     presentation_context: Document | None = None,
+    served: bool = False,
 ) -> Document:
     root = Path(root).resolve()
     output = Path(output).resolve()
@@ -368,10 +372,15 @@ def build(
     if presentation_context:
         data["presentation_context"] = presentation_context
     base = root / "presentation/task-explorer"
-    app_js, app_css = frontend.assets(root, "explorer")
+    app_js, app_css = frontend.assets(root, "explorer-served" if served else "explorer")
     if output.exists() and MARKER not in output.read_text()[:200]:
         raise MedicalError("Refusing to overwrite an unowned file: " + str(output))
     document = (base / "index.html").read_text()
+    if served:
+        from .explainers.packaging import prepare_served
+
+        data, script_tag = prepare_served(root, output, data)
+        document = document.replace('<script id="explorer-app">__APP__</script>', script_tag)
     payload = (
         json.dumps(data, ensure_ascii=False)
         .replace("<", "\\u003c")
@@ -402,7 +411,7 @@ def build(
     return {
         "output": str(output),
         "briefs": len(data["entries"]),
-        "standalone": True,
+        "standalone": not served,
         "integrated": bool(presentation_context),
         "embedded_sources": sum("sha256" in s for s in data["local_sources"].values()),
     }

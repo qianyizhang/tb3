@@ -217,7 +217,9 @@ def markdown(text: str, link: Callable[[str], str | None]) -> str:
     return "\n".join(out)
 
 
-def present(root: Pathish, output: Pathish, local_media: bool = False) -> Document:
+def present(
+    root: Pathish, output: Pathish, local_media: bool = False, *, served: bool = False
+) -> Document:
     root, output = Path(root).resolve(), Path(output).resolve()
     app_js, app_css = frontend.assets(root, "overview")
     if output == root or root.is_relative_to(output):
@@ -395,6 +397,7 @@ def present(root: Pathish, output: Pathish, local_media: bool = False) -> Docume
         explorer = task_briefs.build(
             root,
             output / "task-explorer/index.html",
+            served=served,
             presentation_context={
                 "home_url": "../index.html",
                 "home_label": "Medical workbench",

@@ -476,3 +476,13 @@ No inverse solve or agent result is produced; missing thresholds remain unresolv
 `healthagentbench-tumor-tiles-v1` maps an authored blank 28 by 25 grid to verified native extents, including the half-height final row. Its cursor is unclassified. The [source notice](task-explorer/healthagentbench-tumor-tiles/NOTICE.md) preserves local recovery and unresolved image-reuse terms; no WSI pixels enter the portable pack. Required output, private mask-derived tile set and F1 rule stay separate, with no prediction or score.
 
 `healthagentbench-cxr-correction-v1` uses two abstract existing-clause slots to explain evidence review and keep/correct/remove choices. No new finding action, patient sentence or judge output exists. The [source notice](task-explorer/healthagentbench-cxr-correction/NOTICE.md) identifies missing credentialed report/JPG inputs. FINDINGS-only output, default five calls/absolute three votes, infrastructure errors and the unpinned judge source remain explicit. All four Interpretation A recipes are planar and use the same source-labeled DOM controls without WebGL.
+
+
+## Restoration reader migration
+
+CT-ORG, MRI-SR, MSD Pancreas and TotalSegmentator restoration share the new
+Guided reader and selected packaging. Their original canonical story plans,
+source records and historical review receipts remain authoritative. Reader-only
+controls reset on backward/chapter seeks, reset, and canonical capture. The
+[framework record](../docs/explainer-framework.md#first-vertical-slice) documents
+the three comparison layouts, new ownership and temporary legacy adapters.

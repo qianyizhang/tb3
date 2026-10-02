@@ -9,6 +9,7 @@ const contentTypes: Record<string, string> = {
   '.html': 'text/html',
   '.json': 'application/json',
   '.js': 'text/javascript',
+  '.mjs': 'text/javascript',
   '.css': 'text/css',
   '.png': 'image/png',
   '.svg': 'image/svg+xml',

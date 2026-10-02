@@ -80,6 +80,86 @@ class RouteStoryPlan(TypedDict):
     beats: list[StoryBeat]
 
 
+class ExplainerNotice(TypedDict):
+    label: str
+    text: str
+    url: str
+    link_label: str
+
+
+class ExplainerAsset(TypedDict):
+    path: str
+    sha256: str
+    bytes: int
+    role: Literal[
+        "input-contract", "helper-contract", "operation-contract", "output-contract", "license"
+    ]
+
+
+class ExplainerBundle(TypedDict):
+    id: str
+    basis: Literal["symbolic-protocol"]
+    reference_policy: Literal["no-reference-assets"]
+    units: str
+    coordinates: str
+    license: str
+    notice: str
+    license_text: str
+    assets: list[ExplainerAsset]
+
+
+class RestorationSource(TypedDict):
+    notice: ExplainerNotice
+    input: str
+    units: str
+    simulation: str
+    excluded: str
+
+
+class RestorationHelper(TypedDict):
+    lite: str
+    standard: str
+    window: str
+    source_claims: str
+
+
+class RestorationOperation(TypedDict):
+    steps: list[str]
+    limitations: str
+
+
+class RestorationOutput(TypedDict):
+    path: str
+    format: str
+    coverage: str
+    boundary: str
+    rules: dict[str, str]
+
+
+class RestorationGeometry(TypedDict):
+    input: str
+    output: str
+    mapping: str
+    caution: str
+    files: str
+    operation_note: str
+    declared: str
+    checked: str
+
+
+class RestorationView(TypedDict):
+    family: Literal["restoration-protocol"]
+    version: Literal[1]
+    label: str
+    source: RestorationSource
+    helper: RestorationHelper
+    operation: RestorationOperation
+    output: RestorationOutput
+    geometry: RestorationGeometry
+    bundle: ExplainerBundle
+    dependencies: dict[str, str]
+
+
 class ExpansionPlan(TypedDict):
     schema: Literal[2]
     id: str
@@ -3372,6 +3452,8 @@ class Inventory(TypedDict, total=False):
 
 class ExplorerData(TypedDict):
     explanation_stories: NotRequired[dict[str, StoryPlan]]
+    explainer_views: NotRequired[dict[str, RestorationView]]
+    explainer_resources: NotRequired[dict[str, str]]
     schema_version: Literal[1]
     title: NotRequired[str]
     entries: list[TaskEntry]
@@ -3484,6 +3566,12 @@ def _validate(value: object, kind: object, path: str) -> None:
             _validate(item, args[1], path + "." + str(key))
     elif kind is not object and type(value) is not kind:
         raise MedicalError(f"{path}: expected {getattr(kind, '__name__', kind)}")
+
+
+def validate_explainer_view(data: Document) -> RestorationView:
+    """Validate the family projection at its browser boundary."""
+    _validate(data, RestorationView, "explainer_view")
+    return cast(RestorationView, data)
 
 
 def validate_payload(data: Document, surface: Literal["explorer", "overview"]) -> Document:

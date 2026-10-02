@@ -3,12 +3,10 @@ import { Fragment, useState } from 'react';
 import { Box, Field, Markup, SourceLink, TaskScene } from './content';
 import { copyText, useLocale, wsiBoundary } from './locale';
 import { edition, hasExample, type ExplorerModel } from './model';
-import { taskSceneMode } from './task-visuals/mode';
-import type { VisualEntry } from './task-visuals/types';
 import type { Dispatch, ExplorerState } from './state';
 import type { TaskEntry, TaskTab, VisualRole } from './types';
-import { SourceWarning } from './task-visuals/SourceWarning';
-import { storyPresentation } from './task-visuals/story-recipes';
+import { ExplainerWarning } from './explainer';
+import { useExplainerResource } from './explainers/use-explainer-resource';
 interface DetailProps {
   model: ExplorerModel;
   state: ExplorerState;
@@ -46,9 +44,7 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
       : undefined;
   const exampleLabel = illustrated ? ' · ' + model.label(illustrated, entry) : '',
     native = /<img\b/.test(entry.visuals.input);
-  const plan = entry.illustration?.story_id
-    ? model.data.explanation_stories?.[entry.illustration.story_id]
-    : undefined;
+  const { plan, view, error } = useExplainerResource(entry.illustration?.story_id, model.data);
   const open = () => dispatch({ type: 'tab', tab: 'examples' }, '#tab-examples');
   const notice = <ImageNotice model={model} entry={entry} dispatch={dispatch} />;
   return (
@@ -72,11 +68,7 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
         <figure className="task-picture conceptual" data-illustration={entry.illustration.kind}>
           <figcaption>
             <span className="drawing-label">
-              {t(
-                plan || taskSceneMode(entry as VisualEntry) === '3d'
-                  ? 'Interactive task illustration'
-                  : 'Task illustration',
-              )}
+              {t(plan ? 'Interactive task illustration' : 'Task illustration')}
             </span>
             <span>
               {t(
@@ -86,7 +78,15 @@ function TaskPicture({ model, state, dispatch }: DetailProps) {
               )}
             </span>
           </figcaption>
-          <TaskScene entry={entry} plan={plan} />
+          {error ? (
+            <p role="alert">
+              {error} <button onClick={() => location.reload()}>Retry</button>
+            </p>
+          ) : entry.illustration.story_id && !plan ? (
+            <p role="status">Loading walkthrough…</p>
+          ) : (
+            <TaskScene entry={entry} plan={plan} view={view} />
+          )}
         </figure>
       ) : null}
       {!!entry.missing_media?.length && (
@@ -534,12 +534,10 @@ export function TaskDetail(props: DetailProps) {
       .replace(/[.]+$/, '');
   const datasets =
     model.data.datasets?.records.filter((dataset) => dataset.task_ids.includes(entry.id)) || [];
-  const plan = entry.illustration?.story_id
-    ? model.data.explanation_stories?.[entry.illustration.story_id]
-    : undefined;
+  const { plan, view, error } = useExplainerResource(entry.illustration?.story_id, model.data);
   return (
     <article className="task-detail" data-brief={entry.id}>
-      <SourceWarning warning={plan ? storyPresentation(plan).warning : undefined} />
+      <ExplainerWarning plan={plan} view={view} />
       <div className="detail-heading">
         {!entry.id.startsWith('wsi-') && (
           <p className="task-provenance">

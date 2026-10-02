@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "definitions": {
+    "automed-ctorg-ctsr-v1": {
+      "label": "CT-ORG",
+      "pack": "symbolic-automed-ctorg-ctsr-v1",
+      "geometry": {
+        "input": "Degraded CT grid",
+        "output": "Restored same grid",
+        "mapping": "Same grid · ×4 z degradation declared",
+        "caution": "Symbolic grids; no anatomy or restored voxels.",
+        "files": "ct.nii.gz → sct.nii.gz",
+        "operation_note": "Restore the same public/target grid. ×4 through-plane degradation does not require fourfold output expansion. Preserve HU/affine/header; none verified here.",
+        "declared": "Same public/hidden HR grid; 3D NIfTI HU and affine preservation requested",
+        "checked": "Finite 3D NIfTI; target shape if present; missing outputs do not invalidate present-format"
+      }
+    },
+    "automed-mri-sr-v1": {
+      "label": "MRI SR",
+      "pack": "symbolic-automed-mri-sr-v1",
+      "geometry": {
+        "input": "360 × 256 LR",
+        "output": "720 × 512 HR",
+        "mapping": "×2 per axis · ×4 samples",
+        "caution": "Symbolic grid sizes; no anatomy or reconstructed pixels.",
+        "files": "input.npy → enhanced.npy",
+        "operation_note": "Resolve 720×512 target; generic same-shape guidance conflicts. No resampling or model output produced.",
+        "declared": "720×512 float32 normalized[0,1] requested",
+        "checked": "Finite floating 2D; reference shape; no intensity/dtype-width guard"
+      }
+    },
+    "automed-msd-pancreas-ctsr-v1": {
+      "label": "MSD Pancreas",
+      "pack": "symbolic-automed-msd-pancreas-ctsr-v1",
+      "geometry": {
+        "input": "Degraded CT grid",
+        "output": "Restored same grid",
+        "mapping": "Same grid · ×4 z degradation declared",
+        "caution": "Symbolic grids; no anatomy or restored voxels.",
+        "files": "ct.nii.gz → sct.nii.gz",
+        "operation_note": "Restore the same public/target grid. ×4 through-plane degradation does not require fourfold output expansion. Preserve HU/affine/header; none verified here.",
+        "declared": "Same public/hidden HR grid; 3D NIfTI HU and affine preservation requested",
+        "checked": "Finite 3D NIfTI; target shape if present; missing outputs do not invalidate present-format"
+      }
+    },
+    "automed-totalsegmentator-ctsr-v1": {
+      "label": "TotalSegmentator",
+      "pack": "symbolic-automed-totalsegmentator-ctsr-v1",
+      "geometry": {
+        "input": "Degraded CT grid",
+        "output": "Restored same grid",
+        "mapping": "Same grid · ×4 z degradation declared",
+        "caution": "Symbolic grids; no anatomy or restored voxels.",
+        "files": "ct.nii.gz → sct.nii.gz",
+        "operation_note": "Restore the same public/target grid. ×4 through-plane degradation does not require fourfold output expansion. Preserve HU/affine/header; none verified here.",
+        "declared": "Same public/hidden HR grid; 3D NIfTI HU and affine preservation requested",
+        "checked": "Finite 3D NIfTI; target shape if present; missing outputs do not invalidate present-format"
+      }
+    }
+  }
+}
