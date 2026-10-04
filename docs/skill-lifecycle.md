@@ -20,7 +20,8 @@ The authoring workflow has separate owners: `design-medical-study` prepares a
 question and protocol; `author-task-brief` explains the task;
 `explain-medical-evidence` interprets retained results; `author-task-story` creates
 canonical interactive explanations; `video-explainer` exports established sources;
-`govern-artifacts` manages bounded retention, deduplication and recovery proposals.
+`govern-artifacts` manages bounded retention, deduplication, verified recovery and
+authorized retirement.
 
 Evidence and video skills have maintenance review cases. Packaging checks or case
 definitions do not prove agent behavior; new evaluations need their own execution

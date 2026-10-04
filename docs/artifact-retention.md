@@ -24,6 +24,21 @@ retirement boundaries remain in [governance](governance.md).
 scientific acceptance, promote a task, or authorize deletion. A rebuild recipe
 alone is not proof that historical byte-identical recovery will work.
 
+## Directory references and copied workspaces
+
+A directory named as a historical apply target or rebuild working directory
+does not by itself define a live dependency on every file below it. Inspect the
+actual report fields and consumers. Keep explicit receipt/report files, complete
+task asset bundles needed by relative manifest paths, local evidence, environment
+links and unclassified outputs. Use recorded Git trees to identify copied source
+paths; preserve exact bytes through occurrence manifests even when the original
+baseline is unknown. Record that gap instead of inventing a commit.
+
+Source needed by an old rebuild command must first be materialized from its
+archive. Track only a concise recovery record; share metadata sidecars and use
+incremental Git bundles against an already verified base when that avoids
+redundant provenance copies.
+
 ## Shared bytes, separate occurrences
 
 A retention job records owner, source task, provenance links and disjoint scopes.
@@ -58,6 +73,17 @@ match. Source notices and case/reference roles remain occurrence metadata.
 Run from the workspace with its existing environment. All outputs must be fresh;
 store and output locations must be separate from source scopes. An external
 store can be supplied as an absolute path, subject to filesystem permissions.
+Paths must not traverse symlinks; on macOS, use `/private/tmp` rather than the
+`/tmp` alias for temporary destinations.
+
+| Command | Result | Source files |
+| --- | --- | --- |
+| `init` | Editable job with active, unclassified scopes | Unchanged |
+| `plan` | Exact occurrence manifest and duplicate-byte summary | Unchanged |
+| `pack` | Compressed objects, stored manifest and fresh receipt | Unchanged |
+| `verify` | Object digest/length check against a supplied manifest | Not required |
+| `restore` | Separate files under a fresh recovery directory | Not required |
+| `retire` | Intent, removal journal and completion result | Enumerated, authorized copies removed after verification |
 
 ```sh
 uv run --no-sync med artifacts init .local/campaign/worker-finished \
@@ -101,6 +127,13 @@ membership and metadata again at completion, and verifies compressed objects.
 It does not repeatedly audit unrelated raw runs. Summaries stay small; potentially
 large plans stay local. Do not track whole inventories of every intermediate file.
 
+Restoration keeps the original workspace-relative hierarchy beneath the fresh
+destination. Excluded paths are outside the manifest. To reconstruct a workspace
+that used exclusions, combine the archived source with separately retained files
+after checking their recorded hashes. Environment links and availability need
+their own recovery record. See [completed migrations](#applied-migration) for the
+existing archive indexes and checkpoint-specific instructions.
+
 ## Verification and retirement
 
 The tool aborts on changed source content/membership, unknown or active packing
@@ -136,28 +169,6 @@ workspace snapshot; preserve unsupported metadata separately or use an appropria
 verified archive. Explicit retirement removes only the enumerated regular files;
 parent directories and excluded paths remain in place.
 
-## Prevent the next accumulation
-
-- **Production:** one immutable catalogue build per identical source/build hash;
-  selected asset exports for individual tasks; fresh builds when those pins change.
-- **Workers:** recoverable baseline plus a focused patch and unique inputs; reuse
-  shared objects across jobs instead of repeated full `baseline.tar` and extracted
-  snapshots. Keep each worker's handoff and failures independently addressable.
-- **Closeout:** pack completed scopes once, link a compact manifest/receipt, and
-  measure duplicate bytes and added stored bytes. Review unresolved references.
-- **Budgets:** report per-family and per-batch sizes using existing packaging
-  receipts. Establish budgets from representative native-image/spatial pilots;
-  a symbolic restoration export's 319 KB is not a universal medical-asset budget.
-- **Deletion:** no time-based purge or automatic object GC. A future GC requires a
-  complete manifest-root set, a grace period, recovery validation and explicit
-  retirement authority. Absence from one ledger does not make an object disposable.
-
-Packing is an additive step. The current implementation provides exact-file
-deduplication and gzip compression; it does not deduplicate substrings in changing
-HTML bundles, automatically migrate receipt readers, or reduce existing storage
-until a separately reviewed retirement is performed.
-
-
 ## Authorized migration
 
 `med artifacts retire` applies an already authorized, exact archive scope after
@@ -186,30 +197,36 @@ Temporary restored copies made solely for verification can be removed after a
 successful retirement, preserving their verification receipt and the object store.
 This does not confer independent-backup status.
 
-
 ## Applied migration
 
-The [2026-10-02 recovery record](../archive/artifact-migration-20261002.json)
-documents the first authorized migration: closed baseline archives, copied worker
-source workspaces and superseded HTML. It pins the local occurrence index,
-selection, source bundle and retained-file comparison. Per-batch metadata and
-full restoration preceded source retirement; raw evidence, acquired inputs,
-environments and accepted/live references remain in place. Historical review and
-additive-scaffold records remain as dated observations.
+The [archive overview](../archive/README.md#consolidated-explainer-artifacts)
+summarizes both completed passes and their recovery routes. The first
+[migration record](../archive/artifact-migration-20261002.json) covers baseline
+archives, copied workspaces and superseded HTML. The
+[47-workspace follow-up](../archive/referenced-workspace-consolidation-20261002.json)
+narrows provisional holds after classifying historical directory references.
+Each record pins its occurrence index, selection, source history and retained-file
+comparison. Full restoration preceded retirement in every batch. Historical
+receipts and measurements remain dated observations; raw evidence, acquired
+inputs, environments and accepted/live references remain in place.
 
+## Prevent the next accumulation
 
-## Directory references and copied workspaces
+- **Production:** one immutable catalogue build per identical source/build hash;
+  selected asset exports for individual tasks; fresh builds when those pins change.
+- **Workers:** recoverable baseline plus a focused patch and unique inputs; reuse
+  shared objects across jobs instead of repeated full `baseline.tar` and extracted
+  snapshots. Keep each worker's handoff and failures independently addressable.
+- **Closeout:** pack completed scopes once, link a compact manifest/receipt, and
+  measure duplicate bytes and added stored bytes. Review unresolved references.
+- **Budgets:** report per-family and per-batch sizes using existing packaging
+  receipts. Establish budgets from representative native-image/spatial pilots;
+  a symbolic restoration export's 319 KB is not a universal medical-asset budget.
+- **Deletion:** no time-based purge or automatic object GC. A future GC requires a
+  complete manifest-root set, a grace period, recovery validation and explicit
+  retirement authority. Absence from one ledger does not make an object disposable.
 
-A directory named as a historical apply target or rebuild working directory
-does not by itself define a live dependency on every file below it. Inspect the
-actual report fields and consumers. Keep explicit receipt/report files, complete
-task asset bundles needed by relative manifest paths, local evidence, environment
-links and unclassified outputs. Use recorded Git trees to identify copied source
-paths; preserve exact bytes through occurrence manifests even when the original
-baseline is unknown. Record that gap instead of inventing a commit.
-
-The [47-workspace follow-up](../archive/referenced-workspace-consolidation-20261002.json)
-applies this rule. Historical receipts remain unchanged; source needed by an old
-rebuild command must first be materialized from its archive. Track only a concise
-recovery record; share metadata sidecars and use incremental Git bundles against
-an already verified base when that avoids redundant provenance copies.
+Packing is an additive step. The current implementation provides exact-file
+deduplication and gzip compression; it does not deduplicate substrings in changing
+HTML bundles, automatically migrate receipt readers, or reduce existing storage
+until a separately reviewed retirement is performed.

@@ -128,16 +128,31 @@ def build_parser() -> argparse.ArgumentParser:
     )
     a.add_argument("job", type=Path)
     a.add_argument("--output", type=Path, required=True)
-    for action in ("pack", "verify", "restore", "retire"):
-        a = artifact_sub.add_parser(action)
-        a.add_argument("plan", type=Path)
-        a.add_argument("--store", type=Path, required=True)
+    for action, description, output_help in (
+        ("pack", "Store exact bytes and preserve source files", "Fresh pack receipt JSON path"),
+        ("verify", "Verify stored bytes against a supplied manifest", ""),
+        ("restore", "Restore independent files into a fresh directory", "Fresh recovery directory"),
+        (
+            "retire",
+            "Remove authorized source copies after full recovery verification",
+            "Fresh directory for retirement intent, events and result",
+        ),
+    ):
+        a = artifact_sub.add_parser(action, help=description, description=description)
+        a.add_argument("plan", type=Path, help="Plan JSON or stored occurrence manifest")
+        a.add_argument("--store", type=Path, required=True, help="Artifact object store directory")
         if action != "verify":
-            a.add_argument("--output", type=Path, required=True)
+            a.add_argument("--output", type=Path, required=True, help=output_help)
         if action == "retire":
-            a.add_argument("--recovery", type=Path, required=True)
-            a.add_argument("--plan-sha256", required=True)
-            a.add_argument("--authorization", required=True)
+            a.add_argument(
+                "--recovery", type=Path, required=True, help="Complete restored copy to verify"
+            )
+            a.add_argument(
+                "--plan-sha256", required=True, help="Exact SHA-256 pinned by the receipt"
+            )
+            a.add_argument(
+                "--authorization", required=True, help="Source of the user's scope authorization"
+            )
     p = sub.add_parser("list")
     p.add_argument("query", nargs="?", default="")
     p.add_argument("--kind", choices=sorted(c.KINDS))

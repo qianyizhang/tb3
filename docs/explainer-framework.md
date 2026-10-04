@@ -442,3 +442,8 @@ strategy and reusable skill/scaffold, welcoming deduplication. See
 [artifact retention](artifact-retention.md) for the implemented bounded job, plan,
 compressed object store, verification and fresh restoration workflow. Existing
 source retirement remains separately scoped.
+
+**Migration follow-up:** the two subsequently authorized passes are complete.
+The [archive overview](../archive/README.md#consolidated-explainer-artifacts)
+links their retained recovery records and distinguishes the file-count
+checkpoints. The inventory and proposals above describe the pre-migration review.

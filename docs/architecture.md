@@ -84,6 +84,7 @@ The installed entry point is `med = tb3_medical.cli:main` in
 | [landmarks.py](../src/tb3_medical/landmarks.py), [scoring.py](../src/tb3_medical/scoring.py), [score_ct.py](../src/tb3_medical/score_ct.py), [score_mri.py](../src/tb3_medical/score_mri.py) | Native landmark inputs and views, answer contracts and scoring. |
 | [task_package.py](../src/tb3_medical/task_package.py), [packaging.py](../src/tb3_medical/packaging.py) | Portable task recovery/evaluation and selected-input exports with manifests and hashes. |
 | [evidence.py](../src/tb3_medical/evidence.py) | Pinned evidence inventories and explanation artifacts. |
+| [artifact_retention.py](../src/tb3_medical/artifact_retention.py) | Bounded artifact inventories, deduplicated recovery stores and explicitly authorized retirement. |
 | [presentation.py](../src/tb3_medical/presentation.py), [task_catalog.py](../src/tb3_medical/task_catalog.py), [task_briefs.py](../src/tb3_medical/task_briefs.py) | Workbench build, composed task catalogues, validated briefs and the Task Explorer. |
 | [presentation_contracts.py](../src/tb3_medical/presentation_contracts.py), [frontend.py](../src/tb3_medical/frontend.py) | Canonical typed browser payloads, runtime validation, generated TypeScript and verified frontend build assets. |
 | [explanation_stories.py](../src/tb3_medical/explanation_stories.py), [story_authoring.py](../src/tb3_medical/story_authoring.py), [story_batches.py](../src/tb3_medical/story_batches.py) | Parse-once story compilation, explicit recipe semantics, unbound drafts, selected dependency snapshots and typed export-receipt verification. |
@@ -194,8 +195,10 @@ workflows; canonical ownership remains with the repository skill directories.
 
 ## Local artifact retention
 
-`artifact_retention.py` owns bounded retention jobs, occurrence manifests, compressed
+`artifact_retention.py` owns retention jobs, occurrence manifests, compressed
 objects keyed by SHA-256, integrity verification and fresh restoration. `cli.py`
-exposes this through `med artifacts`. It reuses `storage.py` path and publication
-primitives and never deletes sources or changes acceptance. See
+exposes these operations through `med artifacts`. Packing preserves sources;
+explicit `retire` verifies the pinned manifest, stored objects, restored copy and
+current source before removing enumerated files. The module reuses `storage.py`
+path and publication primitives; scientific acceptance remains unchanged. See
 [artifact retention](artifact-retention.md) for the provenance and recovery contract.

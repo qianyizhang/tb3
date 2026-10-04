@@ -71,30 +71,23 @@ and passed a full object check. Verify the recorded hashes and restore only into
 a fresh directory. Two stale Chinese brief translations remain recoverable from
 their original commit and archive; current English briefs remain authoritative.
 
-
 ## Consolidated explainer artifacts
 
-The [2026-10-02 recovery record](artifact-migration-20261002.json) covers 36 baseline
-archives, 185 copied worker workspaces and 814 superseded HTML files. All 219
-batches passed fresh restoration and original/restored byte, mode and mtime
-comparisons before retirement. **123.31 GB** of original file occurrences
-were migrated; net logical reduction after the store and local recovery records
-is **78.83 GB**. This is not a physical APFS reclamation claim.
+The two completed passes saved **90.23 GB of logical storage**, after added store
+objects, manifests and local recovery records. Each batch passed a fresh restore
+and exact byte, mode and modification-time checks before source retirement.
+These are recorded closeout measurements, not a current disk survey or a physical
+APFS reclamation claim.
 
-The local `.local/artifact-migration-20261002/index.json` maps original scopes to
-hash-pinned manifests in `.local/artifact-store/manifests/`. Its hash is retained
-in the recovery record. See `.local/artifact-migration-20261002/RECOVERY.md` for
-lookup and [the retention guide](../docs/artifact-retention.md) for CLI details.
-Restore a selected manifest into a fresh directory with `med artifacts restore`;
-do not overwrite the active checkout or regenerate historical evidence.
+| Recovery record | Scope | Verified batches | Net logical reduction |
+| --- | --- | ---: | ---: |
+| [Initial migration](artifact-migration-20261002.json) | 36 baseline archives, 185 copied workspaces and 814 superseded HTML files | 219 | 78.83 GB |
+| [Referenced workspace follow-up](referenced-workspace-consolidation-20261002.json) | Copied source in 47 previously held workspaces | 47 | 11.40 GB |
 
-The final comparison confirmed 302,541 retained files (28.50 GB),
-plus 218 symlinks, unchanged. Accepted/live references, local evidence and
-original acquisitions remain in place. Extended filesystem metadata is retained
-in hash-pinned sidecars; automatic restoration covers file bytes, modes and mtimes.
-The source bundle was checked in an empty Git repository. All recovery material
-remains on the same disk; independent backup has not been established.
-
+The initial pass migrated **123.31 GB** of original file occurrences. Its
+preservation check covered **302,541 files (28.50 GB) and 218 symlinks** before the
+follow-up below. That number describes a checkpoint and includes the copied
+workspaces subsequently consolidated.
 
 ## Referenced workspace follow-up
 
@@ -106,15 +99,37 @@ repository source is recoverable from the shared object store.
 
 Those roots went from **272,013 to 4,256 regular files**.
 All **267,757 archived occurrences** passed restoration and source/restore
-comparisons before retirement. Net additional logical reduction, after new store
-objects/manifests and local records, is **11.40 GB**.
-The retained-path check confirmed 41,788 files and
-218 symlinks unchanged. The first migration's records remain intact;
-its 302,541-file preservation count was the checkpoint before this follow-up.
+comparisons before retirement. A separate retained-path check covered **41,788
+files and 218 symlinks**, including additional traced reports; its scope differs
+from the initial preservation check. The 272,013-to-4,256 comparison measures the
+same 47 roots. Both migration records retain their original measurements.
 
-Use `.local/artifact-reference-consolidation-20261002/index.json` and its hash in
-the tracked record to find each source manifest. Its `RECOVERY.md` explains how
-archived source and retained local occurrences form the historical workspace.
-Materialize source before running a historical rebuild command. One RadAgent copy
-did not record its original Git HEAD; that gap remains explicit, with exact bytes
-retained. No independent-backup claim follows from the local recovery chain.
+One RadAgent copy did not record its original Git HEAD. That gap remains explicit;
+its exact bytes are retained without assigning an inferred historical commit.
+
+## Recover consolidated explainer files
+
+Each tracked recovery record pins an `index.json` under its local campaign root:
+
+- Initial pass: `.local/artifact-migration-20261002/`.
+- Follow-up: `.local/artifact-reference-consolidation-20261002/`.
+
+1. Compare the index's SHA-256 with `recovery.index_sha256` in the corresponding
+   tracked record. Find the original scope and take its `manifest_sha256`.
+2. Verify `.local/artifact-store/manifests/MANIFEST_SHA256.json` against that digest,
+   then use `med artifacts verify` to check the objects in `.local/artifact-store`.
+3. Use `med artifacts restore` to restore the selected manifest into a fresh
+   directory. The original workspace-relative hierarchy is preserved beneath it.
+   Follow the campaign's local `RECOVERY.md` to reconstruct excluded/retained
+   occurrences from their separate recorded hashes when a full workspace is needed.
+
+The [retention guide](../docs/artifact-retention.md#cli-scaffold) gives command
+syntax and path requirements. Materialize archived source before using a
+historical rebuild command; a retained target directory alone is incomplete.
+Keep active checkout paths and original evidence intact during reconstruction.
+
+Accepted/live references, local evidence and original acquisitions remain in
+place. Hash-pinned sidecars retain extended filesystem metadata; automatic
+restoration covers regular-file bytes, modes and modification times. The Git
+bundle chain was checked in an empty repository. Recovery material remains on
+the same disk; independent backup has not been established.
