@@ -1,0 +1,381 @@
+.stage {
+  width: 100%;
+  color: #25383f;
+}
+.inventory {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+  margin: 0 0 9px;
+  color: #55717d;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 200px;
+  gap: 12px;
+  align-items: start;
+}
+.card {
+  min-width: 0;
+  border: 1px solid #d0dce1;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #fcfdfb;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 9px 12px;
+  border-bottom: 1px solid #d0dce1;
+  font:
+    11px/1.4 ui-monospace,
+    monospace;
+}
+.heading span {
+  color: #667c88;
+}
+.sceneWrap {
+  position: relative;
+  background: #111e28;
+}
+.scene {
+  height: 290px;
+}
+.scene canvas {
+  display: block;
+}
+.poster {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #c5d4db;
+  pointer-events: none;
+}
+.poster img {
+  max-width: 100%;
+  max-height: 86%;
+  object-fit: contain;
+}
+.loading {
+  position: absolute;
+  top: 45%;
+  width: 100%;
+  color: #c5d4db;
+  text-align: center;
+  font-size: 11px;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 12px;
+  font-size: 10px;
+  line-height: 1.3;
+}
+.legend span::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  margin-right: 4px;
+  border-top: 2px solid #ff2828;
+  vertical-align: middle;
+}
+.legend .editKey::before {
+  border-color: #45b85f;
+}
+.legend .detailKey::before {
+  border-color: #549ccc;
+  border-top-style: dashed;
+}
+.legend .inspectionKey::before {
+  border-color: #67d6ef;
+}
+.legend .bridgeKey::before {
+  border-color: #d592ee;
+}
+.legend .savedKey::before {
+  border-color: #31d1b6;
+}
+.legend .cprKey::before {
+  border-color: #f5bc62;
+}
+.note {
+  margin: 7px 12px;
+  color: #617984;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.reset {
+  font-size: 10px;
+  padding: 5px 8px;
+  margin: 0 12px 10px;
+  border: 1px solid #c5d3da;
+  border-radius: 5px;
+  color: #25383f;
+  background: #eef5f7;
+}
+.description {
+  margin: 8px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.control,
+.slider {
+  display: grid;
+  gap: 5px;
+  margin: 7px 10px;
+  font:
+    10px/1.4 ui-monospace,
+    monospace;
+}
+.stage select {
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid #c5d3da;
+  border-radius: 4px;
+  color: #25383f;
+  background: #eef5f7;
+  padding: 3px 5px;
+  font: inherit;
+}
+.stage input {
+  accent-color: #0f918b;
+}
+.delivered {
+  margin: 8px 12px;
+}
+.delivered img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #111e28;
+}
+.delivered figcaption {
+  font-size: 10px;
+  line-height: 1.4;
+  margin-top: 5px;
+  color: #617984;
+}
+.readout {
+  display: block;
+  margin: 8px 12px;
+  padding: 6px 8px;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #47616e;
+  background: #edf5f7;
+  overflow-wrap: anywhere;
+}
+.cprPanel {
+  display: grid;
+  gap: 6px;
+  margin: 8px 12px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.cprCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #111e28;
+  cursor: crosshair;
+  image-rendering: pixelated;
+}
+.cprControls {
+  display: grid;
+  grid-template-columns: 65px 1fr 1fr;
+  align-items: start;
+  gap: 9px;
+}
+.cprControls label {
+  display: grid;
+  gap: 3px;
+  font-size: 10px;
+}
+.cprControls input {
+  width: 100%;
+  min-width: 0;
+}
+.link {
+  display: grid;
+  gap: 3px;
+  background: #fff3df;
+  border-left: 3px solid #f5bc62;
+  padding: 6px 8px;
+  font-size: 10px;
+}
+.link code {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.arc {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #675c3d;
+}
+.slice {
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111e28;
+}
+.slice canvas:not([hidden]) {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.slider input {
+  width: 100%;
+  margin: 0;
+}
+.slider span {
+  color: #617984;
+}
+.error {
+  color: #8b5729;
+  font-size: 11px;
+}
+.stage :is(button, input, select, a):focus-visible,
+.scene:focus-visible,
+.cprCanvas:focus-visible {
+  outline: 2px solid #0f918b;
+  outline-offset: 2px;
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid > .card:last-child {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .grid > .card:last-child {
+    grid-column: auto;
+  }
+  .scene {
+    height: 290px;
+  }
+  .slice {
+    height: 260px;
+  }
+  .cprControls {
+    grid-template-columns: 65px 1fr;
+  }
+  .cprControls label:last-child {
+    grid-column: 1/-1;
+  }
+}
+:global([data-explainer-export-frame]) .inventory {
+  font-size: 10px;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+:global([data-explainer-export-frame]) .grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 185px;
+  gap: 9px;
+}
+:global([data-explainer-export-frame]) .heading {
+  font-size: 9px;
+  line-height: 1.2;
+  padding: 5px 8px;
+}
+:global([data-explainer-export-frame]) .scene {
+  height: 175px;
+}
+:global([data-explainer-export-frame]) .legend {
+  font-size: 9px;
+  line-height: 1.2;
+  margin: 5px 8px;
+  gap: 5px 8px;
+}
+:global([data-explainer-export-frame]) .note {
+  font-size: 9px;
+  line-height: 1.2;
+  margin: 5px 8px;
+}
+:global([data-explainer-export-frame]) .reset {
+  display: none;
+}
+:global([data-explainer-export-frame]) .description {
+  font-size: 10px;
+  line-height: 1.25;
+  margin: 5px 8px;
+}
+:global([data-explainer-export-frame]) .delivered {
+  margin: 5px 8px;
+}
+:global([data-explainer-export-frame]) .delivered img {
+  height: 115px;
+}
+:global([data-explainer-export-frame]) .delivered figcaption {
+  font-size: 9px;
+  line-height: 1.2;
+  margin-top: 3px;
+}
+:global([data-explainer-export-frame]) .readout {
+  font-size: 9px;
+  line-height: 1.2;
+  margin: 5px 8px;
+  padding: 4px 6px;
+}
+:global([data-explainer-export-frame]) .control,
+:global([data-explainer-export-frame]) .slider {
+  font-size: 9px;
+  line-height: 1.2;
+  margin: 4px 7px;
+  gap: 2px;
+}
+:global([data-explainer-export-frame]) .slider input {
+  height: 11px;
+}
+:global([data-explainer-export-frame]) .slice {
+  height: 145px;
+}
+:global([data-explainer-export-frame]) .cprPanel {
+  font-size: 10px;
+  line-height: 1.2;
+  margin: 5px 8px;
+  gap: 4px;
+}
+:global([data-explainer-export-frame]) .cprControls label {
+  font-size: 9px;
+  gap: 2px;
+}
+:global([data-explainer-export-frame]) .cprControls input {
+  height: 11px;
+  margin: 0;
+}
+:global([data-explainer-export-frame]) .link {
+  padding: 4px 6px;
+  font-size: 9px;
+  line-height: 1.2;
+  gap: 2px;
+}
+:global([data-explainer-export-frame]) .arc {
+  font-size: 9px;
+  line-height: 1.2;
+}
+:global([data-explainer-export-frame]) .cprPanel > .note {
+  display: none;
+}
+:global([data-explainer-export-frame]) .stage :is(a, button, input, select, canvas) {
+  pointer-events: none;
+}

@@ -176,6 +176,8 @@ class NativeTraceBeat(TypedDict):
         "centres",
         "focus",
         "measurement",
+        "route",
+        "cpr",
     ]
     frames: int
     caption: str
@@ -525,6 +527,86 @@ class MriTracePayload(TypedDict):
     licenses: list[str]
 
 
+class CoronaryTraceInput(TypedDict):
+    shape: list[int]
+    affine: list[list[int | float]]
+    spacing: list[int | float]
+    preview_shape: list[int]
+    preview_indices: list[list[int]]
+    preview_window: list[int | float]
+    volume: str
+    detail_origin: list[int]
+    detail_shape: list[int]
+    detail_volume: str
+    poster: str
+    mask_indices: list[int]
+    editable_indices: list[int]
+    start_ras: list[int | float]
+    end_ras: list[int | float]
+    review_ras: list[int | float]
+
+
+class CoronaryTraceState(TypedDict):
+    id: str
+    label: str
+    kind: Literal["input", "planes", "alternatives", "route", "cpr", "mesh", "saved"]
+    trace_step: int
+    axis: int | None
+    levels: list[int]
+    bounds: list[list[int | float]] | None
+    center_ijk: list[int | float] | None
+    description: str
+    delivered_step: int | None
+
+
+class CoronaryTraceCpr(TypedDict):
+    shape: list[int]
+    angles_deg: list[int | float]
+    offsets_mm: list[int | float]
+    arc_mm: list[int | float]
+    hu: str
+    source_ras_mm: str
+
+
+class CoronaryTraceMesh(TypedDict):
+    vertex_count: int
+    face_count: int
+    vertices: str
+    faces: str
+
+
+class CoronaryTraceObserved(TypedDict):
+    states: list[CoronaryTraceState]
+    bridge_ijk: list[list[int | float]]
+    added_indices: list[int]
+    removed_indices: list[int]
+    centerline_ras: list[list[int | float]]
+    cpr: CoronaryTraceCpr
+    mesh: CoronaryTraceMesh
+    trace: list[NativeTraceAction]
+    elapsed_seconds: int | float
+    steps_in_trace: int
+    evidence: str
+
+
+class CoronaryTraceReference(TypedDict):
+    reward: int | float
+    stages: dict[str, bool]
+    metrics: dict[str, int | float]
+    corrected_arc_mm: list[int | float]
+    correction_stages: dict[str, bool]
+    correction_only_arc: bool
+    limits: str
+
+
+class CoronaryTracePayload(TypedDict):
+    input: CoronaryTraceInput
+    observed: CoronaryTraceObserved
+    reference: CoronaryTraceReference
+    delivered_images: list[NativeDeliveredImage]
+    licenses: list[str]
+
+
 class NativeTraceAsset(TypedDict):
     path: str
     sha256: str
@@ -577,8 +659,13 @@ class MriTraceView(NativeTraceViewBase):
     payload: MriTracePayload | None
 
 
-NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView
-ExplainerView = RestorationView | CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView
+class CoronaryTraceView(NativeTraceViewBase):
+    adapter: Literal["coronary-cpr"]
+    payload: CoronaryTracePayload | None
+
+
+NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView | CoronaryTraceView
+ExplainerView = RestorationView | NativeTraceView
 
 
 class ExpansionPlan(TypedDict):

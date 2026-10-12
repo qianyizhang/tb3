@@ -192,7 +192,7 @@ class ExplanationStoriesTests(unittest.TestCase):
     def test_binding_survives_collection_and_brief_projection(self):
         catalog = task_catalog.collection(ROOT, task_catalog.DEFAULT_CATALOG)
         self.assertIn(
-            ("ours", "route-unfold-teaching-v1"),
+            ("ours", "br030-native-trace"),
             [
                 (e["id"], e["illustration"]["story_id"])
                 for e in catalog["entries"]
@@ -201,13 +201,11 @@ class ExplanationStoriesTests(unittest.TestCase):
         )
         data = task_briefs.load(ROOT)
         ours = next(e for e in data["entries"] if e["id"] == "ours")
-        self.assertEqual(ours["illustration"]["story_id"], "route-unfold-teaching-v1")
+        self.assertEqual(ours["illustration"]["story_id"], "br030-native-trace")
         self.assertIn("<img ", ours["visuals"]["input"])
         self.assertIn("<img ", ours["visuals"]["helpers"])
         self.assertIn("Post-run", ours["visuals"]["answer"])
-        self.assertEqual(
-            data["explanation_stories"]["route-unfold-teaching-v1"]["durationFrames"], 792
-        )
+        self.assertEqual(data["explanation_stories"]["br030-native-trace"]["durationFrames"], 1176)
         with self.assertRaises(MedicalError):
             stories.resolve_stories(ROOT, [{"illustration": {"story_id": "missing-story"}}])
         self.assertEqual(

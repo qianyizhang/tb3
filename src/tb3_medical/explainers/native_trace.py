@@ -27,6 +27,7 @@ from ..presentation_contracts import (
 )
 from ..types import Document
 from .assets import check_dependencies
+from .coronary_trace import project_coronary
 from .landmark_trace import project_landmark
 from .mri_trace import project_mri
 
@@ -58,7 +59,7 @@ class Manifest(ClosedModel):
     entry_id: str = Field(min_length=1)
     attempt: str = Field(min_length=1)
     saved_state: str = Field(min_length=1)
-    adapter: Literal["ct-pose", "mra-repair", "ct-landmarks", "longitudinal-mri"]
+    adapter: Literal["ct-pose", "mra-repair", "ct-landmarks", "longitudinal-mri", "coronary-cpr"]
     coordinates: Literal["LPS-mm", "RAS-mm"]
     notice: str = Field(min_length=1)
     recovery: str = Field(min_length=1)
@@ -96,6 +97,8 @@ class Chapter(ClosedModel):
         "centres",
         "focus",
         "measurement",
+        "route",
+        "cpr",
     ]
     frames: StrictInt = Field(ge=1)
     caption: str = Field(min_length=1)
@@ -174,6 +177,8 @@ def _indices(values: list[int], size: int) -> None:
 
 def project_payload(data: Document, manifest: Manifest) -> Document:
     """Explicit field allowlists prevent reference diagnostics leaking into input data."""
+    if manifest.adapter == "coronary-cpr":
+        return project_coronary(data, manifest.attempt, _array, _matrix)
     if manifest.adapter == "longitudinal-mri":
         return project_mri(data, manifest.attempt, _array, _matrix)
     shape = data["shape"]
@@ -376,7 +381,7 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
         if manifest.saved_state not in state_ids:
             raise ValueError("Saved state is not retained")
         steps = {item["step"] for item in payload["observed"]["trace"]}
-        if manifest.adapter in {"ct-landmarks", "longitudinal-mri"}:
+        if manifest.adapter in {"ct-landmarks", "longitudinal-mri", "coronary-cpr"}:
             deliveries = {a.step for a in manifest.assets if a.role == "delivered-image"}
             if any(
                 s["delivered_step"] is not None and s["delivered_step"] not in deliveries
@@ -423,10 +428,15 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
                 if manifest.adapter == "longitudinal-mri"
                 else {}
             ),
+            **(
+                {"coronary_trace.py": storage.sha(Path(__file__).with_name("coronary_trace.py"))}
+                if manifest.adapter == "coronary-cpr"
+                else {}
+            ),
             "explanation_stories.py": storage.sha(Path(explanation_stories.__file__)),
             **(
                 {"landmark_trace.py": storage.sha(Path(__file__).with_name("landmark_trace.py"))}
-                if manifest.adapter in {"ct-landmarks", "longitudinal-mri"}
+                if manifest.adapter in {"ct-landmarks", "longitudinal-mri", "coronary-cpr"}
                 else {}
             ),
         },
@@ -450,7 +460,11 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
         dependencies["src/tb3_medical/explainers/mri_trace.py"] = storage.sha(
             root / "src/tb3_medical/explainers/mri_trace.py"
         )
-    if manifest["adapter"] in {"ct-landmarks", "longitudinal-mri"}:
+    if manifest["adapter"] == "coronary-cpr":
+        dependencies["src/tb3_medical/explainers/coronary_trace.py"] = storage.sha(
+            root / "src/tb3_medical/explainers/coronary_trace.py"
+        )
+    if manifest["adapter"] in {"ct-landmarks", "longitudinal-mri", "coronary-cpr"}:
         dependencies["src/tb3_medical/explainers/landmark_trace.py"] = storage.sha(
             root / "src/tb3_medical/explainers/landmark_trace.py"
         )
@@ -488,6 +502,8 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
                     if manifest["adapter"] == "ct-landmarks"
                     else "https://www.cancerimagingarchive.net/collection/ispy2/"
                     if manifest["adapter"] == "longitudinal-mri"
+                    else "https://zenodo.org/records/21887809"
+                    if manifest["adapter"] == "coronary-cpr"
                     else "https://zenodo.org/records/15692630",
                     "link_label": "Original dataset",
                 }

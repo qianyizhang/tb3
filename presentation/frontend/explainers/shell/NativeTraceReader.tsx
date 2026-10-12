@@ -5,6 +5,7 @@ import { useFramePlayer } from '../player/use-frame-player';
 import { CtTraceStage } from '../native/CtTraceStage';
 import { MraTraceStage } from '../native/MraTraceStage';
 import { LandmarkTraceStage } from '../native/LandmarkTraceStage';
+import { CoronaryTraceStage } from '../native/CoronaryTraceStage';
 import { MriTraceStage } from '../native/MriTraceStage';
 import styles from './native-trace-reader.module.css';
 import { useLocale } from '../../locale';
@@ -14,6 +15,8 @@ const chapterLabels: Record<string, string> = {
   input: 'Inputs',
   focus: 'Selected focus',
   measurement: 'Measure extent',
+  route: 'Saved route',
+  cpr: 'Source-linked CPR',
   search: 'Search',
   bounds: 'Volume bounds',
   coarse: 'Coarse match',
@@ -39,6 +42,8 @@ const chapterLabelsZh: Record<string, string> = {
   centres: '图像中心',
   focus: '选定焦点',
   measurement: '范围测量',
+  route: '保存的路径',
+  cpr: 'CPR 来源位置',
 };
 
 function ReferenceResult({ view }: { view: NativeTraceView }) {
@@ -80,6 +85,24 @@ function ReferenceResult({ view }: { view: NativeTraceView }) {
         <small>
           Different endpoints. Source diameter units unresolved; component extent is not an
           adjudicated clinical diameter.
+        </small>
+      </section>
+    );
+  }
+  if (view.adapter === 'coronary-cpr') {
+    const { reference: ref, observed } = view.payload;
+    const original = observed.cpr.arc_mm.at(-1)!;
+    const corrected = ref.corrected_arc_mm.at(-1)!;
+    return (
+      <section className={styles.result} data-native-reference-result>
+        <strong>Frozen reward {ref.reward} · CPR distance metadata fails</strong>
+        <span>
+          Original arc {original.toFixed(3)} mm · saved-route distance {corrected.toFixed(3)} mm ·
+          difference {(original - corrected).toFixed(3)} mm
+        </span>
+        <small>
+          Repair, route and mesh pass this fixture. The retained author correction changes only the
+          distance axis; original output and score remain unchanged.
         </small>
       </section>
     );
@@ -148,12 +171,15 @@ function TraceEvidence({
           <pre>{item.output}</pre>
         </details>
       ))}
-      {(view.adapter === 'ct-landmarks' || view.adapter === 'longitudinal-mri') && view.payload && (
-        <details>
-          <summary>Saved solver account — a retained claim, not an endorsed finding</summary>
-          <pre>{view.payload.observed.evidence}</pre>
-        </details>
-      )}
+      {(view.adapter === 'ct-landmarks' ||
+        view.adapter === 'longitudinal-mri' ||
+        view.adapter === 'coronary-cpr') &&
+        view.payload && (
+          <details>
+            <summary>Saved solver account — a retained claim, not an endorsed finding</summary>
+            <pre>{view.payload.observed.evidence}</pre>
+          </details>
+        )}
       <details>
         <summary>Images actually delivered to the solver</summary>
         <p>
@@ -326,6 +352,15 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
             </div>
           ) : view.adapter === 'ct-pose' ? (
             <CtTraceStage
+              key={stageKey}
+              payload={view.payload}
+              stateId={beat.state}
+              chapterId={beat.scene}
+              referenceShown={referenceShown}
+              onReady={onReady}
+            />
+          ) : view.adapter === 'coronary-cpr' ? (
+            <CoronaryTraceStage
               key={stageKey}
               payload={view.payload}
               stateId={beat.state}
