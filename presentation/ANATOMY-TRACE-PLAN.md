@@ -40,8 +40,8 @@ explain every condition of an entry.
   two contact patches, bounded edit and reproduced frozen evaluation.
 
 These local standalone prototypes establish useful interaction/evidence patterns.
-They are not yet canonical player migrations and do not increment historical
-completion counts. Their group-owned source, derivation receipts and reusable
+Their canonical migrations are now separately regression-reviewed; they do not
+increment historical completion counts. Their group-owned source, derivation receipts and reusable
 browser checks are retained; raw patient volumes and generated media stay local.
 
 ## Completion criteria for each applicable entry
@@ -156,16 +156,15 @@ uv run --no-sync python -m tb3_medical.explainers.native_trace \
   --output .local/anatomy-pose/NEW-native-mra.json
 ```
 
-The drafts now compile through the canonical `compile_story` path into a
+The manuscripts compile through the canonical `compile_story` path into a
 Python-owned browser contract and shared native-trace reader. Both adapters use
 the existing frame player and a selected offline exporter. Interactive reference
 reveal is explicit and clears on backward navigation/reset; canonical capture
 reveals only the authored reference chapter. Missing local assets retain the
 narrative with a visible unavailable state, without substitute scans.
 
-The two proposed catalogue bindings now select the native manuscripts for
-regression review. Finalize this migration only after canonical motion/export
-and integrated Explorer review, then append source-pinned regression receipts.
+The two catalogue bindings select the native manuscripts following the separate
+canonical motion/export and integrated Explorer regression reviews linked below.
 Existing synthetic operation stories and acceptance receipts remain intact.
 
 Prototype commits: `75171dc2` (CT registration) and `0e1d1a92` (MRA repair).
@@ -177,10 +176,10 @@ recorded controls, keyboard/mobile views and static fallbacks. Validation logs a
 the dependency hash receipt remain under `.local/anatomy-pose/`.
 
 The goal is active. Baseline inventory, prototype cleanup and source verification
-are complete; canonical integration and the remaining enhancement pass are not.
-The first declared-source inventory and shared reader implementation are complete.
-Next, finish canonical export/Explorer regression review for the two native
-adapters, then investigate undeclared sources and expand reviewed family adapters. Existing 154/154
+are complete. The two native adapters now have canonical integration and regression
+review; 152 core entries remain in the enhancement pass. Next, implement the
+named-landmark adapter from its retained-source mapping, then continue source
+resolution and family expansion. Existing 154/154
 review status must never be presented as this new goal's completion status.
 
 
@@ -203,8 +202,31 @@ imperative canvas when its loading text became empty, and transparent context
 planes obscured opaque candidate geometry. Separate DOM ownership and one ordered
 transparent pass fix these defects without changing native coordinates.
 
-Remaining review: normal-speed exported playback/full decoding, integrated
-Explorer entry switching and both locales, exact source-pinned collector and
-regression sign-off. The browser checks above do not substitute for those gates.
-Original ledger receipts remain unchanged; the proposed native bindings require
-separate migration regression sign-off before this enhancement is counted.
+The subsequent canonical regression review completed normal-speed playback/full
+decoding, integrated Explorer entry switching and both locales, source-pinned
+collection and assistant visual inspection. The original ledger is unchanged.
+
+## Canonical migration checkpoint — 2026-10-12
+
+**2 of 154 core entries enhanced for one retained condition each; 152 remain.**
+Implementation commit: `b085fd67`. Review records:
+
+- [CT renderer review](../groups/registration/presentation/anatomy-pose/canonical-review.md).
+- [MRA renderer review](../groups/tubular-anatomy/presentation/anatomy-repair/canonical-review.md).
+
+Both selected exports passed 912-frame full decoding, 38-second normal playback,
+three seeks and the integrated locale/mobile/native-control/reference/fallback
+matrix. Decisive source-backed views and decoded-video samples were inspected.
+The isolated implementation snapshot passed all repository gates, including
+522 Python tests; JS checks covered 165 stories and 311,994 deterministic frames.
+The migrated scientific prose remains English, disclosed in Chinese navigation.
+
+Next is [the named-landmark trace mapping](../groups/anatomical-landmarks/presentation/native-landmark-trace/canonical-mapping.md):
+BR-039 partial CT, 512×512×920 supplied crop, 42 retained steps and ten delivered
+images. A native landmark adapter must connect inspection slabs and submitted
+points to that crop, preserve the wrong-level frozen result, and distinguish
+the excluded cranial source region. This mapping has no new visual acceptance.
+Large input arrays and generated deliveries must stay in selected local bundles.
+
+Keep the active goal running. No trials, runtime installation, pushes or
+publication are authorized by this enhancement workflow.

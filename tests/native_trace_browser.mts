@@ -130,7 +130,7 @@ try {
         if (adapter === 'ct')
           assert.equal(
             await page
-              .getByRole('img', { name: /Native CT volume/ })
+              .getByRole('img', { name: /Native CT volume/, includeHidden: true })
               .locator('canvas')
               .count(),
             1,
