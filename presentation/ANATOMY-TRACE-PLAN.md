@@ -281,3 +281,37 @@ reward remains zero; the retained author correction and its later score are sepa
 Next: extract bounded native context, exact deliveries, the original 371-point
 route, source-linked CPR arrays and mesh into a typed shared adapter. No source
 payload, canonical binding or visual acceptance has been added for coronary yet.
+
+## Native coronary checkpoint — 2026-10-12
+
+**5 of 154 core entries enhanced for one retained condition each; 149 remain.**
+Implementation: `8ca0d637`. The
+[coronary renderer review](../groups/tubular-anatomy/presentation/native-coronary-trace/canonical-review.md)
+pins the 49-second export, complete decode, normal playback/three seeks and final
+locale/mobile/native-control/reference/fallback witness. Five-adapter preflight
+also covered the earlier readers and Explorer switching. The staged implementation
+passed 541 Python tests and all repository gates; JS checks passed 168 stories /
+315,522 deterministic frames. Historical acceptance and frozen scores are unchanged.
+
+The reader links the whole supplied CTA crop to native local detail, three exact
+montages, the eventual chosen ridge, saved repair/route, source-linked CPR and full
+mesh. The later author distance-axis correction remains separate from the original
+zero-reward artifact. This is one helper-rich development case, not clinical or
+population evidence. Five disposable validation checkouts were removed; all raw
+sources, package versions, logs and review media remain local.
+
+**Next: whole-slide search.** Read-only source resolution found the retained
+CAMELYON lesion-group runs through their execution records, beyond the first
+inventory's limited pointer pattern. Fifteen evidence pins across the two positive
+and one negative Sol 6 xhigh conditions match the
+[existing synthesis receipt](../groups/lesion-localization/findings/evidence/wsi-sol6-xhigh-v2-diagnostic-synthesis.json).
+The small-positive `tumor_084` trace has 27 steps and nine embedded image deliveries;
+its original empty answer and 0/30 study-defined lesion-group result remain intact.
+Local resolution receipt: `.local/anatomy-pose/wsi/source-resolution-20261012.json`.
+
+Next work must map whole-slide geometry, multiscale views, crop footprints and
+exact delivered images before choosing the canonical presentation. Saved files
+are not automatically delivered observations, and helper crop coverage is not
+complete visual access because direct TIFF reads were possible. The 50 µm grouping
+is a study rule, not official challenge FROC. No WSI migration or visual acceptance
+is claimed yet. Continue the active goal without launching new trials or publishing.

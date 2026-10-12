@@ -43,3 +43,19 @@ Broad difficulty is not established. A real 5-mm CAS-Net gap is present despite 
 ## Reopen when
 
 The bounded larger experiment is complete. Retain the working geometry viewer and frozen software-consistency miss as calibration. Do not promote this as a hard anatomical reasoning failure. Any new discrimination experiment needs independently reviewed natural errors and matched intact/absent/variant controls, with a new freeze rather than tighter post-outcome gates.
+
+## Native-context explanation — 2026-10-12
+
+**Assistant implementation and review:** the canonical
+[native trace story](../presentation/stories/br030-native-trace.story.md) now links
+the whole supplied CTA crop and native local detail to the three exact observed
+montages, chosen ridge, saved 103-voxel repair, 371-point route, source-linked CPR
+and full saved mesh. [The review](../presentation/native-coronary-trace/canonical-review.md)
+pins the source package, controls, 49-second export and limits.
+
+The original 184.80925341171147 mm CPR distance endpoint remains beside the
+175.91775513587936 mm saved-route length. The later author correction is separately
+revealed; the original reward remains zero. This is a presentation enhancement,
+not a new experiment or a user decision to reopen the parked research. Clinical
+accuracy, independent reference validity and the geometry-only baseline remain
+subject to the existing qualifications and reopening conditions above.
