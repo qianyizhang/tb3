@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import type { ExplorerData, StoryPlan, RestorationView } from '../types';
+import type { ExplorerData, StoryPlan, ExplainerView } from '../types';
 
 interface Resource {
   plan: StoryPlan;
-  view?: RestorationView;
+  view?: ExplainerView;
 }
 const pending = new Map<string, Promise<Resource>>();
 

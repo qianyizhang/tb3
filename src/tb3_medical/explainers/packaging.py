@@ -12,7 +12,7 @@ from .. import frontend
 from ..presentation_contracts import StoryPlan
 from ..types import Document
 from .assets import check_dependencies
-from .families.restoration import compile_view
+from .compiler import compile_view
 
 
 def json_script(value: object) -> str:
@@ -25,7 +25,13 @@ def write_export(root: Path, plan: StoryPlan, output: Path) -> None:
     root = root.resolve()
     check_dependencies(root, plan["dependencies"])
     view = compile_view(root, plan)
-    entry = "restoration-export" if view else "explainer-export"
+    entry = (
+        "native-trace-export"
+        if view and view["family"] == "native-trace"
+        else "restoration-export"
+        if view
+        else "explainer-export"
+    )
     script, css = frontend.assets(root, entry)
     write_projections(plan, output)
     source = next(name for name in plan["dependencies"] if name.endswith(".story.md"))

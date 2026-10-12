@@ -8,11 +8,18 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from pydantic import ValidationError
 
 from tb3_medical.errors import MedicalError
-from tb3_medical.explainers.native_trace import Manifest, compile_trace, project_payload
+from tb3_medical.explainers.native_trace import (
+    Manifest,
+    compile_components,
+    compile_trace,
+    compile_view,
+    project_payload,
+)
 
 IDENTITY = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
 
@@ -178,6 +185,40 @@ class NativeTraceTests(unittest.TestCase):
         (self.root / "data.json").write_text("{}")
         with self.assertRaisesRegex(ValueError, "Changed native asset"):
             compile_trace(self.root, Path("trace.story.md"))
+
+    def test_canonical_reader_view_rejects_stale_asset_availability(self):
+        self.fixture()
+        compiler = self.root / "src/tb3_medical/explainers/native_trace.py"
+        compiler.parent.mkdir(parents=True)
+        compiler.write_text("test compiler")
+        with patch("tb3_medical.explanation_stories.compiler_hashes", return_value={}):
+            plan, view = compile_components(self.root, self.story)
+            self.assertEqual(view["family"], "native-trace")
+            self.assertEqual(view["availability"], "available")
+            self.assertEqual(plan["asset_pack"], "tiny")
+            self.assertEqual(compile_view(self.root, plan), view)
+            self.assertNotIn("reference", view["payload"]["observed"])
+            (self.root / "data.json").unlink()
+            with self.assertRaisesRegex(ValueError, "availability changed"):
+                compile_view(self.root, plan)
+            missing_plan, missing_view = compile_components(self.root, self.story)
+            self.assertEqual(missing_view["availability"], "missing-local-assets")
+            self.assertIsNone(missing_view["payload"])
+            self.assertEqual(missing_view["missing"], ["data.json"])
+            self.assertEqual(missing_plan["beats"], plan["beats"])
+
+    def test_reader_contract_rejects_malformed_trace_action(self):
+        from tb3_medical.presentation_contracts import validate_native_trace_view
+
+        self.fixture()
+        compiler = self.root / "src/tb3_medical/explainers/native_trace.py"
+        compiler.parent.mkdir(parents=True)
+        compiler.write_text("test compiler")
+        with patch("tb3_medical.explanation_stories.compiler_hashes", return_value={}):
+            _, view = compile_components(self.root, self.story)
+        view["payload"]["observed"]["trace"][0]["step"] = "not a step"
+        with self.assertRaises(ValueError):
+            validate_native_trace_view(view)
 
     def test_same_length_asset_tampering_rejects_sha_mismatch(self):
         self.fixture()

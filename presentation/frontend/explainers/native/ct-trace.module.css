@@ -1,0 +1,285 @@
+.stage {
+  color: #202623;
+  width: 100%;
+}
+.workbench {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.card {
+  border: 1px solid #d6dbd5;
+  border-radius: 10px;
+  background: #fcfcf9;
+  overflow: hidden;
+}
+.heading {
+  padding: 12px 16px;
+  border-bottom: 1px solid #d6dbd5;
+  font:
+    11px/1.5 ui-monospace,
+    monospace;
+}
+.volume {
+  height: 390px;
+  position: relative;
+  overflow: hidden;
+}
+.volume canvas {
+  display: block;
+}
+.message {
+  position: absolute;
+  inset: 30% 10% auto;
+  color: #68716b;
+  text-align: center;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+}
+.controls button {
+  padding: 8px 12px;
+  border: 1px solid #cbd1c9;
+  border-radius: 6px;
+  background: #fcfcf9;
+  color: #202623;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+.controls button[aria-pressed='true'] {
+  color: #fff;
+  background: #087e83;
+  border-color: #087e83;
+}
+.controls button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.controls label {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 12px;
+}
+.caption {
+  padding: 0 16px;
+  color: #68716b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 16px 16px;
+  font-size: 12px;
+}
+.candidateKey::before,
+.referenceKey::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-top: 3px solid #087e83;
+}
+.referenceKey::before {
+  border-top: 3px dashed #bc7211;
+}
+.comparisons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+}
+.comparisons figure {
+  margin: 0;
+  min-width: 0;
+}
+.comparisons img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  background: #111;
+  display: block;
+}
+.comparisons figcaption {
+  font-size: 11px;
+  padding-top: 8px;
+}
+.unknown {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 16px;
+  background: #f0f1ed;
+  border: 1px dashed #cbd1c9;
+  color: #68716b;
+}
+.card details {
+  padding: 12px 16px;
+  font-size: 12px;
+}
+.matrix {
+  font:
+    10px/1.8 ui-monospace,
+    monospace;
+  overflow-x: auto;
+  white-space: pre;
+}
+.slices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+.sliceCanvas,
+.staticSlice {
+  width: min(100%, 240px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  display: block;
+  margin: 12px auto;
+  background: #111;
+}
+.slider {
+  display: block;
+  padding: 0 16px 16px;
+  font:
+    11px/1.6 ui-monospace,
+    monospace;
+}
+.slider input {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  accent-color: #087e83;
+}
+.stage button:focus-visible,
+.stage input:focus-visible,
+.stage summary:focus-visible,
+.volume:focus-visible {
+  outline: 2px solid #087e83;
+  outline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+  .volume {
+    height: 330px;
+  }
+  .slices {
+    gap: 8px;
+  }
+  .heading {
+    padding: 10px;
+    font-size: 10px;
+  }
+  .slider {
+    padding: 0 8px 12px;
+  }
+}
+@media (max-width: 430px) {
+  .slices {
+    grid-template-columns: 1fr;
+  }
+  .sliceCanvas,
+  .staticSlice {
+    width: 180px;
+  }
+}
+.axisLabel {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 2px 4px;
+  border-radius: 3px;
+  background: rgb(252 252 249 / 80%);
+  color: #535c55;
+  font:
+    11px ui-monospace,
+    monospace;
+  pointer-events: none;
+}
+
+:global([data-explainer-export-frame]) .stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  gap: 8px;
+}
+:global([data-explainer-export-frame]) .workbench {
+  gap: 10px;
+}
+:global([data-explainer-export-frame]) .volume {
+  height: 205px;
+}
+:global([data-explainer-export-frame]) .heading {
+  padding: 5px 9px;
+  font-size: 10px;
+}
+:global([data-explainer-export-frame]) .controls {
+  padding: 5px 9px;
+  gap: 6px;
+}
+:global([data-explainer-export-frame]) .controls button {
+  padding: 4px 7px;
+  font-size: 10px;
+}
+:global([data-explainer-export-frame]) .controls label {
+  font-size: 10px;
+}
+:global([data-explainer-export-frame]) .caption {
+  font-size: 10px;
+  line-height: 1.25;
+  padding: 0 9px;
+  margin: 6px 0;
+}
+:global([data-explainer-export-frame]) .legend {
+  font-size: 10px;
+  padding: 5px 9px;
+}
+:global([data-explainer-export-frame]) .comparisons {
+  padding: 10px;
+  gap: 10px;
+}
+:global([data-explainer-export-frame]) .comparisons img,
+:global([data-explainer-export-frame]) .unknown {
+  height: 145px;
+  width: 100%;
+}
+:global([data-explainer-export-frame]) .card details {
+  display: none;
+}
+:global([data-explainer-export-frame]) .slices {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+}
+:global([data-explainer-export-frame]) .slices .card {
+  display: grid;
+  grid-template-columns: 65px 1fr;
+  align-items: center;
+}
+:global([data-explainer-export-frame]) .slices .heading {
+  grid-column: 1/-1;
+}
+:global([data-explainer-export-frame]) .sliceCanvas,
+:global([data-explainer-export-frame]) .staticSlice {
+  width: 60px;
+  margin: 3px;
+}
+:global([data-explainer-export-frame]) .slider {
+  font-size: 9px;
+  padding: 0 5px;
+}
+:global([data-explainer-export-frame]) .stage > .caption {
+  grid-column: 1/-1;
+}

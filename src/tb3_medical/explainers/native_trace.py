@@ -14,11 +14,17 @@ import math
 import struct
 import zlib
 from pathlib import Path
-from typing import Literal, Self
+from typing import Literal, Self, cast
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, model_validator
 
 from .. import storage
+from ..presentation_contracts import (
+    NativeTracePlan,
+    NativeTraceView,
+    StoryPlan,
+    validate_native_trace_view,
+)
 from ..types import Document
 from .assets import check_dependencies
 
@@ -388,6 +394,74 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
         },
         "reference_boundary": "Reader reveal only; this local package contains reference bytes and is not solver staging.",
     }
+
+
+def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeTraceView]:
+    """Canonical projection; absent local arrays remain an explicit missing-data view."""
+    from ..explanation_stories import compiler_hashes
+
+    root = root.resolve()
+    relative = path.relative_to(root) if path.is_absolute() else path
+    compiled = compile_trace(root, relative, allow_missing=True)
+    manifest = compiled["manifest"]
+    dependencies = {**compiled["dependencies"], **compiler_hashes(root)}
+    dependencies["src/tb3_medical/explainers/native_trace.py"] = storage.sha(
+        root / "src/tb3_medical/explainers/native_trace.py"
+    )
+    plan = cast(
+        NativeTracePlan,
+        {
+            **compiled["plan"],
+            "asset_pack": manifest["id"],
+            "source_sha256": dependencies[relative.as_posix()],
+            "asset_manifest_sha256": dependencies[compiled["plan"]["manifest"]],
+            "dependencies": dependencies,
+        },
+    )
+    available = compiled["availability"] == "available"
+    view = validate_native_trace_view(
+        {
+            "family": "native-trace",
+            "version": 1,
+            "adapter": manifest["adapter"],
+            "label": "Retained task-solving trace",
+            "availability": compiled["availability"],
+            "missing": compiled["missing"],
+            "coordinates": manifest["coordinates"],
+            "attempt": manifest["attempt"],
+            "saved_state": manifest["saved_state"],
+            "source": {
+                "notice": {
+                    "label": "Native source / one retained condition"
+                    if available
+                    else "Native assets unavailable here",
+                    "text": manifest["notice"] if available else manifest["recovery"],
+                    "url": "https://zenodo.org/records/10047263"
+                    if manifest["adapter"] == "ct-pose"
+                    else "https://zenodo.org/records/15692630",
+                    "link_label": "Original dataset",
+                }
+            },
+            "bundle": {"id": manifest["id"], "assets": manifest["assets"]},
+            "payload": compiled["payload"],
+            "dependencies": dependencies,
+            "reference_boundary": compiled["reference_boundary"],
+        }
+    )
+    check_dependencies(root, dependencies)
+    return plan, view
+
+
+def compile_view(root: Path, plan: StoryPlan) -> NativeTraceView | None:
+    if plan["recipe"] != "native-trace-v1":
+        return None
+    sources = [p for p in plan["dependencies"] if p.endswith(".story.md")]
+    if len(sources) != 1:
+        raise ValueError("A native trace needs one canonical manuscript")
+    current, view = compile_components(root, Path(sources[0]))
+    if current != plan:
+        raise ValueError("Native trace source or asset availability changed; recompile the story")
+    return view
 
 
 def main() -> None:

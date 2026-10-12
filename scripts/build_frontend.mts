@@ -25,6 +25,7 @@ try {
     'overview',
     'explainer-export',
     'restoration-export',
+    'native-trace-export',
     'explorer-served',
   ]) {
     const served = entry === 'explorer-served';

@@ -61,6 +61,7 @@ def assets(root: Path, entry: str) -> tuple[str, str]:
         "overview",
         "explainer-export",
         "restoration-export",
+        "native-trace-export",
         "explorer-served",
     }:
         raise MedicalError("Unknown frontend entry: " + entry)

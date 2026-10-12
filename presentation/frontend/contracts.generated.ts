@@ -4,7 +4,9 @@ export type TaskTab = "overview" | "requirements" | "examples" | "sources";
 export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
-export type StoryPlan = RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtOriginalPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | AutomedSegCPancreasPlan | AutomedSegCPantherT1Plan | AutomedSegCPantherT2Plan | AutomedSegCProstatePlan | AutomedSegDSpleenPlan | AutomedSegDTsgMultiorganPlan | InterpretationAHealthagentbenchPlan | InterpretationARadagentPlan | InterpretationAHealthagentbenchTumorTilesPlan | InterpretationAHealthagentbenchCxrCorrectionPlan | InterpretationBBcerMediumBrainGradeClassifyPlan | InterpretationBBcerLongCardiacFullPlan | InterpretationBBcerLongBrainFullPlan | AutomedTotalsegmentatorCtsrPlan | AutomedSynthradMrctPlan | AutomedMsdPancreasCtsrPlan | AutomedCtorgCtsrPlan | AutomedNihCxrSrPlan | AutomedMriSrPlan | AutomedLidcDenoisePlan | AutomedLdctDenoisingPlan | AutomedIxiT1SrPlan | AutomedDeeplesionDenoisePlan | AutomedBratsT1cSrPlan | RexUsenhancePlan | ImagingToothGridrecPlan | ImagingUsctFwiPlan | ImagingUltrasoundSosPlan | ImagingPnpMriPlan | ImagingPlaneWavePlan | ImagingPhotoacousticPlan | ImagingPetMlemPlan | ImagingVarNetPlan | ImagingT2MappingPlan | ImagingSensePlan | ImagingPnpAdmmPlan | ImagingNoncartesianPlan | ImagingWaveletPlan | ImagingGrappaPlan | ImagingDynamicMriPlan | ImagingEitPlan | ImagingPoissonPlan | BcerGrappaPlan | BcerSuperresPlan | BcerDenoisePlan | AutomedVqaRadPlan | AutomedOmniPlan | AutomedKvasirPlan | AutomedSlakePlan | AutomedPathvqaPlan | AutomedMedxpertPlan | AutomedMedframeqaPlan | AutomedPathology500Plan | AutomedPathology100Plan | AutomedMimicReportPlan | AutomedIuReportPlan | AutomedChexpertReportPlan | AutomedSkinLesionPlan | AutomedPcamClsPlan | AutomedCrcClsPlan | AutomedPneumoniaPlan | AutomedBrainClsPlan | RexLdctIqaPlan | RadagentVqaPlan | AbraBiradsPlan | AbraVisionProbePlan | AbraMetadataQaPlan | AbraViewerControlPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
+export type StoryPlan = RouteStoryPlan | NativeTracePlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtOriginalPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | AutomedSegCPancreasPlan | AutomedSegCPantherT1Plan | AutomedSegCPantherT2Plan | AutomedSegCProstatePlan | AutomedSegDSpleenPlan | AutomedSegDTsgMultiorganPlan | InterpretationAHealthagentbenchPlan | InterpretationARadagentPlan | InterpretationAHealthagentbenchTumorTilesPlan | InterpretationAHealthagentbenchCxrCorrectionPlan | InterpretationBBcerMediumBrainGradeClassifyPlan | InterpretationBBcerLongCardiacFullPlan | InterpretationBBcerLongBrainFullPlan | AutomedTotalsegmentatorCtsrPlan | AutomedSynthradMrctPlan | AutomedMsdPancreasCtsrPlan | AutomedCtorgCtsrPlan | AutomedNihCxrSrPlan | AutomedMriSrPlan | AutomedLidcDenoisePlan | AutomedLdctDenoisingPlan | AutomedIxiT1SrPlan | AutomedDeeplesionDenoisePlan | AutomedBratsT1cSrPlan | RexUsenhancePlan | ImagingToothGridrecPlan | ImagingUsctFwiPlan | ImagingUltrasoundSosPlan | ImagingPnpMriPlan | ImagingPlaneWavePlan | ImagingPhotoacousticPlan | ImagingPetMlemPlan | ImagingVarNetPlan | ImagingT2MappingPlan | ImagingSensePlan | ImagingPnpAdmmPlan | ImagingNoncartesianPlan | ImagingWaveletPlan | ImagingGrappaPlan | ImagingDynamicMriPlan | ImagingEitPlan | ImagingPoissonPlan | BcerGrappaPlan | BcerSuperresPlan | BcerDenoisePlan | AutomedVqaRadPlan | AutomedOmniPlan | AutomedKvasirPlan | AutomedSlakePlan | AutomedPathvqaPlan | AutomedMedxpertPlan | AutomedMedframeqaPlan | AutomedPathology500Plan | AutomedPathology100Plan | AutomedMimicReportPlan | AutomedIuReportPlan | AutomedChexpertReportPlan | AutomedSkinLesionPlan | AutomedPcamClsPlan | AutomedCrcClsPlan | AutomedPneumoniaPlan | AutomedBrainClsPlan | RexLdctIqaPlan | RadagentVqaPlan | AbraBiradsPlan | AbraVisionProbePlan | AbraMetadataQaPlan | AbraViewerControlPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
+export type NativeTraceView = CtTraceView | MraTraceView;
+export type ExplainerView = RestorationView | CtTraceView | MraTraceView;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -106,6 +108,205 @@ export interface RestorationView {
   geometry: RestorationGeometry;
   bundle: ExplainerBundle;
   dependencies: Record<string, string>;
+}
+export interface NativeTraceBeat {
+  id: string;
+  frames: number;
+  caption: string;
+  narration: string;
+  visual: string;
+  state: string | null;
+  trace_steps: Array<number>;
+  reference: boolean;
+  startFrame: number;
+  endFrame: number;
+}
+export interface NativeTracePlan {
+  schema: 2;
+  id: string;
+  title: string;
+  locale: "en";
+  purpose: string;
+  scope: string;
+  recipe: "native-trace-v1";
+  asset_pack: string;
+  manifest: string;
+  fps: number;
+  reference_policy: "reader-reference-reveal";
+  source_class: "source-derived-teaching";
+  source_locators: Array<string>;
+  durationFrames: number;
+  source_sha256: string;
+  asset_manifest_sha256: string;
+  dependencies: Record<string, string>;
+  beats: Array<NativeTraceBeat>;
+}
+export interface NativeTraceAction {
+  step: number;
+  timestamp: string | null;
+  calls: Array<string>;
+  output: string;
+}
+export interface NativeDeliveredImage {
+  step: number;
+  path: string;
+  src: string;
+}
+export interface CtTraceInput {
+  shape: Array<number>;
+  affine: Array<Array<number>>;
+  spacing_mm: number;
+  preview_size: number;
+  preview_window_hu: Array<number>;
+  preview_base64_gzip: string;
+  target: string;
+  target_silhouette: string;
+  slice_previews: Array<string>;
+}
+export interface CtTraceState {
+  id: string;
+  trace_step: number;
+  pose: Array<Array<number>>;
+  image: string;
+  silhouette: string;
+  difference: string;
+  role: string;
+}
+export interface CtTraceObserved {
+  states: Array<CtTraceState>;
+  trace: Array<NativeTraceAction>;
+  elapsed_seconds: number;
+  steps_in_trace: number;
+}
+export interface CtTraceReference {
+  pose: Array<Array<number>>;
+  frozen_metrics: Record<string, number>;
+  state_diagnostics: Record<string, Record<string, number>>;
+}
+export interface CtTracePayload {
+  input: CtTraceInput;
+  observed: CtTraceObserved;
+  reference: CtTraceReference;
+  delivered_images: Array<NativeDeliveredImage>;
+  licenses: Array<string>;
+}
+export interface MraTraceInput {
+  shape: Array<number>;
+  affine: Array<Array<number>>;
+  spacing: Array<number>;
+  volume: string;
+  mask: string;
+  editable: string;
+  surface: string;
+  surface_vertices: number;
+  mip: string;
+  source_voxels: number;
+  global_components: number;
+}
+export interface MraTraceState {
+  threshold: number;
+  count: number;
+  indices: Array<number>;
+  contacts: Array<Array<number>>;
+}
+export interface MraTraceObserved {
+  states: Array<MraTraceState>;
+  seed: Array<number>;
+  roi: Array<Array<number>>;
+  added: Array<number>;
+  trace: Array<NativeTraceAction>;
+}
+export interface MraTraceBranch {
+  label: number;
+  local_connection: boolean;
+  centerline_length_mm: number;
+  centerline_coverage: number;
+  branch_recall: number;
+}
+export interface MraTraceMetrics {
+  outside_edit_changed_voxels: number;
+  collateral_deleted_mm3: number;
+  collateral_added_mm3: number;
+  far_added_mm3: number;
+  local_dice: number;
+  local_recall: number;
+  branches: Array<MraTraceBranch>;
+  absent_branches: Array<number>;
+  whole_mask_dice_diagnostic: number;
+  checks: Record<string, boolean>;
+  reward: number;
+}
+export interface MraTraceReference {
+  residual: Array<number>;
+  frozen: MraTraceMetrics;
+  initial: MraTraceMetrics;
+}
+export interface MraTracePayload {
+  input: MraTraceInput;
+  observed: MraTraceObserved;
+  reference: MraTraceReference;
+  delivered_images: Array<NativeDeliveredImage>;
+  licenses: Array<string>;
+}
+export interface NativeTraceAsset {
+  path: string;
+  sha256: string;
+  bytes: number;
+  role: string;
+  step: number | null;
+}
+export interface NativeTraceBundle {
+  id: string;
+  assets: Array<NativeTraceAsset>;
+}
+export interface NativeTraceSource {
+  notice: ExplainerNotice;
+}
+export interface NativeTraceViewBase {
+  family: "native-trace";
+  version: 1;
+  label: string;
+  source: NativeTraceSource;
+  availability: "available" | "missing-local-assets";
+  missing: Array<string>;
+  coordinates: "LPS-mm" | "RAS-mm";
+  attempt: string;
+  saved_state: string;
+  bundle: NativeTraceBundle;
+  dependencies: Record<string, string>;
+  reference_boundary: string;
+}
+export interface CtTraceView {
+  family: "native-trace";
+  version: 1;
+  label: string;
+  source: NativeTraceSource;
+  availability: "available" | "missing-local-assets";
+  missing: Array<string>;
+  coordinates: "LPS-mm" | "RAS-mm";
+  attempt: string;
+  saved_state: string;
+  bundle: NativeTraceBundle;
+  dependencies: Record<string, string>;
+  reference_boundary: string;
+  adapter: "ct-pose";
+  payload: CtTracePayload | null;
+}
+export interface MraTraceView {
+  family: "native-trace";
+  version: 1;
+  label: string;
+  source: NativeTraceSource;
+  availability: "available" | "missing-local-assets";
+  missing: Array<string>;
+  coordinates: "LPS-mm" | "RAS-mm";
+  attempt: string;
+  saved_state: string;
+  bundle: NativeTraceBundle;
+  dependencies: Record<string, string>;
+  reference_boundary: string;
+  adapter: "mra-repair";
+  payload: MraTracePayload | null;
 }
 export interface ExpansionPlan {
   schema: 2;
@@ -6042,8 +6243,8 @@ export interface Inventory {
   repositories?: Array<RepositoryInventory>;
 }
 export interface ExplorerData {
-  explanation_stories?: Record<string, RouteStoryPlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtOriginalPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | AutomedSegCPancreasPlan | AutomedSegCPantherT1Plan | AutomedSegCPantherT2Plan | AutomedSegCProstatePlan | AutomedSegDSpleenPlan | AutomedSegDTsgMultiorganPlan | InterpretationAHealthagentbenchPlan | InterpretationARadagentPlan | InterpretationAHealthagentbenchTumorTilesPlan | InterpretationAHealthagentbenchCxrCorrectionPlan | InterpretationBBcerMediumBrainGradeClassifyPlan | InterpretationBBcerLongCardiacFullPlan | InterpretationBBcerLongBrainFullPlan | AutomedTotalsegmentatorCtsrPlan | AutomedSynthradMrctPlan | AutomedMsdPancreasCtsrPlan | AutomedCtorgCtsrPlan | AutomedNihCxrSrPlan | AutomedMriSrPlan | AutomedLidcDenoisePlan | AutomedLdctDenoisingPlan | AutomedIxiT1SrPlan | AutomedDeeplesionDenoisePlan | AutomedBratsT1cSrPlan | RexUsenhancePlan | ImagingToothGridrecPlan | ImagingUsctFwiPlan | ImagingUltrasoundSosPlan | ImagingPnpMriPlan | ImagingPlaneWavePlan | ImagingPhotoacousticPlan | ImagingPetMlemPlan | ImagingVarNetPlan | ImagingT2MappingPlan | ImagingSensePlan | ImagingPnpAdmmPlan | ImagingNoncartesianPlan | ImagingWaveletPlan | ImagingGrappaPlan | ImagingDynamicMriPlan | ImagingEitPlan | ImagingPoissonPlan | BcerGrappaPlan | BcerSuperresPlan | BcerDenoisePlan | AutomedVqaRadPlan | AutomedOmniPlan | AutomedKvasirPlan | AutomedSlakePlan | AutomedPathvqaPlan | AutomedMedxpertPlan | AutomedMedframeqaPlan | AutomedPathology500Plan | AutomedPathology100Plan | AutomedMimicReportPlan | AutomedIuReportPlan | AutomedChexpertReportPlan | AutomedSkinLesionPlan | AutomedPcamClsPlan | AutomedCrcClsPlan | AutomedPneumoniaPlan | AutomedBrainClsPlan | RexLdctIqaPlan | RadagentVqaPlan | AbraBiradsPlan | AbraVisionProbePlan | AbraMetadataQaPlan | AbraViewerControlPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
-  explainer_views?: Record<string, RestorationView>;
+  explanation_stories?: Record<string, RouteStoryPlan | NativeTracePlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtOriginalPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | AutomedSegCPancreasPlan | AutomedSegCPantherT1Plan | AutomedSegCPantherT2Plan | AutomedSegCProstatePlan | AutomedSegDSpleenPlan | AutomedSegDTsgMultiorganPlan | InterpretationAHealthagentbenchPlan | InterpretationARadagentPlan | InterpretationAHealthagentbenchTumorTilesPlan | InterpretationAHealthagentbenchCxrCorrectionPlan | InterpretationBBcerMediumBrainGradeClassifyPlan | InterpretationBBcerLongCardiacFullPlan | InterpretationBBcerLongBrainFullPlan | AutomedTotalsegmentatorCtsrPlan | AutomedSynthradMrctPlan | AutomedMsdPancreasCtsrPlan | AutomedCtorgCtsrPlan | AutomedNihCxrSrPlan | AutomedMriSrPlan | AutomedLidcDenoisePlan | AutomedLdctDenoisingPlan | AutomedIxiT1SrPlan | AutomedDeeplesionDenoisePlan | AutomedBratsT1cSrPlan | RexUsenhancePlan | ImagingToothGridrecPlan | ImagingUsctFwiPlan | ImagingUltrasoundSosPlan | ImagingPnpMriPlan | ImagingPlaneWavePlan | ImagingPhotoacousticPlan | ImagingPetMlemPlan | ImagingVarNetPlan | ImagingT2MappingPlan | ImagingSensePlan | ImagingPnpAdmmPlan | ImagingNoncartesianPlan | ImagingWaveletPlan | ImagingGrappaPlan | ImagingDynamicMriPlan | ImagingEitPlan | ImagingPoissonPlan | BcerGrappaPlan | BcerSuperresPlan | BcerDenoisePlan | AutomedVqaRadPlan | AutomedOmniPlan | AutomedKvasirPlan | AutomedSlakePlan | AutomedPathvqaPlan | AutomedMedxpertPlan | AutomedMedframeqaPlan | AutomedPathology500Plan | AutomedPathology100Plan | AutomedMimicReportPlan | AutomedIuReportPlan | AutomedChexpertReportPlan | AutomedSkinLesionPlan | AutomedPcamClsPlan | AutomedCrcClsPlan | AutomedPneumoniaPlan | AutomedBrainClsPlan | RexLdctIqaPlan | RadagentVqaPlan | AbraBiradsPlan | AbraVisionProbePlan | AbraMetadataQaPlan | AbraViewerControlPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
+  explainer_views?: Record<string, RestorationView | CtTraceView | MraTraceView>;
   explainer_resources?: Record<string, string>;
   schema_version: 1;
   title?: string;

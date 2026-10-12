@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import type { BriefField, TaskEntry, StoryPlan } from './types';
 import { Explainer } from './explainer';
-import type { RestorationView } from './contracts.generated';
+import type { ExplainerView } from './contracts.generated';
 import type { VisualEntry } from './task-visuals/types';
 import { useLocale } from './locale';
 /** Only build-authored, escaped Markdown fragments enter this boundary. UI is React-owned. */
@@ -48,7 +48,7 @@ export function TaskScene({
 }: {
   entry: TaskEntry;
   plan?: StoryPlan;
-  view?: RestorationView;
+  view?: ExplainerView;
 }) {
   const { locale } = useLocale();
   if (!entry.illustration) return null;

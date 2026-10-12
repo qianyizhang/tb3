@@ -7976,6 +7976,10 @@ def compile_story(root: Path, path: Path) -> StoryPlan:
         raise ValueError("Unfinished story draft: replace every [[AUTHOR:...]] field")
     compiler = compiler_hashes(root)
     document = parse_document(raw)
+    if document.header.get("recipe") == "native-trace-v1":
+        from .explainers.native_trace import compile_components
+
+        return compile_components(root, path)[0]
     if document.schema == 2:
         story = parse_expansion(_legacy_semantics(document, source, source_sha))
         expected_pack = RECIPE_PACKS[story.recipe]

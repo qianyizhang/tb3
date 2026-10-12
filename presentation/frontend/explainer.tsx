@@ -1,11 +1,11 @@
 import { Component, lazy, Suspense, type ReactNode } from 'react';
 import type { VisualProps } from './task-visuals/TaskVisual';
-import type { RestorationView } from './contracts.generated';
+import type { ExplainerView } from './contracts.generated';
 import { views } from './explainers/registry';
 import { SourceWarning } from './task-visuals/SourceWarning';
 
 export interface ReaderProps extends VisualProps {
-  view?: RestorationView;
+  view?: ExplainerView;
 }
 const LegacyView = lazy(() =>
   import('./task-visuals/TaskVisual').then((m) => ({ default: m.TaskVisual })),

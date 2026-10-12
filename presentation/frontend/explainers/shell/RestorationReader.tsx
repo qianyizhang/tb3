@@ -262,7 +262,8 @@ function Evidence({ view, plan }: { view: RestorationView; plan: StoryPlan }) {
 
 /** Three comparison layouts, one default shell and one canonical frame/player contract. */
 export function RestorationReader({ entry, plan, view, capture, captureReady }: ReaderProps) {
-  if (!plan || !view) throw new Error('Restoration requires a compiled plan and asset view');
+  if (!plan || !view || view.family !== 'restoration-protocol')
+    throw new Error('Restoration requires a compiled plan and asset view');
   const player = useFramePlayer(entry, plan, planar);
   const { t, locale } = useLocale();
   const params = new URLSearchParams(location.search);

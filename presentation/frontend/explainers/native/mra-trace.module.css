@@ -1,0 +1,208 @@
+.stage {
+  color: #19322d;
+  min-width: 0;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin: 0.75rem 0;
+}
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.controls button,
+.controls select,
+.threshold select {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #81928c;
+  border-radius: 0.3rem;
+  background: #fff;
+  color: #19322d;
+}
+.scene {
+  position: relative;
+  height: 340px;
+  background: #eaf0eb;
+  border: 1px solid #aebdb6;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.scene:focus-visible {
+  outline: 3px solid #008d92;
+  outline-offset: 2px;
+}
+.scene canvas {
+  display: block;
+}
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+.fallback img {
+  max-width: 90%;
+  max-height: 240px;
+  image-rendering: pixelated;
+}
+.note {
+  font-size: 0.85rem;
+}
+.threshold {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  border-left: 3px solid #008d92;
+  padding: 0.6rem;
+}
+.threshold span {
+  width: 100%;
+  font-size: 0.85rem;
+}
+.slice {
+  flex: 1;
+  min-width: 200px;
+  flex-wrap: wrap;
+}
+.slice input {
+  flex: 1;
+  min-width: 120px;
+  accent-color: #008d92;
+}
+.slices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.slices figure {
+  margin: 0;
+  min-width: 0;
+}
+.slices canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #0e171b;
+  image-rendering: pixelated;
+}
+.slices figcaption {
+  font-size: 0.85rem;
+  padding-top: 0.3rem;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.legend span {
+  width: 0.9rem;
+  height: 0.9rem;
+  display: inline-block;
+}
+.inputKey {
+  border: 2px solid #7baed0;
+  background: #708391;
+}
+.addKey {
+  background: #00aaa8;
+}
+.contactKey {
+  background: #f0b041;
+}
+.referenceKey {
+  background: #cf438e;
+}
+@media (max-width: 480px) {
+  .scene {
+    height: 280px;
+  }
+  .slices {
+    grid-template-columns: 1fr;
+  }
+}
+
+:global([data-explainer-export-frame]) .stage {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 5px 16px;
+  font-size: 11px;
+}
+:global([data-explainer-export-frame]) .stage > .controls:first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+:global([data-explainer-export-frame]) .scene {
+  grid-column: 1;
+  grid-row: 2/7;
+  height: 260px;
+}
+:global([data-explainer-export-frame]) .stage > .note {
+  grid-column: 1;
+  grid-row: 7;
+  margin: 0;
+  font-size: 10px;
+}
+:global([data-explainer-export-frame]) .stage > .controls:not(:first-child) {
+  grid-column: 2;
+  grid-row: 1;
+}
+:global([data-explainer-export-frame]) .slices {
+  grid-column: 2;
+  grid-row: 2;
+}
+:global([data-explainer-export-frame]) .slices canvas {
+  height: 150px;
+  object-fit: contain;
+}
+:global([data-explainer-export-frame]) .slices figcaption {
+  font-size: 10px;
+}
+:global([data-explainer-export-frame]) .threshold {
+  grid-column: 2;
+  grid-row: 3;
+  padding: 5px;
+}
+:global([data-explainer-export-frame]) .threshold span {
+  font-size: 10px;
+}
+:global([data-explainer-export-frame]) .stage > p:not(.note) {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 3px 0;
+}
+:global([data-explainer-export-frame]) .legend {
+  grid-column: 2;
+  grid-row: 4;
+  font-size: 10px;
+  margin: 0;
+}
+:global([data-explainer-export-frame]) .controls {
+  margin: 0;
+  gap: 5px;
+}
+:global([data-explainer-export-frame]) .slice {
+  min-width: 150px;
+  font-size: 10px;
+}
+:global([data-explainer-export-frame]) .controls button {
+  font-size: 10px;
+  padding: 4px;
+}

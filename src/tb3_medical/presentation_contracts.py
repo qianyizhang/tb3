@@ -160,6 +160,207 @@ class RestorationView(TypedDict):
     dependencies: dict[str, str]
 
 
+class NativeTraceBeat(TypedDict):
+    id: str
+    frames: int
+    caption: str
+    narration: str
+    visual: str
+    state: str | None
+    trace_steps: list[int]
+    reference: bool
+    startFrame: int
+    endFrame: int
+
+
+class NativeTracePlan(TypedDict):
+    schema: Literal[2]
+    id: str
+    title: str
+    locale: Literal["en"]
+    purpose: str
+    scope: str
+    recipe: Literal["native-trace-v1"]
+    asset_pack: str
+    manifest: str
+    fps: int
+    reference_policy: Literal["reader-reference-reveal"]
+    source_class: Literal["source-derived-teaching"]
+    source_locators: list[str]
+    durationFrames: int
+    source_sha256: str
+    asset_manifest_sha256: str
+    dependencies: dict[str, str]
+    beats: list[NativeTraceBeat]
+
+
+class NativeTraceAction(TypedDict):
+    step: int
+    timestamp: str | None
+    calls: list[str]
+    output: str
+
+
+class NativeDeliveredImage(TypedDict):
+    step: int
+    path: str
+    src: str
+
+
+class CtTraceInput(TypedDict):
+    shape: list[int]
+    affine: list[list[int | float]]
+    spacing_mm: int | float
+    preview_size: int
+    preview_window_hu: list[int | float]
+    preview_base64_gzip: str
+    target: str
+    target_silhouette: str
+    slice_previews: list[str]
+
+
+class CtTraceState(TypedDict):
+    id: str
+    trace_step: int
+    pose: list[list[int | float]]
+    image: str
+    silhouette: str
+    difference: str
+    role: str
+
+
+class CtTraceObserved(TypedDict):
+    states: list[CtTraceState]
+    trace: list[NativeTraceAction]
+    elapsed_seconds: int | float
+    steps_in_trace: int
+
+
+class CtTraceReference(TypedDict):
+    pose: list[list[int | float]]
+    frozen_metrics: dict[str, int | float]
+    state_diagnostics: dict[str, dict[str, int | float]]
+
+
+class CtTracePayload(TypedDict):
+    input: CtTraceInput
+    observed: CtTraceObserved
+    reference: CtTraceReference
+    delivered_images: list[NativeDeliveredImage]
+    licenses: list[str]
+
+
+class MraTraceInput(TypedDict):
+    shape: list[int]
+    affine: list[list[int | float]]
+    spacing: list[int | float]
+    volume: str
+    mask: str
+    editable: str
+    surface: str
+    surface_vertices: int
+    mip: str
+    source_voxels: int
+    global_components: int
+
+
+class MraTraceState(TypedDict):
+    threshold: int | float
+    count: int
+    indices: list[int]
+    contacts: list[list[int]]
+
+
+class MraTraceObserved(TypedDict):
+    states: list[MraTraceState]
+    seed: list[int]
+    roi: list[list[int]]
+    added: list[int]
+    trace: list[NativeTraceAction]
+
+
+class MraTraceBranch(TypedDict):
+    label: int
+    local_connection: bool
+    centerline_length_mm: int | float
+    centerline_coverage: int | float
+    branch_recall: int | float
+
+
+class MraTraceMetrics(TypedDict):
+    outside_edit_changed_voxels: int
+    collateral_deleted_mm3: int | float
+    collateral_added_mm3: int | float
+    far_added_mm3: int | float
+    local_dice: int | float
+    local_recall: int | float
+    branches: list[MraTraceBranch]
+    absent_branches: list[int]
+    whole_mask_dice_diagnostic: int | float
+    checks: dict[str, bool]
+    reward: int
+
+
+class MraTraceReference(TypedDict):
+    residual: list[int]
+    frozen: MraTraceMetrics
+    initial: MraTraceMetrics
+
+
+class MraTracePayload(TypedDict):
+    input: MraTraceInput
+    observed: MraTraceObserved
+    reference: MraTraceReference
+    delivered_images: list[NativeDeliveredImage]
+    licenses: list[str]
+
+
+class NativeTraceAsset(TypedDict):
+    path: str
+    sha256: str
+    bytes: int
+    role: str
+    step: int | None
+
+
+class NativeTraceBundle(TypedDict):
+    id: str
+    assets: list[NativeTraceAsset]
+
+
+class NativeTraceSource(TypedDict):
+    notice: ExplainerNotice
+
+
+class NativeTraceViewBase(TypedDict):
+    family: Literal["native-trace"]
+    version: Literal[1]
+    label: str
+    source: NativeTraceSource
+    availability: Literal["available", "missing-local-assets"]
+    missing: list[str]
+    coordinates: Literal["LPS-mm", "RAS-mm"]
+    attempt: str
+    saved_state: str
+    bundle: NativeTraceBundle
+    dependencies: dict[str, str]
+    reference_boundary: str
+
+
+class CtTraceView(NativeTraceViewBase):
+    adapter: Literal["ct-pose"]
+    payload: CtTracePayload | None
+
+
+class MraTraceView(NativeTraceViewBase):
+    adapter: Literal["mra-repair"]
+    payload: MraTracePayload | None
+
+
+NativeTraceView = CtTraceView | MraTraceView
+ExplainerView = RestorationView | CtTraceView | MraTraceView
+
+
 class ExpansionPlan(TypedDict):
     schema: Literal[2]
     id: str
@@ -3027,6 +3228,7 @@ class MixedTissuePlan(ExpansionPlan):
 
 StoryPlan = (
     RouteStoryPlan
+    | NativeTracePlan
     | TopologyPlan
     | CorrespondencePlan
     | MaterialPlan
@@ -3452,7 +3654,7 @@ class Inventory(TypedDict, total=False):
 
 class ExplorerData(TypedDict):
     explanation_stories: NotRequired[dict[str, StoryPlan]]
-    explainer_views: NotRequired[dict[str, RestorationView]]
+    explainer_views: NotRequired[dict[str, ExplainerView]]
     explainer_resources: NotRequired[dict[str, str]]
     schema_version: Literal[1]
     title: NotRequired[str]
@@ -3514,7 +3716,16 @@ class OverviewData(TypedDict):
 
 ALIASES = {
     name: globals()[name]
-    for name in ("VisualRole", "TaskTab", "BrowseView", "ResearchLane", "BriefField", "StoryPlan")
+    for name in (
+        "VisualRole",
+        "TaskTab",
+        "BrowseView",
+        "ResearchLane",
+        "BriefField",
+        "StoryPlan",
+        "NativeTraceView",
+        "ExplainerView",
+    )
 }
 MODELS = {name: model for name, model in list(globals().items()) if is_typeddict(model)}
 EXTENSIBLE = {"ResearchRecord", "RecordCurrent", "DatasetRecord"}
@@ -3572,6 +3783,11 @@ def validate_explainer_view(data: Document) -> RestorationView:
     """Validate the family projection at its browser boundary."""
     _validate(data, RestorationView, "explainer_view")
     return cast(RestorationView, data)
+
+
+def validate_native_trace_view(data: Document) -> NativeTraceView:
+    _validate(data, NativeTraceView, "native_trace_view")
+    return cast(NativeTraceView, data)
 
 
 def validate_payload(data: Document, surface: Literal["explorer", "overview"]) -> Document:

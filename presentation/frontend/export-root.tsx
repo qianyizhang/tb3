@@ -50,6 +50,17 @@ export function mountExport(TaskVisual: ComponentType<ReaderProps>) {
           )
             throw new Error('React frame did not commit');
           await document.fonts.ready;
+          if (plan.recipe === 'native-trace-v1') {
+            const deadline = performance.now() + 15000;
+            while (
+              document.querySelector('[data-native-ready]')?.getAttribute('data-native-ready') !==
+              'true'
+            ) {
+              if (performance.now() > deadline)
+                throw new Error('Native frame assets did not become ready');
+              await new Promise((resolve) => setTimeout(resolve, 25));
+            }
+          }
         },
       };
       return () => {

@@ -156,12 +156,17 @@ uv run --no-sync python -m tb3_medical.explainers.native_trace \
   --output .local/anatomy-pose/NEW-native-mra.json
 ```
 
-These drafts are not bound into `med story` or the Explorer yet. Next, add the
-Python-owned browser contract and shared native-trace reader, connect it to the
-existing frame player/selected exporter, and verify source/reference resets,
-native geometry, captured frames, mobile and fallback views. Only then change
-the two leaf bindings and append new renderer reviews. Existing synthetic
-operation stories and acceptance receipts remain intact.
+The drafts now compile through the canonical `compile_story` path into a
+Python-owned browser contract and shared native-trace reader. Both adapters use
+the existing frame player and a selected offline exporter. Interactive reference
+reveal is explicit and clears on backward navigation/reset; canonical capture
+reveals only the authored reference chapter. Missing local assets retain the
+narrative with a visible unavailable state, without substitute scans.
+
+The catalogue bindings are still unchanged. Finish canonical motion/export and
+integrated Explorer review before moving the two manuscripts from `drafts` to
+`stories`, changing the leaf bindings, and appending regression review receipts.
+Existing synthetic operation stories and acceptance receipts remain intact.
 
 Prototype commits: `75171dc2` (CT registration) and `0e1d1a92` (MRA repair).
 The isolated staged snapshots passed all repository gate targets, including
@@ -173,7 +178,32 @@ the dependency hash receipt remain under `.local/anatomy-pose/`.
 
 The goal is active. Baseline inventory, prototype cleanup and source verification
 are complete; canonical integration and the remaining enhancement pass are not.
-The first declared-source inventory is complete. Next, integrate a shared
-native-trace adapter grounded in the two prototypes, then investigate undeclared
-sources and expand the reviewed family adapters. Existing 154/154
+The first declared-source inventory and shared reader implementation are complete.
+Next, finish canonical export/Explorer regression review for the two native
+adapters, then investigate undeclared sources and expand reviewed family adapters. Existing 154/154
 review status must never be presented as this new goal's completion status.
+
+
+## Shared native reader checkpoint — 2026-10-12
+
+Implemented `NativeTraceReader`, CT and MRA geometry adapters, generated contracts,
+canonical compilation/view composition and `native-trace-export`. Selected
+packages carry source hashes, recorded deliveries and terms; they do not import
+the universal scientific asset library. This is an implementation checkpoint,
+not a new entry acceptance or a claim that the 154-entry enhancement is complete.
+
+`tests/native_trace_browser.mts` exercises the local selected packages using the
+repository's disposable browser harness. It checks chapter states, native sliders,
+MRA threshold counts/contact counts/saved-output independence, reference reset,
+390 px layouts, no-WebGL controls and 1280×720 captures at frames 0/480/768.
+Fresh attempts remain local under `.local/anatomy-pose/shared-reader-v4/`;
+`browser-review/receipt.json` pins the packaged HTML and selected dependencies.
+The earlier captures exposed two CT rendering defects: React cleared the
+imperative canvas when its loading text became empty, and transparent context
+planes obscured opaque candidate geometry. Separate DOM ownership and one ordered
+transparent pass fix these defects without changing native coordinates.
+
+Remaining review: normal-speed exported playback/full decoding, integrated
+Explorer entry switching and both locales, exact source-pinned collector and
+regression sign-off. The browser checks above do not substitute for those gates.
+Do not change the leaf bindings or original ledger receipts until that review.
