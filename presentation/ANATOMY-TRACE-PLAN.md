@@ -129,6 +129,40 @@ claim. Original acceptance receipts remain unchanged.
 
 ## Handoff boundary
 
+The [native-trace compiler](../src/tb3_medical/explainers/native_trace.py) now
+assembles two **unbound** migration drafts from pinned local assets:
+[CT](../groups/registration/presentation/drafts/br019-native-trace.story.md) and
+[MRA](../groups/tubular-anatomy/presentation/drafts/br026-native-trace.story.md).
+Each has six discrete chapters / 912 frames at 24 fps. The compiler validates
+chapter-to-trace/state bindings, array lengths, native affines, source/output
+hashes and the MRA edit domain. The declared saved component is independent of
+reader-selected alternatives. Input, observed actions/output and private reference
+are separate projections; a reference-capable chapter alone does not grant a UI
+reveal. The package explicitly disclaims solver staging/privacy isolation.
+
+The [CT mapping](../groups/registration/presentation/anatomy-pose/canonical-mapping.md)
+and [MRA mapping](../groups/tubular-anatomy/presentation/anatomy-repair/canonical-mapping.md)
+define adapter geometry, controls and remaining browser checks. Raw scans and
+generated arrays/images are pinned but not committed. Missing assets fail by
+default; explicit `--allow-missing` emits a missing-data record with no payload.
+Use a fresh output path each time:
+
+```sh
+uv run --no-sync python -m tb3_medical.explainers.native_trace \
+  groups/registration/presentation/drafts/br019-native-trace.story.md \
+  --output .local/anatomy-pose/NEW-native-ct.json
+uv run --no-sync python -m tb3_medical.explainers.native_trace \
+  groups/tubular-anatomy/presentation/drafts/br026-native-trace.story.md \
+  --output .local/anatomy-pose/NEW-native-mra.json
+```
+
+These drafts are not bound into `med story` or the Explorer yet. Next, add the
+Python-owned browser contract and shared native-trace reader, connect it to the
+existing frame player/selected exporter, and verify source/reference resets,
+native geometry, captured frames, mobile and fallback views. Only then change
+the two leaf bindings and append new renderer reviews. Existing synthetic
+operation stories and acceptance receipts remain intact.
+
 Prototype commits: `75171dc2` (CT registration) and `0e1d1a92` (MRA repair).
 The isolated staged snapshots passed all repository gate targets, including
 505 Python tests each. Validation needed three existing ignored archival Markdown
