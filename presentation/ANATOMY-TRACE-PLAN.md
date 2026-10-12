@@ -249,3 +249,35 @@ dynamic ordinal, component-box measurement limits and the mechanical/clinical
 boundary. Next: prepare bounded native previews, exact deliveries and logged states,
 then integrate a two-visit reader with explicit source-reference reveal.
 No new trial, source acquisition, clinical score or publication is implied.
+
+
+## Native longitudinal MRI checkpoint — 2026-10-12
+
+**4 of 154 core entries enhanced for one retained condition each; 150 remain.**
+Implementation: `3233f151`. The
+[MRI renderer review](../groups/longitudinal-reading/presentation/native-mri-trace/canonical-review.md)
+pins the 49-second export, complete decode, normal playback/three seeks and final
+locale/mobile/native-control/reference/fallback witness. A four-adapter preflight
+also checked the earlier CT, MRA and landmark readers plus Explorer switching.
+The staged implementation passed 534 Python tests and all repository gates;
+JS checks passed 167 stories / 314,346 deterministic frames. The original ledger
+is unchanged; this is enhancement coverage, not a new historical acceptance count.
+
+The MRI reader connects all 122 input records and sixteen selected dynamics to
+three exact deliveries, independent visit geometry, logged native inspections and
+saved component-box extents. Delivered and saved image revisions remain separate.
+Clinical accuracy and raw source diameter units remain unresolved as documented.
+The active goal continues with retained coronary-route evidence and then whole-slide
+search; no new trial, runtime installation, score revision, push or publication.
+
+
+The [next coronary mapping](../groups/tubular-anatomy/presentation/native-coronary-trace/canonical-mapping.md)
+selects entry `ours`, the BR-030 Terra/high repair → route → CPR attempt. All 18
+frozen task files and three embedded PNG deliveries were verified. The supplied
+366×319×205 crop is an exact subset of the retained full source; excluded pixels
+were not solver inputs. Original repair, trace and mesh pass, but the CPR distance
+array differs from saved-polyline cumulative length by 8.891498 mm. The original
+reward remains zero; the retained author correction and its later score are separate.
+Next: extract bounded native context, exact deliveries, the original 371-point
+route, source-linked CPR arrays and mesh into a typed shared adapter. No source
+payload, canonical binding or visual acceptance has been added for coronary yet.

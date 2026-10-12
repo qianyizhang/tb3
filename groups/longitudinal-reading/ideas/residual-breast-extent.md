@@ -37,3 +37,19 @@ Assistant recommends deferring trials until fresh cases have adjudicated boundar
 Assistant source/engineering review for the [MRI task](../presentation/briefs/tb3-longitudinal-mri.md) rechecked 354 original frozen files and reproduced both P03 saved component-box methods (−5.9% versus −27.2%). [The source audit](../presentation/sources/longitudinal-mri-audit.json) retains native geometry checks, method definitions and source-reference boundaries. The [canonical story](../presentation/stories/longitudinal-mri.story.md) connects actual images to citations, phase choice, measurements, uncertainty and forecast baselines.
 
 The diagnostic comparison does not resolve clinical measurement validity or source workbook diameter units. Source-VOI selected reader crops remove search; no new model run, adjudication or score revision occurred. All three next-visit source diameters decreased, so an always-smaller baseline ties the neutral forecasts. The existing reopening conditions remain unchanged. This is an assistant explanation, not a new user research decision.
+
+
+## Native trace explanation — 2026-10-12
+
+Assistant presentation review added a [native-context replay](../presentation/stories/br037-native-trace.story.md)
+for one P03 neutral attempt, with a [source-pinned review](../presentation/native-mri-trace/canonical-review.md).
+It connects the full 122-volume inventory and sixteen selected dynamic previews to
+actual delivered images, independent visit grids, logged operations, saved
+component-box spans and citations. A delivered projection's laterality-label
+correction remains chronological; saved files do not replace the delivered pixels.
+
+The source FTV trajectory, unresolved raw-diameter units, mechanical-only contract
+and always-smaller baseline remain explicit. This is an assistant explanation under
+the user's presentation-enhancement request, not a new user research decision.
+No trial, score revision, clinical adjudication or measurement rerun occurred;
+existing reopening conditions remain unchanged.
