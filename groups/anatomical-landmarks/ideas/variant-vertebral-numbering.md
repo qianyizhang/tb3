@@ -56,3 +56,18 @@ original runtime atlas image remains unrecovered. See the
 Assistant next action: complete this same entry's native-image story and explicit
 reference reveal, then review exported motion and mobile/no-GPU behavior. The
 source audit alone does not accept the story or authorize new medical trials.
+
+## 2026-10-12 native trace explanation
+
+Assistant selected one retained BR-039 Terra/high partial-CT attempt for the
+[native manuscript](../presentation/stories/br039-native-trace.story.md). It connects
+thirty logged inspection states and ten exact delivered images to the full
+512×512×920 supplied crop. A coarse reader preview is explicitly distinct from
+recorded images. Saved T4 is 2.142412 mm from source T5; source T4 lies outside the
+crop. This comparison preserves frozen counts and availability denominators.
+
+The [recovery mapping](../presentation/native-landmark-trace/canonical-mapping.md)
+and [recipe](../presentation/native-landmark-trace/README.md) retain source roles,
+missing work files, native geometry and VerSe terms. This is an explanation of
+one existing attempt, not a new model trial, variant result or clinical adjudication.
+Reopen on source/geometry changes; renderer verification is recorded separately.

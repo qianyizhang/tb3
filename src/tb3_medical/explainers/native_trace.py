@@ -27,6 +27,7 @@ from ..presentation_contracts import (
 )
 from ..types import Document
 from .assets import check_dependencies
+from .landmark_trace import project_landmark
 
 
 class ClosedModel(BaseModel):
@@ -56,7 +57,7 @@ class Manifest(ClosedModel):
     entry_id: str = Field(min_length=1)
     attempt: str = Field(min_length=1)
     saved_state: str = Field(min_length=1)
-    adapter: Literal["ct-pose", "mra-repair"]
+    adapter: Literal["ct-pose", "mra-repair", "ct-landmarks"]
     coordinates: Literal["LPS-mm", "RAS-mm"]
     notice: str = Field(min_length=1)
     recovery: str = Field(min_length=1)
@@ -81,7 +82,17 @@ class Manifest(ClosedModel):
 class Chapter(ClosedModel):
     id: str = Field(pattern=r"^[a-z][a-z0-9-]*$")
     scene: Literal[
-        "input", "search", "bounds", "coarse", "threshold", "contacts", "output", "reference"
+        "input",
+        "search",
+        "bounds",
+        "coarse",
+        "threshold",
+        "contacts",
+        "output",
+        "reference",
+        "projection",
+        "levels",
+        "centres",
     ]
     frames: StrictInt = Field(ge=1)
     caption: str = Field(min_length=1)
@@ -220,6 +231,8 @@ def project_payload(data: Document, manifest: Manifest) -> Document:
             "frozen_metrics": data["frozen_metrics"],
             "state_diagnostics": diagnostics,
         }
+    elif manifest.adapter == "ct-landmarks":
+        input_keys, observed, reference = project_landmark(data, manifest.attempt, _array)
     else:
         volume = _array(data["volume"], size)
         mask = _array(data["mask"], size)
@@ -351,13 +364,20 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
         payload = project_payload(storage.read_object(storage.inside(root, asset.path)), manifest)
         states = payload["observed"]["states"]
         state_ids = {
-            str(s["id"] if manifest.adapter == "ct-pose" else s["threshold"]) for s in states
+            str(s["threshold"] if manifest.adapter == "mra-repair" else s["id"]) for s in states
         }
         if len(state_ids) != len(states):
             raise ValueError("Duplicate native state identity")
         if manifest.saved_state not in state_ids:
             raise ValueError("Saved state is not retained")
         steps = {item["step"] for item in payload["observed"]["trace"]}
+        if manifest.adapter == "ct-landmarks":
+            deliveries = {a.step for a in manifest.assets if a.role == "delivered-image"}
+            if any(
+                s["delivered_step"] is not None and s["delivered_step"] not in deliveries
+                for s in states
+            ):
+                raise ValueError("Landmark inspection is missing its exact delivered image")
         for beat in story.beats:
             if not set(beat.trace_steps) <= steps or (
                 beat.state is not None and beat.state not in state_ids
@@ -394,6 +414,11 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
         "compiler": {
             "native_trace.py": storage.sha(Path(__file__)),
             "explanation_stories.py": storage.sha(Path(explanation_stories.__file__)),
+            **(
+                {"landmark_trace.py": storage.sha(Path(__file__).with_name("landmark_trace.py"))}
+                if manifest.adapter == "ct-landmarks"
+                else {}
+            ),
         },
         "reference_boundary": "Reader reveal only; this local package contains reference bytes and is not solver staging.",
     }
@@ -411,6 +436,10 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
     dependencies["src/tb3_medical/explainers/native_trace.py"] = storage.sha(
         root / "src/tb3_medical/explainers/native_trace.py"
     )
+    if manifest["adapter"] == "ct-landmarks":
+        dependencies["src/tb3_medical/explainers/landmark_trace.py"] = storage.sha(
+            root / "src/tb3_medical/explainers/landmark_trace.py"
+        )
     plan = cast(
         NativeTracePlan,
         {
@@ -441,6 +470,8 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
                     "text": manifest["notice"] if available else manifest["recovery"],
                     "url": "https://zenodo.org/records/10047263"
                     if manifest["adapter"] == "ct-pose"
+                    else "https://github.com/anjany/verse"
+                    if manifest["adapter"] == "ct-landmarks"
                     else "https://zenodo.org/records/15692630",
                     "link_label": "Original dataset",
                 }

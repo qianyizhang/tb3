@@ -60,6 +60,7 @@ js-check:
 	node tests/tour_state.cjs
 	node tests/task_scene_models.cjs
 	node tests/scene_player.cjs
+	node tests/landmark_trace_geometry.cjs
 	node tests/explanation_story.cjs
 	node tests/explanation_expansion.cjs
 	node tests/story_review.cjs

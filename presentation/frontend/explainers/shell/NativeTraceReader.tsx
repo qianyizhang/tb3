@@ -1,9 +1,10 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import type { ReaderProps } from '../../explainer';
 import type { NativeTraceView, NativeTracePlan } from '../../contracts.generated';
 import { useFramePlayer } from '../player/use-frame-player';
 import { CtTraceStage } from '../native/CtTraceStage';
 import { MraTraceStage } from '../native/MraTraceStage';
+import { LandmarkTraceStage } from '../native/LandmarkTraceStage';
 import styles from './native-trace-reader.module.css';
 import { useLocale } from '../../locale';
 
@@ -17,6 +18,9 @@ const chapterLabels: Record<string, string> = {
   contacts: 'Contacts',
   output: 'Saved answer',
   reference: 'Reference',
+  projection: 'Bone views',
+  levels: 'Candidate levels',
+  centres: 'Image centres',
 };
 const chapterLabelsZh: Record<string, string> = {
   input: '输入',
@@ -27,10 +31,31 @@ const chapterLabelsZh: Record<string, string> = {
   contacts: '连接处',
   output: '保存的答案',
   reference: '参考标准',
+  projection: '骨性视图',
+  levels: '候选椎体',
+  centres: '图像中心',
 };
 
 function ReferenceResult({ view }: { view: NativeTraceView }) {
   if (!view.payload) return null;
+  if (view.adapter === 'ct-landmarks') {
+    const { frozen, wrong_level: level } = view.payload.reference;
+    return (
+      <section className={styles.result} data-native-reference-result>
+        <strong>Correct JSON can still name the wrong vertebra.</strong>
+        <span>
+          {frozen.success_counts_mm['5']} / {frozen.counts.observed} visible targets within 5 mm ·{' '}
+          {frozen.hallucinated.out_of_fov} / {frozen.counts.out_of_fov} outside targets claimed
+          observed
+        </span>
+        <small>
+          Saved {level.claimed_name} lies {level.separation_mm.toFixed(3)} mm from source{' '}
+          {level.matched_name}. Source {level.outside_name} is outside this crop. Frozen result; no
+          new trial or regrading.
+        </small>
+      </section>
+    );
+  }
   if (view.adapter === 'ct-pose') {
     const score = view.payload.reference.frozen_metrics;
     return (
@@ -95,6 +120,12 @@ function TraceEvidence({
           <pre>{item.output}</pre>
         </details>
       ))}
+      {view.adapter === 'ct-landmarks' && view.payload && (
+        <details>
+          <summary>Saved solver account — a retained claim, not an endorsed finding</summary>
+          <pre>{view.payload.observed.evidence}</pre>
+        </details>
+      )}
       <details>
         <summary>Images actually delivered to the solver</summary>
         <p>
@@ -194,7 +225,12 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
           原始任务、保留轨迹和图中标注为英文；目录和播放控件使用中文。
         </p>
       )}
-      <nav className={styles.chapters} aria-label="Trace chapters" lang={locale}>
+      <nav
+        className={styles.chapters}
+        aria-label="Trace chapters"
+        lang={locale}
+        style={{ '--native-chapters': plan.beats.length } as CSSProperties}
+      >
         {plan.beats.map((chapter, i) => (
           <button
             key={chapter.id}
@@ -258,6 +294,15 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
             </div>
           ) : view.adapter === 'ct-pose' ? (
             <CtTraceStage
+              key={stageKey}
+              payload={view.payload}
+              stateId={beat.state}
+              chapterId={beat.scene}
+              referenceShown={referenceShown}
+              onReady={onReady}
+            />
+          ) : view.adapter === 'ct-landmarks' ? (
+            <LandmarkTraceStage
               key={stageKey}
               payload={view.payload}
               stateId={beat.state}

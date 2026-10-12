@@ -1,4 +1,4 @@
-/** Native CT/MRA matrix integrated into the existing browser run; never launches a browser. */
+/** Native CT/MRA/landmark matrix integrated into the existing browser run; never launches a browser. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 import type { Browser, BrowserContext, Page } from 'playwright';
 import { captureComposedFrame } from '../presentation/tooling/media/capture.mts';
 
-type Adapter = 'ct' | 'mra';
+type Adapter = 'ct' | 'mra' | 'landmark';
 interface Entry {
   entry_id: string;
   story_id: string;
@@ -70,6 +70,11 @@ async function noReference(page: Page) {
     'Private reference result leaked',
   );
   assert.equal(await page.locator(rootSelector).getAttribute('data-reference-shown'), 'false');
+  const landmark = page.locator(
+    '[data-native-adapter="ct-landmarks"] [data-native-reference-count]',
+  );
+  if (await landmark.count())
+    assert.equal(await landmark.getAttribute('data-native-reference-count'), '0');
   const ct = page.locator('[data-native-reference]');
   if (await ct.count()) assert.equal(await ct.getAttribute('data-native-reference'), 'hidden');
 }
@@ -86,7 +91,9 @@ async function checkNativeData(page: Page, adapter: Adapter, fallback = false) {
   const role = page.locator(
     adapter === 'ct'
       ? '[role="img"][aria-label^="Native CT volume"]'
-      : '[role="img"][aria-label^="Native MRA vessel mask"]',
+      : adapter === 'landmark'
+        ? '[role="img"][aria-label^="CT crop in physical RAS"]'
+        : '[role="img"][aria-label^="Native MRA vessel mask"]',
   );
   assert.equal(await role.count(), 1);
   assert.equal(
@@ -154,9 +161,27 @@ async function checkNativeData(page: Page, adapter: Adapter, fallback = false) {
       }).length,
   );
   assert.ok(
-    nativePixels >= (adapter === 'ct' ? 3 : 1),
+    nativePixels >= (adapter === 'mra' ? 1 : 3),
     'Native slice canvases contain no scalar image data',
   );
+  if (adapter === 'landmark')
+    assert.equal(
+      await page.locator(stageSelector).getAttribute('data-native-shape'),
+      '512,512,920',
+    );
+  if (adapter === 'landmark' && new URL(page.url()).searchParams.has('capture')) {
+    const footer = await page.locator('.scene-reset').boundingBox();
+    const resultNode = page.locator('[data-native-reference-result]');
+    const result = (await resultNode.count()) ? await resultNode.boundingBox() : null;
+    const ceiling = result?.y ?? footer!.y - 5;
+    for (const slider of await page.locator(`${stageSelector} input[type="range"]`).all()) {
+      const box = await slider.locator('..').boundingBox();
+      assert.ok(
+        box && box.y + box.height <= ceiling,
+        'Native slice/readout clipped by result or footer',
+      );
+    }
+  }
   if (adapter === 'mra')
     assert.equal(await page.locator(stageSelector).getAttribute('data-native-shape'), '187,132,53');
 }
@@ -179,6 +204,46 @@ async function controls(page: Page, plan: Plan, adapter: Adapter) {
       await page.getByAltText('Absolute target-candidate difference amplified four times').count(),
       1,
     );
+  } else if (adapter === 'landmark') {
+    const stage = page.locator(stageSelector);
+    assert.equal(await stage.getAttribute('data-native-saved-visible'), 'false');
+    assert.equal(await stage.getAttribute('data-native-reference-count'), '0');
+    for (const axis of ['i', 'j', 'k']) {
+      const slider = page.getByLabel(`Native ${axis} slice`, { exact: true });
+      const before = await slider.inputValue();
+      await slider.focus();
+      await slider.press('ArrowRight');
+      assert.notEqual(await slider.inputValue(), before);
+    }
+    await chapter(page, plan, 2);
+    const inspections = page.getByLabel('Recorded inspection', { exact: true });
+    await inspections.waitFor({ state: 'visible' });
+    const alternatives = await inspections
+      .locator('option')
+      .evaluateAll((nodes) => nodes.map((node) => (node as HTMLOptionElement).value));
+    assert.ok(alternatives.length >= 3, 'Recorded plane/slab choices missing');
+    await inspections.selectOption(alternatives.at(-1)!);
+    assert.equal(await stage.getAttribute('data-native-state'), alternatives.at(-1));
+    assert.equal(await stage.getAttribute('data-native-reference-count'), '0');
+    await chapter(
+      page,
+      plan,
+      plan.beats.findIndex((b) => b.state === 'saved'),
+    );
+    assert.equal(await stage.getAttribute('data-native-saved-visible'), 'true');
+    const names = page.getByLabel('Saved name', { exact: true });
+    await names.selectOption('T4');
+    assert.equal(await stage.getAttribute('data-native-selected-status'), 'observed');
+    assert.equal(await stage.getAttribute('data-native-selected-ijk'), '269.8,154.6,906.1');
+    const ras = (await stage.getAttribute('data-native-selected-ras'))!.split(',').map(Number);
+    assert.ok(Math.abs(ras[0] - (181.640625 - 0.71875 * 269.8)) < 1e-6);
+    assert.ok(Math.abs(ras[2] - (-1546.11474609375 + 0.70001220703125 * 906.1)) < 1e-6);
+    await names.selectOption('C1');
+    assert.equal(await stage.getAttribute('data-native-selected-status'), 'out_of_fov');
+    assert.equal(await stage.getAttribute('data-native-point-count'), '0');
+    await names.selectOption('T13');
+    assert.equal(await stage.getAttribute('data-native-selected-status'), 'absent');
+    assert.equal(await stage.getAttribute('data-native-selected-ijk'), '');
   } else {
     await chapter(page, plan, 2);
     await page.getByLabel('Recorded threshold').selectOption('150');
@@ -200,6 +265,12 @@ async function referenceAndReset(page: Page, plan: Plan) {
   await stageReady(page);
   assert.equal(await page.locator('[data-native-reference-result]').count(), 1);
   assert.equal(await page.locator(rootSelector).getAttribute('data-reference-shown'), 'true');
+  if (await page.locator('[data-native-adapter="ct-landmarks"]').count()) {
+    assert.ok(
+      Number(await page.locator(stageSelector).getAttribute('data-native-reference-count')) >= 1,
+    );
+    assert.match(await page.locator('[data-native-reference-result]').innerText(), /1 \/ 13/);
+  }
   await chapter(page, plan, 0);
   await noReference(page);
   await chapter(page, plan, index);
@@ -304,8 +375,11 @@ export async function checkNativeTraceMatrix(
           await page.waitForFunction(() => !!window.__tb3ExplainerCapture);
           await stageReady(page);
           const adapter = await page.locator(rootSelector).getAttribute('data-native-adapter');
-          assert.ok(adapter === 'ct-pose' || adapter === 'mra-repair');
-          const nativeAdapter: Adapter = adapter === 'ct-pose' ? 'ct' : 'mra';
+          assert.ok(
+            adapter === 'ct-pose' || adapter === 'mra-repair' || adapter === 'ct-landmarks',
+          );
+          const nativeAdapter: Adapter =
+            adapter === 'ct-pose' ? 'ct' : adapter === 'ct-landmarks' ? 'landmark' : 'mra';
           row.adapter = nativeAdapter;
           for (const frame of [0, plan.durationFrames - 1]) {
             const png = await captureComposedFrame(page, {

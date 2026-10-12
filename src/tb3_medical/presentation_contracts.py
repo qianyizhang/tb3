@@ -163,7 +163,17 @@ class RestorationView(TypedDict):
 class NativeTraceBeat(TypedDict):
     id: str
     scene: Literal[
-        "input", "search", "bounds", "coarse", "threshold", "contacts", "output", "reference"
+        "input",
+        "search",
+        "bounds",
+        "coarse",
+        "threshold",
+        "contacts",
+        "output",
+        "reference",
+        "projection",
+        "levels",
+        "centres",
     ]
     frames: int
     caption: str
@@ -318,6 +328,87 @@ class MraTracePayload(TypedDict):
     licenses: list[str]
 
 
+class LandmarkTraceName(TypedDict):
+    name: str
+    definition: str
+
+
+class LandmarkTracePoint(TypedDict):
+    name: str
+    status: Literal["observed", "out_of_fov", "absent", "uncertain"]
+    ijk: list[int | float] | None
+
+
+class LandmarkTraceInput(TypedDict):
+    shape: list[int]
+    affine: list[list[int | float]]
+    spacing: list[int | float]
+    preview_shape: list[int]
+    preview_indices: list[list[int]]
+    preview_window_hu: list[int | float]
+    volume: str
+    names: list[LandmarkTraceName]
+    poster: str
+
+
+class LandmarkTraceState(TypedDict):
+    id: str
+    trace_step: int
+    label: str
+    kind: Literal["region", "plane", "slab", "levels", "points", "saved"]
+    bounds: list[list[int | float]] | None
+    center_ijk: list[int | float] | None
+    radius_mm: int | float | None
+    axis: int | None
+    levels: list[int]
+    points: list[LandmarkTracePoint]
+    delivered_step: int | None
+    description: str
+
+
+class LandmarkTraceObserved(TypedDict):
+    states: list[LandmarkTraceState]
+    points: list[LandmarkTracePoint]
+    trace: list[NativeTraceAction]
+    elapsed_seconds: int | float
+    steps_in_trace: int
+    evidence: str
+
+
+class LandmarkTraceMetrics(TypedDict):
+    contract_valid: bool
+    reward: int | float
+    counts: dict[str, int]
+    hallucinated: dict[str, int]
+    correct_rejections: dict[str, int]
+    success_counts_mm: dict[str, int]
+    errors_mm: dict[str, int | float]
+
+
+class LandmarkTraceWrongLevel(TypedDict):
+    claimed_name: str
+    matched_name: str
+    claimed_ijk: list[int | float]
+    matched_ijk: list[int | float]
+    separation_mm: int | float
+    outside_name: str
+    outside_ijk: list[int | float]
+
+
+class LandmarkTraceReference(TypedDict):
+    points: list[LandmarkTracePoint]
+    frozen: LandmarkTraceMetrics
+    wrong_level: LandmarkTraceWrongLevel
+
+
+class LandmarkTracePayload(TypedDict):
+    input: LandmarkTraceInput
+    observed: LandmarkTraceObserved
+    reference: LandmarkTraceReference
+    delivered_images: list[NativeDeliveredImage]
+    licenses: list[str]
+
+
 class NativeTraceAsset(TypedDict):
     path: str
     sha256: str
@@ -360,8 +451,13 @@ class MraTraceView(NativeTraceViewBase):
     payload: MraTracePayload | None
 
 
-NativeTraceView = CtTraceView | MraTraceView
-ExplainerView = RestorationView | CtTraceView | MraTraceView
+class LandmarkTraceView(NativeTraceViewBase):
+    adapter: Literal["ct-landmarks"]
+    payload: LandmarkTracePayload | None
+
+
+NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView
+ExplainerView = RestorationView | CtTraceView | MraTraceView | LandmarkTraceView
 
 
 class ExpansionPlan(TypedDict):
