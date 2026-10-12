@@ -175,12 +175,12 @@ committed. All three retained browser checks passed, covering native geometry,
 recorded controls, keyboard/mobile views and static fallbacks. Validation logs and
 the dependency hash receipt remain under `.local/anatomy-pose/`.
 
-The goal is active. Baseline inventory, prototype cleanup and source verification
-are complete. The two native adapters now have canonical integration and regression
-review; 152 core entries remain in the enhancement pass. Next, implement the
-named-landmark adapter from its retained-source mapping, then continue source
-resolution and family expansion. Existing 154/154
-review status must never be presented as this new goal's completion status.
+The goal is active. Baseline inventory and prototype cleanup are complete.
+Three native adapters now have canonical integration and regression review;
+151 core entries remain in the enhancement pass. Next, implement the longitudinal
+MRI adapter from its retained P03 neutral source mapping, then continue source
+resolution and family expansion. Existing 154/154 historical review status must
+never be presented as this new goal's completion status.
 
 
 ## Shared native reader checkpoint — 2026-10-12
@@ -230,3 +230,22 @@ Large input arrays and generated deliveries must stay in selected local bundles.
 
 Keep the active goal running. No trials, runtime installation, pushes or
 publication are authorized by this enhancement workflow.
+
+## Native landmark checkpoint — 2026-10-12
+
+**3 of 154 core entries enhanced for one retained condition each; 151 remain.**
+Implementation: `13bacfb4`. The
+[landmark renderer review](../groups/anatomical-landmarks/presentation/native-landmark-trace/canonical-review.md)
+pins the 49-second export, full decode, normal playback/three seeks and integrated
+locale/mobile/native-control/reference/fallback witness. The same fresh batch
+regressed the CT and MRA readers. The original ledger is unchanged.
+
+The [next MRI mapping](../groups/longitudinal-reading/presentation/native-mri-trace/canonical-mapping.md)
+selects P03 neutral, one of four retained BR-037 attempts. All 122 input volumes
+and 134 frozen task files were checked. Three actual image deliveries differ from
+final saved figures; one delivered MIP predates corrected laterality labels.
+Preserve that chronology, independent visit grids, phase-zero citations versus
+dynamic ordinal, component-box measurement limits and the mechanical/clinical
+boundary. Next: prepare bounded native previews, exact deliveries and logged states,
+then integrate a two-visit reader with explicit source-reference reveal.
+No new trial, source acquisition, clinical score or publication is implied.
