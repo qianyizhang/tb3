@@ -5,12 +5,15 @@ import { useFramePlayer } from '../player/use-frame-player';
 import { CtTraceStage } from '../native/CtTraceStage';
 import { MraTraceStage } from '../native/MraTraceStage';
 import { LandmarkTraceStage } from '../native/LandmarkTraceStage';
+import { MriTraceStage } from '../native/MriTraceStage';
 import styles from './native-trace-reader.module.css';
 import { useLocale } from '../../locale';
 
 const adapter = { planar: true, interactiveProjection: true };
 const chapterLabels: Record<string, string> = {
   input: 'Inputs',
+  focus: 'Selected focus',
+  measurement: 'Measure extent',
   search: 'Search',
   bounds: 'Volume bounds',
   coarse: 'Coarse match',
@@ -34,6 +37,8 @@ const chapterLabelsZh: Record<string, string> = {
   projection: '骨性视图',
   levels: '候选椎体',
   centres: '图像中心',
+  focus: '选定焦点',
+  measurement: '范围测量',
 };
 
 function ReferenceResult({ view }: { view: NativeTraceView }) {
@@ -52,6 +57,29 @@ function ReferenceResult({ view }: { view: NativeTraceView }) {
           Saved {level.claimed_name} lies {level.separation_mm.toFixed(3)} mm from source{' '}
           {level.matched_name}. Source {level.outside_name} is outside this crop. Frozen result; no
           new trial or regrading.
+        </small>
+      </section>
+    );
+  }
+  if (view.adapter === 'longitudinal-mri') {
+    const ref = view.payload.reference;
+    const change = (values: number[]) =>
+      values.length >= 2 && values[0] !== 0
+        ? `${(100 * (values[1] / values[0] - 1)).toFixed(1)}%`
+        : 'unavailable';
+    return (
+      <section className={styles.result} data-native-reference-result>
+        <strong>
+          Frozen contract {ref.contract_pass ? 'passes' : 'does not pass'} · clinical accuracy not
+          scored
+        </strong>
+        <span>
+          Component-box {ref.audit_change_percent.toFixed(1)}% · source FTV {change(ref.ftv_cc)} ·
+          source diameter {change(ref.diameter_raw)}
+        </span>
+        <small>
+          Different endpoints. Source diameter units unresolved; component extent is not an
+          adjudicated clinical diameter.
         </small>
       </section>
     );
@@ -120,7 +148,7 @@ function TraceEvidence({
           <pre>{item.output}</pre>
         </details>
       ))}
-      {view.adapter === 'ct-landmarks' && view.payload && (
+      {(view.adapter === 'ct-landmarks' || view.adapter === 'longitudinal-mri') && view.payload && (
         <details>
           <summary>Saved solver account — a retained claim, not an endorsed finding</summary>
           <pre>{view.payload.observed.evidence}</pre>
@@ -239,7 +267,11 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
             onClick={() => player.actions.current?.selectBeat(i)}
           >
             <span>{String(i + 1).padStart(2, '0')}</span>
-            {(locale === 'zh-CN' ? chapterLabelsZh : chapterLabels)[chapter.scene] ??
+            {(view.adapter === 'longitudinal-mri' && chapter.scene === 'projection'
+              ? locale === 'zh-CN'
+                ? '投影与方向'
+                : 'Projection & orientation'
+              : (locale === 'zh-CN' ? chapterLabelsZh : chapterLabels)[chapter.scene]) ??
               chapter.caption}
           </button>
         ))}
@@ -294,6 +326,15 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
             </div>
           ) : view.adapter === 'ct-pose' ? (
             <CtTraceStage
+              key={stageKey}
+              payload={view.payload}
+              stateId={beat.state}
+              chapterId={beat.scene}
+              referenceShown={referenceShown}
+              onReady={onReady}
+            />
+          ) : view.adapter === 'longitudinal-mri' ? (
+            <MriTraceStage
               key={stageKey}
               payload={view.payload}
               stateId={beat.state}

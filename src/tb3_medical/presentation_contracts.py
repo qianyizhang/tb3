@@ -174,6 +174,8 @@ class NativeTraceBeat(TypedDict):
         "projection",
         "levels",
         "centres",
+        "focus",
+        "measurement",
     ]
     frames: int
     caption: str
@@ -409,6 +411,120 @@ class LandmarkTracePayload(TypedDict):
     licenses: list[str]
 
 
+class MriTraceInventory(TypedDict):
+    visit: str
+    id: str
+    description: str
+    shape: list[int]
+    affine: list[list[int | float]]
+    phase_count: int
+
+
+class MriTraceSeries(TypedDict):
+    id: str
+    ordinal: int
+    volume: str
+
+
+class MriTraceVisit(TypedDict):
+    id: str
+    day: int
+    shape: list[int]
+    affine: list[list[int | float]]
+    spacing: list[int | float]
+    preview_shape: list[int]
+    preview_indices: list[list[int]]
+    preview_window: list[int | float]
+    series: list[MriTraceSeries]
+    poster: str
+
+
+class MriTraceInput(TypedDict):
+    visits: list[MriTraceVisit]
+    inventory: list[MriTraceInventory]
+    registered: Literal[False]
+
+
+class MriTraceInspection(TypedDict):
+    visit: str
+    series_id: str
+    axis: int | None
+    levels: list[int]
+    bounds: list[list[int | float]] | None
+    center_ijk: list[int | float] | None
+
+
+class MriTraceState(TypedDict):
+    id: str
+    trace_step: int
+    label: str
+    kind: Literal["inventory", "planes", "slab", "focus", "measurement", "saved"]
+    views: list[MriTraceInspection]
+    delivered_step: int | None
+    description: str
+
+
+class MriTraceMeasurement(TypedDict):
+    visit: str
+    series_id: str
+    phase: int
+    fraction: int | float
+    bbox_min: list[int]
+    bbox_max: list[int]
+    spans_mm: list[int | float]
+    diameter_mm: int | float
+    reported_mm: int | float
+    method: str
+
+
+class MriTraceCitation(TypedDict):
+    visit: str
+    series_id: str
+    phase: int
+    ijk: list[int | float]
+    description: str
+
+
+class MriTraceForecast(TypedDict):
+    direction: str
+    confidence: int | float
+    basis: str
+
+
+class MriTraceObserved(TypedDict):
+    states: list[MriTraceState]
+    measurements: list[MriTraceMeasurement]
+    citations: list[MriTraceCitation]
+    summary: str
+    impression: str
+    forecast: MriTraceForecast
+    evidence: str
+    trace: list[NativeTraceAction]
+    elapsed_seconds: int | float
+    steps_in_trace: int
+
+
+class MriTraceReference(TypedDict):
+    contract_pass: bool
+    reward: int | float
+    clinical_accuracy: str
+    ftv_cc: list[int | float]
+    diameter_raw: list[int | float]
+    diameter_unit: str
+    pcr: int
+    audit_diameters_mm: list[int | float]
+    audit_change_percent: int | float
+    forecast_baseline: str
+
+
+class MriTracePayload(TypedDict):
+    input: MriTraceInput
+    observed: MriTraceObserved
+    reference: MriTraceReference
+    delivered_images: list[NativeDeliveredImage]
+    licenses: list[str]
+
+
 class NativeTraceAsset(TypedDict):
     path: str
     sha256: str
@@ -456,8 +572,13 @@ class LandmarkTraceView(NativeTraceViewBase):
     payload: LandmarkTracePayload | None
 
 
-NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView
-ExplainerView = RestorationView | CtTraceView | MraTraceView | LandmarkTraceView
+class MriTraceView(NativeTraceViewBase):
+    adapter: Literal["longitudinal-mri"]
+    payload: MriTracePayload | None
+
+
+NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView
+ExplainerView = RestorationView | CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView
 
 
 class ExpansionPlan(TypedDict):

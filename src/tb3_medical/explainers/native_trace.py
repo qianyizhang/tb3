@@ -28,6 +28,7 @@ from ..presentation_contracts import (
 from ..types import Document
 from .assets import check_dependencies
 from .landmark_trace import project_landmark
+from .mri_trace import project_mri
 
 
 class ClosedModel(BaseModel):
@@ -57,7 +58,7 @@ class Manifest(ClosedModel):
     entry_id: str = Field(min_length=1)
     attempt: str = Field(min_length=1)
     saved_state: str = Field(min_length=1)
-    adapter: Literal["ct-pose", "mra-repair", "ct-landmarks"]
+    adapter: Literal["ct-pose", "mra-repair", "ct-landmarks", "longitudinal-mri"]
     coordinates: Literal["LPS-mm", "RAS-mm"]
     notice: str = Field(min_length=1)
     recovery: str = Field(min_length=1)
@@ -93,6 +94,8 @@ class Chapter(ClosedModel):
         "projection",
         "levels",
         "centres",
+        "focus",
+        "measurement",
     ]
     frames: StrictInt = Field(ge=1)
     caption: str = Field(min_length=1)
@@ -171,6 +174,8 @@ def _indices(values: list[int], size: int) -> None:
 
 def project_payload(data: Document, manifest: Manifest) -> Document:
     """Explicit field allowlists prevent reference diagnostics leaking into input data."""
+    if manifest.adapter == "longitudinal-mri":
+        return project_mri(data, manifest.attempt, _array, _matrix)
     shape = data["shape"]
     if (
         not isinstance(shape, list)
@@ -371,13 +376,13 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
         if manifest.saved_state not in state_ids:
             raise ValueError("Saved state is not retained")
         steps = {item["step"] for item in payload["observed"]["trace"]}
-        if manifest.adapter == "ct-landmarks":
+        if manifest.adapter in {"ct-landmarks", "longitudinal-mri"}:
             deliveries = {a.step for a in manifest.assets if a.role == "delivered-image"}
             if any(
                 s["delivered_step"] is not None and s["delivered_step"] not in deliveries
                 for s in states
             ):
-                raise ValueError("Landmark inspection is missing its exact delivered image")
+                raise ValueError("Native inspection is missing its exact delivered image")
         for beat in story.beats:
             if not set(beat.trace_steps) <= steps or (
                 beat.state is not None and beat.state not in state_ids
@@ -413,10 +418,15 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
         "dependencies": dependencies,
         "compiler": {
             "native_trace.py": storage.sha(Path(__file__)),
+            **(
+                {"mri_trace.py": storage.sha(Path(__file__).with_name("mri_trace.py"))}
+                if manifest.adapter == "longitudinal-mri"
+                else {}
+            ),
             "explanation_stories.py": storage.sha(Path(explanation_stories.__file__)),
             **(
                 {"landmark_trace.py": storage.sha(Path(__file__).with_name("landmark_trace.py"))}
-                if manifest.adapter == "ct-landmarks"
+                if manifest.adapter in {"ct-landmarks", "longitudinal-mri"}
                 else {}
             ),
         },
@@ -436,7 +446,11 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
     dependencies["src/tb3_medical/explainers/native_trace.py"] = storage.sha(
         root / "src/tb3_medical/explainers/native_trace.py"
     )
-    if manifest["adapter"] == "ct-landmarks":
+    if manifest["adapter"] == "longitudinal-mri":
+        dependencies["src/tb3_medical/explainers/mri_trace.py"] = storage.sha(
+            root / "src/tb3_medical/explainers/mri_trace.py"
+        )
+    if manifest["adapter"] in {"ct-landmarks", "longitudinal-mri"}:
         dependencies["src/tb3_medical/explainers/landmark_trace.py"] = storage.sha(
             root / "src/tb3_medical/explainers/landmark_trace.py"
         )
@@ -472,6 +486,8 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
                     if manifest["adapter"] == "ct-pose"
                     else "https://github.com/anjany/verse"
                     if manifest["adapter"] == "ct-landmarks"
+                    else "https://www.cancerimagingarchive.net/collection/ispy2/"
+                    if manifest["adapter"] == "longitudinal-mri"
                     else "https://zenodo.org/records/15692630",
                     "link_label": "Original dataset",
                 }

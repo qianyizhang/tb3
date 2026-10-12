@@ -5,8 +5,8 @@ export type BrowseView = "capability" | "repository";
 export type ResearchLane = "tasks" | "supporting" | "all";
 export type BriefField = "goal" | "value" | "raw" | "helpers" | "output" | "challenge" | "spec" | "tools" | "score" | "reference" | "families" | "gap" | "case_note";
 export type StoryPlan = RouteStoryPlan | NativeTracePlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtOriginalPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | AutomedSegCPancreasPlan | AutomedSegCPantherT1Plan | AutomedSegCPantherT2Plan | AutomedSegCProstatePlan | AutomedSegDSpleenPlan | AutomedSegDTsgMultiorganPlan | InterpretationAHealthagentbenchPlan | InterpretationARadagentPlan | InterpretationAHealthagentbenchTumorTilesPlan | InterpretationAHealthagentbenchCxrCorrectionPlan | InterpretationBBcerMediumBrainGradeClassifyPlan | InterpretationBBcerLongCardiacFullPlan | InterpretationBBcerLongBrainFullPlan | AutomedTotalsegmentatorCtsrPlan | AutomedSynthradMrctPlan | AutomedMsdPancreasCtsrPlan | AutomedCtorgCtsrPlan | AutomedNihCxrSrPlan | AutomedMriSrPlan | AutomedLidcDenoisePlan | AutomedLdctDenoisingPlan | AutomedIxiT1SrPlan | AutomedDeeplesionDenoisePlan | AutomedBratsT1cSrPlan | RexUsenhancePlan | ImagingToothGridrecPlan | ImagingUsctFwiPlan | ImagingUltrasoundSosPlan | ImagingPnpMriPlan | ImagingPlaneWavePlan | ImagingPhotoacousticPlan | ImagingPetMlemPlan | ImagingVarNetPlan | ImagingT2MappingPlan | ImagingSensePlan | ImagingPnpAdmmPlan | ImagingNoncartesianPlan | ImagingWaveletPlan | ImagingGrappaPlan | ImagingDynamicMriPlan | ImagingEitPlan | ImagingPoissonPlan | BcerGrappaPlan | BcerSuperresPlan | BcerDenoisePlan | AutomedVqaRadPlan | AutomedOmniPlan | AutomedKvasirPlan | AutomedSlakePlan | AutomedPathvqaPlan | AutomedMedxpertPlan | AutomedMedframeqaPlan | AutomedPathology500Plan | AutomedPathology100Plan | AutomedMimicReportPlan | AutomedIuReportPlan | AutomedChexpertReportPlan | AutomedSkinLesionPlan | AutomedPcamClsPlan | AutomedCrcClsPlan | AutomedPneumoniaPlan | AutomedBrainClsPlan | RexLdctIqaPlan | RadagentVqaPlan | AbraBiradsPlan | AbraVisionProbePlan | AbraMetadataQaPlan | AbraViewerControlPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan;
-export type NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView;
-export type ExplainerView = RestorationView | CtTraceView | MraTraceView | LandmarkTraceView;
+export type NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView;
+export type ExplainerView = RestorationView | CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView;
 export interface StoryBeat {
   id: string;
   duration: number;
@@ -111,7 +111,7 @@ export interface RestorationView {
 }
 export interface NativeTraceBeat {
   id: string;
-  scene: "input" | "search" | "bounds" | "coarse" | "threshold" | "contacts" | "output" | "reference" | "projection" | "levels" | "centres";
+  scene: "input" | "search" | "bounds" | "coarse" | "threshold" | "contacts" | "output" | "reference" | "projection" | "levels" | "centres" | "focus" | "measurement";
   frames: number;
   caption: string;
   narration: string;
@@ -321,6 +321,108 @@ export interface LandmarkTracePayload {
   delivered_images: Array<NativeDeliveredImage>;
   licenses: Array<string>;
 }
+export interface MriTraceInventory {
+  visit: string;
+  id: string;
+  description: string;
+  shape: Array<number>;
+  affine: Array<Array<number>>;
+  phase_count: number;
+}
+export interface MriTraceSeries {
+  id: string;
+  ordinal: number;
+  volume: string;
+}
+export interface MriTraceVisit {
+  id: string;
+  day: number;
+  shape: Array<number>;
+  affine: Array<Array<number>>;
+  spacing: Array<number>;
+  preview_shape: Array<number>;
+  preview_indices: Array<Array<number>>;
+  preview_window: Array<number>;
+  series: Array<MriTraceSeries>;
+  poster: string;
+}
+export interface MriTraceInput {
+  visits: Array<MriTraceVisit>;
+  inventory: Array<MriTraceInventory>;
+  registered: false;
+}
+export interface MriTraceInspection {
+  visit: string;
+  series_id: string;
+  axis: number | null;
+  levels: Array<number>;
+  bounds: Array<Array<number>> | null;
+  center_ijk: Array<number> | null;
+}
+export interface MriTraceState {
+  id: string;
+  trace_step: number;
+  label: string;
+  kind: "inventory" | "planes" | "slab" | "focus" | "measurement" | "saved";
+  views: Array<MriTraceInspection>;
+  delivered_step: number | null;
+  description: string;
+}
+export interface MriTraceMeasurement {
+  visit: string;
+  series_id: string;
+  phase: number;
+  fraction: number;
+  bbox_min: Array<number>;
+  bbox_max: Array<number>;
+  spans_mm: Array<number>;
+  diameter_mm: number;
+  reported_mm: number;
+  method: string;
+}
+export interface MriTraceCitation {
+  visit: string;
+  series_id: string;
+  phase: number;
+  ijk: Array<number>;
+  description: string;
+}
+export interface MriTraceForecast {
+  direction: string;
+  confidence: number;
+  basis: string;
+}
+export interface MriTraceObserved {
+  states: Array<MriTraceState>;
+  measurements: Array<MriTraceMeasurement>;
+  citations: Array<MriTraceCitation>;
+  summary: string;
+  impression: string;
+  forecast: MriTraceForecast;
+  evidence: string;
+  trace: Array<NativeTraceAction>;
+  elapsed_seconds: number;
+  steps_in_trace: number;
+}
+export interface MriTraceReference {
+  contract_pass: boolean;
+  reward: number;
+  clinical_accuracy: string;
+  ftv_cc: Array<number>;
+  diameter_raw: Array<number>;
+  diameter_unit: string;
+  pcr: number;
+  audit_diameters_mm: Array<number>;
+  audit_change_percent: number;
+  forecast_baseline: string;
+}
+export interface MriTracePayload {
+  input: MriTraceInput;
+  observed: MriTraceObserved;
+  reference: MriTraceReference;
+  delivered_images: Array<NativeDeliveredImage>;
+  licenses: Array<string>;
+}
 export interface NativeTraceAsset {
   path: string;
   sha256: string;
@@ -396,6 +498,22 @@ export interface LandmarkTraceView {
   reference_boundary: string;
   adapter: "ct-landmarks";
   payload: LandmarkTracePayload | null;
+}
+export interface MriTraceView {
+  family: "native-trace";
+  version: 1;
+  label: string;
+  source: NativeTraceSource;
+  availability: "available" | "missing-local-assets";
+  missing: Array<string>;
+  coordinates: "LPS-mm" | "RAS-mm";
+  attempt: string;
+  saved_state: string;
+  bundle: NativeTraceBundle;
+  dependencies: Record<string, string>;
+  reference_boundary: string;
+  adapter: "longitudinal-mri";
+  payload: MriTracePayload | null;
 }
 export interface ExpansionPlan {
   schema: 2;
@@ -6333,7 +6451,7 @@ export interface Inventory {
 }
 export interface ExplorerData {
   explanation_stories?: Record<string, RouteStoryPlan | NativeTracePlan | TopologyPlan | CorrespondencePlan | MaterialPlan | LongitudinalPlan | MultiscalePlan | InversePlan | EditPlan | AnatomyPlan | IdentityPlan | PrototypeIdentityPlan | LongitudinalCtRevisedPlan | LongitudinalCtOriginalPlan | LongitudinalMriPlan | TigerContextPlan | HubmapInventoryPlan | TopbrainScreenPlan | AirwayRepairPlan | VesselSourcePlan | ResectPilotPlan | ResectPlan | RegistrationAnalysisPlan | Imaging101EhtOriginalPlan | Imaging101EhtFeaturesDynamicPlan | Imaging101EhtDynamicPlan | Imaging101EhtUqPlan | Imaging101DtiPlan | Imaging101DeflectometryPlan | Imaging101FanBeamPlan | Imaging101DualEnergyPlan | Imaging101PtychographyPlan | Imaging101NlosPlan | Imaging101CarsPlan | RexTopcowPlan | AutomedMultiorganPlan | BcerWorkflowPlan | AbraAnnotationPlan | CtContextPlan | HistorySourcingPlan | MriImporterPlan | LocalizedCtPlan | AneurysmPlan | SegmentationCalibrationPlan | DentalV3Plan | DentalV2Plan | DentalOriginalPlan | CtOrganPlan | NamedLandmarksPlan | CardiacContourPlan | CardiacRealEchoPlan | MaskMechanicsPlan | ReportReadingPlan | AutomedKidneyPlan | BcerBrainPlan | BcerProstatePlan | AbraLongitudinalPlan | RexDentexPlan | RexIslesPlan | RexCellsegPlan | RexPantherTask1Plan | RexPantherTask2Plan | RexPumaTrack1Task1Plan | RexPumaTrack1Task2Plan | RexPumaTrack2Task2Plan | RexSegAPlan | RexTopbrainCtPlan | RexTopbrainMrPlan | RexTopcowMrSegPlan | RexTopcowCtBoxPlan | RexTopcowMrBoxPlan | RexTopcowCtEdgesPlan | RexTopcowMrEdgesPlan | AutomedDetectionBccdPlan | AutomedDetectionDentexPlan | AutomedDetectionGrazpedwriPlan | AutomedDetectionVindrCxrPlan | AutomedSegAAeropathPlan | AutomedSegAColonPlan | AutomedSegAFetaPlan | AutomedSegAHeartPlan | AutomedSegBHepaticvesselPlan | AutomedSegBKidneyPlan | AutomedSegBLiverPlan | AutomedSegBPancreasOarPlan | AutomedSegCPancreasPlan | AutomedSegCPantherT1Plan | AutomedSegCPantherT2Plan | AutomedSegCProstatePlan | AutomedSegDSpleenPlan | AutomedSegDTsgMultiorganPlan | InterpretationAHealthagentbenchPlan | InterpretationARadagentPlan | InterpretationAHealthagentbenchTumorTilesPlan | InterpretationAHealthagentbenchCxrCorrectionPlan | InterpretationBBcerMediumBrainGradeClassifyPlan | InterpretationBBcerLongCardiacFullPlan | InterpretationBBcerLongBrainFullPlan | AutomedTotalsegmentatorCtsrPlan | AutomedSynthradMrctPlan | AutomedMsdPancreasCtsrPlan | AutomedCtorgCtsrPlan | AutomedNihCxrSrPlan | AutomedMriSrPlan | AutomedLidcDenoisePlan | AutomedLdctDenoisingPlan | AutomedIxiT1SrPlan | AutomedDeeplesionDenoisePlan | AutomedBratsT1cSrPlan | RexUsenhancePlan | ImagingToothGridrecPlan | ImagingUsctFwiPlan | ImagingUltrasoundSosPlan | ImagingPnpMriPlan | ImagingPlaneWavePlan | ImagingPhotoacousticPlan | ImagingPetMlemPlan | ImagingVarNetPlan | ImagingT2MappingPlan | ImagingSensePlan | ImagingPnpAdmmPlan | ImagingNoncartesianPlan | ImagingWaveletPlan | ImagingGrappaPlan | ImagingDynamicMriPlan | ImagingEitPlan | ImagingPoissonPlan | BcerGrappaPlan | BcerSuperresPlan | BcerDenoisePlan | AutomedVqaRadPlan | AutomedOmniPlan | AutomedKvasirPlan | AutomedSlakePlan | AutomedPathvqaPlan | AutomedMedxpertPlan | AutomedMedframeqaPlan | AutomedPathology500Plan | AutomedPathology100Plan | AutomedMimicReportPlan | AutomedIuReportPlan | AutomedChexpertReportPlan | AutomedSkinLesionPlan | AutomedPcamClsPlan | AutomedCrcClsPlan | AutomedPneumoniaPlan | AutomedBrainClsPlan | RexLdctIqaPlan | RadagentVqaPlan | AbraBiradsPlan | AbraVisionProbePlan | AbraMetadataQaPlan | AbraViewerControlPlan | CardiacMaterialPlan | CardiacAnchorPlan | ClinicalCavityPlan | RespiratoryPlan | CurationPlan | MaskScreenPlan | MixedTissuePlan>;
-  explainer_views?: Record<string, RestorationView | CtTraceView | MraTraceView | LandmarkTraceView>;
+  explainer_views?: Record<string, RestorationView | CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView>;
   explainer_resources?: Record<string, string>;
   schema_version: 1;
   title?: string;

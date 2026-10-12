@@ -1,0 +1,379 @@
+.stage {
+  width: 100%;
+  color: #24343b;
+}
+.inventory {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0 0 10px;
+  color: #526d7a;
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 210px;
+  gap: 12px;
+  align-items: start;
+}
+.card {
+  min-width: 0;
+  border: 1px solid #d0dce1;
+  border-radius: 9px;
+  background: #fcfdfb;
+  overflow: hidden;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 9px 12px;
+  border-bottom: 1px solid #d0dce1;
+  font:
+    11px/1.4 ui-monospace,
+    monospace;
+}
+.heading span {
+  color: #6b7c85;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  font-size: 11px;
+}
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.stage select {
+  max-width: 100%;
+  min-width: 0;
+  background: #f2f7f8;
+  color: #24343b;
+  border: 1px solid #c5d3da;
+  border-radius: 4px;
+  padding: 3px 4px;
+  font: inherit;
+}
+.sceneWrap {
+  position: relative;
+  background: #111e28;
+}
+.scene {
+  height: 270px;
+}
+.scene canvas {
+  display: block;
+}
+.poster {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b8c9d0;
+  font-size: 10px;
+  pointer-events: none;
+}
+.poster img {
+  max-width: 100%;
+  max-height: 88%;
+  object-fit: contain;
+}
+.loading {
+  position: absolute;
+  inset: 45% 5% auto;
+  color: #b8c9d0;
+  text-align: center;
+  font-size: 12px;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 12px;
+  font-size: 10px;
+}
+.legend span::before {
+  content: '';
+  width: 14px;
+  display: inline-block;
+  border-top: 2px solid #a6becb;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.legend .inspectionKey::before {
+  border-color: #67d6ef;
+}
+.legend .bboxKey::before {
+  border-color: #31d1b6;
+}
+.legend .citationKey::before {
+  border-color: #f0b36b;
+}
+.note {
+  font-size: 11px;
+  color: #627782;
+  line-height: 1.4;
+  margin: 7px 12px;
+}
+.reset {
+  margin: 0 12px 10px;
+  font-size: 10px;
+  padding: 5px 8px;
+  background: #eef4f5;
+  color: #24343b;
+  border: 1px solid #c5d3da;
+  border-radius: 5px;
+}
+.description {
+  margin: 9px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.delivered {
+  margin: 9px 12px;
+}
+.delivered img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  display: block;
+  background: #111e28;
+}
+.delivered figcaption {
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #627782;
+}
+.readout,
+.measurement,
+.saved {
+  display: grid;
+  gap: 3px;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 8px 12px;
+  padding: 7px 9px;
+  background: #edf5f7;
+  border-left: 3px solid #67d6ef;
+}
+.readout code,
+.measurement code,
+.saved code {
+  display: block;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+.measurement {
+  background: #eef8f3;
+  border-color: #31d1b6;
+}
+.saved {
+  background: #fff6e8;
+  border-color: #f0b36b;
+}
+.saved p {
+  margin: 3px 0;
+}
+.saved details {
+  margin-top: 5px;
+}
+.saved pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 10px;
+}
+.reference {
+  padding: 8px 10px;
+  margin: 8px 12px;
+  background: #fff1dc;
+  color: #7b5d2c;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.fullInventory {
+  margin: 10px 12px;
+  font-size: 11px;
+}
+.fullInventory ul {
+  max-height: 300px;
+  overflow: auto;
+  padding-left: 18px;
+}
+.fullInventory li {
+  margin-bottom: 8px;
+}
+.fullInventory code {
+  display: block;
+  font-size: 9px;
+}
+.slice {
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111e28;
+}
+.slice canvas:not([hidden]) {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.axis,
+.slider {
+  display: grid;
+  gap: 5px;
+  padding: 7px 10px;
+  font:
+    10px/1.4 ui-monospace,
+    monospace;
+}
+.slider input {
+  width: 100%;
+  accent-color: #108b8b;
+}
+.slider span {
+  color: #627782;
+}
+.error {
+  font-size: 11px;
+  color: #875b27;
+}
+.stage :is(button, input, select, a, summary):focus-visible,
+.scene:focus-visible {
+  outline: 2px solid #108b8b;
+  outline-offset: 2px;
+}
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid > .card:last-child {
+    grid-column: 1/-1;
+  }
+  .slice {
+    height: 220px;
+  }
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .scene {
+    height: 280px;
+  }
+  .grid > .card:last-child {
+    grid-column: auto;
+  }
+  .slice {
+    height: 240px;
+  }
+  .heading {
+    font-size: 10px;
+  }
+}
+:global([data-explainer-export-frame]) .inventory {
+  font-size: 10px;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+:global([data-explainer-export-frame]) .grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 185px;
+  gap: 9px;
+}
+:global([data-explainer-export-frame]) .heading {
+  font-size: 9px;
+  padding: 5px 8px;
+  line-height: 1.2;
+}
+:global([data-explainer-export-frame]) .controls {
+  padding: 4px 8px;
+  font-size: 9px;
+  gap: 5px;
+}
+:global([data-explainer-export-frame]) .controls select {
+  padding: 1px 2px;
+}
+:global([data-explainer-export-frame]) .scene {
+  height: 175px;
+}
+:global([data-explainer-export-frame]) .reset {
+  display: none;
+}
+:global([data-explainer-export-frame]) .note,
+:global([data-explainer-export-frame]) .legend {
+  font-size: 9px;
+  line-height: 1.25;
+  margin: 5px 8px;
+}
+:global([data-explainer-export-frame]) .description {
+  margin: 5px 8px;
+  font-size: 10px;
+  line-height: 1.25;
+}
+:global([data-explainer-export-frame]) .delivered {
+  margin: 5px 8px;
+}
+:global([data-explainer-export-frame]) .delivered img {
+  height: 115px;
+}
+:global([data-explainer-export-frame]) .delivered figcaption {
+  font-size: 9px;
+  line-height: 1.2;
+  margin-top: 3px;
+}
+:global([data-explainer-export-frame]) .readout,
+:global([data-explainer-export-frame]) .measurement,
+:global([data-explainer-export-frame]) .saved,
+:global([data-explainer-export-frame]) .reference {
+  font-size: 9px;
+  line-height: 1.2;
+  margin: 5px 8px;
+  padding: 5px 7px;
+  gap: 2px;
+}
+:global([data-explainer-export-frame]) .readout code,
+:global([data-explainer-export-frame]) .measurement code,
+:global([data-explainer-export-frame]) .saved code {
+  font-size: 9px;
+}
+:global([data-explainer-export-frame]) .saved details,
+:global([data-explainer-export-frame]) .fullInventory,
+:global([data-explainer-export-frame]) .reference {
+  display: none;
+}
+:global([data-explainer-export-frame]) .slice {
+  height: 163px;
+}
+:global([data-explainer-export-frame]) .axis,
+:global([data-explainer-export-frame]) .slider {
+  font-size: 9px;
+  line-height: 1.2;
+  padding: 4px 7px;
+  gap: 2px;
+}
+:global([data-explainer-export-frame]) .slider input {
+  height: 11px;
+  margin: 1px 0;
+}
+:global([data-explainer-export-frame]) .stage :is(a, button, input, select) {
+  pointer-events: none;
+}
+.comparison {
+  color: #526d69;
+}
+:global([data-explainer-export-frame]) .slice {
+  height: 145px;
+}

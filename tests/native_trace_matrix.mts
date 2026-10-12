@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url';
 import type { Browser, BrowserContext, Page } from 'playwright';
 import { captureComposedFrame } from '../presentation/tooling/media/capture.mts';
 
-type Adapter = 'ct' | 'mra' | 'landmark';
+type Adapter = 'ct' | 'mra' | 'landmark' | 'mri';
 interface Entry {
   entry_id: string;
   story_id: string;
@@ -75,6 +75,8 @@ async function noReference(page: Page) {
   );
   if (await landmark.count())
     assert.equal(await landmark.getAttribute('data-native-reference-count'), '0');
+  const mri = page.locator('[data-native-adapter="longitudinal-mri"] [data-reference-visible]');
+  if (await mri.count()) assert.equal(await mri.getAttribute('data-reference-visible'), 'false');
   const ct = page.locator('[data-native-reference]');
   if (await ct.count()) assert.equal(await ct.getAttribute('data-native-reference'), 'hidden');
 }
@@ -91,9 +93,11 @@ async function checkNativeData(page: Page, adapter: Adapter, fallback = false) {
   const role = page.locator(
     adapter === 'ct'
       ? '[role="img"][aria-label^="Native CT volume"]'
-      : adapter === 'landmark'
-        ? '[role="img"][aria-label^="CT crop in physical RAS"]'
-        : '[role="img"][aria-label^="Native MRA vessel mask"]',
+      : adapter === 'mri'
+        ? '[role="img"][aria-label*="whole MRI in its native RAS grid"]'
+        : adapter === 'landmark'
+          ? '[role="img"][aria-label^="CT crop in physical RAS"]'
+          : '[role="img"][aria-label^="Native MRA vessel mask"]',
   );
   assert.equal(await role.count(), 1);
   assert.equal(
@@ -169,11 +173,20 @@ async function checkNativeData(page: Page, adapter: Adapter, fallback = false) {
       await page.locator(stageSelector).getAttribute('data-native-shape'),
       '512,512,920',
     );
-  if (adapter === 'landmark' && new URL(page.url()).searchParams.has('capture')) {
+  if (
+    (adapter === 'landmark' || adapter === 'mri') &&
+    new URL(page.url()).searchParams.has('capture')
+  ) {
     const footer = await page.locator('.scene-reset').boundingBox();
     const resultNode = page.locator('[data-native-reference-result]');
     const result = (await resultNode.count()) ? await resultNode.boundingBox() : null;
     const ceiling = result?.y ?? footer!.y - 5;
+    if (adapter === 'mri') {
+      for (const card of await page.locator(`${stageSelector} > div:last-of-type > div`).all()) {
+        const box = await card.boundingBox();
+        assert.ok(box && box.y + box.height <= ceiling, 'MRI card overlaps result or footer');
+      }
+    }
     for (const slider of await page.locator(`${stageSelector} input[type="range"]`).all()) {
       const box = await slider.locator('..').boundingBox();
       assert.ok(
@@ -204,6 +217,45 @@ async function controls(page: Page, plan: Plan, adapter: Adapter) {
       await page.getByAltText('Absolute target-candidate difference amplified four times').count(),
       1,
     );
+  } else if (adapter === 'mri') {
+    const stage = page.locator(stageSelector);
+    assert.equal(await stage.getAttribute('data-native-registered'), 'false');
+    assert.equal(await stage.getAttribute('data-native-bbox-visible'), 'false');
+    assert.equal(await stage.getAttribute('data-native-citation-count'), '0');
+    const visits = page.getByLabel('MRI visit', { exact: true });
+    await visits.selectOption('V2');
+    await stageReady(page);
+    assert.equal(await stage.getAttribute('data-native-shape'), '512,512,100');
+    await page.getByLabel('MRI dynamic ordinal', { exact: true }).selectOption('7');
+    await stageReady(page);
+    assert.equal(await stage.getAttribute('data-native-series'), 'S122');
+    assert.equal(await stage.getAttribute('data-native-phase'), '0');
+    await page.getByLabel('MRI native slice axis', { exact: true }).selectOption('0');
+    const slider = page.getByLabel('MRI native slice index', { exact: true });
+    const before = await slider.inputValue();
+    await slider.focus();
+    await slider.press('ArrowRight');
+    assert.notEqual(await slider.inputValue(), before);
+    await visits.selectOption('V1');
+    await stageReady(page);
+    assert.equal(await stage.getAttribute('data-native-shape'), '512,512,106');
+    await chapter(page, plan, 2);
+    assert.equal(await page.getByAltText('Exact delivered MRI PNG at step 18').count(), 1);
+    await chapter(page, plan, 3);
+    await visits.selectOption('V1');
+    await stageReady(page);
+    assert.equal(await stage.getAttribute('data-native-reader-ijk'), '390,270,60');
+    await visits.selectOption('V2');
+    await stageReady(page);
+    assert.equal(await stage.getAttribute('data-native-reader-ijk'), '386,302,64');
+    assert.equal(await stage.getAttribute('data-native-citation-count'), '0');
+    await chapter(page, plan, 4);
+    assert.equal(await stage.getAttribute('data-native-bbox-visible'), 'true');
+    assert.equal(await stage.getAttribute('data-native-citation-count'), '0');
+    await chapter(page, plan, 5);
+    assert.equal(await stage.getAttribute('data-native-visit'), 'V2');
+    assert.equal(await stage.getAttribute('data-native-citation-count'), '2');
+    assert.equal(await stage.getAttribute('data-reference-visible'), 'false');
   } else if (adapter === 'landmark') {
     const stage = page.locator(stageSelector);
     assert.equal(await stage.getAttribute('data-native-saved-visible'), 'false');
@@ -376,10 +428,19 @@ export async function checkNativeTraceMatrix(
           await stageReady(page);
           const adapter = await page.locator(rootSelector).getAttribute('data-native-adapter');
           assert.ok(
-            adapter === 'ct-pose' || adapter === 'mra-repair' || adapter === 'ct-landmarks',
+            adapter === 'ct-pose' ||
+              adapter === 'mra-repair' ||
+              adapter === 'ct-landmarks' ||
+              adapter === 'longitudinal-mri',
           );
           const nativeAdapter: Adapter =
-            adapter === 'ct-pose' ? 'ct' : adapter === 'ct-landmarks' ? 'landmark' : 'mra';
+            adapter === 'ct-pose'
+              ? 'ct'
+              : adapter === 'ct-landmarks'
+                ? 'landmark'
+                : adapter === 'longitudinal-mri'
+                  ? 'mri'
+                  : 'mra';
           row.adapter = nativeAdapter;
           for (const frame of [0, plan.durationFrames - 1]) {
             const png = await captureComposedFrame(page, {
