@@ -162,6 +162,9 @@ class RestorationView(TypedDict):
 
 class NativeTraceBeat(TypedDict):
     id: str
+    scene: Literal[
+        "input", "search", "bounds", "coarse", "threshold", "contacts", "output", "reference"
+    ]
     frames: int
     caption: str
     narration: str

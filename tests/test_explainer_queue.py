@@ -191,6 +191,38 @@ class ExplainerQueueTests(unittest.TestCase):
         with self.assertRaisesRegex(MedicalError, "Reviewed story binding differs"):
             explainer_queue.prepare(root, "first-reviewed", "packet-stale", regression=True)
 
+    def test_migration_requires_original_binding_and_preserves_acceptance(self) -> None:
+        root = self.root
+        catalogue = root / "presentation/first-reviewed/catalog.json"
+        data = storage.read_object(catalogue)
+        data["entries"][0]["illustration"]["story_id"] = "replacement"
+        catalogue.write_text(json.dumps(data))
+        replacement = root / "presentation/legacy/replacement.story.md"
+        replacement.write_text("new renderer manuscript")
+        before = (root / explainer_queue.LEDGER).read_bytes()
+        with self.assertRaisesRegex(MedicalError, "requires regression"):
+            explainer_queue.prepare(root, "first-reviewed", "bad", migration_from="finished")
+        with self.assertRaisesRegex(MedicalError, "original story"):
+            explainer_queue.prepare(
+                root, "first-reviewed", "bad", regression=True, migration_from="wrong"
+            )
+        with patch.object(
+            explainer_queue.explanation_stories,
+            "resolve_stories",
+            return_value={
+                name: {"dependencies": {f"presentation/legacy/{name}.story.md": "0" * 64}}
+                for name in ("finished", "replacement")
+            },
+        ):
+            packet = explainer_queue.prepare(
+                root, "first-reviewed", "migration", regression=True, migration_from="finished"
+            )
+        self.assertFalse(packet["acceptance_eligible"])
+        self.assertEqual(packet["migration"]["to_story"], "replacement")
+        self.assertIn("presentation/legacy/finished.story.md", packet["source_sha256"])
+        self.assertIn("presentation/legacy/replacement.story.md", packet["source_sha256"])
+        self.assertEqual((root / explainer_queue.LEDGER).read_bytes(), before)
+
     def test_declared_source_review_receipt_must_match(self) -> None:
         root = self.root
         ledger_path = root / explainer_queue.LEDGER

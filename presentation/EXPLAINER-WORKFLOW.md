@@ -207,3 +207,23 @@ source records and workflow results; generated media stays local. A regression p
 proves the exercised tools and cases, not new task completion or throughput gains.
 The [2026-09-29 pilot and handoff](EXPLAINER-PILOT.md) records the exercised cases,
 verification limits and next-session starting state.
+
+## Replacing a reviewed renderer without rewriting acceptance
+
+A native-context enhancement may deliberately bind a new canonical story while
+preserving the earlier operation story. Prepare its review with the exact old
+ledger story ID:
+
+```sh
+uv run --no-sync med explainer prepare ENTRY --regression \
+  --migration-from ORIGINAL-STORY-ID --output FRESH-PACKET
+```
+
+This path requires a different current catalogue binding, pins both manuscripts,
+and keeps the packet in regression mode with acceptance disabled. The original
+ledger and completion receipt remain unchanged. The batch must match the packet's
+new story ID, and native readers pin their additional browser-matrix helper.
+Inspect the proposed binding, normal-speed export, native geometry, explicit
+reference/reset behavior, locales, mobile and actual no-WebGL fallback before
+finalizing the migration. A renderer regression does not add historical completion
+or scientific-performance evidence.

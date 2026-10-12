@@ -136,7 +136,7 @@ if (entryOnly) {
   assert.ok(currentBatch.entries.length > 0, 'Entry-only review requires entries');
   for (const entry of currentBatch.entries)
     assert.ok(
-      cardiacRecipes.has(entry.recipe),
+      cardiacRecipes.has(entry.recipe) || entry.recipe === 'native-trace-v1',
       `Entry-only interaction coverage missing: ${entry.recipe}`,
     );
 }
@@ -10332,6 +10332,7 @@ withBrowser(async (browser) => {
     const out = path.join(folder, id),
       plan = JSON.parse(fs.readFileSync(path.join(out, 'plan.json'))),
       row = { id, frames: [], locales: [], fallback: false };
+    if (plan.recipe === 'native-trace-v1') continue;
     const receipt = JSON.parse(fs.readFileSync(path.join(out, 'receipt.json')));
     if (receipt.renderer === 'DOM/SVG planar')
       assert.equal(receipt.camera, 'Planar coordinate-preserving SVG/DOM');
@@ -15025,6 +15026,12 @@ withBrowser(async (browser) => {
     await reviewCardiacInteractions(page, plan, folder, `explorer-mobile-${entry.story_id}`);
     report.navigation.push({ id: entry.entry_id, chaptersAndReferenceReset: true, mobile: true });
   }
+  await require('./native_trace_matrix.mts').checkNativeTraceMatrix(browser, {
+    folder,
+    explorer,
+    entries: currentBatch.entries,
+    report,
+  });
   await context.close();
   assert.deepEqual(report.errors, []);
   assert.deepEqual(report.remote_requests, []);

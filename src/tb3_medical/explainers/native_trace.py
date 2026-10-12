@@ -1,4 +1,4 @@
-"""Compile unbound native-trace stories without executing a medical recipe or trial.
+"""Compile selected native-trace stories without executing a medical recipe or trial.
 
 The source manuscript owns chapters and timing. A pinned manifest owns local asset
 availability; input/observation/reference projections remain separate for readers.
@@ -80,6 +80,9 @@ class Manifest(ClosedModel):
 
 class Chapter(ClosedModel):
     id: str = Field(pattern=r"^[a-z][a-z0-9-]*$")
+    scene: Literal[
+        "input", "search", "bounds", "coarse", "threshold", "contacts", "output", "reference"
+    ]
     frames: StrictInt = Field(ge=1)
     caption: str = Field(min_length=1)
     narration: str = Field(min_length=1)
@@ -377,7 +380,7 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
     return {
         "schema": 1,
         "family": "native-trace",
-        "status": "unbound-draft",
+        "status": "compiled-native-trace",
         "availability": "missing-local-assets" if missing else "available",
         "missing": missing,
         "manifest": manifest.model_dump(mode="json", by_alias=True),

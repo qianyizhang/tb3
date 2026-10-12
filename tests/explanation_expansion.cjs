@@ -981,7 +981,9 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
       assert.equal(state.recipe, plan.recipe);
     }
     assert.throws(() => sampleStory(plan, 1.5));
-    if (isPlanarStory(plan)) continue;
+    // Native trace geometry lives in the composed reader, whose lifecycle is exercised
+    // by native_trace_matrix.mts. It is not a legacy nativeFactory prefab.
+    if (isPlanarStory(plan) || plan.recipe === 'native-trace-v1') continue;
     native++;
     const parent = new Group(),
       content = nativeFactory(plan)(parent);

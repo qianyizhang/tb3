@@ -20,12 +20,13 @@ source_locators:
 
 # Recover one CT section inside its source volume
 
-Unbound native-trace migration draft. Original stories and acceptance receipts remain unchanged.
+Native-trace renderer migration. The original operation story and its acceptance receipt remain preserved; this condition has a separate renderer regression review.
 
 ## 1. Receive the inputs
 
 ```beat
 id: input
+scene: input
 frames: 144
 caption: The picture is real. Its position is missing.
 narration: The solver inspected the supplied forward renderer, CT dimensions and coordinate
@@ -46,6 +47,7 @@ reference: false
 
 ```beat
 id: search
+scene: search
 frames: 144
 caption: A plausible cardiac-looking section can be the wrong cut.
 narration: The solver searched six pose parameters using differential evolution, then
@@ -71,6 +73,7 @@ reference: false
 
 ```beat
 id: bounds
+scene: bounds
 frames: 192
 caption: A finite section has to fit inside the acquired CT.
 narration: The task disclosed that every target sample lies inside the crop. The solver
@@ -93,6 +96,7 @@ reference: false
 
 ```beat
 id: coarse
+scene: coarse
 frames: 144
 caption: First line up the large body–lung pattern.
 narration: 'The solver changed the global-search objective to a smoothed foreground
@@ -112,6 +116,7 @@ reference: false
 
 ```beat
 id: output
+scene: output
 frames: 144
 caption: Then use every pixel to tighten the pose.
 narration: Starting from that coarse candidate, full-resolution intensity least squares
@@ -131,6 +136,7 @@ reference: false
 
 ```beat
 id: reference
+scene: reference
 frames: 144
 caption: The evaluator checks physical positions, not visual similarity.
 narration: The hidden reference maps the same 7 × 7 image grid into patient space.

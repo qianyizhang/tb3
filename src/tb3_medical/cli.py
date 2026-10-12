@@ -97,6 +97,10 @@ def build_parser() -> argparse.ArgumentParser:
     e.add_argument(
         "--regression", action="store_true", help="Reviewed core only; no new completion"
     )
+    e.add_argument(
+        "--migration-from",
+        help="Regression of a new binding; pin and preserve this original ledger story",
+    )
     e = explainer_sub.add_parser(
         "defer-blocked", help="Record explicit deferral of blocked core entries"
     )
@@ -412,7 +416,11 @@ def main(argv: Sequence[str] | None = None) -> int:
                 )
             elif args.explainer_command == "prepare":
                 result = explainer_queue.prepare(
-                    root, args.entry, args.output, regression=args.regression
+                    root,
+                    args.entry,
+                    args.output,
+                    regression=args.regression,
+                    migration_from=args.migration_from,
                 )
             elif args.explainer_command == "defer-blocked":
                 result = explainer_queue.defer_blocked(

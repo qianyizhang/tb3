@@ -195,7 +195,10 @@ export async function exportStory(root: string, options: StoryOptions): Promise<
         const ext = gl.getExtension('WEBGL_debug_renderer_info');
         return ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
       });
-      if (receipt.renderer === 'DOM/SVG planar')
+      if (plan.recipe === 'native-trace-v1')
+        receipt.camera =
+          'Native CT LPS / MRA RAS millimetres; adapter orthographic camera; discrete recorded states, no pose interpolation';
+      else if (receipt.renderer === 'DOM/SVG planar')
         receipt.camera = 'Planar coordinate-preserving SVG/DOM';
       await context.close();
     });

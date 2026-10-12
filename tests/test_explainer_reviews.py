@@ -178,6 +178,7 @@ class ExplainerReviewTests(unittest.TestCase):
             {
                 "entry_id": "entry",
                 "mode": mode,
+                "story_id": "story",
                 "source_sha256": {"brief.md": storage.sha(self.root / "brief.md")},
                 "scope": {
                     "path": str(self.scope.relative_to(self.root)),

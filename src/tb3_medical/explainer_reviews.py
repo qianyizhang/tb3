@@ -151,6 +151,18 @@ def record(
     selected = next((e for e in batch.entries if e.entry_id == entry_id), None)
     if selected is None or batch.stills_only:
         raise MedicalError("Review requires this entry in a full-video batch")
+    if packet.get("story_id") != selected.story_id:
+        raise MedicalError("Packet and batch story binding differ")
+    if selected.recipe == "native-trace-v1" and "tests/native_trace_matrix.mts" not in pins:
+        raise MedicalError("Native regression must pin its browser matrix helper")
+    migration = packet.get("migration")
+    if migration is not None and (
+        mode != "regression"
+        or migration.get("from_story") != row.get("story_id")
+        or migration.get("to_story") != selected.story_id
+        or "original_story" not in packet.get("sources", {})
+    ):
+        raise MedicalError("Migration must preserve the original reviewed story")
     export = batch_path / selected.story_id
     for name in ("plan.json", "receipt.json", "index.html"):
         if str((export / name).relative_to(root)) not in pins:

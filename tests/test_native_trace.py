@@ -142,6 +142,7 @@ class NativeTraceTests(unittest.TestCase):
         beats = [
             {
                 "id": "inspect",
+                "scene": "input",
                 "frames": 2,
                 "caption": "Inspect",
                 "narration": "Observe",
@@ -152,6 +153,7 @@ class NativeTraceTests(unittest.TestCase):
             },
             {
                 "id": "reveal",
+                "scene": "reference",
                 "frames": 3,
                 "caption": "Reveal",
                 "narration": "Compare",
@@ -176,7 +178,7 @@ class NativeTraceTests(unittest.TestCase):
         self.fixture()
         result = compile_trace(self.root, Path("trace.story.md"))
         self.assertEqual(result["availability"], "available")
-        self.assertEqual(result["status"], "unbound-draft")
+        self.assertEqual(result["status"], "compiled-native-trace")
         self.assertEqual(result["plan"]["durationFrames"], 5)
         self.assertEqual(
             [(b["startFrame"], b["endFrame"]) for b in result["plan"]["beats"]], [(0, 2), (2, 5)]

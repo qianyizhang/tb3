@@ -365,6 +365,7 @@ export function MraTraceStage({
     <section
       className={styles.stage}
       data-native-ready={String(ready)}
+      data-native-renderer={fallback ? 'poster' : 'webgl'}
       data-native-state={saved ? 'saved' : selected.threshold}
       data-reference-visible={String(referenceShown)}
       data-native-shape={input.shape.join(',')}

@@ -5,6 +5,7 @@ import { useFramePlayer } from '../player/use-frame-player';
 import { CtTraceStage } from '../native/CtTraceStage';
 import { MraTraceStage } from '../native/MraTraceStage';
 import styles from './native-trace-reader.module.css';
+import { useLocale } from '../../locale';
 
 const adapter = { planar: true, interactiveProjection: true };
 const chapterLabels: Record<string, string> = {
@@ -16,6 +17,16 @@ const chapterLabels: Record<string, string> = {
   contacts: 'Contacts',
   output: 'Saved answer',
   reference: 'Reference',
+};
+const chapterLabelsZh: Record<string, string> = {
+  input: '输入',
+  search: '搜索',
+  bounds: '体积边界',
+  coarse: '粗匹配',
+  threshold: '阈值',
+  contacts: '连接处',
+  output: '保存的答案',
+  reference: '参考标准',
 };
 
 function ReferenceResult({ view }: { view: NativeTraceView }) {
@@ -131,20 +142,26 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
   if (!plan || plan.recipe !== 'native-trace-v1' || !view || view.family !== 'native-trace')
     throw new Error('Native trace requires its canonical plan and selected view');
   const player = useFramePlayer(entry, plan, adapter);
+  const { locale, t } = useLocale();
   const state = player.storyState!;
   if (state.recipe !== 'native-trace-v1') throw new Error('Native trace player mismatch');
   const beat = plan.beats[state.index];
-  const stageKey = `${plan.id}:${beat.id}:${player.resetRevision}`;
+  const captureMode = new URLSearchParams(location.search).has('capture');
+  // Capture controls are inert: reuse native geometry within a discrete chapter.
+  // Interactive resets still remount all adapter controls.
+  const stageKey = `${plan.id}:${beat.id}:${captureMode ? 0 : player.resetRevision}`;
   const [consent, setConsent] = useState<string | null>(null);
   const [stageReady, setStageReady] = useState(false);
   const lastFrame = useRef(state.frame);
-  const captureMode = new URLSearchParams(location.search).has('capture');
   const referenceShown =
     beat.reference && (captureMode || (consent === stageKey && state.frame >= lastFrame.current));
   const onReady = useCallback((ready: boolean) => setStageReady(ready), []);
   useLayoutEffect(() => {
     if (state.frame < lastFrame.current) setConsent(null);
     lastFrame.current = state.frame;
+    const surface = player.root.current?.querySelector<HTMLElement>('[data-native-renderer]');
+    if (player.root.current && stageReady)
+      player.root.current.dataset.surfaceRenderer = surface?.dataset.nativeRenderer ?? 'poster';
     if (capture) capture.current = player.actions.current;
     if ((stageReady || !view.payload) && player.actions.current) captureReady?.(true);
     return () => {
@@ -172,7 +189,12 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
         <h3>{plan.title}</h3>
         <p className={styles.scope}>{plan.scope}</p>
       </header>
-      <nav className={styles.chapters} aria-label="Trace chapters">
+      {locale === 'zh-CN' && (
+        <p className={styles.scope} lang="zh-CN" data-native-source-language>
+          原始任务、保留轨迹和图中标注为英文；目录和播放控件使用中文。
+        </p>
+      )}
+      <nav className={styles.chapters} aria-label="Trace chapters" lang={locale}>
         {plan.beats.map((chapter, i) => (
           <button
             key={chapter.id}
@@ -181,7 +203,8 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
             onClick={() => player.actions.current?.selectBeat(i)}
           >
             <span>{String(i + 1).padStart(2, '0')}</span>
-            {chapterLabels[chapter.id] ?? chapter.caption}
+            {(locale === 'zh-CN' ? chapterLabelsZh : chapterLabels)[chapter.scene] ??
+              chapter.caption}
           </button>
         ))}
       </nav>
@@ -216,7 +239,7 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
             </small>
           </div>
         )}
-        <div className={`scene-stage ${styles.stage}`}>
+        <div className={`scene-stage ${styles.stage}`} inert={captureMode}>
           {!view.payload ? (
             <div className={styles.missing} data-native-ready="true">
               <strong>Native assets are unavailable in this copy.</strong>
@@ -238,7 +261,7 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
               key={stageKey}
               payload={view.payload}
               stateId={beat.state}
-              chapterId={beat.id}
+              chapterId={beat.scene}
               referenceShown={referenceShown}
               onReady={onReady}
             />
@@ -247,7 +270,7 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
               key={stageKey}
               payload={view.payload}
               stateId={beat.state}
-              chapterId={beat.id}
+              chapterId={beat.scene}
               referenceShown={referenceShown}
               onReady={onReady}
             />
@@ -257,25 +280,25 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
         {!hiddenReference && <p className={styles.mechanism}>{beat.visual}</p>}
         <div className="scene-annotations" ref={player.annotations} aria-hidden="true" />
       </section>
-      <footer className={styles.transport}>
+      <footer className={styles.transport} lang={locale}>
         <button
           disabled={state.index === 0}
           onClick={() => player.actions.current?.selectBeat(state.index - 1)}
         >
-          ← Previous
+          {locale === 'zh-CN' ? '← 上一章' : '← Previous'}
         </button>
         <button
           disabled={state.index === plan.beats.length - 1}
           onClick={() => player.actions.current?.selectBeat(state.index + 1)}
         >
-          Next chapter →
+          {locale === 'zh-CN' ? '下一章 →' : 'Next chapter →'}
         </button>
         <span className={styles.spacer} />
         <button className="scene-play" onClick={() => player.actions.current?.toggle()}>
-          {player.playing ? 'Pause' : 'Play'}
+          {t(player.playing ? 'Pause' : 'Play')}
         </button>
         <button className="scene-reset" onClick={() => player.actions.current?.reset()}>
-          Reset
+          {t('Reset')}
         </button>
         <small>
           {Math.floor(state.frame / plan.fps)} / {Math.round(plan.durationFrames / plan.fps)} s

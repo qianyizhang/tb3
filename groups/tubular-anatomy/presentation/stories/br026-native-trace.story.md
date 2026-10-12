@@ -19,12 +19,13 @@ source_locators:
 
 # Repair one MRA route while preserving the whole network
 
-Unbound native-trace migration draft. Original stories and acceptance receipts remain unchanged.
+Native-trace renderer migration. The original operation story and its acceptance receipt remain preserved; this condition has a separate renderer regression review.
 
 ## 1. Receive the mask
 
 ```beat
 id: input
+scene: input
 frames: 144
 caption: Almost perfect overlap can still hide a broken route.
 narration: The solver received a real MRA crop, a proposed binary vessel mask and
@@ -43,6 +44,7 @@ reference: false
 
 ```beat
 id: search
+scene: search
 frames: 144
 caption: Look for bright structure that the mask does not contain.
 narration: After inspecting projections and slice montages, the solver measured bright,
@@ -68,6 +70,7 @@ reference: false
 
 ```beat
 id: threshold
+scene: threshold
 frames: 192
 caption: Follow one connected component as its threshold changes.
 narration: The solver kept the same seed and tested nine intensity thresholds. At
@@ -85,6 +88,7 @@ reference: false
 
 ```beat
 id: contacts
+scene: contacts
 frames: 144
 caption: A bridge needs two local attachments.
 narration: 'At threshold 165, the solver checked which candidate voxels touched the
@@ -102,6 +106,7 @@ reference: false
 
 ```beat
 id: output
+scene: output
 frames: 144
 caption: Add this component. Preserve everything else.
 narration: The saved answer is the original mask union the selected 198-voxel component.
@@ -119,6 +124,7 @@ reference: false
 
 ```beat
 id: reference
+scene: reference
 frames: 144
 caption: Compare the saved repair with the private reference.
 narration: The private reference reveals a 200-voxel authored gap in the right posterior

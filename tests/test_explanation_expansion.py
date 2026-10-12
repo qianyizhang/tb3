@@ -28,6 +28,7 @@ class ExpansionTests(unittest.TestCase):
                 "reader-reference-reveal"
                 if plan["recipe"]
                 in {
+                    "native-trace-v1",
                     "automed-medxpert-mm-v1",
                     "imaging101-poisson-v1",
                     "imaging101-photoacoustic-tomography-v1",

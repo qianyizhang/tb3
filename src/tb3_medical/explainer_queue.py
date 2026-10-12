@@ -281,9 +281,18 @@ def inspect_queue(root: Pathish) -> Document:
     }
 
 
-def prepare(root: Pathish, entry_id: str, output: Pathish, *, regression: bool = False) -> Document:
+def prepare(
+    root: Pathish,
+    entry_id: str,
+    output: Pathish,
+    *,
+    regression: bool = False,
+    migration_from: str | None = None,
+) -> Document:
     """Publish a fresh local task packet for eligible work or explicit regression."""
     root_path = Path(root).resolve()
+    if migration_from is not None and not regression:
+        raise MedicalError("Story migration requires regression mode; it cannot assign acceptance")
     queue = inspect_queue(root_path)
     selected = next((row for row in queue["entries"] if row["entry_id"] == entry_id), None)
     if selected is None:
@@ -314,7 +323,39 @@ def prepare(root: Pathish, entry_id: str, output: Pathish, *, regression: bool =
         raise MedicalError(f"Catalogue brief differs from ledger for {entry_id}")
     illustration = catalogue_entry.get("illustration")
     story_id = illustration.get("story_id") if isinstance(illustration, dict) else None
-    if regression and (story_id is None or ledger_row.get("story_id") != story_id):
+    migration = None
+    if migration_from is not None:
+        if migration_from != ledger_row.get("story_id") or story_id in {None, migration_from}:
+            raise MedicalError(
+                "Migration must name the ledger's original story and a different current binding"
+            )
+        assert isinstance(illustration, dict)
+        original_entry = {
+            **catalogue_entry,
+            "illustration": {**illustration, "story_id": migration_from},
+        }
+        original = explanation_stories.resolve_stories(root_path, [original_entry])[migration_from]
+        originals = [
+            name
+            for name in original["dependencies"]
+            if name.endswith(f"/{migration_from}.story.md")
+        ]
+        if len(originals) != 1:
+            raise MedicalError("Migration must preserve the original canonical manuscript")
+        original_path = originals[0]
+        original_sha = storage.sha(storage.inside(root_path, original_path))
+        paths["original_story"] = {"path": original_path, "sha256": original_sha}
+        source_sha256[original_path] = original_sha
+        migration = {
+            "from_story": migration_from,
+            "to_story": story_id,
+            "boundary": "Renderer regression only; original acceptance and ledger remain unchanged",
+        }
+    if (
+        regression
+        and migration is None
+        and (story_id is None or ledger_row.get("story_id") != story_id)
+    ):
         raise MedicalError(f"Reviewed story binding differs from ledger for {entry_id}")
     if story_id is not None:
         story_id = _text(story_id, f"{entry_id}.catalogue_story_id")
@@ -358,6 +399,8 @@ def prepare(root: Pathish, entry_id: str, output: Pathish, *, regression: bool =
         },
         "warnings": queue["warnings"],
     }
+    if migration is not None:
+        packet["migration"] = migration
     output_path = Path(output)
     if output_path.is_absolute():
         try:

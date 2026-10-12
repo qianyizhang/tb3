@@ -22,7 +22,7 @@ export function sampleStory(plan: StoryPlan, requested: number) {
       return Object.freeze({
         ...common,
         recipe: plan.recipe,
-        scene: b.id,
+        scene: b.scene,
         stateId: b.state,
         referenceAllowed: b.reference,
         progress,

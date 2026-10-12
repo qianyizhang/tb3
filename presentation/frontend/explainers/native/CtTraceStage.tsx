@@ -523,6 +523,7 @@ export function CtTraceStage({
     <section
       className={styles.stage}
       data-native-ready={ready ? 'true' : 'false'}
+      data-native-renderer={webgl ? 'webgl' : 'poster'}
       data-native-state={stateId ?? 'input'}
       data-native-reference={referenceShown ? 'shown' : 'hidden'}
     >

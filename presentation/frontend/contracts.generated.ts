@@ -111,6 +111,7 @@ export interface RestorationView {
 }
 export interface NativeTraceBeat {
   id: string;
+  scene: "input" | "search" | "bounds" | "coarse" | "threshold" | "contacts" | "output" | "reference";
   frames: number;
   caption: string;
   narration: string;

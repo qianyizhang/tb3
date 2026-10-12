@@ -41,6 +41,9 @@ export async function captureComposedFrame(
       if (document.fonts) await document.fonts.ready;
       await Promise.all(
         [...root.querySelectorAll('img')].map(async (image) => {
+          // Hidden evidence disclosures may contain lazy images. Decode must first
+          // start their load, otherwise canonical capture waits indefinitely.
+          image.loading = 'eager';
           await image.decode();
           if (!image.complete || image.naturalWidth === 0)
             throw new Error('Export image did not decode');

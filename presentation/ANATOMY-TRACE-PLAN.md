@@ -130,9 +130,9 @@ claim. Original acceptance receipts remain unchanged.
 ## Handoff boundary
 
 The [native-trace compiler](../src/tb3_medical/explainers/native_trace.py) now
-assembles two **unbound** migration drafts from pinned local assets:
-[CT](../groups/registration/presentation/drafts/br019-native-trace.story.md) and
-[MRA](../groups/tubular-anatomy/presentation/drafts/br026-native-trace.story.md).
+assembles two native-trace migration manuscripts from pinned local assets:
+[CT](../groups/registration/presentation/stories/br019-native-trace.story.md) and
+[MRA](../groups/tubular-anatomy/presentation/stories/br026-native-trace.story.md).
 Each has six discrete chapters / 912 frames at 24 fps. The compiler validates
 chapter-to-trace/state bindings, array lengths, native affines, source/output
 hashes and the MRA edit domain. The declared saved component is independent of
@@ -149,10 +149,10 @@ Use a fresh output path each time:
 
 ```sh
 uv run --no-sync python -m tb3_medical.explainers.native_trace \
-  groups/registration/presentation/drafts/br019-native-trace.story.md \
+  groups/registration/presentation/stories/br019-native-trace.story.md \
   --output .local/anatomy-pose/NEW-native-ct.json
 uv run --no-sync python -m tb3_medical.explainers.native_trace \
-  groups/tubular-anatomy/presentation/drafts/br026-native-trace.story.md \
+  groups/tubular-anatomy/presentation/stories/br026-native-trace.story.md \
   --output .local/anatomy-pose/NEW-native-mra.json
 ```
 
@@ -163,9 +163,9 @@ reveal is explicit and clears on backward navigation/reset; canonical capture
 reveals only the authored reference chapter. Missing local assets retain the
 narrative with a visible unavailable state, without substitute scans.
 
-The catalogue bindings are still unchanged. Finish canonical motion/export and
-integrated Explorer review before moving the two manuscripts from `drafts` to
-`stories`, changing the leaf bindings, and appending regression review receipts.
+The two proposed catalogue bindings now select the native manuscripts for
+regression review. Finalize this migration only after canonical motion/export
+and integrated Explorer review, then append source-pinned regression receipts.
 Existing synthetic operation stories and acceptance receipts remain intact.
 
 Prototype commits: `75171dc2` (CT registration) and `0e1d1a92` (MRA repair).
@@ -206,4 +206,5 @@ transparent pass fix these defects without changing native coordinates.
 Remaining review: normal-speed exported playback/full decoding, integrated
 Explorer entry switching and both locales, exact source-pinned collector and
 regression sign-off. The browser checks above do not substitute for those gates.
-Do not change the leaf bindings or original ledger receipts until that review.
+Original ledger receipts remain unchanged; the proposed native bindings require
+separate migration regression sign-off before this enhancement is counted.

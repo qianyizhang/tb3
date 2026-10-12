@@ -46,6 +46,15 @@ try {
       ),
     );
   }
+  if (
+    batch.entries.some((entry) => {
+      const plan = JSON.parse(
+        readFileSync(path.join(batchDir, entry.story_id, 'plan.json'), 'utf8'),
+      );
+      return plan.recipe === 'native-trace-v1';
+    })
+  )
+    paths.push('tests/native_trace_matrix.mts');
   const pins = Object.fromEntries(paths.map((file) => [inside(file), sha(file)]));
   execFileSync(
     process.execPath,
