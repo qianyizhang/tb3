@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "trace_analysis",
+  "id": "br019-full-view-trace",
+  "group_id": "registration",
+  "title": "BR-019 full-view trace: from the CT crop to a recovered slice pose",
+  "claim": "The retained BR-019 full-view Terra/high attempt moved from wrong intensity-search poses to a near-reference silhouette candidate and then full-resolution refinement. The saved final transform passes at 0.000477 mm RMS / 0.000744 mm maximum; native re-rendering reproduces the logged 56 differing pixels out of 36,864.",
+  "experiment_ids": [
+    "registration-br019"
+  ],
+  "evidence": [
+    {
+      "path": "groups/registration/findings/evidence/br019-full-view-trace.json",
+      "sha256": "81ab9e2c51595b0fd09b34ca3c37a81d87162e574c4c16e4bb0f70a7e8c79e3d"
+    },
+    {
+      "path": "groups/registration/findings/evidence/br019-trace-visuals.json",
+      "sha256": "fdac22ddca732fce98343cad9954259d48ff14d60f333e35baae335c4b86fb15"
+    }
+  ],
+  "limitations": [
+    "One successful same-acquisition attempt on one subject; no clinical precision, anatomical-understanding or cross-scan robustness claim.",
+    "Selected intermediate matrices and search parameters are reconstructed from rounded logs; their geometric errors are post-hoc diagnostics, not frozen evaluations.",
+    "Silhouette matching, bounds and search settings changed within the run; this trace is not a causal ablation.",
+    "The volume viewer covers the full solver-visible thoracic crop, not the entire original patient scan."
+  ],
+  "links": [
+    {
+      "label": "Analysis report",
+      "path": "groups/registration/findings/br019-full-view-trace.md"
+    }
+  ]
+}

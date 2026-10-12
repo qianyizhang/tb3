@@ -8,6 +8,10 @@ Use `uv run med list --group registration` from the repository root. The group o
 
 [Capability story](presentation/story.md) · [Working contract](AGENTS.md)
 
+[BR-019 real solving trace](findings/br019-full-view-trace.md) connects the whole
+solver-visible CT crop to selected search states, the submitted pose and its
+frozen evaluation.
+
 [Data sources](sources.json) · [Retained examples](examples/README.md) · [Methods](methods/README.md)
 
 ## Current ideas

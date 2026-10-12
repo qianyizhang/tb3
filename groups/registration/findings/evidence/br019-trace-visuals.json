@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "purpose": "Reader-only source-derived trace explainer; no fresh model run or optimizer execution.",
+  "attempt_id": "attempt-0b9d524174a3e1a9e4bb4901",
+  "recipe": {
+    "path": "groups/registration/presentation/anatomy-pose/prepare_trace.py",
+    "sha256": "3e6ed828872a6d5ac754c2769f946c3a01c75bf229d967740fd44624be6cae57"
+  },
+  "source_hashes": [
+    {
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/agent/trajectory.json",
+      "sha256": "85ce8a8769840872dd919a9d7e59765d2e1a373b9a5589ebacdfb658f50d8812"
+    },
+    {
+      "path": "runs/br019-registration/tasks/cardiac-r01/instruction.md",
+      "sha256": "d955ae96b8b5cfdb37ac1aec5351177967c1ed01322208e60e53ac53a54a29e3"
+    },
+    {
+      "path": "runs/br019-registration/tasks/cardiac-r01/environment/data/volume.npz",
+      "sha256": "b80cf66dc2c14c39126b9359ca08362149c12470d178b2b1fcccf1e1ec1a4df8"
+    },
+    {
+      "path": "runs/br019-registration/tasks/cardiac-r01/environment/data/target.npy",
+      "sha256": "4dff767a9968a964a414c70c8fb215649f3aced098eacc15c77271668f0e7e0f"
+    },
+    {
+      "path": "runs/br019-registration/tasks/cardiac-r01/environment/data/image.json",
+      "sha256": "7038777b31767eb41816b0191f3cc38cd37c81b1abd0c4697bb69aaa455b952f"
+    },
+    {
+      "path": "runs/br019-registration/tasks/cardiac-r01/tests/truth.json",
+      "sha256": "31df01ad50e37c874841ab337e399b8e2e12a324eb24878014c2688aa198086c"
+    },
+    {
+      "path": "runs/br019-registration/tasks/cardiac-r01/tests/score.py",
+      "sha256": "ef380b58495346a5970fb7020ac7425efa00aadc04c62bdeed0d9c4ffcfc6e44"
+    },
+    {
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/artifacts/app/answer/pose.json",
+      "sha256": "d3984e69b1f8ca88c2a6c02184ae17600845bffe21397942e0ca50d78d4765a5"
+    },
+    {
+      "path": "runs/br019-cardiac-r01-terra-high-v1-20260916/cardiac-r01__7yuEb55/verifier/metrics.json",
+      "sha256": "b498494a5785ed765daad4069249c3a4998d3c7048ee5f00fab2749dcf637847"
+    }
+  ],
+  "derivation": {
+    "preview": "Trilinear 90^3 preview spanning native voxel centres 0..179, window [-1000,500] HU; not used for scoring.",
+    "candidate_images": "Native 180^3 HU trilinear reslices; task window [-150,350] HU, 192^2 at 0.9 mm/pixel.",
+    "silhouette": "Target Gaussian sigma=2 px of target>5; candidate display applies logistic (image-5)/4. Display uses rounded reslices; not an exact replay of the optimizer objective.",
+    "difference": "Absolute 8-bit image difference multiplied by 4, clipped at 255; display only."
+  },
+  "states": [
+    {
+      "id": "early",
+      "trace_step": 17,
+      "pose": [
+        [
+          -0.6496638798,
+          0.46022135,
+          0.6050893754,
+          18.8170162337
+        ],
+        [
+          0.7552653949,
+          0.2999902247,
+          0.5827349726,
+          -293.3804827569
+        ],
+        [
+          0.0866661781,
+          0.8355849293,
+          -0.5424820729,
+          760.1746111977
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "role": "Reconstructed from the printed step-17 matrix; rounded log precision.",
+      "diagnostic": {
+        "rms_mm": 129.89880640485157,
+        "max_mm": 225.9853461227083,
+        "pixel_rmse": 46.14983787411708,
+        "equal_pixels": 10295,
+        "different_pixels": 26569,
+        "max_intensity_difference": 255.0
+      }
+    },
+    {
+      "id": "bounded",
+      "trace_step": 41,
+      "pose": [
+        [
+          -0.4739420636,
+          0.5474168461,
+          0.6897200279,
+          12.6099210582
+        ],
+        [
+          0.8770440572,
+          0.2235746206,
+          0.4252153698,
+          -285.3835315105
+        ],
+        [
+          0.0785661631,
+          0.8064423015,
+          -0.5860701088,
+          748.7000122179
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "role": "Reconstructed from the printed step-41 matrix; rounded log precision.",
+      "diagnostic": {
+        "rms_mm": 123.87601839915523,
+        "max_mm": 216.11390180126503,
+        "pixel_rmse": 61.83581505085441,
+        "equal_pixels": 4492,
+        "different_pixels": 32372,
+        "max_intensity_difference": 255.0
+      }
+    },
+    {
+      "id": "coarse",
+      "trace_step": 43,
+      "pose": [
+        [
+          0.6222407197106169,
+          0.7589364533075407,
+          -0.19191650938620286,
+          -83.12153599556518
+        ],
+        [
+          0.732781551406819,
+          -0.47843837995197547,
+          0.4838676621833128,
+          -206.51605287584414
+        ],
+        [
+          0.27540458357084163,
+          -0.4417150398502413,
+          -0.8538384735523873,
+          903.0001859419324
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "role": "Reconstructed from step-43 DE seed 6 and step-29 centre mapping; rounded log parameters.",
+      "diagnostic": {
+        "rms_mm": 0.9453545598335785,
+        "max_mm": 1.0305778171085727,
+        "pixel_rmse": 8.161521484546146,
+        "equal_pixels": 16702,
+        "different_pixels": 20162,
+        "max_intensity_difference": 129.0
+      }
+    },
+    {
+      "id": "final",
+      "trace_step": 43,
+      "pose": [
+        [
+          0.6228893764615601,
+          0.7587760896204774,
+          -0.19044072702966292,
+          -82.63830873691882
+        ],
+        [
+          0.7321352363378648,
+          -0.4796260157356546,
+          0.4836702189943481,
+          -206.4250838828486
+        ],
+        [
+          0.27565707029537273,
+          -0.4407014078146327,
+          -0.8542806615781332,
+          902.1148957985766
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "role": "Preserved submitted pose.json, full stored precision; re-rendered from the native CT.",
+      "diagnostic": {
+        "rms_mm": 0.0004770594910662992,
+        "max_mm": 0.0007442100175445693,
+        "pixel_rmse": 0.03897559777889522,
+        "equal_pixels": 36808,
+        "different_pixels": 56,
+        "max_intensity_difference": 1.0
+      }
+    }
+  ],
+  "verification": {
+    "early_render_matches_delivered_step_18": true,
+    "final_pixels_different": 56,
+    "pixel_denominator": 36864,
+    "max_intensity_difference": 1,
+    "frozen_metrics_reproduced": true
+  },
+  "limits": [
+    "Only selected logged states are reconstructed; no full optimizer history was retained here.",
+    "Intermediate geometric errors are post-hoc diagnostics using evaluator-only truth.",
+    "All data are one same-acquisition crop, not a complete original scan or clinical validation."
+  ]
+}

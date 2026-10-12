@@ -43,3 +43,34 @@ Not established: both frozen same-acquisition full and partial views passed Terr
 ## Reopen when
 
 Retire the tested snapshots. Preserve evidence; do not infer anatomical understanding or cross-acquisition ability from exact-texture matching. Paired-scan or modality successors need independent correspondence truth and an adequate transform model before admission.
+
+## Teaching figure: Anatomy skill trial, 2026-10-12
+
+At the user's request to try the Anatomy explainer skill, the assistant built a
+[slice-pose positioning bench](../presentation/anatomy-pose/design.md).
+The offline page is generated at `.local/anatomy-pose/index.html` from the
+group-owned recipe. Six controls drive one pose model, the matrix and physical
+grid-point errors; the synthetic reference requires an explicit reader reveal.
+
+Useful distinction: matching the centre and normal does not recover the image
+pose. A 25-degree in-plane turn in this synthetic 80 mm square gives zero centre
+and normal errors but 16.32 mm RMS and 24.49 mm maximum point errors.
+Seventeen synthetic poses agreed with the retained R01 Python scorer, including
+the 3 mm RMS boundary. This is an explanation of the task contract, not a new
+experiment, native CT figure, difficulty claim or reopening decision.
+
+Assistant assessment: Anatomy's physical-instrument style is useful for teaching
+coordinate geometry. The mechanical mounting is illustrative; the six-degree
+pose mathematics is exact for the stated synthetic section. Retain the existing
+Task Explorer and source-backed images as the scientific presentation authority.
+
+### Whole-volume trace revision
+
+The user requested a stronger connection to the whole CT and a real solving
+process. The [BR-019 full-view trace report](../findings/br019-full-view-trace.md)
+now links the retained Terra/high attempt to native CT context, selected wrong and
+coarse poses, the saved answer, and a reader-only evaluator reveal. Its interactive
+page is `.local/anatomy-pose/trace/index.html`. Selected intermediate views are
+explicitly reconstructed from rounded logs; the final render and metrics reproduce
+the retained evidence. This supersedes the instrument-only explanation as the
+recommended first read, without changing task disposition or authorizing a new run.

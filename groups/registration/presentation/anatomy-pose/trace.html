@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From a CT volume to one exact slice · TB3</title>
+    <style>
+      __CSS__
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="eyebrow">
+          <span>TB3 / ANATOMY × REAL EVIDENCE</span><span>BR-019 · CARDIAC-R01 · RETAINED RUN</span>
+        </div>
+        <h1>From a CT volume<br />to one exact slice.</h1>
+        <p class="deck">
+          The solver has a 3D CT and a 2D picture. It must find the picture’s position and
+          orientation.<br />Follow a real attempt from a convincing wrong match to the submitted
+          answer.
+        </p>
+        <div class="meta">
+          <span>Terra / high</span><span>16 September 2026</span><span>46 trace steps</span
+          ><span>9 min 36 s recorded agent time</span>
+        </div>
+      </header>
+      <nav id="steps" aria-label="Recorded solving phases"></nav>
+      <section class="story">
+        <div class="story-head">
+          <span id="trace-label" class="eyebrow"></span>
+          <div>
+            <button id="previous" aria-label="Previous phase">←</button
+            ><button id="next">Next phase →</button>
+          </div>
+        </div>
+        <h2 id="phase-title"></h2>
+        <p id="phase-copy"></p>
+        <div class="mechanism" id="mechanism"></div>
+      </section>
+      <section class="workbench">
+        <div class="volume-card">
+          <div class="card-head">
+            <span>01 / THE SUPPLIED CT VOLUME</span><span>180³ voxels · 1.5 mm spacing</span>
+          </div>
+          <div
+            id="volume"
+            tabindex="0"
+            role="group"
+            aria-label="3D CT crop. Drag to rotate, scroll to zoom; arrow keys rotate and Home resets."
+          >
+            <div id="loading">Preparing the CT volume…</div>
+            <div id="axis-labels"></div>
+          </div>
+          <div class="viewer-tools">
+            <label><input id="show-context" type="checkbox" checked /> Orthogonal CT planes</label
+            ><label><input id="show-shell" type="checkbox" checked /> Context shell</label
+            ><button id="reset-camera">Reset view</button>
+          </div>
+          <div class="legend">
+            <span><i class="candidate-key"></i>Solid teal: selected candidate section</span
+            ><span id="reference-key" hidden
+              ><i class="reference-key"></i>Dashed amber: evaluator reference</span
+            >
+          </div>
+          <p class="caption">
+            Drag to orbit. These are the full <strong>solver-visible thoracic crop</strong> and
+            native-coordinate section, not the complete original patient scan. The faint shell is a
+            −350 HU threshold surface for context, not an organ annotation.
+          </p>
+        </div>
+        <div class="comparison-card">
+          <div class="card-head">
+            <span>02 / RENDER, THEN COMPARE</span><span>192² pixels · 0.9 mm/pixel</span>
+          </div>
+          <div class="compare-pair">
+            <figure>
+              <img id="target" alt="Supplied oblique CT target" />
+              <figcaption id="target-label">Given: target image</figcaption>
+            </figure>
+            <figure id="candidate-figure">
+              <img id="candidate" alt="CT reslice at the selected logged pose" />
+              <div id="unknown">
+                ?<span>The pose is unknown.<br />The target is not yet located.</span>
+              </div>
+              <figcaption id="candidate-label">Find its place in the CT</figcaption>
+            </figure>
+          </div>
+          <div id="compare-tools">
+            <button data-mode="image" aria-pressed="true">CT intensity</button
+            ><button data-mode="silhouette" aria-pressed="false">Silhouette cue</button
+            ><button data-mode="difference" aria-pressed="false">Difference ×4</button>
+          </div>
+          <p class="caption" id="render-role"></p>
+          <div id="pixel-readout"></div>
+          <div id="score" hidden>
+            <span class="eyebrow">FROZEN EVALUATOR RESULT · PASS</span>
+            <div class="metrics">
+              <div>
+                <strong>0.000477 <small>mm</small></strong
+                ><span>RMS point error · limit ≤ 3 mm</span>
+              </div>
+              <div>
+                <strong>0.000744 <small>mm</small></strong
+                ><span>Maximum error · limit ≤ 5 mm</span>
+              </div>
+            </div>
+            <p class="caption">
+              49 grid points. Agreement with a generating transform is not clinical accuracy at this
+              scale.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="mpr-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">EXPLORE THE WHOLE INPUT</span>
+            <h2>Move through the crop, not just the target.</h2>
+          </div>
+          <p>
+            Reader controls change these context planes and their positions in 3D.<br />They are not
+            a replay of the agent’s slice-browsing actions.
+          </p>
+        </div>
+        <div class="mpr-grid">
+          <figure>
+            <div class="mpr-top"><strong>Sagittal</strong><output id="mpr-pos-0"></output></div>
+            <div class="mpr-wrap">
+              <canvas id="mpr-0" width="180" height="180" aria-label="Sagittal CT preview"></canvas
+              ><span class="north">S</span><span class="west">P</span><span class="east">A</span
+              ><span class="south">I</span>
+            </div>
+            <input
+              id="slice-0"
+              type="range"
+              min="0"
+              max="89"
+              value="45"
+              aria-label="Sagittal CT slice position"
+            />
+          </figure>
+          <figure>
+            <div class="mpr-top"><strong>Coronal</strong><output id="mpr-pos-1"></output></div>
+            <div class="mpr-wrap">
+              <canvas id="mpr-1" width="180" height="180" aria-label="Coronal CT preview"></canvas
+              ><span class="north">S</span><span class="west">L</span><span class="east">R</span
+              ><span class="south">I</span>
+            </div>
+            <input
+              id="slice-1"
+              type="range"
+              min="0"
+              max="89"
+              value="45"
+              aria-label="Coronal CT slice position"
+            />
+          </figure>
+          <figure>
+            <div class="mpr-top"><strong>Axial</strong><output id="mpr-pos-2"></output></div>
+            <div class="mpr-wrap">
+              <canvas id="mpr-2" width="180" height="180" aria-label="Axial CT preview"></canvas
+              ><span class="north">P</span><span class="west">L</span><span class="east">R</span
+              ><span class="south">A</span>
+            </div>
+            <input
+              id="slice-2"
+              type="range"
+              min="0"
+              max="89"
+              value="45"
+              aria-label="Axial CT slice position"
+            />
+          </figure>
+        </div>
+        <p class="caption">
+          L/R = left/right, P/A = posterior/anterior, S/I = superior/inferior. Context uses a 90³
+          trilinear preview spanning the entire input crop, window −1000 to 500 HU. Candidate/target
+          comparisons use the native data and the task’s −150 to 350 HU window.
+        </p>
+      </section>
+      <details open class="evidence">
+        <summary>Inspect the recorded actions behind this phase</summary>
+        <p class="caption">
+          Selected tool calls and outputs from the retained trajectory. No new optimizer or model
+          was run. Transitions between phases are explanatory, not recorded continuous motion.
+        </p>
+        <div id="trace-excerpts"></div>
+      </details>
+      <details>
+        <summary>How the image maps into the volume</summary>
+        <p>
+          For each pixel column u and row v, the submitted 4 × 4 matrix maps
+          <code>[0.9·u, 0.9·v, 0, 1]</code> into patient LPS millimetres. The volume’s voxel-to-LPS
+          matrix then locates that point in the CT grid. Trilinear interpolation samples its
+          intensity.
+        </p>
+        <div class="mapping">
+          <span>Image pixel</span><b>→</b><span>Patient point</span><b>→</b
+          ><span>CT voxel position</span><b>→</b><span>Rendered intensity</span>
+        </div>
+        <p>
+          The solver changes six pose parameters, renders another section, and measures a mismatch.
+          It returns the pose, not an organ mask or an anatomical diagnosis.
+        </p>
+        <pre id="pose-matrix">No selected pose at the input stage.</pre>
+        <p class="caption">
+          Matrix translation is the top-left pixel centre, not the centre of the section. All
+          geometry in this viewer uses the source LPS affine.
+        </p>
+      </details>
+      <details>
+        <summary>What this attempt establishes—and its limits</summary>
+        <p>
+          <strong>Observed:</strong> early local optima looked plausible; the logged silhouette
+          stage found a much closer pose; full-resolution refinement produced the submitted matrix.
+          Re-rendering that saved matrix reproduces the logged 56 differing pixels out of 36,864,
+          with maximum intensity difference 1.
+        </p>
+        <p>
+          <strong>Supported interpretation:</strong> broad silhouette matching found a useful
+          starting region for final intensity refinement. This is a reconstruction of one run, not
+          an ablation proving that the silhouette change alone caused success. The solver also
+          changed its search bounds and earlier objectives.
+        </p>
+        <p>
+          <strong>Reference fitness:</strong> the target was generated from this same CT. The frozen
+          contract explicitly defines spacing, LPS axes, interpolation and the 49-point score;
+          retained author controls support geometric consistency. It is not an expert-certified
+          cardiac view. No new clinical reference adjudication was performed.
+        </p>
+        <p>
+          <strong>Scope:</strong> one attempt on one subject. Same-acquisition texture makes very
+          precise numerical recovery possible. Both historical BR-019 snapshots passed and were
+          retired as difficulty candidates. Cross-scan robustness and anatomical understanding are
+          not established.
+        </p>
+        <p>
+          <strong>Replay limits:</strong> the intermediate matrices and coarse-search parameters
+          were printed at limited precision. Their reslices are new reader-facing reconstructions;
+          the first reconstructed image also matches the image actually delivered at trace step 18
+          pixel for pixel. We have selected states, not the complete optimizer history.
+        </p>
+      </details>
+      <details>
+        <summary>Provenance, data license, and the original concept demo</summary>
+        <p>
+          CT: Jakob Wasserthal, TotalSegmentator small v2.0.1, subject s0915, CC BY 4.0. The
+          thoracic crop and oblique target are derived from that source. Native inputs and raw trace
+          remain local.
+        </p>
+        <ul>
+          <li>
+            <a href="https://zenodo.org/records/10047263">Dataset source</a> ·
+            <a href="DATA-LICENSE.txt">license</a> · <a href="SOURCE_NOTICE.txt">source notice</a>
+          </li>
+          <li>
+            <a href="instruction.txt">Frozen task instruction</a> ·
+            <a href="scorer.txt">geometric scorer</a> ·
+            <a href="receipt.json">source hashes and derivation receipt</a>
+          </li>
+          <li>
+            Attempt: <code>attempt-0b9d524174a3e1a9e4bb4901</code>. Trace:
+            <code>cardiac-r01__7yuEb55/agent/trajectory.json</code>.
+          </li>
+          <li>
+            <a href="../index.html">Original Anatomy positioning-bench demo</a> ·
+            <a href="https://github.com/wheresryan22/anatomy">Anatomy skill</a>. This revision
+            retains its restrained figure framing and adds a native-coordinate volume viewer.
+          </li>
+          <li>Three.js, MIT · <a href="THREE-LICENSE.txt">license</a>.</li>
+        </ul>
+      </details>
+      <footer>
+        <span>SOURCE → CANDIDATE PLANE → RESLICE → COMPARISON → POSE</span
+        ><span>RETAINED EVIDENCE · NO NEW TRIAL</span>
+      </footer>
+    </main>
+    <script id="trace-data" type="application/json">
+      __DATA__
+    </script>
+    <script>
+      __SCRIPT__;
+    </script>
+  </body>
+</html>
