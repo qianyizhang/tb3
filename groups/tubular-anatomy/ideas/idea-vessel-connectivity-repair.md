@@ -68,3 +68,14 @@ No natural faulty prediction, admitted defect fixture, numeric verifier threshol
 or model trial is added. Original receipts and outcomes are unchanged. The
 reopening conditions above remain in force; commercial redistribution remains
 subject to source-owner permission.
+
+## Real-trace explainer — 2026-10-12
+
+Assistant observation in response to the user's request for another native-data
+Anatomy explainer: the [BR-026 V01 walkthrough](../findings/br026-gap-trace.md)
+connects the full proposed vessel mask to MRA slices, nine logged threshold
+alternatives, two local contact patches and the preserved answer. All threshold
+counts and all 12 frozen verifier checks reproduce. The saved 198-voxel addition
+recovers 198 of 200 authored deletions with no other edits. This adds an explanation,
+not a new trial, task promotion or user research decision. V01 remains calibration;
+V02's reference dispute and the reopening conditions above remain unresolved.

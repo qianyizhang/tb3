@@ -1,0 +1,169 @@
+{
+  "recipe": {
+    "path": "groups/tubular-anatomy/presentation/anatomy-repair/prepare.py",
+    "sha256": "9747d8b92b48acb5d728257156e452e27941ff92aa487cb1718ab180621780bf"
+  },
+  "sources": [
+    {
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/agent/trajectory.json",
+      "sha256": "3dee2e5483d3cbe51f99b8db61738aeafcd65ce736565e0126b0a435a002a1b3"
+    },
+    {
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/artifacts/app/answer/corrected_mask.nii.gz",
+      "sha256": "470358c139499ded6a59de45414c6a3d3c892d8bbf54fc982237d06b16a9683a"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/tests/truth.npz",
+      "sha256": "18d619fd23587bd4b4fe0f46cfdafa9de0f07d5253f6058c4c2d35909d5a6afe"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/tests/score.py",
+      "sha256": "f40ca7f796a633eff4c80478171cd4074b876c190d6e296369979ca1e1080828"
+    },
+    {
+      "path": "runs/br026-vessel-v01-terra-high-v1-20260916/vessel-v01__c6dKGRX/verifier/metrics.json",
+      "sha256": "35214be4dd533a70c576fd0336d3bcfc55b7554cd4da8307e982fff60cc466b0"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/instruction.md",
+      "sha256": "f305b410fe814d75bab9a8e4e97636f9d247be7fb0caf2c6c1f86e499297d11e"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/environment/SOURCE_NOTICE.md",
+      "sha256": "affe67de55c83a4da981dba0c64f606e8a32c07b5ce34632143fe077efd20b4e"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/environment/DATA-LICENSE.txt",
+      "sha256": "6b527078226cc70d90f6938b55002961e8b311aa57fb720e0d4cc8f180919690"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/environment/data/image.nii.gz",
+      "sha256": "924b9ad77dec9537180281e3a77e69c734edf2c9744a1e597f25dfa396f83b52"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/environment/data/proposed_mask.nii.gz",
+      "sha256": "e1db615d696ac4d6c022ce14aee963bc78e57a3b162ec99a3cd8f7230bfed253"
+    },
+    {
+      "path": "runs/br026-vessel-repair/tasks/vessel-v01/environment/data/editable_region.nii.gz",
+      "sha256": "562d967518c0aa907c457db9c350435223202601444f6166914a59e0cf005ebb"
+    }
+  ],
+  "attempt": "vessel-v01__c6dKGRX",
+  "source": "TopCoW 2024 MRA case 007",
+  "derived": {
+    "volume": "Native grid, display-only uint8 mapping 70..650 source intensity; no spatial resampling.",
+    "surface": "Exposed voxel faces of proposed mask; corners at index +/-0.5, full NIfTI RAS affine.",
+    "thresholds": "Nine step-28 seed components reconstructed from public inputs with 26-connectivity; every logged count reproduced.",
+    "contacts": "Step-29 candidate voxels adjacent to original mask, split into 26-connected patches. 165 yields 32 and 33 voxels.",
+    "local_views": "Reader-selected crop [49:83,59:94,7:25] around logged seed; not the agent's original screen.",
+    "reference": "200 deleted reference voxels / 2 residual voxels revealed only in final phase; evaluator-only teaching overlay."
+  },
+  "verification": {
+    "frozen_score_reproduced_exactly": true,
+    "saved_output_equals_165_component_union": true,
+    "added": 198,
+    "gap": 200,
+    "deleted": 0,
+    "unrelated_additions": 0,
+    "threshold_counts": {
+      "150": 247,
+      "160": 212,
+      "165": 198,
+      "170": 186,
+      "180": 178,
+      "190": 170,
+      "200": 155,
+      "220": 122,
+      "250": 89
+    },
+    "contact_sizes": [
+      32,
+      33
+    ]
+  },
+  "delivered_images": [
+    {
+      "step": 10,
+      "file": "delivered-10-1.png"
+    },
+    {
+      "step": 11,
+      "file": "delivered-11-1.png"
+    },
+    {
+      "step": 11,
+      "file": "delivered-11-2.png"
+    },
+    {
+      "step": 13,
+      "file": "delivered-13-1.png"
+    },
+    {
+      "step": 15,
+      "file": "delivered-15-1.png"
+    },
+    {
+      "step": 15,
+      "file": "delivered-15-2.png"
+    },
+    {
+      "step": 19,
+      "file": "delivered-19-1.png"
+    },
+    {
+      "step": 19,
+      "file": "delivered-19-2.png"
+    },
+    {
+      "step": 19,
+      "file": "delivered-19-3.png"
+    },
+    {
+      "step": 19,
+      "file": "delivered-19-4.png"
+    },
+    {
+      "step": 19,
+      "file": "delivered-19-5.png"
+    },
+    {
+      "step": 19,
+      "file": "delivered-19-6.png"
+    },
+    {
+      "step": 22,
+      "file": "delivered-22-1.png"
+    },
+    {
+      "step": 22,
+      "file": "delivered-22-2.png"
+    },
+    {
+      "step": 22,
+      "file": "delivered-22-3.png"
+    },
+    {
+      "step": 24,
+      "file": "delivered-24-1.png"
+    },
+    {
+      "step": 27,
+      "file": "delivered-27-1.png"
+    },
+    {
+      "step": 27,
+      "file": "delivered-27-2.png"
+    },
+    {
+      "step": 27,
+      "file": "delivered-27-3.png"
+    }
+  ],
+  "limits": [
+    "Synthetic deletion in real MRA; not a natural segmentation-model error.",
+    "One calibration attempt, not clinical validation or general success rate.",
+    "Threshold states are deterministic reconstructions, not new agent attempts.",
+    "Whole solver-visible MRA crop, not the entire original scan."
+  ]
+}

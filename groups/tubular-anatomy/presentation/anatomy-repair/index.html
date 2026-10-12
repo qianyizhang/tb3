@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>A tiny gap. A broken route. · Anatomy × TB3</title>
+    <style>
+      __CSS__
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="eyebrow">
+          <span>TB3 / ANATOMY × REAL EVIDENCE</span><span>02 · VESSEL REPAIR</span>
+        </div>
+        <h1>A tiny gap.<br />A broken route.</h1>
+        <p class="deck">
+          A vessel mask can look almost perfect and still miss a connection.<br />Follow one real
+          agent from the MRA image to a carefully bounded repair.
+        </p>
+        <div class="metadata">
+          <span>BR-026 · V01</span><span>Terra / high</span
+          ><span>32 trace steps · 5 min 01 s agent time</span><span>Real MRA · synthetic gap</span>
+        </div>
+        <a class="back" href="../trace/">← Previous: locate a CT slice</a>
+      </header>
+      <nav id="phases" aria-label="Recorded solving phases"></nav>
+      <section class="story">
+        <div class="story-top">
+          <span id="locator" class="eyebrow"></span>
+          <div>
+            <button id="previous" aria-label="Previous phase">←</button
+            ><button id="next">Next phase →</button>
+          </div>
+        </div>
+        <h2 id="title"></h2>
+        <p id="copy"></p>
+        <div id="lesson" class="lesson"></div>
+      </section>
+      <section class="workbench">
+        <article class="card">
+          <div class="card-head">
+            <span id="scene-title">01 / THE WHOLE VESSEL MASK</span
+            ><span>Native MRA coordinates</span>
+          </div>
+          <div
+            id="scene"
+            tabindex="0"
+            role="group"
+            aria-label="3D vessel network. Drag to rotate, scroll to zoom. Arrow keys rotate; Home resets."
+          >
+            <div id="loading">Preparing the native vessel network…</div>
+            <div id="orientation">S ↑ · patient coordinates</div>
+          </div>
+          <div class="toolbar">
+            <button id="overview" aria-pressed="true">Whole crop</button
+            ><button id="focus" aria-pressed="false">Inspect repair site</button
+            ><button id="reset">Reset view</button>
+          </div>
+          <div class="legend">
+            <span><i class="original"></i>Gray surface: original mask</span
+            ><span id="addition-key" hidden
+              ><i class="addition"></i>Teal solid: candidate additions</span
+            ><span id="contact-key" hidden><i class="contact"></i>Amber cubes: contact patches</span
+            ><span id="reference-key" hidden
+              ><i class="reference"></i>Magenta cubes: 2 missed reference voxels</span
+            >
+          </div>
+          <p class="caption" id="scene-caption">
+            Entire supplied 187 × 132 × 53 MRA crop. Exact voxel faces, with physical spacing and
+            the full NIfTI affine. No smoothing or invented branches. The outlined box locates the
+            reader’s detail view.
+          </p>
+        </article>
+        <article class="card image-card">
+          <div class="card-head">
+            <span>02 / CHECK THE IMAGE EVIDENCE</span><span id="slice-label"></span>
+          </div>
+          <div class="toolbar">
+            <label
+              >Native plane
+              <select id="axis">
+                <option value="2">Near-axial (k)</option>
+                <option value="1">Near-coronal (j)</option>
+                <option value="0">Near-sagittal (i)</option>
+              </select></label
+            ><label><input type="checkbox" id="detail" checked /> Detail crop</label>
+          </div>
+          <div class="images">
+            <figure>
+              <canvas id="source" aria-label="Native MRA slice without mask overlay"></canvas>
+              <figcaption>MRA signal alone</figcaption>
+            </figure>
+            <figure>
+              <canvas
+                id="overlay"
+                aria-label="Same native MRA slice with stage-specific mask overlay"
+              ></canvas>
+              <figcaption id="overlay-label"></figcaption>
+            </figure>
+          </div>
+          <label class="slice-control"
+            >Move through the supplied volume
+            <input
+              id="slice"
+              type="range"
+              min="0"
+              max="52"
+              value="15"
+              aria-label="Native slice index"
+          /></label>
+          <div class="toolbar">
+            <label><input type="checkbox" id="mask-visible" checked /> Original mask outline</label
+            ><button id="site">Return to logged seed</button>
+            <label id="add-control" hidden
+              ><input type="checkbox" id="add-visible" checked /> Show additions</label
+            >
+            <button id="missed" hidden>Inspect a missed voxel</button>
+          </div>
+          <p class="caption">
+            Same plane and window in both panels. Blue-gray outline = original mask; teal fill =
+            candidate; amber fill = candidate voxels touching the mask; magenta = missed reference.
+            Native planes are slightly oblique to patient axes. Display window: 70–650 source units.
+          </p>
+          <div id="readout" class="readout"></div>
+        </article>
+      </section>
+      <section id="threshold-panel" class="threshold-panel" hidden>
+        <div>
+          <span class="eyebrow">REPLAY THE LOGGED THRESHOLDS / STEP 28</span>
+          <h2>How much signal belongs to this component?</h2>
+          <p>
+            The seed stays at crop voxel <strong>(66, 76, 15)</strong>. Lowering the threshold
+            admits more adjoining bright voxels. These nine choices reproduce the recorded component
+            sizes.
+          </p>
+        </div>
+        <div>
+          <div class="threshold-values">
+            <span>Source intensity ≥ <strong id="threshold-value">250</strong></span
+            ><span><strong id="voxel-count">89</strong> candidate voxels</span>
+          </div>
+          <input
+            id="threshold"
+            aria-label="Recorded intensity threshold"
+            type="range"
+            min="0"
+            max="8"
+            value="8"
+            step="1"
+          />
+          <div class="ticks"><span>150 · 247 voxels</span><span>250 · 89 voxels</span></div>
+          <button id="chosen">Use the submitted threshold: 165</button>
+          <p id="threshold-note" class="caption"></p>
+        </div>
+      </section>
+      <section id="contacts-panel" class="callout" hidden>
+        <span class="eyebrow">LOCAL ATTACHMENT / STEP 29</span>
+        <h2>Two separated contact patches, one candidate.</h2>
+        <p>
+          At threshold 165, the 198-voxel candidate touches the existing mask in two patches:
+          <strong>32 voxels</strong> at one end and <strong>33</strong> at the other. This supports
+          the local bridge interpretation; it does not prove anatomical correctness by itself.
+        </p>
+        <div class="contact-counts">
+          <span>PATCH A <b>32</b></span
+          ><span>INTERIOR <b>133</b></span
+          ><span>PATCH B <b>33</b></span>
+        </div>
+      </section>
+      <section id="score" hidden>
+        <div class="section-head">
+          <span class="eyebrow">EVALUATOR-ONLY REFERENCE REVEAL</span>
+          <h2>Small edit. Local connection restored.</h2>
+        </div>
+        <div class="scores">
+          <article>
+            <span>Authored gap recovered</span><b>198 / 200</b>
+            <p>2 reference boundary voxels remain absent.</p>
+          </article>
+          <article>
+            <span>Right-Pcom local route</span><b>PASS</b>
+            <p>100% centerline coverage within 0.45 mm.</p>
+          </article>
+          <article>
+            <span>Unrelated edits</span><b>0</b>
+            <p>No extra additions, deletions, or changes outside the editable region.</p>
+          </article>
+        </div>
+        <p class="caption">
+          Frozen local Dice: 0.997333. All 12 checks pass; current saved-output replay reproduces
+          the full frozen metrics exactly. This is an annotation-backed engineering result, not
+          clinical validation.
+        </p>
+      </section>
+      <details open>
+        <summary>Inspect the recorded tool calls behind this phase</summary>
+        <p class="caption">
+          Selected observable actions and outputs. Reconstructed threshold components are labeled;
+          no model was run. Phase changes are explanatory, not a recording of the agent’s screen.
+        </p>
+        <div id="trace"></div>
+        <div id="delivered"></div>
+      </details>
+      <details>
+        <summary>Why whole-mask Dice misses the problem</summary>
+        <p>
+          Most voxels never changed. The proposed mask already scores
+          <strong>99.845% whole-mask Dice</strong>, yet the tested right-Pcom route is broken. A
+          different path can also keep the foreground globally connected. The verifier therefore
+          restricts its connection check to a local vessel corridor and separately checks coverage,
+          preserved branches, and collateral changes.
+        </p>
+        <p>
+          This is a local topology problem: “are these particular attachments connected along the
+          intended route?” A whole-mask overlap score answers a different question.
+        </p>
+      </details>
+      <details>
+        <summary>What this example establishes—and its limits</summary>
+        <p>
+          Real TopCoW MRA, case 007, with a deliberately authored 1.8 mm-radius deletion in the
+          right posterior communicating artery mask. The source image was unchanged. This was one
+          successful calibration run, and a simple image-guided baseline also passed.
+        </p>
+        <p>
+          The solver was allowed to return the input unchanged. It saw the MRA, proposed binary
+          mask, editable region, and geometry—not the class labels, reference mask, graph nodes, or
+          evaluator. The final reference reveal is for the reader.
+        </p>
+        <p>
+          Observed image viewing and image-based code do not establish that images were necessary:
+          no image-ablation experiment was run. A separate unchanged-mask case had an unresolved
+          annotation disagreement; this successful repair does not resolve it. No general success
+          rate, natural-error difficulty, or clinical correctness is claimed.
+        </p>
+      </details>
+      <details>
+        <summary>Provenance, source data, and reproduction</summary>
+        <ul>
+          <li>
+            <a href="instruction.txt">Frozen task instructions</a> ·
+            <a href="scorer.txt">Retained scorer</a> ·
+            <a href="receipt.json">Source hashes and derivations</a>
+          </li>
+          <li>
+            TopCoW, Yang et al., University Hospital Zurich:
+            <a href="https://zenodo.org/records/15692630">2024 source release</a>.
+            <a href="DATA-LICENSE.txt">Data terms</a>: attribution required; commercial use requires
+            owner permission.
+          </li>
+          <li>
+            Anatomy by Ryan, MIT:
+            <a
+              href="https://github.com/wheresryan22/anatomy/tree/e28bc3f2f91d4a27f3f60edf2207e05596e5f77d"
+              >pinned skill revision</a
+            >. This medical evidence viewer adapts its instrument-like presentation to native data.
+          </li>
+          <li>
+            Three.js: <a href="THREE-LICENSE.txt">MIT license</a>. All viewer assets are embedded;
+            source links and original delivered images are opened only on request.
+          </li>
+        </ul>
+        <p class="caption">
+          Build: prepare.py → build.mjs in groups/tubular-anatomy/presentation/anatomy-repair. The
+          recorded threshold experiment is reconstructed deterministically; it is not a new solver
+          run.
+        </p>
+      </details>
+      <footer>
+        <span>IMAGE → CANDIDATE → CONTACTS → BOUNDED EDIT → LOCAL CHECK</span
+        ><span>RETAINED EVIDENCE · NO NEW TRIAL</span>
+      </footer>
+    </main>
+    <script id="data" type="application/json">
+      __DATA__
+    </script>
+    <script>
+      __SCRIPT__;
+    </script>
+  </body>
+</html>

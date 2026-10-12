@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "kind": "finding",
+  "analysis_kind": "trace_analysis",
+  "id": "br026-gap-trace",
+  "group_id": "tubular-anatomy",
+  "title": "BR-026 vessel repair: a small gap in a connected network",
+  "claim": "The retained BR-026 V01 Terra/high attempt recovered 198 of 200 authored gap voxels with no other edits. Nine logged threshold counts, 32/33-voxel contact patches, the saved mask, and all 12 frozen verifier checks reproduce from retained evidence.",
+  "experiment_ids": [
+    "tubular-anatomy-br026"
+  ],
+  "evidence": [
+    {
+      "path": "groups/tubular-anatomy/findings/evidence/br026-gap-trace.json",
+      "sha256": "83b5278a08c573bb4edb91707280bcb9cfe0bacd0eeef01a1bf1bb4829a0b055"
+    },
+    {
+      "path": "groups/tubular-anatomy/findings/evidence/br026-gap-visuals.json",
+      "sha256": "cc3f4df08bd1e1a76f023ec0c347db3083455eb14d6ae0e2b52c5038e36dca28"
+    }
+  ],
+  "limitations": [
+    "Synthetic deletion in real MRA; one successful calibration attempt, not natural segmentation-error difficulty or clinical validation.",
+    "Threshold states are deterministic reconstructions from recorded settings; reader controls are not an agent screen recording.",
+    "Observed image use does not establish necessity without a matched image-ablation experiment.",
+    "The companion unchanged-mask reference disagreement remains unresolved; frozen scores are unchanged."
+  ],
+  "links": [
+    {
+      "label": "Analysis report",
+      "path": "groups/tubular-anatomy/findings/br026-gap-trace.md"
+    }
+  ]
+}
