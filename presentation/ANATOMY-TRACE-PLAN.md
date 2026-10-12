@@ -94,6 +94,39 @@ integration and acceptance; workers own disjoint entry artifacts. Keep browser
 rendering serial initially and preserve concurrent changes. Do not install
 medical runtimes, launch new model trials, publish or push as a side effect.
 
+## Retained-evidence inventory — 2026-10-12
+
+The read-only [inventory service](../src/tb3_medical/explainers/inventory.py)
+joins current core membership, leaf catalogue bindings, canonical stories,
+declared source audits and explicitly linked experiment attempts.
+
+| Locally verified availability | Core entries |
+| --- | ---: |
+| Canonical story file present | 154 |
+| Declared source-audit receipt present | 124 |
+| Explicit experiment links | 44 |
+| Model result and at least one retained trace artifact present | 20 |
+| Further source resolution or task-mechanism work | 134 |
+
+These are entry counts, not independent attempts or scientifically reviewed traces.
+Oracle/nop runs do not count as model traces. Missing declarations, absent local
+files and unsafe paths remain distinct; asset-readiness prose cannot establish a
+run. Files over 1 MiB have presence/size checks but no fresh hash claim. This first
+inventory follows declared pointers, not every possible historical raw-run layout.
+The 134-entry category does not prove that no trace exists elsewhere.
+
+Reproduce the local report (generated data stays out of Git):
+
+```sh
+uv run --no-sync python -m tb3_medical.explainers.inventory \
+  --output .local/anatomy-pose/core-evidence-inventory.json
+```
+
+After the two prototype migrations, prioritize named landmarks, longitudinal MRI,
+respiratory correspondence and coronary paths using these retained candidates.
+Whole-slide search still needs a trace-source investigation before any real-run
+claim. Original acceptance receipts remain unchanged.
+
 ## Handoff boundary
 
 Prototype commits: `75171dc2` (CT registration) and `0e1d1a92` (MRA repair).
@@ -106,6 +139,7 @@ the dependency hash receipt remain under `.local/anatomy-pose/`.
 
 The goal is active. Baseline inventory, prototype cleanup and source verification
 are complete; canonical integration and the remaining enhancement pass are not.
-The next work is a source-availability inventory and a shared native-trace adapter
-design grounded in the two prototypes and existing framework. Existing 154/154
+The first declared-source inventory is complete. Next, integrate a shared
+native-trace adapter grounded in the two prototypes, then investigate undeclared
+sources and expand the reviewed family adapters. Existing 154/154
 review status must never be presented as this new goal's completion status.
