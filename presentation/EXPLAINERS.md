@@ -6,6 +6,11 @@ interactive player. Scope and acceptance remain explicit in the
 The [2026-10-02 closeout](EXPLAINER-COMPLETION-20260929.md) records 154/154 accepted
 core entries; the full catalogue retains 205 entries.
 
+The [native-context and real-trace enhancement goal](ANATOMY-TRACE-PLAN.md),
+authorized on 2026-10-12, is a new pass over the existing core scope. It preserves
+those acceptance records while adding the whole-input/process connection tested
+in the CT-registration and MRA-repair prototypes.
+
 Start with [owners](#owners), [build and export](#build-and-export), and
 [review requirements](#checks-and-visual-acceptance). The
 [framework review](../docs/explainer-framework.md) proposes simplification;
