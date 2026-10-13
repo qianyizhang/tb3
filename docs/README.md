@@ -1,5 +1,9 @@
 # Documentation
 
+New to the codebase? Open the [developer field guide](developer-guide.html) for a
+standalone, visual why → what → how walkthrough, extension recipes and FAQs.
+It works offline; source links use this checkout.
+
 ## Use the workbench
 
 | Need | Start here |

@@ -58,7 +58,9 @@ uv run med check
 make check
 ```
 
-Start with [the documentation index](docs/README.md). For development, see the
+Start with the [developer field guide](docs/developer-guide.html) for a visual
+orientation, or [the documentation index](docs/README.md) for specific operations.
+For development, see the
 [architecture](docs/architecture.md) and [file-placement guide](docs/repository-layout.md). Read
 [the workflow](docs/workflow.md) for idea capture, decisions, scaffolding,
 automatic run receipts, collection, scoped review and clean exports. [Contribution rules](CONTRIBUTING.md)
