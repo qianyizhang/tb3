@@ -219,6 +219,7 @@ class NativeTraceAction(TypedDict):
 
 
 class NativeDeliveredImage(TypedDict):
+    sha256: str
     step: int
     path: str
     src: str
@@ -607,6 +608,99 @@ class CoronaryTracePayload(TypedDict):
     licenses: list[str]
 
 
+class WsiTraceLevel(TypedDict):
+    level: int
+    size: list[int]
+    downsample: float
+
+
+class WsiTraceInput(TypedDict):
+    size_level0: list[int]
+    spacing_um: list[float]
+    overview: str
+    overview_size: list[int]
+    overview_downsample: float
+    pyramid: list[WsiTraceLevel]
+
+
+class WsiTracePanel(TypedDict):
+    id: str
+    label: str
+    delivery_sha256: str
+    raster_bounds: list[float]
+    bounds_level0: list[float]
+    level: int
+    read_step: int
+    description: str
+
+
+class WsiTraceState(TypedDict):
+    id: str
+    label: str
+    trace_step: int
+    delivered_step: int | None
+    panel_ids: list[str]
+    description: str
+
+
+class WsiTracePoint(TypedDict):
+    x: float
+    y: float
+    confidence: float
+
+
+class WsiTraceRead(TypedDict):
+    id: str
+    step: int
+    bounds_level0: list[float]
+    level: int
+    method: Literal["helper", "pyramid"]
+
+
+class WsiTraceDelivery(TypedDict):
+    sha256: str
+    size: list[int]
+
+
+class WsiTraceObserved(TypedDict):
+    deliveries: list[WsiTraceDelivery]
+    states: list[WsiTraceState]
+    panels: list[WsiTracePanel]
+    reads: list[WsiTraceRead]
+    points: list[WsiTracePoint]
+    answer_text: str
+    trace: list[NativeTraceAction]
+    elapsed_seconds: float
+    steps_in_trace: int
+    evidence: str
+
+
+class WsiTracePolygon(TypedDict):
+    id: str
+    kind: Literal["tumor", "exclusion"]
+    points: list[list[float]]
+
+
+class WsiTraceReference(TypedDict):
+    source_slide: str
+    polygons: list[WsiTracePolygon]
+    artifact_reward: float
+    polygon_count: int
+    group_count: int
+    hit_groups: int
+    submitted_points: int
+    grouping_um: float
+    limits: str
+
+
+class WsiTracePayload(TypedDict):
+    input: WsiTraceInput
+    observed: WsiTraceObserved
+    reference: WsiTraceReference
+    delivered_images: list[NativeDeliveredImage]
+    licenses: list[str]
+
+
 class NativeTraceAsset(TypedDict):
     path: str
     sha256: str
@@ -631,7 +725,7 @@ class NativeTraceViewBase(TypedDict):
     source: NativeTraceSource
     availability: Literal["available", "missing-local-assets"]
     missing: list[str]
-    coordinates: Literal["LPS-mm", "RAS-mm"]
+    coordinates: Literal["LPS-mm", "RAS-mm", "level0-px"]
     attempt: str
     saved_state: str
     bundle: NativeTraceBundle
@@ -664,7 +758,14 @@ class CoronaryTraceView(NativeTraceViewBase):
     payload: CoronaryTracePayload | None
 
 
-NativeTraceView = CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView | CoronaryTraceView
+class WsiTraceView(NativeTraceViewBase):
+    adapter: Literal["whole-slide-search"]
+    payload: WsiTracePayload | None
+
+
+NativeTraceView = (
+    CtTraceView | MraTraceView | LandmarkTraceView | MriTraceView | CoronaryTraceView | WsiTraceView
+)
 ExplainerView = RestorationView | NativeTraceView
 
 

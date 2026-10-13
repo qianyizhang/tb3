@@ -293,6 +293,79 @@
     "method": "Exact-file SHA-256 object sharing with separate occurrence manifests; full fresh recovery and source comparison before each scoped retirement. Preserve local evidence and live references through explicit exclusions.",
     "reopen_when": "A retained reference changes, a consumer needs an archived path, independent backup is designated, or new artifact growth justifies a separately scoped migration."
   },
+  "explainer_asset_workbench_review_20261007": {
+    "actor": "assistant",
+    "status": "recommendation; implementation and migration not selected",
+    "source": "codex://threads/01a115b9-cfb4-78b0-b4fb-dd840abd1dde",
+    "source_conversations": [
+      "chatgpt-conversation://6ac51f2f-bf34-83e8-a4fd-a5949aceb584",
+      "codex://threads/01a11409-7085-7490-bee5-69d35ace5536"
+    ],
+    "question": "What should TB3 learn from semantic procedural modeling and the Blender DCC pilot when creating and managing explainer assets?",
+    "finding": "Extend the existing teaching library, pack index, story compiler and shared player with a small offline authoring workbench. Choose code, native source derivation or Blender per asset; preserve one declared editable master and compile selected delivery artifacts.",
+    "observed": [
+      "The ChatGPT comparison describes voxel-musou's semantic helpers as a constrained vocabulary between intent and raw geometry. This review uses that architectural lesson; it does not independently re-audit the upstream repository.",
+      "The game DCC workbench separates a brief, saved Blender source, exported GLB, manifest and frontend inspection. Export preserves the saved source; explicit regeneration preserves a backup. Hand edits do not round-trip into the Python recipe.",
+      "The current game README identifies Intent/Form/Surface/Motion/Delivery as inspection views of the same published asset, not saved production stages. Its asset record says author-reviewed, user approval unrecorded. Sampled pose equivalence and browser checks are historical technical evidence, not aesthetic acceptance or a mobile benchmark.",
+      "TB3 already has teaching primitives, teaching-prefabs.json, role-aware source packs, a shared stage and absolute story clock. The selected packaging implementation currently specializes in the restoration family; other offline exports retain the legacy path."
+    ],
+    "creation_routes": {
+      "native_evidence": "Derive slices, masks, meshes and measured motion from pinned inputs with explicit transforms, units, roles and numerical checks. Keep the scientific source immutable; any smoothing or simplification is a separate display derivative with stated error/limits.",
+      "procedural_teaching": "Use small semantic helpers such as imagePlane, maskOverlay, landmarkSet, correspondencePairs, samplingRibbon and referenceReveal. Reuse exact numerical fixtures where an operation must be faithful; labels and story actions remain typed presentation data.",
+      "dcc_teaching": "Use Blender for complex illustrative surfaces and editable art direction when it improves comprehension. Keep native modifiers/materials/rig controls upstream; export supported or baked results. A static mesh needs no rig; a conceptual deformation must be labeled as such.",
+      "two_dimensional": "Keep diagrams, plots, overlays, legends and tabular outputs in their natural SVG/image/DOM representation. Generated concept art can guide ideation but cannot supply medical evidence or reference answers."
+    },
+    "proposed_boundary": {
+      "authoring": "A small src/tb3_medical/asset_workbench/ namespace could own explicit build/export/verify operations and a Blender adapter after the pilot demonstrates need. Keep canonical reusable briefs/recipes beside their existing presentation asset owners; native case semantics remain group-owned.",
+      "compiler": "Extend existing explainers/assets.py and packaging.py and the teaching-prefabs index; do not create a competing asset registry or scientific record store. Generate receipts from operations rather than hand-authoring hashes.",
+      "runtime": "Use the existing stage, player and export bridge. One story clock owns seeking, reduced motion and video capture; GLB clips, if needed, sample that clock. Keep overlays, captions, labels, units and reveal state outside baked art.",
+      "masters": "Declare whether the current master is a recipe, a saved Blender scene or pinned scientific inputs. For a hand-edited Blender master, export that exact scene; recipe-only rebuilding is not recovery. Preserve the master and dependencies in recoverable local storage under TB3 artifact policy."
+    },
+    "asset_record_minimum": [
+      "Stable asset ID/revision, owner, intended teaching purpose and permitted reuse; story bindings pin a revision rather than an unqualified latest asset.",
+      "Master locator/hash; original source/license; provenance basis; input/helper/output/reference role; reader reveal policy and audience/access boundary as separate fields.",
+      "Coordinates, units, source-to-display transform, named parts/annotation anchors, available operations/clips and semantic fallback.",
+      "Generated build receipt with tool/config/dependency identity, output hashes, byte/geometry/texture budgets and explicit source freshness.",
+      "Separate source/scientific fidelity, numerical/export, browser/accessibility and visual/pedagogical review records, each with actor, reviewed revision, evidence and limits."
+    ],
+    "review_workflow": [
+      "Start from the reader's learning objective, input/action/output and fixed review views. Develop recognizable form and spatial correspondence before materials and decorative detail.",
+      "Review candidates beside preserved baselines with matched camera, light, timing and display size. Inspect relevant motion extremes, labels, reduced motion and no-GPU output. Record real stage snapshots only when captured; do not infer them from final-asset display modes.",
+      "Use draft, candidate, accepted-for-stated-use, superseded and rejected as proposal lifecycle states. Preserve failed/rejected reasoning without marking those assets as approved references. Asset acceptance and story acceptance remain separate.",
+      "For scientific animation, distinguish retained measured frames, exact fixture calculations, display interpolation and illustrative motion. Browser inspection does not validate medical truth."
+    ],
+    "delivery_and_retention": [
+      "Compile only the selected story's transitive asset dependencies. Served views can share content-addressed files; standalone exports must embed their selected dependencies and work offline, including any decoder resources.",
+      "Set budgets from representative device measurements and asset families; the Hydra pilot's size and geometry caps are not TB3 targets. Optimize an export copy, never the editable master or original evidence.",
+      "Preserve role and occurrence identity while deduplicating byte-identical payloads with med artifacts. The same bytes can have different usage permissions and review histories. Packing is separate from deletion and independent backup.",
+      "Keep originals, accepted exports, required review witnesses and unresolved evidence recoverable. TB3 has no age-based purge; do not import the game's disposable-render retention policy.",
+      "A hidden reference in a browser package is only a reader reveal convention. Solver/public packages must exclude prohibited payloads and revealing metadata at packaging time."
+    ],
+    "recommended_pilot": {
+      "scope": "One unbound candidate for the existing synthetic branching-route/CPR explainer, plus its static fallback; preserve the accepted route fixture and story.",
+      "why": "A curved branching object, selected route, moving sampling frame and derived 2D output exercise geometry, semantics, coordinate correspondence and delivery without requiring patient data or a creature rig.",
+      "boundaries": "Retain exact numerical route/sample authority. Blender may improve clearly labeled illustrative display surfaces and materials; it must not silently change sample geometry or imply measured anatomy. Compare against the current visual before selecting a replacement.",
+      "finish_line": "Brief to editable master to selected delivery pack to existing interactive player and offline export; source freshness and coordinate/sample checks, readable baseline comparison, reduced-motion/no-GPU views, and measured package/load costs. Broader migration follows only demonstrated value."
+    },
+    "references": [
+      "presentation/assets/README.md",
+      "presentation/assets/teaching/README.md",
+      "presentation/assets/teaching-prefabs.json",
+      "presentation/assets/teaching-fixtures/route-unfold-v1/README.md",
+      "presentation/EXPLAINERS.md",
+      "docs/explainer-framework.md",
+      "docs/artifact-retention.md",
+      "https://threejs.org/docs/pages/GLTFLoader.html",
+      "https://docs.blender.org/manual/en/dev/addons/scene_gltf2.html",
+      "https://github.com/KhronosGroup/glTF-Validator"
+    ],
+    "external_local_evidence": [
+      "/Users/zhangqy/pkgs/game/packages/dcc-workbench/README.md",
+      "/Users/zhangqy/pkgs/game/docs/art/assets/briar-hydra.md"
+    ],
+    "limits": "Read-only assessment of source conversations and current implementation, with this discussion record appended. No asset creation, Blender execution, browser testing, installation, trial, publication or cleanup was performed.",
+    "reopen_when": "The user selects the pilot or another learning objective, an actual authoring bottleneck is demonstrated, coordinate/reveal contracts change, or device and packaging measurements justify a broader migration."
+  },
   "referenced_workspace_consolidation": {
     "actor": "assistant",
     "source": "codex://threads/01a0fced-0f0d-75a0-b286-92360438beaa",

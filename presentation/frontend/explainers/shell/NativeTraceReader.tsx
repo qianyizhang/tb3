@@ -121,6 +121,7 @@ function ReferenceResult({ view }: { view: NativeTraceView }) {
       </section>
     );
   }
+  if (view.adapter === 'whole-slide-search') return null;
   const score = view.payload.reference.frozen;
   const passed = Object.values(score.checks).filter(Boolean).length;
   return (
@@ -350,6 +351,8 @@ export function NativeTraceReader({ entry, plan, view, capture, captureReady }: 
                 </ul>
               </details>
             </div>
+          ) : view.adapter === 'whole-slide-search' ? (
+            <p role="status">Whole-slide reader integration is pending.</p>
           ) : view.adapter === 'ct-pose' ? (
             <CtTraceStage
               key={stageKey}

@@ -63,6 +63,7 @@ js-check:
 	node tests/landmark_trace_geometry.cjs
 	node tests/mri_trace_geometry.cjs
 	node tests/coronary_trace_geometry.cjs
+	node tests/wsi_trace_geometry.cjs
 	node tests/explanation_story.cjs
 	node tests/explanation_expansion.cjs
 	node tests/story_review.cjs

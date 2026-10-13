@@ -30,6 +30,7 @@ from .assets import check_dependencies
 from .coronary_trace import project_coronary
 from .landmark_trace import project_landmark
 from .mri_trace import project_mri
+from .wsi_trace import project_wsi, validate_wsi_deliveries
 
 
 class ClosedModel(BaseModel):
@@ -59,8 +60,15 @@ class Manifest(ClosedModel):
     entry_id: str = Field(min_length=1)
     attempt: str = Field(min_length=1)
     saved_state: str = Field(min_length=1)
-    adapter: Literal["ct-pose", "mra-repair", "ct-landmarks", "longitudinal-mri", "coronary-cpr"]
-    coordinates: Literal["LPS-mm", "RAS-mm"]
+    adapter: Literal[
+        "ct-pose",
+        "mra-repair",
+        "ct-landmarks",
+        "longitudinal-mri",
+        "coronary-cpr",
+        "whole-slide-search",
+    ]
+    coordinates: Literal["LPS-mm", "RAS-mm", "level0-px"]
     notice: str = Field(min_length=1)
     recovery: str = Field(min_length=1)
     assets: list[Asset] = Field(min_length=3)
@@ -73,7 +81,9 @@ class Manifest(ClosedModel):
             raise ValueError("Exactly one derived display payload is required")
         if not {"provenance", "license"} <= {a.role for a in self.assets}:
             raise ValueError("Native data needs provenance and license assets")
-        expected = "LPS-mm" if self.adapter == "ct-pose" else "RAS-mm"
+        expected = {"ct-pose": "LPS-mm", "whole-slide-search": "level0-px"}.get(
+            self.adapter, "RAS-mm"
+        )
         if self.coordinates != expected:
             raise ValueError("Native adapter coordinate frame mismatch")
         if any((a.role == "delivered-image") != (a.step is not None) for a in self.assets):
@@ -177,6 +187,8 @@ def _indices(values: list[int], size: int) -> None:
 
 def project_payload(data: Document, manifest: Manifest) -> Document:
     """Explicit field allowlists prevent reference diagnostics leaking into input data."""
+    if manifest.adapter == "whole-slide-search":
+        return project_wsi(data, manifest.attempt)
     if manifest.adapter == "coronary-cpr":
         return project_coronary(data, manifest.attempt, _array, _matrix)
     if manifest.adapter == "longitudinal-mri":
@@ -381,7 +393,12 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
         if manifest.saved_state not in state_ids:
             raise ValueError("Saved state is not retained")
         steps = {item["step"] for item in payload["observed"]["trace"]}
-        if manifest.adapter in {"ct-landmarks", "longitudinal-mri", "coronary-cpr"}:
+        if manifest.adapter in {
+            "ct-landmarks",
+            "longitudinal-mri",
+            "coronary-cpr",
+            "whole-slide-search",
+        }:
             deliveries = {a.step for a in manifest.assets if a.role == "delivered-image"}
             if any(
                 s["delivered_step"] is not None and s["delivered_step"] not in deliveries
@@ -393,11 +410,25 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
                 beat.state is not None and beat.state not in state_ids
             ):
                 raise ValueError(f"Chapter {beat.id} is not bound to retained trace/state evidence")
+        if manifest.adapter == "whole-slide-search":
+            validate_wsi_deliveries(
+                payload,
+                [
+                    (a.sha256, a.step, storage.inside(root, a.path).read_bytes())
+                    for a in manifest.assets
+                    if a.role == "delivered-image"
+                ],
+            )
         payload["delivered_images"] = [
             {
+                "sha256": a.sha256,
                 "step": a.step,
                 "path": a.path,
-                "src": "data:image/png;base64,"
+                "src": (
+                    "data:image/jpeg;base64,"
+                    if storage.inside(root, a.path).read_bytes().startswith(b"\xff\xd8")
+                    else "data:image/png;base64,"
+                )
                 + base64.b64encode(storage.inside(root, a.path).read_bytes()).decode(),
             }
             for a in manifest.assets
@@ -433,6 +464,11 @@ def compile_trace(root: Path, path: Path, *, allow_missing: bool = False) -> Doc
                 if manifest.adapter == "coronary-cpr"
                 else {}
             ),
+            **(
+                {"wsi_trace.py": storage.sha(Path(__file__).with_name("wsi_trace.py"))}
+                if manifest.adapter == "whole-slide-search"
+                else {}
+            ),
             "explanation_stories.py": storage.sha(Path(explanation_stories.__file__)),
             **(
                 {"landmark_trace.py": storage.sha(Path(__file__).with_name("landmark_trace.py"))}
@@ -459,6 +495,10 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
     if manifest["adapter"] == "longitudinal-mri":
         dependencies["src/tb3_medical/explainers/mri_trace.py"] = storage.sha(
             root / "src/tb3_medical/explainers/mri_trace.py"
+        )
+    if manifest["adapter"] == "whole-slide-search":
+        dependencies["src/tb3_medical/explainers/wsi_trace.py"] = storage.sha(
+            root / "src/tb3_medical/explainers/wsi_trace.py"
         )
     if manifest["adapter"] == "coronary-cpr":
         dependencies["src/tb3_medical/explainers/coronary_trace.py"] = storage.sha(
@@ -504,6 +544,8 @@ def compile_components(root: Path, path: Path) -> tuple[NativeTracePlan, NativeT
                     if manifest["adapter"] == "longitudinal-mri"
                     else "https://zenodo.org/records/21887809"
                     if manifest["adapter"] == "coronary-cpr"
+                    else "https://registry.opendata.aws/camelyon/"
+                    if manifest["adapter"] == "whole-slide-search"
                     else "https://zenodo.org/records/15692630",
                     "link_label": "Original dataset",
                 }
