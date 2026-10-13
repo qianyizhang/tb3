@@ -44,6 +44,10 @@ The historical round remains closed; the [patient-plane idea and parking decisio
 ## Inspectable sources
 
 - [Original BR-003 protocol](../../../docs/research-rounds/BR-003-work-history.md), [retained source audit](../../../docs/evidence/br003-source-audit.json), [round summary](../../../docs/evidence/br003-round-summary.json).
-- [Archived full-round analysis](../../../archive/legacy/pre-medical/catalog/analyses/br003-work-history.md).
-- [PDF contract](../../../archive/legacy/pre-medical/probes/pdf-table-lineage/instruction.md), [chat contract](../../../archive/legacy/pre-medical/probes/chat-round-recovery/instruction.md), [QA contract](../../../probes/dicom-label-audit/instruction.md), [SVG contract](../../../probes/dicom-triplanar-svg/instruction.md).
+- [Archived full-round analysis](https://github.com/qianyizhang/tb3/blob/51f3b1224d2069fe931ac28b06fd2ccf38c497ab/catalog/analyses/br003-work-history.md).
+- [PDF contract](https://github.com/qianyizhang/tb3/blob/51f3b1224d2069fe931ac28b06fd2ccf38c497ab/probes/pdf-table-lineage/instruction.md), [chat contract](https://github.com/qianyizhang/tb3/blob/51f3b1224d2069fe931ac28b06fd2ccf38c497ab/probes/chat-round-recovery/instruction.md), [QA contract](../../../probes/dicom-label-audit/instruction.md), [SVG contract](../../../probes/dicom-triplanar-svg/instruction.md).
 - [Read-only audit utility](../../../scripts/audit_history_sourcing.py), [teaching-pack notice](../../../presentation/task-explorer/history-sourcing/NOTICE.md), [canonical story](../presentation/stories/history-sourcing.story.md).
+
+Archived full-round sources are optional local recovery artifacts. The tracked
+[archive manifest](../../../archive/manifest.json) retains their exact original
+commit, paths and hashes; the portable story pins that manifest.

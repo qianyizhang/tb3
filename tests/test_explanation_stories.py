@@ -16,6 +16,10 @@ SOURCE = Path("groups/tubular-anatomy/presentation/stories/route-unfold-teaching
 
 
 class ExplanationStoriesTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        (ROOT / ".local").mkdir(exist_ok=True)
+
     def test_source_slice_pack_requires_reference_disclosure_and_retained_terms(self):
         source = Path("groups/anatomy-audit/presentation/stories/mixed-tissue-audit.story.md")
         plan = stories.compile_story(ROOT, source)

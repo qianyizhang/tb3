@@ -19,7 +19,7 @@ source_locators:
 - docs/research-rounds/BR-003-work-history.md
 - docs/evidence/br003-source-audit.json
 - docs/evidence/br003-round-summary.json
-- archive/legacy/pre-medical/catalog/analyses/br003-work-history.md
+- archive/manifest.json
 - scripts/audit_history_sourcing.py
 - scripts/build_history_sourcing_assets.py
 ---

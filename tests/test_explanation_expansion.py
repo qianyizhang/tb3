@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ExpansionTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        (ROOT / ".local").mkdir(exist_ok=True)
+
     def test_all_expansion_sources_and_projection(self):
         for path in [
             *ROOT.glob("groups/*/presentation/stories/*.story.md"),

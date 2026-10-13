@@ -55,6 +55,7 @@ async function checkExplorer(browser, input, report) {
       fallbackDrawings = 0,
       staticDrawings = 0,
       spatialDrawings = 0,
+      nativeTraces = 0,
       scriptedPlanarDrawings = 0;
     const diagramTypes = new Set();
     for (const repo of data.inventory.repositories)
@@ -119,6 +120,42 @@ async function checkExplorer(browser, input, report) {
           assert.equal(await page.locator('.scene-static .picture-pair svg').count(), 2);
           assert.equal(await page.locator('.scene-canvas').count(), 0);
           staticDrawings++;
+        } else if (data.explainer_views?.[e.illustration.story_id]?.family === 'native-trace') {
+          const view = data.explainer_views[e.illustration.story_id];
+          const plan = data.explanation_stories[e.illustration.story_id];
+          const reader = page.locator('.scene-player[data-family="native-trace"]');
+          await reader.locator('[data-story-step]').first().waitFor();
+          assert.equal(await reader.getAttribute('data-native-adapter'), view.adapter);
+          assert.equal(await reader.locator('[data-story-step]').count(), plan.beats.length);
+          assert.equal(await reader.getAttribute('data-playing'), 'false');
+          assert.equal(
+            await reader.locator('details[id^="native-evidence-"]').getAttribute('open'),
+            null,
+          );
+          for (const [index, beat] of plan.beats.entries()) {
+            const chapter = reader.locator(`[data-story-step="${index}"]`);
+            assert.ok((await chapter.innerText()).trim(), `${e.id}: readable native chapter`);
+            await chapter.click();
+            await page.waitForFunction(
+              (id) => document.querySelector('[data-family="native-trace"]')?.dataset.beat === id,
+              beat.id,
+            );
+            assert.equal(await chapter.getAttribute('aria-pressed'), 'true');
+            assert.equal(await reader.locator('[data-scene-title]').innerText(), beat.caption);
+          }
+          assert.equal(await reader.getAttribute('data-reference-shown'), 'false');
+          if (!view.payload) {
+            assert.ok(
+              (await reader.innerText()).includes('Native assets are unavailable in this copy.'),
+            );
+            assert.equal(await reader.locator('[data-native-ready="true"]').count(), 1);
+          }
+          await reader.locator('.scene-reset').click();
+          await page.waitForFunction(
+            (id) => document.querySelector('[data-family="native-trace"]')?.dataset.beat === id,
+            plan.beats[0].id,
+          );
+          nativeTraces++;
         } else {
           await page
             .locator('.scene-player[data-rendered="true"]')
@@ -289,7 +326,12 @@ async function checkExplorer(browser, input, report) {
     for (const e of data.entries.filter((e) => /<img\b/.test(e.visuals.input))) {
       await go(`${e.id}/0/overview`, e.id);
       if (e.illustration) {
-        assert.equal(await page.locator('.scene-canvas, .scene-static').count(), 1);
+        const family = data.explainer_views?.[e.illustration.story_id]?.family;
+        const fallback = family
+          ? page.locator(`.scene-player[data-family="${family}"]`)
+          : page.locator('.scene-canvas, .scene-static');
+        await fallback.waitFor({ state: 'attached' });
+        assert.equal(await fallback.count(), 1);
         fallbackDrawings++;
       }
       assert.ok((await page.locator('.preview-unavailable').innerText()).includes('unavailable'));
@@ -958,6 +1000,7 @@ async function checkExplorer(browser, input, report) {
       staticDrawings,
       spatialDrawings,
       scriptedPlanarDrawings,
+      nativeTraces,
       diagramTypes: diagramTypes.size,
       sourcePreviews,
       portableFallbacks: fallbackDrawings,
