@@ -11,7 +11,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
@@ -23,17 +23,12 @@ jobs:
       - uses: ./.github/actions/setup-python
         with:
           python-version: ${{ matrix.python-version }}
-      # Python regressions also exercise frontend modules through Vite.
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: '22.18.0'
-          cache: npm
-      - run: npm ci
-      - name: Validate pre-commit configuration
+      - name: Check shared contracts and evidence integrity
+        if: matrix.python-version == '3.14'
+        run: make test-critical PYTHON=.venv/bin/python
+      - name: Validate repository and critical regressions
         if: matrix.python-version == '3.12'
-        run: make pre-commit-check PYTHON=.venv/bin/python
-      - name: Validate artifacts, documentation, types, and tests
-        run: make check PYTHON=.venv/bin/python
+        run: make ci-check PYTHON=.venv/bin/python
       - name: Smoke-test the wheel
         if: matrix.python-version == '3.12'
         run: make build-check PYTHON=.venv/bin/python

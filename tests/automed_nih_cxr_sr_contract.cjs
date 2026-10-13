@@ -17,17 +17,13 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   assert.equal(m.referenceVisible({ ...base, scene: 'reference', reference: 1 }), false);
   assert.equal(m.referenceVisible({ ...base, scene: 'reference', reference: 1 }, true), true);
   assert.equal(m.referenceVisible({ ...base, scene: 'reference' }), false);
-  const { execFileSync } = require('node:child_process');
+  const { runPython } = require('../presentation/tooling/python.mts');
   const path = require('node:path');
   const p = JSON.parse(
-    execFileSync(
-      '/Users/zhangqy/pkgs/tb3/.venv/bin/python',
-      [
-        '-c',
-        "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/automedbench-full-nih-cxr-sr-task.story.md'))))",
-      ],
-      { env: { ...process.env, PYTHONPATH: path.resolve('src') }, encoding: 'utf8' },
-    ),
+    runPython(path.resolve(__dirname, '..'), [
+      '-c',
+      "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/automedbench-full-nih-cxr-sr-task.story.md'))))",
+    ]),
   );
   for (let i = 0; i < 3; i++)
     for (let j = 0; j < 3; j++) {

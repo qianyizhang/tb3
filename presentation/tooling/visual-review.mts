@@ -82,23 +82,31 @@ export async function captureReview(
       const plan = entry.illustration.story_id
         ? data.explanation_stories?.[entry.illustration.story_id]
         : undefined;
+      const view = plan ? data.explainer_views?.[plan.id] : undefined;
+      const native = view?.family === 'native-trace' ? view : undefined;
       await page.evaluate((id) => {
         location.hash = `${id}/0/overview?view=repository`;
       }, entry.id);
       await page.waitForFunction(
-        ({ id, kind }) =>
+        ({ id, kind, native }) =>
           document.querySelector<HTMLElement>('.task-detail')?.dataset.brief === id &&
-          document.querySelector<HTMLElement>('.task-scene-host > [data-scene]')?.dataset.scene ===
-            kind,
-        { id: entry.id, kind: entry.illustration.kind },
+          (native
+            ? document.querySelector<HTMLElement>('.scene-player')?.dataset.family ===
+              'native-trace'
+            : document.querySelector<HTMLElement>('.task-scene-host > [data-scene]')?.dataset
+                .scene === kind),
+        { id: entry.id, kind: entry.illustration.kind, native: Boolean(native) },
       );
       const staticView = page.locator('.scene-static');
       const isStatic = (await staticView.count()) > 0;
       if (!isStatic) await page.locator('.scene-player[data-rendered="true"]').waitFor();
+      if (native) await page.locator('[data-native-ready="true"]').waitFor();
       const mode = reviewMode(
         isStatic
           ? 'static'
-          : (await page.locator('.scene-player').getAttribute('data-surface-renderer')) || '',
+          : native && !native.payload
+            ? 'poster'
+            : (await page.locator('.scene-player').getAttribute('data-surface-renderer')) || '',
       );
       const name = entry.id.replace(/[^a-z0-9_-]/gi, '_');
       const images: string[] = [];
@@ -143,7 +151,11 @@ export async function captureReview(
             document.querySelector<HTMLElement>('.scene-player')?.dataset.texturesReady === 'true',
         );
         for (let stage = 0; stage < (plan?.beats.length || 3); stage++) {
-          if (stage) await page.locator(`[data-scene-step="${stage}"]`).click();
+          if (stage)
+            await page
+              .locator(`[${native ? 'data-story-step' : 'data-scene-step'}="${stage}"]`)
+              .click();
+          if (native) await page.locator('[data-native-ready="true"]').waitFor();
           const beat = plan?.beats[stage];
           if (beat)
             await page.waitForFunction(

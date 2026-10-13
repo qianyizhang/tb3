@@ -6,19 +6,12 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     '../presentation/frontend/task-visuals/imaging-ultrasound-sos-controls.ts',
   );
   const t = await loadFrontend('../presentation/frontend/task-visuals/story-timeline.ts');
-  const { execFileSync } = require('node:child_process');
+  const { runPython } = require('../presentation/tooling/python.mts');
   const plan = JSON.parse(
-    execFileSync(
-      '/Users/zhangqy/pkgs/tb3/.venv/bin/python',
-      [
-        '-c',
-        "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/imaging101-ultrasound-sos-tomography.story.md'))))",
-      ],
-      {
-        env: { ...process.env, PYTHONPATH: require('node:path').resolve('src') },
-        encoding: 'utf8',
-      },
-    ),
+    runPython(path.resolve(__dirname, '..'), [
+      '-c',
+      "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/imaging101-ultrasound-sos-tomography.story.md'))))",
+    ]),
   );
 
   for (let i = 0; i < 3; i++)

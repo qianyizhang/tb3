@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { execFileSync } = require('node:child_process');
+const { runPython } = require('../presentation/tooling/python.mts');
 const path = require('node:path');
 const { loadFrontend } = require('./frontend_bundle.cjs');
 (async () => {
@@ -8,14 +8,10 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
   );
   const t = await loadFrontend('../presentation/frontend/task-visuals/story-timeline.ts');
   const p = JSON.parse(
-    execFileSync(
-      '/Users/zhangqy/pkgs/tb3/.venv/bin/python',
-      [
-        '-c',
-        "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/automedbench-full-synthrad2025-mrct-task.story.md'))))",
-      ],
-      { env: { ...process.env, PYTHONPATH: path.resolve('src') }, encoding: 'utf8' },
-    ),
+    runPython(path.resolve(__dirname, '..'), [
+      '-c',
+      "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/automedbench-full-synthrad2025-mrct-task.story.md'))))",
+    ]),
   );
   const frames = [168, 336, 504, 672];
   for (let j = 0; j < 4; j++) {

@@ -33,6 +33,9 @@ Browser setup and the macOS execution boundary are in the
 
 | Command | Coverage |
 | --- | --- |
+| `make ci-check` | Fast hosted gate: repository validation and explicit shared-contract regressions |
+| `make test-critical` | Shared records, evidence integrity, recovery, payload and native-geometry unit tests |
+| `make presentation-smoke` | Build, critical JS checks and bounded portable browser journeys |
 | `make check` | Git-index artifacts, offline tests, medical records, docs links, types, Ruff, workflow syntax |
 | `make pre-commit-check` | All six configured pre-commit checks; no automatic file rewrites |
 | `make docs-check` | Maintained Markdown paths, heading anchors and closed code fences |
@@ -48,6 +51,20 @@ Browser setup and the macOS execution boundary are in the
 | `make presentation-check` | Portable site navigation, sources, keyboard/mobile behavior; disposable browser |
 | `make build-check` | Wheel installation and CLI checks from an unrelated temporary directory |
 | `npm run format` | Format maintained JavaScript scripts and checks |
+
+Automatic GitHub CI runs `ci-check` on Python 3.12, critical regressions on 3.14,
+and a parallel `presentation-smoke` job. Hosted checks cover source/record validity,
+shared contracts, evidence retention, frontend compilation, navigation, locale/mobile
+behavior and native-reader controls/fallbacks. Each job has a five-minute ceiling;
+measure actual runs rather than treating the ceiling as a runtime target.
+
+Keep the full Python catalogue/story suite (`make check`), full JavaScript geometry
+and frame sweeps (`make js-check`), and exhaustive browser/capture suite
+(`make presentation-check`) as local completion gates for affected changes.
+CI success is not a claim of complete visual, media-export or medical validation.
+The explicit hosted Python selection is in [critical_suite.py](tests/critical_suite.py);
+[the smoke runner](tests/presentation_smoke.cjs) reuses the full suite's assertions.
+Python story tests invoke Node/Vite: run `npm ci` before the full local gate.
 
 Stage intended files, then run `make check PYTHON=python3.12` with the project
 environment active. Otherwise `make check` selects `.venv/bin/python`.

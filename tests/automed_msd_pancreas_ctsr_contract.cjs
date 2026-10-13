@@ -5,17 +5,13 @@ const { loadFrontend } = require('./frontend_bundle.cjs');
     '../presentation/frontend/task-visuals/automed-msd-pancreas-ctsr.ts',
   );
   const t = await loadFrontend('../presentation/frontend/task-visuals/story-timeline.ts');
-  const { execFileSync } = require('node:child_process');
+  const { runPython } = require('../presentation/tooling/python.mts');
   const path = require('node:path');
   const p = JSON.parse(
-    execFileSync(
-      '/Users/zhangqy/pkgs/tb3/.venv/bin/python',
-      [
-        '-c',
-        "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/automedbench-full-msd-pancreas-ctsr-task.story.md'))))",
-      ],
-      { env: { ...process.env, PYTHONPATH: path.resolve('src') }, encoding: 'utf8' },
-    ),
+    runPython(path.resolve(__dirname, '..'), [
+      '-c',
+      "import json;from pathlib import Path;from tb3_medical.explanation_stories import compile_story;print(json.dumps(compile_story(Path.cwd(),Path('presentation/external-tasks/stories/automedbench-full-msd-pancreas-ctsr-task.story.md'))))",
+    ]),
   );
   const expectedFrames = [576, 687, 752, 863];
   for (let i = 0; i < 4; i++) {

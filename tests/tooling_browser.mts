@@ -20,14 +20,24 @@ export async function checkReview(browser: Browser, site: string, reports: strin
       entry.illustration?.story_id &&
       data.explanation_stories?.[entry.illustration.story_id]?.recipe === 'multiscale-v1',
   );
-  const spatial = data.entries.find((entry) => entry.id === 'ours');
+  const spatial = data.entries.find(
+    (entry) =>
+      entry.illustration?.story_id &&
+      data.explanation_stories?.[entry.illustration.story_id]?.recipe === 'shape-material-v1',
+  );
+  const native = data.entries.find((entry) => entry.id === 'ours');
+  assert.ok(native?.illustration?.story_id);
+  const nativeView = data.explainer_views?.[native.illustration.story_id];
+  assert.ok(nativeView?.family === 'native-trace');
+  // Exercise a portable copy without local native assets, even on a provisioned host.
+  nativeView.payload = null;
   // Reporting entries now have canonical stories; trial matching deliberately
   // retains the static input/output illustration outside the core scope.
   const staticEntry = data.entries.find(
     (entry) => entry.illustration?.kind === 'trials' && !entry.illustration.story_id,
   );
   assert.ok(planar && spatial && staticEntry, 'Expected representative production views');
-  data.entries = [spatial, planar, staticEntry];
+  data.entries = [spatial, planar, staticEntry, native];
   const input = join(output, 'input.html');
   writeFileSync(
     input,
@@ -40,7 +50,7 @@ export async function checkReview(browser: Browser, site: string, reports: strin
   assert.deepEqual(inventory.summary.errors, []);
   assert.deepEqual(
     inventory.entries.map((entry) => entry.mode),
-    ['3d', 'planar', 'static'],
+    ['3d', 'planar', 'static', 'fallback'],
   );
   for (const entry of inventory.entries) {
     assert.equal(entry.captures?.length, entry.images.length);
@@ -56,12 +66,13 @@ export async function checkReview(browser: Browser, site: string, reports: strin
   }
   assert.equal(inventory.summary.spatial, 1);
   assert.equal(inventory.summary.planar, 1);
+  assert.equal(inventory.summary.fallback, 1);
   writeFileSync(join(output, 'inventory.json'), JSON.stringify(inventory, null, 2) + '\n');
   writeFileSync(join(output, 'index.html'), renderReview(inventory));
   const page = await browser.newPage({ viewport: { width: 360, height: 800 } });
   try {
     await page.goto(pathToFileURL(join(output, 'index.html')).href);
-    assert.equal(await page.locator('article').count(), 3);
+    assert.equal(await page.locator('article').count(), 4);
     assert.equal(
       await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
       true,
@@ -70,5 +81,7 @@ export async function checkReview(browser: Browser, site: string, reports: strin
   } finally {
     await page.close();
   }
-  console.log('Visual review: spatial, planar, static and mobile report checks passed.');
+  console.log(
+    'Visual review: spatial, planar, static, missing-native and mobile report checks passed.',
+  );
 }

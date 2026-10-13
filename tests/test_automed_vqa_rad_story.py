@@ -22,6 +22,10 @@ PACK = "retained-automed-vqa-rad-v1"
 
 
 class VqaRadStoryTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        (ROOT / ".local").mkdir(exist_ok=True)
+
     def test_native_pair_open_mode_and_unsubmitted_outputs(self):
         plan = stories.compile_story(ROOT, STORY)
         self.assertEqual(plan["reference_policy"], "no-reference-assets")

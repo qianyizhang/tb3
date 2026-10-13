@@ -2,10 +2,16 @@ PYTHON ?= $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 PRESENTATION_OUTPUT ?= .local/presentation-check
 PRESENTATION_REPORTS ?= .local/presentation-qa
 
-.PHONY: actionlint artifacts build-check check contracts-check docs-check format format-check \
+.PHONY: ci-check test-critical presentation-smoke actionlint artifacts build-check check contracts-check docs-check format format-check \
 	frontend-build hooks hygiene js-check lint med-check presentation-check pre-commit-check \
 	site site-dev skills-check style test type-check
+# Full local gate; GitHub uses the bounded ci-check target.
 check: hygiene test med-check docs-check skills-check type-check contracts-check style actionlint
+
+ci-check: hygiene test-critical med-check docs-check skills-check type-check contracts-check style actionlint
+
+test-critical:
+	$(PYTHON) tests/critical_suite.py
 
 contracts-check:
 	$(PYTHON) -m tb3_medical.presentation_contracts --check
@@ -69,6 +75,21 @@ js-check:
 	node tests/story_review.cjs
 	node tests/media_export.mts
 	node --test tests/tooling.mts
+
+# Critical hosted interactions; complete rendering/export coverage stays local.
+presentation-smoke: frontend-build
+	npm run format:check
+	node tests/frontend_overview.cjs
+	node tests/frontend_explorer.cjs
+	node tests/tour_state.cjs
+	node tests/scene_player.cjs
+	node tests/landmark_trace_geometry.cjs
+	node tests/mri_trace_geometry.cjs
+	node tests/coronary_trace_geometry.cjs
+	node tests/wsi_trace_geometry.cjs
+	node --test tests/tooling.mts
+	$(PYTHON) -m tb3_medical.cli present --output "$(PRESENTATION_OUTPUT)"
+	node tests/presentation_smoke.cjs "$(PRESENTATION_OUTPUT)" "$(PRESENTATION_REPORTS)"
 
 # Optional browser regressions. Uses declared, already installed Node/Playwright.
 presentation-check: frontend-build js-check
